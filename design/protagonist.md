@@ -1,72 +1,72 @@
-# Protagonist Brief
+# Протагоніст
 
-## Working Concept
+## Робоча концепція
 
-The protagonist is a sanctioned tracker-judge known as a Pale Warden: part investigator, part monster hunter, part field magistrate. Wardens were created by the old frontier compact to travel between isolated settlements, resolve threats, and carry limited authority where formal law could not reach.
+Протагоніст — санкціонований слідчий-суддя, відомий як Блідий Вартівник: частково слідчий, частково мисливець на монстрів, частково польовий магістрат. Вартівники були створені старим прикордонним пактом для подорожей між ізольованими поселеннями, вирішення загроз і несення обмеженої влади там, де формальний закон не міг діяти.
 
-The order still exists, but barely. It is underfunded, politically distrusted, and morally compromised.
+Орден все ще існує, але ледве. Він недофінансований, політично недовірений і морально скомпрометований.
 
-## Why This Role Works
+## Чому ця роль працює
 
-This role gives the player a natural reason to:
+Ця роль дає гравцеві природну причину:
 
-- travel between settlements
-- investigate crimes, curses, and disappearances
-- hunt monsters without feeling like a generic mercenary
-- intervene in disputes without being a king, chosen one, or omnipotent hero
-- be tolerated by factions but never fully owned by them
+- подорожувати між поселеннями
+- розслідувати злочини, прокляття й зникнення
+- полювати на монстрів без відчуття найманого вбивці
+- втручатись у суперечки, не будучи королем, обранцем або всемогутнім героєм
+- бути терпимим фракціями, але ніколи повністю їм не належати
 
-## Social Position
+## Соціальна позиція
 
-The protagonist is useful, feared, and never entirely welcome.
+Протагоніст корисний, страшний і ніколи не повністю бажаний.
 
-To peasants, a Warden is protection with a price.
-To nobles, a Warden is a necessary inconvenience.
-To priests, a Warden may be either an unclean instrument or a practical ally.
-To outlaws and smugglers, a Warden is a threat unless a deal can be made.
+Для селян Вартівник — захист із ціною.
+Для дворян Вартівник — необхідна незручність.
+Для священників Вартівник може бути або нечистим інструментом, або практичним союзником.
+Для злочинців і контрабандистів Вартівник — загроза, якщо не можна домовитись.
 
-## Tone of Character
+## Тон персонажа
 
-The protagonist should feel experienced rather than youthful, observant rather than chatty, and capable of dry wit without becoming flippant. They are not a blank slate, but they should leave enough room for player interpretation through moral emphasis and style.
+Протагоніст має відчуватися досвідченим, а не молодим, спостережливим, а не балакучим, і здатним на сухий гумор без фривольності. Він не порожній аркуш, але має залишати достатньо простору для інтерпретації гравця через моральний акцент і стиль.
 
-## Core Personal Wound
+## Особиста рана
 
-Years ago, the protagonist delivered a lawful verdict that led to a massacre disguised as a settlement purge. Officially, the order called it a containment action. In reality, political actors used the Warden's authority to erase witnesses tied to an older conspiracy.
+Роки тому протагоніст виніс законний вирок, що призвів до різанини, замаскованої під чистку поселення. Офіційно орден назвав це операцією стримування. Насправді політичні актори використали владу Вартівника, щоб стерти свідків, пов'язаних зі старшою змовою.
 
-The protagonist survived the outcome but lost trust in institutions, procedure, and their own certainty. They still believe order matters, but now they suspect every clean story hides blood under the floorboards.
+Протагоніст вижив, але втратив довіру до інституцій, процедури й власної впевненості. Він все ще вірить, що порядок має значення, але тепер підозрює, що кожна чиста історія приховує кров під дошками підлоги.
 
-## Mechanical Identity
+## Механічна ідентичність
 
-The protagonist develops through four doctrine paths: Judicator, Stalker, Lantern, and Broker. These paths represent professional philosophy and method, not fantasy-class silos.
+Протагоніст розвивається через чотири доктринальні шляхи: Суддя, Слідопит, Ліхтар і Посередник. Ці шляхи представляють професійну філософію й метод, а не фентезійні класові комірки.
 
-The protagonist's profession should support a signature loop:
+Сигнатурний цикл професії:
 
-- investigate a threat
-- gather testimony, tracks, and material evidence
-- determine what kind of danger is actually present
-- prepare tools, knowledge, and leverage
-- resolve the case through combat, judgment, bargaining, or sacrifice
+- розслідувати загрозу
+- зібрати свідчення, сліди й матеріальні докази
+- визначити, яка саме небезпека присутня насправді
+- підготувати інструменти, знання й важелі
+- вирішити справу через бій, вирок, торг або жертву
 
-## Narrative Strengths
+## Наративні сильні сторони
 
-This character setup supports:
+Цей персонаж підтримує:
 
-- local procedural quests with emotional weight
-- morally difficult judgments
-- political manipulation from stronger powers
-- recurring tension between law and justice
-- a protagonist who can move across classes and institutions
+- локальні процедурні квести з емоційною вагою
+- морально важкі рішення
+- політичні маніпуляції сильніших гравців
+- повторюване напруження між законом і справедливістю
+- протагоніста, здатного рухатись між класами й інституціями
 
-## Risks to Watch
+## Ризики, яких уникати
 
-- avoid making the protagonist too similar to an existing famous monster hunter archetype
-- avoid over-formal legalism if it slows pacing
-- avoid making the order so weak that the role loses credibility
+- не зробити протагоніста надто схожим на існуючий відомий архетип мисливця на монстрів
+- уникати надмірного формального легалізму, якщо це сповільнює темп
+- уникати, щоб орден був настільки слабким, що роль втрачає довіру
 
-## Open Questions
+## Відкритті питання
 
-- should the protagonist be the last capable Warden, or one of a few surviving Wardens?
-- are Wardens altered, trained, marked, or ritually initiated?
-- how visible is the protagonist's reputation at the start of the game?
-- do we want a fixed named protagonist or a custom identity inside a fixed role?
-- how early should the player commit to a dominant doctrine path?
+- Чи має протагоніст бути останнім здатним Вартівником, чи одним із кількох уцілілих?
+- Чи є Вартівники зміненими, навченими, позначеними або ритуально ініційованими?
+- Наскільки видима репутація протагоніста на початку гри?
+- Чи хочемо ми фіксованого іменованого протагоніста або кастомну ідентичність у межах фіксованої ролі?
+- Як рано гравець має закріпити домінантний доктринальний шлях?

@@ -1,86 +1,86 @@
-# Systems
+# Системи
 
-## Core System Set
+## Основний набір систем
 
-The systems should serve a single case-driven gameplay loop: arrival, inquiry, interpretation, preparation, confrontation, and consequence.
+Системи мають служити єдиному кейс-керованому ігровому циклу: прибуття, опитування, інтерпретація, підготовка, конфронтація, наслідок.
 
-The game should be designed around a manageable but expressive system stack:
+Гра має бути спроектована навколо керованого, але виразного стеку систем:
 
-- real-time melee combat
-- limited ranged or magical support tools
-- investigation and tracking loops
-- dialogue choice with systemic outcomes
-- equipment, crafting, and preparation
-- regional reputation, faction standing, and professional reputation
+- real-time мілібой
+- обмежена підтримка далекого бою або магії
+- механіки розслідування й відстеження
+- діалоговий вибір із системними наслідками
+- спорярядження, крафт і підготовка
+- регіональна репутація, фракційний статус і професійна репутація
 
-## Combat Goals
+## Цілі бою
 
-Combat should feel readable, dangerous, and skill-expressive.
+Бій має відчуватися зчитуваним, небезпечним і виразним для навичок.
 
-Key traits:
+Ключові риси:
 
-- clear enemy archetypes
-- stamina, posture, or commitment-based decision pressure
-- prep advantages against specific threats
-- low tolerance for animation spam and hit-soup combat
+- чіткі архетипи ворогів
+- витривалість, постава або тиск рішень на основі зобов'язань
+- переваги підготовки проти специфічних загроз
+- низька толерантність до анімаційного спаму та hit-soup бою
 
-## Quest Structure
+## Структура квесту
 
-Quest content should use three layers:
+Квестовий контент має використовувати три шари:
 
-- main arc quests that redefine regional power
-- side quests with strong characters and local consequences
-- contracts or hunts that reveal lore, economy, and monster behavior
+- головні квести арки, що перевизначають регіональну владу
+- побічні квести з сильними персонажами й локальними наслідками
+- контракти або полювання, що розкривають лор, економіку й поведінку монстрів
 
-## Progression
+## Прогресія
 
-Progression should combine:
+Прогресія має поєднувати:
 
-- player skill growth
-- doctrine-based specialization
-- gear specialization
-- knowledge-based preparation
-- selective narrative unlocks
+- зростання навичок гравця
+- доктринальну спеціалізацію
+- спеціалізацію спорядження
+- підготовку на основі знань
+- селективні наративні розблокування
 
-Current progression direction: four doctrine paths shape replayability and playstyle identity without locking the player into rigid class walls.
+Поточний напрямок: чотири доктринальні шляхи формують поворотність і ідентичність стилю гри без блокування гравця в жорсткі класові стіни.
 
-## Reputation and Consequence
+## Репутація та наслідки
 
-Reputation should act as layered world memory rather than a morality bar.
+Репутація має діяти як шарова пам'ять світу, а не моральна шкала.
 
-The current model uses:
+Поточна модель використовує:
 
-- Public Memory
-- Faction Standing
-- Professional Reputation
+- Публічну пам'ять
+- Фракційний статус
+- Професійну репутацію
 
-## Crafting and Preparation
+## Крафт і підготовка
 
-Crafting should remain tightly scoped to case preparation.
+Крафт має залишатись тісно обмеженим підготовкою до справи.
 
-The current model uses:
+Поточна модель використовує:
 
-- Field Consumables
-- Warden Tools
-- Special Preparations
+- Польові витратні матеріали
+- Інструменти Вартівника
+- Спеціальну підготовку
 
-## Exploration
+## Дослідження
 
-Exploration should prioritize discovery density rather than map scale.
+Дослідження має пріоритезувати щільність відкриттів, а не масштаб карти.
 
-Use:
+Використовувати:
 
-- compact paths with visual storytelling
-- landmarks that imply history
-- hidden encounters with narrative payoff
-- traversal friction only where it adds tension or identity
+- компактні шляхи з візуальним сторітелінгом
+- точки інтересу, що мають на увазі історію
+- приховані зустрічі з наративною віддачею
+- траверс-тертя тільки там, де воно додає напруження або ідентичність
 
-## Open Questions
+## Відкриті питання
 
-- How much detective-style investigation should exist before it slows pacing?
-- How punishing should combat be?
-- What progression resources are diegetic versus abstract?
-- Which consequences should be systemic versus handcrafted per quest?
-- How deeply should doctrine paths alter quest resolution logic?
-- How visible should reputation state be in the UI?
-- Which crafting resources should be universal versus region-specific?
+- Скільки детективного розслідування має існувати до того, як воно сповільнить темп?
+- Наскільки жорстким має бути бій?
+- Які ресурси прогресії є дієгетичними, а які абстрактними?
+- Які наслідки мають бути системними, а які рукотворними на квест?
+- Наскільки глибоко доктринальні шляхи мають змінювати логіку розв'язки квесту?
+- Наскільки видимим має бути стан репутації в UI?
+- Які ресурси крафту мають бути універсальними, а які регіонально-специфічними?

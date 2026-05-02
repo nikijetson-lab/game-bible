@@ -1,58 +1,58 @@
-# World Premise Brief
+# Концепція світу
 
-## Core Premise
+## Основна ідея
 
-The frontier region is collapsing because the old system that kept violence, monsters, and political ambition in balance has failed. A generation ago, the Marcher Compact bound fortress lords, trade houses, temple authorities, and frontier wardens into an uneasy order. It was unjust, but it worked well enough to keep the roads open and the dead buried.
+Прикордонний регіон руйнується, тому що стара система, що тримала в рівновазі насилля, монстрів і політичні амбіції, зазнала краху. Покоління тому Маршевий Пакт об'єднав фортечних лордів, торгові доми, храмову владу й прикордонних Вартівників у незручному порядку. Несправедливий, але достатній, щоб дороги були відкриті, а мертві поховані.
 
-Now that order is breaking.
+Тепер цей порядок ламається.
 
-A blight called the Hollow Season has begun to spread across the frontier. Crops fail in irregular patterns, animals are born wrong, graves do not stay quiet, and isolated communities start making bargains they cannot control. The powerful claim this is a natural cycle, divine punishment, or enemy sabotage depending on what story benefits them.
+Прокляття під назвою **Порожній Сезон** почало поширюватись фронтиром. Врожаї гинуть у нерегулярних патернах, тварини народжуються неправильно, могили не мовчать, і ізольовані громади починають укладати угоди, які не можуть контролювати. Могутні стверджують, що це природний цикл, божественна кара або ворожий саботаж — залежно від того, яка історія їм вигідна.
 
-The truth is worse: the Compact was originally sealed over an older buried catastrophe, and the institutions that inherited its authority have spent decades hiding both the cost and the mechanism.
+Правда гірша: Пакт був укладений над стародавньою похованою катастрофою, та інституції, що успадкували його владу, десятиліттями приховували і ціну, і механізм.
 
-## Central Conflict
+## Центральний конфлікт
 
-Everyone in the region is fighting the same collapse for different reasons:
+Кожен у регіоні бореться з тим самим колапсом — але з різних причин:
 
-- rulers want control before scarcity becomes revolt
-- merchants want roads, grain, and predictable violence
-- priests want spiritual legitimacy over fear and death
-- villagers want survival, even if survival means feeding something terrible in the woods
-- remnants of the Wardens want truth, containment, or redemption depending on who remains
+- правителі хочуть контроль до того, як дефіцит стане бунтом
+- торговці хочуть дороги, зерно й передбачуване насилля
+- священники хочуть духовну легітимність над страхом і смертю
+- селяни хочуть виживання, навіть якщо виживання означає годування чогось жахливого в лісах
+- залишки Вартівників хочуть правди, стримування або спокути — залежно від того, хто залишився
 
-The protagonist is pulled into the conflict because local cases reveal that the Hollow Season is not a random plague. It is the surface symptom of a political and metaphysical lie that the region was built on.
+Протагоніст втягується в конфлікт, тому що локальні справи розкривають: Порожній Сезон — не випадкова чума. Це поверхневий симптом політичної й метафізичної брехні, на якій побудований регіон.
 
-## Thematic Engine
+## Тематичний двигун
 
-The world should revolve around a few pressure themes:
+Світ має обертатись навколо кількох тем тиску:
 
-- law versus justice
-- survival versus dignity
-- public order versus buried truth
-- inherited institutions versus living communities
-- practical sacrifice versus moral corrosion
+- закон проти справедливості
+- виживання проти гідності
+- публічний порядок проти похованої правди
+- успадковані інституції проти живих громад
+- практична жертва проти моральної корозії
 
-## Why This Premise Supports the Game
+## Чому ця концепція підтримує гру
 
-It gives us:
+Це дає нам:
 
-- a regional crisis strong enough to unify the main arc
-- many local quest variants tied to hunger, fear, corruption, and opportunism
-- monster logic connected to land, death, and social breakdown
-- faction conflict that feels material rather than abstract
-- room for mystery without losing political groundedness
+- регіональну кризу, достатньо сильну, щоб уніфікувати головну арку
+- багато локальних варіантів квестів, прив'язаних до голоду, страху, корупції та опортунізму
+- логіку монстрів, пов'язану із землею, смертю й соціальним розпадом
+- фракційний конфлікт, що відчувається матеріальним, а не абстрактним
+- простір для таємниці без втрати політичної приземленості
 
-## Signature World Hook
+## Сигнатурний світовий гачок
 
-The land is not merely cursed. It is being forced to remember what the ruling order tried to bury.
+Земля не просто проклята. Її змушують пам'ятати те, що правлячий порядок намагався поховати.
 
-## Suggested Geographic Tone
+## Запропонований географічний тон
 
-Use a cold-temperate frontier with marshes, old forests, ruined watchroads, mining valleys, and one hardened fortress-city that still pretends to govern the region.
+Використати холодно-помірний фронтир із болотами, старими лісами, зруйнованими сторожовими дорогами, шахтарськими долинами й однією загартованою фортецею-містом, що все ще прикидається, ніби керує регіоном.
 
-## Open Questions
+## Відкриті питання
 
-- what exactly was buried or sealed when the Compact was formed?
-- is the Hollow Season cyclical, accelerating, or partially man-made?
-- which faction first realizes the truth and chooses to exploit it?
-- how much of the supernatural can be explained, and how much should remain numinous?
+- Що саме було поховано або запечатано, коли формувався Пакт?
+- Чи є Порожній Сезон циклічним, прискорюваним або частково рукотворним?
+- Яка фракція першою усвідомлює правду й обирає її експлуатувати?
+- Скільки надприродного можна пояснити, а скільки має залишатись нуменозним?

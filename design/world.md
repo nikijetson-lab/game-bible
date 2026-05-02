@@ -1,58 +1,58 @@
-# World
+# Світ
 
-## World Frame
+## Рамка світу
 
-The setting should support dark fantasy, political fracture, monster ecology, and local cultures with distinct pressures. The world must feel old, wounded, and practical.
+Сетинг має підтримувати темну фентезі, політичний розкол, екологію монстрів і локальні культури з відмінними тисками. Світ має відчуватися старим, пораненим і практичним.
 
-Current direction: the region is being destabilized by the Hollow Season, a spreading blight tied to secrets buried beneath the old Marcher Compact.
+Поточний напрям: регіон дестабілізується Порожнім Сезоном — прокляттям, що поширюється, пов'язаним із таємницями, похованими під старим Маршевим Пактом.
 
-## Regional Model
+## Регіональна модель
 
-Use a compact-region structure instead of a continent-scale map.
+Використати компактну регіональну структуру замість континентальної карти.
 
-Suggested starting structure:
+Запропонована структура:
 
-- one hub city or fortress-state
-- three to five surrounding regions with different ecological and political identities
-- one wild borderland zone reserved for late-game danger and mythic content
+- один хаб (фортеця-місто)
+- три-п'ять оточуючих регіонів із різною екологічною й політичною ідентичністю
+- одна дика прикордонна зона для пізньоігрової небезпеки й міфічного контенту
 
-Current first-region direction: The Hazemoor, a flood-sick peat marsh that feeds Greyford while exposing the buried violence beneath the Marcher Compact.
+Поточний перший регіон: Хейзмур — flood-sick торф'яне болото, що годує Грейфорд, одночасно викриваючи поховане насилля під Маршевим Пактом.
 
-## Faction Logic
+## Логіка фракцій
 
-Every major faction should have:
+Кожна велика фракція має мати:
 
-- a material need
-- a public story
-- a hidden weakness
-- a relationship to monsters, magic, and common people
-- a reaction pattern to Warden methods and reputation
+- матеріальну потребу
+- публічну історію
+- приховану вразливість
+- стосунок до монстрів, магії й простих людей
+- патерн реакції на методи й репутацію Вартівника
 
-Current core faction map:
+Поточна карта фракцій:
 
-- Fortress-City Administration
-- Shrine Keepers of Saint Vey
-- Мурі and Ferrymen
-- Smuggler Chains
-- Warden Remnants
+- Адміністрація фортеці-міста
+- Хранителі Святої Вей
+- Мурі та поромники
+- Контрабандисти
+- Залишки Вартівників
 
-## Settlement Design Rule
+## Правило дизайну поселень
 
-Every settlement needs at least one of each:
+Кожне поселення потребує щонайменше одного з кожного:
 
-- social tension
-- economic function
-- rumor or hidden history
-- quest-worthy local face
+- соціальне напруження
+- економічна функція
+- чутка або прихована історія
+- квестова місцева особа
 
-## Monster Rule
+## Правило монстрів
 
-Monsters should not exist as random filler. Each creature type needs ecological logic, folklore texture, and a reason people fear it.
+Монстри не мають існувати як випадковий наповнювач. Кожен тип створіння потребує екологічної логіки, фольклорної текстури й причини, чому люди його бояться.
 
-## Open Questions
+## Відкриті питання
 
-- What is the name of the wider frontier? (The Hazemoor is the first region, not the whole territory)
-- What exactly was buried or sealed when the Marcher Compact was formed?
-- Which cultures control faith, law, trade, and war?
-- What are civilians willing to tolerate in exchange for safety?
-- Which later region should contrast The Hazemoor most sharply?
+- Як називається ширший фронтир? (Хейзмур — перший регіон, не вся територія)
+- Що саме було поховано або запечатано, коли формувався Маршевий Пакт?
+- Які культури контролюють віру, закон, торгівлю й війну?
+- Що цивільні готові терпіти в обмін на безпеку?
+- Який пізній регіон має найбільш різко контрастувати з Хейзмуром?

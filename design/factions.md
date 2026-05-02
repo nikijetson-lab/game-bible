@@ -1,304 +1,304 @@
-# Factions
+# Фракції
 
-## Design Goal
+## Мета дизайну
 
-Factions should function as pressure systems, not decorative lore banners. Each faction must want something material, tell a public story about itself, hide a structural weakness, and react differently to the Warden's methods.
+Фракції мають функціонувати як системи тиску, а не декоративні лор-банери. Кожна фракція має хотіти чогось матеріального, розповідати публічну історію про себе, приховувати структурну слабкість і реагувати на методи Вартівника по-різному.
 
-The player should never feel like the world is split into heroes and villains. Every faction should solve one problem by worsening another.
+Гравець ніколи не має відчувати, що світ розділений на героїв і лиходіїв. Кожна фракція має вирішувати одну проблему, погіршуючи іншу.
 
-## Faction Design Rule
+## Правило дизайну фракцій
 
-Every major faction should define:
+Кожна велика фракція має визначати:
 
-- material interest
-- public narrative
-- hidden vulnerability
-- relationship to the Hollow Season
-- relationship to the Wardens
-- likely reaction to the player's reputation and doctrine style
+- матеріальний інтерес
+- публічний наратив
+- приховану вразливість
+- стосунок до Порожнього Сезону
+- стосунок до Вартівників
+- ймовірну реакцію на репутацію та доктринальний стиль гравця
 
-## Core Frontier Factions
+## Основні фракції фронтиру
 
-### 1. Fortress-City Administration
+### 1. Адміністрація фортеці-міста
 
-Working concept:
-The bureaucratic and military apparatus of the frontier's main fortress-city.
+Робоча концепція:
+Бюрократичний і військовий апарат головної фортеці-міста фронтиру.
 
-Material interest:
-Keep grain moving, roads functioning, taxes collected, and unrest below rebellion threshold.
+Матеріальний інтерес:
+Тримати зерно в русі, дороги функціонуючими, податки зібраними, а заворушення нижче порогу бунту.
 
-Public narrative:
-Only hard order prevents the frontier from collapsing into famine, panic, and heresy.
+Публічний наратив:
+Тільки жорсткий порядок запобігає колапсу фронтиру в голод, паніку та єресь.
 
-Hidden vulnerability:
-Their authority depends on records, logistics, and staged confidence. If the public sees how much the system relies on buried crimes, falsified accounting, and selective violence, the administration fractures quickly.
+Прихована вразливість:
+Їхня влада залежить від записів, логістики та постановленої впевненості. Якщо публіка побачить, наскільки система покладається на поховані злочини, фальсифікований облік і вибіркове насилля, адміністрація швидко розколеться.
 
-Relationship to the Hollow Season:
-They officially treat it as a containment issue, supply disruption, or localized superstition unless evidence becomes impossible to bury.
+Стосунок до Порожнього Сезону:
+Офіційно ставляться до нього як до проблеми стримування, порушення постачання або локального забобону, поки докази не стануть неможливими для поховання.
 
-Relationship to the Wardens:
-They view Wardens as useful field instruments, but dangerous when independent.
+Стосунок до Вартівників:
+Вважають Вартівників корисними польовими інструментами, але небезпечними, коли незалежні.
 
-How they react to the player:
+Як реагують на гравця:
 
-- respect Judicator-style order when it supports state control
-- distrust Lantern methods unless politically necessary
-- tolerate Stalkers only when practical results are immediate
-- use Brokers when deniable work is required, then disown them later
+- поважають стиль Судді, коли він підтримує державний контроль
+- не довіряють методам Ліхтаря, хіба що політично необхідно
+- терплять Слідопитів тільки коли практичні результати негайні
+- використовують Посередників, коли потрібна заперечна робота, потім відрікаються
 
-Quest use:
-Good for cover-ups, emergency authority, ration policy, convoy politics, and pressure to choose stability over truth.
+Використання в квестах:
+Прикриття, надзвичайні повноваження, раціонна політика, конвойна політика, тиск обирати стабільність над правдою.
 
-### 2. Shrine Keepers of Saint Vey
+### 2. Хранителі Святої Вей
 
-Working concept:
-A spiritually authoritative network of hospice keepers, burial custodians, and local ritual functionaries.
+Робоча концепція:
+Духовно авторитетна мережа хоспісних доглядачів, поховальних наглядачів і місцевих ритуальних функціонерів.
 
-Material interest:
-Protect sacred sites, preserve burial control, maintain local trust, and prevent metaphysical panic from escaping clerical authority.
+Матеріальний інтерес:
+Захищати священні місця, зберігати поховальний контроль, підтримувати місцеву довіру й запобігати метафізичній паніці від виходу з-під влади духовенства.
 
-Public narrative:
-The dead must be guided, fear must be disciplined, and suffering must pass through proper rites.
+Публічний наратив:
+Мертвих треба вести, страх треба дисциплінувати, а страждання мають проходити через правильні ритуали.
 
-Hidden vulnerability:
-They preserve records and practices that prove the official faith has tolerated forbidden accommodations with older powers when useful.
+Прихована вразливість:
+Вони зберігають записи й практики, що доводять: офіційна віра терпіла заборонені домовленості зі старшими силами, коли це було вигідно.
 
-Relationship to the Hollow Season:
-They see it as both spiritual disorder and evidence that old burial wrongs are surfacing.
+Стосунок до Порожнього Сезону:
+Бачать його як духовний розлад і доказ, що старі поховальні злочини виринають на поверхню.
 
-Relationship to the Wardens:
-They respect disciplined Wardens who understand limits, but fear those who turn sacred knowledge into state utility.
+Стосунок до Вартівників:
+Поважають дисциплінованих Вартівників, які розуміють межі, але бояться тих, хто перетворює сакральне знання на державну корисність.
 
-How they react to the player:
+Як реагують на гравця:
 
-- trust Lantern players fastest, but also watch them most closely
-- respect Judicators who protect burial order without humiliating the clergy
-- find Stalkers useful but spiritually blunt
-- distrust Brokers unless forced into ugly bargains
+- довіряють Ліхтарям найшвидше, але й стежать найпильніше
+- поважають Суддів, які захищають поховальний порядок без приниження духовенства
+- вважають Слідопитів корисними, але духовно тупими
+- не довіряють Посередникам, хіба що змушені до брудних угод
 
-Quest use:
-Good for rites, burial disputes, plague care, doctrinal tension, hidden archives, and moral choices between mercy and stability.
+Використання в квестах:
+Ритуали, поховальні суперечки, догляд за хворими, доктринальне напруження, приховані архіви, моральні вибори між милосердям і стабільністю.
 
 ### 3. Мурі
 
-Working concept:
-The native population of the Hazemoor — boat-dwellers, hunters, fishers, occult practitioners, and route-keepers who have lived on the marsh for generations. Their culture predates the Compact.
+Робоча концепція:
+Корінне населення Хейзмуру — човнярі, мисливці, рибалки, окультні практики й зберігачі маршрутів, що жили на болоті поколіннями. Їхня культура передує Пакту.
 
-Material interest:
-Protect kin, keep water routes open on their terms, survive quotas, protect marsh sanctity, and pass occult knowledge to those worthy.
+Матеріальний інтерес:
+Захищати рідних, тримати водні маршрути відкритими на їхніх умовах, пережити квоти, захищати святість болота й передавати окультне знання гідним.
 
-Public narrative:
-They know the marsh. Outsiders — Greyford, Wardens, shrine keepers — come and go. The marsh stays. They will outlive every administration.
+Публічний наратив:
+Вони знають болото. Чужинці — Грейфорд, Вартівники, хранителі — приходять і йдуть. Болото залишається. Вони переживуть кожну адміністрацію.
 
-Hidden vulnerability:
-They are fragmented, feud-prone, and easily split by scarcity, bribery, or erosion of tradition. Younger generations drift toward Greyford's promises. Elders struggle to pass on occult knowledge that requires decades to learn.
+Прихована вразливість:
+Вони фрагментовані, схильні до чвар і легко розколюються дефіцитом, хабарями або ерозією традиції. Молодші покоління дрейфують до обіцянок Грейфорда. Старші борються за передачу окультного знання, що потребує десятиліть навчання.
 
-Relationship to the Hollow Season:
-They feel it in the water before anyone sees it on land. Their spirit-reckoning tells them something beneath the marsh has been wounded long ago and is now surfacing. They disagree on whether to hide, fight, or bargain.
+Стосунок до Порожнього Сезону:
+Відчувають його у воді до того, як хтось бачить на суші. Їхній дух-розрахунок каже їм, що щось під болотом було поранено давно й тепер виринає. Вони не згодні, чи варто ховатись, боротись або домовлятись.
 
-Relationship to the Wardens:
-Competence and respect. A Warden who listens, learns the marsh, and observes proper conduct gains access to knowledge no official can offer. One who arrives as an agent of Greyford becomes the enemy of every hidden trail.
+Стосунок до Вартівників:
+Компетенція й повага. Вартівник, який слухає, вивчає болото й дотримується належної поведінки, отримує доступ до знань, які жоден чиновник не може запропонувати. Той, хто прибуває як агент Грейфорда, стає ворогом кожного прихованого маршруту.
 
-How they react to the player:
+Як реагують на гравця:
 
-- respect Stalkers who read terrain and danger properly
-- warmly receive Lanterns who honor marsh spirits
-- test Judicators harshly before sharing any local truth
-- work with Brokers if deals respect family boundaries
+- поважають Слідопитів, що читають територію й небезпеку
+- тепло приймають Ліхтарів, які шанують духів болота
+- жорстко тестують Суддів, перш ніж ділитися будь-якою місцевою правдою
+- працюють із Посередниками, якщо угоди поважають родинні межі
 
-Quest use:
-Good for route intelligence, occult knowledge, contradictory testimony, survival bargains, folk practices, and shifting local alliances.
+Використання в квестах:
+Маршрутна розвідка, окультне знання, суперечливі свідчення, угоди виживання, народні практики, змінні локальні альянси.
 
-### 4. Smuggler Chains
+### 4. Контрабандисти
 
-Working concept:
-Networks moving food, medicine, relics, fugitives, and contraband through pressure zones where official supply has failed.
+Робоча концепція:
+Мережі, що рухають їжу, ліки, реліквії, втікачів і контрабанду через зони тиску, де офіційне постачання провалилось.
 
-Material interest:
-Profit, leverage, and mobility through scarcity.
+Матеріальний інтерес:
+Прибуток, важіль і мобільність через дефіцит.
 
-Public narrative:
-They move what people actually need when the lawful system would rather let them die.
+Публічний наратив:
+Вони рухають те, що людям насправді потрібно, коли законна система воліла б дати їм померти.
 
-Hidden vulnerability:
-They depend on secrecy, divided loyalties, and corrupt officials who can sell them out at any moment.
+Прихована вразливість:
+Вони залежать від таємниці, розділених лояльностей і корумпованих чиновників, які можуть продати їх у будь-який момент.
 
-Relationship to the Hollow Season:
-They exploit disrupted routes and panic, but some cells also become first responders where institutions collapse.
+Стосунок до Порожнього Сезону:
+Експлуатують порушені маршрути й паніку, але деякі комірки також стають першими реагуючими, де інституції руйнуються.
 
-Relationship to the Wardens:
-They fear persistent Wardens, bribe practical ones, and occasionally rely on them to remove competitors.
+Стосунок до Вартівників:
+Бояться наполегливих Вартівників, підкуповують практичних, і іноді покладаються на них для усунення конкурентів.
 
-How they react to the player:
+Як реагують на гравця:
 
-- Brokers can gain access quickly but risk contamination of reputation
-- Stalkers threaten their routes unless paid or persuaded
-- Judicators become high-risk enemies if uncompromising
-- Lanterns unsettle them because superstition thrives in the same spaces as smuggling
+- Посередники можуть отримати швидкий доступ, але ризикують забрудненням репутації
+- Слідопити загрожують їхнім маршрутам, якщо їм не платять або не переконують
+- Судді стають високоризиковими ворогами, якщо непохитні
+- Ліхтарі їх турбують, бо забобони процвітають у тих самих просторах, що й контрабанда
 
-Quest use:
-Good for deniable deals, escort missions, black-market access, divided morality, and conspiracy logistics.
+Використання в квестах:
+Заперечні угоди, ескорт-місії, чорно-ринковий доступ, розділена мораль, конспіративна логістика.
 
-### 5. Warden Remnants
+### 5. Залишки Вартівників
 
-Working concept:
-The surviving fragments of the Pale Wardens: scattered field operatives, broken veterans, archivists, loyalists, and cynics.
+Робоча концепція:
+Фрагменти Блідих Вартівників, що вижили: розрізнені польові оперативники, зламані ветерани, архіваріуси, лоялісти й циніки.
 
-Material interest:
-Varies by splinter. Some want restoration of the order. Some want truth and exposure. Some want enough coherence to prevent the frontier from tearing itself apart.
+Матеріальний інтерес:
+Варіюється за фракцією. Одні хочуть відновлення ордену. Інші хочуть правди й викриття. Деякі хочуть достатньої узгодженості, щоб запобігти розпаду фронтиру.
 
-Public narrative:
-Officially, Wardens exist to hold the line between fear and chaos where law alone cannot go.
+Публічний наратив:
+Офіційно Вартівники існують, щоб тримати лінію між страхом і хаосом там, де закон сам не може.
 
-Hidden vulnerability:
-The order is morally compromised, politically isolated, and partly responsible for the very crimes now surfacing.
+Прихована вразливість:
+Орден морально скомпрометований, політично ізольований і частково відповідальний за самі злочини, що тепер виринають.
 
-Relationship to the Hollow Season:
-The most insightful remnants suspect it is tied to sealed infrastructure and state violence, but they disagree on what should be done with that knowledge.
+Стосунок до Порожнього Сезону:
+Найпроникливіші залишки підозрюють, що він пов'язаний із запечатаною інфраструктурою та державним насиллям, але не згодні, що з цим знанням робити.
 
-Relationship to the Wardens:
-They are the Wardens, which means internal conflict matters as much as external pressure.
+Стосунок до Вартівників:
+Вони і є Вартівники, тому внутрішній конфлікт важить стільки ж, скільки зовнішній тиск.
 
-How they react to the player:
+Як реагують на гравця:
 
-- Judicators may be seen as either restorers or fools
-- Stalkers earn respect for field competency
-- Lanterns attract those interested in dangerous truth
-- Brokers are treated as necessary rot or dangerous realists depending on who is speaking
+- Суддів можуть бачити як реставраторів або дурнів
+- Слідопити заробляють повагу за польову компетенцію
+- Ліхтарі приваблюють тих, хто цікавиться небезпечною правдою
+- До Посередників ставляться як до необхідної гнилі або небезпечних реалістів — залежно від того, хто говорить
 
-Quest use:
-Good for mentor figures, rival Wardens, internal schism, lost doctrine, and late-game revelations.
+Використання в квестах:
+Фігури наставників, ворожі Вартівники, внутрішній розкол, втрачена доктрина, пізньоігрові відкриття.
 
-## Named Actors, Internal Splits, and Quest Hooks
+## Названі актори, внутрішні розколи й квестові гачки
 
-### Fortress-City Administration
+### Адміністрація фортеці-міста
 
-Named actors:
+Названі актори:
 
-- Quartermaster Halren Voss: ration authority in Сонк-Феррі, disciplined, cold, and already compromised by diverted grain
-- Marshal-Recorder Serit Kelm: a city legal officer who believes truth matters only if order survives long enough to use it
+- Квартирмейстер Галрен Восс: начальник раціону в Сонк-Феррі, дисциплінований, холодний, уже скомпрометований відведеним зерном
+- Маршал-Реєстратор Серіт Келм: міський правовий офіцер, який вірить, що правда має значення, тільки якщо порядок живе достатньо довго, щоб її використати
 
-Internal split:
+Внутрішній розкол:
 
-- Stabilizers want selective reform and careful containment
-- Extraction hardliners want quotas met regardless of human cost
+- Стабілізатори хочуть селективної реформи й обережного стримування
+- Екстракційні жорстколінійці хочуть виконання квот незалежно від людської ціни
 
-Quest hooks:
+Квестові гачки:
 
-- missing supply ledgers tied to false famine accounting
-- emergency conscription after a road panic
-- a sealed convoy carrying records instead of food
+- зниклі книги постачання, пов'язані з фальшивим обліком голоду
+- екстрена мобілізація після дорожньої паніки
+- запечатаний конвой, що везе записи замість їжі
 
-### Shrine Keepers of Saint Vey
+### Хранителі Святої Вей
 
-Named actors:
+Названі актори:
 
-- Brother Caros: field keeper, compassionate but evasive, guarding burial records he does not trust the state to see
-- Mother Ysra Veyn: senior custodian who believes panic kills faster than truth and is willing to hide doctrine-breaking rites
+- Брат Карос: польовий хранитель, співчутливий, але ухильний, охороняє поховальні записи, яким не довіряє державу
+- Матір Ісра Вейн: старша настоятелька, яка вірить, що паніка вбиває швидше за правду, і готова приховувати доктринально порушуючі ритуали
 
-Internal split:
+Внутрішній розкол:
 
-- strict doctrinal keepers insist on preserving authority and ritual discipline
-- mercy keepers quietly adapt forbidden practices to reduce suffering on the ground
+- суворі доктринальні хранителі наполягають на збереженні авторитету й ритуальної дисципліни
+- милосердні хранителі тихо адаптують заборонені практики для зменшення страждань на місцях
 
-Quest hooks:
+Квестові гачки:
 
-- a hospice patient speaks names from sealed burial rolls
-- disputed funeral rights for plague-dead and executed deserters
-- a relic lamp that calms the dead but draws attention from the city
+- пацієнт хоспісу називає імена із запечатаних поховальних списків
+- оскаржені поховальні права для померлих від чуми й страчених дезертирів
+- реліквійний ліхтар, що заспокоює мертвих, але привертає увагу міста
 
 ### Мурі
 
-Named actors:
+Названі актори:
 
-- Nera Vale: ferrymaster, practical witness, and route broker whose credibility is damaged by fear and class prejudice
-- Tovan Reed: clan spokesman trying to keep local kin unified while secretly cutting survival deals across faction lines
+- Нера Вейл: поромний майстер, практичний свідок і маршрутний брокер, чия довіра пошкоджена страхом і класовими упередженнями
+- Тован Рід: клановий речник, що намагається тримати місцеву рідню єдиною, таємно укладаючи угоди виживання через фракційні лінії
 
-Internal split:
+Внутрішній розкол:
 
-- isolationists want the fen closed off from city interference
-- accommodationists want controlled cooperation to keep supplies and violence manageable
+- ізоляціоністи хочуть закрити болото від міського втручання
+- аккомодаціоністи хочуть контрольованої співпраці, щоб тримати припаси й насилля керованими
 
-Quest hooks:
+Квестові гачки:
 
-- sabotage of night ferries blamed on rival clans
-- a child taken across forbidden water to seek cure or curse relief
-- old route markers moved to mislead patrols and monsters alike
+- саботаж нічних поромів, приписуваний ворожим кланам
+- дитина, взята через заборонену воду в пошуках ліку або зняття прокляття
+- старі маршрутні позначки переміщені, щоб ввести в оману патрулі й монстрів
 
-### Smuggler Chains
+### Контрабандисти
 
-Named actors:
+Названі актори:
 
-- Brin Oss: soft-spoken logistics broker who moves food and medicine while pretending to care only about margin
-- Hara Pike: ruthless route captain who sees public crisis as the cleanest market in the world
+- Брін Осс: тихий логістичний брокер, що рухає їжу й ліки, прикидаючись, що турбується тільки про маржу
+- Гара Пайк: безжальна капітанка маршруту, яка бачить публічну кризу як найчистіший ринок у світі
 
-Internal split:
+Внутрішній розкол:
 
-- survival smugglers move essentials and cultivate civilian protection
-- predatory smugglers escalate scarcity to drive dependence and price
+- контрабандисти виживання рухають предмети першої необхідності й культивують цивільний захист
+- хижі контрабандисти загострюють дефіцит, щоб стимулювати залежність і ціну
 
-Quest hooks:
+Квестові гачки:
 
-- stolen medicine convoy with two mutually guilty claimants
-- contraband burial relics moving through famine markets
-- a smuggler truce collapsing because someone is feeding names to the city
+- вкрадений лікарський конвой із двома взаємно винними позивачами
+- контрабандні поховальні реліквії, що рухаються через голодні ринки
+- контрабандистське перемир'я, що руйнується, бо хтось зливає імена місту
 
-### Warden Remnants
+### Залишки Вартівників
 
-Named actors:
+Названі актори:
 
-- Warden-Curate Ilya Marr: archivist-survivor obsessed with proving the Hollow Season follows old state infrastructure
-- Garren Holt: veteran field Warden who believes the order should survive even if the truth must be buried again
+- Вартівник-Курат Ілія Марр: архіваріус, що вижив, одержимий доведенням, що Порожній Сезон іде за старою державною інфраструктурою
+- Гаррен Голт: ветеран-польовик, який вірить, що орден має вижити, навіть якщо правду доведеться поховати знову
 
-Internal split:
+Внутрішній розкол:
 
-- restorers want to rebuild the order's legitimacy and command structure
-- confessors want exposure, reckoning, and a break from the old compact logic
+- реставратори хочуть відновити легітимність ордену й командну структуру
+- конфесори хочуть викриття, розрахунку й розриву зі старою логікою Пакту
 
-Quest hooks:
+Квестові гачки:
 
-- a dead Warden's satchel surfaces in a flood cut with sealed case notes inside
-- rival Wardens demand opposite judgments on the same incident
-- a hidden doctrine manual reveals why one path was suppressed by the order
+- сумка мертвого Вартівника виринає в розливі із запечатаними нотатками справи всередині
+- ворожі Вартівники вимагають протилежних вироків щодо того самого інциденту
+- прихований доктринальний мануал розкриває, чому один шлях був придушений орденом
 
-## The Hazemoor Pressure Map
+## Мапа тиску Хейзмуру
 
-For the first region, the most active local forces should be:
+Для першого регіону найактивнішими локальними силами мають бути:
 
-- fortress-city quota officials
-- Saint Vey's shrine keepers
+- чиновники квоти фортеці-міста
+- хранителі Святої Вей
 - Мурі
-- smuggler chains
+- контрабандисти
 
-Warden remnants should appear lightly at first, more as rumor, archive trace, or one damaged contact than a full faction front.
+Залишки Вартівників мають з'являтись легко — більше як чутка, слід в архіві або один пошкоджений контакт, ніж повний фракційний фронт.
 
-## Reaction Logic
+## Логіка реакції
 
-Faction reactions should combine three inputs:
+Фракційні реакції мають поєднувати три входи:
 
-- what the player chose
-- how the player achieved it
-- what the faction believes the outcome means for its survival
+- що гравець вибрав
+- як гравець досяг результату
+- що фракція вірить, що результат означає для її виживання
 
-This allows a faction to approve a result while hating the method, or hate a result while respecting the competence behind it.
+Це дозволяє фракції схвалювати результат, ненавидячи метод, або ненавидіти результат, поважаючи компетенцію за ним.
 
-## Design Benefits
+## Переваги дизайну
 
-This faction structure gives the game:
+Ця фракційна структура дає грі:
 
-- better quest contradiction
-- stronger replay value through shifting alliance patterns
-- more grounded political conflict
-- cleaner hooks for reputation and regional consequence systems
+- кращу квестову суперечливість
+- сильнішу поворотність через змінні патерни альянсів
+- більш приземлений політичний конфлікт
+- чистіші гачки для репутаційної й регіональної систем наслідків
 
-## Current Design Decision
+## Поточне дизайнерське рішення
 
-The current core faction map includes:
+Поточна карта фракцій включає:
 
-- Fortress-City Administration
-- Shrine Keepers of Saint Vey
+- Адміністрацію фортеці-міста
+- Хранителів Святої Вей
 - Мурі
-- Smuggler Chains
-- Warden Remnants
+- Контрабандистів
+- Залишки Вартівників
 
-These are the baseline power groups for the frontier's first phase.
+Це базові групи влади для першої фази фронтиру.

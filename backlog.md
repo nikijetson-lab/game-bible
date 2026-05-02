@@ -1,21 +1,21 @@
-# Backlog
+# Беклог
 
-## Active
+## Активне
 
-- choose the world's tone and naming direction
-- decide how fixed the protagonist identity should be
-- name the wider frontier and fortress-city
-- define unlock timing and hybrid rules for doctrine paths
-- define first-pass resource list for crafting without bloat
-- decide how explicit reputation feedback should be in the UI
-- expand `The Ferry Oath`, `Ash Under the Chapel`, and `The Quota Knife` into full quest briefs
+- обрати тон світу й напрямок назв
+- вирішити, наскільки фіксованою має бути ідентичність протагоніста
+- назвати ширший фронтир і фортецю-місто
+- визначити unlock timing і гібридні правила для доктринальних шляхів
+- визначити перший список ресурсів для крафту без роздування
+- вирішити, наскільки явним має бути фідбек репутації в UI
+- розширити «Поромну присягу», «Попіл під каплицею» та «Ніж квоти» до повних квестових брифів
 
-## Later
+## Пізніше
 
-- faction roster
-- region-by-region breakdown
-- enemy archetype matrix
-- economy and crafting logic
-- art direction board
-- UI language
-- vertical slice milestone plan
+- реєстр фракцій
+- регіональний поділ
+- матриця архетипів ворогів
+- економіка та логіка крафту
+- дошка арт-напрямку
+- мова UI
+- план віхи вертикального зрізу

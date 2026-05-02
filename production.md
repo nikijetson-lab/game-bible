@@ -1,62 +1,62 @@
-# Production
+# Виробництво
 
-## Strategic Goal
+## Стратегічна мета
 
-Build the game as an ecosystem that can scale in layers: concept, preproduction, prototype, vertical slice, then full production.
+Побудувати гру як екосистему, здатну масштабуватись шарами: концепт, препродакшн, прототип, вертикальний зріз, потім повне виробництво.
 
-## Workstreams
+## Напрямки роботи
 
-- narrative and lore
-- quest design
-- combat design
-- world and level design
-- visual direction
-- UI and UX
-- audio and music direction
-- technical architecture
-- production planning
+- наратив і лор
+- дизайн квестів
+- дизайн бою
+- дизайн світу й рівнів
+- візуальний напрямок
+- UI та UX
+- напрямок аудіо й музики
+- технічна архітектура
+- планування виробництва
 
-## Preproduction Priorities
+## Пріоритети препродакшну
 
-1. Lock the game's identity in one sharp sentence.
-2. Define protagonist, world premise, and central conflict.
-3. Choose the smallest viable region set.
-4. Prototype the movement and combat feel.
-5. Create one benchmark quest that proves the tone.
+1. Зафіксувати ідентичність гри в одному чіткому реченні.
+2. Визначити протагоніста, концепцію світу й центральний конфлікт.
+3. Вибрати найменший життєздатний набір регіонів.
+4. Прототипувати рух і відчуття бою.
+5. Створити один бенчмарк-квест, що доводить тон.
 
-## Vertical Slice Goal
+## Мета вертикального зрізу
 
-The vertical slice should prove:
+Вертикальний зріз має довести:
 
-- traversal feel
-- one settlement with life and tension
-- one wilderness route
-- one major quest with choice and consequence
-- one contract or hunt
-- one faction conflict
-- one strong combat encounter
+- відчуття пересування
+- одне поселення з життям і напруженням
+- один дикий маршрут
+- один великий квест із вибором і наслідками
+- один контракт або полювання
+- один фракційний конфлікт
+- одну сильну бойову зустріч
 
-## Constraints We Should Respect
+## Обмеження, яких слід дотримуватись
 
-- avoid content plans that require giant asset volume early
-- avoid lore scale that cannot be represented in gameplay
-- avoid system sprawl before the combat and quest loop feels good
-- avoid pretending a small team can brute-force AAA scope
+- уникати планів контенту, що потребують гігантського обсягу асетів на ранньому етапі
+- уникати масштабу лору, який неможливо представити в геймплеї
+- уникати системного розростання до того, як бойовий і квестовий цикл відчуваються добре
+- уникати прикидання, що мала команда може форсувати AAA обсяг
 
-## Immediate Next Deliverables
+## Негайні наступні результати
 
-- protagonist brief
-- world premise brief
-- core gameplay loop draft
-- region map concept
-- first benchmark quest outline
+- бриф протагоніста
+- бриф концепції світу
+- чернетка основного ігрового циклу
+- концепт мапи регіонів
+- перший бенчмарк-квест
 
-## Current Preproduction Lock-Ins
+## Поточні препродакшн-закріплення
 
-The current foundation assumes:
+Поточний фундамент передбачає:
 
-- a Pale Warden protagonist role
-- a regional blight called the Hollow Season
-- a case-driven gameplay loop built around investigation, preparation, and consequence
+- роль Блідого Вартівника
+- регіональне прокляття Порожнього Сезону
+- кейс-керований ігровий цикл, побудований навколо розслідування, підготовки та наслідку
 
-Any new feature proposals should be tested against these three anchors first.
+Будь-які нові пропозиції функцій мають тестуватись проти цих трьох якорів спочатку.

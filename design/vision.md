@@ -1,52 +1,47 @@
-# Vision
+# Бачення
 
-## Elevator Pitch
+## Основна ідея
 
-A mature fantasy action RPG with strong narrative choices, dangerous regional politics, and intimate exploration. It aims for the emotional weight and quest quality of a large prestige RPG, but inside a smaller world designed for density, consequence, and sustainable production.
+Зрілий фентезійний action RPG із сильними наративними виборами, небезпечною регіональною політикою та інтимним дослідженням. Гра має емоційну вагу й якість квестів великої престижної RPG, але в меншому світі — щільному, наслідковому, виробничо-реалістичному.
 
-## Player Promise
+## Обіцянка гравцеві
 
-The player enters a scarred frontier where every settlement, monster, and faction conflict matters. Instead of endless scale, the game delivers memorable places, layered quests, and combat that feels deliberate rather than noisy.
+Гравець входить у поранений фронтир, де кожне поселення, монстр і фракційний конфлікт мають значення. Замість нескінченного масштабу — пам'ятні місця, шаруваті квести, навмисний бій.
 
-## Design Pillars
+## Стовпи дизайну
 
-1. Dense over vast.
-Every region must contain meaningful encounters, quest hooks, traversal interest, and narrative payoff.
+1. **Щільність над простором.** Кожен регіон має містити значущі зустрічі, квестові гачки, інтерес для дослідження й наративну віддачу.
 
-2. Human stakes first.
-Even when the threat is supernatural, the emotional engine should come from fear, loyalty, greed, grief, ambition, and survival.
+2. **Людські ставки перш за все.** Навіть коли загроза надприродна, емоційний двигун має походити від страху, лояльності, жадібності, горя, амбіцій і виживання.
 
-3. Combat with pressure.
-Fights should reward timing, preparation, positioning, and reading enemy behavior rather than pure stat inflation.
+3. **Бій із тиском.** Сутички мають винагороджувати таймінг, підготовку, позиціонування й читання поведінки ворога, а не чисте завищення характеристик.
 
-4. Quests with consequence.
-Choices should redirect relationships, opportunities, and local conditions, not just change a final cutscene.
+4. **Квести з наслідками.** Вибір має перенаправляти стосунки, можливості й локальні умови, а не просто змінювати фінальну катсцену.
 
-5. Production-aware ambition.
-The game should feel premium without depending on impossible content volume.
+5. **Виробничо-усвідомлена амбіція.** Гра має виглядати преміально без залежності від неможливого обсягу контенту.
 
-## Target Feel
+## Цільове відчуття
 
-- grounded dark fantasy
-- intimate but dangerous travel
-- morally tense decisions
-- handcrafted side content
-- strong atmosphere over spectacle spam
+- приземлена темна фентезі
+- інтимна, але небезпечна подорож
+- морально напружені рішення
+- рукотворний сайд-контент
+- сильна атмосфера замість спаму спецефектів
 
-## What Makes It Distinct
+## Що робить її відмінною
 
-The differentiator is not trying to out-scale giant open-world RPGs. The differentiator is a tighter world where travel time, quest density, and faction reactivity are curated to keep momentum and narrative pressure high.
+Відмінність не в спробі перевершити гігантські open-world RPG. Відмінність у щільнішому світі, де час подорожі, щільність квестів і фракційна реакція куровані так, щоб тримати імпульс і наративний тиск високими.
 
-## Current Direction
+## Поточний напрям
 
-The current working version centers on a Pale Warden, a sanctioned frontier tracker-judge whose authority allows investigation, monster hunting, and morally difficult intervention across isolated settlements.
+Поточна робоча версія зосереджена на Блідому Вартівнику — санкціонованому прикордонному слідчому-судді, чий авторитет дозволяє розслідування, полювання на монстрів і морально важке втручання в ізольованих поселеннях.
 
-The world crisis is the Hollow Season, a spreading regional blight tied to an older catastrophe buried beneath the political order that governs the frontier.
+Світова криза — Порожній Сезон, регіональне прокляття, пов'язане зі стародавньою катастрофою, похованою під політичним порядком, що керує фронтиром.
 
-## Open Questions
+## Відкриті питання
 
-- How many regions can we support while preserving density?
-- Is magic rare and feared, or common and institutional?
-- What is the game's signature system that players can describe in one sentence?
-- How fixed should the protagonist's identity be?
-- How much of the world's buried truth should become explicit by the ending?
+- Скільки регіонів ми можемо підтримати, зберігаючи щільність?
+- Магія рідкісна й страшна, чи поширена й інституціоналізована?
+- Яка сигнатурна система гри, яку гравці можуть описати одним реченням?
+- Наскільки фіксованою має бути ідентичність протагоніста?
+- Скільки похованої правди світу має стати явним до кінця?

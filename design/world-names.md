@@ -1,21 +1,21 @@
-# World Names
+# Назви світу
 
-## Frontier (unnamed)
-The broader territory. Contains The Hazemoor, the future capital city, and other regions. Name pending.
+## Фронтир (без назви)
+Ширша територія. Містить Хейзмур, майбутнє столичне місто й інші регіони. Назва очікується.
 
-## First Region
-- **Name:** The Hazemoor
-- **Tone:** Haze-shrouded flood-sick lowland of black water, peat fields, rotting hamlets, drowned shrines, and old raised roads. Smoke from peat kilns hangs low over the water, making distance uncertain and travel oppressive.
-- **Contains:** Greyford (starting settlement), Mirefold, Saint Vey's Lantern House, the Sunk Watchroad, and other landmarks.
-- **Function in game:** Teaches the core loop — investigation, preparation, confrontation, consequence. Introduces the Hollow Season, faction pressure, and the cost of compromise.
+## Перший регіон
+- **Назва:** Хейзмур (The Hazemoor)
+- **Тон:** Імлиста flood-sick низина чорної води, торф'яних полів, гниючих хуторів, затоплених святинь і старих піднятих доріг. Дим від торф'яних печей висить низько над водою, роблячи відстань невизначеною, а подорож — гнітючою.
+- **Містить:** Грейфорд (стартове поселення), Мірефолд, Ліхтарний Дім Святої Вей, Затонулу Сторожову Дорогу та інші точки.
+- **Функція в грі:** Навчає основного циклу — розслідування, підготовка, конфронтація, наслідок. Знайомить із Порожнім Сезоном, фракційним тиском і ціною компромісу.
 
-## Starting Settlement
-- **Name:** Greyford
-- **Type:** Small frontier town. Old river crossing, stone walls, ration offices, a militia garrison, and one proper inn.
-- **Tone:** Cold, practical, exhausted. Greyford is where officials get sent when they've failed upward.
+## Стартове поселення
+- **Назва:** Грейфорд (Greyford)
+- **Тип:** Невелике прикордонне містечко. Стара річкова переправа, кам'яні стіни, офіси раціону, міліційний гарнізон і один пристойний постоялий двір.
+- **Тон:** Холодний, практичний, виснажений. Грейфорд — куди відправляють чиновників, коли вони провалили кар'єру вгору.
 
-## Capital City (Unnamed)
-- **Status:** Second-episode location. Large stratified city with distinct districts, guilds, gangs, and a proper noble class. Located outside The Hazemoor. Name pending.
+## Столичне місто (без назви)
+- **Статус:** Локація другого епізоду. Велике стратифіковане місто з чіткими районами, гільдіями, бандами й справжнім дворянським класом. Розташоване за межами Хейзмуру. Назва очікується.
 
-## Protagonist
-- Player-named. NPCs use "Warden" as default address in neutral or official contexts.
+## Протагоніст
+- Названий гравцем. NPC використовують «Вартівник» як стандартне звернення в нейтральних або офіційних контекстах.

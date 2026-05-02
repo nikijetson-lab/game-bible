@@ -1,132 +1,75 @@
-# Reputation System
+# Репутація
 
-## Design Goal
+## Мета
 
-Reputation should not function as a simplistic good-versus-evil meter. It should work as the world's operational memory of how the player behaves, what methods they favor, and what outcomes follow them.
+Репутація має діяти як шарова пам'ять світу, а не моральна шкала. Світ пам'ятає не тільки *що* зробив гравець, але *як* він це зробив і *ким* він був у процесі.
 
-The point is not to judge the player abstractly. The point is to make the world remember.
+## Три шари
 
-## Core Principle
+### 1. Публічна пам'ять (Public Memory)
 
-Different groups should react not only to what the player did, but to how they did it.
+Регіональна репутація. Що звичайні люди знають або чують про гравця.
 
-A Warden who restores order through harsh public verdicts should be remembered differently from one who bargains with smugglers, performs rites for the dead, or quietly redirects supplies to the desperate.
+Формується через:
+- результати великих квестів
+- чутки, що поширюються між поселеннями
+- видимі зміни в регіоні (раціони, патрулі, святині)
 
-## Reputation Layers
+Впливає на:
+- ціни в торговців
+- готовність NPC говорити відкрито
+- випадкові зустрічі на маршрутах
+- початкове ставлення в нових поселеннях
 
-### 1. Public Memory
+### 2. Фракційний статус (Faction Standing)
 
-This tracks how common people in a region remember the Warden.
+Репутація з кожною з п'яти фракцій.
 
-It should reflect:
+Формується через:
+- результати квестів, що зачіпають інтереси фракції
+- методи виконання (чесні, таємні, жорстокі, дипломатичні)
+- публічні заяви або символи лояльності
 
-- whether the player protects or exploits civilians
-- whether outcomes lead to visible stability or visible fear
-- whether the player is seen as fair, cruel, uncanny, or useful
+Впливає на:
+- доступ до фракційних ресурсів і територій
+- ціну й доступність послуг
+- готовність давати інформацію або допомогу
+- агресію або захист з боку фракційних акторів
 
-Gameplay effects:
+### 3. Професійна репутація (Professional Reputation)
 
-- willingness of witnesses to talk
-- rumor quality and speed
-- prices, favors, and shelter access
-- whether crowds calm down, panic, or turn hostile
+Особисті риси, що формують ідентичність Вартівника.
 
-Important rule:
-Public Memory should be region-sensitive. The Hazemoor may love or hate the Warden for choices that the fortress-city interprets very differently.
+Риси накопичуються через патерни поведінки:
 
-### 2. Faction Standing
+| Риси | Як заробляються |
+|---|---|
+| **Lawful** | Дія через процедуру, докази, закон |
+| **Dependable** | Послідовність, надійність, виконання обіцянок |
+| **Compromised** | Угоди з сумнівними акторами, приховування правди |
+| **Uncanny** | Використання ритуалів, спілкування з духами, моторошна точність |
+| **Dangerous** | Стратегічне насилля, готовність зайти далеко |
+| **Relentless** | Тиск до результату, незважаючи на ціну |
 
-This tracks the player's relationship with specific organized powers.
+Впливає на:
+- доктринальні опції в квестах
+- діалогові варіанти
+- реакцію фракцій (додатковий шар до фракційного статусу)
+- кінцеве визначення ідентичності гравця
 
-Examples:
+## Правила реакції
 
-- quota officials
-- shrine keepers
-- smugglers
-- Мурі
-- Warden remnants
+Комбінація трьох входів:
 
-Gameplay effects:
+1. Що гравець вибрав (результат дії)
+2. Як гравець досяг результату (метод, доктринальний підхід)
+3. Що фракція вірить, що результат означає для її виживання
 
-- access to locations, records, escorts, and restricted tools
-- discounted services or closed doors
-- side contracts and faction-specific requests
-- betrayal risk, cover, or retaliation
+Це дозволяє фракції схвалювати результат, ненавидячи метод, або ненавидіти результат, поважаючи компетенцію.
 
-Important rule:
-Faction Standing should never be fully symmetrical. Gaining trust with one group should sometimes create distance with another.
+## Відкриті питання
 
-### 3. Professional Reputation
-
-This tracks the player's known style as a Warden.
-
-This is not a moral meter. It is a pattern profile.
-
-Suggested descriptive traits:
-
-- lawful
-- relentless
-- compromised
-- uncanny
-- dependable
-- dangerous
-
-Gameplay effects:
-
-- how witnesses frame their testimony to the player
-- which dialogue tones become natural or strained
-- whether institutions treat the player as a tool, threat, or liability
-- which rumors spread ahead of the player into new settlements
-
-## Relationship to Doctrine Paths
-
-Reputation should interact with doctrine paths without being identical to them.
-
-Examples:
-
-- a Judicator may build a lawful reputation, but could still become feared as cruel
-- a Lantern may become uncanny even when acting compassionately
-- a Broker may be respected as dependable by smugglers and hated by officials
-- a Stalker may be trusted in the wild but dismissed in civic chambers
-
-The doctrine path influences expectations. Reputation records actual behavior.
-
-## Content Design Rule
-
-Major quests should create reputation consequences in at least two layers:
-
-- local public memory
-- one or more faction standings
-
-Important quests may also influence professional reputation traits.
-
-## UI Rule
-
-Do not present reputation as a simplistic scoreboard.
-
-Preferred presentation:
-
-- regional mood descriptions
-- faction summaries with qualitative language
-- rumors and witness behavior as indirect feedback
-- occasional direct reputation markers only when they help clarity
-
-The player should feel the system through the world's behavior first, and through numbers second.
-
-## Anti-Patterns to Avoid
-
-- global saint-or-devil morality bars
-- reputation that changes only shop prices
-- factions that all love the same choices
-- consequences that disappear after one conversation
-- purely hidden systems with no readable feedback
-
-## Current Design Decision
-
-The game will use a three-layer reputation model:
-
-- Public Memory
-- Faction Standing
-- Professional Reputation
-
-This system is now part of the core game identity.
+- Наскільки видимою має бути репутація в UI?
+- Чи мають риси бути видимими гравцеві, чи прихованими?
+- Як репутація переноситься між регіонами?
+- Чи можна відновити спалену репутацію з фракцією?

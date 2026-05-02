@@ -175,7 +175,7 @@ Good for mentor figures, rival Wardens, internal schism, lost doctrine, and late
 
 Named actors:
 
-- Quartermaster Halren Voss: ration authority in Тихий Шелест, disciplined, cold, and already compromised by diverted grain
+- Quartermaster Halren Voss: ration authority in Сонк-Феррі, disciplined, cold, and already compromised by diverted grain
 - Marshal-Recorder Serit Kelm: a city legal officer who believes truth matters only if order survives long enough to use it
 
 Internal split:

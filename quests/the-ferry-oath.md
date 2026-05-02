@@ -33,7 +33,7 @@ Tovan Reed proposes that the fen's ferry crossings, moorage rights, and transit 
 
 Nera Vale opposes him publicly, arguing that central control will turn the ferrymen into gatekeepers with too much power over who eats, who travels, and who dies waiting for passage.
 
-The blow-up happens at the main Тихий Шелест landing in front of traders, patients, and quota observers.
+The blow-up happens at the main Сонк-Феррі landing in front of traders, patients, and quota observers.
 
 The player is caught as the only neutral person with enough credibility to be heard by both sides.
 
@@ -109,7 +109,7 @@ Knows who moves in the dark water routes and may offer information at a price th
 
 ### Phase 1: Open Rupture
 
-The player arrives at the Тихий Шелест landing after the public clash.
+The player arrives at the Сонк-Феррі landing after the public clash.
 
 Opening conditions:
 

@@ -13,7 +13,7 @@ Assume the player resolved `The Hunger Below` through Local Bargain.
 State summary:
 
 - Mirefold is alive, but partially dependent on unofficial supply channels
-- Тихий Шелест authority is weaker but still present
+- Сонк-Феррі authority is weaker but still present
 - smuggler routes are bolder and more embedded in local survival
 - Мурі trust the player more than the administration does
 - the administration suspects the player has become a frontier variable instead of a controllable asset
@@ -31,7 +31,7 @@ The follow-up chain should push on:
 ## Quest 1: Salt in the Ledger
 
 Hook:
-A shipment of medicine reaches Тихий Шелест through unofficial channels, but someone has swapped part of it with diluted stock and forged shrine seals.
+A shipment of medicine reaches Сонк-Феррі through unofficial channels, but someone has swapped part of it with diluted stock and forged shrine seals.
 
 Pressure:
 The smuggling network that kept people alive is now being exploited by someone who understands that trust has become currency.

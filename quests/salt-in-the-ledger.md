@@ -22,7 +22,7 @@ People now route requests, favors, supplies, and lies through the player's previ
 
 ## Quest Hook
 
-A covert medicine shipment reaches Тихий Шелест through routes protected after `The Hunger Below`, but part of the stock has been diluted with marsh water and false salts. Several sick civilians worsen after treatment. Shrine seals on the crates appear genuine at first glance, but something in the wax, numbering, or burial ash marking is wrong.
+A covert medicine shipment reaches Сонк-Феррі through routes protected after `The Hunger Below`, but part of the stock has been diluted with marsh water and false salts. Several sick civilians worsen after treatment. Shrine seals on the crates appear genuine at first glance, but something in the wax, numbering, or burial ash marking is wrong.
 
 The first accusation is immediate and convenient: smugglers have turned greedier than hunger.
 
@@ -40,7 +40,7 @@ Actual structure:
 - forged shrine marks were used to frame or protect someone
 - one local intermediary believed diluted medicine was better than no medicine and tried to stretch supply
 - a predatory smuggler cell recognized that the player's bargain created a trusted channel and decided to parasitize it
-- signs exist that someone inside Тихий Шелест wants the network to look irredeemable so a purge becomes politically easy
+- signs exist that someone inside Сонк-Феррі wants the network to look irredeemable so a purge becomes politically easy
 
 This makes the case a knot of:
 
@@ -93,7 +93,7 @@ Embodies local fear of losing fragile autonomy.
 
 ### Mara Dens
 
-Makeshift healer in Тихий Шелест.
+Makeshift healer in Сонк-Феррі.
 
 Role:
 Administered the medicine and noticed too late that some stock was wrong. She may have hidden evidence to avoid panic.
@@ -105,7 +105,7 @@ Provides civilian pressure and emotional weight.
 
 ### Phase 1: Immediate Harm
 
-The player enters Тихий Шелест after several patients worsen under treatment.
+The player enters Сонк-Феррі after several patients worsen under treatment.
 
 Opening conditions:
 

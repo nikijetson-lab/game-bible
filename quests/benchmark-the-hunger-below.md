@@ -15,13 +15,13 @@ The quest must demonstrate:
 
 ## Quest Hook
 
-A grain convoy bound for Тихий Шелест vanished near the Sunk Watchroad. Survivors claim the barges were taken by grave-lights and drowned dead. Quota officials blame smugglers. Villagers from Mirefold whisper that the marsh has begun reclaiming what was fed into it generations ago.
+A grain convoy bound for Сонк-Феррі vanished near the Sunk Watchroad. Survivors claim the barges were taken by grave-lights and drowned dead. Quota officials blame smugglers. Villagers from Mirefold whisper that the marsh has begun reclaiming what was fed into it generations ago.
 
 The player is asked to investigate because the missing grain threatens famine conditions and public unrest.
 
 ## Entry Point
 
-The quest begins in Тихий Шелест.
+The quest begins in Сонк-Феррі.
 
 The player arrives to find:
 
@@ -52,7 +52,7 @@ This means the case is simultaneously:
 
 ### Quartermaster Halren Voss
 
-Тихий Шелест ration authority.
+Сонк-Феррі ration authority.
 
 Role:
 A practical, cold official trying to keep order while hiding diverted grain records.
@@ -94,7 +94,7 @@ Bridge between lore and institutional concealment, and an early face of the spli
 
 ### Phase 1: Arrival and Noise
 
-The player enters Тихий Шелест during ration unrest.
+The player enters Сонк-Феррі during ration unrest.
 
 Immediate interactions:
 
@@ -112,7 +112,7 @@ The player investigates multiple evidence lanes.
 
 Possible evidence sources:
 
-- convoy ledger discrepancies in Тихий Шелест
+- convoy ledger discrepancies in Сонк-Феррі
 - drag marks and broken moorings along the Sunk Watchroad
 - shrine offerings and trampled footpaths near Mirefold
 - burial lists or forbidden drainage records at Saint Vey's Lantern House
@@ -241,7 +241,7 @@ The player reveals grain diversion, burial crimes, and the flood-chamber breach.
 
 Effects:
 
-- Тихий Шелест enters open unrest
+- Сонк-Феррі enters open unrest
 - Voss falls or is executed
 - Mirefold gains short-term relief but loses protection
 - faction trust splinters
@@ -265,7 +265,7 @@ The player works with Sella, ferrymen, or smugglers to redirect supplies and mai
 Effects:
 
 - Mirefold survives the season more intact
-- Тихий Шелест weakens politically
+- Сонк-Феррі weakens politically
 - corruption deepens but becomes decentralized
 - player gains practical allies and questionable reputation
 
@@ -286,7 +286,7 @@ Effects:
 
 After quest completion, the region should visibly change through some combination of:
 
-- ration policy in Тихий Шелест
+- ration policy in Сонк-Феррі
 - civilian dialogue and rumor tone
 - access to supplies or ferrymen services
 - guard presence on the Sunk Watchroad

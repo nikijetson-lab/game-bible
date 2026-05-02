@@ -33,7 +33,7 @@ The Hazemoor reaction:
 
 - many common people respect the Warden for breaking the lie
 - fear rises because truth arrives together with visible instability
-- Тихий Шелест becomes louder, angrier, and politically volatile
+- Сонк-Феррі becomes louder, angrier, and politically volatile
 
 Mood summary:
 The Warden is seen as truthful, dangerous, and impossible to control.
@@ -81,7 +81,7 @@ Likely trait movement:
 
 - public ledgers appear guarded or burned
 - ration lines become militarized
-- new rumor clusters spread through Тихий Шелест
+- new rumor clusters spread through Сонк-Феррі
 - Mirefold receives relief but also visits from hostile officials
 - Saint Vey's becomes crowded with the frightened and curious
 
@@ -214,7 +214,7 @@ Likely trait movement:
 ### Visible World Changes
 
 - more hidden goods appear in back rooms and ferry caches
-- Тихий Шелест authority weakens in subtle ways before open collapse
+- Сонк-Феррі authority weakens in subtle ways before open collapse
 - Mirefold stabilizes unevenly but faster than expected
 - smugglers become bolder at dusk routes
 
@@ -280,7 +280,7 @@ Likely trait movement:
 - burial sites are restored or newly marked
 - Saint Vey's gains mourners, petitioners, and watchers
 - some routes remain unsafe because material recovery was delayed
-- Тихий Шелест grows quieter but harsher under shortage discipline
+- Сонк-Феррі grows quieter but harsher under shortage discipline
 
 ### Follow-Up Pressure
 

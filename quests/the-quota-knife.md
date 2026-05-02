@@ -36,7 +36,7 @@ The region is functional but unstable. Everyone with power has aligned or resent
 
 ## Quest Hook
 
-Marshal-Recorder Serit Kelm arrives in Тихий Шелест with a sealed commission and a small armed escort. He does not come to negotiate. He comes to restore legal discipline.
+Marshal-Recorder Serit Kelm arrives in Сонк-Феррі with a sealed commission and a small armed escort. He does not come to negotiate. He comes to restore legal discipline.
 
 His mandate:
 
@@ -120,7 +120,7 @@ If the player's reputation has attracted Warden Remnant attention, Ilya Marr may
 
 ### Phase 1: The Invitation
 
-The player receives a formal summons to meet Serit Kelm at the Тихий Шелест ration office, now converted into his field headquarters.
+The player receives a formal summons to meet Serit Kelm at the Сонк-Феррі ration office, now converted into his field headquarters.
 
 Opening conditions:
 
@@ -172,11 +172,11 @@ Available actions:
 - negotiate a settlement with Kelm that sacrifices specific actors to protect the network's core
 - prepare local actors for resistance if the player plans to refuse the settlement
 - seek external authority: a Warden Curate's statement, a shrine custodian's religious exemption, a smuggler's evidence of state corruption
-- mobilize public sentiment in Тихий Шелест to make punitive action politically costly
+- mobilize public sentiment in Сонк-Феррі to make punitive action politically costly
 
 ### Phase 5: The Reckoning
 
-The quest culminates in a formal reading at the Тихий Шелест ration office with witnesses, guards, and the key actors present.
+The quest culminates in a formal reading at the Сонк-Феррі ration office with witnesses, guards, and the key actors present.
 
 Kelm reads his findings and announces consequences.
 

@@ -1,28 +1,50 @@
-# Game Bible
+# Game Bible - Повний зміст
 
-This directory is the operating core for the RPG ecosystem.
+## Регіони
+- regions/greyford.md — стартове місто
+- regions/sunk-ferry.md — край Хейзмуру, поромне поселення
+- regions/tykhyy-shelest.md — глибокий Хейзмур, поселення Мурі
+- regions/hazemoor-galyavyna-moura.md — галявина духа
 
-## Purpose
+## Квести (у порядку проходження)
+1. greyford-01-adresat-vidsutniy.md — Адресат відсутній (Грейфорд)
+2. hazemoor-01-shlyakh-kriz-boloto.md — Шлях крізь болото
+3. muri-path-01-seven-lessons.md — Сім уроків болота (альтернатива)
+4. tykhy-shelist-quests.md — Квести Тихого Шелесту
+5. hazemoor-02-halyna-dusha.md — Галявина і дух
 
-Build a story-rich action RPG inspired by the strengths of The Witcher 3 while keeping the world smaller, denser, and more producible.
+## Follow-up ланцюжок (Сонк-Феррі)
+- holod-znuzu.md — Голод знизу (бенчмарк)
+- holod-znuzu-naslidky.md — Матриця наслідків
+- sil-u-knyzi.md — Сіль у книзі
+- poromna-prysyaga.md — Поромна присяга
+- popil-pid-kaplytseyu.md — Попіл під каплицею
+- nizh-kvoty.md — Ніж квоти
+- hazemoor-lantsyuzhok.md — Ланцюжок квестів Хейзмуру
 
-## Document Map
+## Персонажі
+- characters/mia.md
 
-- `vision.md` - the game's identity, promise, and design pillars
-- `protagonist.md` - protagonist role, wound, and narrative function
-- `hero-progression.md` - doctrine paths and replay-driven protagonist growth
-- `world-premise.md` - the central regional crisis and thematic engine
-- `world-names.md` - place, region, and frontier names
-- `factions.md` - political powers, pressure systems, and reaction logic
-- `world.md` - setting, factions, geography, and lore logic
-- `regions/` - playable regional briefs and settlement structures
-- `quests/` - benchmark briefs, aftermath maps, and production quest documents
-- `systems.md` - combat, progression, exploration, quests, and economy
-- `reputation.md` - world memory, faction standing, and professional reputation
-- `crafting.md` - case-facing preparation and Warden tools
-- `gameplay-loop.md` - the minute-to-minute and case-to-case player loop
-- `production.md` - pipeline, team lanes, milestones, and execution priorities
+## Раси
+- races/muri.md
 
-## Operating Rule
+## Дизайн
+- design/vision.md
+- design/world-premise.md
+- design/world.md
+- design/world-names.md
+- design/protagonist.md
+- design/hero-progression.md
+- design/systems.md
+- design/gameplay-loop.md
+- design/factions.md
+- design/reputation.md
+- design/crafting.md
 
-Every major idea should land here as a decision, assumption, question, or task. The goal is to turn intuition into a buildable game.
+## Інше
+- letters/until-forgotten.md — Лист: Доки не забули
+- backlog.md
+- production.md
+
+---
+Усі файли — українською мовою.

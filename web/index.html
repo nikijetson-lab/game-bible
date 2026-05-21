@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портал Блідого Вартівника — Хейзмур</title>
+    <!-- Google Fonts: Cinzel (готичний) та Inter (читабельний інтерфейс) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="stars-overlay"></div>
+    <div class="glow-orb red"></div>
+    <div class="glow-orb gold"></div>
+
+    <header>
+        <div class="logo">
+            <span class="gold-text">БЛІДИЙ</span> ВАРТІВНИК
+        </div>
+        <nav>
+            <button id="nav-bible" class="active">📜 БІБЛІЯ СВІТУ</button>
+            <button id="nav-simulator">⚔️ СИМУЛЯТОР ГРИ</button>
+        </nav>
+        <div class="frontier-status">
+            СЕЗОН: <span class="blood-text">ПОРОЖНІЙ</span>
+        </div>
+    </header>
+
+    <main>
+        <!-- СЕКЦІЯ 1: БІБЛІЯ СВІТУ (ПЕРЕГЛЯД ЛОРУ) -->
+        <section id="section-bible" class="view-section active">
+            <div class="bible-container">
+                <!-- Лівий сайдбар: навігація по розділах -->
+                <aside class="bible-sidebar">
+                    <h3 class="sidebar-title">КАТЕГОРІЇ</h3>
+                    <div class="category-group">
+                        <button class="cat-btn" data-category="design">📋 Дизайн та Концепція</button>
+                        <button class="cat-btn" data-category="regions">🗺️ Географія та Регіони</button>
+                        <button class="cat-btn" data-category="races">👥 Раси та Народи</button>
+                        <button class="cat-btn" data-category="characters">👤 Ключові Персонажі</button>
+                        <button class="cat-btn" data-category="quests">🗡️ Квести та Сюжет</button>
+                        <button class="cat-btn" data-category="letters">✉️ Листи та Записи</button>
+                    </div>
+
+                    <h3 class="sidebar-title">ФАЙЛИ</h3>
+                    <div id="file-list" class="file-list">
+                        <p class="placeholder-text">Оберіть категорію...</p>
+                    </div>
+                </aside>
+
+                <!-- Основний контент: перегляд документів -->
+                <article class="bible-viewer">
+                    <div id="bible-content" class="markdown-body">
+                        <div class="intro-screen">
+                            <div class="crest">⚖️</div>
+                            <h1>ВІТАЄМО У ХЕЙЗМУРІ, ВАРТІВНИКУ</h1>
+                            <p>Цей портал дозволяє вам досліджувати секрети, квести та закони прикордоння.</p>
+                            <p class="hint">Оберіть будь-який документ у лівій панелі для відображення.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- СЕКЦІЯ 2: СИМУЛЯТОР ГРИ (ДЕМО-КВЕСТ) -->
+        <section id="section-simulator" class="view-section">
+            <div class="simulator-container">
+                <!-- Ліва панель: статус персонажа, інвентар, журнал наслідків -->
+                <aside class="sim-sidebar">
+                    <div class="sim-panel character-panel">
+                        <h3>⚖️ БЛІДИЙ ВАРТІВНИК</h3>
+                        <div class="stat-row">
+                            <span>Рівень:</span>
+                            <span class="gold-text">1 (Слідчий)</span>
+                        </div>
+                        <div class="stat-bar-container">
+                            <div class="stat-label">Здоров'я: <span id="hp-value">100/100</span></div>
+                            <div class="bar-outer"><div id="hp-bar" class="bar-inner hp" style="width: 100%;"></div></div>
+                        </div>
+                        <div class="stat-bar-container">
+                            <div class="stat-label">Рішучість (Авторитет): <span id="will-value">50/50</span></div>
+                            <div class="bar-outer"><div id="will-bar" class="bar-inner will" style="width: 100%;"></div></div>
+                        </div>
+                    </div>
+
+                    <div class="sim-panel inventory-panel">
+                        <h3>🎒 ІНВЕНТАР</h3>
+                        <div id="inventory-list" class="inventory-grid">
+                            <div class="inv-slot empty" title="Зброя: Порожньо">🗡️</div>
+                            <div class="inv-slot empty" title="Броня: Порожньо">🛡️</div>
+                            <div class="inv-slot empty" title="Доказ: Порожньо">📜</div>
+                            <div class="inv-slot empty" title="Ресурс: Порожньо">🎒</div>
+                        </div>
+                    </div>
+
+                    <div class="sim-panel consequences-panel">
+                        <h3>⚖️ СТАТУС ТА РЕПУТАЦІЯ</h3>
+                        <ul id="reputation-list" class="conseq-list">
+                            <li><span class="neutral">Грейфорд:</span> Нейтралітет</li>
+                            <li><span class="neutral">Орден Кинджалів:</span> Нейтралітет</li>
+                            <li><span class="neutral">Хейзмур:</span> Невідомість</li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <!-- Центральний ігровий екран -->
+                <div class="sim-game-area">
+                    <div class="sim-card">
+                        <div class="sim-quest-header">
+                            <span class="quest-tag">Епізод 1: Грейфорд</span>
+                            <h2 id="scene-title">Адресат відсутній</h2>
+                        </div>
+                        <div id="scene-text" class="sim-text-content">
+                            <!-- Заповнюється динамічно -->
+                        </div>
+                        <div id="scene-choices" class="sim-choices-container">
+                            <!-- Заповнюється динамічно -->
+                        </div>
+                    </div>
+
+                    <!-- Лог бою та дій -->
+                    <div class="combat-log-panel">
+                        <h4>📓 ЖУРНАЛ СЛІДСТВА ТА ПОДІЙ</h4>
+                        <div id="combat-log" class="log-messages">
+                            <div class="log-msg system">Ви прибули на околиці Грейфорда. Порожній Сезон розпочався.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Світ Хейзмуру. Розроблено парою з Antigravity Coding Assistant українською мовою.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

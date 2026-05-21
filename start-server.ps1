@@ -45,7 +45,6 @@ while ($listener.IsListening) {
         }
         
         # Construct absolute path on filesystem
-        # Remove leading slash and convert slashes to windows path
         $relPath = $urlPath.TrimStart('/')
         $localFilePath = Join-Path $repoRoot.FullName $relPath
         
@@ -55,6 +54,11 @@ while ($listener.IsListening) {
             $response.StatusCode = 403
             $response.Close()
             continue
+        }
+        
+        # If the requested path is a directory, look for index.html inside it
+        if (Test-Path $resolvedPath -PathType Container) {
+            $resolvedPath = Join-Path $resolvedPath "index.html"
         }
         
         # Check if file exists

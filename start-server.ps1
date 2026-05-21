@@ -8,12 +8,12 @@ $listener.Prefixes.Add("http://localhost:$port/")
 try {
     $listener.Start()
     Write-Host "==========================================================" -ForegroundColor Cyan
-    Write-Host "ПОРТАЛ БЛІДОГО ВАРТІВНИКА — ЛОКАЛЬНИЙ СЕРВЕР ЗАПУЩЕНО!" -ForegroundColor Green
-    Write-Host "Адреса гри: http://localhost:$port/web/" -ForegroundColor Yellow
-    Write-Host "Для зупинки сервера натисніть Ctrl+C у цьому вікні." -ForegroundColor Gray
+    Write-Host "PORTAL OF THE PALE WARDEN - LOCAL SERVER RUNNING!" -ForegroundColor Green
+    Write-Host "Game URL: http://localhost:$port/web/" -ForegroundColor Yellow
+    Write-Host "To stop the server, press Ctrl+C in this window." -ForegroundColor Gray
     Write-Host "==========================================================" -ForegroundColor Cyan
 } catch {
-    Write-Host "Помилка запуску сервера: $_" -ForegroundColor Red
+    Write-Host "Error starting server: $_" -ForegroundColor Red
     Exit
 }
 

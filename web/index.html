@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
@@ -22,6 +22,7 @@
         <nav>
             <button id="nav-bible" class="active">📜 БІБЛІЯ СВІТУ</button>
             <button id="nav-simulator">⚔️ СИМУЛЯТОР ГРИ</button>
+            <button id="audio-toggle-btn" class="audio-btn" style="display: none;">🔇 Звук</button>
         </nav>
         <div class="frontier-status">
             СЕЗОН: <span class="blood-text">ПОРОЖНІЙ</span>
@@ -361,8 +362,13 @@
                 <div class="sim-game-area">
                     <div class="sim-card">
                         <div class="sim-quest-header">
-                            <span class="quest-tag">Епізод 1: Грейфорд</span>
+                            <span class="quest-tag" id="quest-tag">Епізод 1: Грейфорд</span>
                             <h2 id="scene-title">Адресат відсутній</h2>
+                        </div>
+                        <div id="scene-illustration" class="sim-illustration" style="display: none;"></div>
+                        <div id="enemy-hp-container" class="enemy-hp-panel" style="display: none;">
+                            <div class="stat-label">Здоров'я ворога: <span id="enemy-hp-value">50/50</span></div>
+                            <div class="bar-outer"><div id="enemy-hp-bar" class="bar-inner hp" style="width: 100%;"></div></div>
                         </div>
                         <div id="scene-text" class="sim-text-content">
                             <!-- Заповнюється динамічно -->

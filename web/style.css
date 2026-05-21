@@ -1,4 +1,4 @@
-﻿/* СТИЛІ ДЛЯ ПОРТАЛУ МАНДРУЮЧОГО ВАРТОВОГО */
+/* СТИЛІ ДЛЯ ПОРТАЛУ МАНДРУЮЧОГО ВАРТОВОГО */
 
 /* --- ЗМІННІ КОЛЬОРІВ ТА НАЛАШТУВАНЬ --- */
 :root {
@@ -254,20 +254,25 @@ main {
     gap: 0.3rem;
     margin-top: 0.5rem;
     overflow-y: auto;
+    flex: 1;
+    min-height: 150px;
 }
 
 .file-btn {
     background: transparent;
     border: none;
-    color: var(--text-muted);
+    color: #b0b0c2; /* Більш контрастний колір для покращення читабельності */
     text-align: left;
     padding: 0.5rem 0.8rem;
     border-radius: 4px;
     cursor: pointer;
+    font-family: var(--font-ui);
+    font-weight: 500; /* Напівжирний для чіткішого рендерингу */
     font-size: 0.85rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    flex-shrink: 0; /* Запобігає стисканню та накладанню кнопок */
     transition: all 0.2s;
 }
 

@@ -268,10 +268,10 @@ main {
     cursor: pointer;
     font-family: var(--font-ui);
     font-weight: 500; /* Напівжирний для чіткішого рендерингу */
-    font-size: 0.85rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-size: 0.9rem;
+    white-space: normal;
+    word-break: break-word;
+    line-height: 1.3;
     flex-shrink: 0; /* Запобігає стисканню та накладанню кнопок */
     transition: all 0.2s;
 }
@@ -1155,4 +1155,52 @@ footer {
 
 .doctrines-mini-grid strong {
     color: var(--accent-gold);
+}
+
+/* ==========================================
+   🎨 СТИЛІ ДЛЯ ІЛЮСТРАЦІЙ, БОЮ ТА АУДІО
+   ========================================== */
+
+.sim-illustration {
+    width: 100%;
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 4px;
+    margin-bottom: 1.2rem;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(0, 0, 0, 0.5);
+    transition: background-image 0.5s ease-in-out;
+}
+
+.enemy-hp-panel {
+    background: rgba(230, 57, 70, 0.05);
+    border: 1px solid rgba(230, 57, 70, 0.15);
+    padding: 0.8rem;
+    border-radius: 4px;
+    margin-bottom: 1.2rem;
+}
+
+.audio-btn {
+    font-family: var(--font-gothic) !important;
+    font-weight: 700 !important;
+    border-color: var(--accent-gold) !important;
+    color: var(--accent-gold) !important;
+    background: rgba(212, 175, 55, 0.05) !important;
+}
+
+.audio-btn:hover {
+    background: rgba(212, 175, 55, 0.15) !important;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+}
+
+/* Ефекти для кнопок активних речей */
+.inv-slot.active-item {
+    animation: itemGlow 2s infinite ease-in-out;
+}
+
+@keyframes itemGlow {
+    0% { border-color: rgba(212, 175, 55, 0.4); box-shadow: 0 0 4px rgba(212, 175, 55, 0.1); }
+    50% { border-color: var(--accent-gold); box-shadow: 0 0 12px rgba(212, 175, 55, 0.3); }
+    100% { border-color: rgba(212, 175, 55, 0.4); box-shadow: 0 0 4px rgba(212, 175, 55, 0.1); }
 }

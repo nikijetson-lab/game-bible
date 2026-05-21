@@ -1,4 +1,4 @@
-﻿// ==========================================
+// ==========================================
 // ПОРТАЛ МАНДРУЮЧОГО ВАРТОВОГО — ЛОГІКА ТА ГРА
 // ==========================================
 
@@ -15,8 +15,7 @@ const BIBLE_FILES = {
         { name: "Ігровий цикл (gameplay-loop.md)", path: "design/gameplay-loop.md" },
         { name: "Репутація (reputation.md)", path: "design/reputation.md" },
         { name: "Крафтинг (crafting.md)", path: "design/crafting.md" },
-        { name: "Фракції (factions.md)", path: "design/factions.md" },
-        { name: "Орден Кинджалів (orden-semy-kyndzhativ.md)", path: "design/orden-semy-kyndzhativ.md" }
+        { name: "Фракції (factions.md)", path: "design/factions.md" }
     ],
     regions: [
         { name: "Грейфорд (greyford.md)", path: "regions/greyford.md" },
@@ -29,27 +28,39 @@ const BIBLE_FILES = {
         { name: "Раса: Мурі (muri.md)", path: "races/muri.md" }
     ],
     characters: [
-        { name: "Касандра (mia.md)", path: "characters/mia.md" },
+        { name: "Ілія (iliya.md)", path: "characters/iliya.md" },
+        { name: "Міа / Касандра (mia.md)", path: "characters/mia.md" },
+        { name: "Лілея (lileya.md)", path: "characters/lileya.md" },
+        { name: "Тесса (tessa.md)", path: "characters/tessa.md" },
         { name: "Одрін (odrin.md)", path: "characters/odrin.md" },
-        { name: "Тесса (tessa.md)", path: "characters/tessa.md" }
+        { name: "Блазень (jester.md)", path: "characters/jester.md" }
     ],
     quests: [
-        { name: "1. Адресат відсутній (greyford-01)", path: "quests/greyford-01-adresat-vidsutniy.md" },
-        { name: "2. Шлях крізь болото (hazemoor-01)", path: "quests/hazemoor-01-shlyakh-kriz-boloto.md" },
-        { name: "3. Сім уроків болота (muri-path-01)", path: "quests/muri-path-01-seven-lessons-old.md" },
-        { name: "4. Галявина і дух (hazemoor-02)", path: "quests/hazemoor-02-halyna-dusha.md" },
-        { name: "5. Квести Тихого Шелесту (tykhy-shelist)", path: "quests/tykhy-shelist-quests.md" },
-        { name: "6. Валькорн: Людина з болота", path: "quests/valkorn-01-lyudyna-z-bolota.md" },
-        { name: "7. Валькорн: Дві версії правди", path: "quests/valkorn-02-dvi-versii-pravdy.md" },
-        { name: "8. Валькорн: Правильна ціна", path: "quests/valkorn-03-pravylna-tsina.md" },
-        { name: "9. Валькорн: Людина, що послала", path: "quests/valkorn-04-lyudyna-shcho-poslala-rufina.md" },
-        { name: "10. Голод знизу (holod-znuzu)", path: "quests/holod-znuzu.md" },
-        { name: "11. Матриця наслідків (holod-znuzu-naslidky)", path: "quests/holod-znuzu-naslidky.md" },
-        { name: "12. Сіль у книзі (sil-u-knyzi)", path: "quests/sil-u-knyzi.md" },
-        { name: "13. Поромна присяга (poromna-prysyaga)", path: "quests/poromna-prysyaga.md" },
-        { name: "14. Попіл під каплицею (popil-pid-kaplytseyu)", path: "quests/popil-pid-kaplytseyu.md" },
-        { name: "15. Ніж квоти (nizh-kvoty)", path: "quests/nizh-kvoty.md" },
-        { name: "16. Ланцюжок Хейзмуру (hazemoor-lantsyuzhok)", path: "quests/hazemoor-lantsyuzhok.md" }
+        { name: "1.  Адресат відсутній (greyford-01)", path: "quests/greyford-01-adresat-vidsutniy.md" },
+        { name: "2.  Шлях крізь болото (hazemoor-01)", path: "quests/hazemoor-01-shlyakh-kriz-boloto.md" },
+        { name: "3.  Сім уроків болота (muri-path-01)", path: "quests/muri-path-01-seven-lessons-old.md" },
+        { name: "4.  Галявина і дух (hazemoor-02)", path: "quests/hazemoor-02-halyna-dusha.md" },
+        { name: "5.  Квести Тихого Шелесту (tykhy-shelist)", path: "quests/tykhy-shelist-quests.md" },
+        { name: "6.  Валькорн: Людина з болота", path: "quests/valkorn-01-lyudyna-z-bolota.md" },
+        { name: "7.  Валькорн: Дві версії правди", path: "quests/valkorn-02-dvi-versii-pravdy.md" },
+        { name: "8.  Валькорн: Правильна ціна", path: "quests/valkorn-03-pravylna-tsina.md" },
+        { name: "9.  Валькорн: Людина, що послала", path: "quests/valkorn-04-lyudyna-shcho-poslala-rufina.md" },
+        { name: "10. Валькорн: Хранитель Першої Печатки", path: "quests/valkorn-05-khranitel-pershoyi-pechatky.md" },
+        { name: "11. Глибоке болото: Голос із туману", path: "quests/deep-bog-01-holos-iz-tumanu.md" },
+        { name: "12. Глибоке болото: Шалений пором", path: "quests/deep-bog-02-shalyaniy-porom.md" },
+        { name: "13. Глибоке болото: Затоплена обитель", path: "quests/deep-bog-03-zatoplena-obytel.md" },
+        { name: "14. Обидва береги: Повернення до Валькорна", path: "quests/episode-4-01-povernennya-do-valkorna.md" },
+        { name: "15. Обидва береги: Кульмінація Валькорна", path: "quests/episode-4-02-kulminatsiya-valkorna.md" },
+        { name: "16. Обидва береги: Хейзмур та Серце Моура", path: "quests/episode-4-03-hazemoor-moura.md" },
+        { name: "17. Обидва береги: Велика розв'язка", path: "quests/episode-4-04-final-rozvyazka.md" },
+        { name: "18. Обидва береги: Відхід Героя", path: "quests/episode-4-05-vidhid-heroya.md" },
+        { name: "19. Додатковий: Голод знизу", path: "quests/holod-znuzu.md" },
+        { name: "20. Додатковий: Матриця наслідків", path: "quests/holod-znuzu-naslidky.md" },
+        { name: "21. Додатковий: Сіль у книзі", path: "quests/sil-u-knyzi.md" },
+        { name: "22. Додатковий: Поромна присяга", path: "quests/poromna-prysyaga.md" },
+        { name: "23. Додатковий: Попіл під каплицею", path: "quests/popil-pid-kaplytseyu.md" },
+        { name: "24. Додатковий: Ніж квоти", path: "quests/nizh-kvoty.md" },
+        { name: "25. Додатковий: Ланцюжок Хейзмуру", path: "quests/hazemoor-lantsyuzhok.md" }
     ],
     letters: [
         { name: "Лист: Доки не забули (until-forgotten.md)", path: "letters/until-forgotten.md" }

@@ -1,4 +1,4 @@
-// ==========================================
+﻿// ==========================================
 // ПОРТАЛ МАНДРУЮЧОГО ВАРТОВОГО — ЛОГІКА ТА ГРА
 // ==========================================
 
@@ -74,16 +74,18 @@ document.getElementById("nav-simulator").addEventListener("click", () => switchT
 function switchTab(tab) {
     document.querySelectorAll("header nav button").forEach(btn => btn.classList.remove("active"));
     document.querySelectorAll(".view-section").forEach(sec => sec.classList.remove("active"));
+    const audioToggle = document.getElementById("audio-toggle-btn");
 
     if (tab === "bible") {
         document.getElementById("nav-bible").classList.add("active");
         document.getElementById("section-bible").classList.add("active");
+        if (audioToggle) audioToggle.style.display = "none";
     } else {
         document.getElementById("nav-simulator").classList.add("active");
         document.getElementById("section-simulator").classList.add("active");
+        if (audioToggle) audioToggle.style.display = "inline-block";
         
         if (!gameStarted) {
-            // Показуємо вікно створення персонажа
             document.getElementById("character-creation").style.display = "flex";
             document.getElementById("main-simulator-interface").style.display = "none";
         }
@@ -128,7 +130,6 @@ function loadMarkdownFile(path, clickedBtn) {
     if (!contentDiv) return;
     contentDiv.innerHTML = '<div class="intro-screen"><p>Завантаження документа...</p></div>';
 
-    // Завантажуємо файл відносно кореня репозиторію
     fetch(`../${path}`)
         .then(response => {
             if (!response.ok) throw new Error("Файл не знайдено");
@@ -192,7 +193,7 @@ function parseMarkdown(md) {
 }
 
 // ==========================================
-// ⚔️ СИМУЛЯТОР ГРИ: АДРЕСАТ ВІДСУТНІЙ
+// ⚔️ СИМУЛЯТОР ГРИ: АКТИВНИЙ СТАН ГЕРОЯ
 // ==========================================
 
 let gameStarted = false;
@@ -279,7 +280,6 @@ let creationState = {
 
 // Ініціалізація створення персонажа
 function initCharacterCreation() {
-    // Ім'я
     const nameInput = document.getElementById("char-name");
     if (nameInput) {
         nameInput.addEventListener("input", (e) => {
@@ -287,7 +287,6 @@ function initCharacterCreation() {
         });
     }
 
-    // Стать
     const genderBtns = document.querySelectorAll(".gender-btn");
     genderBtns.forEach(btn => {
         btn.addEventListener("click", (e) => {
@@ -298,7 +297,6 @@ function initCharacterCreation() {
         });
     });
 
-    // Передісторія
     const bgSelect = document.getElementById("char-background");
     const bgDescDiv = document.getElementById("background-description");
     if (bgSelect && bgDescDiv) {
@@ -309,7 +307,6 @@ function initCharacterCreation() {
         });
     }
 
-    // Розподіл очок доктрин
     const distBtns = document.querySelectorAll(".dist-btn");
     distBtns.forEach(btn => {
         btn.addEventListener("click", () => {
@@ -328,16 +325,13 @@ function initCharacterCreation() {
                 }
             }
             
-            // Оновлення DOM
             document.getElementById(`val-${stat}`).textContent = creationState.doctrines[stat];
             document.getElementById("creation-points-left").textContent = creationState.pointsLeft;
             
-            // Оновлення доступності кнопок
             updateDistributorButtons();
         });
     });
 
-    // Кнопка початку гри
     const startBtn = document.getElementById("start-journey-btn");
     if (startBtn) {
         startBtn.addEventListener("click", () => {
@@ -346,13 +340,11 @@ function initCharacterCreation() {
                 return;
             }
             
-            // Переносимо дані в playerState
             playerState.name = creationState.name;
             playerState.gender = creationState.gender;
             playerState.background = creationState.background;
             playerState.doctrines = { ...creationState.doctrines };
             
-            // Задаємо ресурси та репутацію за бекграунд
             const bgData = BACKGROUND_DETAILS[playerState.background];
             playerState.resources = {
                 henbane: 0, loosestrife: 0, peganum: 0, bogiron: 0, silver: 0,
@@ -373,68 +365,435 @@ function initCharacterCreation() {
             };
             playerState.history = [];
             
-            // Оновлюємо бічну панель статусу
+            document.getElementById("character-creation").style.display = "none";
+            document.getElementById("main-simulator-interface").style.display = "flex";
+            
             document.getElementById("sidebar-hero-name").textContent = `⚖️ ${playerState.name.toUpperCase()}`;
-            document.getElementById("sidebar-hero-gender").textContent = `🙋‍♂️ ${playerState.gender}`;
+            document.getElementById("sidebar-hero-gender").textContent = `${playerState.gender === 'Чоловік' ? '🙋‍♂️' : playerState.gender === 'Жінка' ? '🙋‍♀️' : '👤'} ${playerState.gender}`;
             document.getElementById("sidebar-hero-bg").textContent = playerState.background;
+            
             document.getElementById("sidebar-stat-pathfinder").textContent = playerState.doctrines.pathfinder;
             document.getElementById("sidebar-stat-lantern").textContent = playerState.doctrines.lantern;
             document.getElementById("sidebar-stat-judge").textContent = playerState.doctrines.judge;
             document.getElementById("sidebar-stat-mediator").textContent = playerState.doctrines.mediator;
             
-            // Ховаємо створення, показуємо симулятор
-            document.getElementById("character-creation").style.display = "none";
-            document.getElementById("main-simulator-interface").style.display = "grid";
-            
             startGameFlow();
         });
     }
-
-    // Крафтинг кнопки
-    document.getElementById("craft-ointment").addEventListener("click", () => craftItem("ointment"));
-    document.getElementById("craft-antidote").addEventListener("click", () => craftItem("antidote"));
-    document.getElementById("craft-amulet").addEventListener("click", () => craftItem("amulet"));
-    document.getElementById("craft-trap").addEventListener("click", () => craftItem("trap"));
-
-    updateDistributorButtons();
 }
 
 function updateDistributorButtons() {
-    const stats = ["pathfinder", "lantern", "judge", "mediator"];
-    stats.forEach(stat => {
-        const val = creationState.doctrines[stat];
-        const minusBtn = document.querySelector(`.dist-btn.minus[data-stat="${stat}"]`);
-        const plusBtn = document.querySelector(`.dist-btn.plus[data-stat="${stat}"]`);
-        
-        if (minusBtn) minusBtn.disabled = (val === 0);
-        if (plusBtn) plusBtn.disabled = (creationState.pointsLeft === 0);
+    const plusBtns = document.querySelectorAll(".dist-btn.plus");
+    const minusBtns = document.querySelectorAll(".dist-btn.minus");
+    
+    plusBtns.forEach(btn => {
+        btn.disabled = creationState.pointsLeft <= 0;
+    });
+    
+    minusBtns.forEach(btn => {
+        const stat = btn.getAttribute("data-stat");
+        btn.disabled = creationState.doctrines[stat] <= 0;
     });
 }
 
-// --- БАЗА ДАНИХ ІГРОВИХ СЦЕН ---
+// --- СИНТЕЗАТОР ГОТИЧНОЇ АТМОСФЕРИ (WEB AUDIO API) ---
+class AtmosphereSynth {
+    constructor() {
+        this.ctx = null;
+        this.droneGain = null;
+        this.rainGain = null;
+        this.windGain = null;
+        this.isMuted = true;
+    }
+    
+    init() {
+        if (this.ctx) return;
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        this.ctx = new AudioContext();
+        
+        this.createDrone();
+        this.createRain();
+        this.createWind();
+        this.updateVolumes();
+    }
+    
+    createDrone() {
+        const osc1 = this.ctx.createOscillator();
+        const osc2 = this.ctx.createOscillator();
+        const filter = this.ctx.createBiquadFilter();
+        this.droneGain = this.ctx.createGain();
+        
+        osc1.type = 'triangle';
+        osc1.frequency.setValueAtTime(55, this.ctx.currentTime); // A1
+        
+        osc2.type = 'sawtooth';
+        osc2.frequency.setValueAtTime(55.5, this.ctx.currentTime);
+        
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(90, this.ctx.currentTime);
+        
+        this.droneGain.gain.setValueAtTime(0.08, this.ctx.currentTime);
+        
+        osc1.connect(filter);
+        osc2.connect(filter);
+        filter.connect(this.droneGain);
+        this.droneGain.connect(this.ctx.destination);
+        
+        osc1.start();
+        osc2.start();
+    }
+    
+    createRain() {
+        const bufferSize = this.ctx.sampleRate * 2;
+        const noiseBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+        const output = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+            output[i] = Math.random() * 2 - 1;
+        }
+        
+        const whiteNoise = this.ctx.createBufferSource();
+        whiteNoise.buffer = noiseBuffer;
+        whiteNoise.loop = true;
+        
+        const filter = this.ctx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.setValueAtTime(1000, this.ctx.currentTime);
+        filter.Q.setValueAtTime(1, this.ctx.currentTime);
+        
+        this.rainGain = this.ctx.createGain();
+        this.rainGain.gain.setValueAtTime(0.02, this.ctx.currentTime);
+        
+        whiteNoise.connect(filter);
+        filter.connect(this.rainGain);
+        this.rainGain.connect(this.ctx.destination);
+        
+        whiteNoise.start();
+    }
+    
+    createWind() {
+        const bufferSize = this.ctx.sampleRate * 2;
+        const noiseBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+        const output = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+            output[i] = Math.random() * 2 - 1;
+        }
+        
+        const whiteNoise = this.ctx.createBufferSource();
+        whiteNoise.buffer = noiseBuffer;
+        whiteNoise.loop = true;
+        
+        const filter = this.ctx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.setValueAtTime(400, this.ctx.currentTime);
+        filter.Q.setValueAtTime(2, this.ctx.currentTime);
+        
+        const lfo = this.ctx.createOscillator();
+        lfo.type = 'sine';
+        lfo.frequency.setValueAtTime(0.1, this.ctx.currentTime);
+        
+        const lfoGain = this.ctx.createGain();
+        lfoGain.gain.setValueAtTime(200, this.ctx.currentTime);
+        
+        lfo.connect(lfoGain);
+        lfoGain.connect(filter.frequency);
+        
+        this.windGain = this.ctx.createGain();
+        this.windGain.gain.setValueAtTime(0.02, this.ctx.currentTime);
+        
+        whiteNoise.connect(filter);
+        filter.connect(this.windGain);
+        this.windGain.connect(this.ctx.destination);
+        
+        lfo.start();
+        whiteNoise.start();
+    }
+    
+    playSfx(type) {
+        if (this.isMuted || !this.ctx) return;
+        
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        
+        const now = this.ctx.currentTime;
+        
+        if (type === 'click') {
+            osc.frequency.setValueAtTime(150, now);
+            osc.frequency.exponentialRampToValueAtTime(80, now + 0.05);
+            gain.gain.setValueAtTime(0.15, now);
+            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+            osc.start();
+            osc.stop(now + 0.06);
+        } else if (type === 'hit') {
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(100, now);
+            osc.frequency.exponentialRampToValueAtTime(40, now + 0.15);
+            gain.gain.setValueAtTime(0.4, now);
+            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+            osc.start();
+            osc.stop(now + 0.16);
+        } else if (type === 'chime') {
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(880, now);
+            gain.gain.setValueAtTime(0.12, now);
+            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+            
+            const osc2 = this.ctx.createOscillator();
+            const gain2 = this.ctx.createGain();
+            osc2.type = 'sine';
+            osc2.frequency.setValueAtTime(1320, now + 0.08);
+            gain2.gain.setValueAtTime(0.1, now + 0.08);
+            gain2.gain.exponentialRampToValueAtTime(0.01, now + 0.38);
+            
+            osc2.connect(gain2);
+            gain2.connect(this.ctx.destination);
+            
+            osc.start();
+            osc.stop(now + 0.35);
+            osc2.start(now + 0.08);
+            osc2.stop(now + 0.4);
+        } else if (type === 'gameover') {
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(220, now);
+            osc.frequency.linearRampToValueAtTime(55, now + 1.0);
+            gain.gain.setValueAtTime(0.2, now);
+            gain.gain.linearRampToValueAtTime(0.01, now + 1.0);
+            osc.start();
+            osc.stop(now + 1.1);
+        }
+    }
+    
+    updateVolumes() {
+        if (!this.ctx) return;
+        const vol = this.isMuted ? 0 : 1;
+        this.droneGain.gain.setValueAtTime(0.08 * vol, this.ctx.currentTime);
+        this.rainGain.gain.setValueAtTime(0.02 * vol, this.ctx.currentTime);
+        this.windGain.gain.setValueAtTime(0.02 * vol, this.ctx.currentTime);
+    }
+    
+    toggleMute() {
+        this.isMuted = !this.isMuted;
+        if (!this.isMuted) {
+            this.init();
+            if (this.ctx.state === 'suspended') {
+                this.ctx.resume();
+            }
+        }
+        this.updateVolumes();
+        return this.isMuted;
+    }
+}
+
+const synth = new AtmosphereSynth();
+
+// --- БОЙОВА СИСТЕМА СИМУЛЯТОРА ---
+let combatState = {
+    inCombat: false,
+    enemyName: "",
+    enemyHp: 0,
+    enemyMaxHp: 0,
+    enemyAtk: 0,
+    onWin: null,
+    onLose: null
+};
+
+function startCombat(enemyName, maxHp, atk, onWin, onLose) {
+    combatState.inCombat = true;
+    combatState.enemyName = enemyName;
+    combatState.enemyHp = maxHp;
+    combatState.enemyMaxHp = maxHp;
+    combatState.enemyAtk = atk;
+    combatState.onWin = onWin;
+    combatState.onLose = onLose;
+    
+    const container = document.getElementById("enemy-hp-container");
+    if (container) {
+        container.style.display = "block";
+        document.getElementById("enemy-hp-value").textContent = `${maxHp}/${maxHp}`;
+        document.getElementById("enemy-hp-bar").style.width = "100%";
+    }
+    
+    addToLog(`⚔️ ПОЧАВСЯ БІЙ З [${enemyName.toUpperCase()}]!`, "damage");
+    renderCombatRound();
+}
+
+function renderCombatRound() {
+    if (!combatState.inCombat) return;
+    
+    document.getElementById("scene-title").textContent = `⚔️ Бій: ${combatState.enemyName}`;
+    document.getElementById("scene-text").innerHTML = `На вас напав ${combatState.enemyName}! Він готовий завдати удару. Оберіть вашу бойову тактику:<br><br><strong>Ваш стан:</strong> Здоров'я: ${playerState.hp}/${playerState.maxHp} | Рішучість: ${playerState.will}/${playerState.maxWill}`;
+    
+    const choicesDiv = document.getElementById("scene-choices");
+    choicesDiv.innerHTML = "";
+    
+    const btnAtk = document.createElement("button");
+    btnAtk.className = "choice-btn";
+    btnAtk.innerHTML = `<span>🗡️ Атакувати мечем</span>`;
+    btnAtk.addEventListener("click", () => {
+        synth.playSfx('hit');
+        resolveCombatRound("attack");
+    });
+    choicesDiv.appendChild(btnAtk);
+    
+    const btnDodge = document.createElement("button");
+    btnDodge.className = "choice-btn";
+    btnDodge.innerHTML = `<span>🛡️ Ухилення та захист</span>`;
+    btnDodge.addEventListener("click", () => {
+        synth.playSfx('click');
+        resolveCombatRound("dodge");
+    });
+    choicesDiv.appendChild(btnDodge);
+    
+    if (playerState.doctrines.pathfinder >= 1) {
+        const btnPath = document.createElement("button");
+        btnPath.className = "choice-btn";
+        btnPath.innerHTML = `<span>🏹 [Слідопит] Знайти укриття в очереті (15 Рішучості)</span>`;
+        btnPath.addEventListener("click", () => {
+            if (playerState.will >= 15) {
+                synth.playSfx('click');
+                resolveCombatRound("pathfinder");
+            } else {
+                addToLog("Недостатньо рішучості!", "damage");
+            }
+        });
+        choicesDiv.appendChild(btnPath);
+    }
+    
+    if (playerState.doctrines.judge >= 1) {
+        const btnJudge = document.createElement("button");
+        btnJudge.className = "choice-btn";
+        btnJudge.innerHTML = `<span>⚖️ [Суддя] Заборонити атаку Вердиктом (20 Рішучості)</span>`;
+        btnJudge.addEventListener("click", () => {
+            if (playerState.will >= 20) {
+                synth.playSfx('click');
+                resolveCombatRound("judge");
+            } else {
+                addToLog("Недостатньо рішучості!", "damage");
+            }
+        });
+        choicesDiv.appendChild(btnJudge);
+    }
+    
+    if (playerState.inventory.includes("🪤 Капкан")) {
+        const btnTrap = document.createElement("button");
+        btnTrap.className = "choice-btn";
+        btnTrap.innerHTML = `<span>🪤 Встановити капкан (Витратить капкан)</span>`;
+        btnTrap.addEventListener("click", () => {
+            synth.playSfx('click');
+            resolveCombatRound("use_trap");
+        });
+        choicesDiv.appendChild(btnTrap);
+    }
+
+    updateUi();
+}
+
+function resolveCombatRound(action) {
+    let playerDmg = 0;
+    let enemyDmg = 0;
+    
+    if (action === "attack") {
+        playerDmg = 10 + Math.floor(Math.random() * 6);
+        enemyDmg = combatState.enemyAtk + Math.floor(Math.random() * 5);
+        
+        if (playerState.inventory.includes("🧿 Містичний оберіг")) {
+            enemyDmg = Math.max(1, enemyDmg - 5);
+            addToLog("🧿 Містичний оберіг поглинає 5 пошкоджень!", "success");
+        }
+        
+        combatState.enemyHp = Math.max(0, combatState.enemyHp - playerDmg);
+        playerState.hp = Math.max(0, playerState.hp - enemyDmg);
+        
+        addToLog(`Ви вдарили мечем на ${playerDmg} пошкоджень!`, "success");
+        addToLog(`${combatState.enemyName} атакує вас на ${enemyDmg} пошкоджень!`, "damage");
+    } 
+    else if (action === "dodge") {
+        enemyDmg = Math.max(0, Math.floor((combatState.enemyAtk + Math.floor(Math.random() * 5)) / 3));
+        playerState.hp = Math.max(0, playerState.hp - enemyDmg);
+        playerState.will = Math.min(playerState.maxWill, playerState.will + 10);
+        
+        addToLog(`Ви вдало ухилилися! Отримано лише ${enemyDmg} пошкоджень, +10 Рішучості!`, "success");
+    }
+    else if (action === "pathfinder") {
+        playerState.will -= 15;
+        playerDmg = 12 + Math.floor(Math.random() * 4);
+        enemyDmg = 0;
+        combatState.enemyHp = Math.max(0, combatState.enemyHp - playerDmg);
+        
+        addToLog(`🏹 Слідопит зник у тумані та завдав несподіваного удару з очерету на ${playerDmg} пошкоджень!`, "success");
+    }
+    else if (action === "judge") {
+        playerState.will -= 20;
+        playerDmg = 5;
+        enemyDmg = 0;
+        combatState.enemyHp = Math.max(0, combatState.enemyHp - playerDmg);
+        
+        addToLog(`⚖️ Суддя виголосив вердикт знерухомлення! Ворог паралізований і отримує 5 пошкоджень!`, "success");
+    }
+    else if (action === "use_trap") {
+        const idx = playerState.inventory.indexOf("🪤 Капкан");
+        if (idx !== -1) playerState.inventory.splice(idx, 1);
+        
+        playerDmg = 25;
+        enemyDmg = Math.max(0, Math.floor(combatState.enemyAtk / 2));
+        combatState.enemyHp = Math.max(0, combatState.enemyHp - playerDmg);
+        playerState.hp = Math.max(0, playerState.hp - enemyDmg);
+        
+        addToLog(`🪤 Ви заманили ворога в капкан! Ворог отримав ${playerDmg} пошкоджень. Його атака послаблена до ${enemyDmg}!`, "success");
+    }
+    
+    document.getElementById("enemy-hp-value").textContent = `${combatState.enemyHp}/${combatState.enemyMaxHp}`;
+    document.getElementById("enemy-hp-bar").style.width = `${(combatState.enemyHp / combatState.enemyMaxHp) * 100}%`;
+    
+    if (playerState.hp <= 0) {
+        synth.playSfx('gameover');
+        endCombat(false);
+    } else if (combatState.enemyHp <= 0) {
+        synth.playSfx('chime');
+        endCombat(true);
+    } else {
+        renderCombatRound();
+    }
+}
+
+function endCombat(playerWon) {
+    combatState.inCombat = false;
+    document.getElementById("enemy-hp-container").style.display = "none";
+    
+    if (playerWon) {
+        addToLog(`🏆 Перемога над [${combatState.enemyName.toUpperCase()}]!`, "success");
+        if (combatState.onWin) combatState.onWin();
+    } else {
+        addToLog(`💀 Ви загинули в бою з [${combatState.enemyName.toUpperCase()}]...`, "damage");
+        if (combatState.onLose) {
+            combatState.onLose();
+        } else {
+            goScene("death");
+        }
+    }
+}
+
+// --- БАЗА ДАНИХ ІГРОВИХ СЦЕН (ЕПІЗОДИ 1-4) ---
 const GAME_SCENES = {
     arriving: {
         title: "Постоялий двір Грейфорда",
-        text: `Ви входите у напівтемну таверну. За шинком стоїть Ерван — хазяїн закладу. Ви підходите і запитуєте про Руфіна. Ерван мовчки бере ваш лист, дивиться на дивну печатку (два перехрещені кинджали, коло і крапля), тримає його на мить довше, ніж варто звичайному паперу...<br><br>Потім піднімає на вас очі і запитує:<br><em>«І що він тобі був — друг, боржник, чи ти просто наймит-кур'єр?»</em>`,
+        text: `Ви входите у напівтемну таверну. За шинком стоїть Ерван — хазяїн закладу. Ви підходите і запитуєте про Руфіна. Ерван мовчки бере ваш лист, дивиться на дивну печатку (два перехрещені кинджали, коло і крапля), тримає його на мить довше, ніж варто звичайному паперу...<br><br>Потім піднімає на вас очі і запитує:<br><em>«І що он тобі був — друг, боржник, чи ти просто наймит-кур'єр?»</em>`,
         choices: [
             { 
                 text: "«Ми домовились. Я приїхав виконати свою частину обов'язку.» (Шлях Ідеаліста)", 
-                cost: "will:0",
                 action: () => chooseMotivation("Ідеаліст", "Ерван киває з повагою: «Людина обов'язку в наші часи — рідкість. Ось ключ від його кімнати нагорі.»", "investigation")
             },
             { 
-                text: "«Він мав дещо, що мені потрібно. Це особиста справа.» (Особистий Інтерес)", 
-                cost: "will:0",
+                text: "«Він мав дещо, що мне потрібно. Це особиста справа.» (Особистий Інтерес)", 
                 action: () => chooseMotivation("Особистий інтерес", "Ерван примружується: «У всіх тут свої інтереси. Тримай ключ, кімната на другому поверсі.»", "investigation")
             },
             { 
                 text: "«Я просто доставляю листа. Що далі — моя проблема.» (Прагматик)", 
-                cost: "will:0",
-                action: () => chooseMotivation("Прагматик", "Ерван хмикає: «Просто наймит. Це безпечніше. Ключ твій, роби своє діло.»", "investigation")
+                action: () => chooseMotivation("Прагматик", "Ерван хмикає: «Просто наймит. Це безпечніше. Ключ твій, роби свое діло.»", "investigation")
             },
             {
                 text: "⚖️ [Суддя] «Я представляю закон Грейфорда. Ти зобов'язаний співпрацювати зі слідством.»",
-                cost: "will:0",
                 visible: () => playerState.doctrines.judge >= 1,
                 action: () => chooseMotivation("Суддя", "Ерван стримано киває: «Закон... Що ж, ми поважаємо закон міста, хоча болото його не чує. Ось ключ від кімнати Руфіна.»", "investigation")
             }
@@ -446,28 +805,23 @@ const GAME_SCENES = {
         choices: [
             { 
                 text: "🚪 Оглянути кімнату Руфіна на другому поверсі таверни", 
-                cost: "will:0",
                 action: () => goThread("room") 
             },
             { 
                 text: "🛠️ Відвідати квартал ремісників та поговорити з різьбярем", 
-                cost: "will:0",
                 action: () => goThread("carver") 
             },
             { 
                 text: "🍻 Завітати у портову таверну та розпитати куртизанку Касандру", 
-                cost: "will:0",
                 action: () => goThread("tavern") 
             },
             { 
                 text: "🧙‍♀️ Оглянути будинок Чаклунки на околиці (Доступно після виявлення знаків)", 
-                cost: "will:0",
                 visible: () => playerState.clues.witch_hint === true,
                 action: () => goThread("witch") 
             },
             { 
-                text: "🚪 Іти до воріт міста та вирушати в Хейзмур (Потрібно знайти докази)", 
-                cost: "will:0",
+                text: "🚪 Іти до воріт міста та вирушати в Хейзмуру (Потрібно знайти докази)", 
                 visible: () => (Object.values(playerState.clues).filter(v => v === true && v !== "witch_hint").length >= 2),
                 action: () => goScene("gates") 
             }
@@ -493,7 +847,7 @@ const GAME_SCENES = {
                 visible: () => playerState.doctrines.pathfinder >= 1,
                 action: () => {
                     playerState.clues.room = true;
-                    addToLog("Слідопит виявив: болотяна глина на підлозі — чорний торф з глибин Хейзмуру. Руфін таємно ходив у болота ще до свого зникнення!", "success");
+                    addToLog("Слідопит виявив: болотяна глина на підлозі — чорний торф з глибин Хейзмуру.", "success");
                     addItem("🎒 Сумка Руфіна");
                     adjustResource("loosestrife", 2);
                     adjustResource("slate", 1);
@@ -507,7 +861,7 @@ const GAME_SCENES = {
                 action: () => {
                     playerState.clues.room = true;
                     playerState.clues.witch_hint = true;
-                    addToLog("Ліхтар виявив: leдь помітні захисні руни над дверима. Руфін захищався не від людей, а від чогось, що притягнув із болота! Знаки ведуть до чаклунки.", "success");
+                    addToLog("Ліхтар виявив: ледь помітні захисні руни над дверима. Вони ведуть до Чаклунки.", "success");
                     addItem("🎒 Сумка Руфіна");
                     adjustResource("ash", 1);
                     adjustResource("slate", 1);
@@ -519,13 +873,13 @@ const GAME_SCENES = {
     },
     thread_carver: {
         title: "Квартал ремісників — Різьбяр",
-        text: `Ви знаходите майстерню різьбяра по дереву. Старий майстер працює над викривленою гілкою і неохоче реагує на ваші запитання про Руфіна. «Багато хто приходить і йде. Чому я маю допомагати кожному Вартовийу?»`,
+        text: `Ви знаходите майстерню різьбяра по дереву. Старий майстер працює над викривленою гілкою і неохоче реагує на ваші запитання про Руфіна. «Багато хто приходить і йде. Чому я маю допомагати кожному Вартовому?»`,
         choices: [
             {
                 text: "📜 Показати запечатаний лист Руфіна з дивною восковою печаткою",
                 action: () => {
                     playerState.clues.carver = true;
-                    addToLog("Різьбяр побачив печатку, здригнувся і сказав: «Руфін питав про дорогу до Тихого Шелесту. Шукав там когось.»", "success");
+                    addToLog("Різьбяр побачив печатку, здригнувся і сказав: «Руфін питав про дорогу до Тихого Шелесту.»", "success");
                     adjustResource("bogiron", 2);
                     adjustReputation("knives", 15);
                     goScene("investigation");
@@ -536,7 +890,7 @@ const GAME_SCENES = {
                 visible: () => playerState.doctrines.pathfinder >= 1,
                 action: () => {
                     playerState.clues.carver = true;
-                    addToLog("Ви впізнали корінь-вербу з глибин болота. Вражений різьбяр розповів більше: «Руфін ніс щось дуже важке перед виходом. Він ледве йшов.»", "success");
+                    addToLog("Ви впізнали корінь-вербу з болота. Майстер сказав: «Руфін ніс щось дуже важке перед виходом.»", "success");
                     adjustResource("tendons", 2);
                     adjustResource("bogiron", 1);
                     adjustReputation("muri", 15);
@@ -548,7 +902,7 @@ const GAME_SCENES = {
                 visible: () => playerState.doctrines.mediator >= 1,
                 action: () => {
                     playerState.clues.carver = true;
-                    addToLog("Ви домовилися розізнати долю його боргів у порту. Різьбяр зізнався: «Руфін мав велику справу. Хтось оплатив йому цю подорож сріблом!»", "success");
+                    addToLog("Ви домовилися розізнати долю його боргів. Різьбяр зізнався: «Хтось оплатив йому подорож сріблом!»", "success");
                     adjustResource("silver", 2);
                     adjustReputation("greyford", 15);
                     goScene("investigation");
@@ -560,7 +914,7 @@ const GAME_SCENES = {
                 action: () => {
                     playerState.clues.carver = true;
                     playerState.clues.witch_hint = true;
-                    addToLog("Майстер бачить, що ви розумієте руни. Він шепоче: «Руфін був наляканий до смерті. Він ставив ці знаки перед виходом вночі.»", "success");
+                    addToLog("Майстер бачить, що ви розумієте руни: «Руфін ставив ці знаки перед виходом вночі.»", "success");
                     adjustResource("slate", 2);
                     adjustReputation("keepers", 15);
                     goScene("investigation");
@@ -570,13 +924,13 @@ const GAME_SCENES = {
     },
     thread_tavern: {
         title: "Портова таверна",
-        text: `У брудному шинку біля причалу бармен протирає склянку. «Руфін? Так, сидів тут три дні тому. Спілкувався з однією дівчиною — куртизанкою на ім'я Касандра. Вона зараз сидить за кутовим столиком.»<br><br>Касандра дивиться на вас із підозрою і не поспішає відкривати душу першому ліпшому Вартовийу.`,
+        text: `У брудному шинку бармен протирає склянку: «Руфін спілкувався з куртизанкою на ім'я Касандра. Вона зараз сидить за кутовим столиком.»<br><br>Касандра дивиться на вас із підозрою.`,
         choices: [
             {
-                text: "🗣️ Спробувати розговорити її або показати рекомендацію Ервана",
+                text: "🗣️ Спробувати розговорити її",
                 action: () => {
                     playerState.clues.tavern = true;
-                    addToLog("Касандра розповіла: «Руфін казав, що щось у Хейзмурі не чекає на людей. Він пішов наляканий, але цілеспрямовано.»", "success");
+                    addToLog("Касандра розповіла: «Руфін казав, що щось у Хейзмурі не чекає на людей.»", "success");
                     adjustResource("loosestrife", 2);
                     adjustReputation("greyford", 10);
                     goScene("investigation");
@@ -587,7 +941,7 @@ const GAME_SCENES = {
                 visible: () => playerState.doctrines.mediator >= 1,
                 action: () => {
                     playerState.clues.tavern = true;
-                    addToLog("Касандра зізнається: «Він платив чистим сріблом, а не міддю. Хтось дуже багатий найняв його для цієї подорожі.»", "success");
+                    addToLog("Касандра зізнається: «Він платив чистим сріблом. Хтось багатий найняв його.»", "success");
                     adjustResource("silver", 1);
                     adjustResource("peganum", 1);
                     adjustReputation("knives", 10);
@@ -599,7 +953,7 @@ const GAME_SCENES = {
                 visible: () => playerState.doctrines.judge >= 1,
                 action: () => {
                     playerState.clues.tavern = true;
-                    addToLog("Касандра злякано шепоче: «Не треба погроз! Він шукав старого провідника мурі. Заберіть цей слиз мурі, що він забув на столі, тільки не чіпайте мене!»", "success");
+                    addToLog("Вона шепоче: «Він шукав старого провідника мурі. Заберіть цей слиз мурі, що він забув на столі!»", "success");
                     adjustResource("slime", 2);
                     adjustReputation("greyford", 20);
                     adjustReputation("knives", -10);
@@ -610,7 +964,7 @@ const GAME_SCENES = {
     },
     thread_witch: {
         title: "Помешкання Чаклунки",
-        text: `Ви знайшли прихований будинок на околиці міста, прикрашений оберегами від болотяних духів. Чаклунка зустрічає вас із посмішкою. Вона знає, чому ви прийшли.<br><br>«Руфін? Я бачила, як він ішов у болота вночі...»`,
+        text: `Ви знайшли прихований будинок на околиці міста, прикрашений оберегами від болотяних духів. Чаклунка зустрічає вас із посмішкою. Вона знає, чому ви прийшли. «Руфін? Я бачила, як він ішов у болота вночі...»`,
         choices: [
             {
                 text: "🗣️ Просто запитати, що вона бачила тієї ночі",
@@ -627,7 +981,7 @@ const GAME_SCENES = {
                 visible: () => playerState.doctrines.lantern >= 1,
                 action: () => {
                     playerState.clues.witch = true;
-                    addToLog("Чаклунка шепоче: «Він ніс щось, що світилося в темряві зеленим вогнем. Це древній артефакт боліт!»", "success");
+                    addToLog("Чаклунка шепоче: «Він ніс стародавній артефакт боліт, який світився зеленим вогнем!»", "success");
                     addItem("🧿 Болотяний амулет");
                     adjustResource("ash", 1);
                     adjustResource("heart", 1);
@@ -641,7 +995,7 @@ const GAME_SCENES = {
                 visible: () => playerState.doctrines.mediator >= 1,
                 action: () => {
                     playerState.clues.witch = true;
-                    addToLog("За жменю мідяків вона зізналася: «Він купив це світіння у когось дуже впливового в Грейфорді.»", "success");
+                    addToLog("За жменю мідяків вона зізналася: «Він купив це світіння у когось впливового в Грейфорді.»", "success");
                     adjustResource("henbane", 2);
                     adjustReputation("greyford", -10);
                     goScene("investigation");
@@ -651,14 +1005,14 @@ const GAME_SCENES = {
     },
     gates: {
         title: "Міські Ворота — Вихід у Хейзмур",
-        text: `Ви зібрали достатньо доказів і підходите до важких дерев'яних воріт, що ведуть у туманні болота Хейзмуру. Сержант воріт перевіряє свої записи: «Так, Руфін вийшов три дні тому в напрямку Тихого Шелесту. Це там, де закінчується дорога і починається чуже.»<br><br>Він уважно дивиться на вас: <em>«Ти теж туди? З якого приводу Вартовий іде в болота?»</em>`,
+        text: `Ви зібрали достатньо доказів і підходите до важких дерев'яних воріт. Сержант воріт перевіряє свої записи: «Так, Руфін вийшов три дні тому в напрямку Тихого Шелесту.»<br><br>Він уважно дивиться на вас: <em>«З якого приводу Вартовий іде в болота?»</em>`,
         choices: [
             {
                 text: "«Я шукаю людину. Руфін пішов і не повернувся, я маю його знайти.» (Правда)",
                 action: () => {
                     adjustReputation("greyford", 20);
                     adjustReputation("knives", 10);
-                    finishQuest("Правда", "Сержант киває: «Благородна мета. Нехай закон світить тобі в тумані.»");
+                    finishQuest("Правда", "Сержант киває: «Нехай закон світить тобі в тумані.»");
                 }
             },
             {
@@ -666,47 +1020,153 @@ const GAME_SCENES = {
                 action: () => {
                     adjustReputation("greyford", 5);
                     adjustReputation("knives", -5);
-                    finishQuest("Напівправда", "Сержант скептично хмикає: «Безпека? У Хейзмурі немає безпеки. Ну йди, раз це наказ.»");
+                    finishQuest("Напівправда", "Сержант скептично хмикає: «У Хейзмурі немає безпеки. Ну йди.»");
                 }
             },
             {
-                text: "«У мене офіційна робота. Лист — мій єдиний пропуск.» (Ухилення)",
-                action: () => {
-                    adjustReputation("greyford", -20);
-                    adjustReputation("knives", -10);
-                    finishQuest("Ухилення", "Сержант примружується і записує щось у журнал: «Таємниці... Ну що ж, запишемо як офіційний візит.»");
-                }
-            },
-            {
-                text: "⚖️ [Суддя] «Я виконую офіційне доручення суду Грейфорда щодо зниклого картографа. Зареєструйте мій вихід.»",
+                text: "⚖️ [Суддя] «Я виконую офіційне доручення суду Грейфорда щодо картографа. Зареєструйте вихід.»",
                 visible: () => playerState.doctrines.judge >= 1,
                 action: () => {
                     adjustReputation("greyford", 30);
                     adjustReputation("knives", 15);
-                    finishQuest("Судове доручення", "Сержант витягується струнко і віддає честь: «Зрозуміло, пане Суддя. Ваша подорож внесена до реєстру. Нехай закон допоможе вам подолати туман боліт.»");
+                    finishQuest("Судове доручення", "Сержант витягується струнко: «Зрозуміло, пане Суддя. Ваша подорож внесена до реєстру.»");
                 }
             }
         ]
     },
     ending: {
-        title: "Квест Завершено: Адресат відсутній",
-        text: "", // Заповнюється динамічно у функції finishQuest
+        title: "Епізод 1 Завершено: Адресат відсутній",
+        text: "", 
         choices: [
             {
-                text: "🎮 Почати подорож заново іншим Вартовийом",
+                text: "🌿 Вирушити у подорож до поселення Валькорн (Епізод 2)",
+                action: () => goScene("ep2_travel")
+            }
+        ]
+    },
+    
+    // --- ЕПІЗОД 2: ВАЛЬКОРН ---
+    ep2_travel: {
+        title: "Подорож крізь Туманний ліс",
+        text: `Ви йдете вузькою стежкою між високими болотяними соснами. Туман густішає, повітря наповнене запахом гнилої хвої та торфу. Раптом попереду чується важке дихання та тріск гілок...<br><br>З темряви виповзає велетенська **Болотяна Тварюка** (Swamp Beast) з очима, що світяться гнилим зеленим світлом! Вона блокує вам дорогу!`,
+        choices: [
+            {
+                text: "⚔️ Приготуватись до бою з монстром!",
+                action: () => {
+                    startCombat("Болотяна Тварюка", 50, 10, () => goScene("ep2_victory"), () => goScene("death"));
+                }
+            }
+        ]
+    },
+    ep2_victory: {
+        title: "Перемога над Тварюкою",
+        text: `Ви здолали Болотяну Тварюку! Її тіло з шипінням розчиняється в торф'яному мулі. У слизі ви знаходите містичний інгредієнт — пульсуючу болотну органіку.<br><br>Невдовзі ви виходите до кам'яних околиць **Валькорна**. Тут, біля стародавнього Чорного Архіву, ви зустрічаєте командувача Себастьяна Марра та його помічницю Тессу. Вони тримають скриньку з Печаткою.`,
+        choices: [
+            {
+                text: "Підійти до Себастьяна Марра",
+                action: () => {
+                    adjustResource("heart", 1);
+                    goScene("ep2_meeting");
+                }
+            }
+        ]
+    },
+    ep2_meeting: {
+        title: "Вибір біля Чорного Архіву",
+        text: `Себастьян Марр тримає в руках важку срібну скриньку, всередині якої лежить **Перша Печатка**. Він дивиться на вас із підозрою: «Руфін мертвий. Його місія провалилася. Нам потрібен новий Ключник, який підкорить Моур королівській волі. Візьми Печатку і зламай її волю, або поверни її болоту.»<br><br>Тесса шепоче: «Це божевілля! Спроба зламати Печатку знищить рівновагу і випалить болото назавжди!»`,
+        choices: [
+            {
+                text: "⚙️ [Шлях А] «Я підкорю Печатку волі столиці та Ордену.»",
+                action: () => chooseValkornPath("A", "Ви підкорюєте Печатку волі столиці. Ваші пальці починають темніти й дерев'яніти.", "ep3_swamp")
+            },
+            {
+                text: "🌿 [Шлях Б] «Я поверну Печатку болоту. Болото має дихати вільно.»",
+                action: () => chooseValkornPath("B", "Ви кидаєте Печатку в болото. Себастьян лютує, але Тесса допомагає вам втекти.", "ep3_swamp")
+            },
+            {
+                text: "🕯️ [Шлях В] «Печатка повинна тримати рівновагу. Я збережу її цілісність.»",
+                action: () => chooseValkornPath("C", "Ви закриваєте Печатку в скриньці, балансуючи між силами Ордену та болотних Мурі.", "ep3_swamp")
+            }
+        ]
+    },
+    
+    // --- ЕПІЗОД 3: ГЛИБОКЕ БОЛОТО ---
+    ep3_swamp: {
+        title: "Глибоке болото та Отруйний туман",
+        text: `Ви заглиблюєтесь у Глибоке Болото. Вода піднімається до колін. Раптом підіймаються отруйні випари блекоти! Ваше дихання перехоплює, а в голові починає паморочитись...<br><br>Вам потрібно швидко захиститися від отрути!`,
+        choices: [
+            {
+                text: "🧪 Випити Протиотруту зі своєї сумки",
+                visible: () => playerState.inventory.includes("🧪 Протиотрута"),
+                action: () => consumeAntidoteForPoison()
+            },
+            {
+                text: "🏕️ [Слідопит] Знайти чисту стежку за напрямком вітру",
+                visible: () => playerState.doctrines.pathfinder >= 1,
+                action: () => {
+                    addToLog("Слідопит успішно знайшов чистий прохід крізь вітер!", "success");
+                    goScene("ep3_meeting_lileya");
+                }
+            },
+            {
+                text: "Пробитись крізь хмару напролом (Втрата 30 HP та 15 Рішучості)",
+                action: () => takePoisonDamage()
+            }
+        ]
+    },
+    ep3_meeting_lileya: {
+        title: "Напівзатоплена Обитель",
+        text: `Ви виходите на суху галявину, де стоїть напівзатоплена Обитель. Тут вас зустрічає **Лілея** — древня Ключниця боліт. Вона дивиться на вас із глибоким сумом: «Я бачу тінь Моура на твоєму обличчі. Печатка змінила твій шлях. Скоро Сезон Порожнечі закриється. Ти маєш зробити свій остаточний вибір на мосту між двома берегами...»`,
+        choices: [
+            {
+                text: "«Я готовий зустріти свою долю у фіналі.» (Вирушити на Міст)",
+                action: () => goScene("ep4_bridge")
+            }
+        ]
+    },
+    
+    // --- ЕПІЗОД 4: ДВА БЕРЕГИ ---
+    ep4_bridge: {
+        title: "Міст між Двома Берегами",
+        text: `Ви стоїте посеред величного стародавнього кам'яного мосту, що сполучає два береги: Чорний берег столиці Валькорна з його залізними ліхтарями та Зелений берег проклятого болота Хейзмуру. Вода під мостом шумить темним відлунням.<br><br>Себастьян Марр стоїть на Чорному березі з оголеним срібним мечем. Лілея та Міа стоять на Зеленому березі серед очеретів. Голос Ілії шепоче у вашій голові: *«Це фінал. Обери свій вирок...»*`,
+        choices: [
+            {
+                text: "⚙️ «Оголосити Вердикт Заліза (Шлях А)»",
+                action: () => resolveFinalWay("A")
+            },
+            {
+                text: "🌿 «Оголосити Вердикт Очерету (Шлях Б)»",
+                action: () => resolveFinalWay("B")
+            },
+            {
+                text: "🕯️ «Підписати Пакт Ключника (Шлях В)»",
+                action: () => resolveFinalWay("C")
+            }
+        ]
+    },
+    
+    death: {
+        title: "Трагічна загибель",
+        text: `Ваша подорож обірвалася в болотах Хейзмуру. Холодний туман огортає ваше тіло, а прокляття Порожнього Сезону забирає залишки вашої душі...<br><br>Ніхто не дізнається про вашу місію, а лист Руфіна згниє під шаром торфу.`,
+        choices: [
+            {
+                text: "🎮 Почати подорож заново",
                 action: () => resetGame()
             }
         ]
     }
 };
 
+let currentSceneKey = "arriving";
+
 // --- УПРАВЛІННЯ ІГРОВИМ ПРОЦЕСОМ ---
 function startGameFlow() {
     gameStarted = true;
     
-    // Очищуємо лог та додаємо перше повідомлення
     const logDiv = document.getElementById("combat-log");
-    logDiv.innerHTML = '<div class="log-msg system">Ви розпочали подорож Мандруючого Вартового. Порожній Сезон розпочався.</div>';
+    if (logDiv) {
+        logDiv.innerHTML = '<div class="log-msg system">Ви розпочали подорож Мандруючого Вартового. Порожній Сезон розпочався.</div>';
+    }
     addToLog(`Вартовий ${playerState.name} (Передісторія: ${playerState.background}) прибув до Грейфорда.`, "system");
     
     updateUi();
@@ -716,7 +1176,6 @@ function startGameFlow() {
 function chooseMotivation(motivation, dialogReply, nextScene) {
     playerState.history.push({ step: "motivation", choice: motivation });
     
-    // Репутаційні наслідки
     if (motivation === "Ідеаліст") {
         adjustReputation("greyford", 15);
         adjustReputation("knives", 5);
@@ -731,24 +1190,148 @@ function chooseMotivation(motivation, dialogReply, nextScene) {
     goScene(nextScene);
 }
 
+function chooseValkornPath(path, reply, nextScene) {
+    playerState.history.push({ step: "valkorn_path", choice: path });
+    addToLog(`Обрано Шлях ${path}: ${reply}`, "system");
+    
+    if (path === "A") {
+        adjustReputation("greyford", 30);
+        adjustReputation("knives", 20);
+        adjustReputation("muri", -30);
+    } else if (path === "B") {
+        adjustReputation("greyford", -30);
+        adjustReputation("muri", 30);
+    } else {
+        adjustReputation("greyford", 10);
+        adjustReputation("muri", 10);
+    }
+    
+    goScene(nextScene);
+}
+
+function consumeAntidoteForPoison() {
+    const idx = playerState.inventory.indexOf("🧪 Протиотрута");
+    if (idx !== -1) playerState.inventory.splice(idx, 1);
+    addToLog("🧪 Ви вчасно випили Протиотруту і нейтралізували отруйні випари болота!", "success");
+    synth.playSfx('chime');
+    goScene("ep3_meeting_lileya");
+}
+
+function takePoisonDamage() {
+    playerState.hp = Math.max(0, playerState.hp - 30);
+    playerState.will = Math.max(0, playerState.will - 15);
+    addToLog("💨 Ви надихалися отруйними газами болота! Втрачено 30 HP та 15 Рішучості!", "damage");
+    
+    if (playerState.hp <= 0) {
+        synth.playSfx('gameover');
+        goScene("death");
+    } else {
+        goScene("ep3_meeting_lileya");
+    }
+}
+
+function resolveFinalWay(way) {
+    let title = "";
+    let finalDesc = "";
+    
+    if (way === "A") {
+        title = "ШЛЯХ А: ВЕРДИКТ ЗАЛІЗА";
+        finalDesc = `
+        Ви йдете по сухій залізній дорозі. Ваші руки одягнені в товсті шкіряні рукавиці, що приховують скам'янілу шкіру. За вашою спиною залишається залізне місто Валькорн, його високі труби та залізні ліхтарі Ордену. Болото висихає, перетворюючись на мертву глину.
+        <br><br>
+        Тесса очолила реформований Орден Залізних Кинджалів, підкоривши прикордоння закону заліза. Себастьян Марр загинув у повстанні, а Руфін назавжди залишився Порожнім німим пам'ятником.
+        <br><br>
+        Голос Ілії у вашій голові звучить втомлено й здалеку, наче вітер у руїнах: <em>«Я звучатиму десь позаду... Наче вітер у руїнах.»</em> Ви йдете далі в інші землі, залишаючи Хейзмуру у залізних ланцюгах.`;
+        
+        adjustReputation("greyford", 40);
+        adjustReputation("knives", 30);
+        adjustReputation("muri", -50);
+    } 
+    else if (way === "B") {
+        title = "ШЛЯХ Б: ВЕРДИКТ ОЧЕРЕТУ";
+        finalDesc = `
+        Ви йдете босоніж по теплому болотяному мулу. Рубці на ваших руках схожі на кору верби, а постать розчиняється в густому тумані без жодних слів. За вашою спиною шумить очерет, поглинаючи залишки Грейфорда.
+        <br><br>
+        Себастьян Марр згинув у глибокій трясовині, намагаючись спалити болото. Тесса згуртувала залишки Ордену на межі дикої природи. Руфін лишився безмовною тінню очерету.
+        <br><br>
+        Зелений туман лоскоче ваше обличчя. Ви йдете далі, ставши частиною самого Хейзмуру, вільного та небезпечного.`;
+        
+        adjustReputation("muri", 50);
+        adjustReputation("greyford", -50);
+    } 
+    else {
+        title = "ШЛЯХ В: ПАКТ КЛЮЧНИКА";
+        finalDesc = `
+        Ви зупиняєтесь посеред мосту, що не належить жодному берегу. Ви дивитесь на обидва боки, забираючи обидва Ключі Печаток. За вашою спиною — хиткий нейтралітет, де торгівля йде під стінами залізних ліхтарів.
+        <br><br>
+        Себастьян Марр підписав мирний Пакт, змирившись із силами болота. Тесса пильно стежить за виконанням законів рівноваги. Руфін стоїть мовчазним вартовим кордону.
+        <br><br>
+        Ви тримаєте баланс сил і йдете далі у незвідані землі. Голос Ілії шепоче з теплою посмішкою: <em>«Ми впоралися. Світ зберіг свою душу.»</em>`;
+        
+        adjustReputation("greyford", 20);
+        adjustReputation("muri", 20);
+    }
+    
+    const endingScene = GAME_SCENES.ending;
+    endingScene.title = `🏆 ЕПІЛОГ: ${title}`;
+    endingScene.text = `
+        <span class="quest-tag" style="color: var(--accent-gold);">ФІНАЛ ІСТОРІЇ: ВАРТОВИЙ ПІШОВ ДАЛІ</span>
+        <h2 style="font-family: var(--font-gothic); color: var(--accent-gold); margin-top: 1rem; margin-bottom: 1.5rem;">⚖️ ${title}</h2>
+        <p>${finalDesc}</p>
+        <hr style="border: 0; height: 1px; background: var(--border-color); margin: 2rem 0;">
+        <h3 style="font-family: var(--font-gothic); color: var(--accent-gold); margin-bottom: 0.8rem;">👑 Ваші підсумкові фракційні зв'язки:</h3>
+        <p>• Адміністрація Грейфорда: <strong>${playerState.reputation.greyford > 0 ? '+' : ''}${playerState.reputation.greyford}</strong></p>
+        <p>• Орден Семи Кинджалів: <strong>${playerState.reputation.knives > 0 ? '+' : ''}${playerState.reputation.knives}</strong></p>
+        <p>• Хранителі Святої Вей: <strong>${playerState.reputation.keepers > 0 ? '+' : ''}${playerState.reputation.keepers}</strong></p>
+        <p>• Мурі (Жаболюди): <strong>${playerState.reputation.muri > 0 ? '+' : ''}${playerState.reputation.muri}</strong></p>
+        <br>
+        <p style="font-style: italic; color: var(--text-muted); text-align: center; margin-top: 1rem;">Дякуємо, що зіграли у симулятор "Мандруючого Вартового"! Ваші рішення сформували долю Хейзмуру.</p>
+    `;
+    
+    goScene("ending");
+}
+
 function goThread(thread) {
     goScene(`thread_${thread}`);
 }
 
 function goScene(sceneKey) {
+    currentSceneKey = sceneKey;
     const scene = GAME_SCENES[sceneKey];
     if (!scene) return;
 
-    // Встановлюємо заголовки та тексти
+    const illContainer = document.getElementById("scene-illustration");
+    const questTag = document.getElementById("quest-tag");
+    
+    if (illContainer) {
+        if (sceneKey === "arriving" || sceneKey === "investigation" || sceneKey.startsWith("thread_") || sceneKey === "gates") {
+            if (questTag) questTag.textContent = "Епізод 1: Грейфорд";
+            illContainer.style.backgroundImage = "url('assets/episode1.png')";
+            illContainer.style.display = "block";
+        } else if (sceneKey.startsWith("ep2_")) {
+            if (questTag) questTag.textContent = "Епізод 2: Валькорн";
+            illContainer.style.backgroundImage = "url('assets/episode2.png')";
+            illContainer.style.display = "block";
+        } else if (sceneKey.startsWith("ep3_")) {
+            if (questTag) questTag.textContent = "Епізод 3: Глибоке болото";
+            illContainer.style.backgroundImage = "url('assets/episode3.png')";
+            illContainer.style.display = "block";
+        } else if (sceneKey.startsWith("ep4_")) {
+            if (questTag) questTag.textContent = "Епізод 4: Два Береги";
+            illContainer.style.backgroundImage = "url('assets/episode4.png')";
+            illContainer.style.display = "block";
+        } else {
+            illContainer.style.display = "none";
+        }
+    }
+
     document.getElementById("scene-title").textContent = scene.title;
     document.getElementById("scene-text").innerHTML = scene.text;
 
-    // Малюємо кнопки вибору
     const choicesDiv = document.getElementById("scene-choices");
     choicesDiv.innerHTML = "";
 
     scene.choices.forEach(choice => {
-        // Перевіряємо видимість кнопки (наприклад, для доктрин)
         if (choice.visible && !choice.visible()) {
             return;
         }
@@ -756,7 +1339,10 @@ function goScene(sceneKey) {
         const btn = document.createElement("button");
         btn.className = "choice-btn";
         btn.innerHTML = `<span>${choice.text}</span>`;
-        btn.addEventListener("click", () => choice.action());
+        btn.addEventListener("click", () => {
+            synth.playSfx('click');
+            choice.action();
+        });
         choicesDiv.appendChild(btn);
     });
 
@@ -767,7 +1353,6 @@ function finishQuest(gateAnswer, sergeantReply) {
     playerState.history.push({ step: "gate_answer", choice: gateAnswer });
     addToLog(`Відповідь сержанту: ${gateAnswer}. ${sergeantReply}`, "system");
 
-    // Визначаємо підсумок розслідування
     const cluesFound = Object.entries(playerState.clues).filter(([k, v]) => v === true && k !== "witch_hint").map(([k]) => k);
     let investigationGrade = "";
     let summaryText = "";
@@ -778,7 +1363,7 @@ function finishQuest(gateAnswer, sergeantReply) {
         <br><br>
         <strong>Ваші висновки:</strong>
         <ul>
-            <li>Руфін пішов у Тихий Шелест цілеспрямовано. Він не тікав, а виконував чиєсь завдання.</li>
+            <li>Руфін пішов у Тихий Шелест цілеспрямовано. Він виконував чиєсь завдання.</li>
             <li>Його подорож була оплачена чистим сріблом впливової особи з Грейфорда (можливо, Ордену).</li>
             <li>Він ніс із собою важкий таємничий артефакт, який випромінював магічне зелене світло.</li>
             <li>Він знав про небезпеки болота і заздалегідь ставив захисні знаки на дверях кімнати.</li>
@@ -797,7 +1382,6 @@ function finishQuest(gateAnswer, sergeantReply) {
 
     addToLog(`Квест завершено з результатом: ${investigationGrade}`, "success");
 
-    // Визначаємо репутаційні фінали
     const repDetails = [];
     ["greyford", "knives", "keepers", "muri"].forEach(faction => {
         const val = playerState.reputation[faction];
@@ -811,17 +1395,12 @@ function finishQuest(gateAnswer, sergeantReply) {
         repDetails.push(`<p>• ${fNames[faction]}: <strong>${val > 0 ? '+' : ''}${val}</strong> (${status.text})</p>`);
     });
 
-    // Рендеринг екрану фіналу
     const endingScene = GAME_SCENES.ending;
     endingScene.text = `
         <span class="quest-tag" style="color: var(--accent-gold);">РЕЗУЛЬТАТ: ${investigationGrade.toUpperCase()}</span>
         <h2 style="font-family: var(--font-gothic); color: var(--accent-gold); margin-top: 1rem; margin-bottom: 1rem;">⚖️ ВЕРДИКТ ВАРТОВОГО</h2>
         ${summaryText}
         <hr style="border: 0; height: 1px; background: var(--border-color); margin: 1.5rem 0;">
-        <h3 style="font-family: var(--font-gothic); color: var(--accent-gold); margin-bottom: 0.5rem;">📊 Наслідки ваших рішень:</h3>
-        <p>• <strong>Мотивація Вартовийа:</strong> ви обрали шлях <em>"${playerState.history[0].choice}"</em>.</p>
-        <p>• <strong>Відповідь воротам:</strong> ваша відповідь сержанту була записана як <em>"${gateAnswer}"</em>.</p>
-        <br>
         <h4 style="font-family: var(--font-gothic); color: var(--accent-gold); margin-bottom: 0.3rem;">👑 Ваша підсумкова репутація фракцій:</h4>
         ${repDetails.join("")}
         <br>
@@ -846,7 +1425,6 @@ function resetGame() {
         }
     };
     
-    // Скидаємо поля в DOM
     document.getElementById("char-name").value = "Яромир";
     document.getElementById("char-background").value = "Колишній засуджений";
     document.getElementById("background-description").textContent = BACKGROUND_DETAILS["Колишній засуджений"].desc;
@@ -938,6 +1516,7 @@ function craftItem(recipeName) {
     
     if (success) {
         addToLog(`Зкрафчено предмет: ${craftedItemName}!`, "success");
+        synth.playSfx('chime');
         addItem(craftedItemName);
         updateUi();
     } else {
@@ -983,14 +1562,12 @@ function getReputationStatus(value) {
 
 // --- ОНОВЛЕННЯ ЕЛЕМЕНТІВ UI ---
 function updateUi() {
-    // Оновлення смужок статусу
     document.getElementById("hp-value").textContent = `${playerState.hp}/${playerState.maxHp}`;
     document.getElementById("hp-bar").style.width = `${(playerState.hp / playerState.maxHp) * 100}%`;
 
     document.getElementById("will-value").textContent = `${playerState.will}/${playerState.maxWill}`;
     document.getElementById("will-bar").style.width = `${(playerState.will / playerState.maxWill) * 100}%`;
 
-    // Оновлення інвентарю
     const invGrid = document.getElementById("inventory-list");
     if (invGrid) {
         invGrid.innerHTML = "";
@@ -999,8 +1576,8 @@ function updateUi() {
             slot.className = "inv-slot";
             
             if (playerState.inventory[i]) {
-                slot.textContent = playerState.inventory[i].split(" ")[0]; // емодзі
-                slot.title = playerState.inventory[i];
+                slot.textContent = playerState.inventory[i].split(" ")[0]; // emoji
+                slot.title = `${playerState.inventory[i]} (Клікніть, щоб застосувати)`;
                 slot.classList.add("active-item");
             } else {
                 slot.textContent = "·";
@@ -1010,14 +1587,12 @@ function updateUi() {
         }
     }
 
-    // Оновлення ресурсів виживання
     const resources = ["henbane", "loosestrife", "peganum", "bogiron", "silver", "slate", "slime", "heart", "tendons", "water", "ash"];
     resources.forEach(res => {
         const el = document.getElementById(`res-${res}`);
         if (el) el.textContent = playerState.resources[res];
     });
 
-    // Оновлення доступності крафтингу
     const craftOintment = document.getElementById("craft-ointment");
     if (craftOintment) craftOintment.disabled = !(playerState.resources.henbane >= 1 && playerState.resources.slime >= 1);
     
@@ -1030,7 +1605,6 @@ function updateUi() {
     const craftTrap = document.getElementById("craft-trap");
     if (craftTrap) craftTrap.disabled = !(playerState.resources.bogiron >= 1 && playerState.resources.tendons >= 1);
 
-    // Оновлення числової репутації
     const factions = ["greyford", "knives", "keepers", "muri"];
     factions.forEach(faction => {
         const val = playerState.reputation[faction];
@@ -1060,7 +1634,7 @@ function updateUi() {
 function addItem(item) {
     if (playerState.inventory.length < 4 && !playerState.inventory.includes(item)) {
         playerState.inventory.push(item);
-        addToLog(`Отримано предмет в сумку: ${item}`, "success");
+        addToLog(`Отримано предмет: ${item}`, "success");
         updateUi();
     }
 }
@@ -1075,25 +1649,88 @@ function addToLog(message, type = "system") {
     logDiv.scrollTop = logDiv.scrollHeight;
 }
 
-// Перевантаження перемикання вкладок під створення персонажа
-function switchTab(tab) {
-    document.querySelectorAll("header nav button").forEach(btn => btn.classList.remove("active"));
-    document.querySelectorAll(".view-section").forEach(sec => sec.classList.remove("active"));
-
-    if (tab === "bible") {
-        document.getElementById("nav-bible").classList.add("active");
-        document.getElementById("section-bible").classList.add("active");
-    } else {
-        document.getElementById("nav-simulator").classList.add("active");
-        document.getElementById("section-simulator").classList.add("active");
+// --- СПОЖИВАННЯ ПРЕДМЕТІВ З ІНВЕНТАРЮ ---
+function initItemUsage() {
+    const invGrid = document.getElementById("inventory-list");
+    if (!invGrid) return;
+    
+    invGrid.addEventListener("click", (e) => {
+        const slot = e.target.closest(".inv-slot");
+        if (!slot || slot.classList.contains("empty")) return;
         
-        if (!gameStarted) {
-            document.getElementById("character-creation").style.display = "flex";
-            document.getElementById("main-simulator-interface").style.display = "none";
+        const slotIdx = Array.from(invGrid.children).indexOf(slot);
+        const itemName = playerState.inventory[slotIdx];
+        if (!itemName) return;
+        
+        useBagItem(itemName, slotIdx);
+    });
+}
+
+function useBagItem(itemName, idx) {
+    if (combatState.inCombat) {
+        if (itemName.includes("🍯 Болотяна мазь")) {
+            playerState.inventory.splice(idx, 1);
+            playerState.hp = Math.min(playerState.maxHp, playerState.hp + 40);
+            addToLog("🍯 Ви використали Болотяну мазь у бою та відновили 40 HP!", "success");
+            synth.playSfx('chime');
+            renderCombatRound();
+        } else if (itemName.includes("🧪 Протиотрута")) {
+            playerState.inventory.splice(idx, 1);
+            playerState.will = playerState.maxWill;
+            addToLog("🧪 Ви випили Протиотруту в бою та відновили Рішучість!", "success");
+            synth.playSfx('chime');
+            renderCombatRound();
+        } else if (itemName.includes("🧿 Містичний оберіг")) {
+            addToLog("🧿 Містичний оберіг автоматично поглинає пошкодження у бою!", "reputation");
+        } else {
+            addToLog("Цей предмет неможливо використати у бою.", "system");
+        }
+    } else {
+        if (itemName.includes("🍯 Болотяна мазь")) {
+            playerState.inventory.splice(idx, 1);
+            playerState.hp = Math.min(playerState.maxHp, playerState.hp + 40);
+            addToLog("🍯 Ви використали Болотяну мазь та відновили 40 HP!", "success");
+            synth.playSfx('chime');
+            goScene(currentSceneKey);
+        } else if (itemName.includes("🧪 Протиотрута")) {
+            playerState.inventory.splice(idx, 1);
+            playerState.will = playerState.maxWill;
+            addToLog("🧪 Ви випили Протиотруту та повністю відновили Рішучість!", "success");
+            synth.playSfx('chime');
+            goScene(currentSceneKey);
+        } else {
+            addToLog(`🎒 Ви розглядаєте [${itemName}]. Його неможливо застосувати зараз.`, "system");
         }
     }
 }
 
-// Ініціалізація лору по дефолту при завантаженні сторінки
+// --- ІНІЦІАЛІЗАЦІЯ КРАФТИНГУ ---
+function initCrafting() {
+    const craftOintment = document.getElementById("craft-ointment");
+    if (craftOintment) craftOintment.addEventListener("click", () => craftItem("ointment"));
+    
+    const craftAntidote = document.getElementById("craft-antidote");
+    if (craftAntidote) craftAntidote.addEventListener("click", () => craftItem("antidote"));
+    
+    const craftAmulet = document.getElementById("craft-amulet");
+    if (craftAmulet) craftAmulet.addEventListener("click", () => craftItem("amulet"));
+    
+    const craftTrap = document.getElementById("craft-trap");
+    if (craftTrap) craftTrap.addEventListener("click", () => craftItem("trap"));
+}
+
+// Ініціалізація звукового перемикача
+document.getElementById("audio-toggle-btn").addEventListener("click", () => {
+    const isMuted = synth.toggleMute();
+    const btn = document.getElementById("audio-toggle-btn");
+    if (btn) {
+        btn.textContent = isMuted ? "🔇 Звук" : "🔊 Звук";
+        btn.classList.toggle("audio-btn", isMuted);
+    }
+});
+
+// --- ІНІЦІАЛІЗАЦІЯ ПРИ ЗАВАНТАЖЕННІ ---
 renderFileList("design");
 initCharacterCreation();
+initItemUsage();
+initCrafting();

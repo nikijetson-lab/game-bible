@@ -8,7 +8,7 @@ $listener.Prefixes.Add("http://localhost:$port/")
 try {
     $listener.Start()
     Write-Host "==========================================================" -ForegroundColor Cyan
-    Write-Host "PORTAL OF THE PALE WARDEN - LOCAL SERVER RUNNING!" -ForegroundColor Green
+    Write-Host "PORTAL OF THE LAST WANDERER - LOCAL SERVER RUNNING!" -ForegroundColor Green
     Write-Host "Game URL: http://localhost:$port/web/" -ForegroundColor Yellow
     Write-Host "To stop the server, press Ctrl+C in this window." -ForegroundColor Gray
     Write-Host "==========================================================" -ForegroundColor Cyan

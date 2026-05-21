@@ -1,4 +1,4 @@
-/* СТИЛІ ДЛЯ ПОРТАЛУ БЛІДОГО ВАРТІВНИКА */
+/* СТИЛІ ДЛЯ ПОРТАЛУ ОСТАННЬОГО МАНДРІВНИКА */
 
 /* --- ЗМІННІ КОЛЬОРІВ ТА НАЛАШТУВАНЬ --- */
 :root {
@@ -686,4 +686,468 @@ footer {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--accent-gold);
+}
+
+/* ==========================================
+   ⚔️ СТВОРЕННЯ ОСТАННЬОГО МАНДРІВНИКА (RPG PILLARS)
+   ========================================== */
+
+.creation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 70vh;
+}
+
+.creation-card {
+    background: var(--bg-panel);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2.5rem;
+    max-width: 900px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 0 25px rgba(0, 0, 0, 0.7);
+}
+
+.creation-title {
+    font-family: var(--font-gothic);
+    text-align: center;
+    color: var(--accent-gold);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+}
+
+.creation-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+}
+
+.creation-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.creation-form, .creation-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.creation-stats h3 {
+    font-family: var(--font-gothic);
+    color: var(--accent-gold);
+    font-size: 1.1rem;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.2rem;
+}
+
+.creation-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.points-left {
+    font-size: 0.95rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.form-group input[type="text"], .form-group select {
+    background: rgba(8, 8, 10, 0.6);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.8rem;
+    border-radius: 4px;
+    font-family: var(--font-ui);
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.form-group input[type="text"]:focus, .form-group select:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+}
+
+.gender-selector {
+    display: flex;
+    gap: 0.6rem;
+}
+
+.gender-btn {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-muted);
+    padding: 0.7rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.gender-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.gender-btn.active {
+    background: rgba(212, 175, 55, 0.08);
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
+}
+
+.bg-desc {
+    background: rgba(0, 0, 0, 0.3);
+    border-left: 2px solid var(--accent-gold);
+    padding: 0.8rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border-radius: 0 4px 4px 0;
+    min-height: 60px;
+}
+
+.stat-distributor {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.dist-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.01);
+    padding: 0.6rem 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+}
+
+.stat-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.dist-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.dist-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    background: rgba(8, 8, 10, 0.8);
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.dist-btn:hover:not(:disabled) {
+    border-color: var(--accent-gold);
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--accent-gold);
+}
+
+.dist-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.dist-val {
+    font-size: 1.1rem;
+    font-weight: bold;
+    min-width: 15px;
+    text-align: center;
+    color: var(--accent-gold);
+}
+
+.creation-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.gothic-btn {
+    background: linear-gradient(135deg, var(--accent-red-dark), var(--accent-red));
+    border: 1px solid var(--accent-red);
+    color: #fff;
+    font-family: var(--font-gothic);
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 1rem 2.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+}
+
+.gothic-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.5), 0 0 15px rgba(230, 57, 70, 0.3);
+    border-color: #fff;
+}
+
+.gothic-btn:active {
+    transform: translateY(0);
+}
+
+/* ==========================================
+   🌿 РЕСУРСИ ВИЖИВАННЯ ТА КРАФТИНГ
+   ========================================== */
+
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+}
+
+.res-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    cursor: help;
+    transition: all 0.2s;
+}
+
+.res-item:hover {
+    background: rgba(212, 175, 55, 0.04);
+    border-color: rgba(212, 175, 55, 0.15);
+}
+
+.res-icon {
+    font-size: 1.2rem;
+}
+
+.res-name {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+}
+
+.res-count {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--accent-gold);
+    background: rgba(8, 8, 10, 0.6);
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.recipes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.recipe-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 4px;
+    padding: 0.5rem 0.7rem;
+    transition: all 0.2s;
+}
+
+.recipe-row:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.recipe-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    flex: 1;
+}
+
+.recipe-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.recipe-cost {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+.craft-btn {
+    background: rgba(212, 175, 55, 0.08);
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold);
+    padding: 0.3rem 0.8rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: var(--font-ui);
+    transition: all 0.2s;
+}
+
+.craft-btn:hover:not(:disabled) {
+    background: var(--accent-gold);
+    color: var(--bg-darker);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+}
+
+.craft-btn:disabled {
+    opacity: 0.3;
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-muted);
+    background: transparent;
+    cursor: not-allowed;
+}
+
+/* ==========================================
+   👑 ЧИСЛОВА РЕПУТАЦІЯ ФРАКЦІЙ (-100 до +100)
+   ========================================== */
+
+.reputation-numeric-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.faction-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    background: rgba(255, 255, 255, 0.01);
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.faction-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.faction-val {
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.faction-val.enemy-of-people { color: #ff3333; }
+.faction-val.despised { color: #ff6666; }
+.faction-val.neutral { color: var(--text-muted); }
+.faction-val.respected { color: #52b788; }
+.faction-val.hero-of-swamps { color: #74c69d; }
+
+.rep-bar-container {
+    background: #1b1b22;
+    height: 6px;
+    border-radius: 3px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Center indicator line at 50% (neutral starting anchor) */
+.rep-bar-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 2;
+}
+
+.rep-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.4s ease, background-color 0.4s ease;
+}
+
+.rep-bar-fill.enemy-of-people { background: #5c0000; }
+.rep-bar-fill.despised { background: #8b0000; }
+.rep-bar-fill.neutral { background: #5c5c6d; }
+.rep-bar-fill.respected { background: #52b788; }
+.rep-bar-fill.hero-of-swamps { background: #2d6a4f; box-shadow: 0 0 8px rgba(82, 183, 136, 0.5); }
+
+.faction-status {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-align: right;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 0.1rem;
+}
+
+.faction-status.enemy-of-people { color: #ff3333; }
+.faction-status.despised { color: #ff6666; }
+.faction-status.neutral { color: var(--text-muted); }
+.faction-status.respected { color: #52b788; }
+.faction-status.hero-of-swamps { color: #74c69d; text-shadow: 0 0 4px rgba(82, 183, 136, 0.3); }
+
+/* Додатково: бокова панель статусу доктрин */
+.doctrines-list-panel {
+    margin-top: 1rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.doctrines-list-panel h4 {
+    font-size: 0.8rem;
+    color: var(--accent-gold);
+    margin-bottom: 0.4rem;
+}
+
+.doctrines-mini-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.doctrines-mini-grid strong {
+    color: var(--accent-gold);
 }

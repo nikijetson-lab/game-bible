@@ -563,7 +563,6 @@ main {
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 0.8rem;
     margin-bottom: 1.2rem;
-    flex-shrink: 0;
 }
 
 .quest-tag {
@@ -585,14 +584,12 @@ main {
     font-size: 1.05rem;
     line-height: 1.7;
     margin-bottom: 1.5rem;
-    flex-shrink: 0;
 }
 
 .sim-choices-container {
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
-    flex-shrink: 0;
 }
 
 .choice-btn {
@@ -1173,7 +1170,6 @@ footer {
     border: 1px solid var(--border-color);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(0, 0, 0, 0.5);
     transition: background-image 0.5s ease-in-out;
-    flex-shrink: 0;
 }
 
 .enemy-hp-panel {
@@ -1182,7 +1178,6 @@ footer {
     padding: 0.8rem;
     border-radius: 4px;
     margin-bottom: 1.2rem;
-    flex-shrink: 0;
 }
 
 .audio-btn {

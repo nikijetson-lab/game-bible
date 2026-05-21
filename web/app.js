@@ -1390,7 +1390,7 @@ function finishQuest(gateAnswer, sergeantReply) {
             greyford: "Адміністрація Грейфорда",
             knives: "Орден Семи Кинджалів",
             keepers: "Хранителі Святої Вей",
-            muri: "Мурі"
+            muri: "Мурі (Амфібії)"
         };
         repDetails.push(`<p>• ${fNames[faction]}: <strong>${val > 0 ? '+' : ''}${val}</strong> (${status.text})</p>`);
     });
@@ -1533,7 +1533,7 @@ function adjustReputation(faction, delta) {
             greyford: "Адміністрація Грейфорда",
             knives: "Орден Семи Кинджалів",
             keepers: "Хранителі Святої Вей",
-            muri: "Мурі"
+            muri: "Мурі (Амфібії)"
         };
         
         if (delta > 0) {

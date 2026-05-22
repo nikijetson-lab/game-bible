@@ -1039,7 +1039,7 @@ function finishQuest(gateAnswer, sergeantReply) {
         <p class="gold-text" style="font-style: italic; font-weight: 600;">Шлях до поселення Тихий Шелест відкрито. Порожній Сезон чекає на Мандруючого Вартового у глибинах Хейзмуру...</p>
     `;
 
-    goScene("ending");
+    goScene("ending_episode1");
 }
 
 function resetGame() {

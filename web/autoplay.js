@@ -10,16 +10,14 @@ function runAutoplayStep() {
     }
 
     const currentSceneId = window.currentSceneKey;
-    if (currentSceneId === "ending" || (window.GAME_SCENES && window.GAME_SCENES[currentSceneId] && window.GAME_SCENES[currentSceneId].isGameOver)) {
+    if (window.GAME_SCENES && window.GAME_SCENES[currentSceneId] && window.GAME_SCENES[currentSceneId].isGameOver) {
         window.stopAutoplay = true;
-        console.log("Autoplay halted: Reached endgame.");
+        console.log(`[Autoplay] HALTED: Reached terminal game-over/ending scene: ${currentSceneId}`);
         return;
     }
 
     const choices = Array.from(document.querySelectorAll('.choice-btn')).filter(el => el.offsetWidth > 0);
     if (choices.length > 0) {
-        // Find if we are stuck on the same DOM element... let's just click the first one that is visible.
-        // But to avoid clicking the same button over and over if it doesn't do anything, let's track the text
         const currentText = choices.map(c => c.innerText).join("|");
         if (window.lastChoicesText === currentText) {
             window.stuckCount = (window.stuckCount || 0) + 1;
@@ -34,8 +32,22 @@ function runAutoplayStep() {
             return;
         }
 
-        console.log("Autoplay clicking:", choices[0].innerText);
-        choices[0].click();
+        // Try to find a choice we haven't clicked yet
+        let targetChoice = choices[0]; // fallback
+        for (const choice of choices) {
+            if (!window.clickedChoicesHistory) { window.clickedChoicesHistory = new Set(); }
+            if (!window.clickedChoicesHistory.has(choice.innerText)) {
+                targetChoice = choice;
+                break;
+            }
+        }
+        
+        if (window.clickedChoicesHistory) {
+            window.clickedChoicesHistory.add(targetChoice.innerText);
+        }
+
+        console.log("Autoplay clicking:", targetChoice.innerText);
+        targetChoice.click();
     }
     setTimeout(runAutoplayStep, 800);
 }

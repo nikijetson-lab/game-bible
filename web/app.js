@@ -857,7 +857,68 @@ function takePoisonDamage() {
     }
 }
 
-// Resolve final way logic has been fully moved to explicit endgame scenes in quests-data.js
+function resolveFinalWay(way) {
+    let title = "";
+    let finalDesc = "";
+
+    if (way === "A") {
+        title = "ШЛЯХ А: ВЕРДИКТ ЗАЛІЗА";
+        finalDesc = `
+        Ви йдете по сухій залізній дорозі. Ваші руки одягнені в товсті шкіряні рукавиці, що приховують скам'янілу шкіру. За вашою спиною залишається залізне місто Валькорн, його високі труби та залізні ліхтарі Ордену. Болото висихає, перетворюючись на мертву глину.
+        <br><br>
+        Тесса очолила реформований Орден Залізних Кинджалів, підкоривши прикордоння закону заліза. Себастьян Марр загинув у повстанні, а Руфін назавжди залишився Порожнім німим пам'ятником.
+        <br><br>
+        Голос Ілії у вашій голові звучить втомлено й здалеку, наче вітер у руїнах: <em>«Я звучатиму десь позаду... Наче вітер у руїнах.»</em> Ви йдете далі в інші землі, залишаючи Хейзмуру у залізних ланцюгах.`;
+
+        adjustReputation("greyford", 40);
+        adjustReputation("knives", 30);
+        adjustReputation("muri", -50);
+    }
+    else if (way === "B") {
+        title = "ШЛЯХ Б: ВЕРДИКТ ОЧЕРЕТУ";
+        finalDesc = `
+        Ви йдете босоніж по теплому болотяному мулу. Рубці на ваших руках схожі на кору верби, а постать розчиняється в густому тумані без жодних слів. За вашою спиною шумить очерет, поглинаючи залишки Грейфорда.
+        <br><br>
+        Себастьян Марр згинув у глибокій трясовині, намагаючись спалити болото. Тесса згуртувала залишки Ордену на межі дикої природи. Руфін лишився безмовною тінню очерету.
+        <br><br>
+        Зелений туман лоскоче ваше обличчя. Ви йдете далі, ставши частиною самого Хейзмуру, вільного та небезпечного.`;
+
+        adjustReputation("muri", 50);
+        adjustReputation("greyford", -50);
+    }
+    else {
+        title = "ШЛЯХ В: ПАКТ КЛЮЧНИКА";
+        finalDesc = `
+        Ви зупиняєтесь посеред мосту, що не належить жодному берегу. Ви дивитесь на обидва боки, забираючи обидва Ключі Печаток. За вашою спиною — хиткий нейтралітет, де торгівля йде під стінами залізних ліхтарів.
+        <br><br>
+        Себастьян Марр підписав мирний Пакт, змирившись із силами болота. Тесса пильно стежить за виконанням законів рівноваги. Руфін стоїть мовчазним вартовим кордону.
+        <br><br>
+        Ви тримаєте баланс сил і йдете далі у незвідані землі. Голос Ілії шепоче з теплою посмішкою: <em>«Ми впоралися. Світ зберіг свою душу.»</em>`;
+
+        adjustReputation("greyford", 20);
+        adjustReputation("muri", 20);
+    }
+
+    const endingScene = window.GAME_SCENES.ending;
+    endingScene.title = `🏆 ЕПІЛОГ: ${title}`;
+    endingScene.text = `
+        <span class="quest-tag" style="color: var(--accent-gold);">ФІНАЛ ІСТОРІЇ: ВАРТОВИЙ ПІШОВ ДАЛІ</span>
+        <h2 style="font-family: var(--font-gothic); color: var(--accent-gold); margin-top: 1rem; margin-bottom: 1.5rem;">⚖️ ${title}</h2>
+        <p>${finalDesc}</p>
+        <hr style="border: 0; height: 1px; background: var(--border-color); margin: 2rem 0;">
+        <h3 style="font-family: var(--font-gothic); color: var(--accent-gold); margin-bottom: 0.8rem;">👑 Ваші підсумкові фракційні зв'язки:</h3>
+        <p>• Адміністрація Грейфорда: <strong>${window.playerState.reputation.greyford > 0 ? '+' : ''}${window.playerState.reputation.greyford}</strong></p>
+        <p>• Орден Семи Кинджалів: <strong>${window.playerState.reputation.knives > 0 ? '+' : ''}${window.playerState.reputation.knives}</strong></p>
+        <p>• Хранителі Святої Вей: <strong>${window.playerState.reputation.keepers > 0 ? '+' : ''}${window.playerState.reputation.keepers}</strong></p>
+        <p>• Мурі (Жаболюди): <strong>${window.playerState.reputation.muri > 0 ? '+' : ''}${window.playerState.reputation.muri}</strong></p>
+        <br>
+        <p style="font-style: italic; color: var(--text-muted); text-align: center; margin-top: 1rem;">Дякуємо, що зіграли у симулятор "Мандруючого Вартового"! Ваші рішення сформували долю Хейзмуру.</p>
+    `;
+
+    endingScene.choices = [];
+    endingScene.isGameOver = true;
+    goScene("ending");
+}
 
 function goThread(thread) {
     console.log(`Transitioning from thread to thread_${thread}`);
@@ -909,12 +970,6 @@ function goScene(sceneKey) {
         const btn = document.createElement("button");
         btn.className = "choice-btn";
         btn.innerHTML = `<span>${choice.text}</span>`;
-        if (choice.nextSceneId) {
-            btn.setAttribute("data-next-scene", choice.nextSceneId);
-        }
-        if (choice.visible) {
-            btn.setAttribute("data-has-requirement", "true");
-        }
         btn.addEventListener("click", () => {
             synth.playSfx("click");
             if (choice.action) choice.action();
@@ -972,7 +1027,7 @@ function finishQuest(gateAnswer, sergeantReply) {
         repDetails.push(`<p>• ${fNames[faction]}: <strong>${val > 0 ? '+' : ''}${val}</strong> (${status.text})</p>`);
     });
 
-    const endingScene = window.GAME_SCENES.ending_episode1;
+    const endingScene = window.GAME_SCENES.ending;
     endingScene.text = `
         <span class="quest-tag" style="color: var(--accent-gold);">РЕЗУЛЬТАТ: ${investigationGrade.toUpperCase()}</span>
         <h2 style="font-family: var(--font-gothic); color: var(--accent-gold); margin-top: 1rem; margin-bottom: 1rem;">⚖️ ВЕРДИКТ ВАРТОВОГО</h2>

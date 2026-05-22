@@ -278,6 +278,7 @@ window.GAME_SCENES = {
     ending_episode1: {
         title: "Епізод 1 Завершено: Адресат відсутній",
         text: "",
+        isChapterEnding: true,
         choices: [
             {
                 text: "Перейти до Епізоду 2",
@@ -389,7 +390,7 @@ window.GAME_SCENES = {
     death: {
         title: "Трагічна загибель",
         text: `Ваша подорож обірвалася в болотах Хейзмуру. Холодний туман огортає ваше тіло, а прокляття Порожнього Сезону забирає залишки вашої душі...<br><br>Ніхто не дізнається про вашу місію, а лист Руфіна згниє під шаром торфу.`,
-        isGameOver: true,
+        isAbsoluteFinal: true,
         choices: [
             {
                 text: "🎮 Почати подорож заново",
@@ -401,7 +402,14 @@ window.GAME_SCENES = {
     ending: {
         title: "Кінець Гри",
         text: "",
-        isGameOver: true,
+        isAbsoluteFinal: true,
+        choices: []
+    },
+
+    ep5_epilogue: {
+        title: "Епізод 5: Відхід Героя",
+        text: `Ви залишаєте болота і місто позаду. Порожній сезон завершено. Це остаточний фінал вашої подорожі.`,
+        isAbsoluteFinal: true,
         choices: []
     }
 };

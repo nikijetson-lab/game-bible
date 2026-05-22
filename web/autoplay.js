@@ -10,7 +10,7 @@ function runAutoplayStep() {
     }
 
     const currentSceneId = window.currentSceneKey;
-    if (window.GAME_SCENES && window.GAME_SCENES[currentSceneId] && window.GAME_SCENES[currentSceneId].isGameOver) {
+    if (window.GAME_SCENES && window.GAME_SCENES[currentSceneId] && window.GAME_SCENES[currentSceneId].isAbsoluteFinal) {
         window.stopAutoplay = true;
         console.log(`[Autoplay] HALTED: Reached terminal game-over/ending scene: ${currentSceneId}`);
         return;

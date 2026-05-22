@@ -1,4 +1,7 @@
 window.stopAutoplay = false;
+window.visitedScenes = new Set();
+window.autoplayEpisodesLog = new Set();
+window.autoplayItemsLog = new Set();
 
 function runAutoplayStep() {
     if (window.stopAutoplay) { console.log("Autoplay stopped by user."); return; }
@@ -13,13 +16,31 @@ function runAutoplayStep() {
     if (currentSceneId === "ending" || (window.GAME_SCENES && window.GAME_SCENES[currentSceneId] && window.GAME_SCENES[currentSceneId].isGameOver)) {
         window.stopAutoplay = true;
         console.log("Autoplay halted: Reached endgame.");
+        console.log("Episodes Explored:", Array.from(window.autoplayEpisodesLog).join(", "));
+        console.log("Items Collected:", Array.from(window.autoplayItemsLog).join(", "));
         return;
+    }
+
+    // Logging current episode
+    const questTag = document.getElementById("quest-tag");
+    if (questTag && questTag.innerText && !window.autoplayEpisodesLog.has(questTag.innerText)) {
+        window.autoplayEpisodesLog.add(questTag.innerText);
+        console.log(`[Autoplay Progress] Reached: ${questTag.innerText}`);
+    }
+
+    // Logging items
+    if (window.playerState && window.playerState.inventory) {
+        window.playerState.inventory.forEach(item => {
+            if (!window.autoplayItemsLog.has(item)) {
+                window.autoplayItemsLog.add(item);
+                console.log(`[Autoplay Progress] Acquired Item: ${item}`);
+            }
+        });
     }
 
     const choices = Array.from(document.querySelectorAll('.choice-btn')).filter(el => el.offsetWidth > 0);
     if (choices.length > 0) {
-        // Find if we are stuck on the same DOM element... let's just click the first one that is visible.
-        // But to avoid clicking the same button over and over if it doesn't do anything, let's track the text
+
         const currentText = choices.map(c => c.innerText).join("|");
         if (window.lastChoicesText === currentText) {
             window.stuckCount = (window.stuckCount || 0) + 1;
@@ -34,8 +55,36 @@ function runAutoplayStep() {
             return;
         }
 
-        console.log("Autoplay clicking:", choices[0].innerText);
-        choices[0].click();
+        // Try to pick a choice that leads to an unvisited scene, or requires attributes, else random
+        let pickedChoice = null;
+
+        // Priority 1: Required choices (shows we meet conditions for hidden paths)
+        const requiredChoices = choices.filter(c => c.hasAttribute("data-has-requirement"));
+        if (requiredChoices.length > 0) {
+            pickedChoice = requiredChoices[Math.floor(Math.random() * requiredChoices.length)];
+        }
+
+        // Priority 2: Unvisited destinations
+        if (!pickedChoice) {
+            const unvisited = choices.filter(c => {
+                const dest = c.getAttribute("data-next-scene");
+                return dest && !window.visitedScenes.has(dest);
+            });
+            if (unvisited.length > 0) {
+                pickedChoice = unvisited[Math.floor(Math.random() * unvisited.length)];
+            }
+        }
+
+        // Priority 3: Random choice
+        if (!pickedChoice) {
+            pickedChoice = choices[Math.floor(Math.random() * choices.length)];
+        }
+
+        const nextScene = pickedChoice.getAttribute("data-next-scene");
+        if (nextScene) window.visitedScenes.add(nextScene);
+
+        console.log("Autoplay clicking:", pickedChoice.innerText);
+        pickedChoice.click();
     }
     setTimeout(runAutoplayStep, 800);
 }

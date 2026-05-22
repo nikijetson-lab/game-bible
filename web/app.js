@@ -886,7 +886,7 @@ function resolveFinalWay(way) {
         adjustReputation("muri", 50);
         adjustReputation("greyford", -50);
     } 
-    else {
+    else if (way === "C") {
         title = "ШЛЯХ В: ПАКТ КЛЮЧНИКА";
         finalDesc = `
         Ви зупиняєтесь посеред мосту, що не належить жодному берегу. Ви дивитесь на обидва боки, забираючи обидва Ключі Печаток. За вашою спиною — хиткий нейтралітет, де торгівля йде під стінами залізних ліхтарів.
@@ -897,6 +897,19 @@ function resolveFinalWay(way) {
         
         adjustReputation("greyford", 20);
         adjustReputation("muri", 20);
+    } else if (way === "SECRET") {
+        title = "СЕКРЕТНИЙ ФІНАЛ: ЗРУЙНОВАНА ПЕЧАТКА";
+        finalDesc = `
+        Ви дістаєте свій зброю і з розмаху б'єте по Печатці. Скло розлітається, вивільняючи справжню силу Моуру, але тепер вона не скута ланцюгами.
+        <br><br>
+        Себастьян Марр кричить від жаху, коли болото починає поглинати міст. Тесса тікає, а Лілея та Міа схиляються перед вами.
+        <br><br>
+        Ви стали новим Серцем Болота, непідвладним нікому.`;
+
+        adjustReputation("greyford", -100);
+        adjustReputation("knives", -100);
+        adjustReputation("muri", 100);
+        adjustReputation("keepers", 100);
     }
     
     const endingScene = window.GAME_SCENES.ending;
@@ -970,6 +983,12 @@ function goScene(sceneKey) {
         const btn = document.createElement("button");
         btn.className = "choice-btn";
         btn.innerHTML = `<span>${choice.text}</span>`;
+        if (choice.nextSceneId) {
+            btn.setAttribute("data-next-scene", choice.nextSceneId);
+        }
+        if (choice.visible) {
+            btn.setAttribute("data-has-requirement", "true");
+        }
         btn.addEventListener("click", () => {
             synth.playSfx("click");
             if (choice.action) choice.action();
@@ -1027,7 +1046,7 @@ function finishQuest(gateAnswer, sergeantReply) {
         repDetails.push(`<p>• ${fNames[faction]}: <strong>${val > 0 ? '+' : ''}${val}</strong> (${status.text})</p>`);
     });
 
-    const endingScene = window.GAME_SCENES.ending;
+    const endingScene = window.GAME_SCENES.ending_episode1;
     endingScene.text = `
         <span class="quest-tag" style="color: var(--accent-gold);">РЕЗУЛЬТАТ: ${investigationGrade.toUpperCase()}</span>
         <h2 style="font-family: var(--font-gothic); color: var(--accent-gold); margin-top: 1rem; margin-bottom: 1rem;">⚖️ ВЕРДИКТ ВАРТОВОГО</h2>
@@ -1039,7 +1058,7 @@ function finishQuest(gateAnswer, sergeantReply) {
         <p class="gold-text" style="font-style: italic; font-weight: 600;">Шлях до поселення Тихий Шелест відкрито. Порожній Сезон чекає на Мандруючого Вартового у глибинах Хейзмуру...</p>
     `;
 
-    goScene("ending");
+    goScene("ending_episode1");
 }
 
 function resetGame() {

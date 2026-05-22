@@ -1,23 +1,24 @@
 window.stopAutoplay = false;
-window.visitedScenes = new Set();
-window.autoplayEpisodesLog = new Set();
-window.autoplayItemsLog = new Set();
+window.visitedScenes = window.visitedScenes || new Set();
+window.autoplayEpisodesLog = window.autoplayEpisodesLog || new Set();
+window.autoplayItemsLog = window.autoplayItemsLog || new Set();
+window.clickedChoicesHistory = window.clickedChoicesHistory || new Set();
 
 function runAutoplayStep() {
-    if (window.stopAutoplay) { console.log("Autoplay stopped by user."); return; }
+    if (window.stopAutoplay) { console.log("[Autoplay] Stopped by user."); return; }
 
     if (document.body.innerText.includes("AI GM Settings")) {
-        console.log("Autoplay paused: modal open");
+        console.log("[Autoplay] Paused: modal open");
         setTimeout(runAutoplayStep, 1000);
         return;
     }
 
     const currentSceneId = window.currentSceneKey;
-    if (currentSceneId === "ending" || (window.GAME_SCENES && window.GAME_SCENES[currentSceneId] && window.GAME_SCENES[currentSceneId].isGameOver)) {
+    if (currentSceneId && window.GAME_SCENES && window.GAME_SCENES[currentSceneId] && window.GAME_SCENES[currentSceneId].isGameOver) {
         window.stopAutoplay = true;
-        console.log("Autoplay halted: Reached endgame.");
-        console.log("Episodes Explored:", Array.from(window.autoplayEpisodesLog).join(", "));
-        console.log("Items Collected:", Array.from(window.autoplayItemsLog).join(", "));
+        console.log(`[Autoplay] HALTED: Reached terminal game-over/ending scene: ${currentSceneId}`);
+        console.log("[Autoplay] Episodes Explored:", Array.from(window.autoplayEpisodesLog).join(", "));
+        console.log("[Autoplay] Items Collected:", Array.from(window.autoplayItemsLog).join(", "));
         return;
     }
 
@@ -25,7 +26,7 @@ function runAutoplayStep() {
     const questTag = document.getElementById("quest-tag");
     if (questTag && questTag.innerText && !window.autoplayEpisodesLog.has(questTag.innerText)) {
         window.autoplayEpisodesLog.add(questTag.innerText);
-        console.log(`[Autoplay Progress] Reached: ${questTag.innerText}`);
+        console.log(`[Autoplay] Reached Episode: ${questTag.innerText}`);
     }
 
     // Logging items
@@ -33,7 +34,7 @@ function runAutoplayStep() {
         window.playerState.inventory.forEach(item => {
             if (!window.autoplayItemsLog.has(item)) {
                 window.autoplayItemsLog.add(item);
-                console.log(`[Autoplay Progress] Acquired Item: ${item}`);
+                console.log(`[Autoplay] Acquired Item: ${item}`);
             }
         });
     }
@@ -51,39 +52,49 @@ function runAutoplayStep() {
 
         if (window.stuckCount >= 10) {
             window.stopAutoplay = true;
-            console.error("Autoplay halted: stuck in the same scene for 10 clicks.");
+            console.error("[Autoplay] HALTED ERROR: Stuck in the same scene for 10 consecutive clicks.");
             return;
         }
 
-        // Try to pick a choice that leads to an unvisited scene, or requires attributes, else random
         let pickedChoice = null;
 
-        // Priority 1: Required choices (shows we meet conditions for hidden paths)
-        const requiredChoices = choices.filter(c => c.hasAttribute("data-has-requirement"));
-        if (requiredChoices.length > 0) {
-            pickedChoice = requiredChoices[Math.floor(Math.random() * requiredChoices.length)];
-        }
+        // Try to find a completely new choice we haven't clicked yet across ALL runs in this session
+        const unclickedAcrossRuns = choices.filter(c => !window.clickedChoicesHistory.has(c.innerText));
 
-        // Priority 2: Unvisited destinations
-        if (!pickedChoice) {
-            const unvisited = choices.filter(c => {
-                const dest = c.getAttribute("data-next-scene");
-                return dest && !window.visitedScenes.has(dest);
-            });
-            if (unvisited.length > 0) {
-                pickedChoice = unvisited[Math.floor(Math.random() * unvisited.length)];
+        if (unclickedAcrossRuns.length > 0) {
+            // Priority 1: Required unclicked choices
+            const requiredUnclicked = unclickedAcrossRuns.filter(c => c.hasAttribute("data-has-requirement"));
+            if (requiredUnclicked.length > 0) {
+                pickedChoice = requiredUnclicked[Math.floor(Math.random() * requiredUnclicked.length)];
+            }
+
+            // Priority 2: Random unclicked choice
+            if (!pickedChoice) {
+                pickedChoice = unclickedAcrossRuns[Math.floor(Math.random() * unclickedAcrossRuns.length)];
             }
         }
 
-        // Priority 3: Random choice
+        // Priority 3: If all choices have been clicked before, pick one that leads to a scene we haven't visited *in this specific run*
+        if (!pickedChoice) {
+            const unvisitedDestinations = choices.filter(c => {
+                const dest = c.getAttribute("data-next-scene");
+                return dest && !window.visitedScenes.has(dest);
+            });
+            if (unvisitedDestinations.length > 0) {
+                pickedChoice = unvisitedDestinations[Math.floor(Math.random() * unvisitedDestinations.length)];
+            }
+        }
+
+        // Priority 4: Fully Random choice fallback
         if (!pickedChoice) {
             pickedChoice = choices[Math.floor(Math.random() * choices.length)];
         }
 
         const nextScene = pickedChoice.getAttribute("data-next-scene");
         if (nextScene) window.visitedScenes.add(nextScene);
+        window.clickedChoicesHistory.add(pickedChoice.innerText);
 
-        console.log("Autoplay clicking:", pickedChoice.innerText);
+        console.log(`[Autoplay] Clicking: ${pickedChoice.innerText.substring(0, 50)}...`);
         pickedChoice.click();
     }
     setTimeout(runAutoplayStep, 800);

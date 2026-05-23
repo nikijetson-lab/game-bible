@@ -946,7 +946,7 @@ function goScene(sceneKey) {
             if (questTag) questTag.textContent = "Епізод 1: Грейфорд";
             illContainer.style.backgroundImage = "url('assets/episode1.png')";
             illContainer.style.display = "block";
-        } else if (sceneKey.startsWith("ep2_")) {
+        } else if (sceneKey.startsWith("ep2_") || sceneKey.startsWith("valkorn_")) {
             if (questTag) questTag.textContent = "Епізод 2: Валькорн";
             illContainer.style.backgroundImage = "url('assets/episode2.png')";
             illContainer.style.display = "block";
@@ -958,6 +958,10 @@ function goScene(sceneKey) {
             if (questTag) questTag.textContent = "Епізод 4: Два Береги";
             illContainer.style.backgroundImage = "url('assets/episode4.png')";
             illContainer.style.display = "block";
+        } else if (sceneKey.startsWith("ep5_")) {
+            if (questTag) questTag.textContent = "Епізод 5: Відхід Героя";
+            illContainer.style.backgroundImage = "none";
+            illContainer.style.display = "none";
         } else {
             illContainer.style.display = "none";
         }

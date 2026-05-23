@@ -1,4 +1,6 @@
-window.playerState = window.playerState || {};
+import json
+
+js_content = """window.playerState = window.playerState || {};
 window.playerState.doctrines = window.playerState.doctrines || { judge: 0, pathfinder: 0, lantern: 0, mediator: 0 };
 window.playerState.madness = window.playerState.madness || 0;
 window.playerState.resilience = window.playerState.resilience || 100;
@@ -246,3 +248,9 @@ window.GAME_SCENES = {
         choices: []
     }
 };
+"""
+
+with open("web/quests-data.js", "w", encoding="utf-8") as f:
+    f.write(js_content)
+
+print("quests-data.js has been completely rewritten.")

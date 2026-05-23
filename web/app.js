@@ -590,6 +590,62 @@ class AtmosphereSynth {
     }
 }
 
+
+class AudioManager {
+    constructor() {
+        this.trackAudio = new Audio();
+        this.trackAudio.loop = true;
+        this.trackAudio.volume = 0.12;
+
+        this.atmosAudio = new Audio();
+        this.atmosAudio.loop = true;
+        this.atmosAudio.volume = 0.08;
+
+        this.isMuted = true;
+        this.currentTrackUrl = null;
+        this.currentAtmosUrl = null;
+    }
+
+    playSceneAudio(trackUrl, atmosUrl) {
+        if (!trackUrl || !atmosUrl) return;
+
+        if (this.currentTrackUrl !== trackUrl) {
+            this.currentTrackUrl = trackUrl;
+            this.trackAudio.src = trackUrl;
+            if (!this.isMuted) {
+                this.trackAudio.play().catch(e => console.warn("Track play prevented:", e));
+            }
+        }
+
+        if (this.currentAtmosUrl !== atmosUrl) {
+            this.currentAtmosUrl = atmosUrl;
+            this.atmosAudio.src = atmosUrl;
+            if (!this.isMuted) {
+                this.atmosAudio.play().catch(e => console.warn("Atmos play prevented:", e));
+            }
+        }
+    }
+
+    toggleMute() {
+        this.isMuted = !this.isMuted;
+        if (this.isMuted) {
+            this.trackAudio.pause();
+            this.atmosAudio.pause();
+        } else {
+            if (this.currentTrackUrl) this.trackAudio.play().catch(e => console.warn("Track play prevented:", e));
+            if (this.currentAtmosUrl) this.atmosAudio.play().catch(e => console.warn("Atmos play prevented:", e));
+        }
+        return this.isMuted;
+    }
+
+    playSfx(type) {
+        // Fallback or placeholder for UI sounds
+        // Real implementation depends on if we keep AtmosphereSynth or not
+    }
+}
+
+const audioMgr = new AudioManager();
+
 const synth = new AtmosphereSynth();
 
 // --- БОЙОВА СИСТЕМА СИМУЛЯТОРА ---
@@ -939,6 +995,10 @@ function goScene(sceneKey) {
     const illContainer = document.getElementById("scene-illustration");
     const questTag = document.getElementById("quest-tag");
     
+    if (scene.audioTrack && scene.audioAtmosphere) {
+        audioMgr.playSceneAudio(scene.audioTrack, scene.audioAtmosphere);
+    }
+
     if (illContainer) {
         if (sceneKey === "arriving" || sceneKey === "investigation" || sceneKey.startsWith("thread_") || sceneKey === "gates" || sceneKey.startsWith("ep1_")) {
             if (questTag) questTag.textContent = "Епізод 1: Хейзмур";
@@ -1367,6 +1427,7 @@ function initCrafting() {
 // Ініціалізація звукового перемикача
 document.getElementById("audio-toggle-btn").addEventListener("click", () => {
     const isMuted = synth.toggleMute();
+    audioMgr.toggleMute();
     const btn = document.getElementById("audio-toggle-btn");
     if (btn) {
         btn.textContent = isMuted ? "🔇 Звук" : "🔊 Звук";

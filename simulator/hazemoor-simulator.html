@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Hazemoor — Quest Simulator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom dark theme overrides */
+    :root {
+      --bg-color: #0d0d0f;
+      --text-color: #c8c4b8;
+      --accent-color: #7c6a4e;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .narrative-text {
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+      line-height: 1.6;
+    }
+    .monospace {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    .choice-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      border: 1px solid #333;
+      background: transparent;
+      color: var(--text-color);
+      padding: 12px 16px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+    .choice-btn:hover {
+      border-left: 4px solid var(--accent-color);
+      background: rgba(124, 106, 78, 0.1);
+    }
+    .fade-in {
+      animation: fadeIn 0.15s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .panel-border {
+      border: 1px solid #333;
+    }
+    .accent-text {
+      color: var(--accent-color);
+    }
+
+    .progress-bar-container {
+        background-color: #222;
+        height: 16px;
+        width: 100%;
+        margin-top: 4px;
+    }
+    .progress-bar-fill {
+      background-color: var(--accent-color);
+      height: 100%;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col p-4 md:p-8">
+  <div id="app" class="max-w-5xl mx-auto w-full fade-in"></div>
+
+  <script>
+    // ── 1. CONSTANTS & CONFIG ──────────────────────────
+    const SAVE_KEY = "hazemoor_save";
+
+    // ── 2. GAME STATE ──────────────────────────────────
+    let GameState = {
+      currentQuest: "greyford-01",
+      currentBeat: "start",
+      reputation: { duty: 0, personal: 0, pragmatist: 0 },
+      flags: {
+        ervan_choice: null,
+        brombar_choice: null,
+        lileia_hint_seen: false,
+        mia_trust: 0,
+        mia_trust_visible: true,
+        mia_path: null,
+        thread1_complete: false,
+        thread2_complete: false,
+        thread2_mia_told: null,
+        thread3_complete: false,
+        thread4_complete: false,
+        glade_result: null,
+        mount_acquired: false,
+        sf_hunger_result: null,
+        sf_chain_complete: false,
+        sf_kelm_outcome: null,
+        tessa_line: null,
+        odrin_visited: false,
+        tessa_visited: false,
+        artifact_outcome: null,
+        loen_choice: null,
+        valkorn05_path: null,
+        ep3_approach: null,
+        verdict: null,
+        sebastian_fate: null,
+        humanity_restored: false,
+      },
+      difficulty: "normal",
+      history: []
+    };
+
+    // ── 3. QUEST GRAPH ─────────────────────────────────
+    const QuestGraph = {
+        // EPISODE 1: GREYFORD
+        "greyford-01": {
+            title: "Епізод 1: Адресат відсутній (Грейфорд)",
+            beats: {
+                "start": {
+                    text: "Ви прибуваєте до Грейфорда з листом. Адресат — Руфін — мав бути проміжною ланкою. Але його немає. Господар постоялого двору, Ерван, бере ваш лист. «І що він тобі був — друг, боржник, чи ти просто наймит-кур'єр?»",
+                    choices: [
+                        { id: "g1_duty", text: "«Ми домовились. Я приїхав виконати свою частину.»", effect: state => state.reputation = "duty", next: "investigation" },
+                        { id: "g1_personal", text: "«Він мав щось, що мені потрібне.»", effect: state => state.reputation = "personal", next: "investigation" },
+                        { id: "g1_pragmatic", text: "«Просто доставив листа. Що далі — вже моя проблема.»", effect: state => state.reputation = "pragmatic", next: "investigation" }
+                    ]
+                },
+                "investigation": {
+                    text: "Руфін зник три дні тому. У вас є кілька шляхів для розслідування: оглянути його кімнату, спитати ремісників або відвідати портову таверну.",
+                    choices: [
+                        { id: "g1_room", text: "Оглянути кімнату Руфіна. Ви знаходите болотяний бруд і дивні захисні знаки.", effect: state => state.flags.rufin_investigated = true, next: "investigation_results" },
+                        { id: "g1_artisan", text: "Піти до кварталу ремісників. Ви дізнаєтесь, що Руфін ніс щось важке і боявся.", effect: state => state.flags.rufin_investigated = true, next: "investigation_results" },
+                        { id: "g1_tavern", text: "Піти до портової таверни. Куртизанка каже, що Руфіна щедро проспонсорували.", effect: state => state.flags.rufin_investigated = true, next: "investigation_results" }
+                    ]
+                },
+                "investigation_results": {
+                    text: "Ви складаєте картину: Руфін пішов у Хейзмур сам, наляканий, з інформацією та вантажем. Куди саме — Тихий Шелест. Біля воріт вас зупиняє сержант: «Ти теж туди? З якого приводу?»",
+                    choices: [
+                        { id: "g1_gate_truth", text: "«Шукаю людину. Він пішов і не повернувся.»", effect: state => state.reputation = "duty", next: "hazemoor-01" },
+                        { id: "g1_gate_half", text: "«Оглянути маршрут. Скарги на поселення.»", effect: state => state.reputation = "pragmatic", next: "hazemoor-01" },
+                        { id: "g1_gate_evade", text: "«Робота. Лист — мій пропуск.»", effect: state => state.reputation = "personal", next: "hazemoor-01" }
+                    ]
+                }
+            }
+        },
+
+        // EPISODE 1: HAZEMOOR
+        "hazemoor-01": {
+            title: "Епізод 1: Шлях крізь болото",
+            beats: {
+                "start": {
+                    text: "Глибоке болото Хейзмур. Ви зустрічаєте Міа, доньку шамана з Тихого Шелесту. Вона пропонує провести вас. Перше правило: болото слухає. З води лунає дивний сплеск.",
+                    choices: [
+                        { id: "h1_listen", text: "Завмерти. Опустити зброю. Чекати її знаку.", effect: state => { state.flags.mia_trust = (state.flags.mia_trust || 0) + 1; }, next: "camp" },
+                        { id: "h1_attack", text: "Зреагувати на звук. Підняти зброю.", effect: state => { state.flags.mia_trust = (state.flags.mia_trust || 0) - 1; }, next: "camp" }
+                    ]
+                },
+                "camp": {
+                    text: "Нічліг. Навколо в темряві спалахують жовті вогники — світлячки чи очі? Міа мовчки розкладає багаття.",
+                    choices: [
+                        { id: "h1_camp_help", text: "Допомогти мовчки. Вночі спокійно спитати про світло.", effect: state => { state.flags.mia_trust = (state.flags.mia_trust || 0) + 1; }, next: "deep_water" },
+                        { id: "h1_camp_talk", text: "Намагатись взяти ініціативу. Говорити багато, порушуючи тишу.", effect: state => { state.flags.mia_trust = (state.flags.mia_trust || 0) - 1; }, next: "deep_water" }
+                    ]
+                },
+                "deep_water": {
+                    text: "Широка чорна вода. Міа пірнає і зникає. Довго не з'являється. Вона може бути в небезпеці, або просто перевіряє вас.",
+                    choices: [
+                        { id: "h1_water_wait", text: "Чекати спокійно. Вона знає болото краще.", effect: state => { state.flags.mia_trust = (state.flags.mia_trust || 0) + 1; }, next: "creature" },
+                        { id: "h1_water_panic", text: "Почати шукати її, кричати.", effect: state => { state.flags.mia_trust = (state.flags.mia_trust || 0) - 1; }, next: "creature" }
+                    ]
+                },
+                "creature": {
+                    text: "Переправа по пояс у воді. Щось велике торкається вашої ноги знизу. Міа завмерла, дивлячись на вас.",
+                    choices: [
+                        { id: "h1_creature_freeze", text: "Завмерти. Не дихати, дати істоті піти.", effect: state => { state.flags.mia_trust = (state.flags.mia_trust || 0) + 1; }, next: "night_watch" },
+                        { id: "h1_creature_fight", text: "Різко смикнутись. Хапати зброю.", effect: state => { state.flags.mia_trust = (state.flags.mia_trust || 0) - 1; }, next: "night_watch" }
+                    ]
+                },
+                "night_watch": {
+                    text: "Друга ніч. Міа виглядає виснаженою. Вночі ви чуєте, як вона уві сні шепоче невідоме слово — 'Моур'.",
+                    choices: [
+                        { id: "h1_watch_take", text: "Взяти варту без слів, дати їй відпочити. Вранці запитати чесно.", effect: state => { state.flags.mia_trust = (state.flags.mia_trust || 0) + 1; }, next: "forbidden" },
+                        { id: "h1_watch_sleep", text: "Лягти спати самому. Зранку вимагати пояснень.", effect: state => { state.flags.mia_trust = (state.flags.mia_trust || 0) - 1; }, next: "forbidden" }
+                    ]
+                },
+                "forbidden": {
+                    text: "Міа зупиняється перед широкою галявиною з густим туманом і обходить її далеко стороною. 'Там не ходять.'",
+                    choices: [
+                        { id: "h1_forbidden_bypass", text: "Обійти без запитань.", effect: state => { state.flags.mia_trust = (state.flags.mia_trust || 0) + 1; }, next: "final_question" },
+                        { id: "h1_forbidden_straight", text: "Піти напряму, не звертаючи уваги.", effect: state => { state.flags.mia_trust = (state.flags.mia_trust || 0) - 1; }, next: "final_question" }
+                    ]
+                },
+                "final_question": {
+                    text: "Перед самим Тихим Шелестом Міа зупиняється і пильно дивиться на вас. 'Навіщо ти тут? Не Руфін. Ти. Навіщо тобі Хейзмур?'",
+                    choices: [
+                        { id: "h1_final_honest", text: "Відповісти чесно, чому ви взялися за цю подорож.", effect: state => { state.flags.mia_trust = (state.flags.mia_trust || 0) + 1; }, next: "resolution" },
+                        { id: "h1_final_lie", text: "Сказати те, що вона хоче почути.", effect: state => { state.flags.mia_trust = (state.flags.mia_trust || 0) - 1; }, next: "resolution" }
+                    ]
+                },
+                "resolution": {
+                    text: "Підсумок подорожі з Міа. Її довіра визначить, як вас приймуть Мурі у Тихому Шелесті.",
+                    choices: [
+                        {
+                            id: "h1_res_continue",
+                            text: "Увійти до Тихого Шелесту.",
+                            effect: state => {
+                                if (state.flags.mia_trust >= 5) {
+                                    state.flags.mia_path = true;
+                                } else {
+                                    state.flags.mia_path = false;
+                                }
+                            },
+                            next: "tykhy-shelist"
+                        }
+                    ]
+                }
+            }
+        },
+
+        // EPISODE 1: TYKHY SHELIST
+        "tykhy-shelist": {
+            title: "Епізод 1: Тихий Шелест",
+            beats: {
+                "start": {
+                    text: "Ви в поселенні Мурі. Тут тихо. Каен, прийомний батько Міа, дивиться на вас, оцінюючи. Руфін був тут, але пішов до забороненої галявини. Варрік відвертається, Сірра дивиться з цікавістю.",
+                    choices: [
+                        { id: "ts_kaen", text: "Поговорити з Каеном про Руфіна та Моура.", next: "kaen_truth" },
+                        { id: "ts_mia", text: "Знайти Сірру і розпитати про галявину.", next: "sirra_lore" }
+                    ]
+                },
+                "kaen_truth": {
+                    text: "Каен розповідає, що Руфін пішов до галявини з артефактом, що світився. Він також натякає на таємницю Міа — він знайшов її немовлям у болоті.",
+                    choices: [
+                        { id: "ts_kaen_tell_mia", text: "Розповісти Міа правду про її походження.", effect: state => state.flags.mia_knows_truth = true, next: "mia_decision" },
+                        { id: "ts_kaen_keep_secret", text: "Зберегти таємницю Каена.", effect: state => state.flags.mia_knows_truth = false, next: "mia_decision" }
+                    ]
+                },
+                "sirra_lore": {
+                    text: "Сірра розповідає легенди про Моура. Не називаючи його імені, вона застерігає від галявини. Згодом Каен сам підходить до вас і відкриває часткову правду про Міа.",
+                    choices: [
+                        { id: "ts_sirra_next", text: "Поговорити з Міа про наступні кроки.", next: "mia_decision" }
+                    ]
+                },
+                "mia_decision": {
+                    text: "Міа розмовляє з Каеном. Це напружена, тиха розмова. Після неї вона підходить до вас. 'Я йду з тобою. Там є щось, що стосується мене більше, ніж тебе.'",
+                    choices: [
+                        { id: "ts_leave", text: "Вирушити до забороненої галявини.", effect: state => state.flags.mia_path = true, next: "hazemoor-02" }
+                    ]
+                }
+            }
+        },
+
+        // EPISODE 1: HAZEMOOR 02 (THE GLADE)
+        "hazemoor-02": {
+            title: "Епізод 1: Галявина і Дух",
+            beats: {
+                "start": {
+                    text: "Заборонена галявина. Тиша. Вода світиться слабким розсіяним сяйвом. Ви бачите сліди Руфіна і порожній артефакт, але його самого тут немає.",
+                    choices: [
+                        { id: "h2_investigate", text: "Оглянути артефакт і сліди.", next: "entrance" },
+                        { id: "h2_wait", text: "Зачекати, спостерігаючи за водою.", next: "entrance" }
+                    ]
+                },
+                "entrance": {
+                    text: "Міа стає перед водою, і туман розходиться. Вхід — під воду. Вам треба пірнути і довіритись болоту.",
+                    choices: [
+                        {
+                            id: "h2_dive",
+                            text: "Пірнути разом із Міа.",
+                            effect: state => state.flags.glade_entered = true,
+                            next: "mour_contact"
+                        }
+                    ]
+                },
+                "mour_contact": {
+                    text: "Під водою ви бачите видіння: Прадавня війна, артефакт, зроблений зі шматка свідомості болота. Виринаючи, над галявиною збирається хмара з комах — Моур. Він впізнає Міа.",
+                    choices: [
+                        { id: "h2_ask_artifact", text: "Запитати беззвучно про артефакт.", next: "mour_revelation" },
+                        { id: "h2_ask_mia", text: "Слухати, як Міа розмовляє з ним.", next: "mour_revelation" }
+                    ]
+                },
+                "mour_revelation": {
+                    text: "Моур показує, що артефакт був його частиною. Міа дізнається, що вона — прояв самого болота. Ви бачите печатку творців — Ордену Семи Кинджалів, ту саму, що була на листі. Міа отримує свою ідентичність, а ви — розуміння масштабів загрози.",
+                    choices: [
+                        {
+                            id: "h2_end",
+                            text: "Залишити галявину. (Кінець Епізоду 1)",
+                            effect: state => { state.flags.glade_result = "full"; },
+                            next: "sunk-ferry-01"
+                        }
+                    ]
+                }
+            }
+        },
+
+        // PARALLEL QUEST: SUNK FERRY
+        "sunk-ferry-01": {
+            title: "Голос із туману (Глибокий Хейзмур)",
+            beats: {
+                "start": {
+                    text: "Ви заглиблюєтесь у Хейзмур. Туман стає густішим. Попереду лунає скрип дерева — старий пором, що застряг у трясовині.",
+                    choices: [
+                        { id: "sf1_board", text: "Піднятися на пором.", next: "ferry_explore" },
+                        { id: "sf1_ignore", text: "Обійти стороною, слідуючи маршруту.", next: "valkorn-01" }
+                    ]
+                },
+                "ferry_explore": {
+                    text: "На поромі ви знаходите записи старого поромника і сліди боротьби. З туману з'являються тіні — не мерці, а відлуння минулих мандрівників.",
+                    choices: [
+                        { id: "sf1_fight", text: "Відбиватися від тіней.", effect: state => state.flags.sunk_ferry_fought = true, next: "sunk-ferry-02" },
+                        { id: "sf1_ritual", text: "Використати знання Моура.", effect: state => state.flags.sunk_ferry_ritual = true, next: "sunk-ferry-02" }
+                    ]
+                }
+            }
+        },
+        "sunk-ferry-02": {
+            title: "Шалений Пором та Обитель",
+            beats: {
+                "start": {
+                    text: "Ви знаходите затоплену обитель під корінням велетенського дерева. Це культ, що поклоняється 'Голоду Знизу'. Лідер культу пропонує вам долучитися, обіцяючи силу. Міа напружена.",
+                    choices: [
+                        {
+                            id: "sf2_reject",
+                            text: "Відкинути пропозицію. Знищити вівтар.",
+                            effect: state => state.flags.sunk_ferry_resolved = "destroyed",
+                            next: "valkorn-01"
+                        },
+                        {
+                            id: "sf2_accept",
+                            text: "Вивчити їхні таємниці.",
+                            effect: state => state.flags.sunk_ferry_resolved = "studied",
+                            next: "valkorn-01"
+                        }
+                    ]
+                }
+            }
+        },
+
+
+        // EPISODE 2: VALKORN
+        "valkorn-01": {
+            title: "Епізод 2: Людина з болота",
+            beats: {
+                "start": {
+                    text: "Ви прибуваєте до Валькорна з Ілією Марр. На ринковій площі королівський Блазень Фіпп зупиняє свій виступ, дивиться прямо на вас і каже: «Дивись-но, мала Марр веде нове цуценя на повідку! Тільки нашийник у нього з холодного болотяного заліза, а в зубах — розбита печатка!»",
+                    choices: [
+                        { id: "v1_ignore", text: "Проігнорувати і швидко піти в провулки.", next: "inn_arrival" },
+                        { id: "v1_confront", text: "Зупинитися і подивитися йому в очі.", next: "inn_arrival" }
+                    ]
+                },
+                "inn_arrival": {
+                    text: "У безпеці провулків Ілія каже: «Він божевільний, але звідки він знає моє ім'я і про печатку? Здається, він знає набагато більше, ніж повинен блазень.» Тепер вам потрібно знайти інформацію про підземелля Валькорна.",
+                    choices: [
+                        { id: "v1_end", text: "Почати пошуки.", next: "valkorn-02" }
+                    ]
+                }
+            }
+        },
+        "valkorn-02": {
+            title: "Епізод 2: Дві версії правди",
+            beats: {
+                "start": {
+                    text: "Хтось залишив записку: «Третя точка ще не відкрита. Але хтось уже шукає вхід. Поспішай.» У вас є дві нитки: спитати архіваріуса Одріна або звернутися до контрабандистки Тесси.",
+                    choices: [
+                        { id: "v2_odrin", text: "Піти до палацового архіву до Одріна.", next: "valkorn-03" },
+                        { id: "v2_tessa", text: "Знайти Тессу в місті.", next: "valkorn-03" }
+                    ]
+                }
+            }
+        },
+        "valkorn-03": {
+            title: "Епізод 2: Правильна ціна",
+            beats: {
+                "start": {
+                    text: "Ви дізнаєтесь, що артефакт, який ви шукаєте, вже забрала торгова гільдія. Ви знаходите клерка Дамара, який тримає його на складі.",
+                    choices: [
+                        { id: "v3_deal", text: "Домовитися з Дамаром.", next: "valkorn-04" },
+                        { id: "v3_force", text: "Забрати артефакт силою.", next: "valkorn-04" }
+                    ]
+                }
+            }
+        },
+        "valkorn-04": {
+            title: "Епізод 2: Людина, що послала Руфіна",
+            beats: {
+                "start": {
+                    text: "Ви отримуєте лист. Лоен, член Сьомої Ради Ордену Семи Кинджалів, запрошує вас на розмову. Це той самий чоловік, що послав Руфіна в болото на вірну смерть.",
+                    choices: [
+                        { id: "v4_meet", text: "Піти на зустріч з Лоеном.", next: "valkorn-05" }
+                    ]
+                }
+            }
+        },
+        "valkorn-05": {
+            title: "Епізод 2: Хранитель Першої Печатки",
+            beats: {
+                "start": {
+                    text: "Усі докази зійшлися. Хранитель Першої Печатки, лідер ворожого Ордену Семи Кинджалів — це Блазень Фіпп. Разом з Ілією ви проникаєте до Чорного Архіву під королівською бібліотекою. Фіпп змиває грим. Це Себастьян Марр, дядько Ілії, якого всі вважали мертвим. Він кладе на стіл Першу Печатку.",
+                    choices: [
+                        {
+                            id: "v5_judge",
+                            text: "Заарештувати або вбити його (Шлях Судді/Залізний Вердикт)",
+                            effect: state => {
+                                state.flags.valkorn05_path = true;
+                                state.flags.verdict = "iron";
+                                state.flags.sebastian_fate = "dead";
+                            },
+                            next: null
+                        },
+                        {
+                            id: "v5_broker",
+                            text: "Укласти тіньову угоду (Шлях Посередника/Пакт)",
+                            effect: state => {
+                                state.flags.valkorn05_path = true;
+                                state.flags.verdict = "pact";
+                                state.flags.sebastian_fate = "alive";
+                            },
+                            next: null
+                        },
+                        {
+                            id: "v5_lantern",
+                            text: "Провести Ритуал Злиття (Шлях Ліхтаря/Вердикт Очерету)",
+                            effect: state => {
+                                state.flags.valkorn05_path = true;
+                                state.flags.verdict = "reed";
+                                state.flags.sebastian_fate = "retired";
+                                state.flags.humanity_restored = true;
+                            },
+                            next: null
+                        }
+                    ]
+                }
+            }
+        },
+
+
+        // EPISODE 3: DEEP BOG
+        "deep-bog-01": {
+            title: "Епізод 3: Голос із туману",
+            beats: {
+                "start": {
+                    text: "Після ритуалу Злиття у Валькорні, ви повертаєтесь до Хейзмуру. Ваше тіло зазнає хворобливого розпаду — кінцівки темніють, шкіра холоне. Туман обволікає вас, а болотяний шепіт пропонує здатися і лягти у воду. Раптом, у голові ви чуєте голос Ілії Марр: 'Вартовий! Згадай своє ім'я. Дихай глибше.'",
+                    choices: [
+                        {
+                            id: "db1_listen_ilia",
+                            text: "Вчепитися за голос Ілії, щоб зберегти розум.",
+                            effect: state => state.reputation = "duty",
+                            next: "path_blocked"
+                        }
+                    ]
+                },
+                "path_blocked": {
+                    text: "Стежка заблокована гігантськими сплетіннями чорного коріння. У вас є два способи пройти.",
+                    choices: [
+                        {
+                            id: "db1_use_weaving",
+                            text: "Використати Плетіння Моура (Біль і розпад).",
+                            next: "mia_encounter"
+                        },
+                        {
+                            id: "db1_use_seal",
+                            text: "Дістати Першу Печатку (Срібне світло заморожує і вбиває коріння).",
+                            next: "mia_encounter"
+                        }
+                    ]
+                },
+                "mia_encounter": {
+                    text: "На галявині ви зустрічаєте Міа. Її обличчя спотворюється від жаху, побачивши ваші чорні руки і відчувши холод Першої Печатки: 'Ти притягнув їхнє срібло в наше серце? Ти став їхнім катом?'",
+                    choices: [
+                        {
+                            id: "db1_mia_protect",
+                            text: "«Ця печатка — єдине, що захищає мій розум від остаточного божевілля.»",
+                            effect: state => { state.flags.mia_trust = (state.flags.mia_trust || 0) - 1; },
+                            next: "deep-bog-02"
+                        },
+                        {
+                            id: "db1_mia_pragmatic",
+                            text: "«Я приніс її, щоб знайти Другу Печатку й збалансувати силу Моура.»",
+                            effect: state => { state.flags.mia_trust = (state.flags.mia_trust || 0) + 0; },
+                            next: "deep-bog-02"
+                        },
+                        {
+                            id: "db1_mia_harsh",
+                            text: "«Я сам вирішую, яку силу використовувати. З дороги, Міа.»",
+                            effect: state => { state.flags.mia_trust = (state.flags.mia_trust || 0) - 2; },
+                            next: "deep-bog-02"
+                        }
+                    ]
+                }
+            }
+        },
+        "deep-bog-02": {
+            title: "Епізод 3: Шалений пором",
+            beats: {
+                "start": {
+                    text: "Це місце розриває простір. Старий пором стоїть на чорній воді. Щоб рухатись далі, вам потрібно скористатися поромом, але його контролюють відлуння минулого.",
+                    choices: [
+                        { id: "db2_fight", text: "З боєм пробиватися крізь відлуння.", next: "deep-bog-03" },
+                        { id: "db2_ritual", text: "Використати силу, щоб домовитися з поромом.", next: "deep-bog-03" }
+                    ]
+                }
+            }
+        },
+        "deep-bog-03": {
+            title: "Епізод 3: Затоплена обитель",
+            beats: {
+                "start": {
+                    text: "Ви досягаєте Затопленої обителі, де зберігаються старі секрети Ордену. Тут знаходиться Друга Печатка і культ, що охороняє її. Це кінець Епізоду 3.",
+                    choices: [
+                        {
+                            id: "db3_end",
+                            text: "Продовжити до Епізоду 4",
+                            next: "episode-4-01"
+                        }
+                    ]
+                }
+            }
+        },
+
+
+        // EPISODE 4: CONCLUSION
+        "episode-4-01": {
+            title: "Епізод 4: Повернення до Валькорна",
+            beats: {
+                "start": {
+                    text: "Залежно від вашого вердикту в Епізоді 2 та виборів в Епізоді 3, ви повертаєтесь до Валькорна в одному з трьох станів. Ваше тіло, розум і статус у столиці кардинально відрізняються. Місто готується до фінальної розв'язки.",
+                    choices: [
+                        { id: "e4_start", text: "Продовжити.", next: "episode-4-02" }
+                    ]
+                }
+            }
+        },
+        "episode-4-02": {
+            title: "Епізод 4: Кульмінація Валькорна",
+            beats: {
+                "start": {
+                    text: "Час звести рахунки з лідерами фракцій та вирішити долю Ордену Семи Кинджалів, торгових гільдій та самого міста.",
+                    choices: [
+                        { id: "e4_politics", text: "Вирішити долю столиці.", next: "episode-4-03" }
+                    ]
+                }
+            }
+        },
+        "episode-4-03": {
+            title: "Епізод 4: Хейзмур і Моур",
+            beats: {
+                "start": {
+                    text: "Фінальний погляд на Хейзмур. Болото реагує на новий порядок. Залежно від вашого шляху, воно або вмирає (Залізо), або поглинає кордони (Очерет), або зберігає хитку рівновагу (Пакт).",
+                    choices: [
+                        { id: "e4_bog", text: "Зустріти наслідки на кордоні болота.", next: "episode-4-04" }
+                    ]
+                }
+            }
+        },
+        "episode-4-04": {
+            title: "Епізод 4: Велика Розв'язка",
+            beats: {
+                "start": {
+                    text: "Усі сюжетні лінії підбито. Ви бачите долю Руфіна, Лілеї, Мії, Тесси та Ілії. Валькорн і Хейзмур вступають у нову еру.",
+                    choices: [
+                        { id: "e4_final", text: "Подивитися на світ, який ви створили.", next: "episode-4-05" }
+                    ]
+                }
+            }
+        },
+        "episode-4-05": {
+            title: "Епізод 4: Відхід Героя",
+            beats: {
+                "start": {
+                    text: "Ваша місія тут завершена. Ви — Мандруючий Вартовий. І ви маєте йти далі.",
+                    choices: [
+                        { id: "e4_leave", text: "Завершити історію і перейти до Епілогу.", next: null }
+                    ]
+                }
+            }
+        },
+
+        "valkorn-bridge": {
+            title: "Шлях до Валькорна",
+            beats: {
+                "start": {
+                    text: "Залишивши Хейзмур позаду, ви виходите до передмістя Валькорна. Повітря стає сухішим, з'являються перші кам'яні дороги. Це кінець першого епізоду.",
+                    choices: [
+                        {
+                            id: "vb_continue_iron",
+                            text: "Перейти до Епілогу (Емуляція: Вердикт Заліза)",
+                            effect: state => {
+                                state.flags.valkorn05_path = true;
+                                state.flags.verdict = "iron";
+                                state.flags.sebastian_fate = true;
+                            },
+                            next: null // Routes to Epilogue
+                        },
+                        {
+                            id: "vb_continue_reed",
+                            text: "Перейти до Епілогу (Емуляція: Вердикт Очерету)",
+                            effect: state => {
+                                state.flags.valkorn05_path = true;
+                                state.flags.verdict = "reed";
+                                state.flags.sebastian_fate = true;
+                                state.flags.humanity_restored = true;
+                            },
+                            next: null // Routes to Epilogue
+                        },
+                        {
+                            id: "vb_continue_pact",
+                            text: "Перейти до Епілогу (Емуляція: Пакт Ключника)",
+                            effect: state => {
+                                state.flags.valkorn05_path = true;
+                                state.flags.verdict = "pact";
+                                state.flags.sebastian_fate = true;
+                            },
+                            next: null // Routes to Epilogue
+                        }
+                    ]
+                }
+            }
+        }};
+
+    // ── 4. STATE MACHINE & VALIDATION ──────────────────
+    function validateStateConsistency(state) {
+      const f = state.flags;
+      if (f.glade_result && !f.mia_path) throw new Error("glade_result requires mia_path");
+      if (f.valkorn05_path && (!f.glade_result && f.glade_result !== true && f.glade_result !== "full")) throw new Error("valkorn05_path requires glade_result");
+      if (f.verdict && !f.valkorn05_path) throw new Error("verdict requires valkorn05_path");
+      if (f.sebastian_fate && !f.verdict) throw new Error("sebastian_fate requires verdict");
+      if (f.humanity_restored && f.verdict !== "reed") throw new Error("humanity_restored only valid if verdict === 'reed'");
+    }
+
+    function applyChoice(choiceObj) {
+      if (choiceObj.effect) {
+        choiceObj.effect(GameState);
+      }
+      GameState.history.push({
+        quest: GameState.currentQuest,
+        beat: GameState.currentBeat,
+        choice: choiceObj.id,
+        timestamp: Date.now()
+      });
+
+      try {
+          validateStateConsistency(GameState);
+      } catch (e) {
+          renderErrorState(e.message);
+          return;
+      }
+
+      saveState();
+      resolveNext(choiceObj.next);
+    }
+
+    function resolveNext(nextResolver) {
+        let nextBeatOrQuest = null;
+        if (typeof nextResolver === 'function') {
+            nextBeatOrQuest = nextResolver(GameState);
+        } else {
+            nextBeatOrQuest = nextResolver;
+        }
+
+        if (!nextBeatOrQuest) {
+            renderEpilogue();
+            return;
+        }
+
+        // Check if next is a quest ID or a beat ID
+        if (QuestGraph[nextBeatOrQuest]) {
+            // It's a quest ID.
+            // Show summary screen first.
+            renderEpisodeSummary(GameState.currentQuest, nextBeatOrQuest);
+        } else {
+            // It's a beat ID in the current quest
+            GameState.currentBeat = nextBeatOrQuest;
+            saveState();
+            renderApp();
+        }
+    }
+
+    // ── 5. REPUTATION & DOCTRINE ───────────────────────
+    function getReputationLabel(state) {
+      const r = state.reputation;
+      if (r.duty === 0 && r.personal === 0 && r.pragmatist === 0) return "Невизначений";
+      const dominant = Object.entries(r).sort((a, b) => b[1] - a[1])[0];
+
+      const labels = {
+          duty: "Обов'язок",
+          personal: "Особистий Інтерес",
+          pragmatist: "Прагматик"
+      };
+      return dominant[1] > 0 ? labels[dominant[0]] : "Невизначений";
+    }
+
+    function inferDoctrine(state) {
+      const f = state.flags;
+      const r = state.reputation;
+      if (f.mia_trust >= 6 && f.loen_choice === "trade" && r.personal >= 2) return "Посередник (Mediator)";
+      if (f.brombar_choice === "truth" && f.loen_choice === "confrontation") return "Суддя (Judge)";
+      if (f.ep3_approach === "balance") return "Ліхтар (Lantern)";
+      if (f.mia_trust >= 5 && f.glade_result === "full") return "Слідопит (Pathfinder)";
+      return null;
+    }
+
+    // ── 6. SAVE / LOAD ─────────────────────────────────
+    function saveState() {
+      localStorage.setItem(SAVE_KEY, JSON.stringify(GameState));
+    }
+
+    function loadState() {
+      const raw = localStorage.getItem(SAVE_KEY);
+      if (!raw) return false;
+      try {
+        const parsed = JSON.parse(raw);
+        Object.assign(GameState, parsed);
+        return true;
+      } catch(e) {
+        console.error("Save state parsing failed", e);
+        return false;
+      }
+    }
+
+    function resetGame() {
+      localStorage.removeItem(SAVE_KEY);
+      location.reload();
+    }
+
+    // ── 7. RENDER ──────────────────────────────────────
+
+    function renderErrorState(msg) {
+        const app = document.getElementById('app');
+        app.innerHTML = `
+            <div class="panel-border p-8 text-center text-red-500 mt-20">
+                <h2 class="text-2xl mb-4">Помилка стану гри</h2>
+                <p class="monospace mb-8">${msg}</p>
+                <button class="choice-btn text-center" onclick="resetGame()">[СКИНУТИ ПРОГРЕС]</button>
+            </div>
+        `;
+    }
+
+    function renderStartScreen() {
+        const app = document.getElementById('app');
+        app.innerHTML = `
+            <div class="max-w-2xl mx-auto mt-20 text-center fade-in">
+                <h1 class="text-4xl accent-text mb-2 font-serif tracking-wider">HAZEMOOR</h1>
+                <h2 class="text-xl mb-12 text-gray-400 font-serif">Мандруючий Вартовий</h2>
+
+                <div class="text-left panel-border p-6 mb-8 bg-[#111]">
+                    <h3 class="accent-text mb-4">Оберіть складність:</h3>
+
+                    <button class="choice-btn" onclick="startGame('normal')">
+                        <span class="accent-text">A</span> Нормальна (Відображається репутація та довіра)
+                    </button>
+                    <button class="choice-btn" onclick="startGame('hardcore')">
+                        <span class="accent-text">B</span> Жорстока (Довіра Міа прихована. Доктрина не відображається. Автозбереження)
+                    </button>
+                </div>
+
+                ${localStorage.getItem(SAVE_KEY) ? `
+                    <button class="choice-btn text-center mb-4" onclick="resumeGame()">
+                        ПРОДОВЖИТИ ЗІ ЗБЕРЕЖЕННЯ
+                    </button>
+                ` : ''}
+            </div>
+        `;
+    }
+
+    function startGame(difficulty) {
+        GameState.difficulty = difficulty;
+        if (difficulty === "hardcore") {
+            GameState.flags.mia_trust_visible = false;
+        }
+        GameState.currentQuest = "greyford-01";
+        GameState.currentBeat = "start";
+        saveState();
+        renderApp();
+    }
+
+    function resumeGame() {
+        loadState();
+        renderApp();
+    }
+
+    function renderApp() {
+        const app = document.getElementById('app');
+
+        if (!QuestGraph[GameState.currentQuest] || !QuestGraph[GameState.currentQuest].beats[GameState.currentBeat]) {
+            app.innerHTML = `<div class="p-8 text-center text-red-500">Помилка: Сцена не знайдена (${GameState.currentQuest} / ${GameState.currentBeat}).</div>`;
+            return;
+        }
+
+        const quest = QuestGraph[GameState.currentQuest];
+        const beat = quest.beats[GameState.currentBeat];
+
+        // Check if hazemoor/greyford to determine episode
+        const isEp1 = GameState.currentQuest.includes("01") || GameState.currentQuest.includes("02") || GameState.currentQuest.includes("tykhy");
+        const epText = isEp1 ? "Епізод 1" : "Епізод";
+
+        let html = `
+        <div class="fade-in grid grid-cols-1 md:grid-cols-4 gap-6 mt-4">
+
+            <!-- Main Content -->
+            <div class="col-span-1 md:col-span-3 flex flex-col gap-6">
+                <!-- Header -->
+                <div class="panel-border p-4 flex justify-between items-center monospace text-sm bg-[#111]">
+                    <div>
+                        <span class="accent-text mr-4">HAZEMOOR</span>
+                        <span class="text-gray-400 mr-4">[${epText}]</span>
+                    </div>
+                    <div class="text-xs text-green-700/50">Збережено</div>
+                </div>
+
+                <!-- Narrative -->
+                <div class="panel-border p-8 bg-[#111]">
+                    <h2 class="text-2xl accent-text mb-6 pb-2 border-b border-[#333] font-serif">${quest.title}</h2>
+
+                    ${beat.speaker && beat.speaker !== 'narrator' ? `<div class="accent-text text-sm mb-2 uppercase tracking-widest">${beat.speaker}</div>` : ''}
+
+                    <div class="narrative-text text-lg whitespace-pre-wrap">${beat.text}</div>
+                </div>
+
+                <!-- Choices -->
+                <div class="panel-border p-6 bg-[#111]">
+                    <div class="text-xs text-gray-500 mb-4 monospace">ВИБІР:</div>
+                    ${beat.choices.map((c, idx) => {
+                        const letter = String.fromCharCode(65 + idx); // A, B, C...
+                        return `
+                        <button class="choice-btn" onclick='handleChoiceClick(${JSON.stringify(c).replace(/'/g, "&apos;")})'>
+                            <span class="accent-text mr-2 w-4 inline-block font-bold">${letter}</span>
+                            ${c.text}
+                        </button>
+                        `;
+                    }).join('')}
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-span-1 flex flex-col gap-6">
+                ${GameState.difficulty !== 'hardcore' ? `
+                <div class="panel-border p-4 bg-[#111]">
+                    <div class="text-xs text-gray-500 mb-4 monospace">РЕПУТАЦІЯ:</div>
+                    <div class="text-sm mb-2 flex justify-between">
+                        <span>Обов'язок:</span> <span class="accent-text">${GameState.reputation.duty}</span>
+                    </div>
+                    <div class="text-sm mb-2 flex justify-between">
+                        <span>Особисте:</span> <span class="accent-text">${GameState.reputation.personal}</span>
+                    </div>
+                    <div class="text-sm mb-2 flex justify-between">
+                        <span>Прагматизм:</span> <span class="accent-text">${GameState.reputation.pragmatist}</span>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-[#333] text-xs text-gray-400">
+                        Домінуюча: <span class="text-white">${getReputationLabel(GameState)}</span>
+                    </div>
+                </div>
+                ` : ''}
+
+                ${(GameState.difficulty !== 'hardcore' && GameState.currentQuest === "hazemoor-01") ? `
+                <div class="panel-border p-4 bg-[#111]">
+                    <div class="text-xs text-gray-500 mb-4 monospace">ДОВІРА МІА:</div>
+                    <div class="text-sm mb-1">${GameState.flags.mia_trust || 0} / 7</div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" style="width: ${((GameState.flags.mia_trust || 0) / 7) * 100}%"></div>
+                    </div>
+                </div>
+                ` : ''}
+
+                <!-- Save/Quit -->
+                <div class="panel-border p-4 bg-[#111] mt-auto">
+                    <button class="choice-btn text-center text-sm" onclick="resetGame()">ВИЙТИ В ГОЛОВНЕ МЕНЮ</button>
+                </div>
+            </div>
+
+        </div>
+        `;
+        app.innerHTML = html;
+
+        // Hide the "Збережено" tag after a moment
+        setTimeout(() => {
+            const el = document.querySelector('.text-green-700\\/50');
+            if(el) el.style.opacity = '0';
+        }, 1500);
+    }
+
+    // A little hack to pass objects through onclick cleanly
+    window.currentChoicesMap = {};
+    function handleChoiceClick(choiceObjStr) {
+        // Find the actual choice object from the graph because the JSON stringified version loses functions!
+        const quest = QuestGraph[GameState.currentQuest];
+        const beat = quest.beats[GameState.currentBeat];
+        const parsed = typeof choiceObjStr === 'string' ? JSON.parse(choiceObjStr) : choiceObjStr;
+        const actualChoice = beat.choices.find(c => c.id === parsed.id);
+
+        if (actualChoice) {
+            applyChoice(actualChoice);
+        }
+    }
+
+    function renderEpisodeSummary(oldQuestId, newQuestId) {
+        const app = document.getElementById('app');
+        const doctrine = inferDoctrine(GameState) || "Невизначена";
+
+        app.innerHTML = `
+            <div class="max-w-2xl mx-auto mt-20 fade-in panel-border p-8 bg-[#111]">
+                <div class="text-center mb-8 pb-4 border-b border-[#333]">
+                    <div class="accent-text mb-2 monospace text-sm">═══════════════════════════════════</div>
+                    <h2 class="text-2xl font-serif">ЕПІЗОД ЗАВЕРШЕНО</h2>
+                    <div class="accent-text mt-2 monospace text-sm">═══════════════════════════════════</div>
+                </div>
+
+                <div class="mb-8 monospace text-sm leading-loose">
+                    <p>Доктрина: <span class="text-white">${GameState.difficulty === 'hardcore' ? '[ПРИХОВАНО В РЕЖИМІ HARDCORE]' : doctrine}</span></p>
+                    <p>Домінантна репутація: <span class="text-white">${GameState.difficulty === 'hardcore' ? '[ПРИХОВАНО]' : getReputationLabel(GameState)}</span></p>
+                </div>
+
+                <button class="choice-btn text-center font-bold" onclick="transitionToNextQuest('${newQuestId}')">
+                    [ПРОДОВЖИТИ →]
+                </button>
+            </div>
+        `;
+    }
+
+    function transitionToNextQuest(newQuestId) {
+        GameState.currentQuest = newQuestId;
+        // The first beat of a quest is always the first key in the beats object
+        GameState.currentBeat = Object.keys(QuestGraph[newQuestId].beats)[0];
+        saveState();
+        renderApp();
+    }
+
+    function renderEpilogue() {
+        const app = document.getElementById('app');
+        const f = GameState.flags;
+        const lines = [];
+
+        if (f.verdict === "iron") lines.push("Він іде по сухій дорозі. Руки в рукавицях.");
+        if (f.verdict === "reed") lines.push("Він іде по болоту — вже як людина. Босоніж.");
+        if (f.verdict === "pact") lines.push("Він іде по мосту. Зупиняється посередині. Іде далі.");
+
+        if (f.sebastian_fate === "dead") lines.push("Себастьян Марр мертвий. Орден реформується під Тессою.");
+        if (f.sebastian_fate === "alive") lines.push("Себастьян Марр живий. Що він робитиме далі — невідомо.");
+
+        lines.push("Руфін лишився порожнім. Деякі рани не гояться.");
+
+        if (f.mia_trust >= 5) lines.push("Міа залишилась у болоті. Вона знає, що герой повернеться.");
+        else lines.push("Міа залишилась у болоті. Вона не впевнена чи повернеться.");
+
+        lines.push("Тесса очолила реформований Орден. Без фанатизму. Поки що.");
+
+        app.innerHTML = `
+            <div class="max-w-2xl mx-auto mt-20 text-center font-serif narrative-text text-xl" id="epilogue-container">
+            </div>
+        `;
+
+        const container = document.getElementById('epilogue-container');
+        let i = 0;
+
+        function showNextLine() {
+            if (i < lines.length) {
+                const p = document.createElement('p');
+                p.className = 'mb-6 fade-in';
+                p.textContent = lines[i];
+                container.appendChild(p);
+                i++;
+                setTimeout(showNextLine, 2000);
+            } else {
+                const btn = document.createElement('button');
+                btn.className = 'choice-btn text-center mt-12 fade-in';
+                btn.textContent = '[КІНЕЦЬ. ПОВЕРНУТИСЬ ДО МЕНЮ]';
+                btn.onclick = resetGame;
+                container.appendChild(btn);
+            }
+        }
+
+        setTimeout(showNextLine, 500);
+    }
+
+    // ── 9. INIT ────────────────────────────────────────
+    window.onload = () => {
+        if (!loadState()) {
+            renderStartScreen();
+        } else {
+            // Check if game is over based on current state (if no next beat)
+            renderApp();
+        }
+    };
+  </script>
+</body>
+</html>

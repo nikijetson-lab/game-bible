@@ -429,245 +429,337 @@ window.GAME_SCENES = {
             {
                 text: "Використати зв'язок та вирушити до Порту Валькорна",
                 visible: () => window.playerState.inventory.includes("Камінь Моура"),
-                nextSceneId: "ep2_port_and_docks"
+                nextSceneId: "ep2_valkorn_arrival"
             }
         ]
     },
+
 
     // --- ЕПІЗОД 2: ВАЛЬКОРН ---
 
-    ep2_port_and_docks: {
-
+    ep2_valkorn_arrival: {
         audioTrack: "assets/audio/ep2_city_music.mp3",
-
         audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
-
-        title: "Порт і Доки Валькорна",
-        text: `Ви прибули до величезних доків Валькорна. Залізне місто дихає димом та машинами. Звідси ви можете потрапити у Тіньове Гетто або Дипломатичний Квартал.`,
+        title: "Прибуття у Валькорн",
+        text: `Ви прибуваєте у Валькорн, залізне місто-столицю. На ринковій площі ви стикаєтеся з Блазнем Фіппом. Він завмирає і дивиться на вас крізь білий грим. Камінь Моура стає гарячим.
+<br><br><em>«Дивись-но, мала Марр веде нове цуценя на повідку! Тільки нашийник у нього з холодного болотяного заліза, а в зубах — розбита печатка!»</em>
+<br><br>Ілія шепоче: <em>«Звідки він знає моє ім'я? Він знає набагато більше ніж повинен.»</em>`,
         choices: [
             {
-                text: "Пройти до Тіньового Гетто",
-                nextSceneId: "ep2_shadow_ghetto"
+                text: "Відвідати Брес у Тіньовому Гетто",
+                nextSceneId: "ep2_valkorn_bres"
             },
             {
-                text: "Вирушити у Дипломатичний Квартал",
-                nextSceneId: "ep2_diplomatic_quarter"
+                text: "Відвідати слідчого Стетсона у Дипломатичному Кварталі",
+                nextSceneId: "ep2_valkorn_stetson"
             },
             {
-                text: "Шукати скритні шлюзи в Палацові колектори",
-                nextSceneId: "ep2_palace_sewers"
+                text: "Відвідати крамницю Тесси",
+                nextSceneId: "ep2_valkorn_tessa"
             }
         ]
     },
-    ep2_shadow_ghetto: {
 
+    ep2_valkorn_bres: {
         audioTrack: "assets/audio/ep2_city_music.mp3",
-
         audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
-
-        title: "Тіньове Гетто",
-        text: `Гетто наповнене шумом, бідністю та секретами. Місцеві знають кожен таємний хід Валькорна.`,
+        title: "Тіньове Гетто: Брес",
+        text: `Ви зустрічаєте Брес, втікачку із Сонк-Феррі.
+<br><br><em>«Болото не відмивається за один день.»</em> Вона згадує жінку, що платить за інформацію про болото, і про пакунок на складі в портовому кварталі, який контролює торгова гільдія.`,
         choices: [
             {
-                text: "Повернутися в Порт",
-                nextSceneId: "ep2_port_and_docks"
+                text: "Піти до Торгової Гільдії (Правильна Ціна)",
+                nextSceneId: "ep2_valkorn_damar"
             },
             {
-                text: "Шукати шлях до Палацових колекторів",
-                nextSceneId: "ep2_palace_sewers"
+                text: "Відвідати крамницю Тесси",
+                nextSceneId: "ep2_valkorn_tessa"
+            },
+            {
+                text: "Відвідати слідчого Стетсона",
+                nextSceneId: "ep2_valkorn_stetson"
             }
         ]
     },
-    ep2_diplomatic_quarter: {
 
+    ep2_valkorn_tessa: {
         audioTrack: "assets/audio/ep2_city_music.mp3",
-
         audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
-
-        title: "Дипломатичний Квартал",
-        text: `Елегантний та суворий квартал, де плетуться інтриги між Орденом та Адміністрацією.`,
+        title: "Крамниця Тесси",
+        text: `Ви заходите в крамницю Тесси. У кімнаті за завісою пахне старим папером.
+<br><br><em>«Ти з Хейзмуру.»</em> Це не питання.
+<br><br>Ви дізнаєтесь від неї іншу версію правди про Печатку та Орден Семи Кинджалів.`,
         choices: [
             {
-                text: "Повернутися в Порт",
-                nextSceneId: "ep2_port_and_docks"
+                text: "Об'єднати знання з архівом Одріна і піти в підземелля",
+                nextSceneId: "ep2_valkorn_dungeon"
             },
             {
-                text: "Прямувати до Королівського Палацу",
-                nextSceneId: "ep2_royal_palace"
+                text: "Повернутися на вулицю",
+                nextSceneId: "ep2_valkorn_arrival"
             }
         ]
     },
-    ep2_palace_sewers: {
 
-        audioTrack: "assets/audio/ep2_dungeon_music.mp3",
-
-        audioAtmosphere: "assets/audio/ep2_dungeon_ambient.mp3",
-
-        title: "Палацові колектори",
-        text: `Смердючі тунелі під Валькорном. Шлях далі веде безпосередньо до Палацу, але він закритий важкими гратами. Вам потрібні особливі навички або срібло, щоб пройти.`,
+    ep2_valkorn_stetson: {
+        audioTrack: "assets/audio/ep2_city_music.mp3",
+        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        title: "Слідчий Стетсон",
+        text: `Стетсон зустрічає вас: <em>«Ти дійшов. Я думав — можливо.»</em> Він шукає доказів проти Ордену для чистки й пропонує вам стати союзником.`,
         choices: [
             {
-                text: "🏕️ [Слідопит] Знайти обхідний шлях серед труб",
-                visible: () => window.playerState.doctrines.pathfinder >= 1,
+                text: "Шукати шлях до Лоена (Сьома Рада Ордену)",
+                nextSceneId: "ep2_valkorn_loen"
+            },
+            {
+                text: "Повернутися на вулицю",
+                nextSceneId: "ep2_valkorn_arrival"
+            }
+        ]
+    },
+
+    ep2_valkorn_damar: {
+        audioTrack: "assets/audio/ep2_city_music.mp3",
+        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        title: "Торгова Гільдія: Дамар",
+        text: `Дамар — непримітний торговець, який тримає пакунок з артефактом.
+<br><br><em>«Я торговець. Я не питаю що це і навіщо. Я питаю скільки ти готовий заплатити.»</em>`,
+        choices: [
+            {
+                text: "Забрати артефакт самому",
                 action: () => {
-                    addToLog("Ваші навички слідопита дозволили оминути грати.", "success");
-                    goScene("ep2_royal_palace");
+                    addItem("Перша Печатка (Частина)");
+                    goScene("ep2_valkorn_loen");
                 }
             },
             {
-                text: "💰 Підкупити вартового тунелю (1 Срібло)",
-                visible: () => window.playerState.resources.silver >= 1,
+                text: "Дозволити Тессі забрати артефакт",
                 action: () => {
-                    adjustResource("silver", -1);
-                    addToLog("Срібло відкриває багато дверей у Валькорні.", "success");
-                    goScene("ep2_royal_palace");
+                    adjustReputation("knives", -10);
+                    goScene("ep2_valkorn_loen");
+                }
+            }
+        ]
+    },
+
+    ep2_valkorn_dungeon: {
+        audioTrack: "assets/audio/ep2_dungeon_music.mp3",
+        audioAtmosphere: "assets/audio/ep2_dungeon_ambient.mp3",
+        title: "Третя точка: Підземелля",
+        text: `Об'єднавши версії правди Одріна та Тесси, ви знаходите вхід у підземелля Валькорна. На стінах написи: <em>«Хто торкнеться Печатки без Ліхтаря — втратить тінь.»</em>
+<br><br>Ви знаходите Третю точку. Постамент порожній. Лежить свіжий клаптик тканини із символом Ордену. Хтось прийшов раніше.`,
+        choices: [
+            {
+                text: "Йти до Лоена",
+                nextSceneId: "ep2_valkorn_loen"
+            }
+        ]
+    },
+
+    ep2_valkorn_loen: {
+        audioTrack: "assets/audio/ep2_city_music.mp3",
+        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        title: "Людина що послала Руфіна",
+        text: `Ви знаходите Лоена — члена Сьомої Ради Ордену. Він відповідає на три питання.
+<br><br>1. <em>«Нам потрібен був артефакт. Руфін знав болото. Ми шукаємо спосіб стабілізувати Моур, а не знищити його.»</em>
+<br><br>2. <em>«Ми хочемо підпорядкувати його силу. Хто контролює трясовину — контролює весь фронтир.»</em>
+<br><br>3. <em>«Справжній лідер ближче до палацу. Його листи пахнуть болотяною м'ятою та вологим торфом, чорнило блищить золотим пилом.»</em>
+<br><br>Ви поєднуєте факти (запах, бубонці, слова Стетсона) і розумієте: <strong>Хранитель Першої Печатки — це Блазень Фіпп!</strong>`,
+        choices: [
+            {
+                text: "🤝 Співпрацювати з Орденом",
+                action: () => {
+                    adjustReputation("knives", 30);
+                    goScene("ep2_valkorn_black_archive");
                 }
             },
             {
-                text: "Повернутися у Гетто",
-                nextSceneId: "ep2_shadow_ghetto"
+                text: "Нейтралітет",
+                action: () => {
+                    adjustReputation("knives", 10);
+                    goScene("ep2_valkorn_black_archive");
+                }
             },
             {
-                text: "Повернутися в Порт",
-                nextSceneId: "ep2_port_and_docks"
+                text: "⚔️ Протистояння",
+                action: () => {
+                    adjustReputation("knives", -40);
+                    adjustReputation("admin", 20);
+                    goScene("ep2_valkorn_black_archive");
+                }
             }
         ]
     },
-    ep2_royal_palace: {
 
-        audioTrack: "assets/audio/ep2_palace_music.mp3",
-
-        audioAtmosphere: "assets/audio/ep2_palace_ambient.mp3",
-
-        title: "Королівський Палац",
-        text: `Величний палац Валькорна. Саме тут ухвалюються рішення, що впливають на Хейзмур. Звідси шлях лежить у Чорний Архів.`,
-        choices: [
-            {
-                text: "Увійти в Чорний Архів",
-                nextSceneId: "valkorn_05"
-            },
-            {
-                text: "Повернутися у Дипломатичний Квартал",
-                nextSceneId: "ep2_diplomatic_quarter"
-            }
-        ]
-    },
-    valkorn_05: {
-
+    ep2_valkorn_black_archive: {
         audioTrack: "assets/audio/ep2_dungeon_music.mp3",
-
         audioAtmosphere: "assets/audio/ep2_dungeon_ambient.mp3",
-
-        title: "Чорний Архів",
-        text: `Себастьян Марр тримає в руках важку срібну скриньку, всередині якої лежить **Перша Печатка**. Він дивиться на вас із підозрою: «Руфін мертвий. Його місія провалилася. Нам потрібен новий Ключник, який підкорить Моур королівській волі. Візьми Печатку і зламай її волю, або поверни її болоту.»<br><br>Тесса шепоче: «Це божевілля! Спроба зламати Печатку знищить рівновагу і випалить болото назавжди!»`,
+        title: "Чорний Архів: Хранитель",
+        text: `Ви проникаєте до Чорного Архіву під бібліотекою. Запах торфу і свіжої м'яти. Блазень Фіпп змиває грим.
+<br><br>Він виймає <strong>Першу Печатку</strong> — циліндр із Білого срібла та болотяного заліза, що пульсує срібним світлом.
+<br><br>Ілія впізнає його: <em>«Дядьку... Себастьяне?»</em>
+<br><br>Себастьян Марр: <em>«Орден Семи Кинджалів — не вбивці. Це залізні ворота, які мають стримати воду. Я пішов у туман. Вирішуйте, що ми будемо робити далі.»</em>`,
         choices: [
             {
-                text: "Повернутися у Палац",
-                nextSceneId: "ep2_royal_palace"
+                text: "⚖️ [Шлях Судді] «Твій Орден сіє смерть. Віддай Печатку.» (Бій)",
+                action: () => chooseValkornPath("A", "Ти обрав чесну смерть замість складного життя.", "ep3_deep_bog_start")
             },
             {
-                text: "⚙️ [Шлях А] «Я підкорю Печатку волі столиці та Ордену.» (Втеча)",
-                action: () => chooseValkornPath("A", "Ви підкорюєте Печатку волі столиці. Ваші пальці починають темніти й дерев'яніти.", "ep3_narrow_reeds")
+                text: "🤝 [Шлях Посередника] «Ми збережемо таємницю. Але Орден захищатиме Хейзмур.» (Угода)",
+                action: () => chooseValkornPath("C", "Прагматизм — рідкісна риса. Ми домовились.", "ep3_deep_bog_start")
             },
             {
-                text: "🌿 [Шлях Б] «Я поверну Печатку болоту. Болото має дихати вільно.» (Втеча)",
-                action: () => chooseValkornPath("B", "Ви кидаєте Печатку в болото. Себастьян лютує, але Тесса допомагає вам втекти.", "ep3_narrow_reeds")
-            },
-            {
-                text: "🕯️ [Шлях В] «Печатка повинна тримати рівновагу. Я збережу її цілісність.» (Втеча)",
-                action: () => chooseValkornPath("C", "Ви закриваєте Печатку в скриньці, балансуючи між силами Ордену та болотних Мурі.", "ep3_narrow_reeds")
+                text: "🕯️ [Шлях Ліхтаря] «Я стану тим, хто тримає удар. Дай мені Печатку.» (Ритуал Злиття)",
+                action: () => chooseValkornPath("B", "Срібне і болотяне зелене змішуються. Ілія стає вашим Трагічним Моральним Якорем.", "ep3_deep_bog_start")
             }
         ]
     },
+
 
     // --- ЕПІЗОД 3: ГЛИБОКЕ БОЛОТО ---
 
-    ep3_narrow_reeds: {
-
+    ep3_deep_bog_start: {
         audioTrack: "assets/audio/ep3_swamp_music.mp3",
-
         audioAtmosphere: "assets/audio/ep3_swamp_ambient.mp3",
-
-        title: "Вузькі очерети",
-        text: `Ви заглиблюєтесь у Глибоке Болото, тікаючи з Валькорна. Вода піднімається до колін, а отруйні випари блекоти заповнюють повітря. Захистіться від отрути!`,
+        title: "Повернення в імлу",
+        text: `Ви перетинаєте зруйнований річковий міст і ступаєте на хитку стежку Глибокого болота. Молочно-білий туман обволікає вас, намагаючись стерти відчуття напрямку.
+<br><br>Очерет шепоче: <em>«Тут тепло... Срібло холодне, а вода пам'ятає твою колиску... Лягай...»</em>
+<br><br>Ваша стійкість повільно спливає. Крізь зелену імлу проривається голос Ілії у вашій голові: <em>«Вартовий! Згадай своє ім'я. Дихай глибше. Болото бреше тобі.»</em>`,
         choices: [
             {
-                text: "🧪 Випити Протиотруту зі своєї сумки",
-                visible: () => window.playerState.inventory.includes("🧪 Протиотрута"),
-                action: () => consumeAntidoteForPoison()
-            },
-            {
-                text: "🏕️ [Слідопит] Знайти чисту стежку за напрямком вітру",
-                visible: () => window.playerState.doctrines.pathfinder >= 1,
+                text: "Вчепитися за голос Ілії",
                 action: () => {
-                    addToLog("Слідопит успішно знайшов чистий прохід крізь вітер!", "success");
-                    goScene("ep3_dry_mound");
+                    addToLog("Стійкість відновлюється. Туман розступається.", "success");
+                    goScene("ep3_ruined_path");
+                }
+            }
+        ]
+    },
+
+    ep3_ruined_path: {
+        audioTrack: "assets/audio/ep3_swamp_music.mp3",
+        audioAtmosphere: "assets/audio/ep3_swamp_ambient.mp3",
+        title: "Понівечений шлях",
+        text: `Стежка до Тихого Шелесту знищена аномальною активністю Моура. Гігантські сплетіння чорного коріння блокують прохід. З провалів піднімається отруйний газ.
+<br><br>Ілія тремтить: <em>«Твоє серце б'ється так швидко, наче зараз розірветься. Зупинись, прошу тебе.»</em>`,
+        choices: [
+            {
+                text: "Використати Плетіння (Bolo-Weaving)",
+                action: () => {
+                    addToLog("Вени темнішають, стійкість падає. Коріння розступається.", "system");
+                    goScene("ep3_mia_encounter");
                 }
             },
             {
-                text: "Пробитись крізь хмару напролом до Сухого Горба (Втрата 30 HP та 15 Рішучості)",
-                action: () => takePoisonDamage()
+                text: "Використати Першу Печатку",
+                action: () => {
+                    addToLog("Срібний купол захищає від газів, але залізо завдає болю болоту.", "system");
+                    goScene("ep3_mia_encounter");
+                }
             }
         ]
     },
-    ep3_dry_mound: {
 
+    ep3_mia_encounter: {
         audioTrack: "assets/audio/ep3_swamp_music.mp3",
-
-        audioAtmosphere: "assets/audio/ep3_wind_ambient.mp3",
-
-        title: "Сухий Горб",
-        text: `Невеликий острівець сухої землі посеред трясовини. Ви можете перепочити або рушати слідами Амфібій далі.`,
+        audioAtmosphere: "assets/audio/ep3_swamp_ambient.mp3",
+        title: "Зустріч із Міа",
+        text: `З туману повільно виступає Міа. В її очах горить дике світло Моура.
+<br><br><em>«Що вони зробили з тобою у своєму кам'яному місті? Ти хотів приборкати болото, але дозволив йому зжерти себе зсередини. І цей холод... Ти приніс їхнє срібло сюди. Навіщо?»</em>`,
         choices: [
             {
-                text: "Вирушити у Заборонене Місце",
-                nextSceneId: "ep3_forbidden_place"
+                text: "«Ця печатка — єдине, що захищає мій розум.»",
+                nextSceneId: "ep3_silent_rustle_lileya"
             },
             {
-                text: "Повернутися у Вузькі очерети",
-                nextSceneId: "ep3_narrow_reeds"
+                text: "«Я приніс її, щоб знайти Другу Печатку й збалансувати силу.»",
+                nextSceneId: "ep3_silent_rustle_lileya"
+            },
+            {
+                text: "«Я сам вирішую, яку силу використовувати. З дороги.»",
+                nextSceneId: "ep3_silent_rustle_lileya"
             }
         ]
     },
-    ep3_forbidden_place: {
 
+    ep3_silent_rustle_lileya: {
         audioTrack: "assets/audio/ep3_swamp_music.mp3",
-
         audioAtmosphere: "assets/audio/ep3_swamp_ambient.mp3",
-
-        title: "Заборонене Місце",
-        text: `Святилище Мурі, приховане від людських очей. Ви знаходите стародавні інгредієнти для крафту.`,
+        title: "Тихий Шелест: Лілея",
+        text: `У Тихому Шелесті єдина кам'яна споруда — вежа, де ховається Лілея, давня Ключниця боліт.
+<br><br><em>«Мій рід будував стіни між людиною та болотом. Ти став ключем, який ламається у власному замку. Під Затопленою Обителлю лежить Друга Печатка з темної болотяної міді. Вона утримує Моур.»</em>
+<br><br>Вам потрібно перетнути Шалену Річку.`,
         choices: [
             {
-                text: "Зібрати ресурси (Болотяна Мазь) та йти до Жертовника",
+                text: "Йти до Шаленого Порому",
+                nextSceneId: "ep3_mad_ferry"
+            }
+        ]
+    },
+
+    ep3_mad_ferry: {
+        audioTrack: "assets/audio/ep3_swamp_music.mp3",
+        audioAtmosphere: "assets/audio/ep3_swamp_ambient.mp3",
+        title: "Шалена Переправа",
+        text: `Важкий дерев'яний пліт на ланцюгах. Річка перетворилася на киплячий чорний дьоготь. Сліпі хижаки — Тварюки Твані — намагаються перегризти ланцюги.
+<br><br>Один ланцюг лопається! Пором знесе на водоспад.`,
+        choices: [
+            {
+                text: "Затиснути ланцюг голими руками (Bolo-Weaving)",
                 action: () => {
-                    adjustResource("slime", 1);
-                    adjustResource("henbane", 1);
-                    addToLog("Ви зібрали інгредієнти для Болотяної Мазі.", "success");
-                    goScene("ep3_altar_second_seal");
+                    addToLog("Страшні опіки від іржавого металу. Пором врятовано.", "system");
+                    goScene("ep3_flooded_abode");
                 }
             },
             {
-                text: "Повернутися на Сухий Горб",
-                nextSceneId: "ep3_dry_mound"
+                text: "Використати Першу Печатку як якір",
+                action: () => {
+                    adjustReputation("muri", -20);
+                    addToLog("Вода замерзає. Пліт стабілізується, але річка випалена сріблом.", "system");
+                    goScene("ep3_flooded_abode");
+                }
             }
         ]
     },
-    ep3_altar_second_seal: {
 
-        audioTrack: "assets/audio/ep3_swamp_music.mp3",
-
-        audioAtmosphere: "assets/audio/ep3_swamp_ambient.mp3",
-
-        title: "Жертовник Другої Печатки",
-        text: `Тут вас зустрічає **Лілея** — древня Ключниця боліт. Відбувається ментальний вибух від близькості Печатки. "Скоро Сезон Порожнечі закриється. Ти маєш зробити свій остаточний вибір на мосту між двома берегами..."`,
+    ep3_flooded_abode: {
+        audioTrack: "assets/audio/ep3_dungeon_music.mp3",
+        audioAtmosphere: "assets/audio/ep3_dungeon_ambient.mp3",
+        title: "Затоплена Обитель",
+        text: `Лілея розшифровує бронзові рунічні замки Ключників. Ви пробираєтесь по пояс у чорній твані всередині затопленого монастиря.
+<br><br>У центрі крипти — Вівтар Стагнації, на якому лежить Друга Печатка з болотяної міді. З туману виходить Міа, її очі повністю чорні.
+<br><br><em>«Якщо ти поєднаєш срібло з міддю — Хейзмур помре!»</em>`,
         choices: [
             {
-                text: "«Я готовий зустріти свою долю у фіналі.» (Вирушити на Міст)",
-                nextSceneId: "ep4_start"
+                text: "⚙️ [Вердикт Заліза] Вставити срібну Печатку в мідний вівтар",
+                action: () => {
+                    window.playerState.valkorn_path = "A";
+                    window.playerState.history.push({ step: "verdict", choice: "iron" });
+                    addToLog("Болотяна магія випалена. Хейзмур вмирає.", "system");
+                    goScene("ep4_start");
+                }
+            },
+            {
+                text: "🌿 [Вердикт Очерету] Кинути Першу Печатку в болотяну жижу",
+                action: () => {
+                    window.playerState.valkorn_path = "B";
+                    window.playerState.history.push({ step: "verdict", choice: "reed" });
+                    addToLog("Срібло розчиняється. Ви остаточно стаєте очеретяним монстром.", "system");
+                    goScene("ep4_start");
+                }
+            },
+            {
+                text: "🕯️ [Пакт Ключника] Стати «живим замком» (Використати своє тіло)",
+                action: () => {
+                    window.playerState.valkorn_path = "C";
+                    window.playerState.history.push({ step: "verdict", choice: "pact" });
+                    addToLog("Ви пропускаєте срібло й мідь через себе. Болісний баланс збережено.", "success");
+                    goScene("ep4_start");
+                }
             }
         ]
     },
+
 
     // --- ЕПІЗОД 4: ДВА БЕРЕГИ ---
 

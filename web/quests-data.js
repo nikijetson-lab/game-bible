@@ -54,7 +54,7 @@ window.GAME_SCENES = {
                 action: () => goThread("tavern")
             },
             {
-                text: "🧙‍♀️ Оглянути будинок Чаклунки на околиці (Доступно після виявлення знаків)",
+                text: "🧙‍♀️ Оглянути будинок Алтеї на околиці (Доступно після виявлення знаків)",
                 visible: () => window.playerState.clues.witch_hint === true,
                 action: () => goThread("witch")
             },
@@ -107,7 +107,7 @@ window.GAME_SCENES = {
                 action: () => {
                     window.playerState.clues.room = true;
                     window.playerState.clues.witch_hint = true;
-                    addToLog("Ліхтар виявив: ледь помітні захисні руни над дверима. Вони ведуть до Чаклунки.", "success");
+                    addToLog("Ліхтар виявив: ледь помітні захисні руни над дверима. Вони ведуть до Алтеї.", "success");
                     addItem("🎒 Сумка Руфіна");
                     adjustResource("ash", 1);
                     adjustResource("slate", 1);
@@ -231,8 +231,8 @@ window.GAME_SCENES = {
 
         audioAtmosphere: "assets/audio/ep1_city_ambient.mp3",
 
-        title: "Помешкання Чаклунки",
-        text: `Ви знайшли прихований будинок на околиці міста, прикрашений оберегами від болотяних духів. Чаклунка зустрічає вас із посмішкою. Вона знає, чому ви прийшли. «Руфін? Я бачила, як він ішов у болота вночі...»`,
+        title: "Помешкання Алтеї",
+        text: `Ви знайшли прихований будинок на околиці міста, прикрашений оберегами від болотяних духів. Алтея зустрічає вас із посмішкою. Вона знає, чому ви прийшли. «Руфін? Я бачила, як він ішов у болота вночі...»`,
         choices: [
             {
                 text: "🗣️ Просто запитати, що вона бачила тієї ночі",
@@ -251,7 +251,7 @@ window.GAME_SCENES = {
                 nextSceneId: "gates",
                 action: () => {
                     window.playerState.clues.witch = true;
-                    addToLog("Чаклунка шепоче: «Він ніс стародавній артефакт боліт, який світився зеленим вогнем!»", "success");
+                    addToLog("Алтея шепоче: «Він ніс стародавній артефакт боліт, який світився зеленим вогнем!»", "success");
                     addItem("🧿 Болотяний амулет");
                     adjustResource("ash", 1);
                     adjustResource("heart", 1);

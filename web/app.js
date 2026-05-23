@@ -841,7 +841,7 @@ function consumeAntidoteForPoison() {
     if (idx !== -1) window.playerState.inventory.splice(idx, 1);
     addToLog("🧪 Ви вчасно випили Протиотруту і нейтралізували отруйні випари болота!", "success");
     synth.playSfx('chime');
-    goScene("ep3_meeting_lileya");
+    goScene("ep3_dry_mound");
 }
 
 function takePoisonDamage() {
@@ -853,7 +853,7 @@ function takePoisonDamage() {
         synth.playSfx('gameover');
         goScene("death");
     } else {
-        goScene("ep3_meeting_lileya");
+        goScene("ep3_dry_mound");
     }
 }
 
@@ -913,13 +913,11 @@ function resolveFinalWay(way) {
         <p>• Орден Семи Кинджалів: <strong>${window.playerState.reputation.knives > 0 ? '+' : ''}${window.playerState.reputation.knives}</strong></p>
         <p>• Хранителі Святої Вей: <strong>${window.playerState.reputation.keepers > 0 ? '+' : ''}${window.playerState.reputation.keepers}</strong></p>
         <p>• Мурі (Жаболюди): <strong>${window.playerState.reputation.muri > 0 ? '+' : ''}${window.playerState.reputation.muri}</strong></p>
-        <br>
-        <p style="font-style: italic; color: var(--text-muted); text-align: center; margin-top: 1rem;">Дякуємо, що зіграли у симулятор "Мандруючого Вартового"! Ваші рішення сформували долю Хейзмуру.</p>
         `,
         choices: [
             {
-                text: "Перейти до Епізоду 5",
-                nextSceneId: "ep5_epilogue"
+                text: "Вирушити у Початок Зими (Епізод 5)",
+                nextSceneId: "ep5_beginning_of_winter"
             }
         ]
     };
@@ -942,8 +940,8 @@ function goScene(sceneKey) {
     const questTag = document.getElementById("quest-tag");
     
     if (illContainer) {
-        if (sceneKey === "arriving" || sceneKey === "investigation" || sceneKey.startsWith("thread_") || sceneKey === "gates") {
-            if (questTag) questTag.textContent = "Епізод 1: Грейфорд";
+        if (sceneKey === "arriving" || sceneKey === "investigation" || sceneKey.startsWith("thread_") || sceneKey === "gates" || sceneKey.startsWith("ep1_")) {
+            if (questTag) questTag.textContent = "Епізод 1: Хейзмур";
             illContainer.style.backgroundImage = "url('assets/episode1.png')";
             illContainer.style.display = "block";
         } else if (sceneKey.startsWith("ep2_") || sceneKey.startsWith("valkorn_")) {
@@ -955,11 +953,11 @@ function goScene(sceneKey) {
             illContainer.style.backgroundImage = "url('assets/episode3.png')";
             illContainer.style.display = "block";
         } else if (sceneKey.startsWith("ep4_")) {
-            if (questTag) questTag.textContent = "Епізод 4: Два Береги";
+            if (questTag) questTag.textContent = "Епізод 4: Кам'яний Міст";
             illContainer.style.backgroundImage = "url('assets/episode4.png')";
             illContainer.style.display = "block";
         } else if (sceneKey.startsWith("ep5_")) {
-            if (questTag) questTag.textContent = "Епізод 5: Відхід Героя";
+            if (questTag) questTag.textContent = "Епізод 5: Епілог";
             illContainer.style.backgroundImage = "none";
             illContainer.style.display = "none";
         } else {
@@ -1038,7 +1036,7 @@ function finishQuest(gateAnswer, sergeantReply) {
         repDetails.push(`<p>• ${fNames[faction]}: <strong>${val > 0 ? '+' : ''}${val}</strong> (${status.text})</p>`);
     });
 
-    const endingScene = window.GAME_SCENES.ending;
+    const endingScene = window.GAME_SCENES.ending_episode1;
     endingScene.text = `
         <span class="quest-tag" style="color: var(--accent-gold);">РЕЗУЛЬТАТ: ${investigationGrade.toUpperCase()}</span>
         <h2 style="font-family: var(--font-gothic); color: var(--accent-gold); margin-top: 1rem; margin-bottom: 1rem;">⚖️ ВЕРДИКТ ВАРТОВОГО</h2>

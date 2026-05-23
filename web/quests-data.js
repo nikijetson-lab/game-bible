@@ -2,6 +2,11 @@ window.playerState = window.playerState || {};
 window.EPISODE_1_QUESTS = window.EPISODE_1_QUESTS || [];
 window.GAME_SCENES = {
     arriving: {
+
+        audioTrack: "assets/audio/ep1_tavern_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep1_tavern_crowd_loop.mp3",
+
         title: "Постоялий двір Грейфорда",
         text: `Ви входите у напівтемну таверну. За шинком стоїть Ерван — хазяїн закладу. Ви підходите і запитуєте про Руфіна. Ерван мовчки бере ваш лист, дивиться на дивну печатку (два перехрещені кинджали, коло і крапля), тримає його на мить довше, ніж варто звичайному паперу...<br><br>Потім піднімає на вас очі і запитує:<br><em>«І що он тобі був — друг, боржник, чи ти просто наймит-кур'єр?»</em>`,
         choices: [
@@ -25,6 +30,11 @@ window.GAME_SCENES = {
         ]
     },
     investigation: {
+
+        audioTrack: "assets/audio/ep1_tavern_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep1_tavern_crowd_loop.mp3",
+
         title: "Розслідування у Грейфорді",
         text: `Ерван повідомив, що картограф Руфін зник три дні тому. Його кімната досі оплачена, речі лежать недоторканими на другому поверсі таверни.<br><br>У вас є три головні нитки розслідування у Грейфорді. Дослідіть принаймні дві, щоб зібрати достатньо доказів і рушити за його слідами:`,
         choices: [
@@ -56,6 +66,11 @@ window.GAME_SCENES = {
         ]
     },
     thread_room: {
+
+        audioTrack: "assets/audio/ep1_tavern_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep1_tavern_crowd_loop.mp3",
+
         title: "Кімната Руфіна",
         text: `Ви заходите в порожню, пильну кімнату. Тут лежить зношений плащ картографа, дорожній посох та шкіряна сумка з незвичайним тавром у вигляді змії.<br><br>Що ви будете робити?`,
         choices: [
@@ -103,6 +118,11 @@ window.GAME_SCENES = {
         ]
     },
     thread_carver: {
+
+        audioTrack: "assets/audio/ep1_city_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep1_city_ambient.mp3",
+
         title: "Квартал ремісників — Різьбяр",
         text: `Ви знаходите майстерню різьбяра по дереву. Старий майстер працює над викривленою гілкою і неохоче реагує на ваші запитання про Руфіна. «Багато хто приходить і йде. Чому я маю допомагати кожному Вартовому?»`,
         choices: [
@@ -158,6 +178,11 @@ window.GAME_SCENES = {
         ]
     },
     thread_tavern: {
+
+        audioTrack: "assets/audio/ep1_tavern_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep1_tavern_crowd_loop.mp3",
+
         title: "Портова таверна",
         text: `У брудному шинку бармен протирає склянку: «Руфін спілкувався з куртизанкою на ім'я Касандра. Вона зараз сидить за кутовим столиком.»<br><br>Касандра дивиться на вас із підозрою.`,
         choices: [
@@ -201,6 +226,11 @@ window.GAME_SCENES = {
         ]
     },
     thread_witch: {
+
+        audioTrack: "assets/audio/ep1_city_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep1_city_ambient.mp3",
+
         title: "Помешкання Чаклунки",
         text: `Ви знайшли прихований будинок на околиці міста, прикрашений оберегами від болотяних духів. Чаклунка зустрічає вас із посмішкою. Вона знає, чому ви прийшли. «Руфін? Я бачила, як він ішов у болота вночі...»`,
         choices: [
@@ -245,6 +275,11 @@ window.GAME_SCENES = {
         ]
     },
     gates: {
+
+        audioTrack: "assets/audio/ep1_city_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep1_city_ambient.mp3",
+
         title: "Міські Ворота — Вихід у Хейзмур",
         text: `Ви зібрали достатньо доказів і підходите до важких дерев'яних воріт. Сержант воріт перевіряє свої записи: «Так, Руфін вийшов три дні тому в напрямку Тихого Шелесту.»<br><br>Він уважно дивиться на вас: <em>«З якого приводу Вартовий іде в болота?»</em>`,
         choices: [
@@ -276,6 +311,11 @@ window.GAME_SCENES = {
         ]
     },
     ending_episode1: {
+
+        audioTrack: "assets/audio/ep1_city_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep1_city_ambient.mp3",
+
         title: "Епізод 1 Завершено: Адресат відсутній",
         text: "",
         isChapterEnding: true,
@@ -287,8 +327,12 @@ window.GAME_SCENES = {
         ]
     },
 
-
     ep1_sunk_ferry: {
+
+        audioTrack: "assets/audio/swamp_music.mp3",
+
+        audioAtmosphere: "assets/audio/swamp_wind_rain.mp3",
+
         title: "Сонк-Феррі",
         text: `Ви прибули до Сонк-Феррі — невеликого поселення поромників на краю болота. Пахне стоячою водою та гнилим деревом.`,
         choices: [
@@ -311,6 +355,11 @@ window.GAME_SCENES = {
         ]
     },
     ep1_mirefold: {
+
+        audioTrack: "assets/audio/swamp_music.mp3",
+
+        audioAtmosphere: "assets/audio/swamp_wind_rain.mp3",
+
         title: "Мірефолд",
         text: `Ви увійшли до Мірефолду, поселення, що потопає в болотяному тумані. Тутешні жителі з підозрою дивляться на Вартового.`,
         choices: [
@@ -325,6 +374,11 @@ window.GAME_SCENES = {
         ]
     },
     ep1_lantern_house: {
+
+        audioTrack: "assets/audio/swamp_music.mp3",
+
+        audioAtmosphere: "assets/audio/swamp_wind_rain.mp3",
+
         title: "Ліхтарний Дім Святої Вей",
         text: `Перед вами височіє Ліхтарний Дім. Хранителі Святої Вей мовчки запалюють вогні, намагаючись розігнати темряву Порожнього сезону.`,
         choices: [
@@ -339,6 +393,11 @@ window.GAME_SCENES = {
         ]
     },
     ep1_silent_rustle: {
+
+        audioTrack: "assets/audio/swamp_music.mp3",
+
+        audioAtmosphere: "assets/audio/swamp_wind_rain.mp3",
+
         title: "Тихий Шелест",
         text: `Поселення Тихий Шелест стоїть посеред глибокого болота. Саме сюди прямував Руфін. Попереду видніється шлях до Галявини Моура.`,
         choices: [
@@ -350,6 +409,11 @@ window.GAME_SCENES = {
         ]
     },
     ep1_mours_glade: {
+
+        audioTrack: "assets/audio/swamp_music.mp3",
+
+        audioAtmosphere: "assets/audio/swamp_wind_rain.mp3",
+
         title: "Галявина Моура",
         text: `Галявина Моура. Тут енергія болота пульсує під ногами. Ви знайшли таємничий артефакт, захований у торфі - **Камінь Моура**.`,
         choices: [
@@ -370,10 +434,14 @@ window.GAME_SCENES = {
         ]
     },
 
-
     // --- ЕПІЗОД 2: ВАЛЬКОРН ---
 
     ep2_port_and_docks: {
+
+        audioTrack: "assets/audio/ep2_city_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+
         title: "Порт і Доки Валькорна",
         text: `Ви прибули до величезних доків Валькорна. Залізне місто дихає димом та машинами. Звідси ви можете потрапити у Тіньове Гетто або Дипломатичний Квартал.`,
         choices: [
@@ -392,6 +460,11 @@ window.GAME_SCENES = {
         ]
     },
     ep2_shadow_ghetto: {
+
+        audioTrack: "assets/audio/ep2_city_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+
         title: "Тіньове Гетто",
         text: `Гетто наповнене шумом, бідністю та секретами. Місцеві знають кожен таємний хід Валькорна.`,
         choices: [
@@ -406,6 +479,11 @@ window.GAME_SCENES = {
         ]
     },
     ep2_diplomatic_quarter: {
+
+        audioTrack: "assets/audio/ep2_city_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+
         title: "Дипломатичний Квартал",
         text: `Елегантний та суворий квартал, де плетуться інтриги між Орденом та Адміністрацією.`,
         choices: [
@@ -420,6 +498,11 @@ window.GAME_SCENES = {
         ]
     },
     ep2_palace_sewers: {
+
+        audioTrack: "assets/audio/ep2_dungeon_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep2_dungeon_ambient.mp3",
+
         title: "Палацові колектори",
         text: `Смердючі тунелі під Валькорном. Шлях далі веде безпосередньо до Палацу, але він закритий важкими гратами. Вам потрібні особливі навички або срібло, щоб пройти.`,
         choices: [
@@ -451,6 +534,11 @@ window.GAME_SCENES = {
         ]
     },
     ep2_royal_palace: {
+
+        audioTrack: "assets/audio/ep2_palace_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep2_palace_ambient.mp3",
+
         title: "Королівський Палац",
         text: `Величний палац Валькорна. Саме тут ухвалюються рішення, що впливають на Хейзмур. Звідси шлях лежить у Чорний Архів.`,
         choices: [
@@ -465,6 +553,11 @@ window.GAME_SCENES = {
         ]
     },
     valkorn_05: {
+
+        audioTrack: "assets/audio/ep2_dungeon_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep2_dungeon_ambient.mp3",
+
         title: "Чорний Архів",
         text: `Себастьян Марр тримає в руках важку срібну скриньку, всередині якої лежить **Перша Печатка**. Він дивиться на вас із підозрою: «Руфін мертвий. Його місія провалилася. Нам потрібен новий Ключник, який підкорить Моур королівській волі. Візьми Печатку і зламай її волю, або поверни її болоту.»<br><br>Тесса шепоче: «Це божевілля! Спроба зламати Печатку знищить рівновагу і випалить болото назавжди!»`,
         choices: [
@@ -490,6 +583,11 @@ window.GAME_SCENES = {
     // --- ЕПІЗОД 3: ГЛИБОКЕ БОЛОТО ---
 
     ep3_narrow_reeds: {
+
+        audioTrack: "assets/audio/ep3_swamp_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep3_swamp_ambient.mp3",
+
         title: "Вузькі очерети",
         text: `Ви заглиблюєтесь у Глибоке Болото, тікаючи з Валькорна. Вода піднімається до колін, а отруйні випари блекоти заповнюють повітря. Захистіться від отрути!`,
         choices: [
@@ -513,6 +611,11 @@ window.GAME_SCENES = {
         ]
     },
     ep3_dry_mound: {
+
+        audioTrack: "assets/audio/ep3_swamp_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep3_wind_ambient.mp3",
+
         title: "Сухий Горб",
         text: `Невеликий острівець сухої землі посеред трясовини. Ви можете перепочити або рушати слідами Амфібій далі.`,
         choices: [
@@ -527,6 +630,11 @@ window.GAME_SCENES = {
         ]
     },
     ep3_forbidden_place: {
+
+        audioTrack: "assets/audio/ep3_swamp_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep3_swamp_ambient.mp3",
+
         title: "Заборонене Місце",
         text: `Святилище Мурі, приховане від людських очей. Ви знаходите стародавні інгредієнти для крафту.`,
         choices: [
@@ -546,6 +654,11 @@ window.GAME_SCENES = {
         ]
     },
     ep3_altar_second_seal: {
+
+        audioTrack: "assets/audio/ep3_swamp_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep3_swamp_ambient.mp3",
+
         title: "Жертовник Другої Печатки",
         text: `Тут вас зустрічає **Лілея** — древня Ключниця боліт. Відбувається ментальний вибух від близькості Печатки. "Скоро Сезон Порожнечі закриється. Ти маєш зробити свій остаточний вибір на мосту між двома берегами..."`,
         choices: [
@@ -559,6 +672,11 @@ window.GAME_SCENES = {
     // --- ЕПІЗОД 4: ДВА БЕРЕГИ ---
 
     ep4_old_bridge_ruins: {
+
+        audioTrack: "assets/audio/ep4_bridge_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+
         title: "Руїни Старого Мосту",
         text: `Ви стоїте на Руїнах Старого Мосту. Тут вирішується доля Хейзмуру. Вам доведеться зробити Вирок Фронтиру.`,
         choices: [
@@ -569,6 +687,11 @@ window.GAME_SCENES = {
         ]
     },
     ep4_wardens_judgment: {
+
+        audioTrack: "assets/audio/ep4_bridge_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+
         title: "Суд Вартового",
         text: `На мосту вас чекають представники фракцій. Ваша репутація визначить, куди лежить ваш подальший шлях.`,
         choices: [
@@ -595,6 +718,11 @@ window.GAME_SCENES = {
         ]
     },
     ep4_resistance_camp: {
+
+        audioTrack: "assets/audio/ep4_bridge_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+
         title: "Табір Опору Жаболюдей",
         text: `Ви прибули до Табору Опору. Тут вас зустрічають як героя боліт. Ваша підтримка змінила баланс сил.`,
         choices: [
@@ -605,6 +733,11 @@ window.GAME_SCENES = {
         ]
     },
     ep4_military_outpost: {
+
+        audioTrack: "assets/audio/ep4_bridge_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+
         title: "Військовий Аванпост Грейфорда",
         text: `Ви прибули до Військового Аванпосту. Залізний порядок крокує в Хейзмур під вашим захистом.`,
         choices: [
@@ -615,6 +748,11 @@ window.GAME_SCENES = {
         ]
     },
     ep4_isolated_chapel: {
+
+        audioTrack: "assets/audio/ep4_bridge_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+
         title: "Ізольована Каплиця Хранителів",
         text: `Ви прибули до Каплиці. Ви обрали шлях рівноваги, не віддаючи перевагу жодній зі сторін.`,
         choices: [
@@ -626,6 +764,11 @@ window.GAME_SCENES = {
     },
 
     death: {
+
+        audioTrack: "assets/audio/death_music.mp3",
+
+        audioAtmosphere: "assets/audio/death_ambient.mp3",
+
         title: "Трагічна загибель",
         text: `Ваша подорож обірвалася в болотах Хейзмуру. Холодний туман огортає ваше тіло, а прокляття Порожнього Сезону забирає залишки вашої душі...<br><br>Ніхто не дізнається про вашу місію, а лист Руфіна згниє під шаром торфу.`,
         isAbsoluteFinal: true,
@@ -638,14 +781,23 @@ window.GAME_SCENES = {
     },
 
     ending: {
+
+        audioTrack: "assets/audio/ep5_winter_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep5_winter_ambient.mp3",
+
         title: "Кінець Гри",
         text: "",
         isAbsoluteFinal: true,
         choices: []
     },
 
-
     ep5_beginning_of_winter: {
+
+        audioTrack: "assets/audio/ep5_winter_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep5_winter_ambient.mp3",
+
         title: "Початок Зими",
         text: `Холодний вітер сповіщає про прихід зими. Ваша подорож Хейзмуром добігає кінця, але ще лишилося пройти Замерзлі Болота.`,
         choices: [
@@ -656,6 +808,11 @@ window.GAME_SCENES = {
         ]
     },
     ep5_frozen_bogs: {
+
+        audioTrack: "assets/audio/ep5_winter_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep5_winter_ambient.mp3",
+
         title: "Замерзлі Болота",
         text: `Вода перетворилася на лід. Ви йдете обережно, кожен крок лунає в тиші Порожнього Сезону. Попереду видніється Брама Забутих.`,
         choices: [
@@ -666,6 +823,11 @@ window.GAME_SCENES = {
         ]
     },
     ep5_gate_forgotten: {
+
+        audioTrack: "assets/audio/ep5_winter_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep5_winter_ambient.mp3",
+
         title: "Брама Забутих",
         text: `Стародавня брама, що відділяє Хейзмур від зовнішнього світу. Ви залишаєте цей край, несучи його наслідки у своїй душі.`,
         choices: [
@@ -676,6 +838,11 @@ window.GAME_SCENES = {
         ]
     },
     ep5_final_journey: {
+
+        audioTrack: "assets/audio/ep5_winter_music.mp3",
+
+        audioAtmosphere: "assets/audio/ep5_winter_ambient.mp3",
+
         title: "Остаточний Фінал Подорожі Яромира",
         text: `<p style="font-style: italic; color: var(--text-muted); text-align: center; margin-top: 1rem;">Дякуємо, що зіграли у симулятор "Мандруючого Вартового"! Ваші рішення сформували долю Хейзмуру.</p>`,
         isAbsoluteFinal: true,

@@ -899,10 +899,12 @@ function resolveFinalWay(way) {
         adjustReputation("muri", 20);
     }
 
-    const endingScene = window.GAME_SCENES.ending;
-    endingScene.title = `🏆 ЕПІЛОГ: ${title}`;
-    endingScene.text = `
-        <span class="quest-tag" style="color: var(--accent-gold);">ФІНАЛ ІСТОРІЇ: ВАРТОВИЙ ПІШОВ ДАЛІ</span>
+    const sceneId = `ep4_bridge_ending_${way.toLowerCase()}`;
+    window.GAME_SCENES[sceneId] = {
+        title: `🏆 ЕПІЛОГ: ${title}`,
+        isChapterEnding: true,
+        text: `
+        <span class="quest-tag" style="color: var(--accent-gold);">ЕПІЗОД 4 ЗАВЕРШЕНО</span>
         <h2 style="font-family: var(--font-gothic); color: var(--accent-gold); margin-top: 1rem; margin-bottom: 1.5rem;">⚖️ ${title}</h2>
         <p>${finalDesc}</p>
         <hr style="border: 0; height: 1px; background: var(--border-color); margin: 2rem 0;">
@@ -913,11 +915,16 @@ function resolveFinalWay(way) {
         <p>• Мурі (Жаболюди): <strong>${window.playerState.reputation.muri > 0 ? '+' : ''}${window.playerState.reputation.muri}</strong></p>
         <br>
         <p style="font-style: italic; color: var(--text-muted); text-align: center; margin-top: 1rem;">Дякуємо, що зіграли у симулятор "Мандруючого Вартового"! Ваші рішення сформували долю Хейзмуру.</p>
-    `;
+        `,
+        choices: [
+            {
+                text: "Перейти до Епізоду 5",
+                nextSceneId: "ep5_epilogue"
+            }
+        ]
+    };
 
-    endingScene.choices = [];
-    endingScene.isGameOver = true;
-    goScene("ending");
+    goScene(sceneId);
 }
 
 function goThread(thread) {

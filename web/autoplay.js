@@ -51,4 +51,12 @@ function runAutoplayStep() {
     }
     setTimeout(runAutoplayStep, 800);
 }
-setTimeout(runAutoplayStep, 800);
+
+const CONFIG = {
+    ENABLE_AUTOPLAY: false // Toggled to false for manual playthrough mode
+};
+
+// Initialization Hook
+if (CONFIG.ENABLE_AUTOPLAY) {
+    setTimeout(runAutoplayStep, 800);
+}

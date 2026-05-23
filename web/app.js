@@ -875,6 +875,7 @@ function chooseMotivation(motivation, dialogReply, nextScene) {
 
 function chooseValkornPath(path, reply, nextScene) {
     window.playerState.history.push({ step: "valkorn_path", choice: path });
+    window.playerState.valkorn_path = path;
     addToLog(`Обрано Шлях ${path}: ${reply}`, "system");
     
     if (path === "A") {
@@ -955,6 +956,7 @@ function resolveFinalWay(way) {
         adjustReputation("muri", 20);
     }
     
+    let finalSceneId = `ep5_final_${way}`;
     const sceneId = `ep4_bridge_ending_${way.toLowerCase()}`;
     window.GAME_SCENES[sceneId] = {
         title: `🏆 ЕПІЛОГ: ${title}`,
@@ -972,8 +974,8 @@ function resolveFinalWay(way) {
         `,
         choices: [
             {
-                text: "Вирушити у Початок Зими (Епізод 5)",
-                nextSceneId: "ep5_beginning_of_winter"
+                text: "Перейти до фінальної сцени",
+                nextSceneId: finalSceneId
             }
         ]
     };

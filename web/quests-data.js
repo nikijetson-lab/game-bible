@@ -664,111 +664,362 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "«Я готовий зустріти свою долю у фіналі.» (Вирушити на Міст)",
-                nextSceneId: "ep4_old_bridge_ruins"
+                nextSceneId: "ep4_start"
             }
         ]
     },
 
     // --- ЕПІЗОД 4: ДВА БЕРЕГИ ---
 
-    ep4_old_bridge_ruins: {
-
+    // Початок 4-го епізоду: Повернення до Валькорна
+    ep4_start: {
         audioTrack: "assets/audio/ep4_bridge_music.mp3",
-
         audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
-
-        title: "Руїни Старого Мосту",
-        text: `Ви стоїте на Руїнах Старого Мосту. Тут вирішується доля Хейзмуру. Вам доведеться зробити Вирок Фронтиру.`,
+        title: "Повернення до Валькорна",
+        text: `Ви повернулися до Валькорна. Ваш шлях залежить від того, яку долю ви обрали раніше.`,
         choices: [
             {
-                text: "Перейти до Суду Вартового",
-                nextSceneId: "ep4_wardens_judgment"
+                text: "Продовжити",
+                action: () => {
+                    if (window.playerState.valkorn_path === "A") {
+                        goScene("ep4_valkorn_iron_triumph");
+                    } else if (window.playerState.valkorn_path === "B") {
+                        goScene("ep4_valkorn_shadow_in_channels");
+                    } else {
+                        goScene("ep4_valkorn_fragile_ambassador");
+                    }
+                }
             }
         ]
     },
-    ep4_wardens_judgment: {
 
+    // Шлях А: Залізний Тріумф
+    ep4_valkorn_iron_triumph: {
         audioTrack: "assets/audio/ep4_bridge_music.mp3",
-
         audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        title: "Залізний Тріумф",
+        text: `Ви повертаєтесь у Валькорн як переможець у складі делегації Ордену Семи Кинджалів. Висушене болото більше не перешкоджає вашому шляху. Під важким парадним плащем ви ховаєте свої омертвілі руки, що перетворилися на сіру деревину. Лілея йде поруч із кресленнями древніх замків Ключників.
 
-        title: "Суд Вартового",
-        text: `На мосту вас чекають представники фракцій. Ваша репутація визначить, куди лежить ваш подальший шлях.`,
+<br><br><em>Голос Ілії (чітко й близько):</em> "Я чую кроки твого коня на мостовій... Ти повернувся, Вартовий. Твій розум чистий від болотяного шепоту. Я відчуваю твій холод, але це людський холод. Ми майже вдома. Себастьян чекає на тебе у Чорному Архіві."`,
         choices: [
             {
-                text: "Підтримати Міа та Мурі (Потрібна позитивна репутація Мурі)",
-                visible: () => window.playerState.reputation.muri > 0,
-                nextSceneId: "ep4_resistance_camp"
-            },
-            {
-                text: "Підтримати Марра та Орден (Потрібна позитивна репутація Адміністрації/Ордену)",
-                visible: () => (window.playerState.reputation.greyford > 0 || window.playerState.reputation.knives > 0),
-                nextSceneId: "ep4_military_outpost"
-            },
-            {
-                text: "Зберегти нейтралітет Веї (Потрібна позитивна репутація Хранителів)",
-                visible: () => window.playerState.reputation.keepers > 0,
-                nextSceneId: "ep4_isolated_chapel"
-            },
-            {
-                text: "Зробити вибір (Нейтральний)",
-                visible: () => window.playerState.reputation.muri <= 0 && window.playerState.reputation.greyford <= 0 && window.playerState.reputation.knives <= 0 && window.playerState.reputation.keepers <= 0,
-                nextSceneId: "ep4_isolated_chapel"
+                text: "Вирушити до Чорного Архіву на аудієнцію до Себастьяна Марра",
+                nextSceneId: "ep4_valkorn_marr_audience"
             }
         ]
     },
-    ep4_resistance_camp: {
 
+    ep4_valkorn_marr_audience: {
         audioTrack: "assets/audio/ep4_bridge_music.mp3",
-
         audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
-
-        title: "Табір Опору Жаболюдей",
-        text: `Ви прибули до Табору Опору. Тут вас зустрічають як героя боліт. Ваша підтримка змінила баланс сил.`,
+        title: "Аудієнція у Себастьяна Марра",
+        text: `Ви піднімаєтеся до Чорного Архіву. У центрі зали Себастьян Марр тріумфує:
+<br><br>"Ти зробив те, що не вдалося жодному Вартовому до тебе. Хейзмур вмирає. Орден не забуде твою службу. Але твої руки... це ціна порядку."
+<br><br>Він передає вам Арбалет Залізного Завіту та набір важких срібних пасток.
+<br><br>На виході з Архіву вас перехоплює Тесса. Вона з презирством дивиться на ваші дерев'яні пальці:
+<br><br>"Вони зробили з тебе залізний кілок, щоб забити його в землю болота. Міа та її люди зараз вмирають від спраги. Кого ти захищатимеш тепер?"`,
         choices: [
             {
-                text: "Підрахувати фінальні ваги та перейти до Початку Зими",
-                action: () => resolveFinalWay("B")
+                text: "Перейти до операції «Чиста земля»",
+                nextSceneId: "ep4_valkorn_iron_burn"
             }
         ]
     },
-    ep4_military_outpost: {
 
+    ep4_valkorn_iron_burn: {
         audioTrack: "assets/audio/ep4_bridge_music.mp3",
-
         audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
-
-        title: "Військовий Аванпост Грейфорда",
-        text: `Ви прибули до Військового Аванпосту. Залізний порядок крокує в Хейзмур під вашим захистом.`,
+        title: "Залізне випалювання",
+        text: `Себастьян Марр віддає наказ про початок фінальної операції «Чиста земля». Тесса піднімає бунт всередині Ордену, відмовляючись винищувати беззбройних. Вона закликає вас зупинити безумство Себастьяна.
+<br><br>Разом із бунтівними лицарями Тесси ви штурмуєте Архів, використовуючи арбалет Залізного Завіту проти каральних загонів.`,
         choices: [
             {
-                text: "Підрахувати фінальні ваги та перейти до Початку Зими",
+                text: "Зіткнутися з Себастьяном Марром",
+                nextSceneId: "ep4_valkorn_marr_death"
+            }
+        ]
+    },
+
+    ep4_valkorn_marr_death: {
+        audioTrack: "assets/audio/ep4_bridge_music.mp3",
+        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        title: "Смерть Себастьяна",
+        text: `Ви й Тесса заганяєте Себастьяна в кут. Він намагається активувати залізний захисний прес, але той ламається, і важка залізна плита зривається з ланцюгів, розчавивши тирана.
+<br><br><strong>Себастьян Марр гине.</strong> Тесса бере печатку Ордену та оголошує про реформи. Орден більше не буде катами. Руфін залишається живою, але порожньою тінню назавжди.`,
+        choices: [
+            {
+                text: "Повернутися до висушеного Хейзмуру",
+                nextSceneId: "ep4_hazemoor_ash_paths"
+            }
+        ]
+    },
+
+    ep4_hazemoor_ash_paths: {
+        audioTrack: "assets/audio/ep4_bridge_music.mp3",
+        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        title: "Попільні стежки Хейзмуру",
+        text: `Болото стрімко помирає. Вода пішла глибоко під землю, залишаючи за собою потріскану глину та гнилу твань, яка швидко перетворюється на попіл. Здичавілі Очеретяні Блукачі крихкі й розсипаються в труху.
+<br><br><em>Голос Ілії:</em> "Дивись... гниль відступає. Я відчуваю твій спокій, Вартовий. Твої руки більше не пульсують очеретом."`,
+        choices: [
+            {
+                text: "Іти до сухого Вівтаря Стагнації",
+                nextSceneId: "ep4_hazemoor_dry_altar"
+            }
+        ]
+    },
+
+    ep4_hazemoor_dry_altar: {
+        audioTrack: "assets/audio/ep4_bridge_music.mp3",
+        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        title: "Зіткнення біля сухого вівтаря",
+        text: `Біля сухого Вівтаря Стагнації стоїть виснажена Міа. З її потрісканої шкіри сочиться сірий пил. Вона намагається вичавити з мідної Печатки останні краплі болотяної сили, щоб скерувати отруйний газ на Грейфорд.
+<br><br>"Ти привів сюди залізо... Ти висушив наші ріки, Вартовий! Дивись на цю землю — вона мертва. Але я не дам тобі піти просто так. Ми згинемо разом!"`,
+        choices: [
+            {
+                text: "Прибити Мію залізними штирями до вівтаря",
+                action: () => {
+                    adjustReputation("muri", -50);
+                    goScene("ep4_hazemoor_dry_altar_nailed");
+                }
+            },
+            {
+                text: "Дозволити їй згаснути самостійно (Забрати Печатку)",
+                action: () => {
+                    adjustReputation("muri", -30);
+                    goScene("ep4_hazemoor_dry_altar_fade");
+                }
+            }
+        ]
+    },
+
+    ep4_hazemoor_dry_altar_nailed: {
+        audioTrack: "assets/audio/ep4_bridge_music.mp3",
+        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        title: "Вівтар Стагнації",
+        text: `Ви фізично фіксуєте кінцівки Мії на сухому камені залізними штирями, назавжди позбавляючи її зв'язку з землею. Вона не вмирає, але затихає як безпорадна, оніміла мумія Хейзмуру.`,
+        choices: [
+            {
+                text: "Повернутися у Валькорн для Великої Розв'язки",
                 action: () => resolveFinalWay("A")
             }
         ]
     },
-    ep4_isolated_chapel: {
 
+    ep4_hazemoor_dry_altar_fade: {
         audioTrack: "assets/audio/ep4_bridge_music.mp3",
-
         audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
-
-        title: "Ізольована Каплиця Хранителів",
-        text: `Ви прибули до Каплиці. Ви обрали шлях рівноваги, не віддаючи перевагу жодній зі сторін.`,
+        title: "Вівтар Стагнації",
+        text: `Ви відмовляєтесь від насильства й просто забираєте мідну Печатку з її рук. Міа падає на сухі плити, її дихання стає ледь помітним, і тіло повністю дерев'яніє, перетворюючись на суху вербову гілку.`,
         choices: [
             {
-                text: "Підрахувати фінальні ваги та перейти до Початку Зими",
+                text: "Повернутися у Валькорн для Великої Розв'язки",
+                action: () => resolveFinalWay("A")
+            }
+        ]
+    },
+
+    // Шлях Б: Тінь у Каналах
+    ep4_valkorn_shadow_in_channels: {
+        audioTrack: "assets/audio/ep4_bridge_music.mp3",
+        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        title: "Чудовисько під бруківкою",
+        text: `Ваше тіло остаточно перетворилося на очеретяного монстра з чорними очима. Ви потайки пробираєтеся до Валькорна крізь стічні колектори. Гнила болотна вода вже сочиться крізь тріщини підземних каналів столиці. Ваші вени пульсують чорним торф'яним соком.
+<br><br><em>Голос Ілії (дуже далеко):</em> "Вартовий... де ти? Навколо лише... холодна вода й темрява. Я ледь чую биття твого серця..."`,
+        choices: [
+            {
+                text: "Пробратися крізь колектори в пошуках Лілеї",
+                nextSceneId: "ep4_valkorn_tessa_encounter_channels"
+            }
+        ]
+    },
+
+    ep4_valkorn_tessa_encounter_channels: {
+        audioTrack: "assets/audio/ep4_bridge_music.mp3",
+        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        title: "Зіткнення з Тессою",
+        text: `На виході з колекторів під собором вас блокує варта на чолі з Тессою. Вона зупиняє солдатів і впізнає у вас Вартового.
+<br><br>"Боги... Вартовий? Що це болото з тобою зробило? Себастьян Марр збирає королівську гвардію, щоб випалити Хейзмур дощенту. Якщо в тобі залишилося хоч щось людське... тікай. Лілея ховається в крипті старого собору, тільки її рід може зняти це прокляття."`,
+        choices: [
+            {
+                text: "Використати Плетіння, щоб зникнути в тумані без бою",
+                action: () => {
+                    adjustReputation("knives", 10);
+                    goScene("ep4_valkorn_hunt_for_beast");
+                }
+            },
+            {
+                text: "Атакувати варту",
+                action: () => {
+                    adjustReputation("knives", -50);
+                    goScene("ep4_valkorn_hunt_for_beast");
+                }
+            }
+        ]
+    },
+
+    ep4_valkorn_hunt_for_beast: {
+        audioTrack: "assets/audio/ep4_bridge_music.mp3",
+        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        title: "Штурм палацу з тіней",
+        text: `Валькорн охоплений панікою — болотний туман просочився на вулиці. Себастьян Марр веде каральний загін з вогнеметами до підвалів.
+<br><br>У тілі очеретяного монстра ви ведете полювання в темних коридорах собору, затягуючи гвардійців у твань.`,
+        choices: [
+            {
+                text: "Наздогнати Себастьяна Марра в крипті",
+                nextSceneId: "ep4_valkorn_marr_strangle"
+            }
+        ]
+    },
+
+    ep4_valkorn_marr_strangle: {
+        audioTrack: "assets/audio/ep4_bridge_music.mp3",
+        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        title: "Розрахунок у крипті",
+        text: `Ви наздоганяєте Себастьяна в крипті. Він намагається захищатися срібним мечем, але ви обплутуєте його корінням верби й ламаєте броню.
+<br><br><strong>Себастьян Марр гине від ядухи.</strong>
+<br><br>Тесса з'являється й кидає меч на плити: "Досить, Вартовий! Ти вбив магістра. Військо не піде в болота. Дай нам піти." Вона оголошує реформацію Ордену.`,
+        choices: [
+            {
+                text: "Повернутися до Хейзмуру з Лілеєю",
+                nextSceneId: "ep4_hazemoor_monster_return"
+            }
+        ]
+    },
+
+    ep4_hazemoor_monster_return: {
+        audioTrack: "assets/audio/ep4_bridge_music.mp3",
+        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        title: "Повернення монстра",
+        text: `Ви повертаєтесь до Хейзмуру разом із Лілеєю, яка тримає важкий мідний ключ Ключників для ритуалу повернення вашої людської подоби.
+<br><br><em>Голос Ілії (дуже слабкий):</em> "Я... все ще тут... під цією чорною корою... Не дай очерету закрити мої очі..."`,
+        choices: [
+            {
+                text: "Прямувати до Вівтаря Стагнації",
+                nextSceneId: "ep4_hazemoor_mia_interferes"
+            }
+        ]
+    },
+
+    ep4_hazemoor_mia_interferes: {
+        audioTrack: "assets/audio/ep4_bridge_music.mp3",
+        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        title: "Трагічний антагоніст",
+        text: `Біля вівтаря вас зустрічає Міа. Вона бачить у вас нового вождя болота й жахається, побачивши Лілею з ключем:
+<br><br>"Ні! Болото обрало тебе! А вона хоче знову замкнути тебе в смертне тіло? Я не дозволю!"
+<br><br>Міа нападає на Лілею з шаленою люттю. Ви повинні захистити Лілею, не вбиваючи Мію, що завдає вам неймовірного болю.`,
+        choices: [
+            {
+                text: "Стримати Мію та дозволити Лілеї провести ритуал",
+                nextSceneId: "ep4_hazemoor_restoration_ritual"
+            }
+        ]
+    },
+
+    ep4_hazemoor_restoration_ritual: {
+        audioTrack: "assets/audio/ep4_bridge_music.mp3",
+        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        title: "Ритуал Ключниці",
+        text: `Коли Міа знерухомлена, Лілея силою вставляє мідний Ключ у рунічний паз на ваших дерев'яних грудях. Зі скреготом кісток дерев'яна кора тріскається й злазить шарами. Торф'яний сік замінюється червоною кров'ю. Очі знову стають людськими, хоча на передпліччях залишаються темні рубці.
+<br><br>Міа дивиться на вас із болем і презирством: "Ти вибрав бути слабким... Біжи, людська тварюко." Вона розвертається й зникає в тумані.
+<br><br><em>Голос Ілії (втомлено):</em> "Твоє серце... я знову чую його биття. Принаймні тепер ми зможемо йти далі..."`,
+        choices: [
+            {
+                text: "Перейти до Великої Розв'язки",
+                action: () => resolveFinalWay("B")
+            }
+        ]
+    },
+
+    // Шлях В: Крихкий Посол
+    ep4_valkorn_fragile_ambassador: {
+        audioTrack: "assets/audio/ep4_bridge_music.mp3",
+        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        title: "Живий замок на бруківці",
+        text: `Ви входите до Валькорна легально, як посланець і «живий замок» Хейзмуру. Ваша шкіра землиста, пальці чорні, але розум людський. Ви відчуваєте постійний біль у грудях від внутрішнього тертя срібла й міді.
+<br><br><em>Голос Ілії (тихо):</em> "Я чую твій важкий подих. Біль тримає тебе в реальності. Ти став мостом між нами та ними."`,
+        choices: [
+            {
+                text: "Перейти до Ратуші на дипломатичну шахівницю",
+                nextSceneId: "ep4_valkorn_diplomacy"
+            }
+        ]
+    },
+
+    ep4_valkorn_diplomacy: {
+        audioTrack: "assets/audio/ep4_bridge_music.mp3",
+        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        title: "Дипломатична шахівниця",
+        text: `У великій залі Ратуші Себастьян Марр, Тесса та Лілея ведуть перемовини.
+<br><br>Себастьян каже: "Ти пропонуєш нейтралітет? Це крихка конструкція. Орден вимагає встановлення застав ліхтарів уздовж усієї лінії очерету. Якщо відмовишся — пакт буде анульовано."
+<br><br>Лілея тихо шепоче, що Міа обіцяє не чіпати патрулі, якщо вони не перетинатимуть річку.`,
+        choices: [
+            {
+                text: "Прийняти умови Себастьяна про ліхтарні застави",
+                action: () => {
+                    adjustReputation("knives", 20);
+                    adjustReputation("muri", -20);
+                    goScene("ep4_valkorn_conspiracy");
+                }
+            },
+            {
+                text: "Заборонити ліхтарі, погрожуючи силою Моура",
+                action: () => {
+                    adjustReputation("muri", 20);
+                    adjustReputation("knives", -20);
+                    goScene("ep4_valkorn_conspiracy");
+                }
+            }
+        ]
+    },
+
+    ep4_valkorn_conspiracy: {
+        audioTrack: "assets/audio/ep4_bridge_music.mp3",
+        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        title: "Змова радикалів",
+        text: `Радикальні лицарі Ордену намагаються влаштувати замах на вас просто під час аудієнції, щоб спровокувати війну.
+<br><br>Разом із Тессою ви стримуєте змовників, балансуючи на межі Плетіння та використання срібних ліхтарів.
+<br><br>Коли змовників подолано, блідий Себастьян Марр підписує Пакт про розмежування кордонів. Він виживає, але його влада обмежена. Тесса стає верховним маршалом.`,
+        choices: [
+            {
+                text: "Повернутися до Хейзмуру для стабілізації Печаток",
+                nextSceneId: "ep4_hazemoor_three_forces"
+            }
+        ]
+    },
+
+    ep4_hazemoor_three_forces: {
+        audioTrack: "assets/audio/ep4_bridge_music.mp3",
+        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        title: "Сходження трьох сил",
+        text: `Дипломатичний нейтралітет зафіксовано, але земля Хейзмуру здригається — Печатки пручаються.
+<br><br>Ви прибуваєте до вівтаря разом із Лілеєю та Мією. Ви повинні діяти спільно.
+<br><br><em>Голос Ілії:</em> "Вода й Залізо. Тільки ти можеш змусити їх триматися разом. Це твій міст."`,
+        choices: [
+            {
+                text: "Розпочати ритуал замикання Печаток",
+                nextSceneId: "ep4_hazemoor_balance_ritual"
+            }
+        ]
+    },
+
+    ep4_hazemoor_balance_ritual: {
+        audioTrack: "assets/audio/ep4_bridge_music.mp3",
+        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        title: "Замикання Печаток",
+        text: `Ви керуєте рунічними механізмами вівтаря, обертаючи важкі бронзові диски та затискаючи срібні важелі. Ви замикаєте обидва ключі обома руками. Срібло й мідь замикаються безпосередньо у вашій плоті. Ваш стан стабілізується назавжди.
+<br><br>Міа відпускає вівтар: "Ти вибрав нести цей біль, щоб ми могли жити. Болото триматиметься у своїх межах."
+<br><br>Лілея втомлено спирається на ваше плече: "Це найважчий шлях. Ти будеш цим мостом усе життя."`,
+        choices: [
+            {
+                text: "Перейти до Великої Розв'язки",
                 action: () => resolveFinalWay("C")
             }
         ]
     },
 
     death: {
-
         audioTrack: "assets/audio/death_music.mp3",
-
         audioAtmosphere: "assets/audio/death_ambient.mp3",
-
         title: "Трагічна загибель",
         text: `Ваша подорож обірвалася в болотах Хейзмуру. Холодний туман огортає ваше тіло, а прокляття Порожнього Сезону забирає залишки вашої душі...<br><br>Ніхто не дізнається про вашу місію, а лист Руфіна згниє під шаром торфу.`,
         isAbsoluteFinal: true,
@@ -781,70 +1032,45 @@ window.GAME_SCENES = {
     },
 
     ending: {
-
         audioTrack: "assets/audio/ep5_winter_music.mp3",
-
         audioAtmosphere: "assets/audio/ep5_winter_ambient.mp3",
-
         title: "Кінець Гри",
         text: "",
         isAbsoluteFinal: true,
         choices: []
     },
 
-    ep5_beginning_of_winter: {
+    // --- ЕПІЗОД 5: ФІНАЛЬНІ СЦЕНИ ВІДХОДУ ---
 
+    ep5_final_A: {
         audioTrack: "assets/audio/ep5_winter_music.mp3",
-
         audioAtmosphere: "assets/audio/ep5_winter_ambient.mp3",
-
-        title: "Початок Зими",
-        text: `Холодний вітер сповіщає про прихід зими. Ваша подорож Хейзмуром добігає кінця, але ще лишилося пройти Замерзлі Болота.`,
-        choices: [
-            {
-                text: "Вирушити на Замерзлі Болота",
-                nextSceneId: "ep5_frozen_bogs"
-            }
-        ]
+        title: "Відхід: Суха Дорога",
+        text: `Сірий, холодний ранок. Небо чисте від туману, але абсолютно безживне. Хейзмур випалене й висушене. Ви йдете по пильній сухій дорозі геть від Валькорна. Рухи ваших омертвілих пальців повільні й жорсткі в шкіряних рукавицях.
+<br><br><em>Голос Ілії:</em> "Твій обов'язок згасає, як і тепло в твоїх руках. Попереду лише сухі й далекі краї... Йди."
+<br><br>Ви озираєтесь на кам'яні вежі Валькорна, поправляєте рукавицю і зникаєте на горизонті.`,
+        isAbsoluteFinal: true,
+        choices: []
     },
-    ep5_frozen_bogs: {
 
+    ep5_final_B: {
         audioTrack: "assets/audio/ep5_winter_music.mp3",
-
         audioAtmosphere: "assets/audio/ep5_winter_ambient.mp3",
-
-        title: "Замерзлі Болота",
-        text: `Вода перетворилася на лід. Ви йдете обережно, кожен крок лунає в тиші Порожнього Сезону. Попереду видніється Брама Забутих.`,
-        choices: [
-            {
-                text: "Прямувати до Брами Забутих",
-                nextSceneId: "ep5_gate_forgotten"
-            }
-        ]
+        title: "Відхід: Стежка Очерету",
+        text: `Вологі, густі сутінки. Все навколо вкрите сизим туманом. Ви йдете босоніж по вологому торфу. Ваша шкіра м'яка й тепла, але передпліччя назавжди вкриті темними рубцями кори верби. Ви залишаєте очеретяні хащі за спиною.
+<br><br><em>Голос Ілії:</em> "Ми залишаємо Хейзмур очерету. А наша дорога лежить далі, туди, де холодно й чужо. Не озирайся назад. Твоя душа вільна. Іди вперед."
+<br><br>Ви ступаєте крізь туман у невідомість, розчиняючись у сизій імлі.`,
+        isAbsoluteFinal: true,
+        choices: []
     },
-    ep5_gate_forgotten: {
 
+    ep5_final_C: {
         audioTrack: "assets/audio/ep5_winter_music.mp3",
-
         audioAtmosphere: "assets/audio/ep5_winter_ambient.mp3",
-
-        title: "Брама Забутих",
-        text: `Стародавня брама, що відділяє Хейзмур від зовнішнього світу. Ви залишаєте цей край, несучи його наслідки у своїй душі.`,
-        choices: [
-            {
-                text: "Перейти через Браму",
-                nextSceneId: "ep5_final_journey"
-            }
-        ]
-    },
-    ep5_final_journey: {
-
-        audioTrack: "assets/audio/ep5_winter_music.mp3",
-
-        audioAtmosphere: "assets/audio/ep5_winter_ambient.mp3",
-
-        title: "Остаточний Фінал Подорожі Яромира",
-        text: `<p style="font-style: italic; color: var(--text-muted); text-align: center; margin-top: 1rem;">Дякуємо, що зіграли у симулятор "Мандруючого Вартового"! Ваші рішення сформували долю Хейзмуру.</p>`,
+        title: "Відхід: Міст Між Берегами",
+        text: `Глибокі сутінки. Ви повільно йдете по кам'яному мосту через Шалену Річку. З одного боку світяться ліхтарі Валькорна, з іншого — темніє туман Хейзмуру. Ви зупиняєтесь посередині, стискаючи чорними пальцями два ключі від Печаток.
+<br><br><em>Голос Ілії:</em> "Це твоє місце — міст між двома світами. Але міст не може належати жодному з берегів. Ми забираємо ключі із собою... Я з тобою... завжди."
+<br><br>Ви розвертаєтесь і продовжуєте свій рух по мосту вперед — у невідомі землі, залишаючи обидва світи за своєю спиною.`,
         isAbsoluteFinal: true,
         choices: []
     }

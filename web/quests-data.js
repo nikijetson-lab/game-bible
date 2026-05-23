@@ -1,14 +1,18 @@
 window.playerState = window.playerState || {};
-window.playerState.doctrines = window.playerState.doctrines || { judge: 0, pathfinder: 0, lantern: 0, mediator: 0 };
-window.playerState.madness = window.playerState.madness || 0;
-window.playerState.resilience = window.playerState.resilience || 100;
-
+window.EPISODE_1_QUESTS = window.EPISODE_1_QUESTS || [];
 window.GAME_SCENES = {
-    // === Епізод 1: Грейфорд ===
     arriving: {
-        title: "Постоялий двір Грейфорда (Епізод 1)",
-        text: `Ви входите у напівтемну таверну. За шинком стоїть Ерван. Ви запитуєте про Руфіна. Ерван мовчки бере ваш лист, дивиться на дивну печатку...`,
+        title: "Постоялий двір Грейфорда",
+        text: `Ви входите у напівтемну таверну. За шинком стоїть Ерван — хазяїн закладу. Ви підходите і запитуєте про Руфіна. Ерван мовчки бере ваш лист, дивиться на дивну печатку (два перехрещені кинджали, коло і крапля), тримає його на мить довше, ніж варто звичайному паперу...<br><br>Потім піднімає на вас очі і запитує:<br><em>«І що он тобі був — друг, боржник, чи ти просто наймит-кур'єр?»</em>`,
         choices: [
+            {
+                text: "«Ми домовились. Я приїхав виконати свою частину обов'язку.» (Шлях Ідеаліста)",
+                action: () => chooseMotivation("Ідеаліст", "Ерван киває з повагою: «Людина обов'язку в наші часи — рідкість. Ось ключ від його кімнати нагорі.»", "investigation")
+            },
+            {
+                text: "«Він мав дещо, що мне потрібно. Це особиста справа.» (Особистий Інтерес)",
+                action: () => chooseMotivation("Особистий інтерес", "Ерван примружується: «У всіх тут свої інтереси. Тримай ключ, кімната на другому поверсі.»", "investigation")
+            },
             {
                 text: "«Я просто доставляю листа. Що далі — моя проблема.» (Прагматик)",
                 action: () => chooseMotivation("Прагматик", "Ерван хмикає: «Просто наймит. Це безпечніше. Ключ твій, роби свое діло.»", "investigation")
@@ -16,232 +20,435 @@ window.GAME_SCENES = {
             {
                 text: "⚖️ [Суддя] «Я представляю закон Грейфорда. Ти зобов'язаний співпрацювати зі слідством.»",
                 visible: () => window.playerState.doctrines.judge >= 1,
-                action: () => chooseMotivation("Суддя", "Ерван стримано киває. Ось ключ від кімнати Руфіна.", "investigation")
+                action: () => chooseMotivation("Суддя", "Ерван стримано киває: «Закон... Що ж, ми поважаємо закон міста, хоча болото його не чує. Ось ключ від кімнати Руфіна.»", "investigation")
             }
         ]
     },
     investigation: {
         title: "Розслідування у Грейфорді",
-        text: `Кімната Руфіна порожня. Треба знайти зачіпки.`,
+        text: `Ерван повідомив, що картограф Руфін зник три дні тому. Його кімната досі оплачена, речі лежать недоторканими на другому поверсі таверни.<br><br>У вас є три головні нитки розслідування у Грейфорді. Дослідіть принаймні дві, щоб зібрати достатньо доказів і рушити за його слідами:`,
         choices: [
             {
-                text: "🚪 Оглянути кімнату Руфіна",
-                action: () => {
-                    adjustResource("slate", 1);
-                    addItem("🎒 Сумка Руфіна");
-                    goThread("room_clues");
-                }
+                text: "🚪 Оглянути кімнату Руфіна на другому поверсі таверни",
+                visible: () => window.playerState && !window.playerState.clues.room,
+                action: () => goThread("room")
+            },
+            {
+                text: "🛠️ Відвідати квартал ремісників та поговорити з різьбярем",
+                visible: () => window.playerState && !window.playerState.clues.carver,
+                action: () => goThread("carver")
+            },
+            {
+                text: "🍻 Завітати у портову таверну та розпитати куртизанку Касандру",
+                visible: () => window.playerState && !window.playerState.clues.tavern,
+                action: () => goThread("tavern")
+            },
+            {
+                text: "🧙‍♀️ Оглянути будинок Чаклунки на околиці (Доступно після виявлення знаків)",
+                visible: () => window.playerState.clues.witch_hint === true,
+                action: () => goThread("witch")
+            },
+            {
+                text: "🚪 Іти до воріт міста та вирушати в Хейзмуру (Потрібно знайти докази)",
+                visible: () => (Object.values(window.playerState.clues).filter(v => v === true && v !== "witch_hint").length >= 2),
+                action: () => goScene("gates")
             }
         ]
     },
-    room_clues: {
+    thread_room: {
         title: "Кімната Руфіна",
-        text: `Тут безлад.`,
+        text: `Ви заходите в порожню, пильну кімнату. Тут лежить зношений плащ картографа, дорожній посох та шкіряна сумка з незвичайним тавром у вигляді змії.<br><br>Що ви будете робити?`,
         choices: [
+            {
+                text: "🔍 Детально обшукати особисті речі (Звичайний пошук)",
+                nextSceneId: "investigation",
+                action: () => {
+                    window.playerState.clues.room = true;
+                    addToLog("Знайдено шкіряну сумку з тавром ремісничого кварталу.", "success");
+                    addItem("🎒 Сумка Руфіна");
+                    adjustResource("bogiron", 1);
+                    adjustResource("water", 1);
+
+                }
+            },
             {
                 text: "🏕️ [Слідопит] Дослідити сліди бруду на підлозі",
                 visible: () => window.playerState.doctrines.pathfinder >= 1,
+                nextSceneId: "gates",
                 action: () => {
-                    adjustReputation("muri", 10);
+                    window.playerState.clues.room = true;
+                    addToLog("Слідопит виявив: болотяна глина на підлозі — чорний торф з глибин Хейзмуру.", "success");
+                    addItem("🎒 Сумка Руфіна");
                     adjustResource("loosestrife", 2);
-                    goScene("ep1_ending");
+                    adjustResource("slate", 1);
+                    adjustReputation("muri", 10);
+
                 }
             },
             {
                 text: "💡 [Ліхтар] Оглянути стіни та одвірки на наявність прихованої магії",
                 visible: () => window.playerState.doctrines.lantern >= 1,
+                nextSceneId: "gates",
                 action: () => {
+                    window.playerState.clues.room = true;
+                    window.playerState.clues.witch_hint = true;
+                    addToLog("Ліхтар виявив: ледь помітні захисні руни над дверима. Вони ведуть до Чаклунки.", "success");
+                    addItem("🎒 Сумка Руфіна");
+                    adjustResource("ash", 1);
+                    adjustResource("slate", 1);
                     adjustReputation("keepers", 10);
-                    adjustResource("silver", 1);
-                    goScene("ep1_ending");
-                }
-            },
-            {
-                text: "🤝 [Посередник] Знайти боргові розписки",
-                visible: () => window.playerState.doctrines.mediator >= 1,
-                action: () => {
-                    adjustReputation("greyford", 10);
-                    goScene("ep1_ending");
-                }
-            }
-        ]
-    },
-    ep1_ending: {
-        title: "Епізод 1 Завершено",
-        text: `Ви зібрали достатньо інформації. Шлях лежить до Валькорна.`,
-        isChapterEnding: true,
-        choices: [
-            {
-                text: "Вирушити до Валькорна (Епізод 2)",
-                nextSceneId: "ep2_valkorn_arrival"
-            }
-        ]
-    },
 
-    // === Епізод 2: Валькорн ===
-    ep2_valkorn_arrival: {
-        title: "Валькорн (Епізод 2)",
-        text: `Ви прибули до величного залізного міста Ордену Семи Кинджалів. Вас зустрічає Тесса.`,
-        choices: [
-            {
-                text: "Розпитати Тессу про Орден",
-                action: () => {
-                    adjustReputation("knives", 5);
-                    goScene("ep2_climax");
                 }
             }
         ]
     },
-    ep2_climax: {
-        title: "Чорний Архів Валькорна",
-        text: `Ви проникаєте в Архів і стикаєтесь з Хранителем Першої Печатки — Себастьяном Марром. Відбувається розкол. (Шлях А, Б або В)`,
+    thread_carver: {
+        title: "Квартал ремісників — Різьбяр",
+        text: `Ви знаходите майстерню різьбяра по дереву. Старий майстер працює над викривленою гілкою і неохоче реагує на ваші запитання про Руфіна. «Багато хто приходить і йде. Чому я маю допомагати кожному Вартовому?»`,
         choices: [
             {
-                text: "Шлях А: Допомогти Ордену",
+                text: "📜 Показати запечатаний лист Руфіна з дивною восковою печаткою",
+                nextSceneId: "investigation",
                 action: () => {
-                    adjustReputation("knives", 50);
-                    goScene("ep2_ending");
+                    window.playerState.clues.carver = true;
+                    addToLog("Різьбяр побачив печатку, здригнувся і сказав: «Руфін питав про дорогу до Тихого Шелесту.»", "success");
+                    adjustResource("bogiron", 2);
+                    adjustReputation("knives", 15);
+
                 }
             },
             {
-                text: "Шлях Б: Підтримати Тессу",
+                text: "🏕️ [Слідопит] Заговорити про болотяне дерево, з яким він працює",
+                visible: () => window.playerState.doctrines.pathfinder >= 1,
+                nextSceneId: "gates",
+                action: () => {
+                    window.playerState.clues.carver = true;
+                    addToLog("Ви впізнали корінь-вербу з болота. Майстер сказав: «Руфін ніс щось дуже важке перед виходом.»", "success");
+                    adjustResource("tendons", 2);
+                    adjustResource("bogiron", 1);
+                    adjustReputation("muri", 15);
+
+                }
+            },
+            {
+                text: "🤝 [Посередник] Запропонувати взаємовигідну угоду",
+                visible: () => window.playerState.doctrines.mediator >= 1,
+                nextSceneId: "gates",
+                action: () => {
+                    window.playerState.clues.carver = true;
+                    addToLog("Ви домовилися розізнати долю його боргів. Різьбяр зізнався: «Хтось оплатив йому подорож сріблом!»", "success");
+                    adjustResource("silver", 2);
+                    adjustReputation("greyford", 15);
+
+                }
+            },
+            {
+                text: "💡 [Ліхтар] Вказати на болотяні захисні знаки над його дверима",
+                visible: () => window.playerState.doctrines.lantern >= 1,
+                nextSceneId: "gates",
+                action: () => {
+                    window.playerState.clues.carver = true;
+                    window.playerState.clues.witch_hint = true;
+                    addToLog("Майстер бачить, що ви розумієте руни: «Руфін ставив ці знаки перед виходом вночі.»", "success");
+                    adjustResource("slate", 2);
+                    adjustReputation("keepers", 15);
+
+                }
+            }
+        ]
+    },
+    thread_tavern: {
+        title: "Портова таверна",
+        text: `У брудному шинку бармен протирає склянку: «Руфін спілкувався з куртизанкою на ім'я Касандра. Вона зараз сидить за кутовим столиком.»<br><br>Касандра дивиться на вас із підозрою.`,
+        choices: [
+            {
+                text: "🗣️ Спробувати розговорити її",
+                nextSceneId: "investigation",
+                action: () => {
+                    window.playerState.clues.tavern = true;
+                    addToLog("Касандра розповіла: «Руфін казав, що щось у Хейзмурі не чекає на людей.»", "success");
+                    adjustResource("loosestrife", 2);
+                    adjustReputation("greyford", 10);
+
+                }
+            },
+            {
+                text: "🤝 [Посередник] Заговорити про гроші та срібло Руфіна",
+                visible: () => window.playerState.doctrines.mediator >= 1,
+                nextSceneId: "gates",
+                action: () => {
+                    window.playerState.clues.tavern = true;
+                    addToLog("Касандра зізнається: «Він платив чистим сріблом. Хтось багатий найняв його.»", "success");
+                    adjustResource("silver", 1);
+                    adjustResource("peganum", 1);
+                    adjustReputation("knives", 10);
+
+                }
+            },
+            {
+                text: "⚖️ [Суддя] «Перешкоджання офіційному слідству Ордену карається суворо. Говори правду.»",
+                visible: () => window.playerState.doctrines.judge >= 1,
+                nextSceneId: "gates",
+                action: () => {
+                    window.playerState.clues.tavern = true;
+                    addToLog("Вона шепоче: «Він шукав старого провідника мурі. Заберіть цей слиз мурі, що він забув на столі!»", "success");
+                    adjustResource("slime", 2);
+                    adjustReputation("greyford", 20);
+                    adjustReputation("knives", -10);
+
+                }
+            }
+        ]
+    },
+    thread_witch: {
+        title: "Помешкання Чаклунки",
+        text: `Ви знайшли прихований будинок на околиці міста, прикрашений оберегами від болотяних духів. Чаклунка зустрічає вас із посмішкою. Вона знає, чому ви прийшли. «Руфін? Я бачила, як він ішов у болота вночі...»`,
+        choices: [
+            {
+                text: "🗣️ Просто запитати, що вона бачила тієї ночі",
+                nextSceneId: "investigation",
+                action: () => {
+                    window.playerState.clues.witch = true;
+                    addToLog("Вона каже: «Він ніс важку річ, яка горіла холодним світлом у темряві. Це було моторошно.»", "success");
+                    adjustResource("henbane", 1);
+                    adjustReputation("muri", 10);
+
+                }
+            },
+            {
+                text: "💡 [Ліхтар] Розпитати про магічне світіння його речей",
+                visible: () => window.playerState.doctrines.lantern >= 1,
+                nextSceneId: "gates",
+                action: () => {
+                    window.playerState.clues.witch = true;
+                    addToLog("Чаклунка шепоче: «Він ніс стародавній артефакт боліт, який світився зеленим вогнем!»", "success");
+                    addItem("🧿 Болотяний амулет");
+                    adjustResource("ash", 1);
+                    adjustResource("heart", 1);
+                    adjustResource("henbane", 2);
+                    adjustReputation("keepers", 20);
+
+                }
+            },
+            {
+                text: "🤝 [Посередник] Спробувати купити її знання",
+                visible: () => window.playerState.doctrines.mediator >= 1,
+                nextSceneId: "gates",
+                action: () => {
+                    window.playerState.clues.witch = true;
+                    addToLog("За жменю мідяків вона зізналася: «Він купив це світіння у когось впливового в Грейфорді.»", "success");
+                    adjustResource("henbane", 2);
+                    adjustReputation("greyford", -10);
+
+                }
+            }
+        ]
+    },
+    gates: {
+        title: "Міські Ворота — Вихід у Хейзмур",
+        text: `Ви зібрали достатньо доказів і підходите до важких дерев'яних воріт. Сержант воріт перевіряє свої записи: «Так, Руфін вийшов три дні тому в напрямку Тихого Шелесту.»<br><br>Він уважно дивиться на вас: <em>«З якого приводу Вартовий іде в болота?»</em>`,
+        choices: [
+            {
+                text: "«Я шукаю людину. Руфін пішов і не повернувся, я маю його знайти.» (Правда)",
+                action: () => {
+                    adjustReputation("greyford", 20);
+                    adjustReputation("knives", 10);
+                    finishQuest("Правда", "Сержант киває: «Нехай закон світить тобі в тумані.»");
+                }
+            },
+            {
+                text: "«Я маю перевірити маршрут. Є скарги на безпеку поселення.» (Напівправда)",
+                action: () => {
+                    adjustReputation("greyford", 5);
+                    adjustReputation("knives", -5);
+                    finishQuest("Напівправда", "Сержант скептично хмикає: «У Хейзмурі немає безпеки. Ну йди.»");
+                }
+            },
+            {
+                text: "⚖️ [Суддя] «Я виконую офіційне доручення суду Грейфорда щодо картографа. Зареєструйте вихід.»",
+                visible: () => window.playerState.doctrines.judge >= 1,
                 action: () => {
                     adjustReputation("greyford", 30);
-                    goScene("ep2_ending");
-                }
-            },
-            {
-                text: "Шлях В: Забрати Печатку собі",
-                action: () => {
-                    window.playerState.resilience -= 10;
-                    addItem("Перша Печатка");
-                    goScene("ep2_ending");
+                    adjustReputation("knives", 15);
+                    finishQuest("Судове доручення", "Сержант витягується струнко: «Зрозуміло, пане Суддя. Ваша подорож внесена до реєстру.»");
                 }
             }
         ]
     },
-    ep2_ending: {
-        title: "Епізод 2 Завершено",
-        text: `Валькорн залишається позаду. Ви прямуєте в Глибоке Болото. Ілія Марр тепер звучить лише у вашій голові.`,
+    ending_episode1: {
+        title: "Епізод 1 Завершено: Адресат відсутній",
+        text: "",
         isChapterEnding: true,
         choices: [
             {
-                text: "Спуститися в Глибоке Болото (Епізод 3)",
-                nextSceneId: "ep3_deep_bog"
+                text: "Перейти до Епізоду 2",
+                nextSceneId: "ep2_travel"
             }
         ]
     },
 
-    // === Епізод 3: Глибоке Болото ===
-    ep3_deep_bog: {
-        title: "Глибоке Болото (Епізод 3)",
-        text: `Болото вирує. Голос Ілії лунає у голові, захищаючи ваш розум від шепоту Моура.`,
+    // --- ЕПІЗОД 2: ВАЛЬКОРН ---
+    ep2_travel: {
+        title: "Подорож крізь Туманний ліс",
+        text: `Ви йдете вузькою стежкою між високими болотяними соснами. Туман густішає, повітря наповнене запахом гнилої хвої та торфу. Раптом попереду чується важке дихання та тріск гілок...<br><br>З темряви виповзає велетенська **Болотяна Тварюка** (Swamp Beast) з очима, що світяться гнилим зеленим світлом! Вона блокує вам дорогу!`,
         choices: [
             {
-                text: "Прислухатися до Ілії (Зберегти стійкість)",
+                text: "⚔️ Приготуватись до бою з монстром!",
                 action: () => {
-                    window.playerState.resilience += 5;
-                    window.playerState.madness -= 5;
-                    goScene("ep3_combat");
+                    startCombat("Болотяна Тварюка", 50, 10, () => goScene("ep2_victory"), () => goScene("death"));
                 }
+            }
+        ]
+    },
+    ep2_victory: {
+        title: "Перемога над Тварюкою",
+        text: `Ви здолали Болотяну Тварюку! Її тіло з шипінням розчиняється в торф'яному мулі. У слизі ви знаходите містичний інгредієнт — пульсуючу болотну органіку.<br><br>Невдовзі ви виходите до кам'яних околиць **Валькорна**. Тут, біля стародавнього Чорного Архіву, ви зустрічаєте командувача Себастьяна Марра та його помічницю Тессу. Вони тримають скриньку з Печаткою.`,
+        choices: [
+            {
+                text: "Підійти до Себастьяна Марра",
+                action: () => {
+                    adjustResource("heart", 1);
+                    goScene("valkorn_01");
+                }
+            }
+        ]
+    },
+        valkorn_01: {
+        title: "Людина з болота (Валькорн)",
+        text: `Ви прибуваєте до Валькорна — великого залізного міста. На воротах вас зупиняє міська варта. Після невеликої сутички вас пропускають до Торгового кварталу.`,
+        choices: [
+            {
+                text: "Вирушити до Торгового кварталу",
+                action: () => goScene("valkorn_02")
+            }
+        ]
+    },
+    valkorn_02: {
+        title: "Дві версії правди",
+        text: `У місті ви зустрічаєте Тессу, яка розповідає про розкол в Ордені. Себастьян Марр контролює Чорний Архів, але не всі з ним згодні.`,
+        choices: [
+            {
+                text: "Шукати більше інформації",
+                action: () => goScene("valkorn_03")
+            }
+        ]
+    },
+    valkorn_03: {
+        title: "Правильна ціна",
+        text: `Ви досліджуєте тіньові механізми міста та дізнаєтеся про таємні шляхи в підземелля під Архівом.`,
+        choices: [
+            {
+                text: "Зібрати докази",
+                action: () => goScene("valkorn_04")
+            }
+        ]
+    },
+    valkorn_04: {
+        title: "Людина, що послала Руфіна",
+        text: `Ви знаходите докази, що саме Блазень Фіпп (який є Себастьяном Марром) відправив Руфіна з Грейфорда. Час проникнути в Чорний Архів.`,
+        choices: [
+            {
+                text: "Увійти в Чорний Архів",
+                action: () => goScene("valkorn_05")
+            }
+        ]
+    },
+    valkorn_05: {
+        title: "Вибір біля Чорного Архіву",
+        text: `Себастьян Марр тримає в руках важку срібну скриньку, всередині якої лежить **Перша Печатка**. Він дивиться на вас із підозрою: «Руфін мертвий. Його місія провалилася. Нам потрібен новий Ключник, який підкорить Моур королівській волі. Візьми Печатку і зламай її волю, або поверни її болоту.»<br><br>Тесса шепоче: «Це божевілля! Спроба зламати Печатку знищить рівновагу і випалить болото назавжди!»`,
+        choices: [
+            {
+                text: "⚙️ [Шлях А] «Я підкорю Печатку волі столиці та Ордену.»",
+                action: () => chooseValkornPath("A", "Ви підкорюєте Печатку волі столиці. Ваші пальці починають темніти й дерев'яніти.", "ep3_swamp")
             },
             {
-                text: "Ігнорувати Ілію (Придушення голосу)",
-                action: () => {
-                    window.playerState.madness += 20;
-                    window.playerState.resilience -= 20;
-                    goScene("ep3_combat");
-                }
-            }
-        ]
-    },
-    ep3_combat: {
-        title: "Зіткнення у тумані",
-        text: `З туману виринають істоти Порожнього Сезону.`,
-        choices: [
-            {
-                text: "Битися зброєю Ордену",
-                action: () => {
-                    adjustResource("bogiron", -1);
-                    goScene("ep3_climax");
-                }
+                text: "🌿 [Шлях Б] «Я поверну Печатку болоту. Болото має дихати вільно.»",
+                action: () => chooseValkornPath("B", "Ви кидаєте Печатку в болото. Себастьян лютує, але Тесса допомагає вам втекти.", "ep3_swamp")
             },
             {
-                text: "💡 [Ліхтар] Використати Плетіння Моура (Bolo-Weaving)",
-                visible: () => window.playerState.doctrines.lantern >= 2,
-                action: () => {
-                    window.playerState.madness += 5;
-                    addToLog("Ви вплітаєте енергію болота у смертоносний удар.", "success");
-                    goScene("ep3_climax");
-                }
-            }
-        ]
-    },
-    ep3_climax: {
-        title: "Затоплена Обитель",
-        text: `Ви досягли Жертовника разом з Міа. Тут вирішується доля Другої Печатки.`,
-        choices: [
-            {
-                text: "Завершити Епізод 3",
-                action: () => goScene("ep3_ending")
-            }
-        ]
-    },
-    ep3_ending: {
-        title: "Епізод 3 Завершено",
-        text: `Ви зробили свій вибір у Затопленій Обителі.`,
-        isChapterEnding: true,
-        choices: [
-            {
-                text: "Перейти до Епізоду 4",
-                nextSceneId: "ep4_climax"
+                text: "🕯️ [Шлях В] «Печатка повинна тримати рівновагу. Я збережу її цілісність.»",
+                action: () => chooseValkornPath("C", "Ви закриваєте Печатку в скриньці, балансуючи між силами Ордену та болотних Мурі.", "ep3_swamp")
             }
         ]
     },
 
-    // === Епізод 4: Два Береги ===
-    ep4_climax: {
-        title: "Кульмінація (Епізод 4)",
-        text: `Фінальне зіткнення сил Валькорна та Хейзмуру. Великий вибір.`,
+    // --- ЕПІЗОД 3: ГЛИБОКЕ БОЛОТО ---
+    ep3_swamp: {
+        title: "Глибоке болото та Отруйний туман",
+        text: `Ви заглиблюєтесь у Глибоке Болото. Вода піднімається до колін. Раптом підіймаються отруйні випари блекоти! Ваше дихання перехоплює, а в голові починає паморочитись...<br><br>Вам потрібно швидко захиститися від отрути!`,
         choices: [
             {
-                text: "Пожертвувати Печатками для відновлення балансу",
+                text: "🧪 Випити Протиотруту зі своєї сумки",
+                visible: () => window.playerState.inventory.includes("🧪 Протиотрута"),
+                action: () => consumeAntidoteForPoison()
+            },
+            {
+                text: "🏕️ [Слідопит] Знайти чисту стежку за напрямком вітру",
+                visible: () => window.playerState.doctrines.pathfinder >= 1,
                 action: () => {
-                    window.playerState.resilience += 50;
-                    goScene("ep4_ending");
+                    addToLog("Слідопит успішно знайшов чистий прохід крізь вітер!", "success");
+                    goScene("ep3_meeting_lileya");
                 }
             },
             {
-                text: "Знищити Жертовник і Орден",
-                action: () => {
-                    window.playerState.madness += 50;
-                    goScene("ep4_ending");
-                }
+                text: "Пробитись крізь хмару напролом (Втрата 30 HP та 15 Рішучості)",
+                action: () => takePoisonDamage()
             }
         ]
     },
-    ep4_ending: {
-        title: "Епізод 4 Завершено",
-        text: `Все скінчено. Пилюка осідає.`,
-        isChapterEnding: true,
+    ep3_meeting_lileya: {
+        title: "Напівзатоплена Обитель",
+        text: `Ви виходите на суху галявину, де стоїть напівзатоплена Обитель. Тут вас зустрічає **Лілея** — древня Ключниця боліт. Вона дивиться на вас із глибоким сумом: «Я бачу тінь Моура на твоєму обличчі. Печатка змінила твій шлях. Скоро Сезон Порожнечі закриється. Ти маєш зробити свій остаточний вибір на мосту між двома берегами...»`,
         choices: [
             {
-                text: "Перейти до Епілогу",
-                nextSceneId: "ep5_epilogue"
+                text: "«Я готовий зустріти свою долю у фіналі.» (Вирушити на Міст)",
+                action: () => goScene("ep4_bridge")
             }
         ]
     },
 
-    // === Епізод 5: Епілог / Фінал ===
-    ep5_epilogue: {
-        title: "Епізод 5: Відхід Героя",
-        text: `Ви залишаєте болота і місто позаду. Порожній сезон завершено. Це остаточний фінал вашої подорожі.`,
+    // --- ЕПІЗОД 4: ДВА БЕРЕГИ ---
+    ep4_bridge: {
+        title: "Міст між Двома Берегами (Епізод 4)",
+        text: `Ви стоїте посеред величного стародавнього кам'яного мосту, що сполучає два береги: Чорний берег столиці Валькорна з його залізними ліхтарями та Зелений берег проклятого болота Хейзмуру. Вода під мостом шумить темним відлунням.<br><br>Себастьян Марр стоїть на Чорному березі з оголеним срібним мечем. Лілея та Міа стоять на Зеленому березі серед очеретів. Голос Ілії шепоче у вашій голові: *«Це фінал. Обери свій вирок...»*`,
+        choices: [
+            {
+                text: "⚙️ «Оголосити Вердикт Заліза (Шлях А)»",
+                action: () => resolveFinalWay("A")
+            },
+            {
+                text: "🌿 «Оголосити Вердикт Очерету (Шлях Б)»",
+                action: () => resolveFinalWay("B")
+            },
+            {
+                text: "🕯️ «Підписати Пакт Ключника (Шлях В)»",
+                action: () => resolveFinalWay("C")
+            }
+        ]
+    },
+
+    death: {
+        title: "Трагічна загибель",
+        text: `Ваша подорож обірвалася в болотах Хейзмуру. Холодний туман огортає ваше тіло, а прокляття Порожнього Сезону забирає залишки вашої душі...<br><br>Ніхто не дізнається про вашу місію, а лист Руфіна згниє під шаром торфу.`,
+        isAbsoluteFinal: true,
+        choices: [
+            {
+                text: "🎮 Почати подорож заново",
+                action: () => resetGame()
+            }
+        ]
+    },
+
+    ending: {
+        title: "Кінець Гри",
+        text: "",
         isAbsoluteFinal: true,
         choices: []
     },
-    death: {
-        title: "Трагічна загибель",
-        text: `Ваш розум не витримав Божевілля. Холодний туман огортає ваше тіло.`,
+
+    ep5_epilogue: {
+        title: "Відхід Героя (Епілог)",
+        text: `Ви залишаєте болота і місто позаду. Порожній сезон завершено. Це остаточний фінал вашої подорожі.`,
         isAbsoluteFinal: true,
         choices: []
     }

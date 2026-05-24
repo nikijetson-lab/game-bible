@@ -133,7 +133,7 @@ window.GAME_SCENES = {
                     window.playerState.clues.carver = true;
                     addToLog("Різьбяр побачив печатку, здригнувся і сказав: «Руфін питав про дорогу до Тихого Шелесту.»", "success");
                     adjustResource("bogiron", 2);
-                    adjustReputation("knives", 15);
+                    adjustReputation("order", 15);
 
                 }
             },
@@ -158,7 +158,7 @@ window.GAME_SCENES = {
                     window.playerState.clues.carver = true;
                     addToLog("Ви домовилися розізнати долю його боргів. Різьбяр зізнався: «Хтось оплатив йому подорож сріблом!»", "success");
                     adjustResource("silver", 2);
-                    adjustReputation("greyford", 15);
+                    adjustReputation("admin", 15);
 
                 }
             },
@@ -193,7 +193,7 @@ window.GAME_SCENES = {
                     window.playerState.clues.tavern = true;
                     addToLog("Касандра розповіла: «Руфін казав, що щось у Хейзмурі не чекає на людей.»", "success");
                     adjustResource("loosestrife", 2);
-                    adjustReputation("greyford", 10);
+                    adjustReputation("admin", 10);
 
                 }
             },
@@ -206,7 +206,7 @@ window.GAME_SCENES = {
                     addToLog("Касандра зізнається: «Він платив чистим сріблом. Хтось багатий найняв його.»", "success");
                     adjustResource("silver", 1);
                     adjustResource("peganum", 1);
-                    adjustReputation("knives", 10);
+                    adjustReputation("order", 10);
 
                 }
             },
@@ -218,8 +218,8 @@ window.GAME_SCENES = {
                     window.playerState.clues.tavern = true;
                     addToLog("Вона шепоче: «Він шукав старого провідника мурі. Заберіть цей слиз мурі, що він забув на столі!»", "success");
                     adjustResource("slime", 2);
-                    adjustReputation("greyford", 20);
-                    adjustReputation("knives", -10);
+                    adjustReputation("admin", 20);
+                    adjustReputation("order", -10);
 
                 }
             }
@@ -268,7 +268,7 @@ window.GAME_SCENES = {
                     window.playerState.clues.witch = true;
                     addToLog("За жменю мідяків вона зізналася: «Він купив це світіння у когось впливового в Грейфорді.»", "success");
                     adjustResource("henbane", 2);
-                    adjustReputation("greyford", -10);
+                    adjustReputation("admin", -10);
 
                 }
             }
@@ -286,16 +286,16 @@ window.GAME_SCENES = {
             {
                 text: "«Я шукаю людину. Руфін пішов і не повернувся, я маю його знайти.» (Правда)",
                 action: () => {
-                    adjustReputation("greyford", 20);
-                    adjustReputation("knives", 10);
+                    adjustReputation("admin", 20);
+                    adjustReputation("order", 10);
                     finishQuest("Правда", "Сержант киває: «Нехай закон світить тобі в тумані.»");
                 }
             },
             {
                 text: "«Я маю перевірити маршрут. Є скарги на безпеку поселення.» (Напівправда)",
                 action: () => {
-                    adjustReputation("greyford", 5);
-                    adjustReputation("knives", -5);
+                    adjustReputation("admin", 5);
+                    adjustReputation("order", -5);
                     finishQuest("Напівправда", "Сержант скептично хмикає: «У Хейзмурі немає безпеки. Ну йди.»");
                 }
             },
@@ -303,8 +303,8 @@ window.GAME_SCENES = {
                 text: "⚖️ [Суддя] «Я виконую офіційне доручення суду Грейфорда щодо картографа. Зареєструйте вихід.»",
                 visible: () => window.playerState.doctrines.judge >= 1,
                 action: () => {
-                    adjustReputation("greyford", 30);
-                    adjustReputation("knives", 15);
+                    adjustReputation("admin", 30);
+                    adjustReputation("order", 15);
                     finishQuest("Судове доручення", "Сержант витягується струнко: «Зрозуміло, пане Суддя. Ваша подорож внесена до реєстру.»");
                 }
             }
@@ -322,7 +322,7 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "Вирушити до Сонк-Феррі",
-                nextSceneId: "ep1_sunk_ferry"
+                nextSceneId: "hazemoor_ep1"
             }
         ]
     },
@@ -369,7 +369,7 @@ window.GAME_SCENES = {
             },
             {
                 text: "Повернутися до Сонк-Феррі",
-                nextSceneId: "ep1_sunk_ferry"
+                nextSceneId: "hazemoor_ep1"
             }
         ]
     },
@@ -388,7 +388,7 @@ window.GAME_SCENES = {
             },
             {
                 text: "Повернутися до Сонк-Феррі",
-                nextSceneId: "ep1_sunk_ferry"
+                nextSceneId: "hazemoor_ep1"
             }
         ]
     },
@@ -535,7 +535,7 @@ window.GAME_SCENES = {
             {
                 text: "Дозволити Тессі забрати артефакт",
                 action: () => {
-                    adjustReputation("knives", -10);
+                    adjustReputation("order", -10);
                     goScene("ep2_valkorn_loen");
                 }
             }
@@ -569,21 +569,21 @@ window.GAME_SCENES = {
             {
                 text: "🤝 Співпрацювати з Орденом",
                 action: () => {
-                    adjustReputation("knives", 30);
+                    adjustReputation("order", 30);
                     goScene("ep2_valkorn_black_archive");
                 }
             },
             {
                 text: "Нейтралітет",
                 action: () => {
-                    adjustReputation("knives", 10);
+                    adjustReputation("order", 10);
                     goScene("ep2_valkorn_black_archive");
                 }
             },
             {
                 text: "⚔️ Протистояння",
                 action: () => {
-                    adjustReputation("knives", -40);
+                    adjustReputation("order", -40);
                     adjustReputation("admin", 20);
                     goScene("ep2_valkorn_black_archive");
                 }
@@ -935,14 +935,14 @@ window.GAME_SCENES = {
             {
                 text: "Використати Плетіння, щоб зникнути в тумані без бою",
                 action: () => {
-                    adjustReputation("knives", 10);
+                    adjustReputation("order", 10);
                     goScene("ep4_valkorn_hunt_for_beast");
                 }
             },
             {
                 text: "Атакувати варту",
                 action: () => {
-                    adjustReputation("knives", -50);
+                    adjustReputation("order", -50);
                     goScene("ep4_valkorn_hunt_for_beast");
                 }
             }
@@ -1048,7 +1048,7 @@ window.GAME_SCENES = {
             {
                 text: "Прийняти умови Себастьяна про ліхтарні застави",
                 action: () => {
-                    adjustReputation("knives", 20);
+                    adjustReputation("order", 20);
                     adjustReputation("muri", -20);
                     goScene("ep4_valkorn_conspiracy");
                 }
@@ -1057,7 +1057,7 @@ window.GAME_SCENES = {
                 text: "Заборонити ліхтарі, погрожуючи силою Моура",
                 action: () => {
                     adjustReputation("muri", 20);
-                    adjustReputation("knives", -20);
+                    adjustReputation("order", -20);
                     goScene("ep4_valkorn_conspiracy");
                 }
             }
@@ -1166,5 +1166,822 @@ window.GAME_SCENES = {
         isAbsoluteFinal: true,
         choices: []
     }
+
+,
+
+    hazemoor_ep1: {
+        title: "Шум на воді",
+        text: `Перед світанком, перший день.<br>Герой і Міа йдуть по коліно у воді через вузьку протоку в очереті. Міа рухається безшумно. Герой — ні. Болото звучить навколо: хтось реагує на кроки, завмираючи, віддаляючись від протоки. Міа зупиняється і дивиться на героя. Без слів. Вона чекає, поки він зрозуміє, що треба змінити спосіб руху.`,
+        choices: [
+            {
+                text: "Сповільнитись, намагатись ступати м'якше.",
+                action: () => {
+                    window.playerState.mia_trust = (window.playerState.mia_trust || 0) + 1;
+                    addToLog("Міа помічає.", "success");
+                    goScene("hazemoor_ep2");
+                }
+            },
+            {
+                text: "Зупинитись і подивитись, як вона ставить ноги.",
+                action: () => {
+                    window.playerState.mia_trust = (window.playerState.mia_trust || 0) + 1;
+                    addToLog("Вчиться спостерігаючи.", "success");
+                    goScene("hazemoor_ep2");
+                }
+            },
+            {
+                text: "Продовжити як ішов.",
+                action: () => {
+                    addToLog("Виживання — цього достатньо.", "success");
+                    goScene("hazemoor_ep2");
+                }
+            },
+            {
+                text: "Тривожно озиратись, створюючи ще більше шуму.",
+                action: () => {
+                    window.playerState.mia_trust = (window.playerState.mia_trust || 0) - 1;
+                    addToLog("Тривога — це шум.", "success");
+                    goScene("hazemoor_ep2");
+                }
+            }
+        ]
+    },
+
+    hazemoor_ep2: {
+        title: "Нічліг і світло в темряві",
+        text: `Вечір першого дня.<br>Міа зупиняється на нічліг — невеликий острівець, суха земля, старе дерево, місце, яке вона явно знає. Розкладає багаття так, щоб його не було видно здалеку: вологе коріння, дим утворює низький шар над водою.<br>Вночі — звуки болота. Щось велике рухається поряд у воді. Герой помічає в темряві десятки рухомих жовтих цяток.`,
+        choices: [
+            {
+                text: "Допомогти мовчки. А потім запитати Міа, що це за світло.",
+                action: () => {
+                    window.playerState.mia_trust = (window.playerState.mia_trust || 0) + 1;
+                    addToLog("Вона відповідає: «Спостерігачі. Вони дивляться — чи варто боятись.»", "success");
+                    goScene("hazemoor_ep3");
+                }
+            },
+            {
+                text: "Почати говорити, а потім спостерігати, не рухаючись.",
+                action: () => {
+                    addToLog("Міа відповідає коротко або не відповідає.", "success");
+                    goScene("hazemoor_ep3");
+                }
+            },
+            {
+                text: "Підняти зброю на світло.",
+                action: () => {
+                    window.playerState.mia_trust = (window.playerState.mia_trust || 0) - 1;
+                    addToLog("Міа кладе руку на його зап'ясток: «Воно не цікавиться нами. Не змушуй його зацікавитись.»", "success");
+                    goScene("hazemoor_ep3");
+                }
+            }
+        ]
+    },
+
+    hazemoor_ep3: {
+        title: "Глибока вода і слід Руфіна",
+        text: `Ранок — середина другого дня.<br>Вранці вони виходять до широкої чорної води — стариця без видимого дна. Міа пірнає і зникає. Довго не з'являється.<br>Після переправи Міа знаходить слід. На болотяному березі — відбиток чобота і знак на корі дерева. Скорочення загальною мови, яке знає тільки той, хто знав Руфіна. Міа питає: «Ти знаєш, що це означає?»`,
+        choices: [
+            {
+                text: "Чекати. Потім чесно відповісти про знак.",
+                action: () => {
+                    window.playerState.mia_trust = (window.playerState.mia_trust || 0) + 1;
+                    addToLog("Міа виринає за кілька хвилин з іншого боку. Питає: «Він живий чи мертвий — тобі важливо?»", "success");
+                    goScene("hazemoor_ep4");
+                }
+            },
+            {
+                text: "Почати пірнати, шукати її. Намагатись вгадати знак.",
+                action: () => {
+                    addToLog("Міа знає, коли людина бреше.", "success");
+                    goScene("hazemoor_ep4");
+                }
+            },
+            {
+                text: "Кричати, гукати. Потім збрехати про знак.",
+                action: () => {
+                    window.playerState.mia_trust = (window.playerState.mia_trust || 0) - 1;
+                    addToLog("Звук по воді йде далеко.", "success");
+                    goScene("hazemoor_ep4");
+                }
+            }
+        ]
+    },
+
+    hazemoor_ep4: {
+        title: "Чужий слід і болотяна істота",
+        text: `Середина — післяполудень другого дня.<br>Вони виходять на відкриту воду. Міа входить без вагань. Посередині Міа раптом зупиняється над нерухомою водою. Нахиляється. Торкає поверхню. «Тихо. Не рухайся.» Під водою — щось велике. Слідом за нею — щось торкається ноги героя знизу.`,
+        choices: [
+            {
+                text: "Завмерти, не рухатись.",
+                action: () => {
+                    window.playerState.mia_trust = (window.playerState.mia_trust || 0) + 1;
+                    addToLog("Істота обнюхує, торкається, іде далі. Міа: «Воно вирішило, що ти не їжа.»", "success");
+                    goScene("hazemoor_ep5");
+                }
+            },
+            {
+                text: "Повільно рухатись далі.",
+                action: () => {
+                    addToLog("Ви повільно відступаєте.", "success");
+                    goScene("hazemoor_ep5");
+                }
+            },
+            {
+                text: "Різко смикнутись або хапати зброю.",
+                action: () => {
+                    window.playerState.mia_trust = (window.playerState.mia_trust || 0) - 1;
+                    addToLog("Бій у воді, важкий. Міа закривається.", "success");
+                    goScene("hazemoor_ep5");
+                }
+            }
+        ]
+    },
+
+    hazemoor_ep5: {
+        title: "Нічна варта ім'я вночі",
+        text: `Ніч другого дня.<br>Другий нічліг. Міа сідає і дивиться на воду — довго, без руху. Вона втомилась.`,
+        choices: [
+            {
+                text: "Взяти варту без слів. Запитати чесно про ім'я Моур.",
+                action: () => {
+                    window.playerState.mia_trust = (window.playerState.mia_trust || 0) + 1;
+                    addToLog("Міа зупиняється, дивиться, відповідає коротко: «Не питай про це. Ще не час.»", "success");
+                    goScene("hazemoor_ep6");
+                }
+            },
+            {
+                text: "Запитати, чи все гаразд. Мовчати.",
+                action: () => {
+                    addToLog("Міа: «Все.»", "success");
+                    goScene("hazemoor_ep6");
+                }
+            },
+            {
+                text: "Лягти спати самому. Наполягати на відповіді вранці.",
+                action: () => {
+                    window.playerState.mia_trust = (window.playerState.mia_trust || 0) - 1;
+                    addToLog("Неправильний час.", "success");
+                    goScene("hazemoor_ep6");
+                }
+            }
+        ]
+    },
+
+    hazemoor_ep6: {
+        title: "Заборонене місце",
+        text: `Третій день.<br>Міа зупиняється перед широкою галявиною — відкрита вода, туман, у центрі щось темніє під поверхнею. Вона не йде туди. Обходить по краю, далеко.`,
+        choices: [
+            {
+                text: "Обійти без запитань.",
+                action: () => {
+                    window.playerState.mia_trust = (window.playerState.mia_trust || 0) + 1;
+                    addToLog("Міа сповільнює темп — вона більше не на крок попереду, тепер поряд.", "success");
+                    goScene("hazemoor_ep7");
+                }
+            },
+            {
+                text: "Запитати, чому обхід.",
+                action: () => {
+                    addToLog("Вона: «Там не ходять.»", "success");
+                    goScene("hazemoor_ep7");
+                }
+            },
+            {
+                text: "Піти напряму.",
+                action: () => {
+                    window.playerState.mia_trust = (window.playerState.mia_trust || 0) - 1;
+                    addToLog("Міа не зупиняє, але довго не говорить після.", "success");
+                    goScene("hazemoor_ep7");
+                }
+            }
+        ]
+    },
+
+    hazemoor_ep7: {
+        title: "Останній перехід і фінальне питання",
+        text: `Вечір третього дня.<br>До Тихого Шелесту — кілька годин. На вузькій стежці над трясовиною — гнилий настил. Міа провалюється. Герой витягує її.<br>Тихий Шелест видно. Міа зупиняється: «Я маю тебе запитати. Навіщо ти тут? Навіщо тобі Хейзмур?»`,
+        choices: [
+            {
+                text: "Дати їй час. Чесно відповісти про свою мотивацію.",
+                action: () => {
+                    window.playerState.mia_trust = (window.playerState.mia_trust || 0) + 1;
+                    addToLog("Міа дивиться кілька секунд: «Добре.»", "success");
+                    if (window.playerState.mia_trust >= 5) {
+                        goScene("hazemoor_result_good");
+                    } else {
+                        goScene("hazemoor_result_bad");
+                    }
+                }
+            },
+            {
+                text: "Пожартувати або знецінити. Відповісти нещиро.",
+                action: () => {
+                    window.playerState.mia_trust = (window.playerState.mia_trust || 0) - 1;
+                    addToLog("Міа: «Ти кажеш те, що хочеш, щоб я почула. Спробуй ще раз.»", "success");
+                    if (window.playerState.mia_trust >= 5) {
+                        goScene("hazemoor_result_good");
+                    } else {
+                        goScene("hazemoor_result_bad");
+                    }
+                }
+            }
+        ]
+    },
+
+    hazemoor_result_good: {
+        title: "Шлях відкрито",
+        text: `Міа веде героя в Тихий Шелест під її захистом. Мурі зустрічають без ворожості.`,
+        choices: [
+            {
+                text: "Продовжити шлях",
+                action: () => {
+                    window.playerState.flags = window.playerState.flags || {};
+                    window.playerState.flags.mia_with_hero = true;
+                    goScene("tykhy_arrive");
+                }
+            }
+        ]
+    },
+
+    hazemoor_result_bad: {
+        title: "Запасний маршрут",
+        text: `Міа зникає. Герой іде сам. Тінь зверху: літаючий монстр. Падіння у воду. Сітки Мурі — герой у Тихому Шелесті, але не як гість, а як знахідка.`,
+        choices: [
+            {
+                text: "Вибратися з сіток",
+                action: () => {
+                    window.playerState.flags = window.playerState.flags || {};
+                    window.playerState.flags.mia_with_hero = false;
+                    goScene("tykhy_arrive");
+                }
+            }
+        ]
+    },
+
+    tykhy_arrive: {
+        title: "Тихий Шелест",
+        text: `Тихий Шелест. Кілька ниток розслідування тягнуться звідси.`,
+        choices: [
+            {
+                text: "Розпитати Варріка про Руфіна",
+                action: () => goScene("tykhy_rufin")
+            },
+            {
+                text: "Знайти Каена, матір Міа і дізнатись таємницю",
+                action: () => goScene("tykhy_kaen")
+            },
+            {
+                text: "Поговорити з Міа про її рішення",
+                visible: () => window.playerState.flags.mia_with_hero === true,
+                action: () => goScene("tykhy_mia")
+            },
+            {
+                text: "Заробити довіру як чужинець",
+                visible: () => window.playerState.flags.mia_with_hero === false,
+                action: () => goScene("tykhy_status")
+            },
+            {
+                text: "Вирушити до Галявини Моура",
+                action: () => goScene("tykhy_exit")
+            }
+        ]
+    },
+
+    tykhy_rufin: {
+        title: "Той, хто знав дорогу",
+        text: `Варрік питає: «Навіщо тобі ця людина?»`,
+        choices: [
+            {
+                text: "Правда.",
+                action: () => goScene("tykhy_rufin_found")
+            }
+        ]
+    },
+
+    tykhy_rufin_found: {
+        title: "Сліди Руфіна",
+        text: `Руфін пішов до забороненої галявини. Варрік: «Він ніс щось що світилось. Не ліхтар.»`,
+        choices: [
+            {
+                text: "Повернутися",
+                action: () => goScene("tykhy_exit")
+            }
+        ]
+    },
+
+    tykhy_kaen: {
+        title: "Що батьки не кажуть",
+        text: `Каен знайшов Міа в болоті. Немовля, живе, без слідів як вона там опинилась.`,
+        choices: [
+            {
+                text: "Повернутися",
+                action: () => goScene("tykhy_exit")
+            }
+        ]
+    },
+
+    tykhy_mia: {
+        title: "Друге рішення",
+        text: `Міа приймає рішення йти з вами. «Там є щось що стосується мене більше ніж тебе.»`,
+        choices: [
+            {
+                text: "Повернутися",
+                action: () => goScene("tykhy_exit")
+            }
+        ]
+    },
+
+    tykhy_status: {
+        title: "Чужинець у сітці",
+        text: `Ви заробляєте довіру, допомагаючи поселенню. Міа повертається і бачить це.`,
+        choices: [
+            {
+                text: "Повернутися",
+                action: () => goScene("tykhy_exit")
+            }
+        ]
+    },
+
+    tykhy_exit: {
+        title: "Кінець локації",
+        text: `Всі нитки зібрані або відкинуті. Герой іде далі в Хейзмур. Туди де галявина і дух.`,
+        choices: [
+            {
+                text: "Вийти до Галявини",
+                action: () => goScene("glade_explore")
+            }
+        ]
+    },
+
+    glade_explore: {
+        title: "Розвідка Галявини",
+        text: `Галявина виглядає як звичайна болотяна заводь. Тиша. Дивне світло. Пам'ять Руфіна.`,
+        choices: [
+            {
+                text: "Активно шукати зустріч. Підійти до води.",
+                action: () => goScene("glade_enter")
+            }
+        ]
+    },
+
+    glade_enter: {
+        title: "Вхід до Галявини",
+        text: `Міа відкриває туман своєю присутністю. Вхід — знизу. Треба пірнути.`,
+        choices: [
+            {
+                text: "Пірнути (якщо готові)",
+                visible: () => (window.playerState.mia_trust || 0) >= 3,
+                action: () => goScene("glade_mour")
+            },
+            {
+                text: "Паніка. Виринаємо.",
+                visible: () => (window.playerState.mia_trust || 0) < 3,
+                action: () => goScene("glade_explore")
+            }
+        ]
+    },
+
+    glade_mour: {
+        title: "Зустріч з Моуром",
+        text: `Під водою — основа старого артефакту. З поверхні злітають мільйони комах, утворюючи голову Моура. Він зупиняється на Міа.`,
+        choices: [
+            {
+                text: "Продовжити",
+                action: () => goScene("glade_mia_truth")
+            }
+        ]
+    },
+
+    glade_mia_truth: {
+        title: "Правда Міа",
+        text: `Міа каже: «Я думала, що чую болото... але я чула його тому, що воно — я.» Моур показує видіння — фрагмент Прадавньої війни і символ Ордену Семи Кинджалів.`,
+        choices: [
+            {
+                text: "Запитати про Орден",
+                action: () => goScene("glade_mount")
+            }
+        ]
+    },
+
+    glade_mount: {
+        title: "Болотяний Маунт",
+        text: `З глибини піднімається щось велике і повільне. Болотяний маунт приймає героя.`,
+        choices: [
+            {
+                text: "Покинути галявину",
+                action: () => goScene("glade_result")
+            }
+        ]
+    },
+
+    glade_result: {
+        title: "Повернення з Галявини",
+        text: `Ви маєте знання про Моура і порожній камінь. Сліди Руфіна розкриті.`,
+        choices: [
+            {
+                text: "Вирушити до Сонк-Феррі",
+                action: () => goScene("sunkferry_arrive")
+            }
+        ]
+    },
+
+    sunkferry_arrive: {
+        title: "Прибуття до Сонк-Феррі",
+        text: `Сонк-Феррі. Затонуле річкове поселення. Черги за раціоном стають агресивними. Зник зерновий конвой.`,
+        choices: [
+            {
+                text: "Розслідувати 'Голод знизу'",
+                action: () => goScene("holod_investigate")
+            }
+        ]
+    },
+
+    holod_investigate: {
+        title: "Голод знизу",
+        text: `Конвой зник біля Затонулої Сторожової Дороги. Частину зерна відвели чиновники, а контрабандисти допомогли.`,
+        choices: [
+            {
+                text: "Публічно викрити корупцію (Public exposure)",
+                action: () => goScene("holod_result_A")
+            },
+            {
+                text: "Контрольоване придушення (Controlled suppression)",
+                action: () => goScene("holod_result_B")
+            },
+            {
+                text: "Місцева угода (Local deal)",
+                action: () => {
+                    adjustReputation("muri", 30);
+                    adjustReputation("admin", -20);
+                    goScene("holod_result_C");
+                }
+            },
+            {
+                text: "[Ліхтар] Ритуальне милосердя (Ritual mercy)",
+                visible: () => (window.playerState.doctrines || {}).lantern >= 1,
+                action: () => goScene("holod_result_D")
+            }
+        ]
+    },
+
+    holod_result_A: { title: "Результат: Викриття", text: "Викриття", choices: [{ text: "Далі", action: () => goScene("sil_u_knyzi") }] },
+    holod_result_B: { title: "Результат: Придушення", text: "Придушення", choices: [{ text: "Далі", action: () => goScene("sil_u_knyzi") }] },
+    holod_result_C: { title: "Результат: Місцева угода", text: "Місцева угода укладена.", choices: [{ text: "Далі", action: () => goScene("sil_u_knyzi") }] },
+    holod_result_D: { title: "Результат: Милосердя", text: "Ритуальне милосердя", choices: [{ text: "Далі", action: () => goScene("sil_u_knyzi") }] },
+
+    sil_u_knyzi: {
+        title: "Сіль у книзі",
+        text: `Таємна партія ліків розведена болотяною водою. Це наслідок місцевої угоди.`,
+        choices: [
+            {
+                text: "Розібратися з поромниками",
+                action: () => goScene("poromna_prysyaga")
+            }
+        ]
+    },
+
+    poromna_prysyaga: {
+        title: "Поромна присяга",
+        text: `Конфлікт між Тованом Рідом і Нерою Вейл за контроль над водними шляхами.`,
+        choices: [
+            {
+                text: "Підтримати Тована Ріда",
+                action: () => {
+                    window.playerState.flags = window.playerState.flags || {};
+                    window.playerState.flags.ferry = 'tovan';
+                    adjustReputation("admin", 10);
+                    goScene("poromna_result_tovan");
+                }
+            },
+            {
+                text: "Підтримати Неру Вейл",
+                action: () => {
+                    window.playerState.flags = window.playerState.flags || {};
+                    window.playerState.flags.ferry = 'nera';
+                    adjustReputation("muri", 15);
+                    goScene("poromna_result_nera");
+                }
+            },
+            {
+                text: "[Посередник] Знайти третій шлях",
+                visible: () => (window.playerState.doctrines || {}).mediator >= 1,
+                action: () => goScene("poromna_result_third")
+            }
+        ]
+    },
+
+    poromna_result_tovan: { title: "Тован контролює пороми", text: "Рішення прийнято.", choices: [{ text: "Далі", action: () => goScene("popil_pid_kaplytseyu") }] },
+    poromna_result_nera: { title: "Нера контролює пороми", text: "Рішення прийнято.", choices: [{ text: "Далі", action: () => goScene("popil_pid_kaplytseyu") }] },
+    poromna_result_third: { title: "Перемир'я поромників", text: "Рішення прийнято.", choices: [{ text: "Далі", action: () => goScene("popil_pid_kaplytseyu") }] },
+
+    popil_pid_kaplytseyu: {
+        title: "Попіл під каплицею",
+        text: `Брат Карос виявляє імітацію ритуалів на поховальному місці.`,
+        choices: [
+            {
+                text: "Сховати правду",
+                action: () => {
+                    adjustReputation("keepers", -10);
+                    goScene("popil_secret");
+                }
+            },
+            {
+                text: "Викрити імітацію",
+                action: () => {
+                    adjustReputation("keepers", 10);
+                    adjustReputation("admin", -5);
+                    goScene("popil_expose");
+                }
+            },
+            {
+                text: "[Ліхтар 2] Формалізувати ритуал",
+                visible: () => (window.playerState.doctrines || {}).lantern >= 2,
+                action: () => {
+                    adjustReputation("keepers", 20);
+                    goScene("popil_ritual");
+                }
+            }
+        ]
+    },
+
+    popil_secret: { title: "Правда прихована", text: "Секрет", choices: [{ text: "Далі", action: () => goScene("nizh_kvoty") }] },
+    popil_expose: { title: "Правда відкрита", text: "Викриття", choices: [{ text: "Далі", action: () => goScene("nizh_kvoty") }] },
+    popil_ritual: { title: "Ритуал проведено", text: "Ритуал", choices: [{ text: "Далі", action: () => goScene("nizh_kvoty") }] },
+
+    nizh_kvoty: {
+        title: "Ніж квоти",
+        text: `Маршал-Реєстратор Серіт Келм вимагає відновити дисципліну.`,
+        choices: [
+            {
+                text: "Підписати звіт (Sign report)",
+                action: () => goScene("nizh_result_A")
+            },
+            {
+                text: "Частковий супротив (Partial resist)",
+                action: () => goScene("nizh_result_B")
+            },
+            {
+                text: "[Суддя 2] Повний розрахунок (Full reckoning)",
+                visible: () => (window.playerState.doctrines || {}).judge >= 2,
+                action: () => {
+                    adjustReputation("wanderers", 20);
+                    adjustReputation("admin", -30);
+                    goScene("nizh_result_C");
+                }
+            },
+            {
+                text: "[Посередник 2] Спільний контроль (Co-control)",
+                visible: () => (window.playerState.doctrines || {}).mediator >= 2,
+                action: () => goScene("nizh_result_D")
+            }
+        ]
+    },
+
+    nizh_result_A: { title: "Звіт", text: "Звіт підписано.", choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valkorn_arrive") }] },
+    nizh_result_B: { title: "Супротив", text: "Супротив.", choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valkorn_arrive") }] },
+    nizh_result_C: { title: "Повний розрахунок", text: "Розрахунок.", choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valkorn_arrive") }] },
+    nizh_result_D: { title: "Спільний контроль", text: "Контроль.", choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valkorn_arrive") }] },
+
+    valkorn_arrive: {
+        title: "Людина з болота",
+        text: `Ви прибуваєте до Валькорна з Ілією Марр. Місто велике і байдуже.`,
+        choices: [
+            {
+                text: "Зустрітися зі Стетсоном",
+                action: () => goScene("valkorn_01_stetsion")
+            },
+            {
+                text: "Шукати шлях через Гетто",
+                action: () => goScene("valkorn_01_ghetto")
+            },
+            {
+                text: "Піти до крамниці Тесси",
+                action: () => goScene("valkorn_01_tessa")
+            }
+        ]
+    },
+
+    valkorn_01_stetsion: { title: "Слідчий Стетсон", text: "Зустріч зі слідчим.", choices: [{ text: "До Архіву", action: () => goScene("valkorn_02_odrin") }] },
+    valkorn_01_ghetto: { title: "Тіньове Гетто Валькорна", text: "Пошуки в Гетто.", choices: [{ text: "До Тесси", action: () => goScene("valkorn_01_tessa") }] },
+    valkorn_01_tessa: { title: "Зустріч з Тессою", text: "Тесса слухає вас.", choices: [{ text: "Дві версії правди", action: () => goScene("valkorn_02_tessa") }] },
+
+    valkorn_02_odrin: { title: "Палацовий архів і Одрін", text: "Одрін та карта підземель.", choices: [{ text: "У підземелля", action: () => goScene("valkorn_02_underground") }] },
+    valkorn_02_tessa: { title: "Крамниця Тесси", text: "Тесса дає ключ.", choices: [{ text: "У підземелля", action: () => goScene("valkorn_02_underground") }] },
+
+    valkorn_02_underground: {
+        title: "Підземелля Валькорна",
+        text: `Секретні шляхи під містом. Ви знаходите докази, що хтось уже був тут.`,
+        choices: [
+            {
+                text: "Вистежити Дамара",
+                action: () => goScene("valkorn_03_damar")
+            }
+        ]
+    },
+
+    valkorn_03_damar: {
+        title: "Правильна ціна",
+        text: `Зустріч з Дамаром. Торгова гільдія і контрабанда артефакту.`,
+        choices: [
+            {
+                text: "Отримати інформацію",
+                action: () => goScene("valkorn_03_result")
+            }
+        ]
+    },
+
+    valkorn_03_result: {
+        title: "Сліди ведуть вище",
+        text: `Тепер ви знаєте: це Орден Семи Кинджалів.`,
+        choices: [
+            {
+                text: "Зустріч з Лоеном",
+                action: () => goScene("valkorn_04_loen")
+            }
+        ]
+    },
+
+    valkorn_04_loen: {
+        title: "Людина, що послала Руфіна",
+        text: `Лоен, член Сьомої Ради Ордену. Він чекає на ваші відповіді.`,
+        choices: [
+            {
+                text: "Погодитись на умови Ордену (Шлях А)",
+                action: () => {
+                    window.playerState.flags = window.playerState.flags || {};
+                    window.playerState.flags.clue_loen = true;
+                    window.playerState.flags.loen_align = 'A';
+                    adjustReputation("order", 30);
+                    goScene("loen_align_A");
+                }
+            },
+            {
+                text: "Часткова співпраця (Шлях Б)",
+                action: () => {
+                    window.playerState.flags = window.playerState.flags || {};
+                    window.playerState.flags.clue_loen = true;
+                    window.playerState.flags.loen_align = 'B';
+                    adjustReputation("order", 10);
+                    goScene("loen_align_B");
+                }
+            },
+            {
+                text: "[Суддя] Відкинути Орден (Шлях В)",
+                visible: () => (window.playerState.doctrines || {}).judge >= 1,
+                action: () => {
+                    window.playerState.flags = window.playerState.flags || {};
+                    window.playerState.flags.clue_loen = true;
+                    window.playerState.flags.loen_align = 'C';
+                    adjustReputation("order", -40);
+                    goScene("loen_align_C");
+                }
+            }
+        ]
+    },
+
+    loen_align_A: { title: "Союз з Орденом", text: "Ви обрали Орден.", choices: [{ text: "Розслідування завершено", action: () => goScene("valkorn_04_deduction") }] },
+    loen_align_B: { title: "Нейтралітет з Орденом", text: "Обережний підхід.", choices: [{ text: "Розслідування завершено", action: () => goScene("valkorn_04_deduction") }] },
+    loen_align_C: { title: "Ворог Ордену", text: "Відкритий конфлікт.", choices: [{ text: "Розслідування завершено", action: () => goScene("valkorn_04_deduction") }] },
+
+    valkorn_04_deduction: {
+        title: "Розкриття Хранителя",
+        text: `Всі докази зібрані. Хранитель Першої Печатки — це Блазень Фіпп.`,
+        choices: [
+            {
+                text: "Проникнення в Чорний Архів",
+                action: () => goScene("valkorn_05_infiltrate")
+            }
+        ]
+    },
+
+    valkorn_05_infiltrate: {
+        title: "Проникнення до Палацу",
+        text: `Шлях у Чорний Архів під королівською бібліотекою.`,
+        choices: [
+            {
+                text: "[Суддя 2] Шлях Судді / Закон Корони",
+                visible: () => (window.playerState.doctrines || {}).judge >= 2,
+                action: () => goScene("valkorn_05_archive")
+            },
+            {
+                text: "Шлях Посередника / Тіньовий договір",
+                action: () => goScene("valkorn_05_archive")
+            },
+            {
+                text: "[Слідопит 3] Болотяні колектори",
+                visible: () => (window.playerState.doctrines || {}).pathfinder >= 3,
+                action: () => goScene("valkorn_05_archive")
+            }
+        ]
+    },
+
+    valkorn_05_archive: {
+        title: "Чорний Архів",
+        text: `Ви увійшли до Чорного Архіву.`,
+        choices: [
+            {
+                text: "Зустріч з Фіппом (Себастьяном Марром)",
+                action: () => goScene("valkorn_05_iliya")
+            }
+        ]
+    },
+
+    valkorn_05_iliya: {
+        title: "Хранитель Першої Печатки",
+        text: `Себастьян Марр і Ілія. Час вирішити його долю.`,
+        choices: [
+            {
+                text: "⚖️ [Шлях Судді] Арешт або страта",
+                action: () => {
+                    adjustReputation("order", -100);
+                    adjustReputation("admin", 40);
+                    adjustReputation("wanderers", 30);
+                    window.playerState.flags = window.playerState.flags || {};
+                    window.playerState.flags.valkorn5_choice = 'judge';
+                    window.playerState.flags.sebastian_fate = 'dead';
+                    goScene("valkorn_epilogue");
+                }
+            },
+            {
+                text: "🤝 [Шлях Посередника] Тіньовий Пакт",
+                action: () => {
+                    adjustReputation("order", 40);
+                    window.playerState.flags = window.playerState.flags || {};
+                    window.playerState.flags.valkorn5_choice = 'mediator';
+                    window.playerState.flags.sebastian_fate = 'deal';
+                    goScene("valkorn_epilogue");
+                }
+            },
+            {
+                text: "🕯️ [Шлях Ліхтаря] Ритуал переходу",
+                action: () => {
+                    adjustReputation("wanderers", 50);
+                    window.playerState.flags = window.playerState.flags || {};
+                    window.playerState.flags.valkorn5_choice = 'lantern';
+                    window.playerState.flags.sebastian_fate = 'merge';
+                    window.playerState.flags.iliya_anchor = true;
+                    window.playerState.bolo_weaving = true;
+                    goScene("valkorn_epilogue");
+                }
+            }
+        ]
+    },
+
+    valkorn_epilogue: {
+        title: "Втеча з Валькорна",
+        text: `Сигналізація спрацювала. Ви тікаєте до боліт.`,
+        choices: [
+            {
+                text: "Повернутися у Хейзмур",
+                action: () => goScene("ep3_fog")
+            }
+        ]
+    },
+
+    ep3_fog: { title: "Епізод 3", text: "Туман", choices: [{ text: "Далі", action: () => goScene("ep3_mia_conflict") }] },
+    ep3_mia_conflict: { title: "Епізод 3", text: "Туман", choices: [{ text: "Далі", action: () => goScene("ep3_tykhy_tower") }] },
+    ep3_tykhy_tower: { title: "Епізод 3", text: "Туман", choices: [{ text: "Далі", action: () => goScene("ep3_kaen_deal") }] },
+    ep3_kaen_deal: { title: "Епізод 3", text: "Туман", choices: [{ text: "Далі", action: () => goScene("ep3_ferry_crossing") }] },
+    ep3_ferry_crossing: {
+        title: "Шалена Переправа",
+        text: `Шалена Річка.`,
+        choices: [
+            { text: "Сила Плетіння (Bolo-Weaving)", action: () => goScene("ep3_ferry_choice_A") },
+            { text: "Перша Печатка", action: () => goScene("ep3_ferry_choice_B") }
+        ]
+    },
+    ep3_ferry_choice_A: { title: "Епізод 3", text: "Туман", choices: [{ text: "Далі", action: () => goScene("ep3_narrow_reeds") }] },
+    ep3_ferry_choice_B: { title: "Епізод 3", text: "Туман", choices: [{ text: "Далі", action: () => goScene("ep3_narrow_reeds") }] },
+
+    ep3_obitel_enter: { title: "Обитель", text: "Обитель", choices: [{ text: "Далі", action: () => goScene("ep3_obitel_locks") }] },
+    ep3_obitel_locks: { title: "Обитель", text: "Обитель", choices: [{ text: "Далі", action: () => goScene("ep3_altar") }] },
+    ep3_altar: {
+        title: "Жертовник Другої Печатки",
+        text: `Фінальний вибір Епізоду 3.`,
+        choices: [
+            { text: "Вердикт Заліза", action: () => goScene("ep3_verdict_iron") },
+            { text: "Вердикт Очерету", action: () => goScene("ep3_verdict_reed") },
+            { text: "Вердикт Пакту", action: () => goScene("ep3_verdict_pact") }
+        ]
+    },
+    ep3_verdict_iron: { title: "Залізо", text: "Залізо", choices: [{ text: "Епізод 4", action: () => goScene("ep4_valkorn_iron") }] },
+    ep3_verdict_reed: { title: "Очерет", text: "Очерет", choices: [{ text: "Епізод 4", action: () => goScene("ep4_valkorn_reed") }] },
+    ep3_verdict_pact: { title: "Пакт", text: "Пакт", choices: [{ text: "Епізод 4", action: () => goScene("ep4_valkorn_pact") }] },
+
+    ep4_valkorn_iron: { title: "Валькорн", text: "Валькорн", choices: [{ text: "Далі", action: () => goScene("ep4_climax_iron") }] },
+    ep4_valkorn_reed: { title: "Валькорн", text: "Валькорн", choices: [{ text: "Далі", action: () => goScene("ep4_climax_reed") }] },
+    ep4_valkorn_pact: { title: "Валькорн", text: "Валькорн", choices: [{ text: "Далі", action: () => goScene("ep4_climax_pact") }] },
+
+    ep4_climax_iron: { title: "Кульмінація", text: "Кульмінація", choices: [{ text: "Далі", action: () => goScene("ep4_mire_iron") }] },
+    ep4_climax_reed: { title: "Кульмінація", text: "Кульмінація", choices: [{ text: "Далі", action: () => goScene("ep4_mire_reed") }] },
+    ep4_climax_pact: { title: "Кульмінація", text: "Кульмінація", choices: [{ text: "Далі", action: () => goScene("ep4_mire_pact") }] },
+
+    ep4_mire_iron: { title: "Болото", text: "Болото", choices: [{ text: "Далі", action: () => goScene("ep4_resolution_iron") }] },
+    ep4_mire_reed: { title: "Болото", text: "Болото", choices: [{ text: "Далі", action: () => goScene("ep4_resolution_reed") }] },
+    ep4_mire_pact: { title: "Болото", text: "Болото", choices: [{ text: "Далі", action: () => goScene("ep4_resolution_pact") }] },
+
+    ep4_resolution_iron: { title: "Розв'язка", text: "Розв'язка", choices: [{ text: "Далі", action: () => goScene("ep5_final_A") }] },
+    ep4_resolution_reed: { title: "Розв'язка", text: "Розв'язка", choices: [{ text: "Далі", action: () => goScene("ep5_final_B") }] },
+    ep4_resolution_pact: { title: "Розв'язка", text: "Розв'язка", choices: [{ text: "Далі", action: () => goScene("ep5_final_C") }] }
 
 };

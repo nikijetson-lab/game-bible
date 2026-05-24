@@ -322,12 +322,12 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "Вирушити до Сонк-Феррі",
-                nextSceneId: "ep1_sunk_ferry"
+                nextSceneId: "hazemoor_ep1"
             }
         ]
     },
 
-    ep1_sunk_ferry: {
+    hazemoor_ep1: {
 
         audioTrack: "assets/audio/swamp_music.mp3",
 

@@ -1938,50 +1938,112 @@ window.GAME_SCENES = {
         ]
     },
 
-    ep3_fog: { title: "Епізод 3", text: "Туман", choices: [{ text: "Далі", action: () => goScene("ep3_mia_conflict") }] },
+
+    ep3_fog: {
+        title: "Голос із туману",
+        text: `Ви заглиблюєтесь у Хейзмур. Туман густішає, і ви помічаєте знайому постать. Міа чекає на вас.`,
+        choices: [
+            {
+                text: "Далі",
+                action: () => {
+                    window.playerState.sanity = 100;
+                    goScene("ep3_mia_conflict");
+                }
+            }
+        ]
+    },
     ep3_mia_conflict: { title: "Епізод 3", text: "Туман", choices: [{ text: "Далі", action: () => goScene("ep3_tykhy_tower") }] },
     ep3_tykhy_tower: { title: "Епізод 3", text: "Туман", choices: [{ text: "Далі", action: () => goScene("ep3_kaen_deal") }] },
     ep3_kaen_deal: { title: "Епізод 3", text: "Туман", choices: [{ text: "Далі", action: () => goScene("ep3_ferry_crossing") }] },
     ep3_ferry_crossing: {
-        title: "Шалена Переправа",
-        text: `Шалена Річка.`,
+        title: "Шалений Переправа",
+        text: `Ви наближаєтесь до Шаленого порому. Річка вирує. Вам потрібно обрати шлях переправи.`,
         choices: [
-            { text: "Сила Плетіння (Bolo-Weaving)", action: () => goScene("ep3_ferry_choice_A") },
-            { text: "Перша Печатка", action: () => goScene("ep3_ferry_choice_B") }
+            {
+                text: "Сила Плетіння (Bolo-Weaving)",
+                action: () => {
+                    window.playerState.sanity = (window.playerState.sanity || 100) - 20;
+                    goScene("ep3_ferry_choice_A");
+                }
+            },
+            {
+                text: "Перша Печатка",
+                action: () => {
+                    adjustReputation("muri", -30);
+                    goScene("ep3_ferry_choice_B");
+                }
+            }
         ]
     },
-    ep3_ferry_choice_A: { title: "Епізод 3", text: "Туман", choices: [{ text: "Далі", action: () => goScene("ep3_narrow_reeds") }] },
-    ep3_ferry_choice_B: { title: "Епізод 3", text: "Туман", choices: [{ text: "Далі", action: () => goScene("ep3_narrow_reeds") }] },
+    ep3_ferry_choice_A: { title: "Епізод 3", text: "Вузькі очерети", choices: [{ text: "Далі", action: () => goScene("ep3_narrow_reeds") }] },
+    ep3_ferry_choice_B: { title: "Епізод 3", text: "Сухий Горб", choices: [{ text: "Далі", action: () => goScene("ep3_dry_mound") }] },
 
-    ep3_obitel_enter: { title: "Обитель", text: "Обитель", choices: [{ text: "Далі", action: () => goScene("ep3_obitel_locks") }] },
+    ep3_narrow_reeds: {
+        title: "Вузькі очерети",
+        text: `Шлях Плетіння забрав сили, але ви подолали річку.`,
+        choices: [
+            { text: "Далі", action: () => goScene("ep3_obitel_enter") }
+        ]
+    },
+
+    ep3_dry_mound: {
+        title: "Сухий Горб",
+        text: `Сили Печатки пересушили землю, шлях вільний. Мурі незадоволені.`,
+        choices: [
+            { text: "Далі", action: () => goScene("ep3_obitel_enter") }
+        ]
+    },
+
+    ep3_obitel_enter: { title: "Обитель", text: "Затоплена Обитель", choices: [{ text: "Далі", action: () => goScene("ep3_obitel_locks") }] },
     ep3_obitel_locks: { title: "Обитель", text: "Обитель", choices: [{ text: "Далі", action: () => goScene("ep3_altar") }] },
     ep3_altar: {
         title: "Жертовник Другої Печатки",
-        text: `Фінальний вибір Епізоду 3.`,
+        text: `Ви стоїте перед Вівтарем Стагнації. Це фінальний вибір Епізоду 3. Ваш Вердикт визначить долю Хейзмуру та Валькорна.`,
         choices: [
-            { text: "Вердикт Заліза", action: () => goScene("ep3_verdict_iron") },
-            { text: "Вердикт Очерету", action: () => goScene("ep3_verdict_reed") },
-            { text: "Вердикт Пакту", action: () => goScene("ep3_verdict_pact") }
+            {
+                text: "Вердикт Заліза",
+                action: () => {
+                    window.playerState.flags = window.playerState.flags || {};
+                    window.playerState.flags.verdict = 'iron';
+                    goScene("ep3_verdict_iron");
+                }
+            },
+            {
+                text: "Вердикт Очерету",
+                action: () => {
+                    window.playerState.flags = window.playerState.flags || {};
+                    window.playerState.flags.verdict = 'reed';
+                    goScene("ep3_verdict_reed");
+                }
+            },
+            {
+                text: "Вердикт Пакту",
+                action: () => {
+                    window.playerState.flags = window.playerState.flags || {};
+                    window.playerState.flags.verdict = 'pact';
+                    goScene("ep3_verdict_pact");
+                }
+            }
         ]
     },
-    ep3_verdict_iron: { title: "Залізо", text: "Залізо", choices: [{ text: "Епізод 4", action: () => goScene("ep4_valkorn_iron") }] },
-    ep3_verdict_reed: { title: "Очерет", text: "Очерет", choices: [{ text: "Епізод 4", action: () => goScene("ep4_valkorn_reed") }] },
-    ep3_verdict_pact: { title: "Пакт", text: "Пакт", choices: [{ text: "Епізод 4", action: () => goScene("ep4_valkorn_pact") }] },
+    ep3_verdict_iron: { title: "Залізо", text: "Ви обрали Шлях Заліза.", choices: [{ text: "Епізод 4", action: () => goScene("ep4_valkorn_iron") }] },
+    ep3_verdict_reed: { title: "Очерет", text: "Ви обрали Шлях Очерету.", choices: [{ text: "Епізод 4", action: () => goScene("ep4_valkorn_reed") }] },
+    ep3_verdict_pact: { title: "Пакт", text: "Ви обрали Шлях Пакту.", choices: [{ text: "Епізод 4", action: () => goScene("ep4_valkorn_pact") }] },
 
-    ep4_valkorn_iron: { title: "Валькорн", text: "Валькорн", choices: [{ text: "Далі", action: () => goScene("ep4_climax_iron") }] },
-    ep4_valkorn_reed: { title: "Валькорн", text: "Валькорн", choices: [{ text: "Далі", action: () => goScene("ep4_climax_reed") }] },
-    ep4_valkorn_pact: { title: "Валькорн", text: "Валькорн", choices: [{ text: "Далі", action: () => goScene("ep4_climax_pact") }] },
+    ep4_valkorn_iron: { title: "Валькорн (Шлях Заліза)", text: "«Тріумф Адміністрації!» — вигукують глашатаї. Ви приносите порядок у Валькорн.", choices: [{ text: "Далі", action: () => goScene("ep4_climax_iron") }] },
+    ep4_valkorn_reed: { title: "Валькорн (Шлях Очерету)", text: "Ви проникаєте у Валькорн тінями, немов привид із боліт.", choices: [{ text: "Далі", action: () => goScene("ep4_climax_reed") }] },
+    ep4_valkorn_pact: { title: "Валькорн (Шлях Пакту)", text: "«Дипломатичний візит...» — шепочуться вельможі. Ви входите як посередник.", choices: [{ text: "Далі", action: () => goScene("ep4_climax_pact") }] },
 
-    ep4_climax_iron: { title: "Кульмінація", text: "Кульмінація", choices: [{ text: "Далі", action: () => goScene("ep4_mire_iron") }] },
-    ep4_climax_reed: { title: "Кульмінація", text: "Кульмінація", choices: [{ text: "Далі", action: () => goScene("ep4_mire_reed") }] },
-    ep4_climax_pact: { title: "Кульмінація", text: "Кульмінація", choices: [{ text: "Далі", action: () => goScene("ep4_mire_pact") }] },
+    ep4_climax_iron: { title: "Кульмінація Заліза", text: "Себастьян гине під пресом. Тесса починає свої жорсткі реформи. Залізо встановлює нові правила.", choices: [{ text: "Далі", action: () => goScene("ep4_mire_iron") }] },
+    ep4_climax_reed: { title: "Кульмінація Очерету", text: "Тихе усунення Себастьяна. Лілея повертає свою людську форму. Болото відвойовує своє.", choices: [{ text: "Далі", action: () => goScene("ep4_mire_reed") }] },
+    ep4_climax_pact: { title: "Кульмінація Пакту", text: "Себастьян живий. Підписання тристоронньої угоди. Хитка рівновага встановлена.", choices: [{ text: "Далі", action: () => goScene("ep4_mire_pact") }] },
 
-    ep4_mire_iron: { title: "Болото", text: "Болото", choices: [{ text: "Далі", action: () => goScene("ep4_resolution_iron") }] },
-    ep4_mire_reed: { title: "Болото", text: "Болото", choices: [{ text: "Далі", action: () => goScene("ep4_resolution_reed") }] },
-    ep4_mire_pact: { title: "Болото", text: "Болото", choices: [{ text: "Далі", action: () => goScene("ep4_resolution_pact") }] },
+    ep4_mire_iron: { title: "Хейзмур (Шлях Заліза)", text: "«Вони випалюють Серце Моура...» — Міа німіє, втрачаючи свій зв'язок з болотом.", choices: [{ text: "Далі", action: () => goScene("ep4_resolution_iron") }] },
+    ep4_mire_reed: { title: "Хейзмур (Шлях Очерету)", text: "«Болото дихає вільно,» — шепоче Лілея. Хейзмур відновлює свої сили.", choices: [{ text: "Далі", action: () => goScene("ep4_resolution_reed") }] },
+    ep4_mire_pact: { title: "Хейзмур (Шлях Пакту)", text: "«Ритуал рівноваги завершено.» — констатує Тесса. Дві сили пов'язані.", choices: [{ text: "Далі", action: () => goScene("ep4_resolution_pact") }] },
 
-    ep4_resolution_iron: { title: "Розв'язка", text: "Розв'язка", choices: [{ text: "Далі", action: () => goScene("ep5_final_A") }] },
-    ep4_resolution_reed: { title: "Розв'язка", text: "Розв'язка", choices: [{ text: "Далі", action: () => goScene("ep5_final_B") }] },
-    ep4_resolution_pact: { title: "Розв'язка", text: "Розв'язка", choices: [{ text: "Далі", action: () => goScene("ep5_final_C") }] }
+    ep4_resolution_iron: { title: "Розв'язка Заліза", text: "Ваша місія виконана. Шлях відходу: суха дорога в рукавицях.", choices: [{ text: "Завершити", action: () => goScene("ep5_final_A") }] },
+    ep4_resolution_reed: { title: "Розв'язка Очерету", text: "Ви стали частиною легенди. Шлях відходу: босоніж по болоту.", choices: [{ text: "Завершити", action: () => goScene("ep5_final_B") }] },
+    ep4_resolution_pact: { title: "Розв'язка Пакту", text: "Ви — живий міст між світами. Шлях відходу: зупинка на мосту.", choices: [{ text: "Завершити", action: () => goScene("ep5_final_C") }] }
 
 };

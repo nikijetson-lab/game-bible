@@ -994,6 +994,15 @@ function goScene(sceneKey) {
     const scene = window.GAME_SCENES[sceneKey];
     if (!scene) return;
 
+    const choicesDiv = document.getElementById("scene-choices");
+    if (choicesDiv) {
+        // Completely clear container and remove old listeners
+        choicesDiv.innerHTML = '';
+        const newChoicesDiv = choicesDiv.cloneNode(false);
+        choicesDiv.parentNode.replaceChild(newChoicesDiv, choicesDiv);
+    }
+
+
     const illContainer = document.getElementById("scene-illustration");
     const questTag = document.getElementById("quest-tag");
     

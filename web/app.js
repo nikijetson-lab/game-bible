@@ -994,13 +994,6 @@ function goScene(sceneKey) {
     const scene = window.GAME_SCENES[sceneKey];
     if (!scene) return;
 
-    const choicesDiv = document.getElementById("scene-choices");
-    if (choicesDiv) {
-        // Completely clear container and remove old listeners
-        choicesDiv.innerHTML = '';
-        const newChoicesDiv = choicesDiv.cloneNode(false);
-        choicesDiv.parentNode.replaceChild(newChoicesDiv, choicesDiv);
-    }
 
 
     const illContainer = document.getElementById("scene-illustration");
@@ -1039,9 +1032,8 @@ function goScene(sceneKey) {
     document.getElementById("scene-title").textContent = scene.title;
     document.getElementById("scene-text").innerHTML = scene.text;
 
-    // const choicesDiv is already declared above, use document.getElementById again if needed or re-use
-    const choicesContainer = document.getElementById("scene-choices");
-    choicesContainer.innerHTML = "";
+    const choicesDiv = document.getElementById("scene-choices");
+    choicesDiv.innerHTML = "";
 
     scene.choices.forEach(choice => {
         if (choice.visible && !choice.visible()) {
@@ -1056,7 +1048,7 @@ function goScene(sceneKey) {
             if (choice.action) choice.action();
             if (choice.nextSceneId) goScene(choice.nextSceneId);
         });
-        choicesContainer.appendChild(btn);
+        choicesDiv.appendChild(btn);
     });
 
     updateUi();

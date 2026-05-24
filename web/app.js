@@ -1039,8 +1039,9 @@ function goScene(sceneKey) {
     document.getElementById("scene-title").textContent = scene.title;
     document.getElementById("scene-text").innerHTML = scene.text;
 
-    const choicesDiv = document.getElementById("scene-choices");
-    choicesDiv.innerHTML = "";
+    // const choicesDiv is already declared above, use document.getElementById again if needed or re-use
+    const choicesContainer = document.getElementById("scene-choices");
+    choicesContainer.innerHTML = "";
 
     scene.choices.forEach(choice => {
         if (choice.visible && !choice.visible()) {
@@ -1055,7 +1056,7 @@ function goScene(sceneKey) {
             if (choice.action) choice.action();
             if (choice.nextSceneId) goScene(choice.nextSceneId);
         });
-        choicesDiv.appendChild(btn);
+        choicesContainer.appendChild(btn);
     });
 
     updateUi();

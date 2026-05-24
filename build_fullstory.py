@@ -66,7 +66,7 @@ files_to_concatenate = [
     "quests/episode-4-05-vidhid-heroya.md"
 ]
 
-with open("FULL-STORY.md", "w", encoding="utf-8") as outfile:
+with open("FullStory.md", "w", encoding="utf-8") as outfile:
     for i, file_path in enumerate(files_to_concatenate):
         if not os.path.exists(file_path):
             print(f"Warning: File not found: {file_path}")
@@ -80,4 +80,4 @@ with open("FULL-STORY.md", "w", encoding="utf-8") as outfile:
             if i < len(files_to_concatenate) - 1:
                 outfile.write("\n\n---\n\n")
 
-print("FULL-STORY.md created successfully.")
+print("FullStory.md created successfully.")

@@ -2046,4 +2046,503 @@ window.GAME_SCENES = {
     ep4_resolution_reed: { title: "Розв'язка Очерету", text: "Ви стали частиною легенди. Шлях відходу: босоніж по болоту.", choices: [{ text: "Завершити", action: () => goScene("ep5_final_B") }] },
     ep4_resolution_pact: { title: "Розв'язка Пакту", text: "Ви — живий міст між світами. Шлях відходу: зупинка на мосту.", choices: [{ text: "Завершити", action: () => goScene("ep5_final_C") }] }
 
+,
+    "hazemoor-01": {
+        title: "Урок 1: Шум на воді",
+        text: "Вузька протока. Вартовий і Міа йдуть по коліно у воді. Міа — безшумно. Він — ні. Болото реагує.",
+        choices: [
+            { text: "Сповільнитись, дивитись як вона ставить ноги", action: () => { window.playerState.mia_trust = (window.playerState.mia_trust || 0) + 1; goScene("hazemoor-02"); } },
+            { text: "Продовжити як ішов", action: () => { goScene("hazemoor-02"); } },
+            { text: "Тривожно озиратись", action: () => { window.playerState.mia_trust = (window.playerState.mia_trust || 0) - 1; goScene("hazemoor-02"); } }
+        ]
+    },
+    "hazemoor-02": {
+        title: "Урок 2: Нічна іскра",
+        text: "Вночі — десятки жовтих цяток у темряві. Міа спокійна.",
+        choices: [
+            { text: "Запитати Міа що це", action: () => { window.playerState.mia_trust = (window.playerState.mia_trust || 0) + 1; addToLog('Міа: «Спостерігачі. Вони дивляться — чи варто боятись.»'); goScene("hazemoor-03"); } },
+            { text: "Спостерігати нерухомо", action: () => { goScene("hazemoor-03"); } },
+            { text: "Підняти зброю", action: () => { window.playerState.mia_trust = (window.playerState.mia_trust || 0) - 1; addToLog('Міа: «Не змушуй його зацікавитись.»'); goScene("hazemoor-03"); } }
+        ]
+    },
+    "hazemoor-03": {
+        title: "Урок 3: Глибока вода",
+        text: "Міа пірнає, довго не з'являється. Знаходять слід Руфіна. Міа: «Твій картограф знав дорогу. Або знав, або біг.»",
+        choices: [
+            { text: "Чекати", action: () => { window.playerState.mia_trust = (window.playerState.mia_trust || 0) + 1; goScene("hazemoor-04"); } },
+            { text: "Пірнати шукати", action: () => { goScene("hazemoor-04"); } },
+            { text: "Кричати, гукати", action: () => { window.playerState.mia_trust = (window.playerState.mia_trust || 0) - 1; goScene("hazemoor-04"); } }
+        ]
+    },
+    "hazemoor-04": {
+        title: "Урок 4: Чужий слід",
+        text: "Широкий розлив. Міа зупиняється: «Тихо. Не рухайся.» Під водою — щось велике. Щось торкається ноги.",
+        choices: [
+            { text: "Стояти нерухомо", action: () => { window.playerState.mia_trust = (window.playerState.mia_trust || 0) + 1; addToLog('Міа: «Воно вирішило, що ти не їжа.»'); goScene("hazemoor-05"); } },
+            { text: "Повільно відступати", action: () => { goScene("hazemoor-05"); } },
+            { text: "Різко смикнутись", action: () => { window.playerState.mia_trust = (window.playerState.mia_trust || 0) - 1; goScene("hazemoor-05"); } }
+        ]
+    },
+    "hazemoor-05": {
+        title: "Урок 5: Варта і ім'я",
+        text: "Міа сидить і дивиться на воду. Вночі говорить уві сні. Повторюється слово: Моур.",
+        choices: [
+            { text: "Взяти варту без слів", action: () => { window.playerState.mia_trust = (window.playerState.mia_trust || 0) + 1; goScene("hazemoor-06"); } },
+            { text: "Запитати чесно вранці про Моур", action: () => { window.playerState.mia_trust = (window.playerState.mia_trust || 0) + 1; addToLog('Міа: «Не питай про це. Ще не час.»'); goScene("hazemoor-06"); } },
+            { text: "Наполягати", action: () => { window.playerState.mia_trust = (window.playerState.mia_trust || 0) - 1; goScene("hazemoor-06"); } }
+        ]
+    },
+    "hazemoor-06": {
+        title: "Урок 6: Заборонене місце",
+        text: "Широка галявина — Міа обходить по краю. Пояснює пізніше: «Там лежить Моур. Це домовленість старіша за мого батька.»",
+        choices: [
+            { text: "Обійти без запитань", action: () => { window.playerState.mia_trust = (window.playerState.mia_trust || 0) + 1; goScene("hazemoor-07"); } },
+            { text: "Запитати чому", action: () => { goScene("hazemoor-07"); } },
+            { text: "Піти напряму", action: () => { window.playerState.mia_trust = (window.playerState.mia_trust || 0) - 1; goScene("hazemoor-07"); } }
+        ]
+    },
+    "hazemoor-07": {
+        title: "Урок 7: Останній перехід",
+        text: "Гнилий настил. Міа провалюється. Вартовий витягує. Перед Тихим Шелестом — створіння що не можна перемогти.",
+        choices: [
+            { text: "Дати їй час, мовчати", action: () => { window.playerState.mia_trust = (window.playerState.mia_trust || 0) + 1; if ((window.playerState.mia_trust || 0) >= 5) { window.playerState.flags = window.playerState.flags || {}; window.playerState.flags.mia_joined = true; goScene("hazemoor-result-good"); } else { goScene("hazemoor-result-bad"); } } },
+            { text: "Перевірити", action: () => { if ((window.playerState.mia_trust || 0) >= 5) { window.playerState.flags = window.playerState.flags || {}; window.playerState.flags.mia_joined = true; goScene("hazemoor-result-good"); } else { goScene("hazemoor-result-bad"); } } },
+            { text: "Пожартувати", action: () => { window.playerState.mia_trust = (window.playerState.mia_trust || 0) - 1; if ((window.playerState.mia_trust || 0) >= 5) { window.playerState.flags = window.playerState.flags || {}; window.playerState.flags.mia_joined = true; goScene("hazemoor-result-good"); } else { goScene("hazemoor-result-bad"); } } }
+        ]
+    },
+    "hazemoor-result-good": {
+        title: "Довіра здобута",
+        text: "Міа запитує: «Навіщо ти тут? Не Руфін. Не лист. Ти.» Вартовий відповідає чесно. Міа: «Добре.» Іде вперед.",
+        choices: [
+            { text: "Відповісти чесно", action: () => { window.playerState.flags = window.playerState.flags || {}; window.playerState.flags.mia_joined = true; goScene("tykhy-arrive"); } }
+        ]
+    },
+    "hazemoor-result-bad": {
+        title: "Запасний маршрут",
+        text: "Довіри недостатньо. Міа веде небезпечнішим маршрутом.",
+        choices: [
+            { text: "Іти далі", action: () => { goScene("tykhy-arrive"); } }
+        ]
+    },
+    "tykhy-arrive": {
+        title: "Тихий Шелест",
+        text: "Ви прибуваєте до Тихого Шелесту. Поселення Мурі. Мінімум для виходу: нитка Руфіна і нитка Міа.",
+        choices: [
+            { text: "Знайти Руфіна", action: () => { goScene("tykhy-rufin"); } },
+            { text: "Поговорити з Каеном", action: () => { goScene("tykhy-kaen"); } },
+            { text: "Поговорити з Міа", visible: () => (window.playerState.flags || {}).mia_joined, action: () => { goScene("tykhy-mia"); } },
+            { text: "Дізнатись про статус поселення", visible: () => !(window.playerState.flags || {}).mia_joined, action: () => { goScene("tykhy-status"); } }
+        ]
+    },
+    "tykhy-rufin": {
+        title: "Пошук Руфіна",
+        text: "Варрік (старший мисливець) спочатку не говорить. «Він ніс щось що світилось. Не ліхтар.»",
+        choices: [
+            { text: "Сказати правду — він зник, хтось чекає", action: () => { adjustReputation('admin', 10); goScene("tykhy-rufin-found"); } },
+            { text: "Говорити через Міа", action: () => { goScene("tykhy-rufin-found"); } }
+        ]
+    },
+    "tykhy-rufin-found": {
+        title: "Руфін знайдений",
+        text: "Руфін живий, але змінений. «Я чув голос. Не вухами — звідси. Він сказав: Ти ніс це досить довго. Я віддав. Воно пішло в воду. Тепер я чую тільки тишу — і це найгучніший звук у моєму житті.» Докази: випалена трава колом, щоденник з останнім записом «Воно…», темний холодний камінь.",
+        choices: [
+            { text: "Взяти артефакт", action: () => { window.playerState.flags = window.playerState.flags || {}; window.playerState.flags.has_artifact = true; goScene("tykhy-exit"); } },
+            { text: "Залишити артефакт", action: () => { goScene("tykhy-exit"); } }
+        ]
+    },
+    "tykhy-kaen": {
+        title: "Розмова з Каеном",
+        text: "Каен ніколи не називає ім'я Моур вголос. Якщо між ними є довіра: «Я знайшов Міа в болоті. Немовля, живе. Я знав звідки — і все одно взяв. З любові.»",
+        choices: [
+            { text: "Сказати Міа", action: () => { window.playerState.flags = window.playerState.flags || {}; window.playerState.flags.told_mia_truth = true; goScene("tykhy-exit"); } },
+            { text: "Не говорити", action: () => { goScene("tykhy-exit"); } },
+            { text: "Запитати Каена що робити", action: () => { addToLog('Каен: «Скажи їй. Я не зможу.»'); goScene("tykhy-exit"); } }
+        ]
+    },
+    "tykhy-mia": {
+        title: "Міа приймає рішення",
+        text: "Розмова Міа і Каена. Вартовий бачить з відстані. Після — Міа: «Я іду з тобою. Не тому що мушу. Тому що там є щось що стосується мене більше ніж тебе.»",
+        choices: [
+            { text: "Прийняти", action: () => { window.playerState.flags = window.playerState.flags || {}; window.playerState.flags.mia_companion = true; goScene("tykhy-exit"); } }
+        ]
+    },
+    "tykhy-status": {
+        title: "Статус поселення",
+        text: "Поселення напружене. Прихід чужинця без провідника викликає підозру.",
+        choices: [
+            { text: "Іти далі", action: () => { goScene("tykhy-exit"); } }
+        ]
+    },
+    "tykhy-exit": {
+        title: "Вихід із Тихого Шелесту",
+        text: "Ви залишаєте Тихий Шелест. Попереду — галявина духа.",
+        choices: [
+            { text: "Іти до галявини", action: () => { goScene("hazemoor-02-galyna"); } }
+        ]
+    },
+    "hazemoor-02-galyna": {
+        title: "Галявина",
+        text: "Тиша. Не співають птахи. Вода стоїть без руху — тому що слухає. Вночі — світло рухається, збирається в коло.",
+        choices: [
+            { text: "Наблизитись", visible: () => (window.playerState.mia_trust || 0) >= 3, action: () => { goScene("hazemoor-02-enter"); } },
+            { text: "Чекати", action: () => { goScene("hazemoor-02-enter"); } }
+        ]
+    },
+    "hazemoor-02-enter": {
+        title: "Вхід у галявину",
+        text: "Міа стає перед водою. Туман розходиться сам — реагує на її присутність. Вхід — знизу, через воду.",
+        choices: [
+            { text: "Зануритись", action: () => { goScene("hazemoor-02-mour"); } }
+        ]
+    },
+    "hazemoor-02-mour": {
+        title: "Моур",
+        text: "З поверхні, трави, гілок злітають комахи — мільйони, одночасно. Збираються у хмару. Величезна голова. Очі з порожнечі. Зупиняється на Міа. Дивиться як впізнавання.",
+        choices: [
+            { text: "Про артефакт", action: () => { addToLog('Моур: «Його зробили з мене. Я пішов. Вони забрали шматок. Тепер він знову мій.»'); goScene("hazemoor-02-mia-truth"); } },
+            { text: "Про Руфіна", action: () => { addToLog('Моур: «Він ніс моє. Я забрав. Він залишився живим — більше ніж я обіцяв.»'); goScene("hazemoor-02-mia-truth"); } },
+            { text: "Про Міа", action: () => { addToLog('Моур: «Вона моя. Інакше, ніж ти думаєш. Але моя.»'); goScene("hazemoor-02-mia-truth"); } }
+        ]
+    },
+    "hazemoor-02-mia-truth": {
+        title: "Міа дізнається",
+        text: "«Я думала, що чую болото краще за інших, тому що вчилась. Але я чула його тому, що воно — я.» Пауза. «Він не знав, що я існую. Або знав — і чекав. Я не знаю, що гірше.»",
+        choices: [
+            { text: "Іти далі", action: () => { goScene("hazemoor-02-mount"); } }
+        ]
+    },
+    "hazemoor-02-mount": {
+        title: "Маунт",
+        text: "З глибини піднімається щось велике. Крила складені. Не монстр. Частина Моура що отримала форму. Просто є.",
+        choices: [
+            { text: "Підійти", action: () => { window.playerState.flags = window.playerState.flags || {}; window.playerState.flags.has_mount = true; goScene("hazemoor-02-result"); } },
+            { text: "Не підходити", action: () => { goScene("hazemoor-02-result"); } }
+        ]
+    },
+    "hazemoor-02-result": {
+        title: "Результат галявини",
+        text: "Символ на обладунку у видінні: два перехрещені кинджали, коло і крапля — Орден Семи Кинджалів. Та сама печатка що була на листі з Грейфорда.",
+        choices: [
+            { text: "Іти до Сонк-Феррі", action: () => { goScene("holod-znuzu"); } }
+        ]
+    },
+    "holod-znuzu": {
+        title: "Голод знизу",
+        text: "Сонк-Феррі. Кризова ситуація вимагає рішення.",
+        choices: [
+            { text: "Публічне викриття", action: () => { adjustReputation('muri', 20); adjustReputation('admin', -15); goScene("holod-result-A"); } },
+            { text: "Контрольоване стримування", action: () => { adjustReputation('admin', 15); goScene("holod-result-B"); } },
+            { text: "Місцева угода", action: () => { adjustReputation('muri', 30); adjustReputation('admin', -20); goScene("holod-result-C"); } },
+            { text: "Ритуальне милосердя", visible: () => (window.playerState.doctrines || {}).lantern >= 1, action: () => { adjustReputation('keepers', 25); goScene("holod-result-D"); } }
+        ]
+    },
+    "holod-result-A": { title: "Результат: Викриття", text: "Ви обрали публічне викриття.", choices: [{ text: "Далі", action: () => { goScene("sil-u-knyzi"); } }] },
+    "holod-result-B": { title: "Результат: Стримування", text: "Ви обрали контрольоване стримування.", choices: [{ text: "Далі", action: () => { goScene("sil-u-knyzi"); } }] },
+    "holod-result-C": { title: "Результат: Місцева угода", text: "Ви уклали місцеву угоду.", choices: [{ text: "Далі", action: () => { goScene("sil-u-knyzi"); } }] },
+    "holod-result-D": { title: "Результат: Милосердя", text: "Ви обрали ритуальне милосердя.", choices: [{ text: "Далі", action: () => { goScene("sil-u-knyzi"); } }] },
+    "sil-u-knyzi": {
+        title: "Сіль у книзі",
+        text: "Партія ліків досягла через неофіційні канали, але хтось замінив частину розведеним товаром.",
+        choices: [
+            { text: "Іти далі", action: () => { goScene("poromna-prysyaga"); } }
+        ]
+    },
+    "poromna-prysyaga": {
+        title: "Поромна присяга",
+        text: "Тован Рід і Нера Вейл сперечаються про контроль водних маршрутів.",
+        choices: [
+            { text: "Підтримати Тована", action: () => { adjustReputation('wanderers', 10); goScene("poromna-result-tovan"); } },
+            { text: "Підтримати Неру", action: () => { adjustReputation('admin', 10); goScene("poromna-result-nera"); } },
+            { text: "Третій шлях", visible: () => (window.playerState.doctrines || {}).mediator >= 1, action: () => { goScene("poromna-result-third"); } }
+        ]
+    },
+    "poromna-result-tovan": { title: "Тован контролює", text: "Тован отримав контроль.", choices: [{ text: "Далі", action: () => { goScene("popil-pid-kaplytseyu"); } }] },
+    "poromna-result-nera": { title: "Нера контролює", text: "Нера отримала контроль.", choices: [{ text: "Далі", action: () => { goScene("popil-pid-kaplytseyu"); } }] },
+    "poromna-result-third": { title: "Третій шлях", text: "Ви обрали третій шлях.", choices: [{ text: "Далі", action: () => { goScene("popil-pid-kaplytseyu"); } }] },
+    "popil-pid-kaplytseyu": {
+        title: "Попіл під каплицею",
+        text: "Хтось імітує логіку компромісу не розуміючи ритуалів.",
+        choices: [
+            { text: "Зберегти таємницю", action: () => { goScene("popil-secret"); } },
+            { text: "Викрити", action: () => { goScene("popil-expose"); } },
+            { text: "Ритуал", visible: () => (window.playerState.doctrines || {}).lantern >= 2, action: () => { goScene("popil-ritual"); } }
+        ]
+    },
+    "popil-secret": { title: "Таємниця", text: "Ви зберегли таємницю.", choices: [{ text: "Далі", action: () => { goScene("nizh-kvoty"); } }] },
+    "popil-expose": { title: "Викриття", text: "Викриття успішне.", choices: [{ text: "Далі", action: () => { goScene("nizh-kvoty"); } }] },
+    "popil-ritual": { title: "Ритуал", text: "Ритуал проведено.", choices: [{ text: "Далі", action: () => { goScene("nizh-kvoty"); } }] },
+    "nizh-kvoty": {
+        title: "Ніж квоти",
+        text: "Серіт Келм прибуває. «Твій підпис як свідка дасть мені підстави для поміркованого висновку. Відмова — для іншого. Це не погроза. Це арифметика.»",
+        choices: [
+            { text: "Підписати", action: () => { adjustReputation('admin', 20); goScene("nizh-result-A"); } },
+            { text: "Частково оскаржити", action: () => { goScene("nizh-result-B"); } },
+            { text: "Відмовитись", action: () => { adjustReputation('wanderers', 20); adjustReputation('admin', -30); goScene("nizh-result-C"); } },
+            { text: "Домовитись", visible: () => (window.playerState.doctrines || {}).mediator >= 2, action: () => { goScene("nizh-result-D"); } }
+        ]
+    },
+    "nizh-result-A": { title: "Підписано", text: "Ви підписали.", choices: [{ text: "Далі", action: () => { goScene("valkorn-01"); } }] },
+    "nizh-result-B": { title: "Оскаржено", text: "Ви частково оскаржили.", choices: [{ text: "Далі", action: () => { goScene("valkorn-01"); } }] },
+    "nizh-result-C": { title: "Відмова", text: "Ви відмовились.", choices: [{ text: "Далі", action: () => { goScene("valkorn-01"); } }] },
+    "nizh-result-D": { title: "Домовленість", text: "Ви домовились.", choices: [{ text: "Далі", action: () => { goScene("valkorn-01"); } }] },
+    "valkorn-01": {
+        title: "Валькорн — Прибуття",
+        text: "Вартовий і Ілія прибувають до Валькорна.",
+        choices: [
+            { text: "Іти в місто", action: () => { goScene("valkorn-02"); } }
+        ]
+    },
+    "valkorn-02": {
+        title: "Три нитки орієнтації",
+        text: "Три імені від Ілії: Брес (нове гетто), Стетсон (палацовий квартал), Одрін (архів).",
+        choices: [
+            { text: "Іти до підземелля", action: () => { goScene("valkorn-02-underground"); } }
+        ]
+    },
+    "valkorn-02-underground": {
+        title: "Підземелля",
+        text: "Написи: «Хто торкнеться Печатки без Ліхтаря — втратить тінь.» Закрита камера — тіла трьох шпигунів Ордену. Третя точка: постамент порожній. Хтось прийшов раніше.",
+        choices: [
+            { text: "Іти далі", action: () => { goScene("valkorn-03"); } }
+        ]
+    },
+    "valkorn-03": {
+        title: "Правильна ціна",
+        text: "Дамар — непримітний торговець. «Я торговець. Я не питаю що це і навіщо. Я питаю скільки ти готовий заплатити.»",
+        choices: [
+            { text: "Взяти артефакт", action: () => { window.playerState.flags = window.playerState.flags || {}; window.playerState.flags.artifact_secured = true; goScene("valkorn-04"); } }
+        ]
+    },
+    "valkorn-04": {
+        title: "Людина що послала Руфіна",
+        text: "Лоен — член Сьомої Ради Ордену. «Нам потрібен був артефакт. Руфін знав болото. Справжній лідер — я ніколи не бачив обличчя. Листи пахнуть болотяною м'ятою та вологим торфом, чорнило блищить золотим пилом.»",
+        choices: [
+            { text: "Дедукція", action: () => { goScene("valkorn-04-deduction"); } }
+        ]
+    },
+    "valkorn-04-deduction": {
+        title: "Три докази",
+        text: "1. Бубонці Фіппа з Білого срібла. 2. Запах гриму — болотяна м'ята і золоте чорнило. 3. Стетсон: «Найкраща тінь у палаці — та, яка яскраво вдягнена й змушує всіх сміятися.» Висновок: Хранитель Першої Печатки — це Блазень Фіпп.",
+        choices: [
+            { text: "Іти до Фіппа", action: () => { window.playerState.flags = window.playerState.flags || {}; window.playerState.flags.knows_keeper = true; goScene("valkorn-05"); } }
+        ]
+    },
+    "valkorn-05": {
+        title: "Проникнення",
+        text: "Три шляхи в палац.",
+        choices: [
+            { text: "[Суддя] Офіційні перепустки", visible: () => (window.playerState.doctrines || {}).judge >= 1, action: () => { goScene("valkorn-05-iliya"); } },
+            { text: "[Посередник] Через господарський двір", visible: () => (window.playerState.doctrines || {}).mediator >= 1, action: () => { goScene("valkorn-05-iliya"); } },
+            { text: "[Слідопит] Через зливову систему", visible: () => (window.playerState.doctrines || {}).pathfinder >= 1, action: () => { goScene("valkorn-05-iliya"); } }
+        ]
+    },
+    "valkorn-05-iliya": {
+        title: "Себастьян Марр",
+        text: "Чоловік змиває грим. Виймає Першу Печатку. «Тихіше, чи не так? Болото вміє кричати навіть крізь милі каменю.» Ілія: «Дядьку... Себастьяне?» Себастьян: «Іліє. Маленька іскорка. Ти виросла.»",
+        choices: [
+            { text: "⚖️ Шлях Судді", action: () => { goScene("valkorn-05-judge"); } },
+            { text: "🤝 Шлях Посередника", action: () => { goScene("valkorn-05-mediator"); } },
+            { text: "🕯️ Шлях Ліхтаря", action: () => { goScene("valkorn-05-lantern"); } }
+        ]
+    },
+    "valkorn-05-judge": {
+        title: "Шлях Судді",
+        text: "«Твій Орден сіє смерть. Руфін загинув через твої ігри. Віддай Печатку.» Важка сутичка. Себастьян смертельно поранений. Ілія: «Закон має бути один для всіх. Навіть для моєї крові.»",
+        choices: [
+            { text: "Іти далі", action: () => { window.playerState.flags = window.playerState.flags || {}; window.playerState.flags.valkorn5_choice = 'judge'; adjustReputation('order', -100); adjustReputation('admin', 30); goScene("valkorn-epilogue"); } }
+        ]
+    },
+    "valkorn-05-mediator": {
+        title: "Шлях Посередника",
+        text: "«Ми збережемо твою таємницю. Але Орден захищає поселення. І ти віддаси карти Чорного Архіву.» Себастьян: «Прагматизм — рідкісна риса. Ми домовились.» Ілія холодно: «Ми уклали угоду з чудовиськом.»",
+        choices: [
+            { text: "Іти далі", action: () => { window.playerState.flags = window.playerState.flags || {}; window.playerState.flags.valkorn5_choice = 'mediator'; adjustReputation('order', 40); goScene("valkorn-epilogue"); } }
+        ]
+    },
+    "valkorn-05-lantern": {
+        title: "Шлях Ліхтаря",
+        text: "«Я провожу болотяний шепіт крізь свій ліхтар. Я стану тим, хто тримає удар. Дай мені Печатку.» Ритуал Злиття. Ілія кидається: «Ні! Я триматиму твій розум! Я буду твоїм світловим якорем!» Відкривається Bolo-Weaving.",
+        choices: [
+            { text: "Іти далі", action: () => { window.playerState.flags = window.playerState.flags || {}; window.playerState.flags.valkorn5_choice = 'lantern'; window.playerState.flags.bolo_weaving = true; goScene("valkorn-epilogue"); } }
+        ]
+    },
+    "valkorn-epilogue": {
+        title: "Фінал на балконі",
+        text: "Епізод 2 завершено. Туман піднімається. Попереду — Глибоке болото.",
+        choices: [
+            { text: "Вирушати в Хейзмур", action: () => { goScene("deep-bog-01"); } }
+        ]
+    },
+    "deep-bog-01": {
+        title: "Повернення в імлу",
+        text: "Герой перетинає зруйнований річковий міст за Грейфордом. Молочно-білий туман обволікає. Очерет шепоче: «Тут тепло... Срібло холодне, а вода пам'ятає твою колиску... Лягай...» Голос Ілії в голові: «Вартовий! Згадай своє ім'я. Болото бреше тобі.»",
+        choices: [
+            { text: "Вчепитися за голос Ілії", action: () => { goScene("deep-bog-02"); } }
+        ]
+    },
+    "deep-bog-02": {
+        title: "Понівечений шлях і Міа",
+        text: "Стежка знищена. Міа виступає з туману: «Що вони зробили з тобою у своєму кам'яному місті? Ти хотів приборкати болото, але дозволив йому зжерти себе зсередини. І цей холод... Ти приніс їхнє срібло сюди.»",
+        choices: [
+            { text: "«Ця печатка — єдине що захищає мій розум»", action: () => { goScene("deep-bog-03"); } },
+            { text: "«Я приніс її щоб знайти Другу Печатку»", action: () => { goScene("deep-bog-03"); } },
+            { text: "«Я сам вирішую яку силу використовувати»", action: () => { goScene("deep-bog-03"); } }
+        ]
+    },
+    "deep-bog-03": {
+        title: "Затоплена Обитель",
+        text: "Лілея розгортає карту: «Глибоко в Чорній Твані, під напівзатопленими арками Обителі, лежить Друга Печатка. Вона викувана з темної болотяної міді. Вона тримає Моур у стані вічного ув'язнення. Якщо не дістанемось — болото поглине Грейфорд.» Міа з чорними очима: «Якщо поєднаєш срібло з міддю — Хейзмур помре!»",
+        choices: [
+            { text: "⚙️ Вердикт Заліза — вставити срібну Печатку в мідний вівтар", action: () => { goScene("ep3-verdict-iron"); } },
+            { text: "🌿 Вердикт Очерету — кинути Печатку в болотяну жижу", action: () => { goScene("ep3-verdict-reed"); } },
+            { text: "🕯️ Пакт Ключника — стати живим замком", action: () => { goScene("ep3-verdict-pact"); } }
+        ]
+    },
+    "ep3-verdict-iron": {
+        title: "Вердикт Заліза",
+        text: "Білий спалах. Вода в крипті стає чистою. Землистий розпад зупиняється. Шепіт Моура зникає повністю. Міа кричить від болю і тікає. Лілея: «Ми вбили душу цього місця.» Ілія: «Ти вижив. Ти повернув порядок.»",
+        choices: [
+            { text: "Іти далі", action: () => { window.playerState.flags = window.playerState.flags || {}; window.playerState.flags.ep3_path = 'iron'; goScene("episode-4-01-iron"); } }
+        ]
+    },
+    "ep3-verdict-reed": {
+        title: "Вердикт Очерету",
+        text: "Тіло остаточно втрачає людську подобу. Шкіра — суха вербова кора. Очі — повністю чорні. Отримує повну силу Bolo-Weaving. Болото розширює межі. Міа торкається обличчя: «Ти вибрав нас. Тепер болото захистить тебе.» Ілія згасає: «Прощавай, Вартовий...»",
+        choices: [
+            { text: "Іти далі", action: () => { window.playerState.flags = window.playerState.flags || {}; window.playerState.flags.ep3_path = 'reed'; goScene("episode-4-01-reed"); } }
+        ]
+    },
+    "ep3-verdict-pact": {
+        title: "Пакт Ключника",
+        text: "Лілея висікає руни. Трансформація стабілізується в проміжному стані. Постійний приглушений біль у грудях. Розум залишається людським. Міа: «Ти не знищив нас, але й не став одним із нас. Болото дозволить тобі ходити своїми стежками.» Лілея: «Це найважчий шлях.» Ілія: «Я залишаюся з тобою.»",
+        choices: [
+            { text: "Іти далі", action: () => { window.playerState.flags = window.playerState.flags || {}; window.playerState.flags.ep3_path = 'pact'; goScene("episode-4-01-pact"); } }
+        ]
+    },
+    "episode-4-01-iron": {
+        title: "Шлях Заліза: Повернення",
+        text: "Повернення в складі офіційної делегації. Орден зустрічає вас.",
+        choices: [
+            { text: "Далі", action: () => { goScene("episode-4-02-iron"); } }
+        ]
+    },
+    "episode-4-02-iron": {
+        title: "Шлях Заліза: Себастьян",
+        text: "Себастьян гине під власним залізом. Орден очищується.",
+        choices: [
+            { text: "Далі", action: () => { goScene("episode-4-03-iron"); } }
+        ]
+    },
+    "episode-4-03-iron": {
+        title: "Шлях Заліза: Наслідки",
+        text: "Хейзмур вмирає. Земля висихає, стає мертвою пусткою.",
+        choices: [
+            { text: "Далі", action: () => { goScene("episode-4-04-iron"); } }
+        ]
+    },
+    "episode-4-04-iron": {
+        title: "Шлях Заліза: Новий Порядок",
+        text: "Тесса очолює Орден Срібних Кинджалів. Жорсткі реформи.",
+        choices: [
+            { text: "Далі", action: () => { goScene("episode-4-05-iron"); } }
+        ]
+    },
+    "episode-4-05-iron": {
+        title: "Шлях Заліза: Відбуття",
+        text: "Вам більше немає місця серед них.",
+        choices: [
+            { text: "Далі", action: () => { goScene("ep5-final-A"); } }
+        ]
+    },
+    "episode-4-01-reed": {
+        title: "Шлях Очерету: Проникнення",
+        text: "Герой-монстр пробирається каналами, ховаючись від світла.",
+        choices: [
+            { text: "Далі", action: () => { goScene("episode-4-02-reed"); } }
+        ]
+    },
+    "episode-4-02-reed": {
+        title: "Шлях Очерету: Себастьян",
+        text: "Себастьян гине від ядухи. Його легені наповнює болотяний газ.",
+        choices: [
+            { text: "Далі", action: () => { goScene("episode-4-03-reed"); } }
+        ]
+    },
+    "episode-4-03-reed": {
+        title: "Шлях Очерету: Наслідки",
+        text: "Болото поглинає околиці Валькорна. Природа забирає своє.",
+        choices: [
+            { text: "Далі", action: () => { goScene("episode-4-04-reed"); } }
+        ]
+    },
+    "episode-4-04-reed": {
+        title: "Шлях Очерету: Новий Порядок",
+        text: "Тесса формує Залізні Кинджали для боротьби з болотом.",
+        choices: [
+            { text: "Далі", action: () => { goScene("episode-4-05-reed"); } }
+        ]
+    },
+    "episode-4-05-reed": {
+        title: "Шлях Очерету: Відбуття",
+        text: "Ви зливаєтесь з темрявою.",
+        choices: [
+            { text: "Далі", action: () => { goScene("ep5-final-B"); } }
+        ]
+    },
+    "episode-4-01-pact": {
+        title: "Шлях Пакту: Дипломатія",
+        text: "Герой — живий замок. Ви входите у Валькорн як посол.",
+        choices: [
+            { text: "Далі", action: () => { goScene("episode-4-02-pact"); } }
+        ]
+    },
+    "episode-4-02-pact": {
+        title: "Шлях Пакту: Себастьян",
+        text: "Себастьян виживає але обмежений у владі. Орден розколюється.",
+        choices: [
+            { text: "Далі", action: () => { goScene("episode-4-03-pact"); } }
+        ]
+    },
+    "episode-4-03-pact": {
+        title: "Шлях Пакту: Наслідки",
+        text: "Хитка рівновага між містом і Хейзмуром.",
+        choices: [
+            { text: "Далі", action: () => { goScene("episode-4-04-pact"); } }
+        ]
+    },
+    "episode-4-04-pact": {
+        title: "Шлях Пакту: Новий Порядок",
+        text: "Тесса створює Орден Рівноваги, щоб підтримувати договір.",
+        choices: [
+            { text: "Далі", action: () => { goScene("episode-4-05-pact"); } }
+        ]
+    },
+    "episode-4-05-pact": {
+        title: "Шлях Пакту: Відбуття",
+        text: "Ваша місія виконана.",
+        choices: [
+            { text: "Далі", action: () => { goScene("ep5-final-C"); } }
+        ]
+    },
+    "ep5-final-A": {
+        title: "Суха дорога",
+        text: "Сірий холодний ранок. Болото висушене — потріскана сіра глина. Герой пішки по пильній дорозі. Передпліччя загорнуті в шкіряні рукавиці. Голос Ілії: «Ми залишаємо це залізо, Вартовий. Попереду лише сухі й далекі краї. Йди.» Герой зупиняється на пагорбі, озирається на вежі Валькорна, розвертається й іде вперед.",
+        choices: [
+            { text: "Завершити", action: () => { addToLog('Порожній Сезон завершено. Мандруючий Вартовий іде далі.', 'success'); } }
+        ]
+    },
+    "ep5-final-B": {
+        title: "Стежка очерету",
+        text: "Вологі густі сутінки. Важкий туман пахне вологою землею. Герой босоніж по мокрому торфі. Рубці на передпліччях — назавжди. Голос Ілії: «Ти відчуваєш цей мокрий бруд під ногами? Він холодний... але він справжній. Не озирайся назад. Твоя душа вільна від гнилі.» Герой крокує крізь очерет у туман.",
+        choices: [
+            { text: "Завершити", action: () => { addToLog('Порожній Сезон завершено. Мандруючий Вартовий іде далі.', 'success'); } }
+        ]
+    },
+    "ep5-final-C": {
+        title: "Міст між берегами",
+        text: "Глибокі сутінки над водою. Старий кам'яний міст через Шалену Річку. Зліва — срібні вогні ліхтарів Ордену. Справа — темні тумани Хейзмуру. Герой зупиняється посередині. Стискає два ключі — срібний та мідний. Голос Ілії: «Це твоє місце — міст між двома світами. Ми забираємо ключі з собою. Я з тобою... завжди.» Герой ховає ключі під плащ і йде вперед.",
+        choices: [
+            { text: "Завершити", action: () => { addToLog('Порожній Сезон завершено. Мандруючий Вартовий іде далі.', 'success'); } }
+        ]
+    }
 };

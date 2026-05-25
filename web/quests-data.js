@@ -327,7 +327,7 @@ window.GAME_SCENES = {
         ]
     },
 
-    hazemoor-01: {
+    "hazemoor-01": {
 
         audioTrack: "assets/audio/swamp_music.mp3",
 

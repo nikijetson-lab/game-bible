@@ -338,15 +338,15 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "Відправитись до Мірефолду",
-                nextSceneId: "ep1_mirefold"
+                nextSceneId: "hazemoor-01"
             },
             {
                 text: "Піти до Ліхтарного Дому Святої Вей",
-                nextSceneId: "ep1_lantern_house"
+                nextSceneId: "hazemoor-01"
             },
             {
                 text: "Вирушити до Тихого Шелесту (Шлях болота)",
-                nextSceneId: "ep1_silent_rustle"
+                nextSceneId: "hazemoor-01"
             },
             {
                 text: "Повернутися до воріт Грейфорда",
@@ -365,11 +365,11 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "Вирушити до Тихого Шелесту",
-                nextSceneId: "ep1_silent_rustle"
+                nextSceneId: "hazemoor-01"
             },
             {
                 text: "Повернутися до Сонк-Феррі",
-                nextSceneId: "hazemoor_ep1"
+                nextSceneId: "hazemoor-01"
             }
         ]
     },
@@ -384,11 +384,11 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "Вирушити до Тихого Шелесту",
-                nextSceneId: "ep1_silent_rustle"
+                nextSceneId: "hazemoor-01"
             },
             {
                 text: "Повернутися до Сонк-Феррі",
-                nextSceneId: "hazemoor_ep1"
+                nextSceneId: "hazemoor-01"
             }
         ]
     },
@@ -1397,7 +1397,7 @@ window.GAME_SCENES = {
                 action: () => {
                     window.playerState.flags = window.playerState.flags || {};
                     window.playerState.flags.mia_with_hero = true;
-                    goScene("tykhy_arrive");
+                    goScene("tykhy-arrive");
                 }
             }
         ]
@@ -1412,7 +1412,7 @@ window.GAME_SCENES = {
                 action: () => {
                     window.playerState.flags = window.playerState.flags || {};
                     window.playerState.flags.mia_with_hero = false;
-                    goScene("tykhy_arrive");
+                    goScene("tykhy-arrive");
                 }
             }
         ]
@@ -1508,7 +1508,7 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "Вийти до Галявини",
-                action: () => goScene("glade_explore")
+                action: () => goScene("hazemoor-02-galyna")
             }
         ]
     },
@@ -1536,7 +1536,7 @@ window.GAME_SCENES = {
             {
                 text: "Паніка. Виринаємо.",
                 visible: () => (window.playerState.mia_trust || 0) < 3,
-                action: () => goScene("glade_explore")
+                action: () => goScene("hazemoor-02-galyna")
             }
         ]
     },
@@ -1580,7 +1580,7 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "Вирушити до Сонк-Феррі",
-                action: () => goScene("sunkferry_arrive")
+                action: () => goScene("holod-znuzu")
             }
         ]
     },
@@ -1591,7 +1591,7 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "Розслідувати 'Голод знизу'",
-                action: () => goScene("holod_investigate")
+                action: () => goScene("holod-znuzu")
             }
         ]
     },
@@ -1737,10 +1737,10 @@ window.GAME_SCENES = {
         ]
     },
 
-    nizh_result_A: { title: "Звіт", text: "Звіт підписано.", choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valkorn_arrive") }] },
-    nizh_result_B: { title: "Супротив", text: "Супротив.", choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valkorn_arrive") }] },
-    nizh_result_C: { title: "Повний розрахунок", text: "Розрахунок.", choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valkorn_arrive") }] },
-    nizh_result_D: { title: "Спільний контроль", text: "Контроль.", choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valkorn_arrive") }] },
+    nizh_result_A: { title: "Звіт", text: "Звіт підписано.", choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valkorn-01") }] },
+    nizh_result_B: { title: "Супротив", text: "Супротив.", choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valkorn-01") }] },
+    nizh_result_C: { title: "Повний розрахунок", text: "Розрахунок.", choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valkorn-01") }] },
+    nizh_result_D: { title: "Спільний контроль", text: "Контроль.", choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valkorn-01") }] },
 
     valkorn_arrive: {
         title: "Людина з болота",
@@ -1933,7 +1933,7 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "Повернутися у Хейзмур",
-                action: () => goScene("ep3_fog")
+                action: () => goScene("deep-bog-01")
             }
         ]
     },

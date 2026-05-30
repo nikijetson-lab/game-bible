@@ -190,7 +190,8 @@ function parseMarkdown(md) {
             paragraphs[i] = '<p>' + p.replace(/\n/g, '<br>') + '</p>';
         }
     }
-    return paragraphs.join('\n');
+    let parsedHtml = paragraphs.join('\n');
+    return window.DOMPurify ? window.DOMPurify.sanitize(parsedHtml) : parsedHtml;
 }
 
 // ==========================================

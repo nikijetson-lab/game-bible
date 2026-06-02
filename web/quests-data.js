@@ -544,18 +544,15 @@ window.GAME_SCENES = {
         ]
     },
     ending_episode1: {
-
         audioTrack: "assets/audio/ep1_city_music.mp3",
-
         audioAtmosphere: "assets/audio/ep1_city_ambient.mp3",
-
         title: "Епізод 1 Завершено: Адресат відсутній",
         text: "",
         isChapterEnding: true,
         choices: [
             {
-                text: "Вирушити до Сонк-Феррі",
-                nextSceneId: "hazemoor-01"
+                text: "Вирушити в Хейзмур",
+                action: () => goScene("hazemoor_01")
             }
         ]
     },

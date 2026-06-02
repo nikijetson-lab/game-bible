@@ -158,6 +158,79 @@ window.GAME_SCENES = {
             }
         ]
     },
+    greyford_gates: {
+        audioTrack: "assets/audio/ep1_city_music.mp3",
+        audioAtmosphere: "assets/audio/ep1_city_ambient.mp3",
+        title: "Міська брама Грейфорда",
+        text: `Ви підходите до масивних міських воріт. Сержант міської варти оглядає вас з ніг до голови і зупиняє: <br><br><em>«Руфін вийшов три дні тому в напрямку Тихого Шелесту. З якого приводу Вартовий іде в болота?»</em>`,
+        choices: [
+            {
+                text: "А — Правда",
+                visible: () => window.playerState && !window.playerState.completedQuests['gates_truth'],
+                action: () => {
+                    window.playerState.completedQuests['gates_truth'] = true;
+                    addToLog("«Нехай закон світить тобі в тумані.»", "success");
+                    adjustReputation("admin", 20);
+                    adjustReputation("order", 10);
+                    goScene("hazemoor_01");
+                }
+            },
+            {
+                text: "Б — Напівправда",
+                visible: () => window.playerState && !window.playerState.completedQuests['gates_halftruth'],
+                action: () => {
+                    window.playerState.completedQuests['gates_halftruth'] = true;
+                    addToLog("Сержант скептично хмикає, але пропускає.", "success");
+                    adjustReputation("admin", 5);
+                    adjustReputation("order", -5);
+                    goScene("hazemoor_01");
+                }
+            },
+            {
+                text: "В — [Суддя] Застосувати авторитет",
+                visible: () => window.playerState && window.playerState.doctrines && window.playerState.doctrines.judge >= 1 && !window.playerState.completedQuests['gates_judge'],
+                action: () => {
+                    window.playerState.completedQuests['gates_judge'] = true;
+                    addToLog("«Зрозуміло, пане Суддя.»", "success");
+                    adjustReputation("admin", 30);
+                    adjustReputation("order", 15);
+                    goScene("hazemoor_01");
+                }
+            }
+        ]
+    },
+    greyford_summary: {
+        audioTrack: "assets/audio/ep1_city_music.mp3",
+        audioAtmosphere: "assets/audio/ep1_city_ambient.mp3",
+        title: "Що відомо після Грейфорда",
+        text: `Ви зібрали всі можливі сліди, залишені Руфіном у місті. Ваші висновки:<br><br>
+        <ul>
+            <li>Руфін пішов у Тихий Шелест цілеспрямовано.</li>
+            <li>Боявся того, що міг знайти, а не того, що тікало за ним.</li>
+            <li>Ніс щось — вантаж що світився холодним світлом.</li>
+            <li>Хтось заплатив добрим сріблом.</li>
+            <li>Поставив захисні знаки — не від людей.</li>
+        </ul><br>
+        Час покинути місто і вирушити в болота Хейзмуру.`,
+        choices: [
+            {
+                text: "Підійти до брами",
+                action: () => goScene('greyford_gates')
+            }
+        ]
+    },
+    hazemoor_01: {
+        audioTrack: "assets/audio/ep3_swamp_music.mp3",
+        audioAtmosphere: "assets/audio/ep3_swamp_ambient.mp3",
+        title: "Шлях крізь болото Хейзмур",
+        text: `Ви залишили стіни Грейфорда позаду. Перед вами розкинулися безмежні, огорнуті густим зеленим туманом болота Хейзмуру.`,
+        choices: [
+            {
+                text: "Повернутися до міської брами",
+                action: () => goScene("greyford_01")
+            }
+        ]
+    },
     greyford_01: {
         audioTrack: "assets/audio/ep1_city_music.mp3",
         audioAtmosphere: "assets/audio/ep1_city_ambient.mp3",
@@ -178,6 +251,15 @@ window.GAME_SCENES = {
                 text: "Відвідати Чаклунку",
                 visible: () => window.playerState && window.playerState.completedQuests['room_fully_cleared'] && window.playerState.completedQuests['witch_unlocked'] && !window.playerState.completedQuests['witch_done'],
                 action: () => goScene("thread_witch")
+            },
+            {
+                text: "Перейти до Міських воріт",
+                visible: () => {
+                    if (!window.playerState) return false;
+                    const baseCityDone = window.playerState.completedQuests['craftsmen_done'] && window.playerState.completedQuests['tavern_done'];
+                    return window.playerState.completedQuests['witch_unlocked'] ? (baseCityDone && window.playerState.completedQuests['witch_done']) : baseCityDone;
+                },
+                action: () => goScene('greyford_summary')
             },
             {
                 text: "Повернутися до кімнати Руфіна",

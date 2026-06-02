@@ -2438,4 +2438,4 @@ window.GAME_SCENES = {
     ep4_resolution_pact: { title: "Розв'язка Пакту", text: "Ви — живий міст між світами. Шлях відходу: зупинка на мосту.", choices: [{ text: "Завершити", action: () => goScene("ep5_final_C") }] }
 
 };
-// Force PR trigger
+// Re-trigger PR

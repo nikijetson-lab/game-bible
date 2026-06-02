@@ -174,7 +174,7 @@ window.GAME_SCENES = {
                     addToLog("«Нехай закон світить тобі в тумані.»", "success");
                     adjustReputation("admin", 20);
                     adjustReputation("order", 10);
-                    goScene("hazemoor_01");
+                    finishQuest("Правда", "Сержант киває: «Нехай закон світить тобі в тумані.»");
                 }
             },
             {
@@ -185,7 +185,7 @@ window.GAME_SCENES = {
                     addToLog("Сержант скептично хмикає, але пропускає.", "success");
                     adjustReputation("admin", 5);
                     adjustReputation("order", -5);
-                    goScene("hazemoor_01");
+                    finishQuest("Напівправда", "Сержант скептично хмикає: «У Хейзмурі немає безпеки. Ну йди.»");
                 }
             },
             {
@@ -196,7 +196,7 @@ window.GAME_SCENES = {
                     addToLog("«Зрозуміло, пане Суддя.»", "success");
                     adjustReputation("admin", 30);
                     adjustReputation("order", 15);
-                    goScene("hazemoor_01");
+                    finishQuest("Судове доручення", "Сержант витягується струнко: «Зрозуміло, пане Суддя. Ваша подорож внесена до реєстру.»");
                 }
             },
             {
@@ -233,7 +233,40 @@ window.GAME_SCENES = {
         text: `Ви залишили стіни Грейфорда позаду. Перед вами розкинулися безмежні, огорнуті густим зеленим туманом болота Хейзмуру.`,
         choices: [
             {
+                text: "Продовжити шлях крізь трясовину",
+                action: () => goScene("hazemoor_swamp_path")
+            },
+            {
                 text: "Повернутися до міської брами",
+                action: () => goScene("greyford_01")
+            }
+        ]
+    },
+    hazemoor_swamp_path: {
+        audioTrack: "assets/audio/ep3_swamp_music.mp3",
+        audioAtmosphere: "assets/audio/ep3_swamp_ambient.mp3",
+        title: "Трясовина Хейзмуру",
+        text: `Туман стає дедалі густішим. Кожен крок похитує землю. Ви усвідомлюєте, що без провідника тут легко згинути назавжди.`,
+        choices: [
+            {
+                text: "Йти далі в невідомість",
+                action: () => goScene("hazemoor_swamp_path_2")
+            },
+            {
+                text: "Повернутися назад до краю болота",
+                action: () => goScene("hazemoor_01")
+            }
+        ]
+    },
+    hazemoor_swamp_path_2: {
+        audioTrack: "assets/audio/ep3_swamp_music.mp3",
+        audioAtmosphere: "assets/audio/ep3_swamp_ambient.mp3",
+        title: "Кінець стежки",
+        text: `Далі лише глибока трясовина. Слід Руфіна губиться.`,
+        isChapterEnding: true,
+        choices: [
+            {
+                text: "Кінець поточного контенту (Повернутися до міської брами)",
                 action: () => goScene("greyford_01")
             }
         ]

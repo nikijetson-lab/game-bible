@@ -214,12 +214,9 @@ let playerState = {
     },
     reputation: {
         greyford: 0,
-        admin: 0,
         knives: 0,
-        order: 0,
         keepers: 0,
-        muri: 0,
-        wanderers: 0
+        muri: 0
     },
     resources: {
         henbane: 0,
@@ -1234,6 +1231,14 @@ function craftItem(recipeName) {
 
 // --- РЕПУТАЦІЙНА ШКАЛА (-100 до +100) ---
 function adjustReputation(faction, delta) {
+    const factionAliases = {
+        admin: "greyford",
+        order: "knives",
+        wanderers: "keepers"
+    };
+    if (factionAliases[faction]) {
+        faction = factionAliases[faction];
+    }
     if (window.playerState.reputation[faction] !== undefined) {
         window.playerState.reputation[faction] = Math.max(-100, Math.min(100, window.playerState.reputation[faction] + delta));
         

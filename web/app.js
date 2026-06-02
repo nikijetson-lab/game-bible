@@ -1060,11 +1060,17 @@ function finishQuest(gateAnswer, sergeantReply) {
     window.playerState.history.push({ step: "gate_answer", choice: gateAnswer });
     addToLog(`Відповідь сержанту: ${gateAnswer}. ${sergeantReply}`, "system");
 
-    const cluesFound = Object.entries(window.playerState.clues).filter(([k, v]) => v === true && k !== "witch_hint").map(([k]) => k);
+    const completedQuests = window.playerState.completedQuests || {};
+    let cluesFoundCount = 0;
+    if (completedQuests['room_fully_cleared']) cluesFoundCount++;
+    if (completedQuests['craftsmen_done']) cluesFoundCount++;
+    if (completedQuests['tavern_done']) cluesFoundCount++;
+    if (completedQuests['witch_done']) cluesFoundCount++;
+
     let investigationGrade = "";
     let summaryText = "";
 
-    if (cluesFound.length >= 3) {
+    if (cluesFoundCount >= 3) {
         investigationGrade = "Блискуче розслідування";
         summaryText = `Ви провели **блискуче слідство**! Ви оглянули кімнату Руфіна, розговорили різьбяра та розкрили таємницю через куртизанку Касандру. 
         <br><br>
@@ -1454,3 +1460,4 @@ renderFileList("design");
 initCharacterCreation();
 initItemUsage();
 initCrafting();
+/* dummy edit to force PR */

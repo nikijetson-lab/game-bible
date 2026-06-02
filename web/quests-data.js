@@ -55,6 +55,7 @@ window.GAME_SCENES = {
             },
             {
                 text: "🚪 Піднятися до кімнати Руфіна",
+                visible: () => true,
                 action: () => goScene("greyford_room_hub")
             }
         ]
@@ -149,11 +150,12 @@ window.GAME_SCENES = {
             },
             {
                 text: "Вийти на вулиці Грейфорда",
-                visible: () => window.playerState && (window.playerState.completedQuests['room_standard'] || window.playerState.completedQuests['room_tracker'] || window.playerState.completedQuests['room_lantern']),
+                visible: () => true,
                 action: () => goScene("greyford_01")
             },
             {
                 text: "Спуститися в таверну",
+                visible: () => true,
                 action: () => goScene("arriving")
             }
         ]
@@ -196,6 +198,11 @@ window.GAME_SCENES = {
                     adjustReputation("order", 15);
                     goScene("hazemoor_01");
                 }
+            },
+            {
+                text: "Повернутися на вулиці міста",
+                visible: () => true,
+                action: () => goScene("greyford_01")
             }
         ]
     },
@@ -239,17 +246,17 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "Відвідати квартал ремісників",
-                visible: () => window.playerState && window.playerState.completedQuests['room_fully_cleared'] && !window.playerState.completedQuests['craftsmen_done'],
+                visible: () => window.playerState && window.playerState.completedQuests['room_fully_cleared'],
                 action: () => goScene("thread_carver")
             },
             {
                 text: "Завітати у портову таверну",
-                visible: () => window.playerState && window.playerState.completedQuests['room_fully_cleared'] && !window.playerState.completedQuests['tavern_done'],
+                visible: () => window.playerState && window.playerState.completedQuests['room_fully_cleared'],
                 action: () => goScene("thread_tavern")
             },
             {
                 text: "Відвідати Чаклунку",
-                visible: () => window.playerState && window.playerState.completedQuests['room_fully_cleared'] && window.playerState.completedQuests['witch_unlocked'] && !window.playerState.completedQuests['witch_done'],
+                visible: () => window.playerState && window.playerState.completedQuests['room_fully_cleared'] && window.playerState.completedQuests['witch_unlocked'],
                 action: () => goScene("thread_witch")
             },
             {
@@ -263,10 +270,12 @@ window.GAME_SCENES = {
             },
             {
                 text: "Повернутися до кімнати Руфіна",
+                visible: () => true,
                 action: () => goScene("greyford_room_hub")
             },
             {
                 text: "Спуститися до таверни",
+                visible: () => true,
                 action: () => goScene("arriving")
             }
         ]
@@ -337,6 +346,11 @@ window.GAME_SCENES = {
                         goScene("thread_carver");
                     }
                 }
+            },
+            {
+                text: "Повернутися на вулиці міста",
+                visible: () => true,
+                action: () => goScene('greyford_01')
             }
         ]
     },
@@ -391,6 +405,11 @@ window.GAME_SCENES = {
                         goScene("thread_tavern");
                     }
                 }
+            },
+            {
+                text: "Повернутися на вулиці міста",
+                visible: () => true,
+                action: () => goScene('greyford_01')
             }
         ]
     },
@@ -447,6 +466,11 @@ window.GAME_SCENES = {
                         goScene("thread_witch");
                     }
                 }
+            },
+            {
+                text: "Повернутися на вулиці міста",
+                visible: () => true,
+                action: () => goScene('greyford_01')
             }
         ]
     },

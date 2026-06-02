@@ -165,6 +165,21 @@ window.GAME_SCENES = {
         text: `Ви на вулицях Грейфорда. Звідси ви можете дістатися до різних районів міста.`,
         choices: [
             {
+                text: "Відвідати квартал ремісників",
+                visible: () => window.playerState && window.playerState.completedQuests['room_fully_cleared'] && !window.playerState.completedQuests['craftsmen_done'],
+                action: () => goScene("thread_carver")
+            },
+            {
+                text: "Завітати у портову таверну",
+                visible: () => window.playerState && window.playerState.completedQuests['room_fully_cleared'] && !window.playerState.completedQuests['tavern_done'],
+                action: () => goScene("thread_tavern")
+            },
+            {
+                text: "Відвідати Чаклунку",
+                visible: () => window.playerState && window.playerState.completedQuests['room_fully_cleared'] && window.playerState.completedQuests['witch_unlocked'] && !window.playerState.completedQuests['witch_done'],
+                action: () => goScene("thread_witch")
+            },
+            {
                 text: "Повернутися до кімнати Руфіна",
                 action: () => goScene("greyford_room_hub")
             },
@@ -175,158 +190,180 @@ window.GAME_SCENES = {
         ]
     },
     thread_carver: {
-
         audioTrack: "assets/audio/ep1_city_music.mp3",
-
         audioAtmosphere: "assets/audio/ep1_city_ambient.mp3",
-
         title: "Квартал ремісників — Різьбяр",
         text: `Ви знаходите майстерню різьбяра по дереву. Старий майстер працює над викривленою гілкою і неохоче реагує на ваші запитання про Руфіна. «Багато хто приходить і йде. Чому я маю допомагати кожному Вартовому?»`,
         choices: [
             {
-                text: "📜 Показати запечатаний лист Руфіна з дивною восковою печаткою",
+                text: "Показати лист з печаткою",
+                visible: () => window.playerState && !window.playerState.completedQuests['carver_seal'],
                 action: () => {
-                    window.playerState.clues.carver = true;
-                    addToLog("Різьбяр побачив печатку, здригнувся і сказав: «Руфін питав про дорогу до Тихого Шелесту.»", "success");
-                    adjustResource("bogiron", 2);
+                    window.playerState.completedQuests['carver_seal'] = true;
+                    addToLog("Різьбяр здригується від символу. «Руфін питав про дорогу до Тихого Шелесту.»", "success");
                     adjustReputation("order", 15);
-                    window.playerState.completedQuests['carver'] = true;
-                    goScene('investigation');
+                    if (window.playerState.completedQuests['carver_seal'] && (!window.playerState.doctrines || window.playerState.doctrines.pathfinder < 1 || window.playerState.completedQuests['carver_pathfinder']) && (!window.playerState.doctrines || window.playerState.doctrines.mediator < 1 || window.playerState.completedQuests['carver_mediator']) && (!window.playerState.doctrines || window.playerState.doctrines.lantern < 1 || window.playerState.completedQuests['carver_lantern'])) {
+                        window.playerState.completedQuests['craftsmen_done'] = true;
+                        goScene("greyford_01");
+                    } else {
+                        goScene("thread_carver");
+                    }
                 }
             },
             {
-                text: "🏕️ [Слідопит] Заговорити про болотяне дерево, з яким він працює",
-                visible: () => window.playerState.doctrines.pathfinder >= 1,
+                text: "[Слідопит] Оглянути корінь-вербу",
+                visible: () => window.playerState && window.playerState.doctrines && window.playerState.doctrines.pathfinder >= 1 && !window.playerState.completedQuests['carver_pathfinder'],
                 action: () => {
-                    window.playerState.clues.carver = true;
-                    addToLog("Ви впізнали корінь-вербу з болота. Майстер сказав: «Руфін ніс щось дуже важке перед виходом.»", "success");
-                    adjustResource("tendons", 2);
-                    adjustResource("bogiron", 1);
+                    window.playerState.completedQuests['carver_pathfinder'] = true;
+                    addToLog("«Руфін ніс щось важке.»", "success");
                     adjustReputation("muri", 15);
-                    window.playerState.completedQuests['carver'] = true;
-                    goScene('investigation');
+                    if (window.playerState.completedQuests['carver_seal'] && (!window.playerState.doctrines || window.playerState.doctrines.pathfinder < 1 || window.playerState.completedQuests['carver_pathfinder']) && (!window.playerState.doctrines || window.playerState.doctrines.mediator < 1 || window.playerState.completedQuests['carver_mediator']) && (!window.playerState.doctrines || window.playerState.doctrines.lantern < 1 || window.playerState.completedQuests['carver_lantern'])) {
+                        window.playerState.completedQuests['craftsmen_done'] = true;
+                        goScene("greyford_01");
+                    } else {
+                        goScene("thread_carver");
+                    }
                 }
             },
             {
-                text: "🤝 [Посередник] Запропонувати взаємовигідну угоду",
-                visible: () => window.playerState.doctrines.mediator >= 1,
+                text: "[Посередник] Розпитати про оплату",
+                visible: () => window.playerState && window.playerState.doctrines && window.playerState.doctrines.mediator >= 1 && !window.playerState.completedQuests['carver_mediator'],
                 action: () => {
-                    window.playerState.clues.carver = true;
-                    addToLog("Ви домовилися розізнати долю його боргів. Різьбяр зізнався: «Хтось оплатив йому подорож сріблом!»", "success");
-                    adjustResource("silver", 2);
+                    window.playerState.completedQuests['carver_mediator'] = true;
+                    addToLog("«Хтось оплатив йому подорож сріблом!»", "success");
                     adjustReputation("admin", 15);
-                    window.playerState.completedQuests['carver'] = true;
-                    goScene('investigation');
+                    if (window.playerState.completedQuests['carver_seal'] && (!window.playerState.doctrines || window.playerState.doctrines.pathfinder < 1 || window.playerState.completedQuests['carver_pathfinder']) && (!window.playerState.doctrines || window.playerState.doctrines.mediator < 1 || window.playerState.completedQuests['carver_mediator']) && (!window.playerState.doctrines || window.playerState.doctrines.lantern < 1 || window.playerState.completedQuests['carver_lantern'])) {
+                        window.playerState.completedQuests['craftsmen_done'] = true;
+                        goScene("greyford_01");
+                    } else {
+                        goScene("thread_carver");
+                    }
                 }
             },
             {
-                text: "💡 [Ліхтар] Вказати на болотяні захисні знаки над його дверима",
-                visible: () => window.playerState.doctrines.lantern >= 1,
+                text: "[Ліхтар] Оглянути знаки захисту",
+                visible: () => window.playerState && window.playerState.doctrines && window.playerState.doctrines.lantern >= 1 && !window.playerState.completedQuests['carver_lantern'],
                 action: () => {
-                    window.playerState.clues.carver = true;
-                    window.playerState.clues.witch_hint = true;
-                    addToLog("Майстер бачить, що ви розумієте руни: «Руфін ставив ці знаки перед виходом вночі.»", "success");
-                    adjustResource("slate", 2);
+                    window.playerState.completedQuests['carver_lantern'] = true;
+                    window.playerState.completedQuests['witch_unlocked'] = true;
+                    addToLog("«Руфін ставив ці знаки перед виходом вночі.»", "success");
                     adjustReputation("keepers", 15);
-                    window.playerState.completedQuests['carver'] = true;
-                    goScene('investigation');
+                    if (window.playerState.completedQuests['carver_seal'] && (!window.playerState.doctrines || window.playerState.doctrines.pathfinder < 1 || window.playerState.completedQuests['carver_pathfinder']) && (!window.playerState.doctrines || window.playerState.doctrines.mediator < 1 || window.playerState.completedQuests['carver_mediator']) && (!window.playerState.doctrines || window.playerState.doctrines.lantern < 1 || window.playerState.completedQuests['carver_lantern'])) {
+                        window.playerState.completedQuests['craftsmen_done'] = true;
+                        goScene("greyford_01");
+                    } else {
+                        goScene("thread_carver");
+                    }
                 }
             }
         ]
     },
     thread_tavern: {
-
         audioTrack: "assets/audio/ep1_tavern_music.mp3",
-
         audioAtmosphere: "assets/audio/ep1_tavern_crowd_loop.mp3",
-
         title: "Портова таверна",
         text: `У брудному шинку бармен протирає склянку: «Руфін спілкувався з куртизанкою на ім'я Касандра. Вона зараз сидить за кутовим столиком.»<br><br>Касандра дивиться на вас із підозрою.`,
         choices: [
             {
-                text: "🗣️ Спробувати розговорити її",
+                text: "Просто говорити",
+                visible: () => window.playerState && !window.playerState.completedQuests['tavern_speak'],
                 action: () => {
-                    window.playerState.clues.tavern = true;
-                    addToLog("Касандра розповіла: «Руфін казав, що щось у Хейзмурі не чекає на людей.»", "success");
-                    adjustResource("loosestrife", 2);
+                    window.playerState.completedQuests['tavern_speak'] = true;
+                    addToLog("«Руфін був наляканий... Пішов наступного ранку.»", "success");
                     adjustReputation("admin", 10);
-                    window.playerState.completedQuests['tavern'] = true;
-                    goScene('investigation');
+                    if (window.playerState.completedQuests['tavern_speak'] && (!window.playerState.doctrines || window.playerState.doctrines.mediator < 1 || window.playerState.completedQuests['tavern_mediator']) && (!window.playerState.doctrines || window.playerState.doctrines.judge < 1 || window.playerState.completedQuests['tavern_judge'])) {
+                        window.playerState.completedQuests['tavern_done'] = true;
+                        goScene("greyford_01");
+                    } else {
+                        goScene("thread_tavern");
+                    }
                 }
             },
             {
-                text: "🤝 [Посередник] Заговорити про гроші та срібло Руфіна",
-                visible: () => window.playerState.doctrines.mediator >= 1,
+                text: "[Посередник] Запитати про срібло",
+                visible: () => window.playerState && window.playerState.doctrines && window.playerState.doctrines.mediator >= 1 && !window.playerState.completedQuests['tavern_mediator'],
                 action: () => {
-                    window.playerState.clues.tavern = true;
-                    addToLog("Касандра зізнається: «Він платив чистим сріблом. Хтось багатий найняв його.»", "success");
-                    adjustResource("silver", 1);
-                    adjustResource("peganum", 1);
+                    window.playerState.completedQuests['tavern_mediator'] = true;
+                    addToLog("«Він платив чистим сріблом. Хтось йому заплатив добре.»", "success");
                     adjustReputation("order", 10);
-                    window.playerState.completedQuests['tavern'] = true;
-                    goScene('investigation');
+                    if (window.playerState.completedQuests['tavern_speak'] && (!window.playerState.doctrines || window.playerState.doctrines.mediator < 1 || window.playerState.completedQuests['tavern_mediator']) && (!window.playerState.doctrines || window.playerState.doctrines.judge < 1 || window.playerState.completedQuests['tavern_judge'])) {
+                        window.playerState.completedQuests['tavern_done'] = true;
+                        goScene("greyford_01");
+                    } else {
+                        goScene("thread_tavern");
+                    }
                 }
             },
             {
-                text: "⚖️ [Суддя] «Перешкоджання офіційному слідству Ордену карається суворо. Говори правду.»",
-                visible: () => window.playerState.doctrines.judge >= 1,
+                text: "[Суддя] Наполягати на законі",
+                visible: () => window.playerState && window.playerState.doctrines && window.playerState.doctrines.judge >= 1 && !window.playerState.completedQuests['tavern_judge'],
                 action: () => {
-                    window.playerState.clues.tavern = true;
-                    addToLog("Вона шепоче: «Він шукав старого провідника мурі. Заберіть цей слиз мурі, що він забув на столі!»", "success");
-                    adjustResource("slime", 2);
+                    window.playerState.completedQuests['tavern_judge'] = true;
+                    addToLog("«Він шукав старого провідника мурі.»", "success");
                     adjustReputation("admin", 20);
                     adjustReputation("order", -10);
-                    window.playerState.completedQuests['tavern'] = true;
-                    goScene('investigation');
+                    if (window.playerState.completedQuests['tavern_speak'] && (!window.playerState.doctrines || window.playerState.doctrines.mediator < 1 || window.playerState.completedQuests['tavern_mediator']) && (!window.playerState.doctrines || window.playerState.doctrines.judge < 1 || window.playerState.completedQuests['tavern_judge'])) {
+                        window.playerState.completedQuests['tavern_done'] = true;
+                        goScene("greyford_01");
+                    } else {
+                        goScene("thread_tavern");
+                    }
                 }
             }
         ]
     },
     thread_witch: {
-
         audioTrack: "assets/audio/ep1_city_music.mp3",
-
         audioAtmosphere: "assets/audio/ep1_city_ambient.mp3",
-
         title: "Помешкання Чаклунки",
         text: `Ви знайшли прихований будинок на околиці міста, прикрашений оберегами від болотяних духів. Чаклунка зустрічає вас із посмішкою. Вона знає, чому ви прийшли. «Руфін? Я бачила, як він ішов у болота вночі...»`,
         choices: [
             {
-                text: "🗣️ Просто запитати, що вона бачила тієї ночі",
+                text: "Просто запитати",
+                visible: () => window.playerState && !window.playerState.completedQuests['witch_speak'],
                 action: () => {
-                    window.playerState.clues.witch = true;
-                    addToLog("Вона каже: «Він ніс важку річ, яка горіла холодним світлом у темряві. Це було моторошно.»", "success");
-                    adjustResource("henbane", 1);
+                    window.playerState.completedQuests['witch_speak'] = true;
+                    addToLog("«Він ніс важку річ, яка горіла холодним світлом.»", "success");
                     adjustReputation("muri", 10);
-                    window.playerState.completedQuests['witch'] = true;
-                    goScene('investigation');
+                    if (window.playerState.completedQuests['witch_speak'] && (!window.playerState.doctrines || window.playerState.doctrines.lantern < 1 || window.playerState.completedQuests['witch_lantern']) && (!window.playerState.doctrines || window.playerState.doctrines.mediator < 1 || window.playerState.completedQuests['witch_mediator'])) {
+                        window.playerState.completedQuests['witch_done'] = true;
+                        goScene("greyford_01");
+                    } else {
+                        goScene("thread_witch");
+                    }
                 }
             },
             {
-                text: "💡 [Ліхтар] Розпитати про магічне світіння його речей",
-                visible: () => window.playerState.doctrines.lantern >= 1,
+                text: "[Ліхтар] Оглянути світіння",
+                visible: () => window.playerState && window.playerState.doctrines && window.playerState.doctrines.lantern >= 1 && !window.playerState.completedQuests['witch_lantern'],
                 action: () => {
-                    window.playerState.clues.witch = true;
-                    addToLog("Чаклунка шепоче: «Він ніс стародавній артефакт боліт, який світився зеленим вогнем!»", "success");
+                    window.playerState.completedQuests['witch_lantern'] = true;
+                    addToLog("«Він ніс стародавній артефакт, який світився зеленим вогнем!»", "success");
                     addItem("🧿 Болотяний амулет");
                     adjustResource("ash", 1);
                     adjustResource("heart", 1);
-                    adjustResource("henbane", 2);
                     adjustReputation("keepers", 20);
-                    window.playerState.completedQuests['witch'] = true;
-                    goScene('investigation');
+                    if (window.playerState.completedQuests['witch_speak'] && (!window.playerState.doctrines || window.playerState.doctrines.lantern < 1 || window.playerState.completedQuests['witch_lantern']) && (!window.playerState.doctrines || window.playerState.doctrines.mediator < 1 || window.playerState.completedQuests['witch_mediator'])) {
+                        window.playerState.completedQuests['witch_done'] = true;
+                        goScene("greyford_01");
+                    } else {
+                        goScene("thread_witch");
+                    }
                 }
             },
             {
-                text: "🤝 [Посередник] Спробувати купити її знання",
-                visible: () => window.playerState.doctrines.mediator >= 1,
+                text: "[Посередник] Запитати про впливових покупців",
+                visible: () => window.playerState && window.playerState.doctrines && window.playerState.doctrines.mediator >= 1 && !window.playerState.completedQuests['witch_mediator'],
                 action: () => {
-                    window.playerState.clues.witch = true;
-                    addToLog("За жменю мідяків вона зізналася: «Він купив це світіння у когось впливового в Грейфорді.»", "success");
-                    adjustResource("henbane", 2);
+                    window.playerState.completedQuests['witch_mediator'] = true;
+                    addToLog("«Він купив це світіння у когось впливового в Грейфорді.»", "success");
                     adjustReputation("admin", -10);
-                    window.playerState.completedQuests['witch'] = true;
-                    goScene('investigation');
+                    if (window.playerState.completedQuests['witch_speak'] && (!window.playerState.doctrines || window.playerState.doctrines.lantern < 1 || window.playerState.completedQuests['witch_lantern']) && (!window.playerState.doctrines || window.playerState.doctrines.mediator < 1 || window.playerState.completedQuests['witch_mediator'])) {
+                        window.playerState.completedQuests['witch_done'] = true;
+                        goScene("greyford_01");
+                    } else {
+                        goScene("thread_witch");
+                    }
                 }
             }
         ]

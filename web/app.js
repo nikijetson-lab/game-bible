@@ -214,9 +214,12 @@ let playerState = {
     },
     reputation: {
         greyford: 0,
+        admin: 0,
         knives: 0,
+        order: 0,
         keepers: 0,
-        muri: 0
+        muri: 0,
+        wanderers: 0
     },
     resources: {
         henbane: 0,

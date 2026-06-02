@@ -199,6 +199,7 @@ function parseMarkdown(md) {
 
 let gameStarted = false;
 let playerState = {
+    completedQuests: {},
     name: "Яромир",
     gender: "Чоловік",
     background: "Колишній засуджений",
@@ -368,6 +369,7 @@ function initCharacterCreation() {
                 witch: false,
                 witch_hint: false
             };
+            window.playerState.completedQuests = {};
             window.playerState.history = [];
             
             document.getElementById("character-creation").style.display = "none";

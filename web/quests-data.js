@@ -138,7 +138,7 @@ window.GAME_SCENES = {
                 action: () => {
                     window.playerState.sonkFerry.finalVerdict = "adaptation";
                     adjustReputation("admin", 30);
-                    goScene("hazemoor_swamp_path");
+                    goScene("valkorn_archive_arrival");
                 }
             },
             {
@@ -148,7 +148,7 @@ window.GAME_SCENES = {
                     window.playerState.sonkFerry.finalVerdict = "containment";
                     adjustReputation("admin", 20);
                     adjustReputation("order", 10);
-                    goScene("hazemoor_swamp_path");
+                    goScene("valkorn_archive_arrival");
                 }
             },
             {
@@ -158,7 +158,7 @@ window.GAME_SCENES = {
                     window.playerState.sonkFerry.finalVerdict = "pact";
                     adjustReputation("muri", 30);
                     adjustReputation("admin", -15);
-                    goScene("hazemoor_swamp_path");
+                    goScene("valkorn_archive_arrival");
                 }
             },
             {
@@ -168,11 +168,137 @@ window.GAME_SCENES = {
                     window.playerState.sonkFerry.finalVerdict = "mercy";
                     adjustReputation("keepers", 30);
                     adjustReputation("muri", 15);
-                    goScene("hazemoor_swamp_path");
+                    goScene("valkorn_archive_arrival");
                 }
             }
         ]
     },
+
+    valkorn_archive_arrival: {
+        isChapterEnding: true,
+        title: "ЕПІЗОД 2: ВАЛЬКОРН",
+        text: `Валькорн. Столиця з каменю і заліза. Ви прибули після подій у Сонк-Феррі. Залежно від вашого вердикту, ви прямуєте різними шляхами до міста.`,
+        audioTrack: "assets/audio/ep2_city_music.mp3",
+        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        choices: [
+            {
+                text: "Пройти через Палацовий Квартал (Залізний Тріумф/Контрольоване стримування)",
+                visible: () => window.playerState.sonkFerry.finalVerdict === "adaptation" || window.playerState.sonkFerry.finalVerdict === "containment",
+                action: () => goScene("valkorn_palace_path")
+            },
+            {
+                text: "Пробратися крізь нове гетто (Місцева угода / Пакт)",
+                visible: () => window.playerState.sonkFerry.finalVerdict === "pact",
+                action: () => goScene("valkorn_ghetto_path")
+            },
+            {
+                text: "Пройти через Крипту Архіву (Ритуальне милосердя)",
+                visible: () => window.playerState.sonkFerry.finalVerdict === "mercy",
+                action: () => goScene("valkorn_crypt_path")
+            }
+        ]
+    },
+    valkorn_palace_path: {
+        title: "Шлях А: Залізний Тріумф",
+        text: `Вартовий повертається в складі офіційної делегації Ордену. Замість трясовини — потріскана сіра глина.`,
+        audioTrack: "assets/audio/ep2_city_music.mp3",
+        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        choices: [
+            {
+                text: "Продовжити шлях",
+                visible: () => true,
+                action: () => goScene("clown_phipp_encounter")
+            }
+        ]
+    },
+    valkorn_ghetto_path: {
+        title: "Шлях Б: Тінь у Каналах",
+        text: `Герой — очеретяний монстр з чорними нафтовими очима — потайки пробирається крізь стічні колектори Валькорна. Гнила болотна вода вже сочиться крізь тріщини підземних каналів.`,
+        audioTrack: "assets/audio/ep2_city_music.mp3",
+        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        choices: [
+            {
+                text: "Продовжити шлях",
+                visible: () => true,
+                action: () => goScene("clown_phipp_encounter")
+            }
+        ]
+    },
+    valkorn_crypt_path: {
+        title: "Шлях В: Крихкий Посол",
+        text: `Герой входить через головну браму офіційно, під конвоєм. Він — «живий замок» Хейзмуру. Постійний приглушений біль у грудях від внутрішнього тертя двох Печаток.`,
+        audioTrack: "assets/audio/ep2_city_music.mp3",
+        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        choices: [
+            {
+                text: "Продовжити шлях",
+                visible: () => true,
+                action: () => goScene("clown_phipp_encounter")
+            }
+        ]
+    },
+clown_phipp_encounter: {
+        title: "Передвістя — Блазень Фіпп",
+        text: `На ринковій площі — Блазень Фіпп (королівський шут). Ви і Ілія намагаєтесь обійти. Фіпп завмирає. Бубонці замовкають. Погляд крізь білий грим — холодний, розумний. Камінь Моура стає гарячим.
+
+«Дивись-но, мала Марр веде нове цуценя на повідку! Тільки нашийник у нього з холодного болотяного заліза, а в зубах — розбита печатка!»
+
+Ілія: «Звідки він знає моє ім'я? Ми прибули таємно... Він знає набагато більше ніж повинен.»`,
+        audioTrack: "assets/audio/ep2_city_music.mp3",
+        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        choices: [
+            {
+                text: "[Божевілля] Прошепотіти мовою Туману",
+                visible: () => window.playerState.sanity < 40,
+                action: () => {
+                    addToLog("Фіпп відсахується, його білий грим тріскається від жаху. Болото каже саме за себе.", "success");
+                    adjustReputation("muri", 10);
+                    goScene("valkorn_hub");
+                }
+            },
+            {
+                text: "[Корупція] Показати йому справжнє обличчя розпаду",
+                visible: () => window.playerState.corruption > 50,
+                action: () => {
+                    addToLog("Відчувши ваш сморід розпаду, Фіпп втрачає самоконтроль і починає кричати, привертаючи увагу варти.", "damage");
+                    adjustReputation("order", -15);
+                    goScene("valkorn_hub");
+                }
+            },
+            {
+                text: "Зберегти мовчання і йти далі",
+                visible: () => window.playerState.sanity >= 40 && window.playerState.corruption <= 50,
+                action: () => {
+                    addToLog("Ви спокійно минаєте Фіппа, не піддаючись на провокації.", "success");
+                    goScene("valkorn_hub");
+                }
+            }
+        ]
+    },
+    valkorn_hub: {
+        title: "Три нитки орієнтації",
+        text: `Три імені від Ілії: Брес (нове гетто), Стетсон (палацовий квартал), Одрін (архів).`,
+        audioTrack: "assets/audio/ep2_city_music.mp3",
+        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        choices: [
+            {
+                text: "Шукати Стетсона (Слідчий)",
+                visible: () => true,
+                action: () => goScene("valkorn_stetson")
+            },
+            {
+                text: "Шукати Бреса (Втікач із Сонк-Феррі)",
+                visible: () => true,
+                action: () => goScene("valkorn_bres")
+            },
+            {
+                text: "Йти до Тесси (Крамниця)",
+                visible: () => true,
+                action: () => goScene("valkorn_tessa")
+            }
+        ]
+    },
+
     arriving: {
 
         audioTrack: "assets/audio/ep1_tavern_music.mp3",

@@ -9,17 +9,17 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "Сіль у книзі (Контрабанда ліків)",
-                visible: () => window.playerState && window.playerState.sonkFerry && window.playerState.sonkFerry.medsStatus === null,
+                visible: () => !window.playerState || !window.playerState.sonkFerry || window.playerState.sonkFerry.medsStatus === null,
                 action: () => goScene("quest_meds")
             },
             {
                 text: "Поромна присяга (Контроль річки)",
-                visible: () => window.playerState && window.playerState.sonkFerry && window.playerState.sonkFerry.ferryControl === null,
+                visible: () => !window.playerState || !window.playerState.sonkFerry || window.playerState.sonkFerry.ferryControl === null,
                 action: () => goScene("quest_ferry")
             },
             {
                 text: "Попіл під каплицею (Ритуал)",
-                visible: () => window.playerState && window.playerState.sonkFerry && window.playerState.sonkFerry.chapelRitual === null,
+                visible: () => !window.playerState || !window.playerState.sonkFerry || window.playerState.sonkFerry.chapelRitual === null,
                 action: () => goScene("quest_chapel")
             },
             {
@@ -38,6 +38,7 @@ window.GAME_SCENES = {
             {
                 text: "Дозволити контрабанду Мурі",
                 action: () => {
+                    if (!window.playerState.sonkFerry) window.playerState.sonkFerry = { medsStatus: null, ferryControl: null, chapelRitual: null, finalVerdict: null };
                     window.playerState.sonkFerry.medsStatus = "smuggled";
                     adjustReputation("muri", 15);
                     adjustReputation("admin", -10);
@@ -47,6 +48,7 @@ window.GAME_SCENES = {
             {
                 text: "Конфіскувати товар на користь міста",
                 action: () => {
+                    if (!window.playerState.sonkFerry) window.playerState.sonkFerry = { medsStatus: null, ferryControl: null, chapelRitual: null, finalVerdict: null };
                     window.playerState.sonkFerry.medsStatus = "confiscated";
                     adjustReputation("admin", 15);
                     adjustReputation("muri", -10);
@@ -65,6 +67,7 @@ window.GAME_SCENES = {
                 text: "«Я вже закрив квоту міста по ліках. Пором має залишитися за Нерою.» (Дипломатія)",
                 visible: () => window.playerState && window.playerState.sonkFerry && window.playerState.sonkFerry.medsStatus === "confiscated",
                 action: () => {
+                    if (!window.playerState.sonkFerry) window.playerState.sonkFerry = { medsStatus: null, ferryControl: null, chapelRitual: null, finalVerdict: null };
                     window.playerState.sonkFerry.ferryControl = "vale";
                     adjustReputation("muri", 15);
                     goScene("sonk_ferry_hub");
@@ -73,6 +76,7 @@ window.GAME_SCENES = {
             {
                 text: "Підтримати Тована Ріда (Адміністрація)",
                 action: () => {
+                    if (!window.playerState.sonkFerry) window.playerState.sonkFerry = { medsStatus: null, ferryControl: null, chapelRitual: null, finalVerdict: null };
                     window.playerState.sonkFerry.ferryControl = "reed";
                     adjustReputation("admin", 15);
                     adjustReputation("muri", -5);
@@ -82,6 +86,7 @@ window.GAME_SCENES = {
             {
                 text: "Підтримати Неру Вейл (Народ Мурі)",
                 action: () => {
+                    if (!window.playerState.sonkFerry) window.playerState.sonkFerry = { medsStatus: null, ferryControl: null, chapelRitual: null, finalVerdict: null };
                     window.playerState.sonkFerry.ferryControl = "vale";
                     adjustReputation("muri", 15);
                     adjustReputation("keepers", 5);
@@ -99,6 +104,7 @@ window.GAME_SCENES = {
             {
                 text: "Зупинити імітацію ритуалу Ключників",
                 action: () => {
+                    if (!window.playerState.sonkFerry) window.playerState.sonkFerry = { medsStatus: null, ferryControl: null, chapelRitual: null, finalVerdict: null };
                     window.playerState.sonkFerry.chapelRitual = "stopped";
                     adjustReputation("keepers", 20);
                     goScene("sonk_ferry_hub");
@@ -107,6 +113,7 @@ window.GAME_SCENES = {
             {
                 text: "Проігнорувати заради власної вигоди",
                 action: () => {
+                    if (!window.playerState.sonkFerry) window.playerState.sonkFerry = { medsStatus: null, ferryControl: null, chapelRitual: null, finalVerdict: null };
                     window.playerState.sonkFerry.chapelRitual = "ignored";
                     adjustReputation("keepers", -10);
                     window.playerState.corruption += 5;
@@ -2438,4 +2445,5 @@ window.GAME_SCENES = {
     ep4_resolution_pact: { title: "Розв'язка Пакту", text: "Ви — живий міст між світами. Шлях відходу: зупинка на мосту.", choices: [{ text: "Завершити", action: () => goScene("ep5_final_C") }] }
 
 };
-// Force PR trigger
+// Re-trigger PR
+// Trigger PR for sonk_ferry_hub auto transition fixes

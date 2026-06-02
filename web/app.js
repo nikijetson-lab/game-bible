@@ -199,6 +199,15 @@ function parseMarkdown(md) {
 
 let gameStarted = false;
 let playerState = {
+    sanity: 100,
+    corruption: 0,
+    iliaAnchor: 50,
+    sonkFerry: {
+        medsStatus: null,
+        ferryControl: null,
+        chapelRitual: null,
+        finalVerdict: null
+    },
     completedQuests: {},
     name: "Яромир",
     gender: "Чоловік",
@@ -372,6 +381,18 @@ function initCharacterCreation() {
             window.playerState.completedQuests = {};
             window.playerState.history = [];
             
+            // Episode 1 Hub - Sonk Ferry Metrics
+            window.playerState.sanity = 100;
+            window.playerState.corruption = 0;
+            window.playerState.iliaAnchor = 50;
+            window.playerState.sonkFerry = {
+                medsStatus: null,
+                ferryControl: null,
+                chapelRitual: null,
+                finalVerdict: null
+            };
+            window.playerState.reputation = { ...window.playerState.reputation, admin: window.playerState.reputation.greyford || 0, order: window.playerState.reputation.knives || 0 };
+
             document.getElementById("character-creation").style.display = "none";
             document.getElementById("main-simulator-interface").style.display = "flex";
             

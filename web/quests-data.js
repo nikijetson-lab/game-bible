@@ -1,6 +1,171 @@
 window.playerState = window.playerState || {};
 window.EPISODE_1_QUESTS = window.EPISODE_1_QUESTS || [];
 window.GAME_SCENES = {
+    sonk_ferry_hub: {
+        audioTrack: "assets/audio/ep3_swamp_music.mp3",
+        audioAtmosphere: "assets/audio/ep3_swamp_ambient.mp3",
+        title: "Сонк-Феррі: Оплот на Болоті",
+        text: `Ви прибули до поселення Сонк-Феррі. Повітря густе від туману, а місцеві жителі дивляться на вас з недовірою. Напруга між фракціями відчувається на кожному кроці.`,
+        choices: [
+            {
+                text: "Сіль у книзі (Контрабанда ліків)",
+                visible: () => window.playerState && window.playerState.sonkFerry && window.playerState.sonkFerry.medsStatus === null,
+                action: () => goScene("quest_meds")
+            },
+            {
+                text: "Поромна присяга (Контроль річки)",
+                visible: () => window.playerState && window.playerState.sonkFerry && window.playerState.sonkFerry.ferryControl === null,
+                action: () => goScene("quest_ferry")
+            },
+            {
+                text: "Попіл під каплицею (Ритуал)",
+                visible: () => window.playerState && window.playerState.sonkFerry && window.playerState.sonkFerry.chapelRitual === null,
+                action: () => goScene("quest_chapel")
+            },
+            {
+                text: "Очікувати на прибуття чиновника (Серіт Келм)",
+                visible: () => window.playerState && window.playerState.sonkFerry && window.playerState.sonkFerry.medsStatus !== null && window.playerState.sonkFerry.ferryControl !== null && window.playerState.sonkFerry.chapelRitual !== null,
+                action: () => goScene("quest_verdict_kelm")
+            }
+        ]
+    },
+    quest_meds: {
+        audioTrack: "assets/audio/ep3_swamp_music.mp3",
+        audioAtmosphere: "assets/audio/ep3_swamp_ambient.mp3",
+        title: "Сіль у книзі",
+        text: `Ви знайшли схованку з медикаментами, які Мурі намагаються провести в обхід квот Адміністрації. Що ви вирішите?`,
+        choices: [
+            {
+                text: "Дозволити контрабанду Мурі",
+                action: () => {
+                    window.playerState.sonkFerry.medsStatus = "smuggled";
+                    adjustReputation("muri", 15);
+                    adjustReputation("admin", -10);
+                    goScene("sonk_ferry_hub");
+                }
+            },
+            {
+                text: "Конфіскувати товар на користь міста",
+                action: () => {
+                    window.playerState.sonkFerry.medsStatus = "confiscated";
+                    adjustReputation("admin", 15);
+                    adjustReputation("muri", -10);
+                    goScene("sonk_ferry_hub");
+                }
+            }
+        ]
+    },
+    quest_ferry: {
+        audioTrack: "assets/audio/ep3_swamp_music.mp3",
+        audioAtmosphere: "assets/audio/ep3_swamp_ambient.mp3",
+        title: "Поромна присяга",
+        text: `На річці розгортається суперечка за контроль над єдиним безпечним поромом між представником Адміністрації Тованою Рідом та Нерою Вейл з народу Мурі.`,
+        choices: [
+            {
+                text: "«Я вже закрив квоту міста по ліках. Пором має залишитися за Нерою.» (Дипломатія)",
+                visible: () => window.playerState && window.playerState.sonkFerry && window.playerState.sonkFerry.medsStatus === "confiscated",
+                action: () => {
+                    window.playerState.sonkFerry.ferryControl = "vale";
+                    adjustReputation("muri", 15);
+                    goScene("sonk_ferry_hub");
+                }
+            },
+            {
+                text: "Підтримати Тована Ріда (Адміністрація)",
+                action: () => {
+                    window.playerState.sonkFerry.ferryControl = "reed";
+                    adjustReputation("admin", 15);
+                    adjustReputation("muri", -5);
+                    goScene("sonk_ferry_hub");
+                }
+            },
+            {
+                text: "Підтримати Неру Вейл (Народ Мурі)",
+                action: () => {
+                    window.playerState.sonkFerry.ferryControl = "vale";
+                    adjustReputation("muri", 15);
+                    adjustReputation("keepers", 5);
+                    goScene("sonk_ferry_hub");
+                }
+            }
+        ]
+    },
+    quest_chapel: {
+        audioTrack: "assets/audio/ep3_swamp_music.mp3",
+        audioAtmosphere: "assets/audio/ep3_swamp_ambient.mp3",
+        title: "Попіл під каплицею",
+        text: `Під старою каплицею група відступників намагається провести імітацію ритуалу Святої Вей. Це небезпечно і може привернути увагу Темряви.`,
+        choices: [
+            {
+                text: "Зупинити імітацію ритуалу Ключників",
+                action: () => {
+                    window.playerState.sonkFerry.chapelRitual = "stopped";
+                    adjustReputation("keepers", 20);
+                    goScene("sonk_ferry_hub");
+                }
+            },
+            {
+                text: "Проігнорувати заради власної вигоди",
+                action: () => {
+                    window.playerState.sonkFerry.chapelRitual = "ignored";
+                    adjustReputation("keepers", -10);
+                    window.playerState.corruption += 5;
+                    addToLog("Ваша корупція зросла на 5.", "damage");
+                    goScene("sonk_ferry_hub");
+                }
+            }
+        ]
+    },
+    quest_verdict_kelm: {
+        audioTrack: "assets/audio/ep3_swamp_music.mp3",
+        audioAtmosphere: "assets/audio/ep3_swamp_ambient.mp3",
+        title: "Прибуття чиновника",
+        text: `Серіт Келм прибув до Сонк-Феррі. Час винести остаточний вердикт щодо майбутнього цього поселення.`,
+        choices: [
+            {
+                text: "Вердикт А: Пристосування (Підписати звіт)",
+                visible: () => {
+                    const r = window.playerState.reputation;
+                    return r.admin >= 10 || (r.admin < 10 && r.order < 5 && r.muri < 15 && r.keepers < 15);
+                },
+                action: () => {
+                    window.playerState.sonkFerry.finalVerdict = "adaptation";
+                    adjustReputation("admin", 30);
+                    goScene("hazemoor_swamp_path");
+                }
+            },
+            {
+                text: "Вердикт Б: Контрольоване стримування",
+                visible: () => window.playerState.reputation.order >= 5,
+                action: () => {
+                    window.playerState.sonkFerry.finalVerdict = "containment";
+                    adjustReputation("admin", 20);
+                    adjustReputation("order", 10);
+                    goScene("hazemoor_swamp_path");
+                }
+            },
+            {
+                text: "Вердикт В: Місцева угода (Канонічний пакт)",
+                visible: () => window.playerState.reputation.muri >= 15,
+                action: () => {
+                    window.playerState.sonkFerry.finalVerdict = "pact";
+                    adjustReputation("muri", 30);
+                    adjustReputation("admin", -15);
+                    goScene("hazemoor_swamp_path");
+                }
+            },
+            {
+                text: "Вердикт Г: Ритуальне милосердя",
+                visible: () => window.playerState.reputation.keepers >= 15,
+                action: () => {
+                    window.playerState.sonkFerry.finalVerdict = "mercy";
+                    adjustReputation("keepers", 30);
+                    adjustReputation("muri", 15);
+                    goScene("hazemoor_swamp_path");
+                }
+            }
+        ]
+    },
     arriving: {
 
         audioTrack: "assets/audio/ep1_tavern_music.mp3",
@@ -233,12 +398,8 @@ window.GAME_SCENES = {
         text: `Ви залишили стіни Грейфорда позаду. Перед вами розкинулися безмежні, огорнуті густим зеленим туманом болота Хейзмуру.`,
         choices: [
             {
-                text: "Продовжити шлях крізь трясовину",
-                action: () => goScene("hazemoor_swamp_path")
-            },
-            {
-                text: "Повернутися до міської брами",
-                action: () => goScene("greyford_01")
+                text: "Увійти до Сонк-Феррі",
+                action: () => goScene("sonk_ferry_hub")
             }
         ]
     },
@@ -2277,3 +2438,4 @@ window.GAME_SCENES = {
     ep4_resolution_pact: { title: "Розв'язка Пакту", text: "Ви — живий міст між світами. Шлях відходу: зупинка на мосту.", choices: [{ text: "Завершити", action: () => goScene("ep5_final_C") }] }
 
 };
+// Force PR trigger

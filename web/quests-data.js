@@ -138,7 +138,7 @@ window.GAME_SCENES = {
                 action: () => {
                     window.playerState.sonkFerry.finalVerdict = "adaptation";
                     adjustReputation("admin", 30);
-                    goScene("valckorn_archive_arrival");
+                    goScene("hazemoor_swamp_start");
                 }
             },
             {
@@ -148,7 +148,7 @@ window.GAME_SCENES = {
                     window.playerState.sonkFerry.finalVerdict = "containment";
                     adjustReputation("admin", 20);
                     adjustReputation("order", 10);
-                    goScene("valckorn_archive_arrival");
+                    goScene("hazemoor_swamp_start");
                 }
             },
             {
@@ -158,7 +158,7 @@ window.GAME_SCENES = {
                     window.playerState.sonkFerry.finalVerdict = "pact";
                     adjustReputation("muri", 30);
                     adjustReputation("admin", -15);
-                    goScene("valckorn_archive_arrival");
+                    goScene("hazemoor_swamp_start");
                 }
             },
             {
@@ -168,137 +168,230 @@ window.GAME_SCENES = {
                     window.playerState.sonkFerry.finalVerdict = "mercy";
                     adjustReputation("keepers", 30);
                     adjustReputation("muri", 15);
-                    goScene("valckorn_archive_arrival");
+                    goScene("hazemoor_swamp_start");
                 }
             }
         ]
     },
 
-    valckorn_archive_arrival: {
-        title: "ЕПІЗОД 2: ВАЛЬКОРН",
-        text: `Валькорн. Столиця з каменю і заліза. Ви прибули після подій у Сонк-Феррі. Залежно від вашого вердикту, ви прямуєте різними шляхами до міста.`,
+    hazemoor_swamp_start: {
+        title: "Трясовина Хейзмуру",
+        text: "Сірий, холодний ранок. Небо чисте від туману, але абсолютно безживне. Хейзмур випалене й висушене. Ви йдете по пильній сухій дорозі геть від Валькорна. Рухи ваших омертвілих пальців повільні й жорсткі в шкіряних рукавицях. Раптом із густого сизого марева постає силует Мії — провідниці фракції Мурів, яка знає таємні стежки крізь цю гниль.",
         audioTrack: "assets/audio/ep2_city_music.mp3",
         audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
         choices: [
             {
-                text: "[Аварійний шлях] Пройти через Палацовий Квартал",
-                visible: () => !window.playerState || !window.playerState.sonkFerry || !window.playerState.sonkFerry.finalVerdict,
-                action: () => goScene("valckorn_palace_path")
+                text: "Довіритися Мії та дозволити їй провести героя крізь Туман",
+                visible: () => window.playerState && window.playerState.completedQuests && !window.playerState.completedQuests.muriHostile,
+                action: () => {
+                    window.playerState.sanity = (window.playerState.sanity || 100) - 15;
+                    goScene("hazemoor_muri_village");
+                }
             },
             {
-                text: "Пройти через Палацовий Квартал (Залізний Тріумф/Контрольоване стримування)",
+                text: "Відкинути допомогу Мії та прориватися самотужки за компасом Стетсона",
+                visible: () => true,
+                action: () => {
+                    window.playerState.hp = (window.playerState.hp || 100) - 20;
+                    window.playerState.will = (window.playerState.will || 50) - 10;
+                    goScene("hazemoor_swamp_hard_path");
+                }
+            }
+        ]
+    },
+
+    hazemoor_muri_village: {
+        title: "Таємне поселення Мурів",
+        text: "Приховане між гігантських коренів гнилих дерев, селище Амфібій дихає вологою та давньою магією. Вождь Мурів дивиться на вас із глибокою недовірою, але присутність Мії стримує його гнів. Тут ховаються ключі до Чорного Архіву Валькорна, які людська Адміністрація намагається знищити поколіннями.",
+        audioTrack: "assets/audio/ep2_city_music.mp3",
+        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        choices: [
+            {
+                text: "Укласти таємний пакт з вождем Мурів для майбутньої диверсії в столиці",
+                visible: () => true,
+                action: () => {
+                    window.playerState.sonkFerry = window.playerState.sonkFerry || {};
+                    window.playerState.sonkFerry.muriAlliance = true;
+                    goScene("valckorn_traversal");
+                }
+            },
+            {
+                text: "Зібрати розвіддані про архіви та негайно рухатися далі до Валькорна",
+                visible: () => true,
+                action: () => {
+                    goScene("valckorn_traversal");
+                }
+            }
+        ]
+    },
+
+    hazemoor_swamp_hard_path: {
+        title: "Гнилі Драгви",
+        text: "Без провідника болота перетворюються на пастку. Чорна твань намагається затягнути чоботи Вартового, а в тумані чути клацання щелеп болотних тварюк. Кожен крок вимагає колосальних зусиль, виснажуючи тіло та дух.",
+        audioTrack: "assets/audio/ep2_city_music.mp3",
+        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        choices: [
+            {
+                text: "Використати Доктрину Слідопита для пошуку безпечної стежки",
+                visible: () => window.playerState && window.playerState.doctrines && window.playerState.doctrines.pathfinder >= 1,
+                action: () => {
+                    goScene("valckorn_traversal");
+                }
+            },
+            {
+                text: "Зцілити рани залишками блекоти і пробиватися до околиць міста",
+                visible: () => true,
+                action: () => {
+                    goScene("valckorn_traversal");
+                }
+            }
+        ]
+    },
+
+    valckorn_traversal: {
+        title: "Шляхи до Валькорна",
+        text: "Залежно від вашого вердикту в Сонк-Феррі, ви маєте різні шляхи доступу до міста Валькорн.",
+        audioTrack: "assets/audio/ep2_city_music.mp3",
+        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        choices: [
+            {
+                text: "Пройти через Палацовий Квартал (Залізний Тріумф / Контрольоване стримування)",
                 visible: () => window.playerState && window.playerState.sonkFerry && (window.playerState.sonkFerry.finalVerdict === "adaptation" || window.playerState.sonkFerry.finalVerdict === "containment"),
-                action: () => goScene("valckorn_palace_path")
+                action: () => goScene("valckorn_entry_palace")
             },
             {
                 text: "Пробратися крізь нове гетто (Місцева угода / Пакт)",
                 visible: () => window.playerState && window.playerState.sonkFerry && window.playerState.sonkFerry.finalVerdict === "pact",
-                action: () => goScene("valckorn_ghetto_path")
+                action: () => goScene("valckorn_entry_ghetto")
             },
             {
                 text: "Пройти через Крипту Архіву (Ритуальне милосердя)",
                 visible: () => window.playerState && window.playerState.sonkFerry && window.playerState.sonkFerry.finalVerdict === "mercy",
-                action: () => goScene("valckorn_crypt_path")
-            }
-        ]
-    },
-    valckorn_palace_path: {
-        title: "Шлях А: Залізний Тріумф",
-        text: `Вартовий повертається в складі офіційної делегації Ордену. Замість трясовини — потріскана сіра глина.`,
-        audioTrack: "assets/audio/ep2_city_music.mp3",
-        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
-        choices: [
+                action: () => goScene("valckorn_entry_chapel")
+            },
             {
-                text: "Продовжити шлях",
-                visible: () => true,
-                action: () => goScene("clown_phipp_encounter")
+                text: "[Аварійний шлях] Пройти через Палацовий Квартал",
+                visible: () => !window.playerState || !window.playerState.sonkFerry || !window.playerState.sonkFerry.finalVerdict,
+                action: () => goScene("valckorn_entry_palace")
             }
         ]
     },
-    valckorn_ghetto_path: {
-        title: "Шлях Б: Тінь у Каналах",
-        text: `Герой — очеретяний монстр з чорними нафтовими очима — потайки пробирається крізь стічні колектори Валькорна. Гнила болотна вода вже сочиться крізь тріщини підземних каналів.`,
-        audioTrack: "assets/audio/ep2_city_music.mp3",
-        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
-        choices: [
-            {
-                text: "Продовжити шлях",
-                visible: () => true,
-                action: () => goScene("clown_phipp_encounter")
-            }
-        ]
-    },
-    valckorn_crypt_path: {
-        title: "Шлях В: Крихкий Посол",
-        text: `Герой входить через головну браму офіційно, під конвоєм. Він — «живий замок» Хейзмуру. Постійний приглушений біль у грудях від внутрішнього тертя двох Печаток.`,
-        audioTrack: "assets/audio/ep2_city_music.mp3",
-        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
-        choices: [
-            {
-                text: "Продовжити шлях",
-                visible: () => true,
-                action: () => goScene("clown_phipp_encounter")
-            }
-        ]
-    },
-clown_phipp_encounter: {
-        title: "Передвістя — Блазень Фіпп",
-        text: `На ринковій площі — Блазень Фіпп (королівський шут). Ви і Ілія намагаєтесь обійти. Фіпп завмирає. Бубонці замовкають. Погляд крізь білий грим — холодний, розумний. Камінь Моура стає гарячим.
 
-«Дивись-но, мала Марр веде нове цуценя на повідку! Тільки нашийник у нього з холодного болотяного заліза, а в зубах — розбита печатка!»
-
-Ілія: «Звідки він знає моє ім'я? Ми прибули таємно... Він знає набагато більше ніж повинен.»`,
+    valckorn_entry_palace: {
+        title: "Залізний Тріумф — Брама Палацу",
+        text: "Величні ковані ворота столиці зустрічають вас брязканням зброї та суворими поглядами вартових Стетсона. Завдяки вашому рішенню в Сонк-Феррі, вас пропускають як офіційного представника Адміністрації, але кожен ваш крок тепер під пильним наглядом шукачів Ордена.",
         audioTrack: "assets/audio/ep2_city_music.mp3",
         audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
         choices: [
             {
-                text: "[Божевілля] Прошепотіти мовою Туману",
+                text: "Рухатися вглиб урядового кварталу до Чорного Архіву",
+                visible: () => true,
+                action: () => {
+                    goScene("clown_phipp_encounter");
+                }
+            }
+        ]
+    },
+
+    valckorn_entry_ghetto: {
+        title: "Затоплені Колектори Гетто",
+        text: "Ви пролазите крізь іржаві решітки стічних тунелів Нижнього Міста. Тут тхне гниллю, отруйними випарами та застояною водою. Bres подбав про провідників, але токсична атмосфера підземелля залишає важкий слід на вашому тілі.",
+        audioTrack: "assets/audio/ep2_city_music.mp3",
+        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        choices: [
+            {
+                text: "Витерти бруд з обличчя і вийти до підвалів Архіву",
+                visible: () => true,
+                action: () => {
+                    window.playerState.corruption = (window.playerState.corruption || 0) + 15;
+                    goScene("clown_phipp_encounter");
+                }
+            }
+        ]
+    },
+
+    valckorn_entry_chapel: {
+        title: "Завтрашна Крипта Каплиці",
+        text: "Тихий, майже священний спокій. Ви заходите в місто через забуті підземні сховища старої Каплиці за допомогою ключа Тесси. Свіже прохолодне повітря та стародавні ікони повертають вам душевну рівновагу, очищаючи розум від жахів болота.",
+        audioTrack: "assets/audio/ep2_city_music.mp3",
+        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        choices: [
+            {
+                text: "Піднятися таємними сходами до дверей сховища",
+                visible: () => true,
+                action: () => {
+                    window.playerState.sanity = (window.playerState.sanity || 100) + 20;
+                    goScene("clown_phipp_encounter");
+                }
+            }
+        ]
+    },
+
+    clown_phipp_encounter: {
+        title: "Блазень Фіпп — Хранитель Ключів",
+        text: "Перед важкими залізобетонними дверима Чорного Архіву сидить Фіпп. Його обличчя розмальоване зблідлою фарбою, а очі дивляться крізь вас із сумішшю дитячого божевілля та стародавнього жаху. Він крутить у руках зв'язку ключів і наспівує дивну мелодію, яка б'є по нервах.",
+        audioTrack: "assets/audio/ep2_city_music.mp3",
+        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        choices: [
+            {
+                text: "[Божевілля] Розпізнати прихований ритм у його словах і заговорити мовою Туману",
                 visible: () => window.playerState && (window.playerState.sanity || 0) < 40,
                 action: () => {
-                    addToLog("Фіпп відсахується, його білий грим тріскається від жаху. Болото каже саме за себе.", "success");
-                    adjustReputation("muri", 10);
-                    goScene("valckorn_hub");
+                    goScene("black_archive_vaults");
                 }
             },
             {
-                text: "[Корупція] Показати йому справжнє обличчя розпаду",
+                text: "Змусити Фіппа підкоритися, використовуючи силу Доктрини Судді",
                 visible: () => window.playerState && (window.playerState.corruption || 0) > 50,
                 action: () => {
-                    addToLog("Відчувши ваш сморід розпаду, Фіпп втрачає самоконтроль і починає кричати, привертаючи увагу варти.", "damage");
-                    adjustReputation("order", -15);
-                    goScene("valckorn_hub");
+                    window.playerState.will = (window.playerState.will || 50) - 20;
+                    goScene("black_archive_vaults");
                 }
             },
             {
-                text: "Зберегти мовчання і йти далі",
-                visible: () => !window.playerState || ((window.playerState.sanity === undefined || window.playerState.sanity >= 40) && (window.playerState.corruption === undefined || window.playerState.corruption <= 50)),
+                text: "Провести спокійний, детальний допит щодо кодів доступу",
+                visible: () => true,
                 action: () => {
-                    addToLog("Ви спокійно минаєте Фіппа, не піддаючись на провокації.", "success");
-                    goScene("valckorn_hub");
+                    goScene("black_archive_vaults");
                 }
             }
         ]
     },
-    valckorn_hub: {
-        title: "Три нитки орієнтації",
-        text: `Три імені від Ілії: Брес (нове гетто), Стетсон (палацовий квартал), Одрін (архів).`,
-        audioTrack: "assets/audio/ep2_city_music.mp3",
-        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+
+    black_archive_vaults: {
+        isChapterEnding: true,
+        title: "Зали Чорного Архіву",
+        text: "Ви перебуваєте в самому серці заборонених знань Валькорна. Нескінченні стелажі ломляться від сувоїв, що стікають чорним чорнилом. На столі лежить прадавній кодекс, який містить правду про природу появи Туману та фракцію Мурів. Настав час зробити вибір, який визначить долю всього Хейзмуру.",
+        audioTrack: "assets/audio/ep2_dungeon_music.mp3",
+        audioAtmosphere: "assets/audio/ep2_dungeon_ambient.mp3",
         choices: [
             {
-                text: "Шукати Стетсона (Слідчий)",
+                text: "[ФІНАЛ А: ШЛЯХ ЗНАННЯ] Засекретити координати джерела Туману та викрасти кодекс для особистого вивчення",
                 visible: () => true,
-                action: () => goScene("ep2_valckorn_stetson")
+                action: () => {
+                    window.playerState.corruption = (window.playerState.corruption || 0) + 30;
+                    window.playerState.sanity = (window.playerState.sanity || 100) - 20;
+                    // Trigger actual transition out of Episode 2
+                    // Setting isChapterEnding on window/global is not standard for this engine, but including it as requested
+                    window.isChapterEnding = true;
+                    goScene("ep3_deep_bog_start");
+                }
             },
             {
-                text: "Шукати Бреса (Втікач із Сонк-Феррі)",
+                text: "[ФІНАЛ Б: ШЛЯХ ОЧИЩЕННЯ] Спалити архівні записи, щоб назавжди стерти згадки про Мурів та Туман",
                 visible: () => true,
-                action: () => goScene("ep2_valckorn_bres")
+                action: () => {
+                    window.isChapterEnding = true;
+                    goScene("ep3_deep_bog_start");
+                }
             },
             {
-                text: "Йти до Тесси (Крамниця)",
+                text: "[ФІНАЛ В: ШЛЯХ ХАОСУ] Передати кодекс Мії та силам Мурів для підготовки масштабного повстання",
                 visible: () => true,
-                action: () => goScene("ep2_valckorn_tessa")
+                action: () => {
+                    window.isChapterEnding = true;
+                    goScene("ep3_deep_bog_start");
+                }
             }
         ]
     },

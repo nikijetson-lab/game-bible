@@ -1052,8 +1052,8 @@ function goScene(sceneKey) {
         }
     }
 
-    document.getElementById("scene-title").textContent = scene.title;
-    document.getElementById("scene-text").innerHTML = scene.text;
+    document.getElementById("scene-title").textContent = scene.title || "Невідома локація";
+    document.getElementById("scene-text").innerHTML = scene.text || "Дані для цієї сцени не знайдені.";
 
     const choicesDiv = document.getElementById("scene-choices");
     choicesDiv.innerHTML = "";

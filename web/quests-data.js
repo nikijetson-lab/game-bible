@@ -175,7 +175,6 @@ window.GAME_SCENES = {
     },
 
     valckorn_archive_arrival: {
-        isChapterEnding: true,
         title: "ЕПІЗОД 2: ВАЛЬКОРН",
         text: `Валькорн. Столиця з каменю і заліза. Ви прибули після подій у Сонк-Феррі. Залежно від вашого вердикту, ви прямуєте різними шляхами до міста.`,
         audioTrack: "assets/audio/ep2_city_music.mp3",
@@ -183,22 +182,22 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "[Аварійний шлях] Пройти через Палацовий Квартал",
-                visible: () => !window.playerState.sonkFerry || !window.playerState.sonkFerry.finalVerdict,
+                visible: () => !window.playerState || !window.playerState.sonkFerry || !window.playerState.sonkFerry.finalVerdict,
                 action: () => goScene("valckorn_palace_path")
             },
             {
                 text: "Пройти через Палацовий Квартал (Залізний Тріумф/Контрольоване стримування)",
-                visible: () => window.playerState.sonkFerry && (window.playerState.sonkFerry.finalVerdict === "adaptation" || window.playerState.sonkFerry.finalVerdict === "containment"),
+                visible: () => window.playerState && window.playerState.sonkFerry && (window.playerState.sonkFerry.finalVerdict === "adaptation" || window.playerState.sonkFerry.finalVerdict === "containment"),
                 action: () => goScene("valckorn_palace_path")
             },
             {
                 text: "Пробратися крізь нове гетто (Місцева угода / Пакт)",
-                visible: () => window.playerState.sonkFerry && window.playerState.sonkFerry.finalVerdict === "pact",
+                visible: () => window.playerState && window.playerState.sonkFerry && window.playerState.sonkFerry.finalVerdict === "pact",
                 action: () => goScene("valckorn_ghetto_path")
             },
             {
                 text: "Пройти через Крипту Архіву (Ритуальне милосердя)",
-                visible: () => window.playerState.sonkFerry && window.playerState.sonkFerry.finalVerdict === "mercy",
+                visible: () => window.playerState && window.playerState.sonkFerry && window.playerState.sonkFerry.finalVerdict === "mercy",
                 action: () => goScene("valckorn_crypt_path")
             }
         ]
@@ -254,7 +253,7 @@ clown_phipp_encounter: {
         choices: [
             {
                 text: "[Божевілля] Прошепотіти мовою Туману",
-                visible: () => (window.playerState.sanity || 0) < 40,
+                visible: () => window.playerState && (window.playerState.sanity || 0) < 40,
                 action: () => {
                     addToLog("Фіпп відсахується, його білий грим тріскається від жаху. Болото каже саме за себе.", "success");
                     adjustReputation("muri", 10);
@@ -263,7 +262,7 @@ clown_phipp_encounter: {
             },
             {
                 text: "[Корупція] Показати йому справжнє обличчя розпаду",
-                visible: () => (window.playerState.corruption || 0) > 50,
+                visible: () => window.playerState && (window.playerState.corruption || 0) > 50,
                 action: () => {
                     addToLog("Відчувши ваш сморід розпаду, Фіпп втрачає самоконтроль і починає кричати, привертаючи увагу варти.", "damage");
                     adjustReputation("order", -15);
@@ -272,7 +271,7 @@ clown_phipp_encounter: {
             },
             {
                 text: "Зберегти мовчання і йти далі",
-                visible: () => (window.playerState.sanity === undefined || window.playerState.sanity >= 40) && (window.playerState.corruption === undefined || window.playerState.corruption <= 50),
+                visible: () => !window.playerState || ((window.playerState.sanity === undefined || window.playerState.sanity >= 40) && (window.playerState.corruption === undefined || window.playerState.corruption <= 50)),
                 action: () => {
                     addToLog("Ви спокійно минаєте Фіппа, не піддаючись на провокації.", "success");
                     goScene("valckorn_hub");

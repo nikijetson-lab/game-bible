@@ -1031,7 +1031,7 @@ function goScene(sceneKey) {
             if (questTag) questTag.textContent = "Епізод 1: Хейзмур";
             illContainer.style.backgroundImage = "url('assets/episode1.png')";
             illContainer.style.display = "block";
-        } else if (sceneKey.startsWith("ep2_") || sceneKey.startsWith("valkorn_")) {
+        } else if (sceneKey.startsWith("ep2_") || sceneKey.startsWith("valkorn_") || sceneKey.startsWith("valckorn_") || sceneKey.startsWith("clown_")) {
             if (questTag) questTag.textContent = "Епізод 2: Валькорн";
             illContainer.style.backgroundImage = "url('assets/episode2.png')";
             illContainer.style.display = "block";
@@ -1059,9 +1059,16 @@ function goScene(sceneKey) {
     choicesDiv.innerHTML = "";
 
     scene.choices.forEach(choice => {
-        if (choice.visible && !choice.visible()) {
-            return;
+        let isVisible = true;
+        if (choice.visible) {
+            try {
+                isVisible = choice.visible();
+            } catch (e) {
+                console.error("Error evaluating visibility for choice:", choice.text, e);
+                isVisible = false;
+            }
         }
+        if (!isVisible) return;
 
         const btn = document.createElement("button");
         btn.className = "choice-btn";

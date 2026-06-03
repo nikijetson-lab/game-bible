@@ -138,7 +138,7 @@ window.GAME_SCENES = {
                 action: () => {
                     window.playerState.sonkFerry.finalVerdict = "adaptation";
                     adjustReputation("admin", 30);
-                    goScene("hazemoor_swamp_path");
+                    goScene("valckorn_archive_arrival");
                 }
             },
             {
@@ -148,7 +148,7 @@ window.GAME_SCENES = {
                     window.playerState.sonkFerry.finalVerdict = "containment";
                     adjustReputation("admin", 20);
                     adjustReputation("order", 10);
-                    goScene("hazemoor_swamp_path");
+                    goScene("valckorn_archive_arrival");
                 }
             },
             {
@@ -158,7 +158,7 @@ window.GAME_SCENES = {
                     window.playerState.sonkFerry.finalVerdict = "pact";
                     adjustReputation("muri", 30);
                     adjustReputation("admin", -15);
-                    goScene("hazemoor_swamp_path");
+                    goScene("valckorn_archive_arrival");
                 }
             },
             {
@@ -168,11 +168,141 @@ window.GAME_SCENES = {
                     window.playerState.sonkFerry.finalVerdict = "mercy";
                     adjustReputation("keepers", 30);
                     adjustReputation("muri", 15);
-                    goScene("hazemoor_swamp_path");
+                    goScene("valckorn_archive_arrival");
                 }
             }
         ]
     },
+
+    valckorn_archive_arrival: {
+        title: "ЕПІЗОД 2: ВАЛЬКОРН",
+        text: `Валькорн. Столиця з каменю і заліза. Ви прибули після подій у Сонк-Феррі. Залежно від вашого вердикту, ви прямуєте різними шляхами до міста.`,
+        audioTrack: "assets/audio/ep2_city_music.mp3",
+        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        choices: [
+            {
+                text: "[Аварійний шлях] Пройти через Палацовий Квартал",
+                visible: () => !window.playerState || !window.playerState.sonkFerry || !window.playerState.sonkFerry.finalVerdict,
+                action: () => goScene("valckorn_palace_path")
+            },
+            {
+                text: "Пройти через Палацовий Квартал (Залізний Тріумф/Контрольоване стримування)",
+                visible: () => window.playerState && window.playerState.sonkFerry && (window.playerState.sonkFerry.finalVerdict === "adaptation" || window.playerState.sonkFerry.finalVerdict === "containment"),
+                action: () => goScene("valckorn_palace_path")
+            },
+            {
+                text: "Пробратися крізь нове гетто (Місцева угода / Пакт)",
+                visible: () => window.playerState && window.playerState.sonkFerry && window.playerState.sonkFerry.finalVerdict === "pact",
+                action: () => goScene("valckorn_ghetto_path")
+            },
+            {
+                text: "Пройти через Крипту Архіву (Ритуальне милосердя)",
+                visible: () => window.playerState && window.playerState.sonkFerry && window.playerState.sonkFerry.finalVerdict === "mercy",
+                action: () => goScene("valckorn_crypt_path")
+            }
+        ]
+    },
+    valckorn_palace_path: {
+        title: "Шлях А: Залізний Тріумф",
+        text: `Вартовий повертається в складі офіційної делегації Ордену. Замість трясовини — потріскана сіра глина.`,
+        audioTrack: "assets/audio/ep2_city_music.mp3",
+        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        choices: [
+            {
+                text: "Продовжити шлях",
+                visible: () => true,
+                action: () => goScene("clown_phipp_encounter")
+            }
+        ]
+    },
+    valckorn_ghetto_path: {
+        title: "Шлях Б: Тінь у Каналах",
+        text: `Герой — очеретяний монстр з чорними нафтовими очима — потайки пробирається крізь стічні колектори Валькорна. Гнила болотна вода вже сочиться крізь тріщини підземних каналів.`,
+        audioTrack: "assets/audio/ep2_city_music.mp3",
+        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        choices: [
+            {
+                text: "Продовжити шлях",
+                visible: () => true,
+                action: () => goScene("clown_phipp_encounter")
+            }
+        ]
+    },
+    valckorn_crypt_path: {
+        title: "Шлях В: Крихкий Посол",
+        text: `Герой входить через головну браму офіційно, під конвоєм. Він — «живий замок» Хейзмуру. Постійний приглушений біль у грудях від внутрішнього тертя двох Печаток.`,
+        audioTrack: "assets/audio/ep2_city_music.mp3",
+        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        choices: [
+            {
+                text: "Продовжити шлях",
+                visible: () => true,
+                action: () => goScene("clown_phipp_encounter")
+            }
+        ]
+    },
+clown_phipp_encounter: {
+        title: "Передвістя — Блазень Фіпп",
+        text: `На ринковій площі — Блазень Фіпп (королівський шут). Ви і Ілія намагаєтесь обійти. Фіпп завмирає. Бубонці замовкають. Погляд крізь білий грим — холодний, розумний. Камінь Моура стає гарячим.
+
+«Дивись-но, мала Марр веде нове цуценя на повідку! Тільки нашийник у нього з холодного болотяного заліза, а в зубах — розбита печатка!»
+
+Ілія: «Звідки він знає моє ім'я? Ми прибули таємно... Він знає набагато більше ніж повинен.»`,
+        audioTrack: "assets/audio/ep2_city_music.mp3",
+        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        choices: [
+            {
+                text: "[Божевілля] Прошепотіти мовою Туману",
+                visible: () => window.playerState && (window.playerState.sanity || 0) < 40,
+                action: () => {
+                    addToLog("Фіпп відсахується, його білий грим тріскається від жаху. Болото каже саме за себе.", "success");
+                    adjustReputation("muri", 10);
+                    goScene("valckorn_hub");
+                }
+            },
+            {
+                text: "[Корупція] Показати йому справжнє обличчя розпаду",
+                visible: () => window.playerState && (window.playerState.corruption || 0) > 50,
+                action: () => {
+                    addToLog("Відчувши ваш сморід розпаду, Фіпп втрачає самоконтроль і починає кричати, привертаючи увагу варти.", "damage");
+                    adjustReputation("order", -15);
+                    goScene("valckorn_hub");
+                }
+            },
+            {
+                text: "Зберегти мовчання і йти далі",
+                visible: () => !window.playerState || ((window.playerState.sanity === undefined || window.playerState.sanity >= 40) && (window.playerState.corruption === undefined || window.playerState.corruption <= 50)),
+                action: () => {
+                    addToLog("Ви спокійно минаєте Фіппа, не піддаючись на провокації.", "success");
+                    goScene("valckorn_hub");
+                }
+            }
+        ]
+    },
+    valckorn_hub: {
+        title: "Три нитки орієнтації",
+        text: `Три імені від Ілії: Брес (нове гетто), Стетсон (палацовий квартал), Одрін (архів).`,
+        audioTrack: "assets/audio/ep2_city_music.mp3",
+        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        choices: [
+            {
+                text: "Шукати Стетсона (Слідчий)",
+                visible: () => true,
+                action: () => goScene("ep2_valckorn_stetson")
+            },
+            {
+                text: "Шукати Бреса (Втікач із Сонк-Феррі)",
+                visible: () => true,
+                action: () => goScene("ep2_valckorn_bres")
+            },
+            {
+                text: "Йти до Тесси (Крамниця)",
+                visible: () => true,
+                action: () => goScene("ep2_valckorn_tessa")
+            }
+        ]
+    },
+
     arriving: {
 
         audioTrack: "assets/audio/ep1_tavern_music.mp3",
@@ -827,7 +957,7 @@ window.GAME_SCENES = {
             {
                 text: "Використати зв'язок та вирушити до Порту Валькорна",
                 visible: () => window.playerState.inventory.includes("Камінь Моура"),
-                nextSceneId: "ep2_valkorn_arrival"
+                nextSceneId: "ep2_valckorn_arrival"
             }
         ]
     },
@@ -835,7 +965,7 @@ window.GAME_SCENES = {
 
     // --- ЕПІЗОД 2: ВАЛЬКОРН ---
 
-    ep2_valkorn_arrival: {
+    ep2_valckorn_arrival: {
         audioTrack: "assets/audio/ep2_city_music.mp3",
         audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
         title: "Прибуття у Валькорн",
@@ -845,20 +975,20 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "Відвідати Брес у Тіньовому Гетто",
-                nextSceneId: "ep2_valkorn_bres"
+                nextSceneId: "ep2_valckorn_bres"
             },
             {
                 text: "Відвідати слідчого Стетсона у Дипломатичному Кварталі",
-                nextSceneId: "ep2_valkorn_stetson"
+                nextSceneId: "ep2_valckorn_stetson"
             },
             {
                 text: "Відвідати крамницю Тесси",
-                nextSceneId: "ep2_valkorn_tessa"
+                nextSceneId: "ep2_valckorn_tessa"
             }
         ]
     },
 
-    ep2_valkorn_bres: {
+    ep2_valckorn_bres: {
         audioTrack: "assets/audio/ep2_city_music.mp3",
         audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
         title: "Тіньове Гетто: Брес",
@@ -867,20 +997,20 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "Піти до Торгової Гільдії (Правильна Ціна)",
-                nextSceneId: "ep2_valkorn_damar"
+                nextSceneId: "ep2_valckorn_damar"
             },
             {
                 text: "Відвідати крамницю Тесси",
-                nextSceneId: "ep2_valkorn_tessa"
+                nextSceneId: "ep2_valckorn_tessa"
             },
             {
                 text: "Відвідати слідчого Стетсона",
-                nextSceneId: "ep2_valkorn_stetson"
+                nextSceneId: "ep2_valckorn_stetson"
             }
         ]
     },
 
-    ep2_valkorn_tessa: {
+    ep2_valckorn_tessa: {
         audioTrack: "assets/audio/ep2_city_music.mp3",
         audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
         title: "Крамниця Тесси",
@@ -890,16 +1020,16 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "Об'єднати знання з архівом Одріна і піти в підземелля",
-                nextSceneId: "ep2_valkorn_dungeon"
+                nextSceneId: "ep2_valckorn_dungeon"
             },
             {
                 text: "Повернутися на вулицю",
-                nextSceneId: "ep2_valkorn_arrival"
+                nextSceneId: "ep2_valckorn_arrival"
             }
         ]
     },
 
-    ep2_valkorn_stetson: {
+    ep2_valckorn_stetson: {
         audioTrack: "assets/audio/ep2_city_music.mp3",
         audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
         title: "Слідчий Стетсон",
@@ -907,16 +1037,16 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "Шукати шлях до Лоена (Сьома Рада Ордену)",
-                nextSceneId: "ep2_valkorn_loen"
+                nextSceneId: "ep2_valckorn_loen"
             },
             {
                 text: "Повернутися на вулицю",
-                nextSceneId: "ep2_valkorn_arrival"
+                nextSceneId: "ep2_valckorn_arrival"
             }
         ]
     },
 
-    ep2_valkorn_damar: {
+    ep2_valckorn_damar: {
         audioTrack: "assets/audio/ep2_city_music.mp3",
         audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
         title: "Торгова Гільдія: Дамар",
@@ -927,20 +1057,20 @@ window.GAME_SCENES = {
                 text: "Забрати артефакт самому",
                 action: () => {
                     addItem("Перша Печатка (Частина)");
-                    goScene("ep2_valkorn_loen");
+                    goScene("ep2_valckorn_loen");
                 }
             },
             {
                 text: "Дозволити Тессі забрати артефакт",
                 action: () => {
                     adjustReputation("order", -10);
-                    goScene("ep2_valkorn_loen");
+                    goScene("ep2_valckorn_loen");
                 }
             }
         ]
     },
 
-    ep2_valkorn_dungeon: {
+    ep2_valckorn_dungeon: {
         audioTrack: "assets/audio/ep2_dungeon_music.mp3",
         audioAtmosphere: "assets/audio/ep2_dungeon_ambient.mp3",
         title: "Третя точка: Підземелля",
@@ -949,12 +1079,12 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "Йти до Лоена",
-                nextSceneId: "ep2_valkorn_loen"
+                nextSceneId: "ep2_valckorn_loen"
             }
         ]
     },
 
-    ep2_valkorn_loen: {
+    ep2_valckorn_loen: {
         audioTrack: "assets/audio/ep2_city_music.mp3",
         audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
         title: "Людина що послала Руфіна",
@@ -968,14 +1098,14 @@ window.GAME_SCENES = {
                 text: "🤝 Співпрацювати з Орденом",
                 action: () => {
                     adjustReputation("order", 30);
-                    goScene("ep2_valkorn_black_archive");
+                    goScene("ep2_valckorn_black_archive");
                 }
             },
             {
                 text: "Нейтралітет",
                 action: () => {
                     adjustReputation("order", 10);
-                    goScene("ep2_valkorn_black_archive");
+                    goScene("ep2_valckorn_black_archive");
                 }
             },
             {
@@ -983,13 +1113,13 @@ window.GAME_SCENES = {
                 action: () => {
                     adjustReputation("order", -40);
                     adjustReputation("admin", 20);
-                    goScene("ep2_valkorn_black_archive");
+                    goScene("ep2_valckorn_black_archive");
                 }
             }
         ]
     },
 
-    ep2_valkorn_black_archive: {
+    ep2_valckorn_black_archive: {
         audioTrack: "assets/audio/ep2_dungeon_music.mp3",
         audioAtmosphere: "assets/audio/ep2_dungeon_ambient.mp3",
         title: "Чорний Архів: Хранитель",
@@ -1131,7 +1261,7 @@ window.GAME_SCENES = {
             {
                 text: "⚙️ [Вердикт Заліза] Вставити срібну Печатку в мідний вівтар",
                 action: () => {
-                    window.playerState.valkorn_path = "A";
+                    window.playerState.valckorn_path = "A";
                     window.playerState.history.push({ step: "verdict", choice: "iron" });
                     addToLog("Болотяна магія випалена. Хейзмур вмирає.", "system");
                     goScene("ep4_start");
@@ -1140,7 +1270,7 @@ window.GAME_SCENES = {
             {
                 text: "🌿 [Вердикт Очерету] Кинути Першу Печатку в болотяну жижу",
                 action: () => {
-                    window.playerState.valkorn_path = "B";
+                    window.playerState.valckorn_path = "B";
                     window.playerState.history.push({ step: "verdict", choice: "reed" });
                     addToLog("Срібло розчиняється. Ви остаточно стаєте очеретяним монстром.", "system");
                     goScene("ep4_start");
@@ -1149,7 +1279,7 @@ window.GAME_SCENES = {
             {
                 text: "🕯️ [Пакт Ключника] Стати «живим замком» (Використати своє тіло)",
                 action: () => {
-                    window.playerState.valkorn_path = "C";
+                    window.playerState.valckorn_path = "C";
                     window.playerState.history.push({ step: "verdict", choice: "pact" });
                     addToLog("Ви пропускаєте срібло й мідь через себе. Болісний баланс збережено.", "success");
                     goScene("ep4_start");
@@ -1171,12 +1301,12 @@ window.GAME_SCENES = {
             {
                 text: "Продовжити",
                 action: () => {
-                    if (window.playerState.valkorn_path === "A") {
-                        goScene("ep4_valkorn_iron_triumph");
-                    } else if (window.playerState.valkorn_path === "B") {
-                        goScene("ep4_valkorn_shadow_in_channels");
+                    if (window.playerState.valckorn_path === "A") {
+                        goScene("ep4_valckorn_iron_triumph");
+                    } else if (window.playerState.valckorn_path === "B") {
+                        goScene("ep4_valckorn_shadow_in_channels");
                     } else {
-                        goScene("ep4_valkorn_fragile_ambassador");
+                        goScene("ep4_valckorn_fragile_ambassador");
                     }
                 }
             }
@@ -1184,7 +1314,7 @@ window.GAME_SCENES = {
     },
 
     // Шлях А: Залізний Тріумф
-    ep4_valkorn_iron_triumph: {
+    ep4_valckorn_iron_triumph: {
         audioTrack: "assets/audio/ep4_bridge_music.mp3",
         audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
         title: "Залізний Тріумф",
@@ -1194,12 +1324,12 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "Вирушити до Чорного Архіву на аудієнцію до Себастьяна Марра",
-                nextSceneId: "ep4_valkorn_marr_audience"
+                nextSceneId: "ep4_valckorn_marr_audience"
             }
         ]
     },
 
-    ep4_valkorn_marr_audience: {
+    ep4_valckorn_marr_audience: {
         audioTrack: "assets/audio/ep4_bridge_music.mp3",
         audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
         title: "Аудієнція у Себастьяна Марра",
@@ -1211,12 +1341,12 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "Перейти до операції «Чиста земля»",
-                nextSceneId: "ep4_valkorn_iron_burn"
+                nextSceneId: "ep4_valckorn_iron_burn"
             }
         ]
     },
 
-    ep4_valkorn_iron_burn: {
+    ep4_valckorn_iron_burn: {
         audioTrack: "assets/audio/ep4_bridge_music.mp3",
         audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
         title: "Залізне випалювання",
@@ -1225,12 +1355,12 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "Зіткнутися з Себастьяном Марром",
-                nextSceneId: "ep4_valkorn_marr_death"
+                nextSceneId: "ep4_valckorn_marr_death"
             }
         ]
     },
 
-    ep4_valkorn_marr_death: {
+    ep4_valckorn_marr_death: {
         audioTrack: "assets/audio/ep4_bridge_music.mp3",
         audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
         title: "Смерть Себастьяна",
@@ -1309,7 +1439,7 @@ window.GAME_SCENES = {
     },
 
     // Шлях Б: Тінь у Каналах
-    ep4_valkorn_shadow_in_channels: {
+    ep4_valckorn_shadow_in_channels: {
         audioTrack: "assets/audio/ep4_bridge_music.mp3",
         audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
         title: "Чудовисько під бруківкою",
@@ -1318,12 +1448,12 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "Пробратися крізь колектори в пошуках Лілеї",
-                nextSceneId: "ep4_valkorn_tessa_encounter_channels"
+                nextSceneId: "ep4_valckorn_tessa_encounter_channels"
             }
         ]
     },
 
-    ep4_valkorn_tessa_encounter_channels: {
+    ep4_valckorn_tessa_encounter_channels: {
         audioTrack: "assets/audio/ep4_bridge_music.mp3",
         audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
         title: "Зіткнення з Тессою",
@@ -1334,20 +1464,20 @@ window.GAME_SCENES = {
                 text: "Використати Плетіння, щоб зникнути в тумані без бою",
                 action: () => {
                     adjustReputation("order", 10);
-                    goScene("ep4_valkorn_hunt_for_beast");
+                    goScene("ep4_valckorn_hunt_for_beast");
                 }
             },
             {
                 text: "Атакувати варту",
                 action: () => {
                     adjustReputation("order", -50);
-                    goScene("ep4_valkorn_hunt_for_beast");
+                    goScene("ep4_valckorn_hunt_for_beast");
                 }
             }
         ]
     },
 
-    ep4_valkorn_hunt_for_beast: {
+    ep4_valckorn_hunt_for_beast: {
         audioTrack: "assets/audio/ep4_bridge_music.mp3",
         audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
         title: "Штурм палацу з тіней",
@@ -1356,12 +1486,12 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "Наздогнати Себастьяна Марра в крипті",
-                nextSceneId: "ep4_valkorn_marr_strangle"
+                nextSceneId: "ep4_valckorn_marr_strangle"
             }
         ]
     },
 
-    ep4_valkorn_marr_strangle: {
+    ep4_valckorn_marr_strangle: {
         audioTrack: "assets/audio/ep4_bridge_music.mp3",
         audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
         title: "Розрахунок у крипті",
@@ -1421,7 +1551,7 @@ window.GAME_SCENES = {
     },
 
     // Шлях В: Крихкий Посол
-    ep4_valkorn_fragile_ambassador: {
+    ep4_valckorn_fragile_ambassador: {
         audioTrack: "assets/audio/ep4_bridge_music.mp3",
         audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
         title: "Живий замок на бруківці",
@@ -1430,12 +1560,12 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "Перейти до Ратуші на дипломатичну шахівницю",
-                nextSceneId: "ep4_valkorn_diplomacy"
+                nextSceneId: "ep4_valckorn_diplomacy"
             }
         ]
     },
 
-    ep4_valkorn_diplomacy: {
+    ep4_valckorn_diplomacy: {
         audioTrack: "assets/audio/ep4_bridge_music.mp3",
         audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
         title: "Дипломатична шахівниця",
@@ -1448,7 +1578,7 @@ window.GAME_SCENES = {
                 action: () => {
                     adjustReputation("order", 20);
                     adjustReputation("muri", -20);
-                    goScene("ep4_valkorn_conspiracy");
+                    goScene("ep4_valckorn_conspiracy");
                 }
             },
             {
@@ -1456,13 +1586,13 @@ window.GAME_SCENES = {
                 action: () => {
                     adjustReputation("muri", 20);
                     adjustReputation("order", -20);
-                    goScene("ep4_valkorn_conspiracy");
+                    goScene("ep4_valckorn_conspiracy");
                 }
             }
         ]
     },
 
-    ep4_valkorn_conspiracy: {
+    ep4_valckorn_conspiracy: {
         audioTrack: "assets/audio/ep4_bridge_music.mp3",
         audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
         title: "Змова радикалів",
@@ -2135,71 +2265,71 @@ window.GAME_SCENES = {
         ]
     },
 
-    nizh_result_A: { title: "Звіт", text: `Ви підписуєте звіт Серіта Келма. Цифри правильні, але контекст — ні. Келм забирає папери з легкою посмішкою. «Мудре рішення, Вартовий.» Ви виходите з відчуттям що щойно дали комусь зброю.`, choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valkorn_arrive") }] },
-    nizh_result_B: { title: "Супротив", text: `Ви підписуєте звіт але дописуєте три рядки від руки — окремі спостереження. Келм помічає дописку. «Це не стандартна форма.» «Ні» — погоджуєтесь ви. Він забирає документ мовчки. Ваш дописок може нічого не змінити. Але він є.`, choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valkorn_arrive") }] },
-    nizh_result_C: { title: "Повний розрахунок", text: `Ви відмовляєтесь підписувати і кладете власний звіт з іменами і датами. «Це піде до вищого суду Ордену.» Келм встає. «Ви розумієте що щойно зробили?» «Так.» Він іде. Ви теж — з чистою совістю і новим ворогом.`, choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valkorn_arrive") }] },
-    nizh_result_D: { title: "Спільний контроль", text: `Ви пропонуєте Келму спільний контроль — він веде облік, ви підписуєте тільки перевірене. Келм: «Незвично. Але прийнятно.» Угода укладена. Бюрократія сповільнюється, але дірки закриваються.`, choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valkorn_arrive") }] },
+    nizh_result_A: { title: "Звіт", text: `Ви підписуєте звіт Серіта Келма. Цифри правильні, але контекст — ні. Келм забирає папери з легкою посмішкою. «Мудре рішення, Вартовий.» Ви виходите з відчуттям що щойно дали комусь зброю.`, choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valckorn_arrive") }] },
+    nizh_result_B: { title: "Супротив", text: `Ви підписуєте звіт але дописуєте три рядки від руки — окремі спостереження. Келм помічає дописку. «Це не стандартна форма.» «Ні» — погоджуєтесь ви. Він забирає документ мовчки. Ваш дописок може нічого не змінити. Але він є.`, choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valckorn_arrive") }] },
+    nizh_result_C: { title: "Повний розрахунок", text: `Ви відмовляєтесь підписувати і кладете власний звіт з іменами і датами. «Це піде до вищого суду Ордену.» Келм встає. «Ви розумієте що щойно зробили?» «Так.» Він іде. Ви теж — з чистою совістю і новим ворогом.`, choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valckorn_arrive") }] },
+    nizh_result_D: { title: "Спільний контроль", text: `Ви пропонуєте Келму спільний контроль — він веде облік, ви підписуєте тільки перевірене. Келм: «Незвично. Але прийнятно.» Угода укладена. Бюрократія сповільнюється, але дірки закриваються.`, choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valckorn_arrive") }] },
 
-    valkorn_arrive: {
+    valckorn_arrive: {
         title: "Людина з болота",
         text: `Ви прибуваєте до Валькорна з Ілією Марр. Місто велике і байдуже.`,
         choices: [
             {
                 text: "Зустрітися зі Стетсоном",
-                action: () => goScene("valkorn_01_stetsion")
+                action: () => goScene("valckorn_01_stetsion")
             },
             {
                 text: "Шукати шлях через Гетто",
-                action: () => goScene("valkorn_01_ghetto")
+                action: () => goScene("valckorn_01_ghetto")
             },
             {
                 text: "Піти до крамниці Тесси",
-                action: () => goScene("valkorn_01_tessa")
+                action: () => goScene("valckorn_01_tessa")
             }
         ]
     },
 
-    valkorn_01_stetsion: { title: "Слідчий Стетсон", text: `Стетсон зустрічає вас у вузькому кабінеті без вікон. Стіни вкриті картами. «Ти з болота. Я бачу по взутті.» Він дістає папку. «Орден Семи Кинджалів. Три роки я збираю докази. Мені потрібен свідок зсередини — хтось хто бачив артефакт. Ти такий?»`, choices: [{ text: "До Архіву", action: () => goScene("valkorn_02_odrin") }] },
-    valkorn_01_ghetto: { title: "Тіньове Гетто Валькорна", text: `Тіньове Гетто — квартал без назви на офіційних картах. Ви знаходите Брес — молоду жінку з Сонк-Феррі. «Болото не відмивається за один день.» «Є пакунок у портовому складі. Жінка в синій сукні платить за інформацію про нього.»`, choices: [{ text: "До Тесси", action: () => goScene("valkorn_01_tessa") }] },
-    valkorn_01_tessa: { title: "Зустріч з Тессою", text: `Тесса слухає вас не перебиваючи. «Ти з Хейзмуру.» Це не питання. «Орден каже одне. Я скажу тобі інше. Артефакт — не просто реліквія. Він частина системи замків. Якщо його зламати — болото вийде за межі.»`, choices: [{ text: "Дві версії правди", action: () => goScene("valkorn_02_tessa") }] },
+    valckorn_01_stetsion: { title: "Слідчий Стетсон", text: `Стетсон зустрічає вас у вузькому кабінеті без вікон. Стіни вкриті картами. «Ти з болота. Я бачу по взутті.» Він дістає папку. «Орден Семи Кинджалів. Три роки я збираю докази. Мені потрібен свідок зсередини — хтось хто бачив артефакт. Ти такий?»`, choices: [{ text: "До Архіву", action: () => goScene("valckorn_02_odrin") }] },
+    valckorn_01_ghetto: { title: "Тіньове Гетто Валькорна", text: `Тіньове Гетто — квартал без назви на офіційних картах. Ви знаходите Брес — молоду жінку з Сонк-Феррі. «Болото не відмивається за один день.» «Є пакунок у портовому складі. Жінка в синій сукні платить за інформацію про нього.»`, choices: [{ text: "До Тесси", action: () => goScene("valckorn_01_tessa") }] },
+    valckorn_01_tessa: { title: "Зустріч з Тессою", text: `Тесса слухає вас не перебиваючи. «Ти з Хейзмуру.» Це не питання. «Орден каже одне. Я скажу тобі інше. Артефакт — не просто реліквія. Він частина системи замків. Якщо його зламати — болото вийде за межі.»`, choices: [{ text: "Дві версії правди", action: () => goScene("valckorn_02_tessa") }] },
 
-    valkorn_02_odrin: { title: "Палацовий архів і Одрін", text: `Одрін говорить пошепки між стелажами. «Підземелля під бібліотекою — справжній архів. Там документи яких немає в офіційних реєстрах. І там є третя точка.» Він дає вам скопійовану карту підземних ходів.`, choices: [{ text: "У підземелля", action: () => goScene("valkorn_02_underground") }] },
-    valkorn_02_tessa: { title: "Крамниця Тесси", text: `Тесса дістає важкий ключ з болотяного заліза. «Це відкриє бічний вхід до підземелля. Одрін зробив карту.» Вона притримує ключ мить довше. «Те що знайдеш там — використай правильно.»`, choices: [{ text: "У підземелля", action: () => goScene("valkorn_02_underground") }] },
+    valckorn_02_odrin: { title: "Палацовий архів і Одрін", text: `Одрін говорить пошепки між стелажами. «Підземелля під бібліотекою — справжній архів. Там документи яких немає в офіційних реєстрах. І там є третя точка.» Він дає вам скопійовану карту підземних ходів.`, choices: [{ text: "У підземелля", action: () => goScene("valckorn_02_underground") }] },
+    valckorn_02_tessa: { title: "Крамниця Тесси", text: `Тесса дістає важкий ключ з болотяного заліза. «Це відкриє бічний вхід до підземелля. Одрін зробив карту.» Вона притримує ключ мить довше. «Те що знайдеш там — використай правильно.»`, choices: [{ text: "У підземелля", action: () => goScene("valckorn_02_underground") }] },
 
-    valkorn_02_underground: {
+    valckorn_02_underground: {
         title: "Підземелля Валькорна",
         text: `Секретні шляхи під містом. Ви знаходите докази, що хтось уже був тут.`,
         choices: [
             {
                 text: "Вистежити Дамара",
-                action: () => goScene("valkorn_03_damar")
+                action: () => goScene("valckorn_03_damar")
             }
         ]
     },
 
-    valkorn_03_damar: {
+    valckorn_03_damar: {
         title: "Правильна ціна",
         text: `Зустріч з Дамаром. Торгова гільдія і контрабанда артефакту.`,
         choices: [
             {
                 text: "Отримати інформацію",
-                action: () => goScene("valkorn_03_result")
+                action: () => goScene("valckorn_03_result")
             }
         ]
     },
 
-    valkorn_03_result: {
+    valckorn_03_result: {
         title: "Сліди ведуть вище",
         text: `Тепер ви знаєте: це Орден Семи Кинджалів.`,
         choices: [
             {
                 text: "Зустріч з Лоеном",
-                action: () => goScene("valkorn_04_loen")
+                action: () => goScene("valckorn_04_loen")
             }
         ]
     },
 
-    valkorn_04_loen: {
+    valckorn_04_loen: {
         title: "Людина, що послала Руфіна",
         text: `Лоен, член Сьомої Ради Ордену. Він чекає на ваші відповіді.`,
         choices: [
@@ -2237,54 +2367,54 @@ window.GAME_SCENES = {
         ]
     },
 
-    loen_align_A: { title: "Союз з Орденом", text: `«Мудрий вибір» — каже Лоен. «Орден дасть вам ресурси і захист. Натомість — ви наш провідник у болоті.» Він простягає руку. Ви тисните. Десь в глибині відчуваєте що щойно поміняли одну клітку на іншу — просто більш зручну.`, choices: [{ text: "Розслідування завершено", action: () => goScene("valkorn_04_deduction") }] },
-    loen_align_B: { title: "Нейтралітет з Орденом", text: `«Обережний підхід» — Лоен посміхається. «Ми дамо вам інформацію. Ви даєте нам доступ до болота коли треба. Без зобов'язань підписувати що-небудь.» Угода хитка — але поки що достатня.`, choices: [{ text: "Розслідування завершено", action: () => goScene("valkorn_04_deduction") }] },
-    loen_align_C: { title: "Ворог Ордену", text: `«Ворог» — Лоен вимовляє спокійно. «Це чесніше ніж більшість.» Він встає. «Але пам'ятайте — ми існуємо вже триста років.» Ви виходите з відкритим конфліктом і чистою совістю.`, choices: [{ text: "Розслідування завершено", action: () => goScene("valkorn_04_deduction") }] },
+    loen_align_A: { title: "Союз з Орденом", text: `«Мудрий вибір» — каже Лоен. «Орден дасть вам ресурси і захист. Натомість — ви наш провідник у болоті.» Він простягає руку. Ви тисните. Десь в глибині відчуваєте що щойно поміняли одну клітку на іншу — просто більш зручну.`, choices: [{ text: "Розслідування завершено", action: () => goScene("valckorn_04_deduction") }] },
+    loen_align_B: { title: "Нейтралітет з Орденом", text: `«Обережний підхід» — Лоен посміхається. «Ми дамо вам інформацію. Ви даєте нам доступ до болота коли треба. Без зобов'язань підписувати що-небудь.» Угода хитка — але поки що достатня.`, choices: [{ text: "Розслідування завершено", action: () => goScene("valckorn_04_deduction") }] },
+    loen_align_C: { title: "Ворог Ордену", text: `«Ворог» — Лоен вимовляє спокійно. «Це чесніше ніж більшість.» Він встає. «Але пам'ятайте — ми існуємо вже триста років.» Ви виходите з відкритим конфліктом і чистою совістю.`, choices: [{ text: "Розслідування завершено", action: () => goScene("valckorn_04_deduction") }] },
 
-    valkorn_04_deduction: {
+    valckorn_04_deduction: {
         title: "Розкриття Хранителя",
         text: `Три докази зходяться в одну точку. Бубонці Фіппа — Біле срібло як в артефакті. Стетсон: «найкраща тінь — та що яскраво вдягнена.» Запах листів лідера Ордену — болотяна м'ята, золоте чорнило. Фіпп носить грим з болотяною м'ятою. Висновок: Хранитель Першої Печатки — це Блазень Фіпп.`,
         choices: [
             {
                 text: "Проникнення в Чорний Архів",
-                action: () => goScene("valkorn_05_infiltrate")
+                action: () => goScene("valckorn_05_infiltrate")
             }
         ]
     },
 
-    valkorn_05_infiltrate: {
+    valckorn_05_infiltrate: {
         title: "Проникнення до Палацу",
         text: `Шлях у Чорний Архів під королівською бібліотекою.`,
         choices: [
             {
                 text: "[Суддя 2] Шлях Судді / Закон Корони",
                 visible: () => (window.playerState.doctrines || {}).judge >= 2,
-                action: () => goScene("valkorn_05_archive")
+                action: () => goScene("valckorn_05_archive")
             },
             {
                 text: "Шлях Посередника / Тіньовий договір",
-                action: () => goScene("valkorn_05_archive")
+                action: () => goScene("valckorn_05_archive")
             },
             {
                 text: "[Слідопит 3] Болотяні колектори",
                 visible: () => (window.playerState.doctrines || {}).pathfinder >= 3,
-                action: () => goScene("valkorn_05_archive")
+                action: () => goScene("valckorn_05_archive")
             }
         ]
     },
 
-    valkorn_05_archive: {
+    valckorn_05_archive: {
         title: "Чорний Архів",
         text: `Чорний Архів — довгий коридор з чорного каменю. Смолоскипи горять синім. На стінах символи Ключників — старіші за Орден. В кінці — масивні двері з болотяного заліза. За ними чути тихий рівний голос. Хтось вже там.`,
         choices: [
             {
                 text: "Зустріч з Фіппом (Себастьяном Марром)",
-                action: () => goScene("valkorn_05_iliya")
+                action: () => goScene("valckorn_05_iliya")
             }
         ]
     },
 
-    valkorn_05_iliya: {
+    valckorn_05_iliya: {
         title: "Хранитель Першої Печатки",
         text: `Себастьян Марр і Ілія. Час вирішити його долю.`,
         choices: [
@@ -2297,7 +2427,7 @@ window.GAME_SCENES = {
                     window.playerState.flags = window.playerState.flags || {};
                     window.playerState.flags.valkorn5_choice = 'judge';
                     window.playerState.flags.sebastian_fate = 'dead';
-                    goScene("valkorn_epilogue");
+                    goScene("valckorn_epilogue");
                 }
             },
             {
@@ -2307,7 +2437,7 @@ window.GAME_SCENES = {
                     window.playerState.flags = window.playerState.flags || {};
                     window.playerState.flags.valkorn5_choice = 'mediator';
                     window.playerState.flags.sebastian_fate = 'deal';
-                    goScene("valkorn_epilogue");
+                    goScene("valckorn_epilogue");
                 }
             },
             {
@@ -2319,13 +2449,13 @@ window.GAME_SCENES = {
                     window.playerState.flags.sebastian_fate = 'merge';
                     window.playerState.flags.iliya_anchor = true;
                     window.playerState.bolo_weaving = true;
-                    goScene("valkorn_epilogue");
+                    goScene("valckorn_epilogue");
                 }
             }
         ]
     },
 
-    valkorn_epilogue: {
+    valckorn_epilogue: {
         title: "Втеча з Валькорна",
         text: `Сигналізація спрацювала. Ви тікаєте до боліт.`,
         choices: [
@@ -2424,13 +2554,13 @@ window.GAME_SCENES = {
             }
         ]
     },
-    ep3_verdict_iron: { title: "Залізо", text: `Білий спалах — тиша. Вода стає прозорою. Шепіт Моура обривається. Міа кричить — не від болю, від втрати. Лілея: «Ми вбили душу цього місця.» Голос Ілії: «Ти повернув порядок. Хейзмур вмирає. Валькорн житиме.»`, choices: [{ text: "Епізод 4", action: () => goScene("ep4_valkorn_iron") }] },
-    ep3_verdict_reed: { title: "Очерет", text: `Срібло розчиняється з тихим шипінням. Шкіра темнішає, вени чорніють. Міа торкається вашого обличчя. «Ти вибрав нас.» Голос Ілії слабшає: «Вартовий... я ще тут... але ти далеко...» Болото розширює межі.`, choices: [{ text: "Епізод 4", action: () => goScene("ep4_valkorn_reed") }] },
-    ep3_verdict_pact: { title: "Пакт", text: `Ви пропускаєте обидві Печатки крізь себе. Біль як вогонь і лід разом. Срібло і мідь замикаються у вашій плоті. Міа: «Ти вибрав нести цей біль щоб ми могли жити.» Лілея: «Це триватиме все ваше життя.» Голос Ілії: «Я залишаюся з тобою. Завжди.»`, choices: [{ text: "Епізод 4", action: () => goScene("ep4_valkorn_pact") }] },
+    ep3_verdict_iron: { title: "Залізо", text: `Білий спалах — тиша. Вода стає прозорою. Шепіт Моура обривається. Міа кричить — не від болю, від втрати. Лілея: «Ми вбили душу цього місця.» Голос Ілії: «Ти повернув порядок. Хейзмур вмирає. Валькорн житиме.»`, choices: [{ text: "Епізод 4", action: () => goScene("ep4_valckorn_iron") }] },
+    ep3_verdict_reed: { title: "Очерет", text: `Срібло розчиняється з тихим шипінням. Шкіра темнішає, вени чорніють. Міа торкається вашого обличчя. «Ти вибрав нас.» Голос Ілії слабшає: «Вартовий... я ще тут... але ти далеко...» Болото розширює межі.`, choices: [{ text: "Епізод 4", action: () => goScene("ep4_valckorn_reed") }] },
+    ep3_verdict_pact: { title: "Пакт", text: `Ви пропускаєте обидві Печатки крізь себе. Біль як вогонь і лід разом. Срібло і мідь замикаються у вашій плоті. Міа: «Ти вибрав нести цей біль щоб ми могли жити.» Лілея: «Це триватиме все ваше життя.» Голос Ілії: «Я залишаюся з тобою. Завжди.»`, choices: [{ text: "Епізод 4", action: () => goScene("ep4_valckorn_pact") }] },
 
-    ep4_valkorn_iron: { title: "Валькорн (Шлях Заліза)", text: "«Тріумф Адміністрації!» — вигукують глашатаї. Ви приносите порядок у Валькорн.", choices: [{ text: "Далі", action: () => goScene("ep4_climax_iron") }] },
-    ep4_valkorn_reed: { title: "Валькорн (Шлях Очерету)", text: "Ви проникаєте у Валькорн тінями, немов привид із боліт.", choices: [{ text: "Далі", action: () => goScene("ep4_climax_reed") }] },
-    ep4_valkorn_pact: { title: "Валькорн (Шлях Пакту)", text: "«Дипломатичний візит...» — шепочуться вельможі. Ви входите як посередник.", choices: [{ text: "Далі", action: () => goScene("ep4_climax_pact") }] },
+    ep4_valckorn_iron: { title: "Валькорн (Шлях Заліза)", text: "«Тріумф Адміністрації!» — вигукують глашатаї. Ви приносите порядок у Валькорн.", choices: [{ text: "Далі", action: () => goScene("ep4_climax_iron") }] },
+    ep4_valckorn_reed: { title: "Валькорн (Шлях Очерету)", text: "Ви проникаєте у Валькорн тінями, немов привид із боліт.", choices: [{ text: "Далі", action: () => goScene("ep4_climax_reed") }] },
+    ep4_valckorn_pact: { title: "Валькорн (Шлях Пакту)", text: "«Дипломатичний візит...» — шепочуться вельможі. Ви входите як посередник.", choices: [{ text: "Далі", action: () => goScene("ep4_climax_pact") }] },
 
     ep4_climax_iron: { title: "Кульмінація Заліза", text: "Себастьян гине під пресом. Тесса починає свої жорсткі реформи. Залізо встановлює нові правила.", choices: [{ text: "Далі", action: () => goScene("ep4_mire_iron") }] },
     ep4_climax_reed: { title: "Кульмінація Очерету", text: "Тихе усунення Себастьяна. Лілея повертає свою людську форму. Болото відвойовує своє.", choices: [{ text: "Далі", action: () => goScene("ep4_mire_reed") }] },

@@ -38,6 +38,7 @@ window.GAME_SCENES = {
             {
                 text: "Дозволити контрабанду Мурі",
                 action: () => {
+                    window.playerState.sonkFerry = window.playerState.sonkFerry || { medsStatus: null, ferryControl: null, chapelRitual: null, finalVerdict: null };
                     if (!window.playerState.sonkFerry) window.playerState.sonkFerry = { medsStatus: null, ferryControl: null, chapelRitual: null, finalVerdict: null };
                     window.playerState.sonkFerry.medsStatus = "smuggled";
                     adjustReputation("muri", 15);
@@ -256,22 +257,22 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "Пройти через Палацовий Квартал (Залізний Тріумф / Контрольоване стримування)",
-                visible: () => window.playerState && window.playerState.sonkFerry && (window.playerState.sonkFerry.finalVerdict === "adaptation" || window.playerState.sonkFerry.finalVerdict === "containment"),
+                visible: () => window.playerState && window.playerState.sonkFerry &&  window.playerState && window.playerState.sonkFerry && (window.playerState.sonkFerry.finalVerdict === "adaptation" || window.playerState.sonkFerry.finalVerdict === "containment"),
                 action: () => goScene("valckorn_entry_palace")
             },
             {
                 text: "Пробратися крізь нове гетто (Місцева угода / Пакт)",
-                visible: () => window.playerState && window.playerState.sonkFerry && window.playerState.sonkFerry.finalVerdict === "pact",
+                visible: () => window.playerState && window.playerState.sonkFerry &&  window.playerState && window.playerState.sonkFerry && window.playerState.sonkFerry.finalVerdict === "pact",
                 action: () => goScene("valckorn_entry_ghetto")
             },
             {
                 text: "Пройти через Крипту Архіву (Ритуальне милосердя)",
-                visible: () => window.playerState && window.playerState.sonkFerry && window.playerState.sonkFerry.finalVerdict === "mercy",
+                visible: () => window.playerState && window.playerState.sonkFerry &&  window.playerState && window.playerState.sonkFerry && window.playerState.sonkFerry.finalVerdict === "mercy",
                 action: () => goScene("valckorn_entry_chapel")
             },
             {
                 text: "[Аварійний шлях] Пройти через Палацовий Квартал",
-                visible: () => !window.playerState || !window.playerState.sonkFerry || !window.playerState.sonkFerry.finalVerdict,
+                visible: () => window.playerState && window.playerState.sonkFerry && !window.playerState || !window.playerState.sonkFerry || !window.playerState.sonkFerry.finalVerdict,
                 action: () => goScene("valckorn_entry_palace")
             }
         ]
@@ -1392,19 +1393,27 @@ window.GAME_SCENES = {
         text: `Ви повернулися до Валькорна. Ваш шлях залежить від того, яку долю ви обрали раніше.`,
         choices: [
             {
-                text: "Продовжити",
+                text: "Вирушити назустріч долі",
                 action: () => {
-                    if (window.playerState.valckorn_path === "A") {
-                        goScene("ep4_valckorn_iron_triumph");
-                    } else if (window.playerState.valckorn_path === "B") {
-                        goScene("ep4_valckorn_shadow_in_channels");
+                    const path =
+                        (window.playerState &&
+                         window.playerState.valckorn_path)
+                        ? window.playerState.valckorn_path
+                        : 'C';
+                    if (path === 'A') {
+                        goScene('ep4_valckorn_iron_triumph');
+                    } else if (path === 'B') {
+                        goScene(
+                            'ep4_valckorn_shadow_in_channels'
+                        );
                     } else {
-                        goScene("ep4_valckorn_fragile_ambassador");
+                        goScene(
+                            'ep4_valckorn_fragile_ambassador'
+                        );
                     }
                 }
             }
-        ]
-    },
+        ]},
 
     // Шлях А: Залізний Тріумф
     ep4_valckorn_iron_triumph: {
@@ -1730,19 +1739,7 @@ window.GAME_SCENES = {
         ]
     },
 
-    death: {
-        audioTrack: "assets/audio/death_music.mp3",
-        audioAtmosphere: "assets/audio/death_ambient.mp3",
-        title: "Трагічна загибель",
-        text: `Ваша подорож обірвалася в болотах Хейзмуру. Холодний туман огортає ваше тіло, а прокляття Порожнього Сезону забирає залишки вашої душі...<br><br>Ніхто не дізнається про вашу місію, а лист Руфіна згниє під шаром торфу.`,
-        isAbsoluteFinal: true,
-        choices: [
-            {
-                text: "🎮 Почати подорож заново",
-                action: () => resetGame()
-            }
-        ]
-    },
+
 
     ending: {
         audioTrack: "assets/audio/ep5_winter_music.mp3",
@@ -1755,6 +1752,28 @@ window.GAME_SCENES = {
 
     // --- ЕПІЗОД 5: ФІНАЛЬНІ СЦЕНИ ВІДХОДУ ---
 
+
+    death: {
+        audioTrack: 'assets/audio/ep3_swamp_music.mp3',
+        audioAtmosphere: 'assets/audio/ep3_swamp_ambient.mp3',
+        title: '💀 Вартовий Впав',
+        text: 'Болото поглинуло вас. Порожній Сезон не чекає на слабких. Але кожне падіння — це урок виживання у Хейзмурі.',
+        choices: [
+            {
+                text: '↩ Почати подорож знову',
+                action: () => {
+                    window.isChapterEnding = false;
+                    document.getElementById(
+                        'main-simulator-interface'
+                    ).style.display = 'none';
+                    document.getElementById(
+                        'character-creation'
+                    ).style.display = 'flex';
+                    resetGame();
+                }
+            }
+        ]
+    },
     ep5_final_A: {
         audioTrack: "assets/audio/ep5_winter_music.mp3",
         audioAtmosphere: "assets/audio/ep5_winter_ambient.mp3",
@@ -2053,12 +2072,12 @@ window.GAME_SCENES = {
             },
             {
                 text: "Поговорити з Міа про її рішення",
-                visible: () => window.playerState.flags.mia_with_hero === true,
+                visible: () => window.playerState && window.playerState.flags && window.playerState.flags.mia_with_hero === true,
                 action: () => goScene("tykhy_mia")
             },
             {
                 text: "Заробити довіру як чужинець",
-                visible: () => window.playerState.flags.mia_with_hero === false,
+                visible: () => window.playerState && window.playerState.flags && window.playerState.flags.mia_with_hero === false,
                 action: () => goScene("tykhy_status")
             },
             {
@@ -2118,7 +2137,12 @@ window.GAME_SCENES = {
         choices: [
             {
                 text: "Повернутися",
-                action: () => goScene("tykhy_exit")
+                action: () => {
+                    window.playerState.flags =
+                        window.playerState.flags || {};
+                    window.playerState.flags.mia_with_hero = true;
+                    goScene('tykhy_arrive');
+                }
             }
         ]
     },
@@ -2560,6 +2584,19 @@ window.GAME_SCENES = {
     },
 
 
+
+    ep3_dry_mound: {
+        audioTrack: 'assets/audio/ep3_swamp_music.mp3',
+        audioAtmosphere: 'assets/audio/ep3_swamp_ambient.mp3',
+        title: 'Суха Купина — Коротка передишка',
+        text: 'Ви знаходите невеликий клаптик сухої землі серед болота і на мить зупиняєтесь, щоб перевести подих. Отруйний туман трохи відступає. Ваше тіло важке, але ви живі.',
+        choices: [
+            {
+                text: 'Продовжити шлях до Тихого Шелесту',
+                action: () => goScene('ep3_tykhy_tower')
+            }
+        ]
+    },
     ep3_fog: {
         title: "Голос із туману",
         text: `Ви заглиблюєтесь у Хейзмур. Туман густішає, і ви помічаєте знайому постать. Міа чекає на вас.`,
@@ -2607,13 +2644,7 @@ window.GAME_SCENES = {
         ]
     },
 
-    ep3_dry_mound: {
-        title: "Сухий Горб",
-        text: `Сили Печатки пересушили землю, шлях вільний. Мурі незадоволені.`,
-        choices: [
-            { text: "Далі", action: () => goScene("ep3_obitel_enter") }
-        ]
-    },
+
 
     ep3_obitel_enter: { title: "Обитель", text: `Затоплена Обитель наполовину пішла під воду. Лілея витягує бронзовий циліндр з рунами. «Замки реагують на голос і кров.» Робить розріз на долоні і проводить по руні. Замок відчиняється зі скреготом. Всередині — темрява і запах старого болота.`, choices: [{ text: "Далі", action: () => goScene("ep3_obitel_locks") }] },
     ep3_obitel_locks: { title: "Обитель", text: `Всередині — затоплені коридори і ряди рунічних замків. Лілея працює методично. «Мій рід будував це місце щоб Моур міг спати. Не вмерти — спати.» Вода по пояс холодна. З глибини доносяться звуки. «Не зупиняйтесь. Воно відчуває страх більше ніж кроки.»`, choices: [{ text: "Далі", action: () => goScene("ep3_altar") }] },

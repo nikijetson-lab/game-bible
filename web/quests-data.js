@@ -2,10 +2,8 @@ window.playerState = window.playerState || {};
 window.EPISODE_1_QUESTS = window.EPISODE_1_QUESTS || [];
 window.GAME_SCENES = {
     arriving: {
-
-        audioTrack: "assets/audio/ep1_tavern_music.mp3",
-
-        audioAtmosphere: "assets/audio/ep1_tavern_crowd_loop.mp3",
+        audioTrack: "assets/audio/greyford_theme.mp3",
+        audioAtmosphere: "assets/audio/greyford_rain.mp3",
 
         title: "Постоялий двір Грейфорда",
         text: `Ви входите у напівтемну таверну. За шинком стоїть Ерван — хазяїн закладу. Ви підходите і запитуєте про Руфіна. Ерван мовчки бере ваш лист, дивиться на дивну печатку (два перехрещені кинджали, коло і крапля), тримає його на мить довше, ніж варто звичайному паперу...<br><br>Потім піднімає на вас очі і запитує:<br><em>«І що он тобі був — друг, боржник, чи ти просто наймит-кур'єр?»</em>`,
@@ -30,10 +28,8 @@ window.GAME_SCENES = {
         ]
     },
     investigation: {
-
-        audioTrack: "assets/audio/ep1_tavern_music.mp3",
-
-        audioAtmosphere: "assets/audio/ep1_tavern_crowd_loop.mp3",
+        audioTrack: "assets/audio/greyford_theme.mp3",
+        audioAtmosphere: "assets/audio/greyford_rain.mp3",
 
         title: "Розслідування у Грейфорді",
         text: `Ерван повідомив, що картограф Руфін зник три дні тому. Його кімната досі оплачена, речі лежать недоторканими на другому поверсі таверни.<br><br>У вас є три головні нитки розслідування у Грейфорді. Дослідіть принаймні дві, щоб зібрати достатньо доказів і рушити за його слідами:`,
@@ -66,10 +62,8 @@ window.GAME_SCENES = {
         ]
     },
     thread_room: {
-
-        audioTrack: "assets/audio/ep1_tavern_music.mp3",
-
-        audioAtmosphere: "assets/audio/ep1_tavern_crowd_loop.mp3",
+        audioTrack: "assets/audio/greyford_theme.mp3",
+        audioAtmosphere: "assets/audio/greyford_rain.mp3",
 
         title: "Кімната Руфіна",
         text: `Ви заходите в порожню, пильну кімнату. Тут лежить зношений плащ картографа, дорожній посох та шкіряна сумка з незвичайним тавром у вигляді змії.<br><br>Що ви будете робити?`,
@@ -118,10 +112,8 @@ window.GAME_SCENES = {
         ]
     },
     thread_carver: {
-
-        audioTrack: "assets/audio/ep1_city_music.mp3",
-
-        audioAtmosphere: "assets/audio/ep1_city_ambient.mp3",
+        audioTrack: "assets/audio/greyford_theme.mp3",
+        audioAtmosphere: "assets/audio/greyford_rain.mp3",
 
         title: "Квартал ремісників — Різьбяр",
         text: `Ви знаходите майстерню різьбяра по дереву. Старий майстер працює над викривленою гілкою і неохоче реагує на ваші запитання про Руфіна. «Багато хто приходить і йде. Чому я маю допомагати кожному Вартовому?»`,
@@ -178,10 +170,8 @@ window.GAME_SCENES = {
         ]
     },
     thread_tavern: {
-
-        audioTrack: "assets/audio/ep1_tavern_music.mp3",
-
-        audioAtmosphere: "assets/audio/ep1_tavern_crowd_loop.mp3",
+        audioTrack: "assets/audio/greyford_theme.mp3",
+        audioAtmosphere: "assets/audio/greyford_rain.mp3",
 
         title: "Портова таверна",
         text: `У брудному шинку бармен протирає склянку: «Руфін спілкувався з куртизанкою на ім'я Касандра. Вона зараз сидить за кутовим столиком.»<br><br>Касандра дивиться на вас із підозрою.`,
@@ -226,10 +216,8 @@ window.GAME_SCENES = {
         ]
     },
     thread_witch: {
-
-        audioTrack: "assets/audio/ep1_city_music.mp3",
-
-        audioAtmosphere: "assets/audio/ep1_city_ambient.mp3",
+        audioTrack: "assets/audio/greyford_theme.mp3",
+        audioAtmosphere: "assets/audio/greyford_rain.mp3",
 
         title: "Помешкання Чаклунки",
         text: `Ви знайшли прихований будинок на околиці міста, прикрашений оберегами від болотяних духів. Чаклунка зустрічає вас із посмішкою. Вона знає, чому ви прийшли. «Руфін? Я бачила, як він ішов у болота вночі...»`,
@@ -275,10 +263,8 @@ window.GAME_SCENES = {
         ]
     },
     gates: {
-
-        audioTrack: "assets/audio/ep1_city_music.mp3",
-
-        audioAtmosphere: "assets/audio/ep1_city_ambient.mp3",
+        audioTrack: "assets/audio/greyford_theme.mp3",
+        audioAtmosphere: "assets/audio/greyford_rain.mp3",
 
         title: "Міські Ворота — Вихід у Хейзмур",
         text: `Ви зібрали достатньо доказів і підходите до важких дерев'яних воріт. Сержант воріт перевіряє свої записи: «Так, Руфін вийшов три дні тому в напрямку Тихого Шелесту.»<br><br>Він уважно дивиться на вас: <em>«З якого приводу Вартовий іде в болота?»</em>`,
@@ -311,10 +297,8 @@ window.GAME_SCENES = {
         ]
     },
     ending_episode1: {
-
-        audioTrack: "assets/audio/ep1_city_music.mp3",
-
-        audioAtmosphere: "assets/audio/ep1_city_ambient.mp3",
+        audioTrack: "assets/audio/greyford_theme.mp3",
+        audioAtmosphere: "assets/audio/greyford_rain.mp3",
 
         title: "Епізод 1 Завершено: Адресат відсутній",
         text: "",
@@ -328,10 +312,6 @@ window.GAME_SCENES = {
     },
 
     "hazemoor-01": {
-
-        audioTrack: "assets/audio/swamp_music.mp3",
-
-        audioAtmosphere: "assets/audio/swamp_wind_rain.mp3",
 
         title: "Сонк-Феррі",
         text: `Ви прибули до Сонк-Феррі — невеликого поселення поромників на краю болота. Пахне стоячою водою та гнилим деревом.`,
@@ -355,13 +335,11 @@ window.GAME_SCENES = {
         ]
     },
     ep1_mirefold: {
-
-        audioTrack: "assets/audio/swamp_music.mp3",
-
-        audioAtmosphere: "assets/audio/swamp_wind_rain.mp3",
+        audioTrack: "assets/audio/greyford_theme.mp3",
+        audioAtmosphere: "assets/audio/greyford_rain.mp3",
 
         title: "Мірефолд",
-        text: `Мірефолд — торфове поселення де живуть ті, кого болото прийняло але не поглинуло. Напівзатоплені будинки на палях. Жителі дивляться на вашу зброю і відвертаються. Старий поромник каже: «Тихий Шелест прийме вас, якщо не прийдете з залізом наперед.»`,
+        text: `Ви увійшли до Мірефолду, поселення, що потопає в болотяному тумані. Тутешні жителі з підозрою дивляться на Вартового.`,
         choices: [
             {
                 text: "Вирушити до Тихого Шелесту",
@@ -374,13 +352,11 @@ window.GAME_SCENES = {
         ]
     },
     ep1_lantern_house: {
-
-        audioTrack: "assets/audio/swamp_music.mp3",
-
-        audioAtmosphere: "assets/audio/swamp_wind_rain.mp3",
+        audioTrack: "assets/audio/greyford_theme.mp3",
+        audioAtmosphere: "assets/audio/greyford_rain.mp3",
 
         title: "Ліхтарний Дім Святої Вей",
-        text: `Ліхтарний Дім Святої Вей на кам'яному острівці. Хранителі мовчки запалюють ліхтарі. Старша Хранителька Ейла: «Порожній Сезон починається раніше. Моур неспокійний. Якщо йдете до Тихого Шелесту — не несіть срібла. Болото відчуває метал.»`,
+        text: `Перед вами височіє Ліхтарний Дім. Хранителі Святої Вей мовчки запалюють вогні, намагаючись розігнати темряву Порожнього сезону.`,
         choices: [
             {
                 text: "Вирушити до Тихого Шелесту",
@@ -393,10 +369,8 @@ window.GAME_SCENES = {
         ]
     },
     ep1_silent_rustle: {
-
-        audioTrack: "assets/audio/swamp_music.mp3",
-
-        audioAtmosphere: "assets/audio/swamp_wind_rain.mp3",
+        audioTrack: "assets/audio/greyford_theme.mp3",
+        audioAtmosphere: "assets/audio/greyford_rain.mp3",
 
         title: "Тихий Шелест",
         text: `Поселення Тихий Шелест стоїть посеред глибокого болота. Саме сюди прямував Руфін. Попереду видніється шлях до Галявини Моура.`,
@@ -409,10 +383,8 @@ window.GAME_SCENES = {
         ]
     },
     ep1_mours_glade: {
-
-        audioTrack: "assets/audio/swamp_music.mp3",
-
-        audioAtmosphere: "assets/audio/swamp_wind_rain.mp3",
+        audioTrack: "assets/audio/greyford_theme.mp3",
+        audioAtmosphere: "assets/audio/greyford_rain.mp3",
 
         title: "Галявина Моура",
         text: `Галявина Моура. Тут енергія болота пульсує під ногами. Ви знайшли таємничий артефакт, захований у торфі - **Камінь Моура**.`,
@@ -434,12 +406,11 @@ window.GAME_SCENES = {
         ]
     },
 
-
     // --- ЕПІЗОД 2: ВАЛЬКОРН ---
 
     ep2_valkorn_arrival: {
-        audioTrack: "assets/audio/ep2_city_music.mp3",
-        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        audioTrack: "assets/audio/valcorn_theme.mp3",
+        audioAtmosphere: "assets/audio/valcorn_metal.mp3",
         title: "Прибуття у Валькорн",
         text: `Ви прибуваєте у Валькорн, залізне місто-столицю. На ринковій площі ви стикаєтеся з Блазнем Фіппом. Він завмирає і дивиться на вас крізь білий грим. Камінь Моура стає гарячим.
 <br><br><em>«Дивись-но, мала Марр веде нове цуценя на повідку! Тільки нашийник у нього з холодного болотяного заліза, а в зубах — розбита печатка!»</em>
@@ -461,8 +432,8 @@ window.GAME_SCENES = {
     },
 
     ep2_valkorn_bres: {
-        audioTrack: "assets/audio/ep2_city_music.mp3",
-        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        audioTrack: "assets/audio/valcorn_theme.mp3",
+        audioAtmosphere: "assets/audio/valcorn_metal.mp3",
         title: "Тіньове Гетто: Брес",
         text: `Ви зустрічаєте Брес, втікачку із Сонк-Феррі.
 <br><br><em>«Болото не відмивається за один день.»</em> Вона згадує жінку, що платить за інформацію про болото, і про пакунок на складі в портовому кварталі, який контролює торгова гільдія.`,
@@ -483,8 +454,8 @@ window.GAME_SCENES = {
     },
 
     ep2_valkorn_tessa: {
-        audioTrack: "assets/audio/ep2_city_music.mp3",
-        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        audioTrack: "assets/audio/valcorn_theme.mp3",
+        audioAtmosphere: "assets/audio/valcorn_metal.mp3",
         title: "Крамниця Тесси",
         text: `Ви заходите в крамницю Тесси. У кімнаті за завісою пахне старим папером.
 <br><br><em>«Ти з Хейзмуру.»</em> Це не питання.
@@ -502,8 +473,8 @@ window.GAME_SCENES = {
     },
 
     ep2_valkorn_stetson: {
-        audioTrack: "assets/audio/ep2_city_music.mp3",
-        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        audioTrack: "assets/audio/valcorn_theme.mp3",
+        audioAtmosphere: "assets/audio/valcorn_metal.mp3",
         title: "Слідчий Стетсон",
         text: `Стетсон зустрічає вас: <em>«Ти дійшов. Я думав — можливо.»</em> Він шукає доказів проти Ордену для чистки й пропонує вам стати союзником.`,
         choices: [
@@ -519,8 +490,8 @@ window.GAME_SCENES = {
     },
 
     ep2_valkorn_damar: {
-        audioTrack: "assets/audio/ep2_city_music.mp3",
-        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        audioTrack: "assets/audio/valcorn_theme.mp3",
+        audioAtmosphere: "assets/audio/valcorn_metal.mp3",
         title: "Торгова Гільдія: Дамар",
         text: `Дамар — непримітний торговець, який тримає пакунок з артефактом.
 <br><br><em>«Я торговець. Я не питаю що це і навіщо. Я питаю скільки ти готовий заплатити.»</em>`,
@@ -543,8 +514,8 @@ window.GAME_SCENES = {
     },
 
     ep2_valkorn_dungeon: {
-        audioTrack: "assets/audio/ep2_dungeon_music.mp3",
-        audioAtmosphere: "assets/audio/ep2_dungeon_ambient.mp3",
+        audioTrack: "assets/audio/valcorn_theme.mp3",
+        audioAtmosphere: "assets/audio/valcorn_metal.mp3",
         title: "Третя точка: Підземелля",
         text: `Об'єднавши версії правди Одріна та Тесси, ви знаходите вхід у підземелля Валькорна. На стінах написи: <em>«Хто торкнеться Печатки без Ліхтаря — втратить тінь.»</em>
 <br><br>Ви знаходите Третю точку. Постамент порожній. Лежить свіжий клаптик тканини із символом Ордену. Хтось прийшов раніше.`,
@@ -557,8 +528,8 @@ window.GAME_SCENES = {
     },
 
     ep2_valkorn_loen: {
-        audioTrack: "assets/audio/ep2_city_music.mp3",
-        audioAtmosphere: "assets/audio/ep2_city_ambient.mp3",
+        audioTrack: "assets/audio/valcorn_theme.mp3",
+        audioAtmosphere: "assets/audio/valcorn_metal.mp3",
         title: "Людина що послала Руфіна",
         text: `Ви знаходите Лоена — члена Сьомої Ради Ордену. Він відповідає на три питання.
 <br><br>1. <em>«Нам потрібен був артефакт. Руфін знав болото. Ми шукаємо спосіб стабілізувати Моур, а не знищити його.»</em>
@@ -592,8 +563,8 @@ window.GAME_SCENES = {
     },
 
     ep2_valkorn_black_archive: {
-        audioTrack: "assets/audio/ep2_dungeon_music.mp3",
-        audioAtmosphere: "assets/audio/ep2_dungeon_ambient.mp3",
+        audioTrack: "assets/audio/valcorn_theme.mp3",
+        audioAtmosphere: "assets/audio/valcorn_metal.mp3",
         title: "Чорний Архів: Хранитель",
         text: `Ви проникаєте до Чорного Архіву під бібліотекою. Запах торфу і свіжої м'яти. Блазень Фіпп змиває грим.
 <br><br>Він виймає <strong>Першу Печатку</strong> — циліндр із Білого срібла та болотяного заліза, що пульсує срібним світлом.
@@ -615,12 +586,11 @@ window.GAME_SCENES = {
         ]
     },
 
-
     // --- ЕПІЗОД 3: ГЛИБОКЕ БОЛОТО ---
 
     ep3_deep_bog_start: {
-        audioTrack: "assets/audio/ep3_swamp_music.mp3",
-        audioAtmosphere: "assets/audio/ep3_swamp_ambient.mp3",
+        audioTrack: "assets/audio/swamp_theme.mp3",
+        audioAtmosphere: "assets/audio/swamp_frogs.mp3",
         title: "Повернення в імлу",
         text: `Ви перетинаєте зруйнований річковий міст і ступаєте на хитку стежку Глибокого болота. Молочно-білий туман обволікає вас, намагаючись стерти відчуття напрямку.
 <br><br>Очерет шепоче: <em>«Тут тепло... Срібло холодне, а вода пам'ятає твою колиску... Лягай...»</em>
@@ -637,8 +607,8 @@ window.GAME_SCENES = {
     },
 
     ep3_ruined_path: {
-        audioTrack: "assets/audio/ep3_swamp_music.mp3",
-        audioAtmosphere: "assets/audio/ep3_swamp_ambient.mp3",
+        audioTrack: "assets/audio/swamp_theme.mp3",
+        audioAtmosphere: "assets/audio/swamp_frogs.mp3",
         title: "Понівечений шлях",
         text: `Стежка до Тихого Шелесту знищена аномальною активністю Моура. Гігантські сплетіння чорного коріння блокують прохід. З провалів піднімається отруйний газ.
 <br><br>Ілія тремтить: <em>«Твоє серце б'ється так швидко, наче зараз розірветься. Зупинись, прошу тебе.»</em>`,
@@ -661,8 +631,8 @@ window.GAME_SCENES = {
     },
 
     ep3_mia_encounter: {
-        audioTrack: "assets/audio/ep3_swamp_music.mp3",
-        audioAtmosphere: "assets/audio/ep3_swamp_ambient.mp3",
+        audioTrack: "assets/audio/swamp_theme.mp3",
+        audioAtmosphere: "assets/audio/swamp_frogs.mp3",
         title: "Зустріч із Міа",
         text: `З туману повільно виступає Міа. В її очах горить дике світло Моура.
 <br><br><em>«Що вони зробили з тобою у своєму кам'яному місті? Ти хотів приборкати болото, але дозволив йому зжерти себе зсередини. І цей холод... Ти приніс їхнє срібло сюди. Навіщо?»</em>`,
@@ -683,8 +653,8 @@ window.GAME_SCENES = {
     },
 
     ep3_silent_rustle_lileya: {
-        audioTrack: "assets/audio/ep3_swamp_music.mp3",
-        audioAtmosphere: "assets/audio/ep3_swamp_ambient.mp3",
+        audioTrack: "assets/audio/swamp_theme.mp3",
+        audioAtmosphere: "assets/audio/swamp_frogs.mp3",
         title: "Тихий Шелест: Лілея",
         text: `У Тихому Шелесті єдина кам'яна споруда — вежа, де ховається Лілея, давня Ключниця боліт.
 <br><br><em>«Мій рід будував стіни між людиною та болотом. Ти став ключем, який ламається у власному замку. Під Затопленою Обителлю лежить Друга Печатка з темної болотяної міді. Вона утримує Моур.»</em>
@@ -698,8 +668,8 @@ window.GAME_SCENES = {
     },
 
     ep3_mad_ferry: {
-        audioTrack: "assets/audio/ep3_swamp_music.mp3",
-        audioAtmosphere: "assets/audio/ep3_swamp_ambient.mp3",
+        audioTrack: "assets/audio/swamp_theme.mp3",
+        audioAtmosphere: "assets/audio/swamp_frogs.mp3",
         title: "Шалена Переправа",
         text: `Важкий дерев'яний пліт на ланцюгах. Річка перетворилася на киплячий чорний дьоготь. Сліпі хижаки — Тварюки Твані — намагаються перегризти ланцюги.
 <br><br>Один ланцюг лопається! Пором знесе на водоспад.`,
@@ -723,8 +693,8 @@ window.GAME_SCENES = {
     },
 
     ep3_flooded_abode: {
-        audioTrack: "assets/audio/ep3_dungeon_music.mp3",
-        audioAtmosphere: "assets/audio/ep3_dungeon_ambient.mp3",
+        audioTrack: "assets/audio/swamp_theme.mp3",
+        audioAtmosphere: "assets/audio/swamp_frogs.mp3",
         title: "Затоплена Обитель",
         text: `Лілея розшифровує бронзові рунічні замки Ключників. Ви пробираєтесь по пояс у чорній твані всередині затопленого монастиря.
 <br><br>У центрі крипти — Вівтар Стагнації, на якому лежить Друга Печатка з болотяної міді. З туману виходить Міа, її очі повністю чорні.
@@ -760,13 +730,12 @@ window.GAME_SCENES = {
         ]
     },
 
-
     // --- ЕПІЗОД 4: ДВА БЕРЕГИ ---
 
     // Початок 4-го епізоду: Повернення до Валькорна
     ep4_start: {
-        audioTrack: "assets/audio/ep4_bridge_music.mp3",
-        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        audioTrack: "assets/audio/bridge_theme.mp3",
+        audioAtmosphere: "assets/audio/bridge_wind.mp3",
         title: "Повернення до Валькорна",
         text: `Ви повернулися до Валькорна. Ваш шлях залежить від того, яку долю ви обрали раніше.`,
         choices: [
@@ -787,8 +756,8 @@ window.GAME_SCENES = {
 
     // Шлях А: Залізний Тріумф
     ep4_valkorn_iron_triumph: {
-        audioTrack: "assets/audio/ep4_bridge_music.mp3",
-        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        audioTrack: "assets/audio/bridge_theme.mp3",
+        audioAtmosphere: "assets/audio/bridge_wind.mp3",
         title: "Залізний Тріумф",
         text: `Ви повертаєтесь у Валькорн як переможець у складі делегації Ордену Семи Кинджалів. Висушене болото більше не перешкоджає вашому шляху. Під важким парадним плащем ви ховаєте свої омертвілі руки, що перетворилися на сіру деревину. Лілея йде поруч із кресленнями древніх замків Ключників.
 
@@ -802,8 +771,8 @@ window.GAME_SCENES = {
     },
 
     ep4_valkorn_marr_audience: {
-        audioTrack: "assets/audio/ep4_bridge_music.mp3",
-        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        audioTrack: "assets/audio/bridge_theme.mp3",
+        audioAtmosphere: "assets/audio/bridge_wind.mp3",
         title: "Аудієнція у Себастьяна Марра",
         text: `Ви піднімаєтеся до Чорного Архіву. У центрі зали Себастьян Марр тріумфує:
 <br><br>"Ти зробив те, що не вдалося жодному Вартовому до тебе. Хейзмур вмирає. Орден не забуде твою службу. Але твої руки... це ціна порядку."
@@ -819,8 +788,8 @@ window.GAME_SCENES = {
     },
 
     ep4_valkorn_iron_burn: {
-        audioTrack: "assets/audio/ep4_bridge_music.mp3",
-        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        audioTrack: "assets/audio/bridge_theme.mp3",
+        audioAtmosphere: "assets/audio/bridge_wind.mp3",
         title: "Залізне випалювання",
         text: `Себастьян Марр віддає наказ про початок фінальної операції «Чиста земля». Тесса піднімає бунт всередині Ордену, відмовляючись винищувати беззбройних. Вона закликає вас зупинити безумство Себастьяна.
 <br><br>Разом із бунтівними лицарями Тесси ви штурмуєте Архів, використовуючи арбалет Залізного Завіту проти каральних загонів.`,
@@ -833,8 +802,8 @@ window.GAME_SCENES = {
     },
 
     ep4_valkorn_marr_death: {
-        audioTrack: "assets/audio/ep4_bridge_music.mp3",
-        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        audioTrack: "assets/audio/bridge_theme.mp3",
+        audioAtmosphere: "assets/audio/bridge_wind.mp3",
         title: "Смерть Себастьяна",
         text: `Ви й Тесса заганяєте Себастьяна в кут. Він намагається активувати залізний захисний прес, але той ламається, і важка залізна плита зривається з ланцюгів, розчавивши тирана.
 <br><br><strong>Себастьян Марр гине.</strong> Тесса бере печатку Ордену та оголошує про реформи. Орден більше не буде катами. Руфін залишається живою, але порожньою тінню назавжди.`,
@@ -847,8 +816,8 @@ window.GAME_SCENES = {
     },
 
     ep4_hazemoor_ash_paths: {
-        audioTrack: "assets/audio/ep4_bridge_music.mp3",
-        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        audioTrack: "assets/audio/bridge_theme.mp3",
+        audioAtmosphere: "assets/audio/bridge_wind.mp3",
         title: "Попільні стежки Хейзмуру",
         text: `Болото стрімко помирає. Вода пішла глибоко під землю, залишаючи за собою потріскану глину та гнилу твань, яка швидко перетворюється на попіл. Здичавілі Очеретяні Блукачі крихкі й розсипаються в труху.
 <br><br><em>Голос Ілії:</em> "Дивись... гниль відступає. Я відчуваю твій спокій, Вартовий. Твої руки більше не пульсують очеретом."`,
@@ -861,8 +830,8 @@ window.GAME_SCENES = {
     },
 
     ep4_hazemoor_dry_altar: {
-        audioTrack: "assets/audio/ep4_bridge_music.mp3",
-        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        audioTrack: "assets/audio/bridge_theme.mp3",
+        audioAtmosphere: "assets/audio/bridge_wind.mp3",
         title: "Зіткнення біля сухого вівтаря",
         text: `Біля сухого Вівтаря Стагнації стоїть виснажена Міа. З її потрісканої шкіри сочиться сірий пил. Вона намагається вичавити з мідної Печатки останні краплі болотяної сили, щоб скерувати отруйний газ на Грейфорд.
 <br><br>"Ти привів сюди залізо... Ти висушив наші ріки, Вартовий! Дивись на цю землю — вона мертва. Але я не дам тобі піти просто так. Ми згинемо разом!"`,
@@ -885,8 +854,8 @@ window.GAME_SCENES = {
     },
 
     ep4_hazemoor_dry_altar_nailed: {
-        audioTrack: "assets/audio/ep4_bridge_music.mp3",
-        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        audioTrack: "assets/audio/bridge_theme.mp3",
+        audioAtmosphere: "assets/audio/bridge_wind.mp3",
         title: "Вівтар Стагнації",
         text: `Ви фізично фіксуєте кінцівки Мії на сухому камені залізними штирями, назавжди позбавляючи її зв'язку з землею. Вона не вмирає, але затихає як безпорадна, оніміла мумія Хейзмуру.`,
         choices: [
@@ -898,8 +867,8 @@ window.GAME_SCENES = {
     },
 
     ep4_hazemoor_dry_altar_fade: {
-        audioTrack: "assets/audio/ep4_bridge_music.mp3",
-        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        audioTrack: "assets/audio/bridge_theme.mp3",
+        audioAtmosphere: "assets/audio/bridge_wind.mp3",
         title: "Вівтар Стагнації",
         text: `Ви відмовляєтесь від насильства й просто забираєте мідну Печатку з її рук. Міа падає на сухі плити, її дихання стає ледь помітним, і тіло повністю дерев'яніє, перетворюючись на суху вербову гілку.`,
         choices: [
@@ -912,8 +881,8 @@ window.GAME_SCENES = {
 
     // Шлях Б: Тінь у Каналах
     ep4_valkorn_shadow_in_channels: {
-        audioTrack: "assets/audio/ep4_bridge_music.mp3",
-        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        audioTrack: "assets/audio/bridge_theme.mp3",
+        audioAtmosphere: "assets/audio/bridge_wind.mp3",
         title: "Чудовисько під бруківкою",
         text: `Ваше тіло остаточно перетворилося на очеретяного монстра з чорними очима. Ви потайки пробираєтеся до Валькорна крізь стічні колектори. Гнила болотна вода вже сочиться крізь тріщини підземних каналів столиці. Ваші вени пульсують чорним торф'яним соком.
 <br><br><em>Голос Ілії (дуже далеко):</em> "Вартовий... де ти? Навколо лише... холодна вода й темрява. Я ледь чую биття твого серця..."`,
@@ -926,8 +895,8 @@ window.GAME_SCENES = {
     },
 
     ep4_valkorn_tessa_encounter_channels: {
-        audioTrack: "assets/audio/ep4_bridge_music.mp3",
-        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        audioTrack: "assets/audio/bridge_theme.mp3",
+        audioAtmosphere: "assets/audio/bridge_wind.mp3",
         title: "Зіткнення з Тессою",
         text: `На виході з колекторів під собором вас блокує варта на чолі з Тессою. Вона зупиняє солдатів і впізнає у вас Вартового.
 <br><br>"Боги... Вартовий? Що це болото з тобою зробило? Себастьян Марр збирає королівську гвардію, щоб випалити Хейзмур дощенту. Якщо в тобі залишилося хоч щось людське... тікай. Лілея ховається в крипті старого собору, тільки її рід може зняти це прокляття."`,
@@ -950,8 +919,8 @@ window.GAME_SCENES = {
     },
 
     ep4_valkorn_hunt_for_beast: {
-        audioTrack: "assets/audio/ep4_bridge_music.mp3",
-        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        audioTrack: "assets/audio/bridge_theme.mp3",
+        audioAtmosphere: "assets/audio/bridge_wind.mp3",
         title: "Штурм палацу з тіней",
         text: `Валькорн охоплений панікою — болотний туман просочився на вулиці. Себастьян Марр веде каральний загін з вогнеметами до підвалів.
 <br><br>У тілі очеретяного монстра ви ведете полювання в темних коридорах собору, затягуючи гвардійців у твань.`,
@@ -964,8 +933,8 @@ window.GAME_SCENES = {
     },
 
     ep4_valkorn_marr_strangle: {
-        audioTrack: "assets/audio/ep4_bridge_music.mp3",
-        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        audioTrack: "assets/audio/bridge_theme.mp3",
+        audioAtmosphere: "assets/audio/bridge_wind.mp3",
         title: "Розрахунок у крипті",
         text: `Ви наздоганяєте Себастьяна в крипті. Він намагається захищатися срібним мечем, але ви обплутуєте його корінням верби й ламаєте броню.
 <br><br><strong>Себастьян Марр гине від ядухи.</strong>
@@ -979,8 +948,8 @@ window.GAME_SCENES = {
     },
 
     ep4_hazemoor_monster_return: {
-        audioTrack: "assets/audio/ep4_bridge_music.mp3",
-        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        audioTrack: "assets/audio/bridge_theme.mp3",
+        audioAtmosphere: "assets/audio/bridge_wind.mp3",
         title: "Повернення монстра",
         text: `Ви повертаєтесь до Хейзмуру разом із Лілеєю, яка тримає важкий мідний ключ Ключників для ритуалу повернення вашої людської подоби.
 <br><br><em>Голос Ілії (дуже слабкий):</em> "Я... все ще тут... під цією чорною корою... Не дай очерету закрити мої очі..."`,
@@ -993,8 +962,8 @@ window.GAME_SCENES = {
     },
 
     ep4_hazemoor_mia_interferes: {
-        audioTrack: "assets/audio/ep4_bridge_music.mp3",
-        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        audioTrack: "assets/audio/bridge_theme.mp3",
+        audioAtmosphere: "assets/audio/bridge_wind.mp3",
         title: "Трагічний антагоніст",
         text: `Біля вівтаря вас зустрічає Міа. Вона бачить у вас нового вождя болота й жахається, побачивши Лілею з ключем:
 <br><br>"Ні! Болото обрало тебе! А вона хоче знову замкнути тебе в смертне тіло? Я не дозволю!"
@@ -1008,8 +977,8 @@ window.GAME_SCENES = {
     },
 
     ep4_hazemoor_restoration_ritual: {
-        audioTrack: "assets/audio/ep4_bridge_music.mp3",
-        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        audioTrack: "assets/audio/bridge_theme.mp3",
+        audioAtmosphere: "assets/audio/bridge_wind.mp3",
         title: "Ритуал Ключниці",
         text: `Коли Міа знерухомлена, Лілея силою вставляє мідний Ключ у рунічний паз на ваших дерев'яних грудях. Зі скреготом кісток дерев'яна кора тріскається й злазить шарами. Торф'яний сік замінюється червоною кров'ю. Очі знову стають людськими, хоча на передпліччях залишаються темні рубці.
 <br><br>Міа дивиться на вас із болем і презирством: "Ти вибрав бути слабким... Біжи, людська тварюко." Вона розвертається й зникає в тумані.
@@ -1024,8 +993,8 @@ window.GAME_SCENES = {
 
     // Шлях В: Крихкий Посол
     ep4_valkorn_fragile_ambassador: {
-        audioTrack: "assets/audio/ep4_bridge_music.mp3",
-        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        audioTrack: "assets/audio/bridge_theme.mp3",
+        audioAtmosphere: "assets/audio/bridge_wind.mp3",
         title: "Живий замок на бруківці",
         text: `Ви входите до Валькорна легально, як посланець і «живий замок» Хейзмуру. Ваша шкіра землиста, пальці чорні, але розум людський. Ви відчуваєте постійний біль у грудях від внутрішнього тертя срібла й міді.
 <br><br><em>Голос Ілії (тихо):</em> "Я чую твій важкий подих. Біль тримає тебе в реальності. Ти став мостом між нами та ними."`,
@@ -1038,8 +1007,8 @@ window.GAME_SCENES = {
     },
 
     ep4_valkorn_diplomacy: {
-        audioTrack: "assets/audio/ep4_bridge_music.mp3",
-        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        audioTrack: "assets/audio/bridge_theme.mp3",
+        audioAtmosphere: "assets/audio/bridge_wind.mp3",
         title: "Дипломатична шахівниця",
         text: `У великій залі Ратуші Себастьян Марр, Тесса та Лілея ведуть перемовини.
 <br><br>Себастьян каже: "Ти пропонуєш нейтралітет? Це крихка конструкція. Орден вимагає встановлення застав ліхтарів уздовж усієї лінії очерету. Якщо відмовишся — пакт буде анульовано."
@@ -1065,8 +1034,8 @@ window.GAME_SCENES = {
     },
 
     ep4_valkorn_conspiracy: {
-        audioTrack: "assets/audio/ep4_bridge_music.mp3",
-        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        audioTrack: "assets/audio/bridge_theme.mp3",
+        audioAtmosphere: "assets/audio/bridge_wind.mp3",
         title: "Змова радикалів",
         text: `Радикальні лицарі Ордену намагаються влаштувати замах на вас просто під час аудієнції, щоб спровокувати війну.
 <br><br>Разом із Тессою ви стримуєте змовників, балансуючи на межі Плетіння та використання срібних ліхтарів.
@@ -1080,8 +1049,8 @@ window.GAME_SCENES = {
     },
 
     ep4_hazemoor_three_forces: {
-        audioTrack: "assets/audio/ep4_bridge_music.mp3",
-        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        audioTrack: "assets/audio/bridge_theme.mp3",
+        audioAtmosphere: "assets/audio/bridge_wind.mp3",
         title: "Сходження трьох сил",
         text: `Дипломатичний нейтралітет зафіксовано, але земля Хейзмуру здригається — Печатки пручаються.
 <br><br>Ви прибуваєте до вівтаря разом із Лілеєю та Мією. Ви повинні діяти спільно.
@@ -1095,8 +1064,8 @@ window.GAME_SCENES = {
     },
 
     ep4_hazemoor_balance_ritual: {
-        audioTrack: "assets/audio/ep4_bridge_music.mp3",
-        audioAtmosphere: "assets/audio/ep4_bridge_ambient.mp3",
+        audioTrack: "assets/audio/bridge_theme.mp3",
+        audioAtmosphere: "assets/audio/bridge_wind.mp3",
         title: "Замикання Печаток",
         text: `Ви керуєте рунічними механізмами вівтаря, обертаючи важкі бронзові диски та затискаючи срібні важелі. Ви замикаєте обидва ключі обома руками. Срібло й мідь замикаються безпосередньо у вашій плоті. Ваш стан стабілізується назавжди.
 <br><br>Міа відпускає вівтар: "Ти вибрав нести цей біль, щоб ми могли жити. Болото триматиметься у своїх межах."
@@ -1110,8 +1079,6 @@ window.GAME_SCENES = {
     },
 
     death: {
-        audioTrack: "assets/audio/death_music.mp3",
-        audioAtmosphere: "assets/audio/death_ambient.mp3",
         title: "Трагічна загибель",
         text: `Ваша подорож обірвалася в болотах Хейзмуру. Холодний туман огортає ваше тіло, а прокляття Порожнього Сезону забирає залишки вашої душі...<br><br>Ніхто не дізнається про вашу місію, а лист Руфіна згниє під шаром торфу.`,
         isAbsoluteFinal: true,
@@ -1124,8 +1091,6 @@ window.GAME_SCENES = {
     },
 
     ending: {
-        audioTrack: "assets/audio/ep5_winter_music.mp3",
-        audioAtmosphere: "assets/audio/ep5_winter_ambient.mp3",
         title: "Кінець Гри",
         text: "",
         isAbsoluteFinal: true,
@@ -1135,8 +1100,6 @@ window.GAME_SCENES = {
     // --- ЕПІЗОД 5: ФІНАЛЬНІ СЦЕНИ ВІДХОДУ ---
 
     ep5_final_A: {
-        audioTrack: "assets/audio/ep5_winter_music.mp3",
-        audioAtmosphere: "assets/audio/ep5_winter_ambient.mp3",
         title: "Відхід: Суха Дорога",
         text: `Сірий, холодний ранок. Небо чисте від туману, але абсолютно безживне. Хейзмур випалене й висушене. Ви йдете по пильній сухій дорозі геть від Валькорна. Рухи ваших омертвілих пальців повільні й жорсткі в шкіряних рукавицях.
 <br><br><em>Голос Ілії:</em> "Твій обов'язок згасає, як і тепло в твоїх руках. Попереду лише сухі й далекі краї... Йди."
@@ -1146,8 +1109,6 @@ window.GAME_SCENES = {
     },
 
     ep5_final_B: {
-        audioTrack: "assets/audio/ep5_winter_music.mp3",
-        audioAtmosphere: "assets/audio/ep5_winter_ambient.mp3",
         title: "Відхід: Стежка Очерету",
         text: `Вологі, густі сутінки. Все навколо вкрите сизим туманом. Ви йдете босоніж по вологому торфу. Ваша шкіра м'яка й тепла, але передпліччя назавжди вкриті темними рубцями кори верби. Ви залишаєте очеретяні хащі за спиною.
 <br><br><em>Голос Ілії:</em> "Ми залишаємо Хейзмур очерету. А наша дорога лежить далі, туди, де холодно й чужо. Не озирайся назад. Твоя душа вільна. Іди вперед."
@@ -1157,8 +1118,6 @@ window.GAME_SCENES = {
     },
 
     ep5_final_C: {
-        audioTrack: "assets/audio/ep5_winter_music.mp3",
-        audioAtmosphere: "assets/audio/ep5_winter_ambient.mp3",
         title: "Відхід: Міст Між Берегами",
         text: `Глибокі сутінки. Ви повільно йдете по кам'яному мосту через Шалену Річку. З одного боку світяться ліхтарі Валькорна, з іншого — темніє туман Хейзмуру. Ви зупиняєтесь посередині, стискаючи чорними пальцями два ключі від Печаток.
 <br><br><em>Голос Ілії:</em> "Це твоє місце — міст між двома світами. Але міст не може належати жодному з берегів. Ми забираємо ключі із собою... Я з тобою... завжди."
@@ -1449,7 +1408,7 @@ window.GAME_SCENES = {
 
     tykhy_rufin: {
         title: "Той, хто знав дорогу",
-        text: `Варрік — старший мисливець Тихого Шелесту. Він довго дивиться на вас. «Картограф? Так, він приходив. Ніс щось у шкіряному мішку — воно світилось крізь шви. Не ліхтар. Щось старіше.» Варрік дивиться на болото. «Він питав про заборонену галявину. Ми сказали — не ходи. Він пішов.»`,
+        text: `Варрік питає: «Навіщо тобі ця людина?»`,
         choices: [
             {
                 text: "Правда.",
@@ -1460,7 +1419,7 @@ window.GAME_SCENES = {
 
     tykhy_rufin_found: {
         title: "Сліди Руфіна",
-        text: `Варрік веде вас до краю поселення. «Три дні тому він повернувся без мішка. Очі порожні як вода в мертвій заводі. Не говорить.» Варрік відчиняє двері. У куті сидить Руфін — живий, але відсутній. На підлозі — випалена трава колом і темний холодний камінь.`,
+        text: `Руфін пішов до забороненої галявини. Варрік: «Він ніс щось що світилось. Не ліхтар.»`,
         choices: [
             {
                 text: "Повернутися",
@@ -1471,7 +1430,7 @@ window.GAME_SCENES = {
 
     tykhy_kaen: {
         title: "Що батьки не кажуть",
-        text: `Каен — старий шаман, батько Міа. Він мовчить довго. «Двадцять років тому я знайшов її в болоті. Немовля на купині. Живе.» Дивиться на вогонь. «Я знав звідки вона. Але взяв її. З любові.» Замовкає. «Скажи їй правду. Я не зможу.»`,
+        text: `Каен знайшов Міа в болоті. Немовля, живе, без слідів як вона там опинилась.`,
         choices: [
             {
                 text: "Повернутися",
@@ -1482,7 +1441,7 @@ window.GAME_SCENES = {
 
     tykhy_mia: {
         title: "Друге рішення",
-        text: `Ви бачите Міа і Каена здалеку — вони говорять тихо біля воронячого дерева. Каен кладе руку їй на плече. Потім Міа підходить до вас. «Я іду з тобою до галявини.» Це не питання. «Там є щось що стосується мене більше ніж тебе.»`,
+        text: `Міа приймає рішення йти з вами. «Там є щось що стосується мене більше ніж тебе.»`,
         choices: [
             {
                 text: "Повернутися",
@@ -1493,7 +1452,7 @@ window.GAME_SCENES = {
 
     tykhy_status: {
         title: "Чужинець у сітці",
-        text: `Без Міа ви — чужинець у закритому поселенні. Ви допомагаєте з дрібними справами — латаєте сіті, носите торф. Через кілька годин Міа повертається і бачить вас за роботою. Зупиняється. Дивиться. Нічого не каже — але тепер іде поруч.`,
+        text: `Ви заробляєте довіру, допомагаючи поселенню. Міа повертається і бачить це.`,
         choices: [
             {
                 text: "Повернутися",
@@ -1624,10 +1583,10 @@ window.GAME_SCENES = {
         ]
     },
 
-    holod_result_A: { title: "Результат: Викриття", text: `Ви виходите на площу Сонк-Феррі і публічно називаєте імена чиновників. Натовп вибухає. Міська варта розгублена — арештувати вас чи чиновників? Зерно повертають частково. Корумповані чиновники тікають до Валькорна. Місцеві вдячні, але адміністрація Ордену запам'ятає цей день.`, choices: [{ text: "Далі", action: () => goScene("sil_u_knyzi") }] },
-    holod_result_B: { title: "Результат: Придушення", text: `Ви знаходите старшого чиновника наодинці і кладете докази на стіл. «Зерно повертається сьогодні вночі. Тихо. Або ці папери підуть до Валькорна.» Чиновник блідне і погоджується. Зерно повертається. Ніхто публічно не постраждав, але всі в поселенні розуміють що сталось.`, choices: [{ text: "Далі", action: () => goScene("sil_u_knyzi") }] },
-    holod_result_C: { title: "Результат: Місцева угода", text: `Ви домовляєтесь з контрабандистами напряму — вони повертають зерно в обмін на те, що ви закриваєте очі на їхні маршрути. Голод відступає. Але місцева угода залишає тріщину: тепер контрабандисти знають що Вартового можна купити мовчанням.`, choices: [{ text: "Далі", action: () => goScene("sil_u_knyzi") }] },
-    holod_result_D: { title: "Результат: Милосердя", text: `Брат Карос проводить ритуал Святої Вей над спорожнілими коморами. Ви стоїте поруч і тримаєте ліхтар. Кілька рибалок приносять великий улов. Збіг чи ні — люди говорять про диво. Громада тримається разом.`, choices: [{ text: "Далі", action: () => goScene("sil_u_knyzi") }] },
+    holod_result_A: { title: "Результат: Викриття", text: "Викриття", choices: [{ text: "Далі", action: () => goScene("sil_u_knyzi") }] },
+    holod_result_B: { title: "Результат: Придушення", text: "Придушення", choices: [{ text: "Далі", action: () => goScene("sil_u_knyzi") }] },
+    holod_result_C: { title: "Результат: Місцева угода", text: "Місцева угода укладена.", choices: [{ text: "Далі", action: () => goScene("sil_u_knyzi") }] },
+    holod_result_D: { title: "Результат: Милосердя", text: "Ритуальне милосердя", choices: [{ text: "Далі", action: () => goScene("sil_u_knyzi") }] },
 
     sil_u_knyzi: {
         title: "Сіль у книзі",
@@ -1704,9 +1663,9 @@ window.GAME_SCENES = {
         ]
     },
 
-    popil_secret: { title: "Правда прихована", text: `Ви мовчите. Брат Карос дивиться на вас довго, потім опускає голову. «Розумію.» Ритуали продовжуються — фальшиві, але знайомі. Мертві лежать у землі без справжніх слів. Але живі не знають різниці, і це, можливо, милосердя.`, choices: [{ text: "Далі", action: () => goScene("nizh_kvoty") }] },
-    popil_expose: { title: "Правда відкрита", text: `Ви говорите прямо. Брат Карос спочатку злиться, потім мовчить. «Я робив що міг з тим що знав.» Поховальне місце закривають на переосвячення. Кілька родин ображені. Але правда вимовлена вголос.`, choices: [{ text: "Далі", action: () => goScene("nizh_kvoty") }] },
-    popil_ritual: { title: "Ритуал проведено", text: `Ви проводите справжній ритуал Ключників над поховальним місцем. Брат Карос: «Звідки ви знаєте ці слова?» Ліхтар горить зеленим. Болото навколо тихне. Мертві нарешті спочивають правильно.`, choices: [{ text: "Далі", action: () => goScene("nizh_kvoty") }] },
+    popil_secret: { title: "Правда прихована", text: "Секрет", choices: [{ text: "Далі", action: () => goScene("nizh_kvoty") }] },
+    popil_expose: { title: "Правда відкрита", text: "Викриття", choices: [{ text: "Далі", action: () => goScene("nizh_kvoty") }] },
+    popil_ritual: { title: "Ритуал проведено", text: "Ритуал", choices: [{ text: "Далі", action: () => goScene("nizh_kvoty") }] },
 
     nizh_kvoty: {
         title: "Ніж квоти",
@@ -1737,12 +1696,14 @@ window.GAME_SCENES = {
         ]
     },
 
-    nizh_result_A: { title: "Звіт", text: `Ви підписуєте звіт Серіта Келма. Цифри правильні, але контекст — ні. Келм забирає папери з легкою посмішкою. «Мудре рішення, Вартовий.» Ви виходите з відчуттям що щойно дали комусь зброю.`, choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valkorn_arrive") }] },
-    nizh_result_B: { title: "Супротив", text: `Ви підписуєте звіт але дописуєте три рядки від руки — окремі спостереження. Келм помічає дописку. «Це не стандартна форма.» «Ні» — погоджуєтесь ви. Він забирає документ мовчки. Ваш дописок може нічого не змінити. Але він є.`, choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valkorn_arrive") }] },
-    nizh_result_C: { title: "Повний розрахунок", text: `Ви відмовляєтесь підписувати і кладете власний звіт з іменами і датами. «Це піде до вищого суду Ордену.» Келм встає. «Ви розумієте що щойно зробили?» «Так.» Він іде. Ви теж — з чистою совістю і новим ворогом.`, choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valkorn_arrive") }] },
-    nizh_result_D: { title: "Спільний контроль", text: `Ви пропонуєте Келму спільний контроль — він веде облік, ви підписуєте тільки перевірене. Келм: «Незвично. Але прийнятно.» Угода укладена. Бюрократія сповільнюється, але дірки закриваються.`, choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valkorn_arrive") }] },
+    nizh_result_A: { title: "Звіт", text: "Звіт підписано.", choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valkorn_arrive") }] },
+    nizh_result_B: { title: "Супротив", text: "Супротив.", choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valkorn_arrive") }] },
+    nizh_result_C: { title: "Повний розрахунок", text: "Розрахунок.", choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valkorn_arrive") }] },
+    nizh_result_D: { title: "Спільний контроль", text: "Контроль.", choices: [{ text: "Вирушити до Валькорна", action: () => goScene("valkorn_arrive") }] },
 
     valkorn_arrive: {
+        audioTrack: "assets/audio/valcorn_theme.mp3",
+        audioAtmosphere: "assets/audio/valcorn_metal.mp3",
         title: "Людина з болота",
         text: `Ви прибуваєте до Валькорна з Ілією Марр. Місто велике і байдуже.`,
         choices: [
@@ -1761,14 +1722,16 @@ window.GAME_SCENES = {
         ]
     },
 
-    valkorn_01_stetsion: { title: "Слідчий Стетсон", text: `Стетсон зустрічає вас у вузькому кабінеті без вікон. Стіни вкриті картами. «Ти з болота. Я бачу по взутті.» Він дістає папку. «Орден Семи Кинджалів. Три роки я збираю докази. Мені потрібен свідок зсередини — хтось хто бачив артефакт. Ти такий?»`, choices: [{ text: "До Архіву", action: () => goScene("valkorn_02_odrin") }] },
-    valkorn_01_ghetto: { title: "Тіньове Гетто Валькорна", text: `Тіньове Гетто — квартал без назви на офіційних картах. Ви знаходите Брес — молоду жінку з Сонк-Феррі. «Болото не відмивається за один день.» «Є пакунок у портовому складі. Жінка в синій сукні платить за інформацію про нього.»`, choices: [{ text: "До Тесси", action: () => goScene("valkorn_01_tessa") }] },
-    valkorn_01_tessa: { title: "Зустріч з Тессою", text: `Тесса слухає вас не перебиваючи. «Ти з Хейзмуру.» Це не питання. «Орден каже одне. Я скажу тобі інше. Артефакт — не просто реліквія. Він частина системи замків. Якщо його зламати — болото вийде за межі.»`, choices: [{ text: "Дві версії правди", action: () => goScene("valkorn_02_tessa") }] },
+    valkorn_01_stetsion: { title: "Слідчий Стетсон", text: "Зустріч зі слідчим.", choices: [{ text: "До Архіву", action: () => goScene("valkorn_02_odrin") }] },
+    valkorn_01_ghetto: { title: "Тіньове Гетто Валькорна", text: "Пошуки в Гетто.", choices: [{ text: "До Тесси", action: () => goScene("valkorn_01_tessa") }] },
+    valkorn_01_tessa: { title: "Зустріч з Тессою", text: "Тесса слухає вас.", choices: [{ text: "Дві версії правди", action: () => goScene("valkorn_02_tessa") }] },
 
-    valkorn_02_odrin: { title: "Палацовий архів і Одрін", text: `Одрін говорить пошепки між стелажами. «Підземелля під бібліотекою — справжній архів. Там документи яких немає в офіційних реєстрах. І там є третя точка.» Він дає вам скопійовану карту підземних ходів.`, choices: [{ text: "У підземелля", action: () => goScene("valkorn_02_underground") }] },
-    valkorn_02_tessa: { title: "Крамниця Тесси", text: `Тесса дістає важкий ключ з болотяного заліза. «Це відкриє бічний вхід до підземелля. Одрін зробив карту.» Вона притримує ключ мить довше. «Те що знайдеш там — використай правильно.»`, choices: [{ text: "У підземелля", action: () => goScene("valkorn_02_underground") }] },
+    valkorn_02_odrin: { title: "Палацовий архів і Одрін", text: "Одрін та карта підземель.", choices: [{ text: "У підземелля", action: () => goScene("valkorn_02_underground") }] },
+    valkorn_02_tessa: { title: "Крамниця Тесси", text: "Тесса дає ключ.", choices: [{ text: "У підземелля", action: () => goScene("valkorn_02_underground") }] },
 
     valkorn_02_underground: {
+        audioTrack: "assets/audio/valcorn_theme.mp3",
+        audioAtmosphere: "assets/audio/valcorn_metal.mp3",
         title: "Підземелля Валькорна",
         text: `Секретні шляхи під містом. Ви знаходите докази, що хтось уже був тут.`,
         choices: [
@@ -1780,6 +1743,8 @@ window.GAME_SCENES = {
     },
 
     valkorn_03_damar: {
+        audioTrack: "assets/audio/valcorn_theme.mp3",
+        audioAtmosphere: "assets/audio/valcorn_metal.mp3",
         title: "Правильна ціна",
         text: `Зустріч з Дамаром. Торгова гільдія і контрабанда артефакту.`,
         choices: [
@@ -1791,6 +1756,8 @@ window.GAME_SCENES = {
     },
 
     valkorn_03_result: {
+        audioTrack: "assets/audio/valcorn_theme.mp3",
+        audioAtmosphere: "assets/audio/valcorn_metal.mp3",
         title: "Сліди ведуть вище",
         text: `Тепер ви знаєте: це Орден Семи Кинджалів.`,
         choices: [
@@ -1802,6 +1769,8 @@ window.GAME_SCENES = {
     },
 
     valkorn_04_loen: {
+        audioTrack: "assets/audio/valcorn_theme.mp3",
+        audioAtmosphere: "assets/audio/valcorn_metal.mp3",
         title: "Людина, що послала Руфіна",
         text: `Лоен, член Сьомої Ради Ордену. Він чекає на ваші відповіді.`,
         choices: [
@@ -1839,13 +1808,15 @@ window.GAME_SCENES = {
         ]
     },
 
-    loen_align_A: { title: "Союз з Орденом", text: `«Мудрий вибір» — каже Лоен. «Орден дасть вам ресурси і захист. Натомість — ви наш провідник у болоті.» Він простягає руку. Ви тисните. Десь в глибині відчуваєте що щойно поміняли одну клітку на іншу — просто більш зручну.`, choices: [{ text: "Розслідування завершено", action: () => goScene("valkorn_04_deduction") }] },
-    loen_align_B: { title: "Нейтралітет з Орденом", text: `«Обережний підхід» — Лоен посміхається. «Ми дамо вам інформацію. Ви даєте нам доступ до болота коли треба. Без зобов'язань підписувати що-небудь.» Угода хитка — але поки що достатня.`, choices: [{ text: "Розслідування завершено", action: () => goScene("valkorn_04_deduction") }] },
-    loen_align_C: { title: "Ворог Ордену", text: `«Ворог» — Лоен вимовляє спокійно. «Це чесніше ніж більшість.» Він встає. «Але пам'ятайте — ми існуємо вже триста років.» Ви виходите з відкритим конфліктом і чистою совістю.`, choices: [{ text: "Розслідування завершено", action: () => goScene("valkorn_04_deduction") }] },
+    loen_align_A: { title: "Союз з Орденом", text: "Ви обрали Орден.", choices: [{ text: "Розслідування завершено", action: () => goScene("valkorn_04_deduction") }] },
+    loen_align_B: { title: "Нейтралітет з Орденом", text: "Обережний підхід.", choices: [{ text: "Розслідування завершено", action: () => goScene("valkorn_04_deduction") }] },
+    loen_align_C: { title: "Ворог Ордену", text: "Відкритий конфлікт.", choices: [{ text: "Розслідування завершено", action: () => goScene("valkorn_04_deduction") }] },
 
     valkorn_04_deduction: {
+        audioTrack: "assets/audio/valcorn_theme.mp3",
+        audioAtmosphere: "assets/audio/valcorn_metal.mp3",
         title: "Розкриття Хранителя",
-        text: `Три докази зходяться в одну точку. Бубонці Фіппа — Біле срібло як в артефакті. Стетсон: «найкраща тінь — та що яскраво вдягнена.» Запах листів лідера Ордену — болотяна м'ята, золоте чорнило. Фіпп носить грим з болотяною м'ятою. Висновок: Хранитель Першої Печатки — це Блазень Фіпп.`,
+        text: `Всі докази зібрані. Хранитель Першої Печатки — це Блазень Фіпп.`,
         choices: [
             {
                 text: "Проникнення в Чорний Архів",
@@ -1855,6 +1826,8 @@ window.GAME_SCENES = {
     },
 
     valkorn_05_infiltrate: {
+        audioTrack: "assets/audio/valcorn_theme.mp3",
+        audioAtmosphere: "assets/audio/valcorn_metal.mp3",
         title: "Проникнення до Палацу",
         text: `Шлях у Чорний Архів під королівською бібліотекою.`,
         choices: [
@@ -1876,8 +1849,10 @@ window.GAME_SCENES = {
     },
 
     valkorn_05_archive: {
+        audioTrack: "assets/audio/valcorn_theme.mp3",
+        audioAtmosphere: "assets/audio/valcorn_metal.mp3",
         title: "Чорний Архів",
-        text: `Чорний Архів — довгий коридор з чорного каменю. Смолоскипи горять синім. На стінах символи Ключників — старіші за Орден. В кінці — масивні двері з болотяного заліза. За ними чути тихий рівний голос. Хтось вже там.`,
+        text: `Ви увійшли до Чорного Архіву.`,
         choices: [
             {
                 text: "Зустріч з Фіппом (Себастьяном Марром)",
@@ -1887,6 +1862,8 @@ window.GAME_SCENES = {
     },
 
     valkorn_05_iliya: {
+        audioTrack: "assets/audio/valcorn_theme.mp3",
+        audioAtmosphere: "assets/audio/valcorn_metal.mp3",
         title: "Хранитель Першої Печатки",
         text: `Себастьян Марр і Ілія. Час вирішити його долю.`,
         choices: [
@@ -1928,6 +1905,8 @@ window.GAME_SCENES = {
     },
 
     valkorn_epilogue: {
+        audioTrack: "assets/audio/valcorn_theme.mp3",
+        audioAtmosphere: "assets/audio/valcorn_metal.mp3",
         title: "Втеча з Валькорна",
         text: `Сигналізація спрацювала. Ви тікаєте до боліт.`,
         choices: [
@@ -1938,8 +1917,9 @@ window.GAME_SCENES = {
         ]
     },
 
-
     ep3_fog: {
+        audioTrack: "assets/audio/swamp_theme.mp3",
+        audioAtmosphere: "assets/audio/swamp_frogs.mp3",
         title: "Голос із туману",
         text: `Ви заглиблюєтесь у Хейзмур. Туман густішає, і ви помічаєте знайому постать. Міа чекає на вас.`,
         choices: [
@@ -1952,10 +1932,12 @@ window.GAME_SCENES = {
             }
         ]
     },
-    ep3_mia_conflict: { title: "Епізод 3", text: `Міа стоїть посеред стежки. «Валькорн змінив тебе. Я бачу.» Вона дивиться на Першу Печатку. «Ти приніс їхнє срібло назад у болото. Моур відчуває це.» Тиша. «Ти розумієш що робиш? Справді розумієш?»`, choices: [{ text: "Далі", action: () => goScene("ep3_tykhy_tower") }] },
-    ep3_tykhy_tower: { title: "Епізод 3", text: `Лілея зустрічає вас на порозі вежі. Очі старі. «Ключники будували стіни між людиною та болотом. Не щоб захистити людей від болота — щоб захистити болото від людей.» Дивиться на Першу Печатку. «Друга Печатка — під Затопленою Обителлю. Якщо ви готові платити ціну.»`, choices: [{ text: "Далі", action: () => goScene("ep3_kaen_deal") }] },
-    ep3_kaen_deal: { title: "Епізод 3", text: `Каен зупиняє вас на стежці. «Я знав що ви повернетесь.» Дістає мідний амулет у формі ключа. «Це відкриє зовнішні замки Обителі. Внутрішні відкриє тільки Лілея.» Вкладає амулет у вашу руку. «Поверніть їй. І поверніться живими.»`, choices: [{ text: "Далі", action: () => goScene("ep3_ferry_crossing") }] },
+    ep3_mia_conflict: { title: "Епізод 3", text: "Туман", choices: [{ text: "Далі", action: () => goScene("ep3_tykhy_tower") }] },
+    ep3_tykhy_tower: { title: "Епізод 3", text: "Туман", choices: [{ text: "Далі", action: () => goScene("ep3_kaen_deal") }] },
+    ep3_kaen_deal: { title: "Епізод 3", text: "Туман", choices: [{ text: "Далі", action: () => goScene("ep3_ferry_crossing") }] },
     ep3_ferry_crossing: {
+        audioTrack: "assets/audio/swamp_theme.mp3",
+        audioAtmosphere: "assets/audio/swamp_frogs.mp3",
         title: "Шалений Переправа",
         text: `Ви наближаєтесь до Шаленого порому. Річка вирує. Вам потрібно обрати шлях переправи.`,
         choices: [
@@ -1975,10 +1957,12 @@ window.GAME_SCENES = {
             }
         ]
     },
-    ep3_ferry_choice_A: { title: "Епізод 3", text: `Сила Плетіння забрала багато. Руки тремтять, вени чорніють. Але ви на іншому березі. Лілея перевіряє ваші руки мовчки. Попереду темніє силует Затопленої Обителі.`, choices: [{ text: "Далі", action: () => goScene("ep3_narrow_reeds") }] },
-    ep3_ferry_choice_B: { title: "Епізод 3", text: `Срібна Печатка заморозила річку — чорний дьоготь скував кригою і пліт стабілізувався. Ви перейшли. Але берег позаду вкритий мертвою травою. Лілея: «Болото запам'ятає це.»`, choices: [{ text: "Далі", action: () => goScene("ep3_dry_mound") }] },
+    ep3_ferry_choice_A: { title: "Епізод 3", text: "Вузькі очерети", choices: [{ text: "Далі", action: () => goScene("ep3_narrow_reeds") }] },
+    ep3_ferry_choice_B: { title: "Епізод 3", text: "Сухий Горб", choices: [{ text: "Далі", action: () => goScene("ep3_dry_mound") }] },
 
     ep3_narrow_reeds: {
+        audioTrack: "assets/audio/swamp_theme.mp3",
+        audioAtmosphere: "assets/audio/swamp_frogs.mp3",
         title: "Вузькі очерети",
         text: `Шлях Плетіння забрав сили, але ви подолали річку.`,
         choices: [
@@ -1987,6 +1971,8 @@ window.GAME_SCENES = {
     },
 
     ep3_dry_mound: {
+        audioTrack: "assets/audio/swamp_theme.mp3",
+        audioAtmosphere: "assets/audio/swamp_frogs.mp3",
         title: "Сухий Горб",
         text: `Сили Печатки пересушили землю, шлях вільний. Мурі незадоволені.`,
         choices: [
@@ -1994,9 +1980,11 @@ window.GAME_SCENES = {
         ]
     },
 
-    ep3_obitel_enter: { title: "Обитель", text: `Затоплена Обитель наполовину пішла під воду. Лілея витягує бронзовий циліндр з рунами. «Замки реагують на голос і кров.» Робить розріз на долоні і проводить по руні. Замок відчиняється зі скреготом. Всередині — темрява і запах старого болота.`, choices: [{ text: "Далі", action: () => goScene("ep3_obitel_locks") }] },
-    ep3_obitel_locks: { title: "Обитель", text: `Всередині — затоплені коридори і ряди рунічних замків. Лілея працює методично. «Мій рід будував це місце щоб Моур міг спати. Не вмерти — спати.» Вода по пояс холодна. З глибини доносяться звуки. «Не зупиняйтесь. Воно відчуває страх більше ніж кроки.»`, choices: [{ text: "Далі", action: () => goScene("ep3_altar") }] },
+    ep3_obitel_enter: { title: "Обитель", text: "Затоплена Обитель", choices: [{ text: "Далі", action: () => goScene("ep3_obitel_locks") }] },
+    ep3_obitel_locks: { title: "Обитель", text: "Обитель", choices: [{ text: "Далі", action: () => goScene("ep3_altar") }] },
     ep3_altar: {
+        audioTrack: "assets/audio/swamp_theme.mp3",
+        audioAtmosphere: "assets/audio/swamp_frogs.mp3",
         title: "Жертовник Другої Печатки",
         text: `Ви стоїте перед Вівтарем Стагнації. Це фінальний вибір Епізоду 3. Ваш Вердикт визначить долю Хейзмуру та Валькорна.`,
         choices: [
@@ -2026,9 +2014,9 @@ window.GAME_SCENES = {
             }
         ]
     },
-    ep3_verdict_iron: { title: "Залізо", text: `Білий спалах — тиша. Вода стає прозорою. Шепіт Моура обривається. Міа кричить — не від болю, від втрати. Лілея: «Ми вбили душу цього місця.» Голос Ілії: «Ти повернув порядок. Хейзмур вмирає. Валькорн житиме.»`, choices: [{ text: "Епізод 4", action: () => goScene("ep4_valkorn_iron") }] },
-    ep3_verdict_reed: { title: "Очерет", text: `Срібло розчиняється з тихим шипінням. Шкіра темнішає, вени чорніють. Міа торкається вашого обличчя. «Ти вибрав нас.» Голос Ілії слабшає: «Вартовий... я ще тут... але ти далеко...» Болото розширює межі.`, choices: [{ text: "Епізод 4", action: () => goScene("ep4_valkorn_reed") }] },
-    ep3_verdict_pact: { title: "Пакт", text: `Ви пропускаєте обидві Печатки крізь себе. Біль як вогонь і лід разом. Срібло і мідь замикаються у вашій плоті. Міа: «Ти вибрав нести цей біль щоб ми могли жити.» Лілея: «Це триватиме все ваше життя.» Голос Ілії: «Я залишаюся з тобою. Завжди.»`, choices: [{ text: "Епізод 4", action: () => goScene("ep4_valkorn_pact") }] },
+    ep3_verdict_iron: { title: "Залізо", text: "Ви обрали Шлях Заліза.", choices: [{ text: "Епізод 4", action: () => goScene("ep4_valkorn_iron") }] },
+    ep3_verdict_reed: { title: "Очерет", text: "Ви обрали Шлях Очерету.", choices: [{ text: "Епізод 4", action: () => goScene("ep4_valkorn_reed") }] },
+    ep3_verdict_pact: { title: "Пакт", text: "Ви обрали Шлях Пакту.", choices: [{ text: "Епізод 4", action: () => goScene("ep4_valkorn_pact") }] },
 
     ep4_valkorn_iron: { title: "Валькорн (Шлях Заліза)", text: "«Тріумф Адміністрації!» — вигукують глашатаї. Ви приносите порядок у Валькорн.", choices: [{ text: "Далі", action: () => goScene("ep4_climax_iron") }] },
     ep4_valkorn_reed: { title: "Валькорн (Шлях Очерету)", text: "Ви проникаєте у Валькорн тінями, немов привид із боліт.", choices: [{ text: "Далі", action: () => goScene("ep4_climax_reed") }] },

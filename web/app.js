@@ -198,14 +198,10 @@ function parseMarkdown(md) {
 // ==========================================
 
 let gameStarted = false;
-
-window.playerState = {
+let playerState = {
     sanity: 100,
     corruption: 0,
     iliaAnchor: 50,
-    mia_trust: 0,
-    bolo_weaving: false,
-    valckorn_path: null,
     sonkFerry: {
         medsStatus: null,
         ferryControl: null,
@@ -213,10 +209,9 @@ window.playerState = {
         finalVerdict: null
     },
     completedQuests: {},
-    flags: {},
-    name: 'Яромир',
-    gender: 'Чоловік',
-    background: 'Колишній засуджений',
+    name: "Яромир",
+    gender: "Чоловік",
+    background: "Колишній засуджений",
     hp: 100,
     will: 50,
     maxHp: 100,
@@ -231,25 +226,31 @@ window.playerState = {
         greyford: 0,
         knives: 0,
         keepers: 0,
-        muri: 0,
-        admin: 0,
-        order: 0,
-        wanderers: 0
+        muri: 0
     },
     resources: {
-        henbane: 0, loosestrife: 0, peganum: 0,
-        bogiron: 0, silver: 0, slate: 0,
-        slime: 0, heart: 0, tendons: 0,
-        water: 0, ash: 0
+        henbane: 0,
+        loosestrife: 0,
+        peganum: 0,
+        bogiron: 0,
+        silver: 0,
+        slate: 0,
+        slime: 0,
+        heart: 0,
+        tendons: 0,
+        water: 0,
+        ash: 0
     },
-    inventory: ['📜 Лист Руфіна'],
+    inventory: ["📜 Лист Руфіна"],
     clues: {
-        room: false, carver: false,
-        tavern: false, witch: false, witch_hint: false
+        room: false,
+        carver: false,
+        tavern: false,
+        witch: false,
+        witch_hint: false
     },
     history: []
 };
-
 
 // --- ДЕРЕВО ПЕРЕДІСТОРІЙ ---
 const BACKGROUND_DETAILS = {
@@ -353,20 +354,36 @@ function initCharacterCreation() {
             window.playerState.name = creationState.name;
             window.playerState.gender = creationState.gender;
             window.playerState.background = creationState.background;
-            window.playerState.doctrines =
-                { ...creationState.doctrines };
+            window.playerState.doctrines = { ...creationState.doctrines };
             window.playerState.maxHp = 100;
             window.playerState.hp = 100;
             window.playerState.maxWill = 50;
             window.playerState.will = 50;
-            window.playerState.mia_trust = 0;
-            window.playerState.bolo_weaving = false;
-            window.playerState.valckorn_path = null;
-            window.playerState.flags = {};
+
+            const bgData = BACKGROUND_DETAILS[window.playerState.background];
+            window.playerState.resources = {
+                henbane: 0, loosestrife: 0, peganum: 0, bogiron: 0, silver: 0,
+                slate: 0, slime: 0, heart: 0, tendons: 0, water: 0, ash: 0
+            };
+            for (const [res, amt] of Object.entries(bgData.resources)) {
+                window.playerState.resources[res] = amt;
+            }
+            window.playerState.reputation = { ...bgData.rep };
+
+            window.playerState.inventory = ["📜 Лист Руфіна"];
+            window.playerState.clues = {
+                room: false,
+                carver: false,
+                tavern: false,
+                witch: false,
+                witch_hint: false
+            };
             window.playerState.completedQuests = {};
             window.playerState.history = [];
-            window.playerState.corruption = 0;
+
+            // Episode 1 Hub - Sonk Ferry Metrics
             window.playerState.sanity = 100;
+            window.playerState.corruption = 0;
             window.playerState.iliaAnchor = 50;
             window.playerState.sonkFerry = {
                 medsStatus: null,
@@ -374,34 +391,7 @@ function initCharacterCreation() {
                 chapelRitual: null,
                 finalVerdict: null
             };
-            window.playerState.inventory = ['📜 Лист Руфіна'];
-            window.playerState.clues = {
-                room: false, carver: false,
-                tavern: false, witch: false, witch_hint: false
-            };
-            window.playerState.resources = {
-                henbane: 0, loosestrife: 0, peganum: 0,
-                bogiron: 0, silver: 0, slate: 0,
-                slime: 0, heart: 0, tendons: 0,
-                water: 0, ash: 0
-            };
-            window.playerState.reputation = {
-                greyford: 0, knives: 0, keepers: 0, muri: 0,
-                admin: 0, order: 0, wanderers: 0
-            };
-            const bgData =
-                BACKGROUND_DETAILS[window.playerState.background];
-            for (const [res, amt] of
-                    Object.entries(bgData.resources)) {
-                window.playerState.resources[res] = amt;
-            }
-            for (const [faction, val] of
-                    Object.entries(bgData.rep)) {
-                if (window.playerState.reputation[faction]
-                        !== undefined) {
-                    window.playerState.reputation[faction] = val;
-                }
-            }
+            window.playerState.reputation = { ...window.playerState.reputation, admin: window.playerState.reputation.greyford || 0, order: window.playerState.reputation.knives || 0 };
 
             document.getElementById("character-creation").style.display = "none";
             document.getElementById("main-simulator-interface").style.display = "flex";
@@ -410,10 +400,10 @@ function initCharacterCreation() {
             document.getElementById("sidebar-hero-gender").textContent = `${window.playerState.gender === 'Чоловік' ? '🙋‍♂️' : window.playerState.gender === 'Жінка' ? '🙋‍♀️' : '👤'} ${window.playerState.gender}`;
             document.getElementById("sidebar-hero-bg").textContent = window.playerState.background;
             
-            document.getElementById("sidebar-stat-pathfinder").textContent = window.playerState.doctrines.pathfinder;
-            document.getElementById("sidebar-stat-lantern").textContent = window.playerState.doctrines.lantern;
-            document.getElementById("sidebar-stat-judge").textContent = window.playerState.doctrines.judge;
-            document.getElementById("sidebar-stat-mediator").textContent = window.playerState.doctrines.mediator;
+
+
+
+
             
             startGameFlow();
         });
@@ -641,38 +631,32 @@ class AudioManager {
 
     playSceneAudio(trackUrl, atmosUrl) {
         if (!trackUrl || !atmosUrl) return;
+
         if (this.currentTrackUrl !== trackUrl) {
             this.currentTrackUrl = trackUrl;
             this.trackAudio.src = trackUrl;
-            this.trackAudio.load();
             if (!this.isMuted) {
-                this.trackAudio.play().catch(function() {});
+                this.trackAudio.play().catch(e => console.warn("Track play prevented:", e));
             }
         }
+
         if (this.currentAtmosUrl !== atmosUrl) {
             this.currentAtmosUrl = atmosUrl;
             this.atmosAudio.src = atmosUrl;
-            this.atmosAudio.load();
             if (!this.isMuted) {
-                this.atmosAudio.play().catch(function() {});
+                this.atmosAudio.play().catch(e => console.warn("Atmos play prevented:", e));
             }
         }
     }
 
     toggleMute() {
         this.isMuted = !this.isMuted;
-        if (!this.isMuted) {
-            if (this.currentTrackUrl) {
-                this.trackAudio.load();
-                this.trackAudio.play().catch(function() {});
-            }
-            if (this.currentAtmosUrl) {
-                this.atmosAudio.load();
-                this.atmosAudio.play().catch(function() {});
-            }
-        } else {
+        if (this.isMuted) {
             this.trackAudio.pause();
             this.atmosAudio.pause();
+        } else {
+            if (this.currentTrackUrl) this.trackAudio.play().catch(e => console.warn("Track play prevented:", e));
+            if (this.currentAtmosUrl) this.atmosAudio.play().catch(e => console.warn("Atmos play prevented:", e));
         }
         return this.isMuted;
     }
@@ -895,9 +879,42 @@ function startGameFlow() {
     goScene("arriving");
 }
 
+function chooseMotivation(motivation, dialogReply, nextScene) {
+    window.playerState.history.push({ step: "motivation", choice: motivation });
 
+    if (motivation === "Ідеаліст") {
+        adjustReputation("greyford", 15);
+        adjustReputation("knives", 5);
+    } else if (motivation === "Особистий інтерес") {
+        adjustReputation("greyford", -5);
+        adjustReputation("knives", 10);
+    } else if (motivation === "Суддя") {
+        adjustReputation("greyford", 20);
+    }
 
+    addToLog(`Мотивація: ${motivation}. ${dialogReply}`, "system");
+    goScene(nextScene);
+}
 
+function chooseValkornPath(path, reply, nextScene) {
+    window.playerState.history.push({ step: "valkorn_path", choice: path });
+    window.playerState.valkorn_path = path;
+    addToLog(`Обрано Шлях ${path}: ${reply}`, "system");
+
+    if (path === "A") {
+        adjustReputation("greyford", 30);
+        adjustReputation("knives", 20);
+        adjustReputation("muri", -30);
+    } else if (path === "B") {
+        adjustReputation("greyford", -30);
+        adjustReputation("muri", 30);
+    } else {
+        adjustReputation("greyford", 10);
+        adjustReputation("muri", 10);
+    }
+
+    goScene(nextScene);
+}
 
 function consumeAntidoteForPoison() {
     const idx = window.playerState.inventory.indexOf("🧪 Протиотрута");
@@ -920,10 +937,74 @@ function takePoisonDamage() {
     }
 }
 
+function resolveFinalWay(way) {
+    let title = "";
+    let finalDesc = "";
 
+    if (way === "A") {
+        title = "ШЛЯХ А: ВЕРДИКТ ЗАЛІЗА";
+        finalDesc = `
+        Ви йдете по сухій залізній дорозі. Ваші руки одягнені в товсті шкіряні рукавиці, що приховують скам'янілу шкіру. За вашою спиною залишається залізне місто Валькорн, його високі труби та залізні ліхтарі Ордену. Болото висихає, перетворюючись на мертву глину.
+        <br><br>
+        Тесса очолила реформований Орден Залізних Кинджалів, підкоривши прикордоння закону заліза. Себастьян Марр загинув у повстанні, а Руфін назавжди залишився Порожнім німим пам'ятником.
+        <br><br>
+        Голос Ілії у вашій голові звучить втомлено й здалеку, наче вітер у руїнах: <em>«Я звучатиму десь позаду... Наче вітер у руїнах.»</em> Ви йдете далі в інші землі, залишаючи Хейзмуру у залізних ланцюгах.`;
 
+        adjustReputation("greyford", 40);
+        adjustReputation("knives", 30);
+        adjustReputation("muri", -50);
+    }
+    else if (way === "B") {
+        title = "ШЛЯХ Б: ВЕРДИКТ ОЧЕРЕТУ";
+        finalDesc = `
+        Ви йдете босоніж по теплому болотяному мулу. Рубці на ваших руках схожі на кору верби, а постать розчиняється в густому тумані без жодних слів. За вашою спиною шумить очерет, поглинаючи залишки Грейфорда.
+        <br><br>
+        Себастьян Марр згинув у глибокій трясовині, намагаючись спалити болото. Тесса згуртувала залишки Ордену на межі дикої природи. Руфін лишився безмовною тінню очерету.
+        <br><br>
+        Зелений туман лоскоче ваше обличчя. Ви йдете далі, ставши частиною самого Хейзмуру, вільного та небезпечного.`;
 
+        adjustReputation("muri", 50);
+        adjustReputation("greyford", -50);
+    }
+    else {
+        title = "ШЛЯХ В: ПАКТ КЛЮЧНИКА";
+        finalDesc = `
+        Ви зупиняєтесь посеред мосту, що не належить жодному берегу. Ви дивитесь на обидва боки, забираючи обидва Ключі Печаток. За вашою спиною — хиткий нейтралітет, де торгівля йде під стінами залізних ліхтарів.
+        <br><br>
+        Себастьян Марр підписав мирний Пакт, змирившись із силами болота. Тесса пильно стежить за виконанням законів рівноваги. Руфін стоїть мовчазним вартовим кордону.
+        <br><br>
+        Ви тримаєте баланс сил і йдете далі у незвідані землі. Голос Ілії шепоче з теплою посмішкою: <em>«Ми впоралися. Світ зберіг свою душу.»</em>`;
 
+        adjustReputation("greyford", 20);
+        adjustReputation("muri", 20);
+    }
+
+    let finalSceneId = `ep5_final_${way}`;
+    const sceneId = `ep4_bridge_ending_${way.toLowerCase()}`;
+    window.GAME_SCENES[sceneId] = {
+        title: `🏆 ЕПІЛОГ: ${title}`,
+        isChapterEnding: true,
+        text: `
+        <span class="quest-tag" style="color: var(--accent-gold);">ЕПІЗОД 4 ЗАВЕРШЕНО</span>
+        <h2 style="font-family: var(--font-gothic); color: var(--accent-gold); margin-top: 1rem; margin-bottom: 1.5rem;">⚖️ ${title}</h2>
+        <p>${finalDesc}</p>
+        <hr style="border: 0; height: 1px; background: var(--border-color); margin: 2rem 0;">
+        <h3 style="font-family: var(--font-gothic); color: var(--accent-gold); margin-bottom: 0.8rem;">👑 Ваші підсумкові фракційні зв'язки:</h3>
+        <p>• Адміністрація Грейфорда: <strong>${window.playerState.reputation.greyford > 0 ? '+' : ''}${window.playerState.reputation.greyford}</strong></p>
+        <p>• Орден Семи Кинджалів: <strong>${window.playerState.reputation.knives > 0 ? '+' : ''}${window.playerState.reputation.knives}</strong></p>
+        <p>• Хранителі Святої Вей: <strong>${window.playerState.reputation.keepers > 0 ? '+' : ''}${window.playerState.reputation.keepers}</strong></p>
+        <p>• Мурі (Жаболюди): <strong>${window.playerState.reputation.muri > 0 ? '+' : ''}${window.playerState.reputation.muri}</strong></p>
+        `,
+        choices: [
+            {
+                text: "Перейти до фінальної сцени",
+                nextSceneId: finalSceneId
+            }
+        ]
+    };
+
+    goScene(sceneId);
+}
 
 function goThread(thread) {
     console.log(`Transitioning from thread to thread_${thread}`);
@@ -934,33 +1015,7 @@ function goScene(sceneKey) {
     console.log(`Transitioning from scene ${currentSceneKey} to scene ${sceneKey}`);
     currentSceneKey = sceneKey; window.currentSceneKey = sceneKey;
     const scene = window.GAME_SCENES[sceneKey];
-    if (!scene) {
-        console.error('[Hazemoor] Missing scene key:', sceneKey);
-        const titleEl =
-            document.getElementById('scene-title');
-        const textEl =
-            document.getElementById('scene-text');
-        const choicesEl =
-            document.getElementById('scene-choices');
-        if (titleEl) {
-            titleEl.textContent = '⚠️ Помилка навігації';
-        }
-        if (textEl) {
-            textEl.textContent =
-                'Сцену ' + sceneKey + ' не знайдено.';
-        }
-        if (choicesEl) {
-            choicesEl.innerHTML = '';
-            const btn = document.createElement('button');
-            btn.className = 'choice-btn';
-            btn.textContent = '↩ Повернутися на початок';
-            btn.addEventListener('click', function() {
-                goScene('arriving');
-            });
-            choicesEl.appendChild(btn);
-        }
-        return;
-    }
+    if (!scene) return;
 
 
 
@@ -976,7 +1031,7 @@ function goScene(sceneKey) {
             if (questTag) questTag.textContent = "Епізод 1: Хейзмур";
             illContainer.style.backgroundImage = "url('assets/episode1.png')";
             illContainer.style.display = "block";
-        } else if (sceneKey.startsWith("ep2_") || sceneKey.startsWith("valkorn_") || sceneKey.startsWith("valckorn_") || sceneKey.startsWith("clown_")) {
+        } else if (sceneKey.startsWith("ep2_") || sceneKey.startsWith("valkorn_")) {
             if (questTag) questTag.textContent = "Епізод 2: Валькорн";
             illContainer.style.backgroundImage = "url('assets/episode2.png')";
             illContainer.style.display = "block";
@@ -997,23 +1052,16 @@ function goScene(sceneKey) {
         }
     }
 
-    document.getElementById("scene-title").textContent = scene.title || "Невідома локація";
-    document.getElementById("scene-text").innerHTML = scene.text || "Дані для цієї сцени не знайдені.";
+    document.getElementById("scene-title").textContent = scene.title;
+    document.getElementById("scene-text").innerHTML = scene.text;
 
     const choicesDiv = document.getElementById("scene-choices");
     choicesDiv.innerHTML = "";
 
     scene.choices.forEach(choice => {
-        let isVisible = true;
-        if (choice.visible) {
-            try {
-                isVisible = choice.visible();
-            } catch (e) {
-                console.error("Error evaluating visibility for choice:", choice.text, e);
-                isVisible = false;
-            }
+        if (choice.visible && !choice.visible()) {
+            return;
         }
-        if (!isVisible) return;
 
         const btn = document.createElement("button");
         btn.className = "choice-btn";
@@ -1031,12 +1079,8 @@ function goScene(sceneKey) {
         restartBtn.textContent = '↩ Зіграти знову';
         restartBtn.addEventListener('click', function() {
             window.isChapterEnding = false;
-            document.getElementById(
-                'main-simulator-interface'
-            ).style.display = 'none';
-            document.getElementById(
-                'character-creation'
-            ).style.display = 'flex';
+            document.getElementById('main-simulator-interface').style.display = 'none';
+            document.getElementById('character-creation').style.display = 'flex';
             resetGame();
         });
         choicesDiv.appendChild(restartBtn);
@@ -1044,9 +1088,6 @@ function goScene(sceneKey) {
 
     updateUi();
 }
-
-
-
 
 function finishQuest(gateAnswer, sergeantReply) {
     window.playerState.history.push({ step: "gate_answer", choice: gateAnswer });
@@ -1081,32 +1122,33 @@ function finishQuest(gateAnswer, sergeantReply) {
         <ul>
             <li>Руфін зник три дні тому і вирушив у напрямку Тихого Шелесту на болотах Хейзмуру.</li>
             <li>Він знав, куди йде, і був сильно наляканий небезпеками Хейзмуру.</li>
-            <li>Він мав при собі якийсь невідомий захист або магічний оберіг, куплений у місті.</li>
+            <li>Його речі та сумка вказують на ретельну підготовку до виходу.</li>
         </ul>`;
     }
 
-    let repDetails = [];
+    addToLog(`Квест завершено з результатом: ${investigationGrade}`, "success");
+
+    const repDetails = [];
     ["greyford", "knives", "keepers", "muri"].forEach(faction => {
-        const factionNames = {
+        const val = window.playerState.reputation[faction];
+        const status = getReputationStatus(val);
+        const fNames = {
             greyford: "Адміністрація Грейфорда",
             knives: "Орден Семи Кинджалів",
             keepers: "Хранителі Святої Вей",
-            muri: "Мурі (Жаболюди)"
+            muri: "Мурі (Амфібії)"
         };
-        const rep = window.playerState.reputation[faction] || 0;
-        let prefix = rep > 0 ? "+" : "";
-        repDetails.push(`<li>${factionNames[faction]}: <strong>${prefix}${rep}</strong></li>`);
+        repDetails.push(`<p>• ${fNames[faction]}: <strong>${val > 0 ? '+' : ''}${val}</strong> (${status.text})</p>`);
     });
 
-    window.GAME_SCENES["ending_episode1"].text = `
-        <span class="quest-tag" style="color: var(--accent-gold);">ПІДСУМКИ ЕПІЗОДУ 1</span>
-        <h2 style="font-family: var(--font-gothic); color: var(--accent-gold); margin-top: 1rem; margin-bottom: 1.5rem;">Рівень: ${investigationGrade}</h2>
+    const endingScene = window.GAME_SCENES.ending_episode1;
+    endingScene.text = `
+        <span class="quest-tag" style="color: var(--accent-gold);">РЕЗУЛЬТАТ: ${investigationGrade.toUpperCase()}</span>
+        <h2 style="font-family: var(--font-gothic); color: var(--accent-gold); margin-top: 1rem; margin-bottom: 1rem;">⚖️ ВЕРДИКТ ВАРТОВОГО</h2>
         ${summaryText}
-        <hr style="border: 0; height: 1px; background: var(--border-color); margin: 2rem 0;">
-        <h3 style="font-family: var(--font-gothic); color: var(--accent-gold); margin-bottom: 0.8rem;">Поточні відносини з фракціями:</h3>
-        <ul>
+        <hr style="border: 0; height: 1px; background: var(--border-color); margin: 1.5rem 0;">
+        <h4 style="font-family: var(--font-gothic); color: var(--accent-gold); margin-bottom: 0.3rem;">👑 Ваша підсумкова репутація фракцій:</h4>
         ${repDetails.join("")}
-        </ul>
         <br>
         <p class="gold-text" style="font-style: italic; font-weight: 600;">Шлях до поселення Тихий Шелест відкрито. Порожній Сезон чекає на Мандруючого Вартового у глибинах Хейзмуру...</p>
     `;
@@ -1147,44 +1189,6 @@ function resetGame() {
     
     document.getElementById("character-creation").style.display = "flex";
     document.getElementById("main-simulator-interface").style.display = "none";
-
-        gameStarted = false;
-        window.playerState.name = 'Яромир';
-        window.playerState.gender = 'Чоловік';
-        window.playerState.background = 'Колишній засуджений';
-        window.playerState.doctrines = {
-            pathfinder: 0, lantern: 0, judge: 0, mediator: 0
-        };
-        window.playerState.mia_trust = 0;
-        window.playerState.bolo_weaving = false;
-        window.playerState.valckorn_path = null;
-        window.playerState.flags = {};
-        window.playerState.completedQuests = {};
-        window.playerState.history = [];
-        window.playerState.corruption = 0;
-        window.playerState.sanity = 100;
-        window.playerState.iliaAnchor = 50;
-        window.playerState.hp = 100;
-        window.playerState.will = 50;
-        window.playerState.maxHp = 100;
-        window.playerState.maxWill = 50;
-        window.playerState.sonkFerry = {
-            medsStatus: null,
-            ferryControl: null,
-            chapelRitual: null,
-            finalVerdict: null
-        };
-        window.playerState.reputation = {
-            greyford: 0, knives: 0, keepers: 0, muri: 0,
-            admin: 0, order: 0, wanderers: 0
-        };
-        window.playerState.inventory = ['📜 Лист Руфіна'];
-        window.playerState.resources = {
-            henbane: 0, loosestrife: 0, peganum: 0,
-            bogiron: 0, silver: 0, slate: 0,
-            slime: 0, heart: 0, tendons: 0,
-            water: 0, ash: 0
-        };
 }
 
 // --- УПРАВЛІННЯ РЕСУРСАМИ ---
@@ -1312,6 +1316,10 @@ function getReputationStatus(value) {
 
 // --- ОНОВЛЕННЯ ЕЛЕМЕНТІВ UI ---
 function updateUi() {
+    document.getElementById("sidebar-stat-pathfinder").textContent = window.playerState.doctrines.pathfinder;
+    document.getElementById("sidebar-stat-lantern").textContent = window.playerState.doctrines.lantern;
+    document.getElementById("sidebar-stat-judge").textContent = window.playerState.doctrines.judge;
+    document.getElementById("sidebar-stat-mediator").textContent = window.playerState.doctrines.mediator;
     if (window.IS_DEV_TESTING) {
         window.playerState.hp = 999;
         window.playerState.will = 999;
@@ -1359,16 +1367,9 @@ function updateUi() {
     const craftTrap = document.getElementById("craft-trap");
     if (craftTrap) craftTrap.disabled = !(window.playerState.resources.bogiron >= 1 && window.playerState.resources.tendons >= 1);
 
-        const repData = window.playerState.reputation || {};
-    const effectiveRep = {
-        greyford: (repData.greyford || 0) + (repData.admin    || 0),
-        knives:   (repData.knives   || 0) + (repData.order    || 0),
-        keepers:  (repData.keepers  || 0) + (repData.wanderers || 0),
-        muri:     (repData.muri     || 0)
-    };
     const factions = ["greyford", "knives", "keepers", "muri"];
     factions.forEach(faction => {
-        const val = effectiveRep[faction] || 0;
+        const val = window.playerState.reputation[faction];
         const status = getReputationStatus(val);
         
         const valEl = document.getElementById(`rep-val-${faction}`);

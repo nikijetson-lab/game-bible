@@ -631,32 +631,42 @@ class AudioManager {
 
     playSceneAudio(trackUrl, atmosUrl) {
         if (!trackUrl || !atmosUrl) return;
-
         if (this.currentTrackUrl !== trackUrl) {
             this.currentTrackUrl = trackUrl;
             this.trackAudio.src = trackUrl;
             if (!this.isMuted) {
-                this.trackAudio.play().catch(e => console.warn("Track play prevented:", e));
+                const playPromise = this.trackAudio.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(() => {});
+                }
             }
         }
-
         if (this.currentAtmosUrl !== atmosUrl) {
             this.currentAtmosUrl = atmosUrl;
             this.atmosAudio.src = atmosUrl;
             if (!this.isMuted) {
-                this.atmosAudio.play().catch(e => console.warn("Atmos play prevented:", e));
+                const playPromise = this.atmosAudio.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(() => {});
+                }
             }
         }
     }
 
     toggleMute() {
         this.isMuted = !this.isMuted;
-        if (this.isMuted) {
+        if (!this.isMuted) {
+            if (this.currentTrackUrl) {
+                this.trackAudio.src = this.currentTrackUrl;
+                this.trackAudio.play().catch(() => {});
+            }
+            if (this.currentAtmosUrl) {
+                this.atmosAudio.src = this.currentAtmosUrl;
+                this.atmosAudio.play().catch(() => {});
+            }
+        } else {
             this.trackAudio.pause();
             this.atmosAudio.pause();
-        } else {
-            if (this.currentTrackUrl) this.trackAudio.play().catch(e => console.warn("Track play prevented:", e));
-            if (this.currentAtmosUrl) this.atmosAudio.play().catch(e => console.warn("Atmos play prevented:", e));
         }
         return this.isMuted;
     }

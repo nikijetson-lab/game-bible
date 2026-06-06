@@ -1,4 +1,4 @@
-window.IS_DEV_TESTING = true;
+window.IS_DEV_TESTING = false;
 // ==========================================
 // ПОРТАЛ МАНДРУЮЧОГО ВАРТОВОГО — ЛОГІКА ТА ГРА
 // ==========================================
@@ -199,6 +199,16 @@ function parseMarkdown(md) {
 
 let gameStarted = false;
 let playerState = {
+    sanity: 100,
+    corruption: 0,
+    iliaAnchor: 50,
+    sonkFerry: {
+        medsStatus: null,
+        ferryControl: null,
+        chapelRitual: null,
+        finalVerdict: null
+    },
+    completedQuests: {},
     name: "Яромир",
     gender: "Чоловік",
     background: "Колишній засуджений",
@@ -368,8 +378,21 @@ function initCharacterCreation() {
                 witch: false,
                 witch_hint: false
             };
+            window.playerState.completedQuests = {};
             window.playerState.history = [];
             
+            // Episode 1 Hub - Sonk Ferry Metrics
+            window.playerState.sanity = 100;
+            window.playerState.corruption = 0;
+            window.playerState.iliaAnchor = 50;
+            window.playerState.sonkFerry = {
+                medsStatus: null,
+                ferryControl: null,
+                chapelRitual: null,
+                finalVerdict: null
+            };
+            window.playerState.reputation = { ...window.playerState.reputation, admin: window.playerState.reputation.greyford || 0, order: window.playerState.reputation.knives || 0 };
+
             document.getElementById("character-creation").style.display = "none";
             document.getElementById("main-simulator-interface").style.display = "flex";
             
@@ -989,7 +1012,6 @@ function goThread(thread) {
 }
 
 function goScene(sceneKey) {
-    console.log(`Transitioning from scene ${currentSceneKey} to scene ${sceneKey}`);
     currentSceneKey = sceneKey; window.currentSceneKey = sceneKey;
     const scene = window.GAME_SCENES[sceneKey];
     if (!scene) return;
@@ -1008,7 +1030,7 @@ function goScene(sceneKey) {
             if (questTag) questTag.textContent = "Епізод 1: Хейзмур";
             illContainer.style.backgroundImage = "url('assets/episode1.png')";
             illContainer.style.display = "block";
-        } else if (sceneKey.startsWith("ep2_") || sceneKey.startsWith("valkorn_")) {
+        } else if (sceneKey.startsWith("ep2_") || sceneKey.startsWith("valkorn_") || sceneKey.startsWith("valckorn_") || sceneKey.startsWith("clown_")) {
             if (questTag) questTag.textContent = "Епізод 2: Валькорн";
             illContainer.style.backgroundImage = "url('assets/episode2.png')";
             illContainer.style.display = "block";
@@ -1029,16 +1051,23 @@ function goScene(sceneKey) {
         }
     }
 
-    document.getElementById("scene-title").textContent = scene.title;
-    document.getElementById("scene-text").innerHTML = scene.text;
+    document.getElementById("scene-title").textContent = scene.title || "Невідома локація";
+    document.getElementById("scene-text").innerHTML = scene.text || "Дані для цієї сцени не знайдені.";
 
     const choicesDiv = document.getElementById("scene-choices");
     choicesDiv.innerHTML = "";
 
     scene.choices.forEach(choice => {
-        if (choice.visible && !choice.visible()) {
-            return;
+        let isVisible = true;
+        if (choice.visible) {
+            try {
+                isVisible = choice.visible();
+            } catch (e) {
+                console.error("Error evaluating visibility for choice:", choice.text, e);
+                isVisible = false;
+            }
         }
+        if (!isVisible) return;
 
         const btn = document.createElement("button");
         btn.className = "choice-btn";
@@ -1051,6 +1080,19 @@ function goScene(sceneKey) {
         choicesDiv.appendChild(btn);
     });
 
+    if (scene.isAbsoluteFinal) {
+        const restartBtn = document.createElement('button');
+        restartBtn.className = 'choice-btn';
+        restartBtn.textContent = '↩ Зіграти знову';
+        restartBtn.addEventListener('click', function() {
+            window.isChapterEnding = false;
+            document.getElementById('main-simulator-interface').style.display = 'none';
+            document.getElementById('character-creation').style.display = 'flex';
+            resetGame();
+        });
+        choicesDiv.appendChild(restartBtn);
+    }
+
     updateUi();
 }
 
@@ -1058,11 +1100,17 @@ function finishQuest(gateAnswer, sergeantReply) {
     window.playerState.history.push({ step: "gate_answer", choice: gateAnswer });
     addToLog(`Відповідь сержанту: ${gateAnswer}. ${sergeantReply}`, "system");
 
-    const cluesFound = Object.entries(window.playerState.clues).filter(([k, v]) => v === true && k !== "witch_hint").map(([k]) => k);
+    const completedQuests = window.playerState.completedQuests || {};
+    let cluesFoundCount = 0;
+    if (completedQuests['room_fully_cleared']) cluesFoundCount++;
+    if (completedQuests['craftsmen_done']) cluesFoundCount++;
+    if (completedQuests['tavern_done']) cluesFoundCount++;
+    if (completedQuests['witch_done']) cluesFoundCount++;
+
     let investigationGrade = "";
     let summaryText = "";
 
-    if (cluesFound.length >= 3) {
+    if (cluesFoundCount >= 3) {
         investigationGrade = "Блискуче розслідування";
         summaryText = `Ви провели **блискуче слідство**! Ви оглянули кімнату Руфіна, розговорили різьбяра та розкрили таємницю через куртизанку Касандру. 
         <br><br>
@@ -1322,9 +1370,16 @@ function updateUi() {
     const craftTrap = document.getElementById("craft-trap");
     if (craftTrap) craftTrap.disabled = !(window.playerState.resources.bogiron >= 1 && window.playerState.resources.tendons >= 1);
 
+    const repData = window.playerState.reputation || {};
+    const effectiveRep = {
+        greyford: (repData.greyford||0)+(repData.admin||0),
+        knives:   (repData.knives||0)+(repData.order||0),
+        keepers:  (repData.keepers||0)+(repData.wanderers||0),
+        muri:     (repData.muri||0)
+    };
     const factions = ["greyford", "knives", "keepers", "muri"];
     factions.forEach(faction => {
-        const val = window.playerState.reputation[faction];
+        const val = effectiveRep[faction] || 0;
         const status = getReputationStatus(val);
         
         const valEl = document.getElementById(`rep-val-${faction}`);

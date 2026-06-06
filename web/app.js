@@ -1,4 +1,4 @@
-window.IS_DEV_TESTING = true;
+window.IS_DEV_TESTING = false;
 // ==========================================
 // ПОРТАЛ МАНДРУЮЧОГО ВАРТОВОГО — ЛОГІКА ТА ГРА
 // ==========================================
@@ -1081,6 +1081,19 @@ function goScene(sceneKey) {
         choicesDiv.appendChild(btn);
     });
 
+    if (scene.isAbsoluteFinal) {
+        const restartBtn = document.createElement('button');
+        restartBtn.className = 'choice-btn';
+        restartBtn.textContent = '↩ Зіграти знову';
+        restartBtn.addEventListener('click', function() {
+            window.isChapterEnding = false;
+            document.getElementById('main-simulator-interface').style.display = 'none';
+            document.getElementById('character-creation').style.display = 'flex';
+            resetGame();
+        });
+        choicesDiv.appendChild(restartBtn);
+    }
+
     updateUi();
 }
 
@@ -1358,9 +1371,16 @@ function updateUi() {
     const craftTrap = document.getElementById("craft-trap");
     if (craftTrap) craftTrap.disabled = !(window.playerState.resources.bogiron >= 1 && window.playerState.resources.tendons >= 1);
 
+    const repData = window.playerState.reputation || {};
+    const effectiveRep = {
+        greyford: (repData.greyford||0)+(repData.admin||0),
+        knives:   (repData.knives||0)+(repData.order||0),
+        keepers:  (repData.keepers||0)+(repData.wanderers||0),
+        muri:     (repData.muri||0)
+    };
     const factions = ["greyford", "knives", "keepers", "muri"];
     factions.forEach(faction => {
-        const val = window.playerState.reputation[faction];
+        const val = effectiveRep[faction] || 0;
         const status = getReputationStatus(val);
         
         const valEl = document.getElementById(`rep-val-${faction}`);

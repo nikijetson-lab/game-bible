@@ -1012,7 +1012,6 @@ function goThread(thread) {
 }
 
 function goScene(sceneKey) {
-    console.log(`Transitioning from scene ${currentSceneKey} to scene ${sceneKey}`);
     currentSceneKey = sceneKey; window.currentSceneKey = sceneKey;
     const scene = window.GAME_SCENES[sceneKey];
     if (!scene) return;
@@ -1508,4 +1507,3 @@ renderFileList("design");
 initCharacterCreation();
 initItemUsage();
 initCrafting();
-/* dummy edit to force PR */

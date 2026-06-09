@@ -1,0 +1,1205 @@
+/* СТИЛІ ДЛЯ ПОРТАЛУ МАНДРУЮЧОГО ВАРТОВОГО */
+
+/* --- ЗМІННІ КОЛЬОРІВ ТА НАЛАШТУВАНЬ --- */
+:root {
+    --bg-darker: #08080a;
+    --bg-dark: #0f0f13;
+    --bg-panel: rgba(18, 18, 22, 0.75);
+    --border-color: rgba(212, 175, 55, 0.15);
+    --border-glow: rgba(230, 57, 70, 0.25);
+    
+    --text-primary: #e2e2e7;
+    --text-muted: #9a9aab;
+    
+    --accent-red: #e63946;
+    --accent-red-dark: #8b0000;
+    --accent-gold: #d4af37;
+    --accent-gold-bright: #ffb703;
+    
+    --font-gothic: 'Cinzel', serif;
+    --font-ui: 'Inter', sans-serif;
+    
+    --transition-speed: 0.3s;
+}
+
+/* --- СКИДАННЯ ТА БАЗОВІ СТИЛІ --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-darker);
+    color: var(--text-primary);
+    font-family: var(--font-ui);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- ВІЗУАЛЬНІ ЕФЕКТИ ТА ФОН --- */
+.stars-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(1px 1px at 20px 30px, #eee, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 110px, #ddd, rgba(0,0,0,0));
+    background-size: 200px 200px;
+    opacity: 0.15;
+    z-index: -2;
+    pointer-events: none;
+}
+
+.glow-orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(150px);
+    opacity: 0.08;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.glow-orb.red {
+    top: -10%;
+    left: 10%;
+    width: 500px;
+    height: 500px;
+    background-color: var(--accent-red);
+}
+
+.glow-orb.gold {
+    bottom: -10%;
+    right: 10%;
+    width: 600px;
+    height: 600px;
+    background-color: var(--accent-gold);
+}
+
+/* --- ШРИФТИ ТА ТЕКСТИ --- */
+.gold-text {
+    color: var(--accent-gold);
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+}
+
+.blood-text {
+    color: var(--accent-red);
+    text-shadow: 0 0 8px rgba(230, 57, 70, 0.4);
+}
+
+/* --- ШАПКА САЙТУ (HEADER) --- */
+header {
+    background: rgba(8, 8, 10, 0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-family: var(--font-gothic);
+    font-size: 1.6rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+header nav {
+    display: flex;
+    gap: 1rem;
+}
+
+header nav button {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-muted);
+    font-family: var(--font-gothic);
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 0.6rem 1.2rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all var(--transition-speed) ease;
+}
+
+header nav button:hover {
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+header nav button.active {
+    color: var(--accent-gold);
+    border-color: var(--accent-gold);
+    background: rgba(212, 175, 55, 0.05);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+}
+
+.frontier-status {
+    font-family: var(--font-gothic);
+    font-size: 0.9rem;
+    font-weight: 700;
+    border: 1px solid var(--border-color);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    background: rgba(230, 57, 70, 0.02);
+}
+
+/* --- ОСНОВНИЙ КОНТЕНТ (MAIN) --- */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    max-width: 1600px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.view-section {
+    display: none;
+    flex: 1;
+}
+
+.view-section.active {
+    display: flex;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- СЕКЦІЯ 1: БІБЛІЯ СВІТУ (EXPLORER) --- */
+.bible-container {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 2rem;
+    width: 100%;
+    height: 75vh;
+}
+
+/* Сайдбар */
+.bible-sidebar {
+    background: var(--bg-panel);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.sidebar-title {
+    font-family: var(--font-gothic);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    color: var(--accent-gold);
+    margin-bottom: 0.8rem;
+    margin-top: 1rem;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    padding-bottom: 0.3rem;
+}
+
+.sidebar-title:first-of-type {
+    margin-top: 0;
+}
+
+.category-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.cat-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all var(--transition-speed);
+}
+
+.cat-btn:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.cat-btn.active {
+    color: var(--accent-gold);
+    background: rgba(212, 175, 55, 0.08);
+    border-left: 2px solid var(--accent-gold);
+}
+
+.file-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-top: 0.5rem;
+    overflow-y: auto;
+    flex: 1;
+    min-height: 150px;
+}
+
+.file-btn {
+    background: transparent;
+    border: none;
+    color: #b0b0c2; /* Більш контрастний колір для покращення читабельності */
+    text-align: left;
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--font-ui);
+    font-weight: 500; /* Напівжирний для чіткішого рендерингу */
+    font-size: 0.9rem;
+    white-space: normal;
+    word-break: break-word;
+    line-height: 1.3;
+    flex-shrink: 0; /* Запобігає стисканню та накладанню кнопок */
+    transition: all 0.2s;
+}
+
+.file-btn:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.file-btn.active {
+    color: var(--accent-red);
+    background: rgba(230, 57, 70, 0.05);
+    border-left: 2px solid var(--accent-red);
+}
+
+.placeholder-text {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-align: center;
+    padding: 1rem 0;
+    font-style: italic;
+}
+
+/* Вікно перегляду Markdown */
+.bible-viewer {
+    background: var(--bg-panel);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 2.5rem;
+    overflow-y: auto;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+.markdown-body {
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.markdown-body h1 {
+    font-family: var(--font-gothic);
+    font-size: 2.2rem;
+    color: var(--accent-gold);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.markdown-body h2 {
+    font-family: var(--font-gothic);
+    font-size: 1.5rem;
+    color: var(--accent-gold);
+    margin-top: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.markdown-body h3 {
+    font-family: var(--font-gothic);
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-top: 1.2rem;
+    margin-bottom: 0.6rem;
+}
+
+.markdown-body p {
+    margin-bottom: 1.2rem;
+    color: var(--text-primary);
+}
+
+.markdown-body ul, .markdown-body ol {
+    margin-bottom: 1.2rem;
+    padding-left: 1.5rem;
+}
+
+.markdown-body li {
+    margin-bottom: 0.4rem;
+}
+
+.markdown-body hr {
+    border: 0;
+    height: 1px;
+    background: var(--border-color);
+    margin: 2rem 0;
+}
+
+.markdown-body blockquote {
+    border-left: 3px solid var(--accent-red);
+    background: rgba(230, 57, 70, 0.03);
+    padding: 0.8rem 1.2rem;
+    margin-bottom: 1.2rem;
+    border-radius: 0 4px 4px 0;
+}
+
+.markdown-body code {
+    background: rgba(255, 255, 255, 0.08);
+    font-family: monospace;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+/* Стартовий екран */
+.intro-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+}
+
+.crest {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    animation: pulse 3s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(212,175,55,0.2)); }
+    50% { transform: scale(1.05); filter: drop-shadow(0 0 15px rgba(212,175,55,0.6)); }
+    100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(212,175,55,0.2)); }
+}
+
+.intro-screen h1 {
+    font-family: var(--font-gothic);
+    font-size: 2rem;
+    border: none;
+    padding: 0;
+    margin-bottom: 1rem;
+}
+
+.intro-screen p {
+    max-width: 500px;
+    color: var(--text-muted);
+}
+
+.intro-screen .hint {
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--accent-gold);
+}
+
+/* --- СЕКЦІЯ 2: СИМУЛЯТОР ГРИ (DEMO) --- */
+.simulator-container {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 2rem;
+    width: 100%;
+    height: 75vh;
+}
+
+.sim-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-y: auto;
+}
+
+.sim-panel {
+    background: var(--bg-panel);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 1.2rem;
+}
+
+.sim-panel h3 {
+    font-family: var(--font-gothic);
+    font-size: 0.95rem;
+    color: var(--accent-gold);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.8rem;
+    letter-spacing: 1px;
+}
+
+/* Статистика */
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+}
+
+.stat-bar-container {
+    margin-bottom: 0.8rem;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    margin-bottom: 0.2rem;
+    color: var(--text-muted);
+}
+
+.bar-outer {
+    background: #1b1b22;
+    height: 8px;
+    border-radius: 4px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.bar-inner {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.4s ease;
+}
+
+.bar-inner.hp {
+    background: linear-gradient(to right, #8b0000, #e63946);
+    box-shadow: 0 0 8px rgba(230, 57, 70, 0.4);
+}
+
+.bar-inner.will {
+    background: linear-gradient(to right, #9a7b1c, #d4af37);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+}
+
+/* Інвентар */
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+}
+
+.inv-slot {
+    aspect-ratio: 1;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.inv-slot:hover {
+    border-color: var(--accent-gold);
+    background: rgba(212, 175, 55, 0.05);
+}
+
+.inv-slot.active-item {
+    border-style: solid;
+    border-color: var(--accent-gold);
+    background: rgba(212, 175, 55, 0.1);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+}
+
+/* Наслідки */
+.conseq-list {
+    list-style: none;
+    font-size: 0.85rem;
+}
+
+.conseq-list li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.conseq-list span.neutral { color: var(--text-muted); }
+.conseq-list span.friendly { color: #52b788; }
+.conseq-list span.hostile { color: var(--accent-red); }
+
+/* Ігровий Екран */
+.sim-game-area {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+}
+
+.sim-card {
+    background: var(--bg-panel);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.9);
+}
+
+.sim-quest-header {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.8rem;
+    margin-bottom: 1.2rem;
+}
+
+.quest-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent-red);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#scene-title {
+    font-family: var(--font-gothic);
+    color: var(--accent-gold);
+    font-size: 1.6rem;
+    margin-top: 0.2rem;
+}
+
+.sim-text-content {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.sim-choices-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.choice-btn {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+    padding: 0.8rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 0.95rem;
+    font-family: var(--font-ui);
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.choice-btn:hover {
+    background: rgba(230, 57, 70, 0.05);
+    border-color: var(--accent-red);
+    box-shadow: 0 0 12px rgba(230, 57, 70, 0.15);
+    padding-left: 1.5rem;
+}
+
+.choice-btn .choice-cost {
+    font-size: 0.8rem;
+    color: var(--accent-gold);
+    font-weight: 600;
+}
+
+/* Комедії та Журнал */
+.combat-log-panel {
+    background: var(--bg-panel);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 1rem;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+}
+
+.combat-log-panel h4 {
+    font-family: var(--font-gothic);
+    font-size: 0.8rem;
+    color: var(--accent-gold);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.log-messages {
+    overflow-y: auto;
+    flex: 1;
+    font-size: 0.8rem;
+    font-family: monospace;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.log-msg {
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+}
+
+.log-msg.system { color: #9a9aab; }
+.log-msg.success { color: #52b788; background: rgba(82, 183, 136, 0.05); }
+.log-msg.damage { color: #e63946; background: rgba(230, 57, 70, 0.05); }
+.log-msg.reputation { color: #d4af37; background: rgba(212, 175, 55, 0.05); }
+
+/* --- ПІДВАЛ (FOOTER) --- */
+footer {
+    background: rgba(8, 8, 10, 0.9);
+    border-top: 1px solid var(--border-color);
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* --- СТИЛІЗАЦІЯ СКРОЛБАРІВ --- */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #08080a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-gold);
+}
+
+/* ==========================================
+   ⚔️ СТВОРЕННЯ МАНДРУЮЧОГО ВАРТОВОГО (RPG PILLARS)
+   ========================================== */
+
+.creation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 70vh;
+}
+
+.creation-card {
+    background: var(--bg-panel);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2.5rem;
+    max-width: 900px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 0 25px rgba(0, 0, 0, 0.7);
+}
+
+.creation-title {
+    font-family: var(--font-gothic);
+    text-align: center;
+    color: var(--accent-gold);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+}
+
+.creation-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+}
+
+.creation-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.creation-form, .creation-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.creation-stats h3 {
+    font-family: var(--font-gothic);
+    color: var(--accent-gold);
+    font-size: 1.1rem;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.2rem;
+}
+
+.creation-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.points-left {
+    font-size: 0.95rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.form-group input[type="text"], .form-group select {
+    background: rgba(8, 8, 10, 0.6);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.8rem;
+    border-radius: 4px;
+    font-family: var(--font-ui);
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.form-group input[type="text"]:focus, .form-group select:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+}
+
+.gender-selector {
+    display: flex;
+    gap: 0.6rem;
+}
+
+.gender-btn {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-muted);
+    padding: 0.7rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.gender-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.gender-btn.active {
+    background: rgba(212, 175, 55, 0.08);
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
+}
+
+.bg-desc {
+    background: rgba(0, 0, 0, 0.3);
+    border-left: 2px solid var(--accent-gold);
+    padding: 0.8rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border-radius: 0 4px 4px 0;
+    min-height: 60px;
+}
+
+.stat-distributor {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.dist-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.01);
+    padding: 0.6rem 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+}
+
+.stat-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.dist-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.dist-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    background: rgba(8, 8, 10, 0.8);
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.dist-btn:hover:not(:disabled) {
+    border-color: var(--accent-gold);
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--accent-gold);
+}
+
+.dist-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.dist-val {
+    font-size: 1.1rem;
+    font-weight: bold;
+    min-width: 15px;
+    text-align: center;
+    color: var(--accent-gold);
+}
+
+.creation-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.gothic-btn {
+    background: linear-gradient(135deg, var(--accent-red-dark), var(--accent-red));
+    border: 1px solid var(--accent-red);
+    color: #fff;
+    font-family: var(--font-gothic);
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 1rem 2.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+}
+
+.gothic-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.5), 0 0 15px rgba(230, 57, 70, 0.3);
+    border-color: #fff;
+}
+
+.gothic-btn:active {
+    transform: translateY(0);
+}
+
+/* ==========================================
+   🌿 РЕСУРСИ ВИЖИВАННЯ ТА КРАФТИНГ
+   ========================================== */
+
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+}
+
+.res-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    cursor: help;
+    transition: all 0.2s;
+}
+
+.res-item:hover {
+    background: rgba(212, 175, 55, 0.04);
+    border-color: rgba(212, 175, 55, 0.15);
+}
+
+.res-icon {
+    font-size: 1.2rem;
+}
+
+.res-name {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+}
+
+.res-count {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--accent-gold);
+    background: rgba(8, 8, 10, 0.6);
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.recipes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.recipe-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 4px;
+    padding: 0.5rem 0.7rem;
+    transition: all 0.2s;
+}
+
+.recipe-row:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.recipe-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    flex: 1;
+}
+
+.recipe-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.recipe-cost {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+.craft-btn {
+    background: rgba(212, 175, 55, 0.08);
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold);
+    padding: 0.3rem 0.8rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: var(--font-ui);
+    transition: all 0.2s;
+}
+
+.craft-btn:hover:not(:disabled) {
+    background: var(--accent-gold);
+    color: var(--bg-darker);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+}
+
+.craft-btn:disabled {
+    opacity: 0.3;
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-muted);
+    background: transparent;
+    cursor: not-allowed;
+}
+
+/* ==========================================
+   👑 ЧИСЛОВА РЕПУТАЦІЯ ФРАКЦІЙ (-100 до +100)
+   ========================================== */
+
+.reputation-numeric-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.faction-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    background: rgba(255, 255, 255, 0.01);
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.faction-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.faction-val {
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.faction-val.enemy-of-people { color: #ff3333; }
+.faction-val.despised { color: #ff6666; }
+.faction-val.neutral { color: var(--text-muted); }
+.faction-val.respected { color: #52b788; }
+.faction-val.hero-of-swamps { color: #74c69d; }
+
+.rep-bar-container {
+    background: #1b1b22;
+    height: 6px;
+    border-radius: 3px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Center indicator line at 50% (neutral starting anchor) */
+.rep-bar-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 2;
+}
+
+.rep-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.4s ease, background-color 0.4s ease;
+}
+
+.rep-bar-fill.enemy-of-people { background: #5c0000; }
+.rep-bar-fill.despised { background: #8b0000; }
+.rep-bar-fill.neutral { background: #5c5c6d; }
+.rep-bar-fill.respected { background: #52b788; }
+.rep-bar-fill.hero-of-swamps { background: #2d6a4f; box-shadow: 0 0 8px rgba(82, 183, 136, 0.5); }
+
+.faction-status {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-align: right;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 0.1rem;
+}
+
+.faction-status.enemy-of-people { color: #ff3333; }
+.faction-status.despised { color: #ff6666; }
+.faction-status.neutral { color: var(--text-muted); }
+.faction-status.respected { color: #52b788; }
+.faction-status.hero-of-swamps { color: #74c69d; text-shadow: 0 0 4px rgba(82, 183, 136, 0.3); }
+
+/* Додатково: бокова панель статусу доктрин */
+.doctrines-list-panel {
+    margin-top: 1rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.doctrines-list-panel h4 {
+    font-size: 0.8rem;
+    color: var(--accent-gold);
+    margin-bottom: 0.4rem;
+}
+
+.doctrines-mini-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.doctrines-mini-grid strong {
+    color: var(--accent-gold);
+}
+
+/* ==========================================
+   🎨 СТИЛІ ДЛЯ ІЛЮСТРАЦІЙ, БОЮ ТА АУДІО
+   ========================================== */
+
+.sim-illustration {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 360px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 4px;
+    margin-bottom: 1.2rem;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(0, 0, 0, 0.5);
+    transition: background-image 0.5s ease-in-out;
+}
+
+.enemy-hp-panel {
+    background: rgba(230, 57, 70, 0.05);
+    border: 1px solid rgba(230, 57, 70, 0.15);
+    padding: 0.8rem;
+    border-radius: 4px;
+    margin-bottom: 1.2rem;
+}
+
+.audio-btn {
+    font-family: var(--font-gothic) !important;
+    font-weight: 700 !important;
+    border-color: var(--accent-gold) !important;
+    color: var(--accent-gold) !important;
+    background: rgba(212, 175, 55, 0.05) !important;
+}
+
+.audio-btn:hover {
+    background: rgba(212, 175, 55, 0.15) !important;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+}
+
+/* Ефекти для кнопок активних речей */
+.inv-slot.active-item {
+    animation: itemGlow 2s infinite ease-in-out;
+}
+
+@keyframes itemGlow {
+    0% { border-color: rgba(212, 175, 55, 0.4); box-shadow: 0 0 4px rgba(212, 175, 55, 0.1); }
+    50% { border-color: var(--accent-gold); box-shadow: 0 0 12px rgba(212, 175, 55, 0.3); }
+    100% { border-color: rgba(212, 175, 55, 0.4); box-shadow: 0 0 4px rgba(212, 175, 55, 0.1); }
+}

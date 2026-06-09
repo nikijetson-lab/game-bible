@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мандруючий Вартовий — Портал Хейзмуру</title>
+    <!-- Google Fonts: Cinzel (готичний) та Inter (читабельний інтерфейс) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="stars-overlay"></div>
+    <div class="glow-orb red"></div>
+    <div class="glow-orb gold"></div>
+
+    <header>
+        <div class="logo">
+            <span class="gold-text">МАНДРУЮЧИЙ</span> ВАРТОВИЙ
+        </div>
+        <nav>
+            <button id="nav-bible" class="active">📜 БІБЛІЯ СВІТУ</button>
+            <button id="nav-simulator">⚔️ СИМУЛЯТОР ГРИ</button>
+            <button id="audio-toggle-btn" class="audio-btn" style="display: none;">🔇 Звук</button>
+        </nav>
+        <div class="frontier-status">
+            СЕЗОН: <span class="blood-text">ПОРОЖНІЙ</span>
+        </div>
+    </header>
+
+    <main>
+        <!-- СЕКЦІЯ 1: БІБЛІЯ СВІТУ (ПЕРЕГЛЯД ЛОРУ) -->
+        <section id="section-bible" class="view-section active">
+            <div class="bible-container">
+                <!-- Лівий сайдбар: навігація по розділах -->
+                <aside class="bible-sidebar">
+                    <h3 class="sidebar-title">КАТЕГОРІЇ</h3>
+                    <div class="category-group">
+                        <button class="cat-btn" data-category="design">📋 Дизайн та Концепція</button>
+                        <button class="cat-btn" data-category="regions">🗺️ Географія та Регіони</button>
+                        <button class="cat-btn" data-category="races">👥 Раси та Народи</button>
+                        <button class="cat-btn" data-category="characters">👤 Ключові Персонажі</button>
+                        <button class="cat-btn" data-category="quests">🗡️ Квести та Сюжет</button>
+                        <button class="cat-btn" data-category="letters">✉️ Листи та Записи</button>
+                    </div>
+
+                    <h3 class="sidebar-title">ФАЙЛИ</h3>
+                    <div id="file-list" class="file-list">
+                        <p class="placeholder-text">Оберіть категорію...</p>
+                    </div>
+                </aside>
+
+                <!-- Основний контент: перегляд документів -->
+                <article class="bible-viewer">
+                    <div id="bible-content" class="markdown-body">
+                        <div class="intro-screen">
+                            <div class="crest">⚖️</div>
+                            <h1>ВІТАЄМО У ХЕЙЗМУРІ, ВАРТОВИЙ</h1>
+                            <p>Цей портал дозволяє вам досліджувати секрети, квести та закони прикордоння.</p>
+                            <p class="hint">Оберіть будь-який документ у лівій панелі для відображення.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- СЕКЦІЯ 2: СИМУЛЯТОР ГРИ (ДЕМО-КВЕСТ) -->
+        <section id="section-simulator" class="view-section">
+            
+            <!-- 2.1 ЕКРАН СТВОРЕННЯ ПЕРСОНАЖА -->
+            <div id="character-creation" class="creation-container">
+                <div class="creation-card">
+                    <h2 class="creation-title">⚔️ СТВОРЕННЯ МАНДРУЮЧОГО ВАРТОВОГО ⚔️</h2>
+                    <p class="creation-subtitle">Налаштуйте свого героя перед виходом у прокляті болота Хейзмуру.</p>
+                    
+                    <div class="creation-grid">
+                        <!-- Ліва колонка: Анкетні дані -->
+                        <div class="creation-form">
+                            <div class="form-group">
+                                <label for="char-name">Ім'я Вартовийа:</label>
+                                <input type="text" id="char-name" value="Яромир">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Стать:</label>
+                                <div class="gender-selector">
+                                    <button type="button" class="gender-btn active" data-gender="Чоловік">🙋‍♂️ Чоловік</button>
+                                    <button type="button" class="gender-btn" data-gender="Жінка">🙋‍♀️ Жінка</button>
+                                    <button type="button" class="gender-btn" data-gender="Інше">👤 Інше</button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="char-background">Передісторія:</label>
+                                <select id="char-background">
+                                    <option value="Колишній засуджений" selected>⛓️ Колишній засуджений (Стійкість, мова бандитів)</option>
+                                    <option value="Втікач з Валькорна">🏙️ Втікач з Валькорна (Дипломатія, торгівля)</option>
+                                    <option value="Втрачений учень">📖 Втрачений учень (Знання рун, містика Ліхтаря)</option>
+                                    <option value="Місцевий мисливець">🏹 Місцевий мисливець (Орієнтування, збір ресурсів)</option>
+                                </select>
+                                <div id="background-description" class="bg-desc">
+                                    Ви провели роки в глибоких кам'яних шахтах або темних казематах Валькорна. Орден забрав вас із ланцюгів у обмін на службу в багнюці.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Права колонка: Характеристики / Доктрини -->
+                        <div class="creation-stats">
+                            <h3>🎓 СТАРТОВІ ДОКТРИНИ (ГІБРИД)</h3>
+                            <p class="creation-desc">Розподіліть 5 очок характеристик. Ви можете поєднувати будь-які доктрини.</p>
+                            <p class="points-left">Доступно очок: <span id="creation-points-left" class="gold-text">5</span></p>
+                            
+                            <div class="stat-distributor">
+                                <div class="dist-row">
+                                    <span class="stat-name">🏹 Слідопит (Pathfinder)</span>
+                                    <div class="dist-controls">
+                                        <button type="button" class="dist-btn minus" data-stat="pathfinder">-</button>
+                                        <span class="dist-val" id="val-pathfinder">0</span>
+                                        <button type="button" class="dist-btn plus" data-stat="pathfinder">+</button>
+                                    </div>
+                                </div>
+                                <div class="dist-row">
+                                    <span class="stat-name">💡 Ліхтар (Lantern)</span>
+                                    <div class="dist-controls">
+                                        <button type="button" class="dist-btn minus" data-stat="lantern">-</button>
+                                        <span class="dist-val" id="val-lantern">0</span>
+                                        <button type="button" class="dist-btn plus" data-stat="lantern">+</button>
+                                    </div>
+                                </div>
+                                <div class="dist-row">
+                                    <span class="stat-name">⚖️ Суддя (Judge)</span>
+                                    <div class="dist-controls">
+                                        <button type="button" class="dist-btn minus" data-stat="judge">-</button>
+                                        <span class="dist-val" id="val-judge">0</span>
+                                        <button type="button" class="dist-btn plus" data-stat="judge">+</button>
+                                    </div>
+                                </div>
+                                <div class="dist-row">
+                                    <span class="stat-name">🤝 Посередник (Mediator)</span>
+                                    <div class="dist-controls">
+                                        <button type="button" class="dist-btn minus" data-stat="mediator">-</button>
+                                        <span class="dist-val" id="val-mediator">0</span>
+                                        <button type="button" class="dist-btn plus" data-stat="mediator">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="creation-actions">
+                        <button id="start-journey-btn" class="gothic-btn">⚔️ ПОЧАТИ ПОДОРОЖ КРІЗЬ ТУМАН ⚔️</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2.2 ІГРОВИЙ СИМУЛЯТОР (ХОВАЄТЬСЯ ДО СТАРТУ) -->
+            <div class="simulator-container" id="main-simulator-interface">
+                <!-- Ліва панель: статус персонажа, інвентар, крафт, фракції -->
+                <aside class="sim-sidebar">
+                    
+                    <!-- Панель статусу героя -->
+                    <div class="sim-panel character-panel">
+                        <h3 id="sidebar-hero-name">⚖️ ЯРОМИР</h3>
+                        <div class="char-subinfo">
+                            <span id="sidebar-hero-gender">🙋‍♂️ Чоловік</span> | 
+                            <span id="sidebar-hero-bg" class="gold-text">Колишній засуджений</span>
+                        </div>
+                        <div class="stat-row" style="margin-top: 0.5rem;">
+                            <span>Статус:</span>
+                            <span class="gold-text">Мандруючий Вартовий</span>
+                        </div>
+                        <div class="stat-bar-container">
+                            <div class="stat-label">Здоров'я: <span id="hp-value">100/100</span></div>
+                            <div class="bar-outer"><div id="hp-bar" class="bar-inner hp" style="width: 100%;"></div></div>
+                        </div>
+                        <div class="stat-bar-container">
+                            <div class="stat-label">Рішучість: <span id="will-value">50/50</span></div>
+                            <div class="bar-outer"><div id="will-bar" class="bar-inner will" style="width: 100%;"></div></div>
+                        </div>
+                        
+                        <!-- Розподілені доктрини у грі -->
+                        <div class="doctrines-list-panel">
+                            <h4>🎓 Навички доктрин:</h4>
+                            <div class="doctrines-mini-grid">
+                                <div>🏹 Слідопит: <strong id="sidebar-stat-pathfinder">0</strong></div>
+                                <div>💡 Ліхтар: <strong id="sidebar-stat-lantern">0</strong></div>
+                                <div>⚖️ Суддя: <strong id="sidebar-stat-judge">0</strong></div>
+                                <div>🤝 Посередник: <strong id="sidebar-stat-mediator">0</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Панель збору ресурсів (10+ ресурсів виживання) -->
+                    <div class="sim-panel resources-panel">
+                        <h3>🌿 РЕСУРСИ ВИЖИВАННЯ</h3>
+                        <div class="resources-grid">
+                            <!-- Трави -->
+                            <div class="res-item" title="Блекота: отруйна болотна рослина">
+                                <span class="res-icon">🌿</span>
+                                <span class="res-name">Блекота</span>
+                                <span class="res-count" id="res-henbane">0</span>
+                            </div>
+                            <div class="res-item" title="Плакун-трава: цілющі прикордонні стебла">
+                                <span class="res-icon">🌱</span>
+                                <span class="res-name">Плакун-т.</span>
+                                <span class="res-count" id="res-loosestrife">0</span>
+                            </div>
+                            <div class="res-item" title="Могильник: обережні трави капищ">
+                                <span class="res-icon">🌾</span>
+                                <span class="res-name">Могильник</span>
+                                <span class="res-count" id="res-peganum">0</span>
+                            </div>
+                            
+                            <!-- Мінерали -->
+                            <div class="res-item" title="Болотяна руда: м'яке болотне залізо">
+                                <span class="res-icon">🪨</span>
+                                <span class="res-name">Болотяна р.</span>
+                                <span class="res-count" id="res-bogiron">0</span>
+                            </div>
+                            <div class="res-item" title="Біле срібло: чистий метал проти нечисті">
+                                <span class="res-icon">🪙</span>
+                                <span class="res-name">Біле срібло</span>
+                                <span class="res-count" id="res-silver">0</span>
+                            </div>
+                            <div class="res-item" title="Чорний сланець: камінь для рун">
+                                <span class="res-icon">🎴</span>
+                                <span class="res-name">Чорний сл.</span>
+                                <span class="res-count" id="res-slate">0</span>
+                            </div>
+                            
+                            <!-- Органіка -->
+                            <div class="res-item" title="Слиз мурі: липкий секрет амфібій">
+                                <span class="res-icon">🧪</span>
+                                <span class="res-name">Слиз мурі</span>
+                                <span class="res-count" id="res-slime">0</span>
+                            </div>
+                            <div class="res-item" title="Серце болотяника: пульсуюча болотна органіка">
+                                <span class="res-icon">🫀</span>
+                                <span class="res-name">Серце бол.</span>
+                                <span class="res-count" id="res-heart">0</span>
+                            </div>
+                            <div class="res-item" title="Сухі сухожилля: волокна для натяжних пасток">
+                                <span class="res-icon">🕸️</span>
+                                <span class="res-name">Сухожилля</span>
+                                <span class="res-count" id="res-tendons">0</span>
+                            </div>
+                            
+                            <!-- Спеціальне -->
+                            <div class="res-item" title="Прадавня вода: кришталева підземна волога">
+                                <span class="res-icon">💧</span>
+                                <span class="res-name">Прад. вода</span>
+                                <span class="res-count" id="res-water">0</span>
+                            </div>
+                            <div class="res-item" title="Духовний попіл: освячений прах святинь">
+                                <span class="res-icon">🏺</span>
+                                <span class="res-name">Духовн. поп.</span>
+                                <span class="res-count" id="res-ash">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Панель крафтингу -->
+                    <div class="sim-panel crafting-panel">
+                        <h3>🛠️ ПОЛЬОВИЙ КРАФТ</h3>
+                        <div class="recipes-list">
+                            <div class="recipe-row">
+                                <div class="recipe-info">
+                                    <div class="recipe-name">🍯 Болотяна мазь</div>
+                                    <div class="recipe-cost">🌿 Блекота (1) + 🧪 Слиз (1)</div>
+                                </div>
+                                <button class="craft-btn" id="craft-ointment">Крафт</button>
+                            </div>
+                            <div class="recipe-row">
+                                <div class="recipe-info">
+                                    <div class="recipe-name">🧪 Протиотрута</div>
+                                    <div class="recipe-cost">🌱 Плакун (1) + 💧 Вода (1)</div>
+                                </div>
+                                <button class="craft-btn" id="craft-antidote">Крафт</button>
+                            </div>
+                            <div class="recipe-row">
+                                <div class="recipe-info">
+                                    <div class="recipe-name">🧿 Містичний оберіг</div>
+                                    <div class="recipe-cost">🏺 Попіл (1) + 🪙 Срібло (1)</div>
+                                </div>
+                                <button class="craft-btn" id="craft-amulet">Крафт</button>
+                            </div>
+                            <div class="recipe-row">
+                                <div class="recipe-info">
+                                    <div class="recipe-name">🪤 Капкан</div>
+                                    <div class="recipe-cost">🪨 Руда (1) + 🕸️ Сухожил. (1)</div>
+                                </div>
+                                <button class="craft-btn" id="craft-trap">Крафт</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Панель активних предметів (сумка, квестові речі) -->
+                    <div class="sim-panel inventory-panel">
+                        <h3>🎒 АКТИВНІ ПРЕДМЕТИ</h3>
+                        <div id="inventory-list" class="inventory-grid">
+                            <div class="inv-slot empty" title="Зброя: Порожньо">🗡️</div>
+                            <div class="inv-slot empty" title="Броня: Порожньо">🛡️</div>
+                            <div class="inv-slot empty" title="Доказ: Порожньо">📜</div>
+                            <div class="inv-slot empty" title="Ресурс: Порожньо">🎒</div>
+                        </div>
+                    </div>
+
+                    <!-- Числова репутація з 4 фракціями -->
+                    <div class="sim-panel consequences-panel">
+                        <h3>👑 ЧИСЛОВА РЕПУТАЦІЯ ФРАКЦІЙ</h3>
+                        <div id="reputation-list-numeric" class="reputation-numeric-list">
+                            <!-- Фракція 1 -->
+                            <div class="faction-row">
+                                <div class="faction-label">
+                                    <span>🏛️ Адміністрація Грейфорда</span>
+                                    <span class="faction-val neutral" id="rep-val-greyford">0 / 100</span>
+                                </div>
+                                <div class="rep-bar-container">
+                                    <div class="rep-bar-fill neutral" id="rep-bar-greyford" style="width: 50%;"></div>
+                                </div>
+                                <div class="faction-status" id="rep-status-greyford">Нейтралітет</div>
+                            </div>
+                            <!-- Фракція 2 -->
+                            <div class="faction-row">
+                                <div class="faction-label">
+                                    <span>🗡️ Орден Семи Кинджалів</span>
+                                    <span class="faction-val neutral" id="rep-val-knives">0 / 100</span>
+                                </div>
+                                <div class="rep-bar-container">
+                                    <div class="rep-bar-fill neutral" id="rep-bar-knives" style="width: 50%;"></div>
+                                </div>
+                                <div class="faction-status" id="rep-status-knives">Нейтралітет</div>
+                            </div>
+                            <!-- Фракція 3 -->
+                            <div class="faction-row">
+                                <div class="faction-label">
+                                    <span>⛪ Хранителі Святої Вей</span>
+                                    <span class="faction-val neutral" id="rep-val-keepers">0 / 100</span>
+                                </div>
+                                <div class="rep-bar-container">
+                                    <div class="rep-bar-fill neutral" id="rep-bar-keepers" style="width: 50%;"></div>
+                                </div>
+                                <div class="faction-status" id="rep-status-keepers">Нейтралітет</div>
+                            </div>
+                            <!-- Фракція 4 -->
+                            <div class="faction-row">
+                                <div class="faction-label">
+                                    <span>🌿 Мурі (Амфібії)</span>
+                                    <span class="faction-val neutral" id="rep-val-muri">0 / 100</span>
+                                </div>
+                                <div class="rep-bar-container">
+                                    <div class="rep-bar-fill neutral" id="rep-bar-muri" style="width: 50%;"></div>
+                                </div>
+                                <div class="faction-status" id="rep-status-muri">Нейтралітет</div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Центральний ігровий екран -->
+                <div class="sim-game-area">
+                    <div class="sim-card">
+                        <div class="sim-quest-header">
+                            <span class="quest-tag" id="quest-tag">Епізод 1: Грейфорд</span>
+                            <h2 id="scene-title">Адресат відсутній</h2>
+                        </div>
+                        <div id="scene-illustration" class="sim-illustration" style="display: none;"></div>
+                        <div id="enemy-hp-container" class="enemy-hp-panel" style="display: none;">
+                            <div class="stat-label">Здоров'я ворога: <span id="enemy-hp-value">50/50</span></div>
+                            <div class="bar-outer"><div id="enemy-hp-bar" class="bar-inner hp" style="width: 100%;"></div></div>
+                        </div>
+                        <div id="scene-text" class="sim-text-content">
+                            <!-- Заповнюється динамічно -->
+                        </div>
+                        <div id="scene-choices" class="sim-choices-container">
+                            <!-- Заповнюється динамічно -->
+                        </div>
+                    </div>
+
+                    <!-- Лог бою та дій -->
+                    <div class="combat-log-panel">
+                        <h4>📓 ЖУРНАЛ СЛІДСТВА ТА ПОДІЙ</h4>
+                        <div id="combat-log" class="log-messages">
+                            <div class="log-msg system">Ви прибули на околиці Грейфорда. Порожній Сезон розпочався.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Світ Хейзмуру. Розроблено парою з Antigravity Coding Assistant українською мовою.</p>
+    </footer>
+
+    <script src="quests-data.js"></script>
+    <script src="app.js"></script>
+    <script src="autoplay.js"></script>
+</body>
+</html>

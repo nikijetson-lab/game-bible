@@ -443,9 +443,7 @@ class AtmosphereSynth {
         const AudioContext = window.AudioContext || window.webkitAudioContext;
         this.ctx = new AudioContext();
         
-        this.createDrone();
-        this.createRain();
-        this.createWind();
+        // Atmosphere sounds disabled — only SFX (clicks/hits) remain
         this.updateVolumes();
     }
     

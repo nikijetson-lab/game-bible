@@ -597,9 +597,9 @@ class AtmosphereSynth {
     updateVolumes() {
         if (!this.ctx) return;
         const vol = this.isMuted ? 0 : 1;
-        this.droneGain.gain.setValueAtTime(0.08 * vol, this.ctx.currentTime);
-        this.rainGain.gain.setValueAtTime(0.02 * vol, this.ctx.currentTime);
-        this.windGain.gain.setValueAtTime(0.02 * vol, this.ctx.currentTime);
+        if (this.droneGain) this.droneGain.gain.setValueAtTime(0.08 * vol, this.ctx.currentTime);
+        if (this.rainGain) this.rainGain.gain.setValueAtTime(0.02 * vol, this.ctx.currentTime);
+        if (this.windGain) this.windGain.gain.setValueAtTime(0.02 * vol, this.ctx.currentTime);
     }
     
     toggleMute() {

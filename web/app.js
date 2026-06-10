@@ -880,6 +880,8 @@ let currentSceneKey = "arriving";
 // --- УПРАВЛІННЯ ІГРОВИМ ПРОЦЕСОМ ---
 function startGameFlow() {
     gameStarted = true;
+    const saveBtnEl = document.getElementById("save-game-btn");
+    if (saveBtnEl) saveBtnEl.style.display = "inline-block";
     
     const logDiv = document.getElementById("combat-log");
     if (logDiv) {
@@ -1024,9 +1026,22 @@ function goThread(thread) {
 }
 
 function goScene(sceneKey) {
+    const prevSceneKey = currentSceneKey;
     currentSceneKey = sceneKey; window.currentSceneKey = sceneKey;
     const scene = window.GAME_SCENES[sceneKey];
     if (!scene) return;
+
+    // --- ТІК ОТРУЄННЯ: −5 HP за кожен реальний перехід між сценами ---
+    if (gameStarted && window.playerState && window.playerState.poisoned && sceneKey !== prevSceneKey && !scene.isAbsoluteFinal) {
+        window.playerState.hp = Math.max(0, window.playerState.hp - 5);
+        addToLog("☠️ Отрута розтікається тілом... Втрачено 5 HP. Потрібна 🧪 Протиотрута!", "damage");
+        if (window.playerState.hp <= 0 && !window.IS_DEV_TESTING) {
+            synth.playSfx('gameover');
+            window.playerState.poisoned = false;
+            goScene("death");
+            return;
+        }
+    }
 
 
 
@@ -1460,8 +1475,9 @@ function useBagItem(itemName, idx) {
             renderCombatRound();
         } else if (itemName.includes("🧪 Протиотрута")) {
             window.playerState.inventory.splice(idx, 1);
+            curePoison(true);
             window.playerState.will = window.playerState.maxWill;
-            addToLog("🧪 Ви випили Протиотруту в бою та відновили Рішучість!", "success");
+            addToLog("🧪 Ви випили Протиотруту в бою: отруту нейтралізовано, Рішучість відновлено!", "success");
             synth.playSfx('chime');
             renderCombatRound();
         } else if (itemName.includes("🧿 Містичний оберіг")) {
@@ -1478,8 +1494,9 @@ function useBagItem(itemName, idx) {
             goScene(currentSceneKey);
         } else if (itemName.includes("🧪 Протиотрута")) {
             window.playerState.inventory.splice(idx, 1);
+            curePoison(true);
             window.playerState.will = window.playerState.maxWill;
-            addToLog("🧪 Ви випили Протиотруту та повністю відновили Рішучість!", "success");
+            addToLog("🧪 Ви випили Протиотруту: отруту нейтралізовано, Рішучість відновлено!", "success");
             synth.playSfx('chime');
             goScene(currentSceneKey);
         } else {
@@ -1519,3 +1536,127 @@ renderFileList("design");
 initCharacterCreation();
 initItemUsage();
 initCrafting();
+
+// ===================================================================
+// --- МОДУЛЬ: ОТРУЄННЯ, ЗАСІДКИ, ЗБЕРЕЖЕННЯ (ітерація "Небезпечне болото") ---
+// ===================================================================
+
+// --- СИСТЕМА ОТРУЄННЯ ---
+function applyPoison(sourceText) {
+    if (!window.playerState.poisoned) {
+        window.playerState.poisoned = true;
+        addToLog(`☠️ ${sourceText || "Отрута потрапила у вашу кров!"} Ви отруєні: −5 HP за кожен перехід, доки не вилікуєтесь.`, "damage");
+        updateUi();
+    }
+}
+
+function curePoison(silent) {
+    if (window.playerState.poisoned) {
+        window.playerState.poisoned = false;
+        if (!silent) addToLog("✨ Отруту нейтралізовано. Кров знову чиста.", "success");
+        updateUi();
+    }
+}
+
+// --- ШАНСОВІ ЗАСІДКИ: болото карає за шум ---
+function ambushOrGo(chance, enemyName, hp, atk, nextSceneKey, opts) {
+    opts = opts || {};
+    if (Math.random() < chance) {
+        addToLog(`⚠️ ${opts.intro || "Болото відповідає на ваш шум — щось стрімко наближається крізь туман!"}`, "damage");
+        startCombat(enemyName, hp, atk, () => {
+            if (opts.poisonChance && Math.random() < opts.poisonChance) {
+                applyPoison(opts.poisonText || "Рана від укусу почорніла — у кров потрапила болотна отрута!");
+            }
+            goScene(nextSceneKey);
+        });
+    } else {
+        goScene(nextSceneKey);
+    }
+}
+
+// --- СИСТЕМА ЗБЕРЕЖЕНЬ ---
+const HZM_SAVE_KEY = "hazemoor_save_v1";
+
+function saveGame(manual) {
+    if (!gameStarted) return;
+    if (combatState && combatState.inCombat) {
+        if (manual) addToLog("💾 Неможливо зберегтися під час бою!", "system");
+        return;
+    }
+    try {
+        const save = {
+            version: 1,
+            ts: Date.now(),
+            sceneKey: currentSceneKey,
+            playerState: window.playerState
+        };
+        localStorage.setItem(HZM_SAVE_KEY, JSON.stringify(save));
+        if (manual) addToLog("💾 Гру збережено.", "success");
+    } catch (e) {
+        if (manual) addToLog("💾 Не вдалося зберегти гру (сховище недоступне).", "damage");
+    }
+}
+
+function loadSavedGame() {
+    let save = null;
+    try { save = JSON.parse(localStorage.getItem(HZM_SAVE_KEY)); } catch (e) { return false; }
+    if (!save || !save.playerState || !save.sceneKey || !window.GAME_SCENES[save.sceneKey]) return false;
+
+    window.playerState = save.playerState;
+    gameStarted = true;
+
+    const creation = document.getElementById("character-creation");
+    if (creation) creation.style.display = "none";
+    const sim = document.getElementById("main-simulator-interface");
+    if (sim) sim.style.display = "flex";
+
+    const heroName = document.getElementById("sidebar-hero-name");
+    if (heroName) heroName.textContent = `⚖️ ${(window.playerState.name || "Вартовий").toUpperCase()}`;
+    const heroGender = document.getElementById("sidebar-hero-gender");
+    if (heroGender) heroGender.textContent = `${window.playerState.gender === 'Чоловік' ? '🙋‍♂️' : window.playerState.gender === 'Жінка' ? '🙋‍♀️' : '👤'} ${window.playerState.gender || ""}`;
+    const heroBg = document.getElementById("sidebar-hero-bg");
+    if (heroBg) heroBg.textContent = window.playerState.background || "";
+
+    const audioBtn = document.getElementById("audio-toggle-btn");
+    if (audioBtn) audioBtn.style.display = "inline-block";
+    const saveBtn = document.getElementById("save-game-btn");
+    if (saveBtn) saveBtn.style.display = "inline-block";
+
+    const logDiv = document.getElementById("combat-log");
+    if (logDiv) logDiv.innerHTML = "";
+    addToLog(`💾 Збереження завантажено (${new Date(save.ts).toLocaleString("uk-UA")}). Подорож триває.`, "system");
+
+    updateUi();
+    goScene(save.sceneKey);
+    return true;
+}
+
+// Автозбереження кожні 4 хвилини
+setInterval(() => saveGame(false), 240000);
+
+// Кнопка ручного збереження + кнопка "Продовжити" на екрані створення персонажа
+document.addEventListener("DOMContentLoaded", () => {
+    const saveBtn = document.getElementById("save-game-btn");
+    if (saveBtn) saveBtn.addEventListener("click", () => saveGame(true));
+
+    let hasSave = false;
+    try { hasSave = !!localStorage.getItem(HZM_SAVE_KEY); } catch (e) {}
+    if (hasSave) {
+        const actions = document.querySelector(".creation-actions");
+        const startBtn = document.getElementById("start-journey-btn");
+        if (actions && startBtn) {
+            const contBtn = document.createElement("button");
+            contBtn.id = "continue-journey-btn";
+            contBtn.className = "gothic-btn";
+            contBtn.textContent = "⏳ ПРОДОВЖИТИ ЗБЕРЕЖЕНУ ПОДОРОЖ ⏳";
+            contBtn.style.marginBottom = "0.6rem";
+            contBtn.addEventListener("click", () => {
+                if (!loadSavedGame()) {
+                    addToLog("💾 Збереження пошкоджене — почніть нову подорож.", "damage");
+                    contBtn.remove();
+                }
+            });
+            actions.insertBefore(contBtn, startBtn);
+        }
+    }
+});

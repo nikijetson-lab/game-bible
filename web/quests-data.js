@@ -502,7 +502,7 @@ window.GAME_SCENES = {
                     window.playerState.sonkFerry.finalVerdict = "adaptation";
                     window.playerState.reputation.admin = (window.playerState.reputation.admin || 0) + 30;
                     addToLog("Звіт підписано. Ви вирушаєте вглиб Хейзмуру за лінію очерету.", "system");
-                    goScene("hazemoor_ep1");
+                    goScene("mia_rescue");
                 }
             },
             {
@@ -513,7 +513,7 @@ window.GAME_SCENES = {
                     window.playerState.reputation.admin = (window.playerState.reputation.admin || 0) + 20;
                     window.playerState.reputation.order = (window.playerState.reputation.order || 0) + 10;
                     addToLog("Орден бере поселення під залізний контроль. Ви йдете далі за слідом Руфіна.", "system");
-                    goScene("hazemoor_ep1");
+                    goScene("mia_rescue");
                 }
             },
             {
@@ -524,7 +524,7 @@ window.GAME_SCENES = {
                     window.playerState.reputation.muri = (window.playerState.reputation.muri || 0) + 30;
                     window.playerState.reputation.admin = (window.playerState.reputation.admin || 0) - 15;
                     addToLog("Пакт підписано на користь автономії Амфібій. Ви вирушаєте до болотяних очеретів.", "success");
-                    goScene("hazemoor_ep1");
+                    goScene("mia_rescue");
                 }
             },
             {
@@ -535,10 +535,101 @@ window.GAME_SCENES = {
                     window.playerState.reputation.keepers = (window.playerState.reputation.keepers || 0) + 30;
                     window.playerState.reputation.muri = (window.playerState.reputation.muri || 0) + 15;
                     addToLog("Владу передано духовній громаді Ключників. Попереду — великий Туман.", "success");
+                    goScene("mia_rescue");
+                }
+            }
+        ]
+    },
+
+    // --- ЗУСТРІЧ З МІА: ПОРЯТУНОК ВІД БОЛОТНОЇ ТВАРЮКИ ---
+
+    mia_rescue: {
+        audioTrack: "assets/audio/ep3_swamp_music.mp3",
+        audioAtmosphere: "assets/audio/ep3_swamp_ambient.mp3",
+        title: "Крик за лінією очерету",
+        text: `Сонк-Феррі залишається за спиною. Ви перетинаєте лінію очерету — невидимий кордон, за яким закінчується влада Адміністрації і починається справжній Хейзмур. Перші ж сто кроків забирають у вас відчуття твердої землі: стежка тоне, туман густішає, повітря пахне гниллю та залізом.<br><br>Раптом тишу розриває короткий, відчайдушний крик. За стіною очерету, у мілкій чорній заводі, ви бачите дівчину з народу Мурі — вона притиснута до напівзатопленої корчаги. Над нею здіймається <strong>болотна тварюка</strong>: слизька гора м'язів і твані, вкрита плівкою ряски, з пащею, повною голчастих зубів. Хвіст істоти вже обвив ногу дівчини і повільно тягне її під воду. У її руці — лише короткий кістяний ніж, яким вона марно б'є по панцирній шкурі.<br><br>У вас є лічені секунди.`,
+        choices: [
+            {
+                text: "Вихопити меч і кинутися в лобову атаку, відволікаючи тварюку на себе.",
+                action: () => {
+                    window.playerState.mia_trust = (window.playerState.mia_trust || 0) + 1;
+                    addToLog("Ви з ревом врізаєтеся у воду. Тварюка випускає здобич і розвертається до нового, більшого ворога — до вас.", "damage");
+                    startCombat("Болотна тварюка", 55, 12, () => {
+                        window.playerState.completedQuests = window.playerState.completedQuests || {};
+                        window.playerState.completedQuests['mia_rescued'] = true;
+                        goScene("mia_meeting");
+                    });
+                }
+            },
+            {
+                text: "Метнути камінь у голову істоти, а коли вона відволічеться — вдарити збоку, у незахищене черево.",
+                action: () => {
+                    window.playerState.mia_trust = (window.playerState.mia_trust || 0) + 1;
+                    addToLog("Камінь влучає точно в око. Тварюка сахається, послаблює хватку — і ваш клинок входить у м'яке черево збоку. Перша кров за вами.", "success");
+                    startCombat("Поранена болотна тварюка", 40, 12, () => {
+                        window.playerState.completedQuests = window.playerState.completedQuests || {};
+                        window.playerState.completedQuests['mia_rescued'] = true;
+                        goScene("mia_meeting");
+                    });
+                }
+            },
+            {
+                text: "Завмерти на мить і оцінити противника, перш ніж атакувати.",
+                action: () => {
+                    window.playerState.mia_trust = (window.playerState.mia_trust || 0) - 1;
+                    addToLog("Поки ви вагаєтеся, хвіст тварюки встигає затягнути дівчину по пояс у трясовину. Її погляд на мить зустрічається з вашим — і ви читаєте в ньому не страх, а холодний осуд. Ви нарешті атакуєте.", "damage");
+                    startCombat("Болотна тварюка", 55, 14, () => {
+                        window.playerState.completedQuests = window.playerState.completedQuests || {};
+                        window.playerState.completedQuests['mia_rescued'] = true;
+                        goScene("mia_meeting");
+                    });
+                }
+            }
+        ]
+    },
+
+    mia_meeting: {
+        audioTrack: "assets/audio/ep3_swamp_music.mp3",
+        audioAtmosphere: "assets/audio/ep3_swamp_ambient.mp3",
+        title: "Міа з народу Мурі",
+        text: `Тварюка, залишаючи за собою шлейф темної крові, з низьким булькотінням занурюється у глибину заводі — болото забирає поранене дитя назад. Западає тиша, яку порушує лише ваше важке дихання.<br><br>Дівчина вибирається на кочку. Вона молода, жилава, з сірими очима кольору застиглої води та візерунками племені Мурі на передпліччях. Кістяний ніж зникає у піхвах на стегні так швидко, наче його й не було. Вона довго мовчки роздивляється вас — ваше залізо, ваш меч, печатку Вартового.<br><br><em>«Чужинці в залізі не лізуть у воду за Мурі. Ніколи. Ти — перший,»</em> — нарешті каже вона. — <em>«Мене звати Міа. Ти йдеш углиб, до Тихого Шелесту — я чула, як ти питав дорогу на поромі. Сам ти туди не дійдеш: болото з'їсть тебе ще до другого світанку. Я проведу. Три дні шляху. Але затям одне, людино заліза: тут командую я. Роби, як я кажу, став ноги, куди я ставлю, — і, можливо, дійдеш живим.»</em>`,
+        choices: [
+            {
+                text: "«Я приймаю твої правила, провіднице. Болото — твій дім, і я в ньому гість.»",
+                action: () => {
+                    window.playerState.mia_trust = (window.playerState.mia_trust || 0) + 1;
+                    window.playerState.reputation = window.playerState.reputation || {};
+                    window.playerState.reputation.muri = (window.playerState.reputation.muri || 0) + 5;
+                    addToLog("Міа схвально киває: «Гість, який вміє слухати. Рідкість.» Вона розвертається і безшумно рушає у туман.", "success");
+                    goScene("hazemoor_ep1");
+                }
+            },
+            {
+                text: "«Веди. Але я Вартовий, і моя місія важливіша за твої правила.»",
+                action: () => {
+                    addToLog("Міа коротко хмикає: «Болоту байдуже до твоїх місій. Побачимо, чого вартує твоє залізо.» Вона рушає вперед, не озираючись.", "system");
+                    goScene("hazemoor_ep1");
+                }
+            },
+            {
+                text: "Мовчки кивнути й запитати, що це була за істота.",
+                action: () => {
+                    addToLog("Міа дивиться на темну воду: «Молодий мурок-трясовик. Дитя Моура. Запам'ятай його запах — дорослого ти вже не переживеш.» Вона жестом кличе вас за собою.", "system");
                     goScene("hazemoor_ep1");
                 }
             }
         ]
+    },
+
+    // --- СЦЕНА СМЕРТІ (ГЛОБАЛЬНА) ---
+
+    death: {
+        audioTrack: "assets/audio/death_music.mp3",
+        audioAtmosphere: "assets/audio/death_ambient.mp3",
+        title: "💀 Кінець шляху",
+        text: `Холод приходить раніше за біль. Світ звужується до сірої плями туману над головою, і остання думка тоне разом із вами у чорній воді Хейзмуру.<br><br>Болото не знає імен. Воно не пам'ятає ні Вартових, ні їхніх печаток, ні вердиктів, які вони не встигли винести. За кілька днів ряска зімкнеться над цим місцем, і лише Хранителі Ліхтарів, проходячи повз, запалять тонку свічку — за ще одного чужинця, який вважав, що залізо сильніше за твань.<br><br><em>Ваша історія обірвалася. Але Хейзмур чекає на нового мандрівника.</em>`,
+        isAbsoluteFinal: true,
+        choices: []
     },
 
     // --- ПОВНИЙ ТРИДЕННИЙ ШЛЯХ КРІЗЬ БОЛОТА З МІЄЮ (АКТ I ПРОДОВЖЕННЯ) ---

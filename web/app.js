@@ -1349,6 +1349,9 @@ function getReputationStatus(value) {
 }
 
 // --- ОНОВЛЕННЯ ЕЛЕМЕНТІВ UI ---
+const UI_RESOURCES_LIST = ["henbane", "loosestrife", "peganum", "bogiron", "silver", "slate", "slime", "heart", "tendons", "water", "ash"];
+const cachedResElements = {};
+
 function updateUi() {
     if (window.IS_DEV_TESTING) {
         window.playerState.hp = 999;
@@ -1379,10 +1382,13 @@ function updateUi() {
         }
     }
 
-    const resources = ["henbane", "loosestrife", "peganum", "bogiron", "silver", "slate", "slime", "heart", "tendons", "water", "ash"];
-    resources.forEach(res => {
-        const el = document.getElementById(`res-${res}`);
-        if (el) el.textContent = window.playerState.resources[res];
+    UI_RESOURCES_LIST.forEach(res => {
+        if (!cachedResElements[res]) {
+            cachedResElements[res] = document.getElementById(`res-${res}`);
+        }
+        if (cachedResElements[res]) {
+            cachedResElements[res].textContent = window.playerState.resources[res];
+        }
     });
 
     const craftOintment = document.getElementById("craft-ointment");

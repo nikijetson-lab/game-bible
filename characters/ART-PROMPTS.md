@@ -398,3 +398,173 @@ the Muri set — youth inside an old world.
 - Раса Мурі: завжди «NOT human» + капс на GILL SLITS / VERTICAL pupils.
 - Єдине тепле світло в серії дозволене: свічка Одріна, лампа Тесси, ліхтар Дамара, жар вогнища Каена — теплота = побут, холод = болото й Орден.
 - Невдалі деталі виправляти через edit існуючого зображення, не повною регенерацією.
+
+---
+
+## ДОПОВНЕННЯ 1: пропущені персонажі
+
+### Ерван — хазяїн постоялого двору
+
+```
+Cinematic three-quarter character portrait, dark fantasy. Ervan — a human 
+innkeeper in his 60s, heavyset, standing behind the worn counter of a dim 
+frontier tavern in Greyford. He has just been handed a sealed letter: he 
+holds it A MOMENT TOO LONG, eyes on the wax seal, not yet raised to the 
+viewer — the exact second of recognition he will deny ever happened.
+
+Face: broad, weathered indoors rather than outdoors; tavern-keeper's eyes 
+that see everything and admit nothing; grey stubble, a healed scar on one 
+eyebrow from a forgotten brawl he ended rather than started.
+
+Costume: rolled sleeves over forearms that hauled barrels for forty years, 
+a leather apron over rough wool, a counter rag over one shoulder, a ring 
+of room keys at his belt — one key conspicuously newer-polished than the 
+rest (the room he keeps paid and untouched).
+
+Environment: low-beamed tavern interior — candle lanterns, smoke haze, 
+empty chairs at closing time, rain on small windows, a stairway rising 
+into darkness behind him toward the rooms.
+
+Mood and light: warm dim hearth-and-candle key (his frame belongs to the 
+"household warmth" group of the series), cold blue-grey rain light from 
+the windows as contrast; the wax seal catching a glint of candlelight — 
+the smallest, most important highlight in the frame.
+```
+
+### Мати Міа — третій шар таємниці
+
+```
+Cinematic three-quarter character portrait, dark fantasy. An elderly 
+female of the Muri, NOT human — the adoptive mother of Mia. She sits on 
+the porch of a stilt-house at dusk mending a fishing net, hands paused 
+mid-knot: someone has just asked her about her daughter, and she is 
+deciding how much truth her silence will leak.
+
+Physiology: aged Muri — near-black skin with a deep green sheen, dry and 
+finely creased; subtle gill slits on her neck; yellow-green eyes with 
+vertical pupils, lowered to the net, NOT meeting the viewer — the only 
+portrait in the series that avoids eye contact, and that avoidance is the 
+story. Faded bog-paint marks on her wrists, renewed less often than they 
+should be.
+
+Costume: layered reed-fiber and fish-leather garments of a village elder, 
+a shawl of woven marsh-grass, a small bone amulet at her throat that her 
+fingers unconsciously touch — a child's amulet, too small for her.
+
+Environment: stilt-village porch over black water — drying nets, clay 
+pots, reed walls; warm hearth-light leaking through the doorway slats 
+behind her; fog rising off the water below.
+
+Mood and light: cold green-grey dusk as key, thin warm hearth spill from 
+the doorway across one shoulder — caught exactly between the village 
+warmth and the bog dark, like her secret. The frame should ache quietly.
+```
+
+---
+
+## ДОПОВНЕННЯ 2: БЕСТІАРІЙ
+
+> Для ілюстрацій бойових сцен. STYLE BLOCK додається так само. Загальне правило бестіарію: усі тварюки — «діти Моура», тож у кожній має бути щось від болота-як-тіла: торф, корені, ряска, кістка. Не «фентезі-монстри», а болото, що набуло форми.
+
+### Очеретяний повзун (30 HP) — засідка в очереті
+
+```
+Dark fantasy creature design, cinematic shot. A REED CRAWLER — a lean, 
+low, serpentine bog predator the length of a man, bursting sideways out 
+of a wall of dense reeds toward the camera in ambush. Body like a moray 
+eel crossed with a salamander: slick mottled hide patterned EXACTLY like 
+wet reed stalks — vertical pale-and-dark striping, near-perfect 
+camouflage, several real broken reeds snagged on its back. A narrow skull 
+that is mostly hinged jaw, opening to a NEEDLE-TOOTHED mouth, glistening 
+with venomous saliva. Small pale eyes set far back — it hunts by sound. 
+Many short clawed limbs along the body like a centipede's, gripping the 
+reeds. Environment: dense reed wall at the water's edge, fog, motion blur 
+on the scattering stalks. Light: flat grey bog daylight; the wet venom 
+sheen on the teeth is the brightest accent. Fast, mean, disposable horror 
+— a trap with a body.
+```
+
+### Рій туманних кровососів (25 HP) — хмара в імлі
+
+```
+Dark fantasy creature design, cinematic shot. A SWARM OF MIST 
+BLOODSUCKERS — not one creature but a drifting cloud of dozens of 
+palm-sized insectoid horrors, half-materialized out of the fog itself. 
+Each individual: a translucent gnat-like body with overlong dangling 
+proboscis, wings that blur into mist, a faint sickly green bioluminescent 
+dot in the abdomen — together the swarm reads as a constellation of 
+floating green sparks in a man-shaped column of haze, beautiful from afar 
+and wrong up close. The swarm is shown mid-drift around the silhouette of 
+an unseen traveler's raised lantern arm at frame edge — they gather toward 
+warmth and blood. Environment: thick layered night fog over black water, 
+no horizon. Light: their own green dots and a cold lantern glow at frame 
+edge as the only sources. The horror is in the AMBIGUITY — at first glance 
+it is just marsh lights.
+```
+
+### Гнилий потопельник (45 HP) — те, що болото не віддало
+
+```
+Dark fantasy creature design, cinematic shot. A ROTTEN DROWNED ONE — the 
+bog's memory of a man, rising slowly out of black mud in a half-flooded 
+hollow. NOT a classic zombie: the original body is only an armature — 
+peat, root fibers and waterlogged wood have grown THROUGH it and replaced 
+most of it, so the figure is two-thirds swamp and one-third drowned 
+corpse. Black peat water streams off it as it rises; reeds and a rotted 
+rope still wrapped around the torso; one arm replaced entirely by a thick 
+twisted root ending in finger-like rootlets. The face: a sunken leather 
+mask with bog-tanned skin, eyes replaced by two dim points of the same 
+green wisp-light that haunts the marsh — Mour's mark on his children. 
+Posture: heavy, patient, inevitable — it does not chase, the swamp itself 
+slows you for it. Environment: drowned hollow, dead trees, fog, ripples 
+spreading from its rise. Light: grey overcast key, green eye-points as 
+accent. Tragic horror, not gore.
+```
+
+### Мурок-трясовик (50–55 HP) — водна засідка
+
+```
+Dark fantasy creature design, cinematic shot. A MUROK — a juvenile bog 
+ambush predator the size of a rowboat, mid-LUNGE out of mirror-still 
+black water, jaws open, water sheeting off its back. Anatomy: a fusion of 
+giant salamander and snapping turtle — a broad armored back crusted with 
+living moss, duckweed and small mussels (perfect camouflage as a floating 
+islet), a pale soft underbelly, four powerful webbed limbs with hooked 
+claws, and a long muscular tail still wrapped half-coiled around a 
+submerged root for launch leverage. The head: wide flat skull, a 
+needle-toothed maw, small deep-set yellow-green eyes with vertical pupils 
+— THE SAME EYES AS THE MURI, unmistakably kin to the bog. Environment: a 
+black pool between mossy tussocks, exploding spray frozen mid-air, reeds 
+bending away from the lunge, fog behind. Light: flat grey key, wet 
+highlights on the armored back, the pale belly as tonal contrast. Sudden, 
+explosive violence breaking absolute stillness — the swamp's signature 
+move.
+```
+
+### Дорослий мурок (90 HP) — страж Жертовника
+
+```
+Dark fantasy creature design, cinematic wide shot, mini-boss scale. An 
+ADULT MUROK — the guardian of a flooded monastery's inner sanctum, rising 
+in a half-submerged stone corridor. The size of a fishing barge: the same 
+salamander-turtle anatomy as the juvenile but ANCIENT — its armored back 
+has become an ecosystem, crusted with centuries of mussels, bone-white 
+coral-like growths, and the rusted fragments of old weapons from those 
+who came before; old scars across the carapace GLOW with faint dim 
+bog-fire green, like seams of marsh light in dark stone. Around its neck 
+and limbs, the bones of previous intruders are fused into the shell 
+growth. Its head nearly fills the corridor width; ancient yellow-green 
+eyes with vertical pupils carry not hunger but DUTY — a sentinel older 
+than the monastery's locks. Composition: low water-level camera, the 
+creature filling the frame from wall to wall, a tiny cold white lantern 
+glow (the unseen Warden) reflected in its near eye. Environment: drowned 
+gothic corridor — submerged columns, rune-carved stone, dripping vaults, 
+absolute black water. Light: faint green glow of its scars and wisps in 
+the vault as key, the distant white lantern point as contrast. Not a 
+monster encounter — an audience with a doorkeeper.
+```
+
+### Правило бестіарію в серії
+
+- Очі всіх «дітей Моура» — жовто-зелені з вертикальною зіницею, як у Мурі: світ має натякати на спільне походження раніше, ніж сюжет це скаже.
+- Жодна тварюка не «зла»: повзун — пастка, рій — приваба, потопельник — пам'ять, мурок — раптовість, дорослий мурок — обов'язок. У промптах це закладено останнім реченням кожного.

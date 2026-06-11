@@ -568,3 +568,209 @@ monster encounter — an audience with a doorkeeper.
 
 - Очі всіх «дітей Моура» — жовто-зелені з вертикальною зіницею, як у Мурі: світ має натякати на спільне походження раніше, ніж сюжет це скаже.
 - Жодна тварюка не «зла»: повзун — пастка, рій — приваба, потопельник — пам'ять, мурок — раптовість, дорослий мурок — обов'язок. У промптах це закладено останнім реченням кожного.
+
+---
+
+## ДОПОВНЕННЯ 3: Сонк-Феррі — детективний склад (ep1-06 «Сіль у книзі», ep1-09 «Ніж квоти»)
+
+> До кожного промпта додається STYLE BLOCK з початку файла, без змін.
+
+### Гара Пайк — контрабандистська капітанка
+
+```
+Cinematic three-quarter character portrait, dark fantasy. Gara Pike — a 
+human smuggler captain in her 40s, predatory and proud, standing at the 
+stern of her flat-bottomed river barge at night, one boot up on a 
+contraband crate, mooring rope held loose in a scarred fist like a whip 
+at rest.
+
+Face: sharp, weather-burned, salt-and-wind hair tied back with a strip of 
+sailcloth; a grin with no warmth in it — the smile of someone calculating 
+your cargo value and your replaceability in the same glance. An old rope 
+burn scar around one side of her neck she never explains.
+
+Costume: oiled river-leathers over wool, fingerless gloves, a heavy belt 
+with a boarding knife and a ring of forged customs seals she should not 
+own, a captain's coat taken from someone who no longer needed it — too 
+fine for her trade and worn like a trophy.
+
+Environment: night river dock at the bog frontier — black water, stacked 
+crates under tarps, a shuttered lantern at her feet leaking thin light, 
+fog swallowing the far bank, the silhouettes of her crew deliberately out 
+of focus behind her.
+
+Mood and light: low warm shuttered-lantern key from below (smuggler's 
+light — hidden, directional), cold fog ambient. She owns the frame the 
+way she owns the route: completely and illegally.
+```
+
+### Брат Карос — хранитель Святої Вей
+
+```
+Cinematic three-quarter character portrait, dark fantasy. Brother Karos — 
+a human monk-keeper of the Holy Wey in his 50s, the first openly 
+religious figure of the series. He stands in a small riverside chapel-
+warehouse where pilgrim medicine crates are blessed and sealed, holding a 
+genuine wax seal matrix in one hand and a FORGED one in the other, 
+comparing them in candlelight with the heartbroken precision of a man 
+auditing his own faith.
+
+Face: gaunt, tonsured grey hair, ink and candle-soot on his fingers; 
+gentle tired eyes behind the only pair of spectacles in Sonk-Ferry, one 
+lens cracked. The expression: grief disguised as concentration — someone 
+forged the sacred, and he intends to find out who.
+
+Costume: rough undyed wool habit with a woven reed cincture, a small 
+white-silver pendant of the Wey (a vertical wavy line — the River that 
+carries) at his chest, a satchel of sealing wax sticks and cord.
+
+Environment: cramped chapel interior — shelves of sealed medicine boxes, 
+votive candles, a ledger open to a page of seal impressions, river light 
+through one narrow window.
+
+Mood and light: warm honest candlelight as key (his warmth is earned — 
+household group of the series), cold daylight sliver from the window 
+falling exactly across the two seals in his hands — truth and forgery in 
+one beam.
+```
+
+### Тован Рід — клановий речник
+
+```
+Cinematic three-quarter character portrait, dark fantasy. Tovan Reed — a 
+human clan spokesman in his 50s, the immovable center of Sonk-Ferry's old 
+ferrymen families. He sits at the head of a scarred communal table in a 
+stilt-house meeting hall, hands flat on the wood, mid-negotiation: not 
+hostile, not friendly — weighing.
+
+Face: heavy, riverworn, deep-set wary eyes; a ferryman's grey beard 
+braided once at the chin in the old custom; the expression of a man whose 
+loyalty has exact, known coordinates — himself first, the network second, 
+you third — and who finds nothing shameful in that.
+
+Costume: a clan elder's layered river garb — heavy wool, an oiled cape 
+thrown over the chair behind him, a ferry-token medallion of dark wood 
+and tin on a leather cord (his office), strong boatman's hands with a 
+lifetime of rope calluses.
+
+Environment: communal stilt-hall — long table, hanging oar of the 
+founder on the wall, oil lamps, ledger books, rain on reed shutters, the 
+river glinting through floor gaps.
+
+Mood and light: dim warm oil-lamp key over the table, cold rain light at 
+the shutters; composition frontal and symmetrical like a tribunal — when 
+you talk to Tovan, you address an institution.
+```
+
+### Мара Денс — лікарка-самоучка
+
+```
+Cinematic three-quarter character portrait, dark fantasy. Mara Dens — a 
+human self-taught healer in her early 30s, in an overcrowded sickroom in 
+Sonk-Ferry at night, two days without sleep. She stands at a patient's 
+cot, holding a medicine vial up against a lantern, frowning: the cure is 
+not working, and she has just begun to suspect WHY — the medicine itself 
+is forged.
+
+Face: young but exhausted past her age, hair escaping a hasty knot, 
+sleeves rolled, knuckles raw from lye soap; intelligent furious eyes of 
+someone who taught herself from three books and a thousand mistakes and 
+will not lose another patient to someone's profit.
+
+Costume: a practical apron over patched wool, pockets stuffed with cloth 
+strips, herb bundles and a battered notebook of symptoms; no guild badge 
+— and the absence is the point.
+
+Environment: low sickroom — cots in rows, steam from a kettle, drying 
+herbs, a child's cot in soft focus behind her, rain against the window.
+
+Mood and light: warm lantern key on her face and the raised vial (earned 
+household warmth), cold blue night in the window; the vial's liquid 
+catching light — wrong, slightly cloudy. The frame is an accusation 
+waiting for an address.
+```
+
+### Брін Осс — логістичний брокер
+
+```
+Cinematic three-quarter character portrait, dark fantasy. Brin Oss — a 
+human logistics broker of indeterminate middle age, the quiet man who 
+knows every crate, route and debt in Sonk-Ferry. He sits in a cramped 
+dockside office between paper towers, lit by a single candle, pausing 
+mid-entry with his pen raised, looking at the viewer with mild, 
+salesman's patience: everything here is for sale, including this 
+conversation.
+
+Face: soft, forgettable, neat — the protective coloration of a man who 
+survives every regime change; small attentive eyes doing arithmetic on 
+the visitor's worth; a faint permanent half-smile that promises nothing.
+
+Costume: clean modest clerk's clothing one grade better than his 
+neighbors can afford, ink-guard sleeves, a key on a cord around his neck 
+to a strongbox visible in shadow behind him.
+
+Environment: paper-stuffed dock office — manifests, route maps with pins, 
+twine-bound ledgers, a scale for coin, one window painted over halfway 
+for privacy.
+
+Mood and light: single candle key glinting off the coin scale and his 
+eyes; deep shadow everywhere else. The dimmest portrait of the human 
+cast — Brin Oss lives in the half-light professionally.
+```
+
+### Квартирмейстер Восс — корумпований чиновник
+
+```
+Cinematic three-quarter character portrait, dark fantasy. Quartermaster 
+Voss — a human administration official in his 50s, keeper of Sonk-Ferry's 
+grain quotas and the leak through which the rationing system bleeds. He 
+stands in the ration office records room at dusk, caught in the doorway 
+with a ledger half-slid under his coat, composing his face into 
+indignation a half-second too late.
+
+Face: well-fed in a hungry town — and the frame must make that contrast 
+read; carefully groomed whiskers, sweat at the temple despite the cold, 
+eyes already rehearsing testimony: cooperative against everyone, 
+innocent only of himself.
+
+Costume: administration uniform coat with quartermaster's tabs, kept 
+finer than regulation — good buttons, fur trim no clerk could afford; a 
+ring of office keys at his belt; the hidden ledger's corner visibly 
+breaking the line of his coat.
+
+Environment: records room — quota boards with chalk numbers that do not 
+add up, sacks of requisition tags, a strongroom door ajar behind him, 
+grey institutional dusk through barred windows.
+
+Mood and light: cold grey institutional key (the Administration palette, 
+kin to Kelm's frame) with one warm guilty glint — a candle he forgot to 
+extinguish by the opened strongroom. Where Kelm's calm is the system 
+working, Voss's sweat is the system rotting.
+```
+
+### Нера Вейл — молода свідка (бонус)
+
+```
+Cinematic three-quarter character portrait, dark fantasy. Nera Veil — a 
+young human records clerk in her early 20s, the honest junior witness who 
+cannot lie — only tell the truth carefully. She sits on a bench outside 
+the tribunal room, waiting to testify: spine straight by force of will, 
+hands gripping a folder of records on her knees hard enough to crease it.
+
+Face: young, pale, freckled, jaw set in borrowed courage; eyes that keep 
+checking the door — she knows Kelm is on the other side and knows exactly 
+how unprepared she is.
+
+Costume: junior clerk's plain dress with an oversized borrowed 
+administration coat over the shoulders (someone's small kindness), ink 
+stains on her right cuff, a witness summons paper tucked into the folder.
+
+Environment: bare corridor bench outside the ration office tribunal — 
+peeling official notices on the wall, one high window of grey morning 
+light, the shadow of two guards' boots under the door.
+
+Mood and light: pale grey morning key from the high window, institutional 
+and merciless; the warmest thing in frame is the borrowed coat. The most 
+vulnerable portrait of the series — courage at its smallest, truest 
+scale.
+```

@@ -1383,3 +1383,105 @@ against authority's indifference), cold blue gap-light from the harbor
 between buildings; the most human-warm frame in Valkorn despite the 
 poverty — or because of it. The threat is structural, not atmospheric.
 ```
+
+---
+
+## ДОПОВНЕННЯ 6: Бестіарій еп3 (ep3-02, ep3-03)
+
+> До кожного промпта додається STYLE BLOCK. Правило бестіарію діє: усі «діти Моура» мають жовто-зелені очі з вертикальною зіницею — КРІМ Тварюк Твані, які канонічно сліпі: їхній виняток і є їхнім жахом.
+
+### Тварюка Твані (Mud-crawler) — сліпий хижак Шаленої Річки
+
+```
+Dark fantasy creature design, cinematic shot. A MUD-CRAWLER — a blind 
+river predator of the raging black artery of the bog, caught mid-attack 
+hauling itself onto a chain-ferry's deck. Body: a long, low, eyeless 
+horror between a giant lamprey and a skinned otter — slick mud-grey 
+hide sheeted in mucus, powerful undulating trunk, short hooked limbs 
+made for gripping chain links and gunwales.
+
+The head is the design's core: it has NO EYES AT ALL — where eyes 
+should be, the skull erupts in clusters of BONE GROWTHS, pale antler-
+like nodules and plates that it "sees" with: vibration, resonance, 
+metal-song. The growths are oriented toward the viewer like a satellite 
+array — it is listening at you. Below them, a circular lamprey maw of 
+concentric teeth, open, locked around a ferry chain mid-bite, iron 
+groaning.
+
+Context details: the great rusted ferry chain in its jaws, black river 
+water exploding around its trunk, two more sets of bone-crowned heads 
+breaching the rapids behind it — they hunt the sound in packs. A faint 
+silver shimmer on the water at frame edge (the resonance that called 
+them).
+
+Mood and light: storm-grey key, wet highlights on mucus and bone, the 
+silver shimmer as accent. Pure function-horror: a creature evolved by a 
+river that wants nothing crossing it.
+```
+
+### Очеретяний Блукач — аватар Моура
+
+```
+Dark fantasy creature design, cinematic shot. A REED WALKER — an avatar 
+of the sleeping bog-consciousness: not born, ASSEMBLED. A gaunt humanoid 
+figure two heads taller than a man, standing half-emerged from a reed 
+wall at night, caught between architecture and anatomy.
+
+Construction: a body woven of living reeds, peat, root-fiber and bog-
+water — reed stalks bundle into limbs the way muscle fibers bundle, 
+black peat packs the joints, thin roots stitch it all together and KEEP 
+GROWING as it stands; water seeps steadily from its seams, it never 
+stops dripping. The silhouette is wrong in the quiet way: too tall, 
+arms a fraction too long, perfectly still in wind that moves every reed 
+around it — or moving when nothing else does.
+
+The face: no face — a loose vertical sheaf of reed-ends where a face 
+should be, parted slightly around two dim YELLOW-GREEN points set deep 
+inside the head's hollow, vertical-pupiled like all the bog's children, 
+calm and unhurried: it does not hunt, it ATTENDS. The bog walking over 
+to look at something.
+
+Context: night reeds at the drowned monastery's flooded courtyard, fog 
+at the knees, black water mirroring its silhouette — and the reflection 
+stands a half-step differently than the figure.
+
+Mood and light: near-monochrome night, peat black and bog green; its 
+two eye-points and a distant cold lantern as only lights. Dread through 
+patience, not aggression: violence is its last resort, presence its 
+first.
+```
+
+### Вівтар Стагнації і Друга Печатка — об'єкт-сцена (ep3-03)
+
+```
+Dark fantasy environment concept art, cinematic shot. THE ALTAR OF 
+STAGNATION in the half-drowned crypt of the Keykeepers' monastery — and 
+upon it, THE SECOND SEAL. A circular sunken chamber, knee-deep black 
+water absolutely still, a low stone altar-island at the center.
+
+The Second Seal is the anti-thesis of the First: where the First Seal 
+was a clean silver cylinder, this is a MASSIVE TWISTED MASS of numb 
+bog-bronze — a boulder-sized knot of dark green-brown metal that looks 
+less forged than GROWN, its surface rippled like cooled mud, wrapped 
+and partially swallowed by the thick PETRIFIED ROOTS of an ancient 
+willow that grew around it over centuries and turned to stone holding 
+it. It does NOT glow. It does not pulse. Its entire presence is 
+absence: around the altar, the air is visibly dead — no fog moves there, 
+no ripple crosses the water's edge near it, a perfect circle of 
+absolute stillness inside the chamber's gloom.
+
+Details: the petrified willow's stone branches rise from the altar like 
+a frozen explosion; hairline cracks in the bronze weep slow beads of 
+black water; old Keykeeper rune-courses on the chamber walls stop 
+abruptly a meter from the altar — even the script refused to come 
+closer.
+
+Optional scale: at the chamber's edge, two small figures — the woman 
+with her faint amber cylinder and the warden with his pale lantern — 
+and both their lights visibly DIM as they face the altar.
+
+Mood and light: the darkest environment of the series after the 
+Zhertovnyk — peat black, dead bronze green; the visitors' lights as 
+failing keys. The frame's subject is negation: a thing built not to 
+shine, but to stop.
+```

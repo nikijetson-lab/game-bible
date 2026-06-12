@@ -1081,3 +1081,114 @@ sparse keys, their doubled wrong reflections as the storytelling accent;
 volumetric fog, water like black glass. A place where architecture, 
 faith and bog have reached an agreement the viewer is not party to.
 ```
+
+### Затоплена Обитель Ключників — екстер'єр (ворота)
+
+```
+Dark fantasy environment concept art, cinematic wide establishing shot. 
+THE DROWNED ABBEY OF THE KEYKEEPERS — a massive ancient monastery sunk to 
+half its height in the black water of the deep bog, revealed through 
+parting fog at dusk. It was built not as a fortress and not as a prison, 
+but as a BEDCHAMBER: architecture of guardianship, made so something 
+immense could sleep within bounds forever — and the design must whisper 
+that purpose.
+
+Architecture: heavy pre-gothic stone — cyclopean foundation blocks, a 
+great drum-shaped central sanctum with a low dome like a closed eyelid, 
+flanking wings collapsing gently into the water, narrow windows sealed 
+with stone long ago. THE GATES dominate the frame: monumental double 
+doors of black bog-oak bound in tarnished bronze, carved edge to edge 
+with concentric rings of runes; across the seam of the doors lies a 
+GREAT BLOOD-SEAL — an interlocking bronze mechanism shaped like a closed 
+flower, its grooves stained dark by a thousand years of Keykeeper 
+openings. A few runes nearest the seal glow faint warm AMBER — the only 
+warm light in the image, answering blood that approached recently.
+
+Environment: mirror-black water to the gate's lower third, a 
+half-submerged stone causeway of cracked slabs leading to it, 
+thousand-year moss sheeting the walls, ancient waterline stains marking 
+centuries of the bog's slow embrace, dead trees and reeds at the frame 
+edges, layered fog burying the wings.
+
+Optional scale: two tiny figures on the causeway — a woman with a faint 
+amber-glowing bronze cylinder, and a warden whose cold white lantern is 
+the only other light.
+
+Mood and light: bruised grey-green dusk, volumetric fog, the amber seal-
+glow and cold white lantern point as the only accents on near-monochrome 
+stone and water. The frame must feel RECEPTIVE rather than hostile — not 
+a fortress refusing entry, but a bedroom door asking for quiet.
+```
+
+### Затоплена Обитель Ключників — інтер'єр (затоплений неф)
+
+```
+Dark fantasy environment concept art, cinematic interior wide shot. 
+INSIDE THE DROWNED ABBEY — the flooded great nave of the Keykeepers, lit 
+only by what the visitors carry. Knee-deep black water floods the entire 
+floor, perfectly still, mirroring the vaults so precisely that the room 
+reads as DOUBLED — a nave above, a nave below, and the waterline like a 
+seam between two worlds.
+
+Architecture: a long processional nave of massive columns marching into 
+darkness, half their height in water; rune-carved stone courses circling 
+each column like script on a scroll; stone walkway islands and a raised 
+central path just breaking the surface; side chapels sealed by smaller 
+BLOOD-SEAL doors — bronze flower-mechanisms set into stone, each with 
+runes that wake to faint amber as blood passes near. High above, the 
+closed-eyelid dome with a single narrow oculus admitting one thin blade 
+of grey dusk light that falls onto the water mid-nave.
+
+Details of long sleep: stalactites of mineral drip from the vaults; 
+mussels and pale bog-coral crusting the column bases below the old 
+waterlines; a fallen bronze candelabrum fused to the floor by centuries 
+of lime; NO bones, NO wreckage of battle — the abbey was never stormed, 
+only slowly embraced; everything is orderly, patient, asleep. Far at the 
+nave's end, the corridor to the inner sanctum descends INTO the water — 
+the path itself goes under, and the dark there is darker.
+
+Optional scale: the woman with the amber cylinder raised, mid-rite at a 
+side seal, and the warden's cold white lantern doubling in the mirror 
+floor.
+
+Mood and light: near-darkness — the thin grey oculus blade, the amber 
+rune-wake of the seals, the cold white lantern and their doubled 
+reflections as the entire lighting scheme. Absolute interior silence as 
+texture: the visitors are the loudest thing this building has heard in a 
+thousand years.
+```
+
+### Жертовник — серце Обителі
+
+```
+Dark fantasy environment concept art, cinematic shot, the heart of the 
+drowned abbey. THE ALTAR CHAMBER (Zhertovnyk) — the innermost sanctum 
+where the abbey's true purpose sleeps. A circular stone chamber beneath 
+the dome's center, reached from dark water: a raised ring-platform of 
+fitted slabs around a central pool of absolutely black, absolutely still 
+water — and the pool is the altar. The Keykeepers built no idol: the 
+sleeping bog itself is the object of guardianship.
+
+Details: the ring-platform's inner edge is carved with a single 
+continuous rune-line spiraling inward, the oldest script in the abbey, 
+worn shallow by a thousand years of circling feet; four bronze 
+blood-seal pylons stand at the cardinal points, their flower-mechanisms 
+open — the only opened seals in the abbey — holding the boundary of the 
+sleep; thin roots, pale and clean, have grown UP through the platform 
+joints from below and lie across the stone toward the pool like 
+sleeping hands. Above, the dome's underside is carved as a star map of 
+no known sky. The water of the central pool does not reflect the dome — 
+it shows only depth, and far down in that depth, two dim yellow-green 
+points like eyes that are not currently looking.
+
+Optional scale: at the platform edge, the warden stands before the pool, 
+cold white lantern lowered — and on the black water before him, three 
+faint marks of old ritual wax where a thousand verdicts were spoken: 
+iron, reed, and balance.
+
+Mood and light: the deepest darkness of the series — peat black with 
+deep green undertones; the cold white lantern as sole honest key, faint 
+amber breath from the four pylons, the two distant green points in the 
+depth as the storytelling accent. Not a throne room, not a tomb: a 
+bedside. The viewer should lower their voice.
+```

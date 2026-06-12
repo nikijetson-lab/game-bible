@@ -774,3 +774,310 @@ and merciless; the warmest thing in frame is the borrowed coat. The most
 vulnerable portrait of the series — courage at its smallest, truest 
 scale.
 ```
+
+---
+
+## ДОПОВНЕННЯ 4: Грейфорд і Свята Вей (ep1-01, ep1-04, ep1-08)
+
+> До кожного промпта додається STYLE BLOCK з початку файла, без змін.
+
+### Різьбяр з кварталу ремісників
+
+```
+Cinematic three-quarter character portrait, dark fantasy. A wood-carver 
+of Greyford's artisan quarter — a human craftsman in his 50s at his 
+workbench by the window, holding up an unfinished piece of twisted bog-
+willow root, turning it in the grey light. He is mid-recollection: this 
+is the same strange heavy root the missing cartographer carried past his 
+window two days before vanishing.
+
+Face: a craftsman's calm absorbed in material — squinting one eye along 
+the grain; wood dust in his beard and eyebrows; the careful memory of a 
+man who notices weight, texture and wrongness in objects the way others 
+notice faces.
+
+Costume: leather carving apron full of gouges and chisels, sleeve-guards, 
+shavings clinging to wool; strong precise hands nicked by decades of 
+blades, one thumbnail permanently black.
+
+Environment: a cramped carver's workshop — racks of chisels, hanging 
+templates, finished bowls and grave-markers (frontier carvers make both), 
+curled shavings on every surface, a small window onto the wet street.
+
+Mood and light: soft grey window key raking across the twisted root and 
+his hands — the object is the second character of the frame; warm shaving-
+stove glow deep in the background. Household warmth group.
+```
+
+### Кушнір — той, хто знає всіх
+
+```
+Cinematic three-quarter character portrait, dark fantasy. The furrier of 
+Greyford's artisan quarter — a stout human tradesman in his 60s, standing 
+in his shop doorway under hanging pelts, arms folded on his chest, already 
+talking: the quarter's living newspaper, who saw the missing man, knows 
+who else saw him, and will tell you both in one breath.
+
+Face: round, ruddy from indoor stove heat, shrewd good-humored eyes that 
+have catalogued every face that passed this street for thirty years; the 
+half-open mouth of a man perpetually mid-sentence.
+
+Costume: a furrier's leather apron over good wool (his own product on his 
+collar — modest advertising), fingers stained amber by tanning oils, a 
+measuring cord around his neck like a badge of office.
+
+Environment: shop doorway framed by hanging cured pelts and stretched 
+hides, racks inside fading into warm lamplit depth, the wet cobbled 
+artisan street with fog at both ends reflected in his window.
+
+Mood and light: warm shop lamplight spilling past him into cold street 
+grey — he stands exactly on the boundary, half merchant half informant. 
+The friendliest frame in Greyford, and the most talkative.
+```
+
+### Бармен портової таверни
+
+```
+Cinematic three-quarter character portrait, dark fantasy. The barman of 
+Greyford's port tavern — a human man in his 40s, lean and unhurried, 
+polishing a tin mug behind a counter scarred by decades of knives and 
+coins. He looks at the viewer sideways, deciding how much a memory is 
+worth: he remembers the missing cartographer, and the woman he sat with, 
+and he names no names for free.
+
+Face: narrow, sallow from night work, a docker's broken nose set crooked, 
+heavy-lidded eyes that miss nothing and promise less; a toothpick or reed 
+stem at the corner of his mouth.
+
+Costume: rolled shirtsleeves, a stained bar apron, a heavy ring of cellar 
+keys, forearms tattooed with faded river-route marks — he poured drinks 
+on barges before he poured them on land.
+
+Environment: low port tavern at slack hour — empty stools, hanging net 
+and floats as decoration, a shuttered window slit of grey harbor light, 
+bottles glinting in shadow, one patron asleep face-down in soft focus.
+
+Mood and light: dim warm counter-lamp key from below his face (barman's 
+light — interrogation in reverse), cold harbor slit-light behind. The 
+frame should feel like the start of a paid conversation.
+```
+
+### Куртизанка — остання співрозмовниця Руфіна
+
+```
+Cinematic three-quarter character portrait, dark fantasy. A courtesan of 
+Greyford's port quarter — a human woman in her 30s, sitting alone at a 
+corner table of the tavern in the dead hour of the afternoon, half-turned 
+to the window, a cooling cup before her. She was the last person in the 
+city the missing cartographer truly talked to — and what he told her that 
+night still sits behind her eyes.
+
+Face: striking but tired beneath practiced composure; intelligent 
+guarded eyes; the faint frown of someone deciding whether a secret 
+protects her or endangers her. She is not decoration — she is a witness 
+who happens to be beautiful, and the frame must respect that.
+
+Costume: a good dress gone soft with wear, a shawl of once-fine Valkorn 
+weave pulled close against the damp, small tin-and-glass jewelry, a coin 
+purse on a wrist cord — everything one rank above the port and one rank 
+below her ambitions.
+
+Environment: tavern corner by a rain-streaked window, grey harbor light, 
+the room's warm lamps far behind her — she sits where the cold and warm 
+light meet.
+
+Mood and light: cold window key modeling her profile, warm tavern fill 
+barely reaching her shoulder; composition with empty chair opposite — the 
+absence of the man who sat there is the subject of the portrait.
+```
+
+### Сержант воріт
+
+```
+Cinematic three-quarter character portrait, dark fantasy. The gate 
+sergeant of Greyford — a human soldier-clerk in his 40s, standing at his 
+lectern in the stone gatehouse archway, the great ledger of departures 
+open under his hand, one finger holding a line: the missing man's name, 
+the date, the direction — into the bog.
+
+Face: a garrison face — disciplined, beef-fed, unimaginative and proud of 
+it; trimmed regulation whiskers; the steady eyes of a man whose whole 
+authority is a book and who guards it like a fortress.
+
+Costume: administration watch uniform — boiled leather and grey wool 
+with iron studs, a gate-key baldric, ink-guard on his writing cuff, a 
+short official mace more symbol than weapon at his hip.
+
+Environment: the gatehouse arch — massive iron-banded gates half-open 
+behind him onto the fog of the moor road, torch brackets, a rack of 
+tally-sticks, rain dripping off the arch lip in a beaded curtain.
+
+Mood and light: cold daylight from the open arch as key, torch warmth on 
+the stone behind; the ledger page the brightest surface in frame. He is 
+the exact line where the city's records end and the bog's silence begins.
+```
+
+### Стара Селла з Мірефолда
+
+```
+Cinematic three-quarter character portrait, dark fantasy. Old Sella of 
+Mirefold — a human village elder in her 70s, the woman who saved twelve 
+lives with a rite she should not have known. She kneels at the edge of a 
+flooded burial field at dusk, arranging reed bundles and tallow candles 
+in a pattern older than the chapel behind her, hands moving with the 
+certainty of inherited memory.
+
+Face: ancient, seamed like dried marsh clay, calm beyond argument; pale 
+eyes lifted to the viewer mid-rite — neither guilt nor defiance, only 
+the patience of someone who chose twelve living people over one rule.
+
+Costume: layered village black and bog-grey wool, a knotted mourning 
+shawl, a cord at her waist hung with small carved tokens — one for each 
+of the twelve she saved; mud to the knees and not caring.
+
+Environment: drowned burial field — leaning grave markers in black water, 
+reed bundles, candle flames reflected doubled in the still surface, the 
+tilted silhouette of the sunken chapel in fog behind.
+
+Mood and light: candle-flames as scattered warm keys across the dark 
+water, cold deep-dusk ambient; her face lit from below by the rite she 
+is not supposed to know. The frame should feel older than the religion 
+watching it.
+```
+
+### Матір Ісра Вейн — старша настоятелька
+
+```
+Cinematic three-quarter character portrait, dark fantasy. Mother Isra 
+Veyn — the senior abbess of the Holy Wey in her 60s, standing in the 
+order's archive crypt between two choices: one hand resting on a shelf 
+of burial records, the other holding a lit candle a breath too close to 
+them. Destroy the archive or weaponize it — her face is the exact midpoint 
+of that decision.
+
+Face: severe, intelligent, institutionally composed; the controlled eyes 
+of a woman who has buried more secrets than people and ranks the order's 
+survival above any single truth — including her own conscience.
+
+Costume: the Wey's senior habit — undyed wool with a deep grey mantle, a 
+white-silver pendant of the River heavier and older than Karos's, an 
+abbess's ring of office, keys of the crypt at her cincture.
+
+Environment: low stone archive crypt — racks of bound burial registers, 
+wax-sealed scroll tubes, a reading stand, water seeping in a dark line 
+along the floor mortar (the bog is already in the room).
+
+Mood and light: single candle key — deliberately ambiguous whether it is 
+reading light or arson; cold crypt darkness around. Where Karos's candle 
+was honest, hers is a question.
+```
+
+### Скел Ганіс — дренажний робітник
+
+```
+Cinematic three-quarter character portrait, dark fantasy. Skel Ganis — a 
+human drainage worker in his late 20s, broad-shouldered and hollowed by 
+grief, sitting on an overturned sluice-gate at the edge of the dead-water 
+channels at dusk. In his hands: a clumsy, half-correct copy of reed 
+bundles and candle stubs — he watched Old Sella's rite once, and tried to 
+repeat it for his drowned brother. It answered.
+
+Face: young, mud-streaked, exhausted; red-rimmed eyes that have not 
+slept since something in the water turned its attention toward him; the 
+guilt of a man who broke a rule out of love and cannot take it back.
+
+Costume: heavy waxed drainage-crew gear — waders folded down, rope 
+harness, a worker's tally-disc on a thong; his brother's knit cap 
+clutched in one fist with the reed bundle.
+
+Environment: the dead-water channels — geometric drainage cuts of black 
+motionless water, sluice timbers, fog lying in the channels like breath; 
+far down one channel, the water is FLAT in a way the others are not.
+
+Mood and light: failing grey-green dusk, one guttering candle stub beside 
+him; the unnaturally flat channel behind him drawing the eye. Grief 
+caught between confession and the thing it summoned.
+```
+
+### Диякон Рейн — правий з неправильних причин
+
+```
+Cinematic three-quarter character portrait, dark fantasy. Deacon Reyn — a 
+young human cleric of the Holy Wey, late 20s, standing ramrod-straight in 
+the chapel nave with a written denunciation in his raised hand, three 
+days of ultimatum burning in his face. Zealous, disciplined, incorruptible 
+— and aiming all of it at the wrong target with perfect sincerity.
+
+Face: young, sharp, scrubbed clean as doctrine; burning certain eyes 
+without an ounce of cruelty in them — that is the tragedy; the jaw of a 
+man who would denounce himself with equal rigor if the rules required it.
+
+Costume: a junior deacon's immaculate habit, cinched precisely, the Wey 
+pendant in plain tin (he refused silver as vanity), a document satchel 
+square on his hip, ink-stained right hand — he writes everything down.
+
+Environment: the tilted nave of the half-flooded chapel — water across 
+the far floor, candle racks burning in disciplined rows HE maintains, 
+leaning stone columns, the dark waterline creeping up the walls behind 
+his order.
+
+Mood and light: hard candle key in even rows (zeal as lighting scheme — 
+nothing flickers on his watch), cold dark water behind. Composition 
+vertical and rigid as the man. Right with the wrong reasons: the frame 
+must be admirable AND alarming.
+```
+
+### Присутність — те, що відповідає (НЕ монстр)
+
+```
+Dark fantasy, cinematic wide shot, metaphysical horror without a monster. 
+THE PRESENCE of the drowned chapel — not a creature: an ancient bog 
+mechanism's ATTENTION, summoned by an unfinished rite, manifesting in the 
+dead-water channels at night. The image must contain NO body, NO face, 
+NO eyes — only evidence of attention:
+
+the black water of one burial channel stands PERFECTLY flat while wind 
+moves every reed around it; hanging chapel lamps on their chains lean 
+all to one side as if the air itself were listening in one direction; 
+candle flames burn steady but their REFLECTIONS in the water flicker; a 
+ring of faint green wisp-lights hangs over the channel in too regular a 
+circle to be natural; in the foreground, an interrupted rite — reed 
+bundles and candle stubs — with all the reed tips bent toward the water 
+like compass needles.
+
+Environment: drowned burial channels and the tilted chapel silhouette in 
+fog, night, absolute stillness as a physical pressure.
+
+Mood and light: near-monochrome night in peat black and deep green; 
+candle points and the wisp-ring as the only lights; every reflection in 
+the frame subtly WRONG — doubled, delayed or misaligned. The horror is 
+grammatical: the landscape has become a sentence addressed at the viewer. 
+Not malice. Attention.
+```
+
+### Затоплена Каплиця — локація
+
+```
+Dark fantasy environment concept art, cinematic wide establishing shot. 
+THE DROWNED CHAPEL of the Holy Wey at night — a small stone chapel sunk 
+to its windows in black bog water, leaning several degrees off true, 
+fog closing the world fifty meters out.
+
+Architecture: rough frontier gothic — a single nave, a squat bell-cote 
+with the bell removed (rope still hanging), burial niches carved directly 
+into the exposed foundation stones above the waterline, generations of 
+reed offerings tucked into them. Oil lamps on rusted chains hang from the 
+eaves and gantry posts leading across the water on a half-submerged 
+walkway of planks and stone blocks.
+
+The wrongness, stated in canon: the hanging lamps SWAY GENTLY IN A WIND 
+THAT DOES NOT EXIST — every reed and fog-bank dead still; and the 
+REFLECTION IN THE WATER DOES NOT MATCH what stands above it — the 
+reflected chapel is subtly more intact, its reflected lamps hang still, 
+and one reflected window glows that is dark above.
+
+Mood and light: night, peat black and bog green, the chain-lamps as warm 
+sparse keys, their doubled wrong reflections as the storytelling accent; 
+volumetric fog, water like black glass. A place where architecture, 
+faith and bog have reached an agreement the viewer is not party to.
+```

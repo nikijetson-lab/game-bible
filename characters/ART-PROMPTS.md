@@ -1192,3 +1192,194 @@ amber breath from the four pylons, the two distant green points in the
 depth as the storytelling accent. Not a throne room, not a tomb: a 
 bedside. The viewer should lower their voice.
 ```
+
+---
+
+## ДОПОВНЕННЯ 5: Другий епізод — Валькорн (ep2-01 — ep2-05)
+
+> До кожного промпта додається STYLE BLOCK з початку файла, без змін.
+> Всі раніше описані персонажі еп2 (Тесса, Одрін, Брес, Стетсон, Лоен, Дамар, Ілія, Фіпп/Марр) вже мають промпти в попередніх доповненнях. Тут — нові локації і ключові сцени, яких ще не було.
+
+---
+
+### Блазень Фіпп на помості — перша поява (ep2-01)
+
+```
+Cinematic wide shot, dark fantasy. THE FIRST APPEARANCE OF THE JESTER — 
+a public square performance at the lower palace gates of Valkorn at 
+midday. A crowd of citizens laughs and throws rotten apples at a short 
+figure on a wooden stage platform.
+
+The jester: Phipp in full performing mode — the costume even MORE 
+outrageous than his private wardrobe, every diamond of motley brilliant 
+against the grey city stone, bells chiming, fool's scepter spinning. 
+Face under heavy ceremonial clown paint — white and grey chalk, an 
+enormous red grin that is NOT his own. He is performing a pratfall with 
+total professional mastery, arms windmilling, bells screaming. The crowd 
+adores this.
+
+The wrongness — visible only to one viewer: from the elevated position 
+of the stage, over the heads of the crowd, his EYES are tracking someone 
+specific at the square's far edge. Not the pratfall, not the apples — 
+two calm, steady, intelligent eyes doing reconnaissance inside a comedy 
+routine.
+
+Environment: Valkorn's lower palace square — grey cobblestones, iron-
+banded palace gates rising behind the stage, market stalls at the edges, 
+fog on the spires above. Cold, public, loud.
+
+Figures: in the far edge of the frame, barely visible through the crowd, 
+two silhouettes — a warden's cloak and lantern, and a woman's dark coat. 
+The jester looks exactly at them.
+
+Mood and light: flat grey city daylight — the one deliberately 
+undramatic frame in Valkorn, because the threat hides in plainness; the 
+jester's vivid costume is the only saturated element. The comedy is the 
+camouflage.
+```
+
+### Чорний Архів під бібліотекою — локація
+
+```
+Dark fantasy environment concept art, cinematic wide shot. THE BLACK 
+ARCHIVE beneath the royal library of Valkorn — a secret sub-basement 
+accessible only by a concealed stair behind a bookcase. Not a dungeon: 
+a meticulous private study of a man who has worked here for twenty years.
+
+Architecture: a low vaulted stone cellar, dry and warm — heated by 
+residual warmth from the library above; shelves of black lacquered boxes 
+with silver seal-labels, rolled maps pinned to stone walls, a wide stone 
+table as a desk. On the table: order documents and a CYLINDRICAL 
+ARTIFACT the size of a fist — white silver and bog-iron alloy, covered 
+in ancient rune engraving, PULSING WITH A SLOW CLEAN SILVER LIGHT that 
+for a few seconds fills the entire archive with cold clarity. No clutter, 
+no cobwebs — someone curates this space with the care of obsession.
+
+The wrongness hiding in order: on one shelf, a folded JESTER'S MOTLEY 
+costume; beside it, a cracked quartz lantern, old-fashioned, unlit — a 
+dead man's lantern. The tools of two lives, side by side.
+
+Mood and light: the silver pulse of the artifact as the key light — 
+clean, cold, absolute during its brief flare, then fading to the warm 
+amber of a single candle on the desk. The archival dark wins. Intimate, 
+methodical, and very, very patient.
+```
+
+### Конфронтація — Себастьян Марр скидає маску
+
+```
+Cinematic three-quarter portrait, dark fantasy. SEBASTIAN MARR without 
+the jester's costume — the true face beneath two decades of camouflage. 
+He sits at the stone desk of the Black Archive, the cylindrical First 
+Seal artifact before him pulsing with soft silver light. He has just 
+spoken — calmly, deeply, with a voice from which the jester's squeak 
+has vanished without a trace.
+
+Face: a man in his 60s, worn but unbowed; old grief held in careful 
+check; eyes of exceptional intelligence that have been watching from 
+behind paint for twenty years — the composure of someone who has 
+rehearsed this conversation in his head for decades. Half the stage 
+make-up remains, smeared at the edges: the white chalk of the clown 
+ghosting the statesman beneath. The contrast must read as the portrait's 
+core: two men, one face.
+
+Costume: the jester's diamonds and motley are gone — he sits in plain 
+dark clothing, a long coat with a HIGH COLLAR concealing the mark at his 
+throat; on his left hand, barely visible, a ring with a sigil of two 
+crossed daggers holding a circle with a drop at its center. The silver 
+bells of his jester-cap sit on the desk beside the artifact — removed, 
+laid down, like a decision made.
+
+Mood and light: the artifact's silver pulse as key — clean cold light on 
+his hands and the half-erased paint; warm candle fill. The silver light 
+creates the effect of the mask being literally illuminated off: the 
+colder the light, the more the real face emerges from the paint.
+```
+
+### Ілія Марр — момент впізнавання (ep2-05)
+
+```
+Cinematic close-up portrait, dark fantasy. ILIYA MARR one second after 
+recognizing her uncle — the exact frame of "Дядьку... Себастьяне?" A 
+professional Warden's composure shattering at its foundations.
+
+Face: her hand is at her sword hilt — fingers NOT drawing, just gripping, 
+needing something solid; jaw locked against the voice breaking; eyes 
+filling without spilling — the face of someone using every muscle to hold 
+a response that is tearing through the restraint. She is simultaneously 
+the trained officer who should arrest him, and the ten-year-old who got 
+her first quartz crystal from this man and was told that a Warden never 
+betrays those left in the dark.
+
+Behind her, soft out of focus: the silver pulse of the First Seal on 
+the desk, and the silhouette of the older man looking at her with deep 
+sadness and no surprise.
+
+Costume: the same Warden's garb as her main portrait, but one detail now 
+wrong — her quartz lantern is slightly lowered, no longer held with duty-
+straight arm. Small. Telling.
+
+Mood and light: the silver light of the artifact as key — cold, 
+clarifying, relentless. No shadows to hide in. The frame should hold the 
+exact weight of the line: *«Ти навчив мене першому кодексу... ти сказав, 
+що Вартовий ніколи не зраджує тих, хто залишився в темряві.»*
+```
+
+### Ринковий квартал Валькорна — локація (Тесса, Дамар, орієнтація)
+
+```
+Dark fantasy environment concept art, cinematic wide shot. VALKORN'S 
+MARKET QUARTER at dusk — the city as a frontier person experiences it 
+arriving from the bog: overwhelming after the swamp's silence. A dense 
+commercial street of tall narrow stone houses, shop signs hanging over 
+wet cobblestones, stall awnings being folded for evening, oil lamps 
+being lit in windows and on iron post-mounts.
+
+Scale and contrast: the buildings are four storeys — TALL after 
+Greyford's one-storey frontier timber. The fog that in the bog was an 
+enemy is here a nuisance, rolling in from the harbor between the 
+building gaps and thinning against the lamp-glow. The sea-smell under 
+everything: salt and tar, not organic bog.
+
+Details of commerce: a furrier's sign, a counting-house with barred 
+windows, a trading guild's bronze plaque, a cloth merchant's hanging 
+bales in a dozen colors muted by the evening light. At one corner, the 
+lamp above a tea-shop counter — Tessa's, implied but not shown.
+
+Optional scale: two small figures — a warden and a woman companion — 
+standing in the near-ground taking in the city, backs to viewer. Small 
+against the tall buildings. Arrived.
+
+Mood and light: evening city warmth — multiple oil lamps and window 
+lights as warm accent sources against cold grey fog and blue dusk; the 
+first frame of the series where human-made warmth actually wins against 
+the dark — Valkorn is not the bog, and the frame should say so. The 
+threat here is invisible: politics, not fog.
+```
+
+### Портовий квартал — нове гетто (Брес, орієнтація)
+
+```
+Dark fantasy environment concept art, cinematic shot. THE NEW GHETTO of 
+Valkorn's port quarter — where Sonk-Ferry refugees and frontier migrants 
+ended up when the city walls failed to keep the bog's influence out. A 
+neighbourhood that knows it is temporary and has been temporary for ten 
+years.
+
+Architecture: the city's original stone framework taken over by makeshift 
+additions — lean-to structures of salvaged timber filling the spaces 
+between old buildings, rope-and-plank bridges between second floors, 
+laundry and fishing nets on the same line. The bog-frontier aesthetic 
+creeping into the city: dried reed bundles hanging over a doorway for 
+luck, a hand-carved Muri protective mark on a gatepost (far from home), 
+mud rather than paving stones in the narrower alleys.
+
+Evening: braziers lit at corners where city lamp-posts don't reach, 
+groups of people eating outside, children running on the plank bridges. 
+Alive, crowded, and acutely aware of who it is and is not.
+
+Mood and light: warm brazier-and-window light (people making warmth 
+against authority's indifference), cold blue gap-light from the harbor 
+between buildings; the most human-warm frame in Valkorn despite the 
+poverty — or because of it. The threat is structural, not atmospheric.
+```

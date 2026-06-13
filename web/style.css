@@ -190,6 +190,23 @@ main {
     height: 75vh;
 }
 
+@media (max-width: 700px) {
+    .bible-container {
+        grid-template-columns: 1fr;
+        height: auto;
+        gap: 1rem;
+    }
+
+    .bible-sidebar {
+        max-height: 50vh;
+    }
+
+    .bible-viewer {
+        min-height: 60vh;
+        padding: 1.2rem;
+    }
+}
+
 /* Сайдбар */
 .bible-sidebar {
     background: var(--bg-panel);
@@ -235,6 +252,10 @@ main {
     font-weight: 600;
     font-size: 0.9rem;
     transition: all var(--transition-speed);
+    white-space: normal;
+    word-break: break-word;
+    line-height: 1.4;
+    width: 100%;
 }
 
 .cat-btn:hover {

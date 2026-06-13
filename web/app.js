@@ -1041,34 +1041,38 @@ function goScene(sceneKey) {
 
     // --- МАППІНГ: сцена → зображення персонажа/істоти ---
     const CHARACTER_IMAGES = {
-        // Еп1 — Грейфорд
+        // ЕП1 — ГРЕЙФОРД
         'arriving':                  'assets/images/ervan.jpg',
         'greyford_room_hub':         'assets/images/rufin.jpg',
-        // Еп1 — Сонк-Феррі
-        'quest_verdict_kelm':        'assets/images/kelm.jpg',
-        'holod_investigate':         'assets/images/karos.jpg',
-        'quest_ferry':               'assets/images/tovan-rid.jpg',
-        'hazemoor_ep5':              'assets/images/gara-pike.jpg',
-        // Еп1 — Тихий Шелест
-        'tykhy_arrive':              'assets/images/varrik.jpg',
-        'tykhy_kaen':                'assets/images/kaen.jpg',
-        // Еп1 — Хейзмур
+        // ЕП1 — ШЛЯХ КРІЗЬ БОЛОТО
         'hazemoor_ep1':              'assets/images/reed-crawler.jpg',
         'hazemoor_ep2':              'assets/images/bloodsucker-swarm.jpg',
         'hazemoor_ep3':              'assets/images/drowned-corpse.jpg',
         'hazemoor_ep4':              'assets/images/murk-bog-creeper.jpg',
-        'thread_witch':              'assets/images/mour-glade.jpg',
-        // Еп2 — Валькорн
-        'valckorn_entry_ghetto':     'assets/images/bres.jpg',
+        // ЕП1 — ТИХИЙ ШЕЛЕСТ
+        'tykhy_arrive':              'assets/images/sirra.jpg',
+        'tykhy_rufin':               'assets/images/varrik.jpg',
+        'tykhy_kaen':                'assets/images/kaen.jpg',
+        'tykhy_mia':                 'assets/images/mia-mother.jpg',
+        // ЕП1 — ГАЛЯВИНА МОУРА
+        'glade_mour':                'assets/images/mour.jpg',
+        // ЕП1 — СОНК-ФЕРРІ
+        'popil_pid_kaplytseyu':      'assets/images/karos.jpg',
+        'quest_ferry':               'assets/images/tovan-rid.jpg',
+        'sil_u_knyzi':               'assets/images/gara-pike.jpg',
+        'quest_verdict_kelm':        'assets/images/kelm.jpg',
+        'nizh_kvoty':                'assets/images/iliya.jpg',
+        // ЕП2 — ВАЛЬКОРН
         'valckorn_slums_district':   'assets/images/bres.jpg',
+        'valckorn_entry_ghetto':     'assets/images/bres.jpg',
+        'valckorn_palace_district':  'assets/images/stetson.jpg',
         'valckorn_02_odrin':         'assets/images/odrin.jpg',
-        'valckorn_02_tessa':         'assets/images/tessa.jpg',
+        'valckorn_chapel_district':  'assets/images/tessa.jpg',
         'valckorn_03_damar':         'assets/images/damar.jpg',
         'valckorn_04_loen':          'assets/images/loen.jpg',
-        'valckorn_palace_district':  'assets/images/stetson.jpg',
-        'valckorn_05_iliya':         'assets/images/iliya.jpg',
-        'valckorn_04_deduction':     'assets/images/phipp-sebastian.jpg',
-        // Еп3
+        'valckorn_05_iliya':         'assets/images/phipp-sebastian.jpg',
+        'valckorn_epilogue':         'assets/images/iliya.jpg',
+        // ЕП3
         'ep3_tykhy_tower':           'assets/images/lileya.jpg',
         'ep3_vapor_zone':            'assets/images/drowned-corpse.jpg',
         'ep3_murok_guardian':        'assets/images/murk-adult.jpg',

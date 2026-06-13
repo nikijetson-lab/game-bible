@@ -1631,3 +1631,101 @@ cool and without mercy. The figure is lit like a STATUE — flatly,
 completely, with nowhere to hide. The frame's subject is not Rudin but 
 ABSENCE: a man who exists as witness to his own emptiness.
 ```
+
+---
+
+## ДОПОВНЕННЯ 8: Епізод 5 — Три Фінали (ep4-05)
+
+> Фінальна сцена серії. До промпта добавляється STYLE BLOCK. Три варіанти ONE генерацією, з явною інструкцією вибору.
+
+---
+
+### Відхід Героя — Три Шляхи (Фінальна сцена)
+
+```
+Cinematic final shot, dark fantasy, three variant compositions showing 
+THE WARDEN'S DEPARTURE at the end of the world. Generate ONE image that 
+composes all three paths simultaneously or sequentially visible in frame, 
+OR generate with CHOICE PROMPT THAT ALLOWS SELECTION OF ONE OF THREE:
+
+═══════════════════════════════════════════════════════════════════
+
+PATH A: IRON VERDICT — The Dry Road
+
+A grey, lifeless dawn. The Warden walks alone on a cracked, ash-covered 
+road leading away from the stone spires of Valkorn. The sky is pale and 
+cloudless, completely drained of the bog's ever-present fog. His hands 
+are wrapped in heavy leather gloves concealing COMPLETELY DESICCATED, 
+petrified wood-tissue beneath — his touch has become torrent-dry, his 
+fingers rigid and slow. He wears a plain, dust-stained travelling cloak 
+with no insignia. When he reaches a ridge and pauses to look back at 
+Valkorn's iron gates one final time, his posture is exhausted but 
+resolved. He turns and walks into the white-grey horizon toward distant, 
+barren lands. The light is cold and final. His voice echo: *"I am leaving 
+iron behind. The city built its towers on bone, but now the gates are 
+closed and the living are safe. My duty fades like warmth in my hands..."*
+
+═══════════════════════════════════════════════════════════════════
+
+PATH B: REED VERDICT — The Bog Path
+
+The Warden walks barefoot through deep, wet black peat. The bog thrives 
+around him, breathing heavy with mist and warm damp wind. His skin has 
+returned to soft, warm human flesh — but his forearms are PERMANENTLY 
+SCARRED with deep dark marks like willow bark, a permanent stigma that 
+will never fade. He moves through tall, dense reeds that whisper against 
+his legs. Behind him, the towering walls of reed close off the path back 
+toward the city. He does not look back. His figure slowly dissolves into 
+the grey-green mist as he walks deeper into the bog's embrace. The light 
+is wet and organic. His voice echo: *"You feel the wet soil under your 
+feet, Warden? It is cold... but it is real. And you are real. Your heart 
+beats, though heavily. We leave Hazemoor to the reeds—it will hide its 
+secrets from the iron city. Our road leads onward, to cold and foreign 
+lands. Do not look back."*
+
+═══════════════════════════════════════════════════════════════════
+
+PATH C: BALANCE — The Bridge Between
+
+The Warden stands mid-stride on a great ancient stone bridge spanning the 
+Shattered River. On the left side, silver lantern-light from Valkorn's 
+border watch glows steady and cold. On the right side, dark grey-green 
+mist from Hazemoor's depth curls up from the water. He holds TWO KEYS in 
+his fist — one silver (the Order's), one bronze (the Keykeeper's) — both 
+HIDDEN beneath his heavy travelling cloak. His face shows deep focus and 
+quiet pain; the internal friction of the two Seals creates a constant, 
+muted ache in his chest — the eternal burden of the Bridge-Keeper. He 
+pauses at the exact midpoint where light and mist meet, draws a deep 
+breath, and turns away from BOTH shores, continuing forward across the 
+bridge into the unknown lands beyond. Behind him, both worlds shrink to 
+insignificance. The light is balanced, neither warm nor cold. His voice 
+echo: *"You stopped in the middle, Warden. This is your place—the bridge 
+between two worlds. But a bridge belongs to neither shore. Your mission 
+is complete. Both keys are in your hands, and they must never return to 
+either shore. We take them with us. We leave, into other lands. I am 
+with you... always."*
+
+═══════════════════════════════════════════════════════════════════
+
+TECHNICAL NOTE: This image may be generated as:
+1. A triptych (three panels showing all three paths side-by-side)
+2. A single composite showing all three paths in a surrealist overlap
+3. Three separate sequential frames for user selection
+
+If generated separately, they must share identical camera height, 
+composition perspective, and time-of-day consistency across all three 
+variants so they can be swapped in-game without jarring transitions.
+
+All three paths must include:
+- The Warden's figure in motion or at a key pause-point
+- A distinct visual environment (road / bog / bridge)
+- The world state reflected accurately (dry / wet / balanced)
+- Ilia's voice-echo visible as subtitle or atmospheric text
+- NO BRIGHT COLORS, NO HOPE, NO HEROIC POSE — all three are lonely, 
+  all three are departures, all three are cost-paid.
+
+The feeling across all three: not triumph, not tragedy, but 
+ACKNOWLEDGMENT. The Warden has chosen a path and walks it alone, forever 
+marked by the choice. The world will live or die by that choice, but the 
+Warden will not stay to see it.
+```

@@ -1162,14 +1162,21 @@ footer {
 .sim-illustration {
     width: 100%;
     aspect-ratio: 16 / 9;
-    max-height: 360px;
+    max-height: 520px;
     background-size: cover;
-    background-position: center;
-    border-radius: 4px;
+    background-position: center top;
+    border-radius: 6px;
     margin-bottom: 1.2rem;
     border: 1px solid var(--border-color);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(0, 0, 0, 0.5);
-    transition: background-image 0.5s ease-in-out;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0, 0, 0, 0.4);
+    transition: background-image 0.4s ease-in-out;
+}
+
+@media (max-width: 600px) {
+    .sim-illustration {
+        aspect-ratio: 4 / 3;
+        max-height: 280px;
+    }
 }
 
 .enemy-hp-panel {

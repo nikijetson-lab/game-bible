@@ -1041,26 +1041,37 @@ function goScene(sceneKey) {
 
     // --- МАППІНГ: сцена → зображення персонажа/істоти ---
     const CHARACTER_IMAGES = {
-        'arriving':                 'assets/images/ervan.jpg',
-        'greyford_room_hub':        'assets/images/rufin.jpg',
-        'sonk_ferry_hub':           'assets/images/kelm.jpg',
-        'poromna_result_tovan':     'assets/images/karos.jpg',
-        'quest_ferry':              'assets/images/tovan-rid.jpg',
-        'mia_meeting':              'assets/images/mia-mother.jpg',
-        'hazemoor_result_bad':      'assets/images/varrik.jpg',
-        'thread_witch':             'assets/images/mour-glade.jpg',
-        'valckorn_traversal_hub':   'assets/images/bloodsucker-swarm.jpg',
-        'valckorn_entry_ghetto':    'assets/images/bres.jpg',
-        'valckorn_slums_district':  'assets/images/tessa.jpg',
-        'valckorn_entry_palace':    'assets/images/odrin.jpg',
-        'valckorn_palace_district': 'assets/images/damar.jpg',
-        'valckorn_03_result':       'assets/images/loen.jpg',
-        'valckorn_04_deduction':    'assets/images/phipp-sebastian.jpg',
-        'valckorn_05_archive':      'assets/images/iliya.jpg',
-        'ep3_fog':                  'assets/images/lileya.jpg',
-        'ep3_vapor_zone':           'assets/images/drowned-corpse.jpg',
-        'ep3_murok_guardian':       'assets/images/murk-adult.jpg',
-        'hazemoor_ep4':             'assets/images/murk-bog-creeper.jpg',
+        // Еп1 — Грейфорд
+        'arriving':                  'assets/images/ervan.jpg',
+        'greyford_room_hub':         'assets/images/rufin.jpg',
+        // Еп1 — Сонк-Феррі
+        'quest_verdict_kelm':        'assets/images/kelm.jpg',
+        'holod_investigate':         'assets/images/karos.jpg',
+        'quest_ferry':               'assets/images/tovan-rid.jpg',
+        'hazemoor_ep5':              'assets/images/gara-pike.jpg',
+        // Еп1 — Тихий Шелест
+        'tykhy_arrive':              'assets/images/varrik.jpg',
+        'tykhy_kaen':                'assets/images/kaen.jpg',
+        // Еп1 — Хейзмур
+        'hazemoor_ep1':              'assets/images/reed-crawler.jpg',
+        'hazemoor_ep2':              'assets/images/bloodsucker-swarm.jpg',
+        'hazemoor_ep3':              'assets/images/drowned-corpse.jpg',
+        'hazemoor_ep4':              'assets/images/murk-bog-creeper.jpg',
+        'thread_witch':              'assets/images/mour-glade.jpg',
+        // Еп2 — Валькорн
+        'valckorn_entry_ghetto':     'assets/images/bres.jpg',
+        'valckorn_slums_district':   'assets/images/bres.jpg',
+        'valckorn_02_odrin':         'assets/images/odrin.jpg',
+        'valckorn_02_tessa':         'assets/images/tessa.jpg',
+        'valckorn_03_damar':         'assets/images/damar.jpg',
+        'valckorn_04_loen':          'assets/images/loen.jpg',
+        'valckorn_palace_district':  'assets/images/stetson.jpg',
+        'valckorn_05_iliya':         'assets/images/iliya.jpg',
+        'valckorn_04_deduction':     'assets/images/phipp-sebastian.jpg',
+        // Еп3
+        'ep3_tykhy_tower':           'assets/images/lileya.jpg',
+        'ep3_vapor_zone':            'assets/images/drowned-corpse.jpg',
+        'ep3_murok_guardian':        'assets/images/murk-adult.jpg',
     };
 
     if (illContainer) {

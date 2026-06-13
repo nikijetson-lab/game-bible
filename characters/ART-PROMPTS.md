@@ -1485,3 +1485,149 @@ Zhertovnyk — peat black, dead bronze green; the visitors' lights as
 failing keys. The frame's subject is negation: a thing built not to 
 shine, but to stop.
 ```
+
+---
+
+## ДОПОВНЕННЯ 7: Епізод 4 — Локації Фіналу (ep4-03, ep4-04)
+
+> До кожного промпта додається STYLE BLOCK. Вся еп4 — це світ, що помирає; палітра мінус болото.
+
+---
+
+### Попільні стежки Хейзмуру — Шлях А (Залізний вердикт)
+
+```
+Dark fantasy environment concept art, cinematic wide shot. THE DYING BOG 
+after the iron victory — a landscape of REVERSAL. What was black water 
+and living green is now dust, ash, and cracked grey clay. The bog is 
+not dead — it is BEING KILLED: systematically, deliberately, by drying 
+encroachment.
+
+Landscape: endless fields of cracked grey clay with deep fissures, 
+dried-out reed stumps standing brittle and snapping underfoot, sparse 
+tufts of withered vegetation that crumble to dust when touched. The sky 
+is pale grey-white — the bog's eternal fog is gone, replaced by clear 
+overcast daylight that makes every ruin visible. What remains of water 
+stands in isolated stagnant pools, black and utterly still, shrinking 
+daily.
+
+Details of assault: in the distance, iron structures and constructed 
+dams — the work of Valkorn's engineers damming the bog's arteries, 
+draining it systematically. Scattered abandoned Keeper stones and ruined 
+ritual sites now exposed to sunlight. The reeds do not regrow; this is 
+not fallow — this is intentional death.
+
+Optional human scale: a lone figure (the Warden) walking through the ash-
+field, dwarfed by the geometry of destruction. Wood towers and iron 
+locks visible on the horizon where the bog's edge is being held.
+
+Mood and light: clear daylight for the first time in the series — a 
+tragedy of clarity; no hiding in fog. The palette is ash-grey, bone, 
+rust-brown, and the sickly yellow of desiccated plants. Everything reads 
+as "this is what victory looks like when the victor is not merciful."
+```
+
+### Вівтар Стагнації в еп4 — Сухе святилище (Пикова сцена)
+
+```
+Dark fantasy environment concept art, cinematic wide shot. THE ALTAR OF 
+STAGNATION in the FINAL STATE — the drowned monastery sanctuary completely 
+drained, transformed into a hollow ash-grey stone hall. The central pool is 
+gone: only a cracked stone depression remains, pulsing with faint residual 
+cold where water once was. The Second Seal lies dead-center, no longer 
+draped in black water, now RUSTED AND DORMANT — bog-bronze turned to grey-
+green verdigris, the petrified willow-roots that held it now brittle as 
+bone, some already collapsed into powder.
+
+The chamber: massive vaulted stone, pillars rising to shadow; the whole 
+architecture looks EXPOSED and VULNERABLE now that water and fog are gone 
+— every carving, every seal-point visible in merciless grey daylight from 
+a high oculus. The Keykeeper runes on the walls are dull and unresponsive 
+to blood.
+
+The Wrongness (canon): Mia stands at the altar's edge, her Muri body 
+VISIBLY DESICCATING — skin flaking, the green sheen gone grey-brown, her 
+gills sealed dry and crusted. She grips the Second Seal with both hands, 
+trying to squeeze the last bolts of marsh-force through the metal to fuel 
+one final act: releasing toxic gas toward Greyford. The gesture is 
+desperation's last stance. Around her, Reed Walkers stand withered and 
+FRAGILE — no longer purposeful avatars, just hollow reed-bundles that 
+crumble if touched.
+
+Optional scale: two figures at the altar's far rim — the Warden and 
+another companion (Lileia or vision of her). The Warden's lantern casts 
+clean light, no longer struggling against fog.
+
+Mood and light: death-bright grey daylight from the oculus, NO amber from 
+the Keykeeper pylons (they are dormant now), the Warden's lantern as a 
+pale accent. The frame should feel EXPOSED, JUDGED, like sacred space 
+violated by daylight. Not beautiful. Necessary.
+```
+
+### Чорний Архів Валькорна у еп4 — Переродження
+
+```
+Dark fantasy environment concept art, cinematic wide shot. THE BLACK 
+ARCHIVE OF VALKORN REBORN — a space transformed from torture-archive to 
+administrative reconstruction. The deep underground vault is now lit by 
+INTENTIONAL light: oil lamps hung in clean rows, windows cut into the 
+stone ceiling to admit daylight (impossible but canon-true), and at the 
+vault's center, a long stone table where the work of legal record-keeping 
+happens.
+
+The room: the same black-lacquered boxes and filing systems, but NOW 
+OPENLY ORGANIZED — no hidden designs, no sealed arcana. The jester's 
+costume that once hung here is GONE (or displayed in a memorial case). 
+On one wall, a large pale PORTRAIT OF RUDIN (see next location).
+
+Details of transformation: new Seal banners of the reformed Order hang 
+from the vaults; a breaking-of-chains inscription carved into the floor; 
+fresh stone dust from recent reconstruction still settling on the older 
+black lacquer. The work is imperfect and ongoing — this is not a 
+sanctuary, it is a WORKSPACE.
+
+Central figure: Tessa stands at the head of the long table, surrounded by 
+NEW ORDER recruits organizing documents. She wears a new Order uniform — 
+grey and white rather than the jester's diamonds, a silver pendant of the 
+Warden Order at her chest. Her bearing is weary but steady: the weight of 
+leadership, not command.
+
+Mood and light: mixed — the new daylight from above is HONEST (pale grey, 
+without darkness to hide in), contrasted with the warm amber of working 
+oil-lamps. The black archive is becoming a GREY archive. The feeling: 
+"This is what redemption looks like — hard, unglamorous, ongoing work 
+instead of vengeance."
+```
+
+### Портрет Руфіна у Чорному Архіві — Німий пам'ятник
+
+```
+Cinematic portrait, dark fantasy. RUDIN AT THE WINDOW OF THE BLACK ARCHIVE 
+— not a live portrait, but a FIGURE-PORTRAIT: he stands by a high stone 
+window in the archive's interior, motionless, arms at his sides, face 
+turned slightly toward the grey daylight. He has not moved since the day 
+his mind was burned out on the Bog-Gallery.
+
+Face: completely empty — not peaceful, not tortured, just ABSENT. Eyes 
+that look at daylight but receive no information from it. Mouth slightly 
+open, no expression. His cartographer's weathered features are now the 
+blank mask of someone whose internal light was extinguished and replaced 
+with function-only biology.
+
+Body: exactly as he was left — the same clothes, the same posture, as if 
+he is a STONE EFFIGY that happens to be breathing. One hand slightly curved 
+as if still holding a stylus or map.
+
+Context: behind and below him, visible through the window-gap, the grey 
+landscape of the drying bog stretches to the horizon. The window frames 
+them together — the man and the land he helped betray, both broken and 
+remade in the image of iron.
+
+Inscribed on the stone pedestal beneath his feet (visible to viewers): a 
+single line in Old Keykeeper rune: "ЇЇ ВІЧНА ЦІНА" (The Eternal Price).
+
+Mood and light: soft pale grey daylight through the window as sole key, 
+cool and without mercy. The figure is lit like a STATUE — flatly, 
+completely, with nowhere to hide. The frame's subject is not Rudin but 
+ABSENCE: a man who exists as witness to his own emptiness.
+```

@@ -938,19 +938,6 @@ function consumeAntidoteForPoison() {
     goScene("ep3_dry_mound");
 }
 
-function takePoisonDamage() {
-    window.playerState.hp = Math.max(0, window.playerState.hp - 30);
-    window.playerState.will = Math.max(0, window.playerState.will - 15);
-    addToLog("💨 Ви надихалися отруйними газами болота! Втрачено 30 HP та 15 Рішучості!", "damage");
-    
-    if (window.playerState.hp <= 0 && !window.IS_DEV_TESTING) {
-        synth.playSfx('gameover');
-        goScene("death");
-    } else {
-        goScene("ep3_dry_mound");
-    }
-}
-
 function resolveFinalWay(way) {
     let title = "";
     let finalDesc = "";

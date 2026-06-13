@@ -1043,7 +1043,7 @@ function goScene(sceneKey) {
     const CHARACTER_IMAGES = {
         // ЕП1 — ГРЕЙФОРД
         'arriving':                  'assets/images/ervan.jpg',
-        'greyford_room_hub':         'assets/images/rufin.jpg',
+        'greyford_room_hub':         'assets/images/rufin-room.jpg',
         // ЕП1 — ШЛЯХ КРІЗЬ БОЛОТО
         'hazemoor_ep1':              'assets/images/reed-crawler.jpg',
         'hazemoor_ep2':              'assets/images/bloodsucker-swarm.jpg',

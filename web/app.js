@@ -1039,22 +1039,69 @@ function goScene(sceneKey) {
         audioMgr.playSceneAudio(scene.audioTrack, scene.audioAtmosphere);
     }
 
+    // --- МАППІНГ: сцена → зображення персонажа/істоти ---
+    const CHARACTER_IMAGES = {
+        'arriving':                 'assets/images/ervan.jpg',
+        'greyford_room_hub':        'assets/images/rufin.jpg',
+        'sonk_ferry_hub':           'assets/images/kelm.jpg',
+        'poromna_result_tovan':     'assets/images/karos.jpg',
+        'quest_ferry':              'assets/images/tovan-rid.jpg',
+        'mia_meeting':              'assets/images/mia-mother.jpg',
+        'hazemoor_result_bad':      'assets/images/varrik.jpg',
+        'thread_witch':             'assets/images/mour-glade.jpg',
+        'valckorn_traversal_hub':   'assets/images/bloodsucker-swarm.jpg',
+        'valckorn_entry_ghetto':    'assets/images/bres.jpg',
+        'valckorn_slums_district':  'assets/images/tessa.jpg',
+        'valckorn_entry_palace':    'assets/images/odrin.jpg',
+        'valckorn_palace_district': 'assets/images/damar.jpg',
+        'valckorn_03_result':       'assets/images/loen.jpg',
+        'valckorn_04_deduction':    'assets/images/phipp-sebastian.jpg',
+        'valckorn_05_archive':      'assets/images/iliya.jpg',
+        'ep3_fog':                  'assets/images/lileya.jpg',
+        'ep3_vapor_zone':           'assets/images/drowned-corpse.jpg',
+        'ep3_murok_guardian':       'assets/images/murk-adult.jpg',
+        'hazemoor_ep4':             'assets/images/murk-bog-creeper.jpg',
+    };
+
     if (illContainer) {
-        if (sceneKey === "arriving" || sceneKey === "investigation" || sceneKey.startsWith("thread_") || sceneKey === "gates" || sceneKey.startsWith("ep1_")) {
+        const charImg = CHARACTER_IMAGES[sceneKey];
+        if (charImg) {
+            illContainer.style.backgroundImage = `url('${charImg}')`;
+            illContainer.style.backgroundSize = "cover";
+            illContainer.style.backgroundPosition = "center top";
+            illContainer.style.display = "block";
+            if (sceneKey.startsWith("ep3_") || sceneKey.startsWith("hazemoor")) {
+                if (questTag) questTag.textContent = "Епізод 3: Глибоке болото";
+            } else if (sceneKey.startsWith("ep4_")) {
+                if (questTag) questTag.textContent = "Епізод 4: Кам'яний Міст";
+            } else if (sceneKey.startsWith("valckorn_") || sceneKey.startsWith("valkorn_")) {
+                if (questTag) questTag.textContent = "Епізод 2: Валькорн";
+            } else {
+                if (questTag) questTag.textContent = "Епізод 1: Хейзмур";
+            }
+        } else if (sceneKey === "arriving" || sceneKey === "investigation" || sceneKey.startsWith("thread_") || sceneKey === "gates" || sceneKey.startsWith("ep1_")) {
             if (questTag) questTag.textContent = "Епізод 1: Хейзмур";
             illContainer.style.backgroundImage = "url('assets/episode1.png')";
+            illContainer.style.backgroundSize = "";
+            illContainer.style.backgroundPosition = "";
             illContainer.style.display = "block";
         } else if (sceneKey.startsWith("ep2_") || sceneKey.startsWith("valkorn_") || sceneKey.startsWith("valckorn_") || sceneKey.startsWith("clown_")) {
             if (questTag) questTag.textContent = "Епізод 2: Валькорн";
             illContainer.style.backgroundImage = "url('assets/episode2.png')";
+            illContainer.style.backgroundSize = "";
+            illContainer.style.backgroundPosition = "";
             illContainer.style.display = "block";
         } else if (sceneKey.startsWith("ep3_")) {
             if (questTag) questTag.textContent = "Епізод 3: Глибоке болото";
             illContainer.style.backgroundImage = "url('assets/episode3.png')";
+            illContainer.style.backgroundSize = "";
+            illContainer.style.backgroundPosition = "";
             illContainer.style.display = "block";
         } else if (sceneKey.startsWith("ep4_")) {
             if (questTag) questTag.textContent = "Епізод 4: Кам'яний Міст";
             illContainer.style.backgroundImage = "url('assets/episode4.png')";
+            illContainer.style.backgroundSize = "";
+            illContainer.style.backgroundPosition = "";
             illContainer.style.display = "block";
         } else if (sceneKey.startsWith("ep5_")) {
             if (questTag) questTag.textContent = "Епізод 5: Епілог";

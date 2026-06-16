@@ -127,8 +127,7 @@ function renderFileList(category) {
             if (file.isMap) {
                 document.querySelectorAll(".file-btn").forEach(b => b.classList.remove("active"));
                 btn.classList.add("active");
-                const contentDiv = document.getElementById("bible-content");
-                if (contentDiv) contentDiv.innerHTML = `<div style="text-align:center;padding:1rem"><img src="../${file.path}" style="max-width:100%;border-radius:6px;border:1px solid var(--border-color)" alt="Карта світу Хейзмур"></div>`;
+                showWorldMap();
             } else {
                 loadMarkdownFile(file.path, btn);
             }
@@ -1139,6 +1138,7 @@ function goScene(sceneKey) {
     }
 
     document.getElementById("scene-title").textContent = scene.title || "Невідома локація";
+    window._currentSceneKey = sceneKey;
     document.getElementById("scene-text").innerHTML = scene.text || "Дані для цієї сцени не знайдені.";
 
     const choicesDiv = document.getElementById("scene-choices");
@@ -1720,3 +1720,107 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 });
+
+// --- ІНТЕРАКТИВНА КАРТА СВІТУ ---
+const MAP_LOCATIONS = {
+    'arriving': {x: 63, y: 22, name: 'Грейфорд'},
+    'greyford_room_hub': {x: 63, y: 22, name: 'Грейфорд'},
+    'thread_carver': {x: 63, y: 22, name: 'Грейфорд'},
+    'thread_tavern': {x: 63, y: 22, name: 'Грейфорд'},
+    'thread_witch': {x: 63, y: 22, name: 'Грейфорд'},
+    'sonk_ferry_hub': {x: 62, y: 38, name: 'Сонк-Феррі'},
+    'holod_investigate': {x: 62, y: 38, name: 'Сонк-Феррі'},
+    'popil_pid_kaplytseyu': {x: 28, y: 42, name: 'Затоплена Каплиця'},
+    'quest_ferry': {x: 62, y: 38, name: 'Сонк-Феррі'},
+    'sil_u_knyzi': {x: 62, y: 38, name: 'Сонк-Феррі'},
+    'quest_verdict_kelm': {x: 62, y: 38, name: 'Сонк-Феррі'},
+    'nizh_kvoty': {x: 62, y: 38, name: 'Сонк-Феррі'},
+    'hazemoor_ep1': {x: 45, y: 52, name: 'Хейзмур'},
+    'hazemoor_ep2': {x: 45, y: 55, name: 'Хейзмур'},
+    'hazemoor_ep3': {x: 45, y: 60, name: 'Гнилі Поля'},
+    'hazemoor_ep4': {x: 45, y: 63, name: 'Гнилі Поля'},
+    'hazemoor_ep5': {x: 45, y: 63, name: 'Гнилі Поля'},
+    'tykhy_arrive': {x: 68, y: 62, name: 'Тихий Шелест'},
+    'tykhy_rufin': {x: 68, y: 62, name: 'Тихий Шелест'},
+    'tykhy_kaen': {x: 68, y: 62, name: 'Тихий Шелест'},
+    'tykhy_mia': {x: 68, y: 62, name: 'Тихий Шелест'},
+    'mia_meeting': {x: 68, y: 62, name: 'Тихий Шелест'},
+    'glade_mour': {x: 43, y: 82, name: 'Галявина Моура'},
+    'valckorn_entry_ghetto': {x: 10, y: 14, name: 'Валькорн'},
+    'valckorn_slums_district': {x: 10, y: 14, name: 'Валькорн'},
+    'valckorn_palace_district': {x: 10, y: 14, name: 'Валькорн'},
+    'valckorn_02_odrin': {x: 10, y: 14, name: 'Валькорн'},
+    'valckorn_chapel_district': {x: 10, y: 14, name: 'Валькорн'},
+    'valckorn_03_damar': {x: 10, y: 14, name: 'Валькорн'},
+    'valckorn_04_loen': {x: 10, y: 14, name: 'Валькорн'},
+    'valckorn_05_iliya': {x: 10, y: 14, name: 'Валькорн'},
+    'valckorn_epilogue': {x: 10, y: 14, name: 'Валькорн'},
+    'ep3_fog': {x: 45, y: 68, name: 'Хейзмур — глибина'},
+    'ep3_vapor_zone': {x: 45, y: 68, name: 'Гнилі Поля'},
+    'ep3_tykhy_tower': {x: 68, y: 62, name: 'Тихий Шелест'},
+    'ep3_murok_guardian': {x: 73, y: 70, name: 'Затоплена Обитель'},
+    'ep3_obitel': {x: 73, y: 70, name: 'Затоплена Обитель'},
+    'ep3_altar': {x: 73, y: 70, name: 'Затоплена Обитель'},
+    'ep3_ferry_crossing': {x: 48, y: 68, name: 'Шалена Річка'},
+};
+
+function showWorldMap() {
+    const contentDiv = document.getElementById("bible-content");
+    if (!contentDiv) return;
+
+    const currentScene = window._currentSceneKey || null;
+    const loc = currentScene ? MAP_LOCATIONS[currentScene] : null;
+
+    const markerHtml = loc ? `
+        <div style="
+            position: absolute;
+            left: ${loc.x}%;
+            top: ${loc.y}%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            pointer-events: none;
+        ">
+            <div style="
+                width: 18px; height: 18px;
+                background: #d4af37;
+                border: 2px solid #fff;
+                border-radius: 50%;
+                box-shadow: 0 0 0 3px rgba(212,175,55,0.5);
+                animation: mapPulse 1.5s ease-in-out infinite;
+            "></div>
+            <div style="
+                margin-top: 4px;
+                background: rgba(0,0,0,0.8);
+                color: #d4af37;
+                font-size: 11px;
+                font-weight: 700;
+                padding: 2px 6px;
+                border-radius: 3px;
+                white-space: nowrap;
+                text-align: center;
+                transform: translateX(-35%);
+                border: 1px solid rgba(212,175,55,0.4);
+            ">⚔ ${loc.name}</div>
+        </div>` : '';
+
+    const noLocMsg = !loc && currentScene ?
+        `<p style="color:var(--text-muted);font-size:0.85rem;margin-top:0.5rem">Локація "${currentScene}" не визначена на карті</p>` :
+        !currentScene ? `<p style="color:var(--text-muted);font-size:0.85rem;margin-top:0.5rem">Розпочніть гру щоб побачити позицію Вартового</p>` : '';
+
+    contentDiv.innerHTML = `
+        <style>
+            @keyframes mapPulse {
+                0%,100% { box-shadow: 0 0 0 3px rgba(212,175,55,0.5); }
+                50% { box-shadow: 0 0 0 8px rgba(212,175,55,0.15); }
+            }
+        </style>
+        <div style="text-align:center;padding:0.5rem 0">
+            <div style="position:relative;display:inline-block;max-width:100%">
+                <img src="../web/assets/world-map.webp"
+                     style="max-width:100%;border-radius:6px;border:1px solid var(--border-color);display:block"
+                     alt="Карта світу Хейзмур">
+                ${markerHtml}
+            </div>
+            ${noLocMsg}
+        </div>`;
+}

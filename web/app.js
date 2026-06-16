@@ -19,6 +19,7 @@ const BIBLE_FILES = {
         { name: "Фракції (factions.md)", path: "design/factions.md" }
     ],
     regions: [
+        { name: "🗺️ Карта світу", path: "web/assets/world-map.webp", isMap: true },
         { name: "Грейфорд (greyford.md)", path: "regions/greyford.md" },
         { name: "Валькорн (valkorn.md)", path: "regions/valkorn.md" },
         { name: "Сонк-Феррі (sunk-ferry.md)", path: "regions/sunk-ferry.md" },
@@ -122,7 +123,16 @@ function renderFileList(category) {
         const btn = document.createElement("button");
         btn.className = "file-btn";
         btn.textContent = file.name;
-        btn.addEventListener("click", () => loadMarkdownFile(file.path, btn));
+        btn.addEventListener("click", () => {
+            if (file.isMap) {
+                document.querySelectorAll(".file-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                const contentDiv = document.getElementById("bible-content");
+                if (contentDiv) contentDiv.innerHTML = `<div style="text-align:center;padding:1rem"><img src="../${file.path}" style="max-width:100%;border-radius:6px;border:1px solid var(--border-color)" alt="Карта світу Хейзмур"></div>`;
+            } else {
+                loadMarkdownFile(file.path, btn);
+            }
+        });
         fileListDiv.appendChild(btn);
     });
 }

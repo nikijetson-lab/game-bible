@@ -1824,3 +1824,141 @@ function showWorldMap() {
             ${noLocMsg}
         </div>`;
 }
+
+// ============================================================
+// СИСТЕМА НАВІГАЦІЇ КАРТАМИ
+// Ієрархія: world → location → interior
+// ============================================================
+
+const MAP_DATA = {
+    world: {
+        image: 'assets/maps/world.webp',
+        title: 'Хейзмур та Околиці',
+        back: null,
+        hotspots: [
+            { label: 'Валькорн',   x1:4,  y1:6,  x2:22, y2:32, target:'valkorn',    scene:['valckorn_entry_ghetto','valckorn_slums_district','valckorn_palace_district','valckorn_02_odrin','valckorn_chapel_district','valckorn_03_damar','valckorn_04_loen','valckorn_05_iliya','valckorn_epilogue'] },
+            { label: 'Грейфорд',   x1:52, y1:12, x2:78, y2:34, target:'greyford',   scene:['arriving','greyford_room_hub','thread_carver','thread_tavern','thread_witch','gates'] },
+            { label: 'Сонк-Феррі', x1:52, y1:34, x2:78, y2:52, target:'sonk-ferry', scene:['sonk_ferry_hub','holod_investigate','popil_pid_kaplytseyu','quest_ferry','sil_u_knyzi','quest_verdict_kelm','nizh_kvoty'] },
+            { label: 'Тихий Шелест',x1:60,y1:55, x2:82, y2:75, target:'tykhy',      scene:['tykhy_arrive','tykhy_rufin','tykhy_kaen','tykhy_mia','mia_meeting'] },
+            { label: 'Хейзмур',    x1:20, y1:44, x2:80, y2:98, target:'hazemoor',   scene:['hazemoor_ep1','hazemoor_ep2','hazemoor_ep3','hazemoor_ep4','hazemoor_ep5','glade_mour','ep3_vapor_zone','ep3_ferry_crossing','ep3_murok_guardian'] },
+        ]
+    },
+    greyford: {
+        image: 'assets/maps/greyford.webp',
+        title: 'Грейфорд',
+        back: 'world',
+        hotspots: [
+            { label: '① Таверна Ервана', x1:20, y1:38, x2:46, y2:72, target:'greyford-tavern', scene:['arriving','greyford_room_hub'] },
+            { label: '③ Квартал ремісників', x1:52, y1:22, x2:74, y2:50, target:null, scene:['thread_carver'] },
+            { label: '④ Портова таверна',   x1:56, y1:50, x2:74, y2:74, target:null, scene:['thread_tavern'] },
+            { label: '⑤ Помешкання Чаклунки',x1:30, y1:10, x2:52, y2:36, target:null, scene:['thread_witch'] },
+            { label: '⑥ Контора Келма',     x1:40, y1:38, x2:58, y2:58, target:null, scene:['quest_verdict_kelm'] },
+            { label: '⑦ Залізні Ворота',    x1:38, y1:68, x2:56, y2:88, target:null, scene:['gates'] },
+        ]
+    },
+    'greyford-tavern': {
+        image: 'assets/maps/greyford-tavern.webp',
+        title: 'Таверна Ервана — план',
+        back: 'greyford',
+        hotspots: [
+            { label: 'Велика зала', x1:30, y1:5,  x2:65, y2:45, target:null, scene:['arriving'] },
+            { label: '② Кімната Руфіна', x1:74, y1:52, x2:96, y2:88, target:null, scene:['greyford_room_hub'] },
+            { label: 'Кабінет Ервана',   x1:64, y1:10, x2:84, y2:44, target:null, scene:[] },
+        ]
+    },
+    valkorn:    { image: null, title: 'Валькорн',     back: 'world', hotspots: [] },
+    'sonk-ferry':{ image: null, title: 'Сонк-Феррі', back: 'world', hotspots: [] },
+    tykhy:      { image: null, title: 'Тихий Шелест', back: 'world', hotspots: [] },
+    hazemoor:   { image: null, title: 'Хейзмур',      back: 'world', hotspots: [] },
+};
+
+let _mapHistory = [];
+
+function showMapLevel(mapKey) {
+    const contentDiv = document.getElementById('bible-content');
+    if (!contentDiv) return;
+    const map = MAP_DATA[mapKey];
+    if (!map) return;
+
+    const currentScene = window._currentSceneKey || null;
+
+    // Знаходимо позицію вартового на цій карті
+    const activeHotspot = map.hotspots.find(h => h.scene && h.scene.includes(currentScene));
+
+    // Якщо карти ще немає — показуємо заглушку
+    if (!map.image) {
+        contentDiv.innerHTML = `
+            <div style="text-align:center;padding:2rem;color:var(--text-muted)">
+                <div style="font-size:3rem">🗺️</div>
+                <h3 style="color:var(--accent-gold);margin:1rem 0">${map.title}</h3>
+                <p>Карту ще не згенеровано</p>
+                ${map.back ? `<button onclick="showMapLevel('${map.back}')" style="margin-top:1rem;padding:0.5rem 1.2rem;background:transparent;border:1px solid var(--accent-gold);color:var(--accent-gold);cursor:pointer;border-radius:4px">← Назад</button>` : ''}
+            </div>`;
+        return;
+    }
+
+    // Хотспоти — клікабельні зони
+    const hotspotsHtml = map.hotspots.map((h, i) => {
+        const isActive = h.scene && h.scene.includes(currentScene);
+        const isClickable = h.target && MAP_DATA[h.target]?.image;
+        return `<div 
+            title="${h.label}"
+            onclick="${isClickable ? `showMapLevel('${h.target}')` : ''}"
+            style="
+                position:absolute;
+                left:${h.x1}%;top:${h.y1}%;
+                width:${h.x2-h.x1}%;height:${h.y2-h.y1}%;
+                border:${isActive ? '2px solid #d4af37' : (isClickable ? '1px dashed rgba(212,175,55,0.4)' : 'none')};
+                background:${isActive ? 'rgba(212,175,55,0.08)' : 'transparent'};
+                border-radius:4px;
+                cursor:${isClickable ? 'pointer' : 'default'};
+                z-index:5;
+                transition: background 0.2s;
+            "
+            onmouseenter="this.style.background='rgba(212,175,55,0.12)'"
+            onmouseleave="this.style.background='${isActive ? 'rgba(212,175,55,0.08)' : 'transparent'}'">
+            ${isActive ? `<div style="
+                position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+                background:rgba(0,0,0,0.85);color:#d4af37;
+                font-size:11px;font-weight:700;padding:3px 8px;border-radius:3px;
+                border:1px solid rgba(212,175,55,0.5);white-space:nowrap;pointer-events:none;
+            ">⚔ Вартовий тут</div>` : ''}
+            ${isClickable ? `<div style="
+                position:absolute;bottom:4px;right:4px;
+                background:rgba(0,0,0,0.7);color:#d4af37;
+                font-size:10px;padding:2px 5px;border-radius:2px;pointer-events:none;
+            ">🔍 ${h.label}</div>` : ''}
+        </div>`;
+    }).join('');
+
+    // Кнопка назад
+    const backBtn = map.back ? `
+        <button onclick="showMapLevel('${map.back}')" style="
+            position:absolute;top:10px;left:10px;z-index:20;
+            background:rgba(0,0,0,0.8);border:1px solid var(--accent-gold);
+            color:var(--accent-gold);padding:6px 14px;border-radius:4px;
+            cursor:pointer;font-size:0.85rem;font-weight:700;
+        ">← ${MAP_DATA[map.back].title}</button>` : '';
+
+    contentDiv.innerHTML = `
+        <style>
+            @keyframes mapPulse {
+                0%,100% { box-shadow: 0 0 0 3px rgba(212,175,55,0.5); }
+                50% { box-shadow: 0 0 0 8px rgba(212,175,55,0.15); }
+            }
+        </style>
+        <div style="padding:0.5rem 0;text-align:center">
+            <div style="position:relative;display:inline-block;max-width:100%">
+                <img src="../${map.image}" 
+                     style="max-width:100%;display:block;border-radius:6px;border:1px solid var(--border-color)"
+                     alt="${map.title}">
+                ${backBtn}
+                ${hotspotsHtml}
+            </div>
+            ${!activeHotspot && currentScene ? 
+                `<p style="color:var(--text-muted);font-size:0.8rem;margin-top:0.4rem">Вартовий зараз не на цій карті</p>` : ''}
+        </div>`;
+}
+
+// Перевизначаємо showWorldMap щоб використовував нову систему
+function showWorldMap() { showMapLevel('world'); }

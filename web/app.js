@@ -1866,7 +1866,22 @@ const MAP_DATA = {
             { label: 'Кабінет Ервана',   x1:64, y1:10, x2:84, y2:44, target:null, scene:[] },
         ]
     },
-    valkorn:    { image: null, title: 'Валькорн',     back: 'world', hotspots: [] },
+    valkorn: {
+        image: 'assets/maps/valkorn.png',
+        title: 'Валькорн',
+        back: 'world',
+        hotspots: [
+            { label: '① Гетто',           x1:2,  y1:45, x2:30, y2:80, target:'valkorn-ghetto',   scene:['valckorn_entry_ghetto','valckorn_slums_district'] },
+            { label: '③ Торговий квартал', x1:28, y1:20, x2:55, y2:55, target:null,               scene:['valckorn_03_damar','valckorn_04_loen'] },
+            { label: '④ Монастирський клуатр', x1:28, y1:30, x2:55, y2:58, target:'valkorn-monastery', scene:['valckorn_chapel_district'] },
+            { label: '⑤ Квартал палаців', x1:52, y1:10, x2:85, y2:45, target:null,               scene:['valckorn_palace_district'] },
+            { label: '⑥ Палацовий архів', x1:55, y1:42, x2:78, y2:62, target:null,               scene:['valckorn_02_odrin'] },
+            { label: '⑦ Чорний архів',    x1:60, y1:55, x2:80, y2:78, target:'valkorn-archive',  scene:['valckorn_05_iliya'] },
+        ]
+    },
+    'valkorn-ghetto':    { image: null, title: 'Затоплені Колектори / Гетто', back: 'valkorn', hotspots: [] },
+    'valkorn-monastery': { image: null, title: 'Монастирський Клуатр', back: 'valkorn', hotspots: [] },
+    'valkorn-archive':   { image: null, title: 'Чорний Архів', back: 'valkorn', hotspots: [] },
     'sonk-ferry':{ image: null, title: 'Сонк-Феррі', back: 'world', hotspots: [] },
     tykhy:      { image: null, title: 'Тихий Шелест', back: 'world', hotspots: [] },
     hazemoor:   { image: null, title: 'Хейзмур',      back: 'world', hotspots: [] },

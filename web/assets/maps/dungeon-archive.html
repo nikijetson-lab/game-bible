@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Чорний Архів — Схема</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#060402; display:flex; align-items:center; justify-content:center; min-height:100vh; font-family: 'Georgia', serif; }
+canvas { border:1px solid #3a2e1e; image-rendering: pixelated; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+const c = document.getElementById('c');
+const W = 1400, H = 780;
+c.width = W; c.height = H;
+const ctx = c.getContext('2d');
+
+// Палітра
+const BG    = '#060402';
+const FLOOR = '#3a2e1e';    // ЧІТКО видно проти фону
+const WALL  = '#080502';    // майже чорний
+const OUT   = '#8a7a50';    // золотий контур
+const OUT_A = '#c8a840';    // активна кімната
+const TXT   = '#c8b888';
+const TDIM  = '#786a48';
+const GOLD  = '#c8a840';
+const GDIM  = '#786030';
+const RED   = '#cc2828';
+const REDD  = '#8b0000';
+const BLUE  = '#2a5a9a';
+const BLUEF = '#0a1828';
+const TRAP  = '#8b1818';
+
+// Базові функції
+function rect(gx,gy,gw,gh,fill,stroke=OUT,lw=2){
+    ctx.fillStyle=fill; ctx.strokeStyle=stroke; ctx.lineWidth=lw;
+    ctx.fillRect(gx,gy,gw,gh);
+    ctx.strokeRect(gx+lw/2,gy+lw/2,gw-lw,gh-lw);
+}
+
+function cor(x,y,w,h){ rect(x,y,w,h,FLOOR,OUT,1.5); }
+
+function txt(x,y,s,col=TXT,size=10,bold=false,align='center',italic=false){
+    ctx.fillStyle=col;
+    ctx.font=`${italic?'italic ':''  }${bold?'bold ':''}${size}px Georgia`;
+    ctx.textAlign=align;
+    ctx.fillText(s,x,y);
+}
+
+function room(x,y,w,h,label,sub='',rid='',active=false){
+    rect(x,y,w,h,FLOOR,active?OUT_A:OUT,active?2.5:2);
+    // Кам'яна текстура
+    ctx.save();
+    ctx.strokeStyle='rgba(8,5,2,0.3)'; ctx.lineWidth=0.5;
+    const G=18;
+    for(let ix=x+G;ix<x+w;ix+=G){
+        ctx.beginPath();ctx.moveTo(ix,y);ctx.lineTo(ix,y+h);ctx.stroke();
+    }
+    for(let iy=y+G;iy<y+h;iy+=G){
+        ctx.beginPath();ctx.moveTo(x,iy);ctx.lineTo(x+w,iy);ctx.stroke();
+    }
+    ctx.restore();
+    // Мітки
+    if(rid){
+        ctx.fillStyle=GDIM; ctx.beginPath();
+        ctx.arc(x+14,y+14,10,0,Math.PI*2); ctx.fill();
+        ctx.strokeStyle=GOLD; ctx.lineWidth=1;
+        ctx.stroke();
+        txt(x+14,y+18,rid,GOLD,8,true,'center');
+    }
+    const lines=label.split('\n');
+    lines.forEach((l,i)=>txt(x+w/2,y+h/2+(i-lines.length/2+0.5)*14,l,TXT,9,true));
+    if(sub) txt(x+w/2,y+h-8,sub,TDIM,7,false,'center',true);
+}
+
+function trapIcon(x,y,label='',tp='яма'){
+    const cols={яма:RED,газ:'#8b8000',дріт:'#8b5000',шип:RED};
+    const c=cols[tp]||RED;
+    ctx.fillStyle=c; ctx.beginPath();
+    ctx.moveTo(x,y-8);ctx.lineTo(x+8,y);ctx.lineTo(x,y+8);ctx.lineTo(x-8,y);
+    ctx.closePath();ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,0.6)';ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(x-5,y-5);ctx.lineTo(x+5,y+5);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(x+5,y-5);ctx.lineTo(x-5,y+5);ctx.stroke();
+    if(label){ctx.fillStyle=c;txt(x,y+20,label,c,7,false,'center',true);}
+}
+
+function sdoor(x,y,horiz=true){
+    for(let i=0;i<4;i++){
+        ctx.fillStyle=GDIM+'cc';
+        if(horiz) ctx.fillRect(x+i*8-3,y-2,6,4);
+        else ctx.fillRect(x-2,y+i*8-3,4,6);
+    }
+}
+
+function arrow(x1,y1,x2,y2){
+    ctx.strokeStyle=GDIM; ctx.lineWidth=1.5;
+    ctx.setLineDash([4,3]);
+    ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+    ctx.setLineDash([]);
+}
+
+function artGlow(x,y){
+    // Glow rings
+    [55,40,28,18].forEach((r,i)=>{
+        ctx.fillStyle=`rgba(180,150,60,${0.06+i*0.04})`;
+        ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
+    });
+    // Рунічне коло
+    ctx.strokeStyle=GDIM+'80';ctx.lineWidth=0.8;
+    [42,30,20].forEach(r=>{
+        ctx.setLineDash([3,2]);
+        ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.stroke();
+    });
+    ctx.setLineDash([]);
+    // Артефакт
+    ctx.fillStyle='#b8a870';ctx.strokeStyle=GOLD;ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.roundRect(x-9,y-18,18,34,2);ctx.fill();ctx.stroke();
+    ctx.fillStyle='#d0c890';
+    ctx.beginPath();ctx.roundRect(x-5,y-14,10,26,2);ctx.fill();
+    // кров
+    [[10,8],[-13,11],[6,-10]].forEach(([ox,oy])=>{
+        ctx.fillStyle=REDD+'88';
+        ctx.beginPath();ctx.ellipse(x+ox,y+oy,4,2,ox*0.1,0,Math.PI*2);ctx.fill();
+    });
+    txt(x,y+28,'☆ АРТЕФАКТ',GOLD,7,true);
+}
+
+function bloodSeal(x,y){
+    ctx.fillStyle=RED;ctx.fillRect(x-3,y-22,6,44);
+    [14,9,5].forEach(r=>{
+        ctx.strokeStyle=RED;ctx.lineWidth=1;
+        ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.stroke();
+    });
+    for(let i=0;i<8;i++){
+        const a=i*Math.PI/4;
+        ctx.beginPath();ctx.moveTo(x+6*Math.cos(a),y+6*Math.sin(a));
+        ctx.lineTo(x+14*Math.cos(a),y+14*Math.sin(a));
+        ctx.strokeStyle=RED;ctx.lineWidth=1.5;ctx.stroke();
+    }
+}
+
+function regBasement(x,y,w,h){
+    // Темна кімната
+    rect(x,y,w,h,'#0a0603','#3a1808',3);
+    // Ланцюги
+    const cx=x+w/2, cy=y+h/2;
+    [[x+20,y+20],[x+w-20,y+20],[x+20,y+h-20],[x+w-20,y+h-20]].forEach(([px,py])=>{
+        ctx.fillStyle='#2a1808'; ctx.strokeStyle='#4a3020'; ctx.lineWidth=1.5;
+        ctx.beginPath();ctx.arc(px,py,8,0,Math.PI*2);ctx.fill();ctx.stroke();
+        // ланцюг
+        for(let s=0;s<8;s++){
+            const t=s/8;
+            const ix=px+t*(cx-px), iy=py+t*(cy-py);
+            ctx.fillStyle='#3a2810';
+            ctx.beginPath();ctx.arc(ix,iy,2.5,0,Math.PI*2);ctx.fill();
+        }
+    });
+    // Чорна пляма
+    [55,40,28,18,10].forEach(r=>{
+        ctx.fillStyle='#040302';
+        ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.fill();
+    });
+    txt(cx,cy-8,'не намагайся',TDIM,8,false,'center',true);
+    txt(cx,cy+6,'дізнатись що там',TDIM,8,false,'center',true);
+    txt(x+12,y+14,'3B',GOLD,8,true);
+    txt(cx,y+h-10,'ПІДВАЛ РЕГУЛЯТОРА',TDIM,9,false,'center');
+}
+
+// ═══════════════════════════════════════════
+// МАЛЮЄМО КАРТУ
+// ═══════════════════════════════════════════
+
+// Фон
+ctx.fillStyle=BG;
+ctx.fillRect(0,0,W,H);
+
+// Тонка сітка
+const G=18;
+ctx.strokeStyle='#0f0c08'; ctx.lineWidth=0.4;
+for(let x=0;x<W;x+=G){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+for(let y=0;y<H;y+=G){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+
+// ─── РІВЕНЬ 1 ───
+const OX1=10;
+txt(210,28,'РІВЕНЬ 1: ВХІД',TXT,11,true);
+
+room(OX1,40,90,90,'ПРИХОВАНИЙ\nВХІД','4×4м','1A');
+// таємна стіна пунктир
+ctx.strokeStyle=GDIM; ctx.lineWidth=1.5; ctx.setLineDash([8,4]);
+ctx.beginPath();ctx.moveTo(OX1,40);ctx.lineTo(OX1+90,40);ctx.stroke();
+ctx.setLineDash([]);
+txt(OX1,35,'← книжкова шафа',GDIM,7,false,'left',true);
+
+cor(OX1+90,75,36,18); // кор 1A→1B
+room(OX1+126,40,144,126,'КІМНАТА ВАРТИ','6×8м','1B');
+txt(OX1+150,136,'⛓ манакли',TDIM,8);
+ctx.fillStyle='#333'; ctx.beginPath();ctx.arc(OX1+238,140,5,0,Math.PI*2);ctx.fill();
+txt(OX1+246,140,'● злив',TDIM,7,false,'left');
+
+cor(OX1+270,75,54,18); // кор 1B→T
+cor(OX1+324,28,36,234); // T вертикальний
+txt(OX1+342,148,'T',TXT,9,true,'center');
+
+// тупик
+rect(OX1+324,10,36,18,'#120e0a','#201810',1);
+ctx.strokeStyle='#383020'; ctx.lineWidth=2;
+ctx.beginPath();ctx.moveTo(OX1+324,10);ctx.lineTo(OX1+360,28);ctx.stroke();
+ctx.beginPath();ctx.moveTo(OX1+360,10);ctx.lineTo(OX1+324,28);ctx.stroke();
+txt(OX1+342,22,'ТУПИК',TDIM,7,true);
+
+// пастки
+trapIcon(OX1+342,196,'T1: яма','яма');
+txt(OX1+290,210,'ЛІВА!',RED,7,false,'right',true);
+
+cor(OX1+360,90,90,36); // кор→склепіння
+trapIcon(OX1+400,108,'T2: сигн.','дріт');
+room(OX1+450,40,108,108,'ПІДСОБНЕ\nСКЛЕПІННЯ','','');
+txt(OX1+504,130,'порожньо? ні.',RED,7,false,'center',true);
+
+cor(OX1+324,262,36,54);
+txt(OX1+342,335,'▼ Р.2',GOLD,10,true);
+
+// ─── РОЗДІЛЬНИК 1/2 ───
+const DIV1=600;
+ctx.strokeStyle=OUT+'60'; ctx.lineWidth=2; ctx.setLineDash([6,4]);
+ctx.beginPath();ctx.moveTo(DIV1,0);ctx.lineTo(DIV1,H);ctx.stroke();
+ctx.setLineDash([]);
+ctx.save();ctx.translate(DIV1+6,H/2);ctx.rotate(-Math.PI/2);
+txt(0,0,'Р.1 → Р.2',TDIM,9);ctx.restore();
+
+// ─── РІВЕНЬ 2 ───
+const OX2=620;
+txt(OX2+270,28,'РІВЕНЬ 2: АРХІВ',TXT,11,true);
+
+room(OX2,40,100,72,'ВЕСТИ-\nБЮЛЬ','');
+cor(OX2+36,112,36,54);
+trapIcon(OX2+54,148,'T3: газ','газ');
+txt(OX2,162,'← ЛІВА!',RED,7,false,'left',true);
+
+// Великий сховок 2A
+room(OX2,166,468,198,'ВЕЛИКИЙ СХОВОК  8×20м','стелажі по периметру','2A',true);
+// стелажі
+for(let i=0;i<24;i++){
+    ctx.fillStyle='#302818'; ctx.strokeStyle='#3a3020'; ctx.lineWidth=0.5;
+    ctx.fillRect(OX2+18+i*18,170,15,8); ctx.strokeRect(OX2+18+i*18,170,15,8);
+    ctx.fillRect(OX2+18+i*18,350,15,8); ctx.strokeRect(OX2+18+i*18,350,15,8);
+}
+artGlow(OX2+234,265);
+
+// таємний хід → 2B
+sdoor(OX2+468,256,false);
+txt(OX2+455,252,'< таємний хід',GDIM,7,false,'right',true);
+cor(OX2+468,220,18,90); // кор → 2B
+room(OX2+486,166,144,144,'КАБІНЕТ\nСЕБАСТЬЯНА','4×5м','2B');
+trapIcon(OX2+504,196,'T4: дріт','дріт');
+txt(OX2+504,270,'♦ костюм',TXT,9);
+txt(OX2+504,285,'🪞 до стіни',TDIM,7,false,'left',true);
+
+cor(OX2+90,364,36,72); // кор→2C
+trapIcon(OX2+108,398,'T5: шипи','шип');
+room(OX2+54,436,180,108,'ПОРОЖНЯ\nКІМНАТА','3×3м','2C');
+// скринька ???
+ctx.fillStyle='#2a1808'; ctx.strokeStyle='#4a3020'; ctx.lineWidth=1.5;
+ctx.fillRect(OX2+144-14,476,28,20); ctx.strokeRect(OX2+144-14,476,28,20);
+txt(OX2+144,504,'???',RED,14,true);
+
+cor(OX2+162,364,36,72); // кор→Р3
+trapIcon(OX2+180,398,'T6: газ','газ');
+txt(OX2+130,415,'ЛІВА!',RED,7,false,'right',true);
+txt(OX2+180,460,'▼ Р.3',GOLD,10,true,'center');
+
+// ─── РОЗДІЛЬНИК 2/3 ───
+const DIV2=1130;
+ctx.strokeStyle=OUT+'60'; ctx.lineWidth=2; ctx.setLineDash([6,4]);
+ctx.beginPath();ctx.moveTo(DIV2,0);ctx.lineTo(DIV2,H);ctx.stroke();
+ctx.setLineDash([]);
+ctx.save();ctx.translate(DIV2+6,H/2);ctx.rotate(-Math.PI/2);
+txt(0,0,'Р.2 → Р.3',TDIM,9);ctx.restore();
+
+// ─── РІВЕНЬ 3 ───
+const OX3=1150;
+txt(OX3+110,28,'РІВЕНЬ 3: ГЛИБИНА',TXT,11,true);
+
+cor(OX3+36,28,36,90);
+room(OX3,118,180,126,'ПЕРЕДКІМНАТА\nРЕГУЛЯТОРА','5×5м','3A');
+bloodSeal(OX3+180,176);
+txt(OX3+186,158,'КРИВАВНА',RED,7,true,'left');
+txt(OX3+186,168,'ПЕЧАТКА',RED,7,false,'left');
+txt(OX3+186,182,'тільки кров',RED,7,false,'left',true);
+txt(OX3+186,192,'Ключника',RED,7,false,'left',true);
+
+// затоплений прохід
+rect(OX3-130,118,130,90,BLUEF,BLUE,1.5);
+txt(OX3-65,163,'ЗАТОПЛЕНИЙ',BLUE,8,true);
+txt(OX3-65,177,'ПРОХІД',BLUE,8,true);
+txt(OX3-65,191,'вода 1.5м',BLUE+'aa',7,false,'center',true);
+txt(OX3-125,222,'→ виходить під Хейзмуром',BLUE+'88',7,false,'left',true);
+
+cor(OX3+180,172,36,54);
+regBasement(OX3+216,100,216,396);
+
+// тунель
+cor(OX3+432,172,54,36);
+ctx.strokeStyle=TDIM; ctx.lineWidth=1.5; ctx.setLineDash([5,5]);
+ctx.beginPath();ctx.moveTo(OX3+486,186);ctx.lineTo(OX3+520,186);ctx.stroke();
+ctx.setLineDash([]);
+txt(OX3+432,162,'→ невідомо куди. стіни не природні.',TDIM,7,false,'left',true);
+
+// ─── НОТАТКИ ───
+txt(12,H-70,'"Третій коридор — не ходи. Я ходив. Не ходи."',RED,8,false,'left',true);
+txt(12,H-56,'"Після кровяної печатки компас не працює."',TDIM,7,false,'left',true);
+txt(12,H-44,'"Хтось приходив сюди до нас. Давно. Залишили попередження на мові якої більше не існує."',TDIM,7,false,'left',true);
+
+// ─── ЛЕГЕНДА ───
+ctx.fillStyle='#0d0b08'; ctx.strokeStyle=OUT; ctx.lineWidth=1;
+ctx.fillRect(4,H-32,550,28); ctx.strokeRect(4,H-32,550,28);
+const leg=[['⬥ Пастка/яма',RED],['⬥ Отруйний газ','#8b8000'],['--- Таємний хід',GDIM],['❋ Кривавна печатка',RED],['▓ Стелажі',TDIM],['██ Затоплений',BLUE],['● Тунель',TDIM]];
+leg.forEach(([l,col],i)=>txt(15+i*76,H-14,l,col,7,false,'left'));
+
+// ─── ЗАГОЛОВОК ───
+ctx.fillStyle='#0d0b08'; ctx.strokeStyle=OUT; ctx.lineWidth=1;
+ctx.fillRect(W/2-270,4,540,32); ctx.strokeRect(W/2-270,4,540,32);
+txt(W/2,20,'ЧОРНИЙ АРХІВ — Схема Підземного Комплексу',TXT,13,true);
+txt(W/2,31,'Мал. невідомий. Знайдено у кишені мертвого дослідника.',TDIM,8,false,'center',true);
+
+</script>
+</body>
+</html>

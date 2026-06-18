@@ -1879,7 +1879,16 @@ const MAP_DATA = {
             { label: '⑦ Чорний архів',    x1:60, y1:55, x2:80, y2:78, target:'valkorn-archive',  scene:['valckorn_05_iliya'] },
         ]
     },
-    'valkorn-ghetto':    { image: null, title: 'Затоплені Колектори / Гетто', back: 'valkorn', hotspots: [] },
+    'valkorn-ghetto': {
+        image: 'assets/maps/valkorn-ghetto.png',
+        title: 'Затоплені Колектори — Неофіційна карта',
+        back: 'valkorn',
+        hotspots: [
+            { label: 'Схованка Бреса', x1:22, y1:18, x2:48, y2:52, target:null, scene:['valckorn_entry_ghetto','valckorn_slums_district'] },
+            { label: 'Підпільний ринок', x1:55, y1:45, x2:80, y2:75, target:null, scene:['valckorn_03_damar'] },
+            { label: 'Покинутий колектор', x1:80, y1:55, x2:98, y2:85, target:null, scene:[] },
+        ]
+    },
     'valkorn-monastery': {
         image: 'assets/maps/valkorn-monastery.png',
         title: 'Монастирський Клуатр Семи Кинджалів',

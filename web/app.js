@@ -1931,7 +1931,19 @@ const MAP_DATA = {
             { label: 'Рибальський район',    x1:40, y1:68, x2:82, y2:92, target:null, scene:[] },
         ]
     },
-    hazemoor:   { image: null, title: 'Хейзмур',      back: 'world', hotspots: [] },
+    hazemoor: {
+        image: 'assets/maps/hazemoor.png',
+        title: 'Хейзмур — Маршрут без Назви',
+        back: 'world',
+        hotspots: [
+            { label: 'День 1 — очеретяна протока', x1:18, y1:12, x2:62, y2:28, target:null, scene:['hazemoor_ep1'] },
+            { label: 'Нічліг 1 — вогнище',         x1:52, y1:24, x2:90, y2:36, target:null, scene:['hazemoor_ep2'] },
+            { label: 'Слід Руфіна',                x1:10, y1:34, x2:55, y2:46, target:null, scene:['hazemoor_ep3'] },
+            { label: 'Шалена Річка',               x1:10, y1:46, x2:90, y2:58, target:null, scene:['hazemoor_ep4'] },
+            { label: 'Нічліг 2',                   x1:10, y1:58, x2:70, y2:70, target:null, scene:['hazemoor_ep5'] },
+            { label: 'Галявина Моура',             x1:20, y1:84, x2:80, y2:98, target:null, scene:['glade_mour'] },
+        ]
+    },
 };
 
 let _mapHistory = [];

@@ -1409,18 +1409,58 @@ function getReputationStatus(value) {
 }
 
 // --- ОНОВЛЕННЯ ЕЛЕМЕНТІВ UI ---
+const UI_CACHE = {
+    initialized: false,
+    hpValue: null, hpBar: null, willValue: null, willBar: null, invGrid: null,
+    resources: {}, crafts: {}, reputation: {}
+};
+
+function initUiCache() {
+    UI_CACHE.hpValue = document.getElementById("hp-value");
+    UI_CACHE.hpBar = document.getElementById("hp-bar");
+    UI_CACHE.willValue = document.getElementById("will-value");
+    UI_CACHE.willBar = document.getElementById("will-bar");
+    UI_CACHE.invGrid = document.getElementById("inventory-list");
+
+    const resources = ["henbane", "loosestrife", "peganum", "bogiron", "silver", "slate", "slime", "heart", "tendons", "water", "ash"];
+    resources.forEach(res => {
+        UI_CACHE.resources[res] = document.getElementById(`res-${res}`);
+    });
+
+    UI_CACHE.crafts.ointment = document.getElementById("craft-ointment");
+    UI_CACHE.crafts.antidote = document.getElementById("craft-antidote");
+    UI_CACHE.crafts.amulet = document.getElementById("craft-amulet");
+    UI_CACHE.crafts.trap = document.getElementById("craft-trap");
+
+    const factions = ["greyford", "knives", "keepers", "muri"];
+    factions.forEach(faction => {
+        UI_CACHE.reputation[faction] = {
+            val: document.getElementById(`rep-val-${faction}`),
+            bar: document.getElementById(`rep-bar-${faction}`),
+            status: document.getElementById(`rep-status-${faction}`)
+        };
+    });
+
+    UI_CACHE.initialized = true;
+}
+
 function updateUi() {
     if (window.IS_DEV_TESTING) {
         window.playerState.hp = 999;
         window.playerState.will = 999;
     }
-    document.getElementById("hp-value").textContent = `${window.playerState.hp}/${window.playerState.maxHp}`;
-    document.getElementById("hp-bar").style.width = `${(window.playerState.hp / window.playerState.maxHp) * 100}%`;
 
-    document.getElementById("will-value").textContent = `${window.playerState.will}/${window.playerState.maxWill}`;
-    document.getElementById("will-bar").style.width = `${(window.playerState.will / window.playerState.maxWill) * 100}%`;
+    if (!UI_CACHE.initialized) {
+        initUiCache();
+    }
 
-    const invGrid = document.getElementById("inventory-list");
+    if (UI_CACHE.hpValue) UI_CACHE.hpValue.textContent = `${window.playerState.hp}/${window.playerState.maxHp}`;
+    if (UI_CACHE.hpBar) UI_CACHE.hpBar.style.width = `${(window.playerState.hp / window.playerState.maxHp) * 100}%`;
+
+    if (UI_CACHE.willValue) UI_CACHE.willValue.textContent = `${window.playerState.will}/${window.playerState.maxWill}`;
+    if (UI_CACHE.willBar) UI_CACHE.willBar.style.width = `${(window.playerState.will / window.playerState.maxWill) * 100}%`;
+
+    const invGrid = UI_CACHE.invGrid;
     if (invGrid) {
         invGrid.innerHTML = "";
         for (let i = 0; i < 4; i++) {
@@ -1441,20 +1481,20 @@ function updateUi() {
 
     const resources = ["henbane", "loosestrife", "peganum", "bogiron", "silver", "slate", "slime", "heart", "tendons", "water", "ash"];
     resources.forEach(res => {
-        const el = document.getElementById(`res-${res}`);
+        const el = UI_CACHE.resources[res];
         if (el) el.textContent = window.playerState.resources[res];
     });
 
-    const craftOintment = document.getElementById("craft-ointment");
+    const craftOintment = UI_CACHE.crafts.ointment;
     if (craftOintment) craftOintment.disabled = !(window.playerState.resources.henbane >= 1 && window.playerState.resources.slime >= 1);
     
-    const craftAntidote = document.getElementById("craft-antidote");
+    const craftAntidote = UI_CACHE.crafts.antidote;
     if (craftAntidote) craftAntidote.disabled = !(window.playerState.resources.loosestrife >= 1 && window.playerState.resources.water >= 1);
     
-    const craftAmulet = document.getElementById("craft-amulet");
+    const craftAmulet = UI_CACHE.crafts.amulet;
     if (craftAmulet) craftAmulet.disabled = !(window.playerState.resources.ash >= 1 && window.playerState.resources.silver >= 1);
     
-    const craftTrap = document.getElementById("craft-trap");
+    const craftTrap = UI_CACHE.crafts.trap;
     if (craftTrap) craftTrap.disabled = !(window.playerState.resources.bogiron >= 1 && window.playerState.resources.tendons >= 1);
 
     const repData = window.playerState.reputation || {};
@@ -1469,23 +1509,21 @@ function updateUi() {
         const val = effectiveRep[faction] || 0;
         const status = getReputationStatus(val);
         
-        const valEl = document.getElementById(`rep-val-${faction}`);
-        if (valEl) {
-            valEl.textContent = `${val > 0 ? '+' : ''}${val} / 100`;
-            valEl.className = `faction-val ${status.class}`;
+        const cacheEl = UI_CACHE.reputation[faction];
+        if (cacheEl && cacheEl.val) {
+            cacheEl.val.textContent = `${val > 0 ? '+' : ''}${val} / 100`;
+            cacheEl.val.className = `faction-val ${status.class}`;
         }
         
-        const barEl = document.getElementById(`rep-bar-${faction}`);
-        if (barEl) {
+        if (cacheEl && cacheEl.bar) {
             const pct = ((val + 100) / 2);
-            barEl.style.width = `${pct}%`;
-            barEl.className = `rep-bar-fill ${status.class}`;
+            cacheEl.bar.style.width = `${pct}%`;
+            cacheEl.bar.className = `rep-bar-fill ${status.class}`;
         }
         
-        const statusEl = document.getElementById(`rep-status-${faction}`);
-        if (statusEl) {
-            statusEl.textContent = status.text;
-            statusEl.className = `faction-status ${status.class}`;
+        if (cacheEl && cacheEl.status) {
+            cacheEl.status.textContent = status.text;
+            cacheEl.status.className = `faction-status ${status.class}`;
         }
     });
 }

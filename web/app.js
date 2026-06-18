@@ -1852,8 +1852,18 @@ const MAP_DATA = {
             { label: '③ Квартал ремісників', x1:52, y1:22, x2:74, y2:50, target:null, scene:['thread_carver'] },
             { label: '④ Портова таверна',   x1:56, y1:50, x2:74, y2:74, target:null, scene:['thread_tavern'] },
             { label: '⑤ Помешкання Чаклунки',x1:30, y1:10, x2:52, y2:36, target:null, scene:['thread_witch'] },
-            { label: '⑥ Контора Келма',     x1:40, y1:38, x2:58, y2:58, target:null, scene:['quest_verdict_kelm'] },
+            { label: '⑥ Контора Келма',     x1:40, y1:38, x2:58, y2:58, target:'greyford-kelm', scene:['quest_verdict_kelm'] },
             { label: '⑦ Залізні Ворота',    x1:38, y1:68, x2:56, y2:88, target:null, scene:['gates'] },
+        ]
+    },
+    'greyford-kelm': {
+        image: 'assets/maps/greyford-kelm.png',
+        title: 'Контора Серіта Келма',
+        back: 'greyford',
+        hotspots: [
+            { label: 'Стіл Келма', x1:40, y1:25, x2:80, y2:65, target:null, scene:['quest_verdict_kelm','nizh_kvoty'] },
+            { label: 'Архів записів', x1:55, y1:5, x2:95, y2:40, target:null, scene:['greyford_room_hub'] },
+            { label: 'Залізна скринька', x1:35, y1:55, x2:65, y2:75, target:null, scene:[] },
         ]
     },
     'greyford-tavern': {

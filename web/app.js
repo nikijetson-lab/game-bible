@@ -1916,7 +1916,21 @@ const MAP_DATA = {
         ]
     },
     'sonk-ferry-chapel': { image: null, title: 'Затоплена Каплиця', back: 'sonk-ferry', hotspots: [] },
-    tykhy:      { image: null, title: 'Тихий Шелест', back: 'world', hotspots: [] },
+    tykhy: {
+        image: 'assets/maps/tykhy.png',
+        title: 'Тихий Шелест',
+        back: 'world',
+        hotspots: [
+            { label: 'Вежа Варріка',         x1:62, y1:4,  x2:82, y2:28, target:null, scene:['tykhy_rufin'] },
+            { label: 'Центральна платформа',  x1:52, y1:22, x2:78, y2:52, target:null, scene:['tykhy_arrive'] },
+            { label: 'Лікарський дім Каена', x1:10, y1:22, x2:40, y2:55, target:null, scene:['tykhy_kaen'] },
+            { label: 'Дім Міа',              x1:10, y1:50, x2:36, y2:72, target:null, scene:['tykhy_mia','mia_meeting'] },
+            { label: 'Мати Міа',             x1:30, y1:68, x2:58, y2:88, target:null, scene:['mia_meeting'] },
+            { label: 'Священні Води',        x1:36, y1:38, x2:60, y2:60, target:null, scene:[] },
+            { label: 'Торговий причал',      x1:76, y1:38, x2:96, y2:62, target:null, scene:['tykhy_arrive'] },
+            { label: 'Рибальський район',    x1:40, y1:68, x2:82, y2:92, target:null, scene:[] },
+        ]
+    },
     hazemoor:   { image: null, title: 'Хейзмур',      back: 'world', hotspots: [] },
 };
 

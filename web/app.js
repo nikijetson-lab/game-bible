@@ -1933,7 +1933,7 @@ const MAP_DATA = {
     },
     hazemoor: {
         image: 'assets/maps/hazemoor.png',
-        title: 'Хейзмур — Маршрут без Назви',
+        title: 'Хейзмур — Детальна Карта',
         back: 'world',
         hotspots: [
             { label: 'День 1 — очеретяна протока', x1:18, y1:12, x2:62, y2:28, target:null, scene:['hazemoor_ep1'] },

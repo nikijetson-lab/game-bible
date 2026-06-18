@@ -1901,7 +1901,21 @@ const MAP_DATA = {
         ]
     },
     'valkorn-archive':   { image: null, title: 'Чорний Архів', back: 'valkorn', hotspots: [] },
-    'sonk-ferry':{ image: null, title: 'Сонк-Феррі', back: 'world', hotspots: [] },
+    'sonk-ferry': {
+        image: 'assets/maps/sonk-ferry.png',
+        title: 'Сонк-Феррі — Остання Переправа',
+        back: 'world',
+        hotspots: [
+            { label: 'Поромний причал — Тован Рід', x1:4,  y1:28, x2:28, y2:68, target:null, scene:['quest_ferry','sonk_ferry_hub'] },
+            { label: 'Торговий майдан',             x1:25, y1:22, x2:52, y2:55, target:null, scene:['quest_verdict_kelm'] },
+            { label: 'Оплот',                       x1:46, y1:22, x2:65, y2:55, target:null, scene:['sonk_ferry_hub','nizh_kvoty'] },
+            { label: 'Каплиця Святої Вей — Карос',  x1:60, y1:28, x2:82, y2:62, target:null, scene:['holod_investigate'] },
+            { label: 'Контрабандистський причал',   x1:74, y1:8,  x2:96, y2:40, target:null, scene:['sil_u_knyzi'] },
+            { label: 'Затоплена Каплиця',           x1:74, y1:70, x2:98, y2:96, target:'sonk-ferry-chapel', scene:['popil_pid_kaplytseyu'] },
+            { label: 'Нижній ярус',                 x1:4,  y1:58, x2:74, y2:90, target:null, scene:['valckorn_entry_ghetto'] },
+        ]
+    },
+    'sonk-ferry-chapel': { image: null, title: 'Затоплена Каплиця', back: 'sonk-ferry', hotspots: [] },
     tykhy:      { image: null, title: 'Тихий Шелест', back: 'world', hotspots: [] },
     hazemoor:   { image: null, title: 'Хейзмур',      back: 'world', hotspots: [] },
 };

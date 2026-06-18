@@ -1426,6 +1426,7 @@ function updateUi() {
         for (let i = 0; i < 4; i++) {
             const slot = document.createElement("div");
             slot.className = "inv-slot";
+            slot.dataset.index = i;
             
             if (window.playerState.inventory[i]) {
                 slot.textContent = window.playerState.inventory[i].split(" ")[0]; // emoji
@@ -1517,7 +1518,7 @@ function initItemUsage() {
         const slot = e.target.closest(".inv-slot");
         if (!slot || slot.classList.contains("empty")) return;
         
-        const slotIdx = Array.from(invGrid.children).indexOf(slot);
+        const slotIdx = parseInt(slot.dataset.index, 10);
         const itemName = window.playerState.inventory[slotIdx];
         if (!itemName) return;
         

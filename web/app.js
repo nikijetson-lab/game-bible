@@ -1880,7 +1880,17 @@ const MAP_DATA = {
         ]
     },
     'valkorn-ghetto':    { image: null, title: 'Затоплені Колектори / Гетто', back: 'valkorn', hotspots: [] },
-    'valkorn-monastery': { image: null, title: 'Монастирський Клуатр', back: 'valkorn', hotspots: [] },
+    'valkorn-monastery': {
+        image: 'assets/maps/valkorn-monastery.png',
+        title: 'Монастирський Клуатр Семи Кинджалів',
+        back: 'valkorn',
+        hotspots: [
+            { label: 'Тесина крамниця', x1:2, y1:25, x2:28, y2:75, target:null, scene:['valckorn_chapel_district'] },
+            { label: 'Таємний хід', x1:22, y1:20, x2:40, y2:55, target:null, scene:['valckorn_04_loen'] },
+            { label: 'Бібліотека Ордену', x1:68, y1:10, x2:92, y2:60, target:null, scene:['valckorn_05_iliya'] },
+            { label: 'Ворота', x1:62, y1:72, x2:88, y2:95, target:null, scene:['valckorn_palace_district'] },
+        ]
+    },
     'valkorn-archive':   { image: null, title: 'Чорний Архів', back: 'valkorn', hotspots: [] },
     'sonk-ferry':{ image: null, title: 'Сонк-Феррі', back: 'world', hotspots: [] },
     tykhy:      { image: null, title: 'Тихий Шелест', back: 'world', hotspots: [] },

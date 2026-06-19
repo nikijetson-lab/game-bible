@@ -1851,10 +1851,16 @@ const MAP_DATA = {
             { label: '① Таверна Ервана', x1:20, y1:38, x2:46, y2:72, target:'greyford-tavern', scene:['arriving','greyford_room_hub'] },
             { label: '③ Квартал ремісників', x1:52, y1:22, x2:74, y2:50, target:'greyford-craftsmen', scene:['thread_carver'] },
             { label: '④ Портова таверна',   x1:56, y1:50, x2:74, y2:74, target:null, scene:['thread_tavern'] },
-            { label: '⑤ Помешкання Чаклунки',x1:30, y1:10, x2:52, y2:36, target:null, scene:['thread_witch'] },
+            { label: '⑤ Помешкання Чаклунки',x1:30, y1:10, x2:52, y2:36, target:'greyford-witch', scene:['thread_witch'] },
             { label: '⑥ Контора Келма',     x1:40, y1:38, x2:58, y2:58, target:'greyford-kelm', scene:['quest_verdict_kelm'] },
             { label: '⑦ Залізні Ворота',    x1:38, y1:68, x2:56, y2:88, target:null, scene:['gates'] },
         ]
+    },
+    'greyford-witch': {
+        image: 'assets/maps/greyford-witch.png',
+        title: 'Помешкання Алтеї — Чаклунка Грейфорду',
+        back: 'greyford',
+        hotspots: []
     },
     'greyford-craftsmen': {
         image: 'assets/maps/greyford-craftsmen.png',

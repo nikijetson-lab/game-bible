@@ -1925,7 +1925,13 @@ const MAP_DATA = {
             { label: 'Ворота', x1:62, y1:72, x2:88, y2:95, target:null, scene:['valckorn_palace_district'] },
         ]
     },
-    'valkorn-archive':   { image: null, title: 'Чорний Архів', back: 'valkorn', hotspots: [] },
+    'valkorn-archive': {
+        image: 'assets/maps/valkorn-archive-concept.png',
+        title: 'Чорний Архів',
+        back: 'valkorn',
+        hotspots: [],
+        externalLink: { url: 'assets/maps/dungeon-archive.html', label: '🗺️ Відкрити схему підземелля (3 рівні)' }
+    },
     'sonk-ferry': {
         image: 'assets/maps/sonk-ferry.png',
         title: 'Сонк-Феррі — Остання Переправа',
@@ -2099,6 +2105,15 @@ function showMapLevel(mapKey) {
             </div>
             ${!activeHotspot && currentScene ? 
                 `<p style="color:var(--text-muted);font-size:0.8rem;margin-top:0.4rem">Вартовий зараз не на цій карті</p>` : ''}
+            ${map.externalLink ? `
+                <div style="margin-top:0.8rem">
+                    <a href="../${map.externalLink.url}" target="_blank" style="
+                        display:inline-block;padding:0.5rem 1.2rem;
+                        background:rgba(212,175,55,0.1);border:1px solid var(--accent-gold);
+                        color:var(--accent-gold);border-radius:4px;text-decoration:none;
+                        font-size:0.85rem;font-weight:700;
+                    ">${map.externalLink.label}</a>
+                </div>` : ''}
         </div>`;
 }
 

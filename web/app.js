@@ -2039,6 +2039,48 @@ function showMapLevel(mapKey) {
             cursor:pointer;font-size:0.85rem;font-weight:700;
         ">← ${MAP_DATA[map.back].title}</button>` : '';
 
+    // Локатор — мінікарта батьківської локації з підсвіченою позицією
+    let locatorHtml = '';
+    if (map.back && MAP_DATA[map.back]?.image) {
+        const parentMap = MAP_DATA[map.back];
+        const parentHotspot = parentMap.hotspots.find(h => h.target === mapKey);
+        if (parentHotspot) {
+            const hx = (parentHotspot.x1 + parentHotspot.x2) / 2;
+            const hy = (parentHotspot.y1 + parentHotspot.y2) / 2;
+            locatorHtml = `
+                <div onclick="showMapLevel('${map.back}')" style="
+                    position:absolute;top:10px;right:10px;z-index:20;
+                    width:130px;background:rgba(0,0,0,0.85);
+                    border:1px solid var(--accent-gold);border-radius:4px;
+                    padding:4px;cursor:pointer;
+                " title="Позиція в ${parentMap.title}">
+                    <div style="position:relative;width:100%;border-radius:2px;overflow:hidden">
+                        <img src="../${parentMap.image}" style="width:100%;display:block;opacity:0.85">
+                        <div style="
+                            position:absolute;
+                            left:${parentHotspot.x1}%;top:${parentHotspot.y1}%;
+                            width:${parentHotspot.x2-parentHotspot.x1}%;
+                            height:${parentHotspot.y2-parentHotspot.y1}%;
+                            border:1.5px solid #d4af37;
+                            background:rgba(212,175,55,0.25);
+                            border-radius:2px;
+                        "></div>
+                        <div style="
+                            position:absolute;left:${hx}%;top:${hy}%;
+                            width:8px;height:8px;transform:translate(-50%,-50%);
+                            background:#d4af37;border-radius:50%;
+                            box-shadow:0 0 0 2px rgba(212,175,55,0.4);
+                            animation: mapPulse 1.5s ease-in-out infinite;
+                        "></div>
+                    </div>
+                    <div style="
+                        font-size:9px;color:var(--accent-gold);text-align:center;
+                        margin-top:3px;font-weight:600;
+                    ">📍 ${parentMap.title}</div>
+                </div>`;
+        }
+    }
+
     contentDiv.innerHTML = `
         <style>
             @keyframes mapPulse {
@@ -2052,6 +2094,7 @@ function showMapLevel(mapKey) {
                      style="max-width:100%;display:block;border-radius:6px;border:1px solid var(--border-color)"
                      alt="${map.title}">
                 ${backBtn}
+                ${locatorHtml}
                 ${hotspotsHtml}
             </div>
             ${!activeHotspot && currentScene ? 

@@ -1926,11 +1926,11 @@ const MAP_DATA = {
         ]
     },
     'valkorn-archive': {
-        image: 'assets/maps/valkorn-archive-concept.png',
-        title: 'Чорний Архів',
+        image: 'assets/maps/dungeon-archive-render.png',
+        title: 'Чорний Архів — Схема Підземного Комплексу',
         back: 'valkorn',
         hotspots: [],
-        externalLink: { url: 'assets/maps/dungeon-archive.html', label: '🗺️ Відкрити схему підземелля (3 рівні)' }
+        externalLink: { url: 'assets/maps/valkorn-archive-concept.png', label: '🖼️ Концепт-арт камери з артефактом' }
     },
     'sonk-ferry': {
         image: 'assets/maps/sonk-ferry.png',

@@ -1849,11 +1849,20 @@ const MAP_DATA = {
         back: 'world',
         hotspots: [
             { label: '① Таверна Ервана', x1:20, y1:38, x2:46, y2:72, target:'greyford-tavern', scene:['arriving','greyford_room_hub'] },
-            { label: '③ Квартал ремісників', x1:52, y1:22, x2:74, y2:50, target:null, scene:['thread_carver'] },
+            { label: '③ Квартал ремісників', x1:52, y1:22, x2:74, y2:50, target:'greyford-craftsmen', scene:['thread_carver'] },
             { label: '④ Портова таверна',   x1:56, y1:50, x2:74, y2:74, target:null, scene:['thread_tavern'] },
             { label: '⑤ Помешкання Чаклунки',x1:30, y1:10, x2:52, y2:36, target:null, scene:['thread_witch'] },
             { label: '⑥ Контора Келма',     x1:40, y1:38, x2:58, y2:58, target:'greyford-kelm', scene:['quest_verdict_kelm'] },
             { label: '⑦ Залізні Ворота',    x1:38, y1:68, x2:56, y2:88, target:null, scene:['gates'] },
+        ]
+    },
+    'greyford-craftsmen': {
+        image: 'assets/maps/greyford-craftsmen.png',
+        title: 'Квартал Ремісників — П\'ять Майстерень',
+        back: 'greyford',
+        hotspots: [
+            { label: 'Майстерня Різьбяра', x1:48, y1:10, x2:72, y2:75, target:null, scene:['thread_carver'] },
+            { label: 'Кузня', x1:2, y1:10, x2:28, y2:75, target:null, scene:[] },
         ]
     },
     'greyford-kelm': {

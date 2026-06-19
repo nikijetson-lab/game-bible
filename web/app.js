@@ -1946,7 +1946,12 @@ const MAP_DATA = {
             { label: 'Нижній ярус',                 x1:4,  y1:58, x2:74, y2:90, target:null, scene:['valckorn_entry_ghetto'] },
         ]
     },
-    'sonk-ferry-chapel': { image: null, title: 'Затоплена Каплиця', back: 'sonk-ferry', hotspots: [] },
+    'sonk-ferry-chapel': {
+        image: 'assets/maps/sonk-ferry-chapel-concept.png',
+        title: 'Затоплена Каплиця — Незавершений Ритуал',
+        back: 'sonk-ferry',
+        hotspots: []
+    },
     tykhy: {
         image: 'assets/maps/tykhy.png',
         title: 'Тихий Шелест',

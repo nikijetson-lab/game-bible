@@ -1305,3 +1305,12 @@ footer {
     50% { border-color: var(--accent-gold); box-shadow: 0 0 12px rgba(212, 175, 55, 0.3); }
     100% { border-color: rgba(212, 175, 55, 0.4); box-shadow: 0 0 4px rgba(212, 175, 55, 0.1); }
 }
+
+#mobile-cat-back {
+    display: none;
+    width: 100%;
+    background: rgba(212, 175, 55, 0.1) !important;
+    border: 1px solid var(--accent-gold) !important;
+    color: var(--accent-gold) !important;
+    font-weight: 700 !important;
+}

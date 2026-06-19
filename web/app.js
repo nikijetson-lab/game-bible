@@ -105,6 +105,35 @@ document.querySelectorAll(".cat-btn").forEach(btn => {
         e.target.classList.add("active");
         const category = e.target.getAttribute("data-category");
         renderFileList(category);
+
+        // На мобільному ховаємо категорії, щоб файли (зокрема Карта світу)
+        // були одразу видимі без необхідності скролити маленький сайдбар
+        if (window.innerWidth <= 700) {
+            const catGroup = document.querySelector(".category-group");
+            const catTitle = document.querySelectorAll(".sidebar-title")[0];
+            if (catGroup) catGroup.style.display = "none";
+            if (catTitle) catTitle.style.display = "none";
+
+            let backBtn = document.getElementById("mobile-cat-back");
+            if (!backBtn) {
+                backBtn = document.createElement("button");
+                backBtn.id = "mobile-cat-back";
+                backBtn.className = "cat-btn";
+                backBtn.style.marginBottom = "0.5rem";
+                backBtn.textContent = "← Усі категорії";
+                backBtn.addEventListener("click", () => {
+                    if (catGroup) catGroup.style.display = "";
+                    if (catTitle) catTitle.style.display = "";
+                    backBtn.style.display = "none";
+                    document.getElementById("file-list").innerHTML =
+                        '<p class="placeholder-text">Оберіть категорію...</p>';
+                });
+                document.querySelector(".bible-sidebar")?.insertBefore(
+                    backBtn, document.querySelector(".sidebar-title:nth-of-type(1)") || catGroup
+                );
+            }
+            backBtn.style.display = "block";
+        }
     });
 });
 

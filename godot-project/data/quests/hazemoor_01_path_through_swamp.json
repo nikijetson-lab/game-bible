@@ -1,0 +1,95 @@
+{
+  "id": "hazemoor_01_path_through_swamp",
+  "title": "Шлях крізь болото",
+  "description": "Вартовий має пройти через Хейзмур, щоб знайти сліди Руфіна. Болото небезпечне — треба бути обережним.",
+  "category": "main",
+  "episode": 1,
+  "required_level": 1,
+  
+  "prerequisites": {
+    "quests_completed": ["greyford_01_missing_recipient"]
+  },
+  
+  "objectives": [
+    {
+      "id": "enter_hazemoor",
+      "description": "Увійти в Хейзмур через браму біля Грейфорда",
+      "type": "area_trigger",
+      "target": "hazemoor_entrance",
+      "optional": false
+    },
+    {
+      "id": "follow_path",
+      "description": "Йти старою стежкою вглиб болота",
+      "type": "follow_path",
+      "target": "swamp_path_01",
+      "waypoints": ["waypoint_01", "waypoint_02", "waypoint_03"],
+      "optional": false
+    },
+    {
+      "id": "avoid_dangers",
+      "description": "Вижити в болоті (не померти від ворогів або пасток)",
+      "type": "survival",
+      "target": "stay_alive",
+      "optional": false
+    },
+    {
+      "id": "find_muri_signs",
+      "description": "Знайти символи Мурі на деревах (3 штуки)",
+      "type": "collect",
+      "target": "muri_symbol",
+      "count": 3,
+      "current": 0,
+      "optional": true,
+      "bonus": true
+    },
+    {
+      "id": "reach_clearing",
+      "description": "Дійти до першої галявини",
+      "type": "area_trigger",
+      "target": "first_clearing",
+      "optional": false
+    }
+  ],
+  
+  "choices": [],
+  
+  "rewards": {
+    "experience": 150,
+    "money": 30,
+    "items": [
+      {"id": "item_swamp_reed", "count": 5}
+    ],
+    "reputation": {
+      "muri": 5
+    },
+    "bonus_rewards": {
+      "find_muri_signs": {
+        "reputation": {"muri": 10},
+        "items": [{"id": "item_muri_charm", "count": 1}]
+      }
+    }
+  },
+  
+  "dialogue_triggers": {
+    "on_start": "internal_voice/hazemoor_warning.json",
+    "on_enter_swamp": "internal_voice/iliya_first_whisper.json",
+    "on_complete": "internal_voice/clearing_reached.json"
+  },
+  
+  "lore": {
+    "summary": "Перше занурення в Хейзмур. Болото вітає Вартового туманом, тишею та шепотом Ілії.",
+    "unlocks": [
+      "Відкривається можливість досліджувати болото",
+      "Перші натяки на існування Ілії",
+      "Знайомство з символами Мурі"
+    ]
+  },
+  
+  "mechanics": {
+    "fog_intensity": 0.8,
+    "ambush_chance": 0.3,
+    "iliya_whispers": true,
+    "muri_watchers": true
+  }
+}

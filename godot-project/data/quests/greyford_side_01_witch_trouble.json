@@ -1,0 +1,170 @@
+{
+  "id": "greyford_side_01_witch_trouble",
+  "title": "Проблема з відьмою",
+  "description": "Місцева цілителька Алтея звинувачена в чаклунстві. Адміністрація хоче її вигнати, але хтось має розібратися по-справедливому.",
+  "category": "side",
+  "episode": 1,
+  "required_level": 2,
+  
+  "prerequisites": {
+    "location": "greyford",
+    "quests_completed": []
+  },
+  
+  "objectives": [
+    {
+      "id": "hear_rumors",
+      "description": "Почути плітки про Алтею в таверні",
+      "type": "dialogue",
+      "target": "npc_ervan",
+      "trigger": "rumors_about_witch",
+      "optional": false
+    },
+    {
+      "id": "talk_kelm",
+      "description": "Поговорити з Келмом про звинувачення",
+      "type": "dialogue",
+      "target": "npc_kelm",
+      "optional": false
+    },
+    {
+      "id": "visit_alteya",
+      "description": "Відвідати Алтею в її хатині",
+      "type": "area_trigger",
+      "target": "alteya_hut",
+      "optional": false
+    },
+    {
+      "id": "investigate_accusations",
+      "description": "Розслідувати звинувачення (опитати 3 свідків)",
+      "type": "investigate",
+      "target": "witness_statements",
+      "count": 3,
+      "witnesses": ["npc_farmer_jorn", "npc_merchant_lysa", "npc_guard_tovar"],
+      "current": 0,
+      "optional": false
+    },
+    {
+      "id": "find_evidence",
+      "description": "Знайти докази невинності або провини",
+      "type": "find_object",
+      "target": "evidence",
+      "optional": true,
+      "bonus": true
+    },
+    {
+      "id": "make_verdict",
+      "description": "Винести вердикт",
+      "type": "choice",
+      "target": "witch_verdict",
+      "optional": false
+    }
+  ],
+  
+  "choices": [
+    {
+      "id": "defend_alteya",
+      "text": "Захистити Алтею — вона невинна",
+      "description": "Довести що Алтея просто цілителька, а не відьма. Вона використовує болотні трави, але в цьому немає магії.",
+      "conditions": {
+        "doctrine": "mediator"
+      },
+      "consequences": {
+        "reputation": {
+          "greyford": -5,
+          "muri": 15,
+          "lightbearers": -10
+        },
+        "npc_relationship": {
+          "alteya": "grateful",
+          "kelm": "disappointed"
+        },
+        "unlock_service": "alteya_healing",
+        "narrative_flag": "witch_saved"
+      }
+    },
+    {
+      "id": "exile_alteya",
+      "text": "Підтримати вигнання",
+      "description": "Погодитися з Адміністрацією — краще перестрахуватися. Алтея має покинути Грейфорд.",
+      "conditions": {},
+      "consequences": {
+        "reputation": {
+          "greyford": 10,
+          "lightbearers": 5,
+          "muri": -10
+        },
+        "npc_relationship": {
+          "alteya": "hostile",
+          "kelm": "pleased"
+        },
+        "narrative_flag": "witch_exiled",
+        "future_consequences": "alteya_curse"
+      }
+    },
+    {
+      "id": "uncover_truth",
+      "text": "Розкрити справжню причину звинувачень",
+      "description": "Якщо знайшов докази — викрити того, хто підставив Алтею. Це місцевий торговець, що хоче її землю.",
+      "conditions": {
+        "has_evidence": true,
+        "doctrine": "tracker"
+      },
+      "consequences": {
+        "reputation": {
+          "greyford": 20,
+          "lightbearers": 10
+        },
+        "npc_relationship": {
+          "alteya": "very_grateful",
+          "kelm": "impressed",
+          "merchant_lysa": "arrested"
+        },
+        "rewards_bonus": {
+          "money": 150,
+          "items": [{"id": "item_rare_herb_pouch", "count": 1}]
+        },
+        "narrative_flag": "conspiracy_uncovered"
+      }
+    }
+  ],
+  
+  "rewards": {
+    "experience": 180,
+    "money": 60,
+    "items": [],
+    "reputation": {}
+  },
+  
+  "dialogue_triggers": {
+    "on_start": "ervan/witch_rumors.json",
+    "at_kelm": "kelm/witch_problem.json",
+    "at_alteya": "alteya/please_help.json",
+    "after_investigation": "internal_voice/something_is_wrong.json",
+    "on_verdict": "kelm/your_decision.json"
+  },
+  
+  "lore": {
+    "summary": "Класичний сайд-квест про упередження та правосуддя. Показує відношення Ордену до 'болотної магії' та тих, хто з нею працює.",
+    "unlocks": [
+      "Доступ до послуг Алтеї (якщо захистив)",
+      "Розуміння конфлікту між містом та болотом",
+      "Перші натяки на корупцію в Грейфорді"
+    ]
+  },
+  
+  "mechanics": {
+    "investigation_system": true,
+    "witness_credibility": {
+      "jorn": "honest",
+      "lysa": "lying",
+      "tovar": "biased"
+    },
+    "skill_checks": {
+      "judge": "interrogation_bonus",
+      "tracker": "find_evidence",
+      "mediator": "calm_mob"
+    },
+    "time_sensitive": false
+  }
+}

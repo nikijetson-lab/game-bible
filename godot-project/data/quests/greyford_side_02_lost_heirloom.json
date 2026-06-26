@@ -1,0 +1,136 @@
+{
+  "id": "greyford_side_02_lost_heirloom",
+  "title": "Загублена реліквія",
+  "description": "Старий вояка на ім'я Варрік згубив сімейний медальйон десь у болоті. Він просить Вартового знайти його.",
+  "category": "side",
+  "episode": 1,
+  "required_level": 1,
+  
+  "prerequisites": {
+    "location": "greyford"
+  },
+  
+  "objectives": [
+    {
+      "id": "talk_varrik",
+      "description": "Поговорити з Варріком у таверні",
+      "type": "dialogue",
+      "target": "npc_varrik",
+      "optional": false
+    },
+    {
+      "id": "search_swamp_edge",
+      "description": "Обшукати околицю болота (3 зони)",
+      "type": "search_area",
+      "target": "swamp_edge_zones",
+      "zones": ["zone_north", "zone_east", "zone_old_tree"],
+      "count": 3,
+      "current": 0,
+      "optional": false
+    },
+    {
+      "id": "find_medallion",
+      "description": "Знайти медальйон",
+      "type": "find_object",
+      "target": "varrik_medallion",
+      "location": "zone_old_tree",
+      "optional": false
+    },
+    {
+      "id": "return_varrik",
+      "description": "Повернути медальйон Варріку",
+      "type": "dialogue",
+      "target": "npc_varrik",
+      "optional": false
+    }
+  ],
+  
+  "choices": [
+    {
+      "id": "return_medallion",
+      "text": "Повернути медальйон Варріку",
+      "description": "Віддати реліквію законному власнику.",
+      "conditions": {},
+      "consequences": {
+        "reputation": {
+          "greyford": 10
+        },
+        "npc_relationship": {
+          "varrik": "grateful"
+        },
+        "rewards": {
+          "money": 50,
+          "items": []
+        }
+      }
+    },
+    {
+      "id": "sell_medallion",
+      "text": "Продати медальйон торговцю",
+      "description": "Це старе срібло — коштує непогано. Варрік не дізнається.",
+      "conditions": {},
+      "consequences": {
+        "reputation": {
+          "greyford": -15,
+          "lightbearers": -20
+        },
+        "npc_relationship": {
+          "varrik": "betrayed"
+        },
+        "rewards": {
+          "money": 150,
+          "items": []
+        },
+        "narrative_flag": "oath_breaker",
+        "future_consequences": "varrik_enemy"
+      }
+    },
+    {
+      "id": "keep_medallion",
+      "text": "Залишити собі як амулет",
+      "description": "Медальйон має захисні руни. Може стати в пригоді.",
+      "conditions": {
+        "doctrine": "lantern"
+      },
+      "consequences": {
+        "reputation": {
+          "greyford": -10
+        },
+        "npc_relationship": {
+          "varrik": "disappointed"
+        },
+        "rewards": {
+          "items": [{"id": "item_protection_amulet", "count": 1}]
+        },
+        "narrative_flag": "selfish_choice"
+      }
+    }
+  ],
+  
+  "rewards": {
+    "experience": 80,
+    "money": 0,
+    "items": []
+  },
+  
+  "dialogue_triggers": {
+    "on_start": "varrik/please_find_it.json",
+    "on_find": "internal_voice/old_magic.json",
+    "on_return": "varrik/thank_you.json",
+    "on_betray": "varrik/you_bastard.json"
+  },
+  
+  "lore": {
+    "summary": "Простий fetch-quest з моральним вибором. Тест на честь Вартового.",
+    "notes": "Варрік — старий Вартовий на пенсії. Медальйон дістався йому від діда, який служив у Прадавні війни."
+  },
+  
+  "mechanics": {
+    "search_mechanic": "hotcold",
+    "medallion_properties": {
+      "magic_resistance": 0.1,
+      "sell_value": 150
+    },
+    "karmic_impact": true
+  }
+}

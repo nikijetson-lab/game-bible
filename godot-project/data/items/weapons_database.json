@@ -1,0 +1,251 @@
+{
+  "weapons": [
+    {
+      "id": "weapon_iron_sword",
+      "name": "Залізний меч",
+      "description": "Стандартний меч Вартового. Довговічний, але не винятковий.",
+      "type": "sword",
+      "rarity": "common",
+      "icon": "res://assets/ui/icons/sword_iron.png",
+      "model": "res://assets/models/weapons/iron_sword.glb",
+      
+      "stats": {
+        "damage": 20,
+        "attack_speed": 1.0,
+        "critical_chance": 0.05,
+        "critical_multiplier": 1.5,
+        "range": 2.0,
+        "durability": 100
+      },
+      
+      "requirements": {
+        "strength": 10
+      },
+      
+      "price": 50,
+      "weight": 3.5
+    },
+    
+    {
+      "id": "weapon_silver_sword",
+      "name": "Срібний меч",
+      "description": "Меч з Білого срібла. Ефективний проти магічних створінь.",
+      "type": "sword",
+      "rarity": "rare",
+      "icon": "res://assets/ui/icons/sword_silver.png",
+      "model": "res://assets/models/weapons/silver_sword.glb",
+      
+      "stats": {
+        "damage": 25,
+        "magic_damage": 15,
+        "attack_speed": 1.1,
+        "critical_chance": 0.1,
+        "critical_multiplier": 2.0,
+        "range": 2.2,
+        "durability": 80
+      },
+      
+      "special_effects": {
+        "vs_undead": 2.0,
+        "vs_spirits": 2.5,
+        "holy_damage": true
+      },
+      
+      "requirements": {
+        "strength": 15,
+        "doctrine": "lantern"
+      },
+      
+      "price": 250,
+      "weight": 3.0
+    },
+    
+    {
+      "id": "weapon_rusty_axe",
+      "name": "Іржавий топір",
+      "description": "Старий топір контрабандиста. Брудний, але міцно б'є.",
+      "type": "axe",
+      "rarity": "common",
+      "icon": "res://assets/ui/icons/axe_rusty.png",
+      "model": "res://assets/models/weapons/rusty_axe.glb",
+      
+      "stats": {
+        "damage": 30,
+        "attack_speed": 0.8,
+        "critical_chance": 0.02,
+        "critical_multiplier": 1.3,
+        "range": 1.8,
+        "durability": 60
+      },
+      
+      "special_effects": {
+        "bleed_chance": 0.15,
+        "bleed_damage": 3.0,
+        "bleed_duration": 5.0
+      },
+      
+      "requirements": {
+        "strength": 12
+      },
+      
+      "price": 35,
+      "weight": 5.0
+    },
+    
+    {
+      "id": "weapon_warden_dagger",
+      "name": "Кинджал Вартового",
+      "description": "Швидкий церемоніальний кинджал. Символ Ордену.",
+      "type": "dagger",
+      "rarity": "uncommon",
+      "icon": "res://assets/ui/icons/dagger_warden.png",
+      "model": "res://assets/models/weapons/warden_dagger.glb",
+      
+      "stats": {
+        "damage": 15,
+        "attack_speed": 1.5,
+        "critical_chance": 0.2,
+        "critical_multiplier": 2.5,
+        "range": 1.2,
+        "durability": 90
+      },
+      
+      "special_effects": {
+        "backstab_multiplier": 3.0,
+        "silent_kill": true
+      },
+      
+      "requirements": {
+        "agility": 12,
+        "doctrine": "tracker"
+      },
+      
+      "price": 120,
+      "weight": 1.0
+    },
+    
+    {
+      "id": "weapon_muri_spear",
+      "name": "Болотне спис",
+      "description": "Спис Мурі, створений з очеретупідкориння. Покритий отруйною смолою.",
+      "type": "spear",
+      "rarity": "rare",
+      "icon": "res://assets/ui/icons/spear_muri.png",
+      "model": "res://assets/models/weapons/muri_spear.glb",
+      
+      "stats": {
+        "damage": 22,
+        "poison_damage": 10,
+        "attack_speed": 1.2,
+        "critical_chance": 0.08,
+        "critical_multiplier": 1.8,
+        "range": 3.0,
+        "durability": 70
+      },
+      
+      "special_effects": {
+        "poison_chance": 0.4,
+        "poison_dps": 5.0,
+        "poison_duration": 8.0,
+        "swamp_affinity": true
+      },
+      
+      "requirements": {
+        "agility": 10,
+        "reputation_muri": 20
+      },
+      
+      "price": 200,
+      "weight": 2.5
+    },
+    
+    {
+      "id": "weapon_oak_staff",
+      "name": "Дубовий посох",
+      "description": "Посох старого Ключника. Резонує з магією.",
+      "type": "staff",
+      "rarity": "epic",
+      "icon": "res://assets/ui/icons/staff_oak.png",
+      "model": "res://assets/models/weapons/oak_staff.glb",
+      
+      "stats": {
+        "damage": 10,
+        "magic_damage": 30,
+        "attack_speed": 0.9,
+        "critical_chance": 0.15,
+        "critical_multiplier": 2.0,
+        "range": 2.5,
+        "durability": 120
+      },
+      
+      "special_effects": {
+        "spell_power_bonus": 0.25,
+        "mana_regen": 1.0,
+        "cast_speed": 1.15
+      },
+      
+      "requirements": {
+        "intelligence": 18,
+        "doctrine": "lantern"
+      },
+      
+      "price": 450,
+      "weight": 2.0
+    }
+  ],
+  
+  "shields": [
+    {
+      "id": "shield_wooden",
+      "name": "Дерев'яний щит",
+      "description": "Простий круглий щит. Краще ніж нічого.",
+      "type": "shield",
+      "rarity": "common",
+      "icon": "res://assets/ui/icons/shield_wood.png",
+      "model": "res://assets/models/weapons/wooden_shield.glb",
+      
+      "stats": {
+        "block_chance": 0.3,
+        "block_amount": 10,
+        "stability": 50,
+        "durability": 80
+      },
+      
+      "requirements": {
+        "strength": 8
+      },
+      
+      "price": 25,
+      "weight": 4.0
+    },
+    
+    {
+      "id": "shield_iron",
+      "name": "Залізний щит",
+      "description": "Масивний щит Ордену. Витримує багато ударів.",
+      "type": "shield",
+      "rarity": "uncommon",
+      "icon": "res://assets/ui/icons/shield_iron.png",
+      "model": "res://assets/models/weapons/iron_shield.glb",
+      
+      "stats": {
+        "block_chance": 0.5,
+        "block_amount": 20,
+        "stability": 100,
+        "durability": 150
+      },
+      
+      "special_effects": {
+        "bash_damage": 15,
+        "bash_stun": 1.5
+      },
+      
+      "requirements": {
+        "strength": 15
+      },
+      
+      "price": 100,
+      "weight": 7.0
+    }
+  ]
+}

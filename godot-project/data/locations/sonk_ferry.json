@@ -1,0 +1,97 @@
+{
+  "id": "sonk_ferry",
+  "name": "Сонк-Феррі",
+  "title": "Поромне селище",
+  "type": "village",
+  "size": "small",
+  
+  "description": "Невелике селище на березі Шаленої річки. Останній цивілізований пункт перед входом у глибоке болото. Пором Одріна — єдиний спосіб переправитись через річку.",
+  
+  "atmosphere": {
+    "mood": "isolated_melancholy",
+    "weather": "mist",
+    "fog_density": 0.6,
+    "lighting": "grey_overcast",
+    "music_track": "Crossing the Chasm",
+    "ambient_sounds": ["river_flow", "wind", "distant_fog_horn", "wood_creaking"]
+  },
+  
+  "time_of_day": "dynamic",
+  "danger_level": "low",
+  
+  "zones": [
+    {
+      "id": "ferry_dock",
+      "name": "Причал порому",
+      "type": "dock",
+      "description": "Дерев'яний причал з великим поромом. Одрін стоїть біля керма, цинічно спостерігаючи за пасажирами.",
+      "npcs": ["odrin_ferryman"],
+      "services": ["ferry_crossing"],
+      "quest_location": ["deep_bog_02_mad_ferry"]
+    },
+    
+    {
+      "id": "chapel",
+      "name": "Стара каплиця",
+      "type": "religious",
+      "description": "Напівзруйнована каплиця Вартових. Мало хто сюди заходить. Під нею — підвал з таємницями.",
+      "fog_density": 0.7,
+      "quest_location": ["popil_pid_kaplytseyu"],
+      "secrets": ["hidden_basement", "ritual_remains"]
+    },
+    
+    {
+      "id": "small_inn",
+      "name": "Поромна ха",
+      "type": "inn",
+      "description": "Маленька хата-постоялий двір. Тепло, затишно, але мало місць.",
+      "npcs": ["innkeeper"],
+      "services": ["rest", "food"]
+    }
+  ],
+  
+  "npcs": [
+    {
+      "id": "odrin_ferryman",
+      "location": "ferry_dock",
+      "role": "ferryman",
+      "essential": true
+    },
+    {
+      "id": "innkeeper",
+      "location": "small_inn",
+      "role": "innkeeper"
+    }
+  ],
+  
+  "connections": [
+    {
+      "to": "greyford",
+      "travel_method": "walk",
+      "travel_time": 120,
+      "description": "Шлях через ліс назад до Грейфорда"
+    },
+    {
+      "to": "hazemoor_rotten_fields",
+      "travel_method": "ferry",
+      "travel_time": 30,
+      "cost": 10,
+      "description": "Переправа через річку в глибоке болото",
+      "requirements": {"ferry_operational": true}
+    }
+  ],
+  
+  "quests": {
+    "takes_place_here": [
+      "deep_bog_02_mad_ferry",
+      "popil_pid_kaplytseyu",
+      "poromna_prysyaga"
+    ]
+  },
+  
+  "lore": {
+    "population": "~30 жителів",
+    "founded": "100 років тому",
+    "purpose": "Останній перевалочний пункт до глибокого болота"
+  }
+}

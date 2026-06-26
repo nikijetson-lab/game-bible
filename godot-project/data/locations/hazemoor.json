@@ -1,0 +1,233 @@
+{
+  "id": "hazemoor_swamp",
+  "name": "Хейзмур",
+  "title": "Живе болото",
+  "type": "wilderness",
+  "size": "large",
+  
+  "description": "Величезне болото, що дихає магією. Темна дзеркальна вода, стіни очерету вище людини, густий туман, що ніколи не розвіюється. Час тут тече інакше. Моур, древня свідомість, спить під поверхнею.",
+  
+  "atmosphere": {
+    "mood": "eerie_mystical",
+    "weather": "fog",
+    "fog_density": 0.8,
+    "lighting": "dim_twilight",
+    "music_track": "Darkest Child",
+    "ambient_sounds": ["water_drip", "reed_rustle", "distant_whispers", "frog_croaks", "mysterious_echoes"]
+  },
+  
+  "time_of_day": "eternal_twilight",
+  
+  "danger_level": "high",
+  
+  "zones": [
+    {
+      "id": "hazemoor_edge",
+      "name": "Край болота",
+      "type": "transition_zone",
+      "description": "Перехідна зона між лісом і болотом. Земля стає м'якою, з'являється вода.",
+      "danger_level": "low",
+      "fog_density": 0.4,
+      "enemies": ["swamp_rat", "bog_crawler"],
+      "entry_point": true
+    },
+    
+    {
+      "id": "hazemoor_reed_maze",
+      "name": "Лабіринт очерету",
+      "type": "maze",
+      "description": "Нескінченні стіни високого очерету. Легко заблукати. Мурі використовують таємні стежки.",
+      "danger_level": "medium",
+      "fog_density": 0.7,
+      "navigation_difficulty": "hard",
+      "special_mechanics": ["reed_maze_puzzle"],
+      "enemies": ["will_o_wisp", "lost_soul"],
+      "secrets": ["hidden_muri_cache", "ancient_rune_stone"]
+    },
+    
+    {
+      "id": "tykhy_shelest",
+      "name": "Тихий Шелест",
+      "type": "settlement",
+      "description": "Селище Мурі на палях над водою. Круглі будинки з очеретяних стін. Беззвучні мешканці рухаються ледь чутно.",
+      "danger_level": "safe",
+      "fog_density": 0.5,
+      "music_override": "ambient_peaceful",
+      "npcs": ["kaen", "varrik", "sirra", "muri_elder"],
+      "services": ["healing", "muri_trade", "shelter"],
+      "faction": "muri",
+      "reputation_required": 0
+    },
+    
+    {
+      "id": "hazemoor_moura_clearing",
+      "name": "Галявина Моура",
+      "type": "sacred_site",
+      "description": "Священне місце. Коло білої випаленої трави 30 метрів у діаметрі. У центрі — гігантський слід ступні, вдавлений неможливо глибоко. Тут Моур найближче до поверхні.",
+      "danger_level": "extreme",
+      "fog_density": 0.9,
+      "music_override": "Danse Macabre",
+      "special_mechanics": ["moura_ritual_site"],
+      "access_restriction": "quest_only",
+      "npcs": ["mia_ghost_form"],
+      "quest_location": ["hazemoor_02_clearing_and_spirit"]
+    },
+    
+    {
+      "id": "hazemoor_rotten_fields",
+      "name": "Гнилі Поля",
+      "type": "hazard_zone",
+      "description": "Найнебезпечніша частина болота. Жовто-зелені отруйні випари висять над чорною жижею. Місце де болото вмирає від власної магії.",
+      "danger_level": "extreme",
+      "fog_density": 1.0,
+      "environmental_hazard": {
+        "type": "poison_gas",
+        "damage_per_second": 5,
+        "requires_protection": "swamp_mask"
+      },
+      "enemies": ["corrupted_creature", "toxic_ooze"],
+      "loot": ["rare_herbs", "corrupted_essence"]
+    },
+    
+    {
+      "id": "sunken_abbey",
+      "name": "Затоплена Обитель",
+      "type": "dungeon",
+      "description": "Величний храм Ключників, наполовину затоплений чорною водою. Рунічні печатки світяться блідим світлом. Тут зберігається Друга Печатка.",
+      "danger_level": "extreme",
+      "fog_density": 0.6,
+      "music_override": "The Descent",
+      "is_dungeon": true,
+      "sub_zones": [
+        "abbey_entrance",
+        "abbey_flooded_hall",
+        "abbey_scriptorium",
+        "abbey_seal_chamber"
+      ],
+      "npcs": ["lileya"],
+      "enemies": ["drowned_keeper", "seal_guardian"],
+      "quest_location": ["deep_bog_03_sunken_abbey"],
+      "access_restriction": "quest_unlocked"
+    }
+  ],
+  
+  "navigation": {
+    "landmarks": [
+      {"name": "Величезне сухе дерево", "description": "Єдине високе дерево серед болота"},
+      {"name": "Кам'яна арка", "description": "Залишки старої будівлі"},
+      {"name": "Світлячки", "description": "Біля безпечних шляхів"}
+    ],
+    "safe_paths": [
+      {
+        "from": "hazemoor_edge",
+        "to": "tykhy_shelest",
+        "marked_by": "muri_totems",
+        "travel_time": 60
+      }
+    ],
+    "dangerous_paths": [
+      {
+        "from": "tykhy_shelest",
+        "to": "hazemoor_moura_clearing",
+        "warning": "Forbidden by Muri",
+        "travel_time": 90
+      }
+    ]
+  },
+  
+  "npcs": [
+    {
+      "id": "kaen",
+      "location": "tykhy_shelest",
+      "role": "healer",
+      "essential": true
+    },
+    {
+      "id": "varrik",
+      "location": "tykhy_shelest",
+      "role": "hunter",
+      "patrol_zone": "hazemoor_reed_maze"
+    },
+    {
+      "id": "lileya",
+      "location": "sunken_abbey",
+      "role": "keeper",
+      "essential": true,
+      "appears_in_quest": "deep_bog_03_sunken_abbey"
+    }
+  ],
+  
+  "enemies": [
+    {
+      "type": "swamp_rat",
+      "spawn_zones": ["hazemoor_edge"],
+      "spawn_rate": "common",
+      "level": 1
+    },
+    {
+      "type": "bog_crawler",
+      "spawn_zones": ["hazemoor_edge", "hazemoor_reed_maze"],
+      "spawn_rate": "common",
+      "level": 2
+    },
+    {
+      "type": "will_o_wisp",
+      "spawn_zones": ["hazemoor_reed_maze"],
+      "spawn_rate": "uncommon",
+      "level": 4,
+      "behavior": "lure_player"
+    },
+    {
+      "type": "corrupted_creature",
+      "spawn_zones": ["hazemoor_rotten_fields"],
+      "spawn_rate": "rare",
+      "level": 8,
+      "aggressive": true
+    },
+    {
+      "type": "drowned_keeper",
+      "spawn_zones": ["sunken_abbey"],
+      "spawn_rate": "scripted",
+      "level": 12,
+      "boss": false
+    }
+  ],
+  
+  "resources": {
+    "gatherable": [
+      {"id": "swamp_reed", "zones": ["all"], "rarity": "common"},
+      {"id": "healing_moss", "zones": ["tykhy_shelest"], "rarity": "uncommon"},
+      {"id": "corrupted_essence", "zones": ["hazemoor_rotten_fields"], "rarity": "rare"}
+    ]
+  },
+  
+  "quests": {
+    "starts_here": [
+      "tykhy_shelist_quests",
+      "muri_path_01_seven_lessons"
+    ],
+    "takes_place_here": [
+      "hazemoor_01_path_through_swamp",
+      "hazemoor_02_clearing_and_spirit",
+      "deep_bog_03_sunken_abbey"
+    ]
+  },
+  
+  "lore": {
+    "nature": "Хейзмур — не просто болото, це жива істота з власною свідомістю. Моур, дух болота, спить під водою після Прадавньої війни.",
+    "history": "Тисячі років тому Хейзмур був звичайним болотом. Але древній ритуал Ключників пробудив свідомість землі. Моур став захисником цього місця.",
+    "current_state": "Після того як Орден Семи Кинджалів вирізав частину свідомості Моура та ув'язнив у артефакті, болото почало згасати. Туман густішає, істоти стають агресивнішими."
+  },
+  
+  "secrets": [
+    "Під Галявиною Моура є печера, де спить його фізичне тіло",
+    "Мурі знають ритуал, що може відновити Моура",
+    "У Затопленій Обителі є третя печатка, про яку не знає навіть Лілея"
+  ],
+  
+  "special_mechanics": {
+    "time_distortion": "Час в болоті йде інакше. 1 година в реальності = 30 хвилин у Хейзмурі",
+    "whispers_of_moura": "Гравець іноді чує шепоти Моура (якщо не має захисту)",
+    "fog_navigation": "Туман можна використовувати для навігації — він тонший біля безпечних шляхів"
+  }
+}

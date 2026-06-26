@@ -1,0 +1,245 @@
+{
+  "id": "valkorn",
+  "name": "Валькорн",
+  "title": "Залізна столиця",
+  "type": "city",
+  "size": "large",
+  
+  "description": "Велична індустріальна столиця, побудована на парі та механізмах. Високі димарі випускають дим цілодобово. Залізні греси штампують зброю для Ордену. Палац на вершині пагорба нагляє за всім містом.",
+  
+  "atmosphere": {
+    "mood": "industrial_oppressive",
+    "weather": "smog",
+    "fog_density": 0.5,
+    "lighting": "warm_industrial",
+    "music_track": "The Descent",
+    "ambient_sounds": ["steam_hiss", "metal_clanging", "factory_hum", "crowd_distant", "bells"]
+  },
+  
+  "time_of_day": "dynamic",
+  
+  "danger_level": "medium",
+  
+  "districts": [
+    {
+      "id": "valkorn_palace_district",
+      "name": "Палацовий квартал",
+      "type": "government",
+      "description": "Найвищий район міста. Палац Валькорна з білого каменю контрастує з темним залізом решти міста. Тут живуть аристократи та високі чиновники.",
+      "wealth_level": "rich",
+      "danger_level": "low",
+      "fog_density": 0.2,
+      "npcs": ["sebastian_marr_jester", "palace_guards", "nobles"],
+      "access_restriction": "reputation_or_quest",
+      "sub_zones": [
+        {
+          "id": "throne_room",
+          "name": "Тронний зал",
+          "description": "Величний зал з високою стелею. Король рідко показується публічно. Блазень Фіпп завжди поряд."
+        },
+        {
+          "id": "palace_archive",
+          "name": "Палацовий архів",
+          "description": "Під палацом. Довгі коридори з пилюкими полицями. Одрін охороняє найдавніші записи.",
+          "npcs": ["odrin"],
+          "quest_location": ["valkorn_04_man_who_sent_rufin"]
+        }
+      ]
+    },
+    
+    {
+      "id": "valkorn_trade_district",
+      "name": "Торговий квартал",
+      "type": "commerce",
+      "description": "Найжвавіша частина міста. Ринки, крамниці, таверни. Тесса тут має свою майстерню.",
+      "wealth_level": "middle",
+      "danger_level": "low",
+      "npcs": ["tessa", "merchants", "craftsmen"],
+      "services": ["shop", "blacksmith", "tavern", "inn"],
+      "sub_zones": [
+        {
+          "id": "tessa_workshop",
+          "name": "Майстерня Тесси",
+          "description": "Кузня з витонченою зброєю на стінах. Тесса працює над новим дизайном лицарських обладунків.",
+          "npcs": ["tessa"],
+          "services": ["blacksmith", "repair", "upgrade"],
+          "quest_location": ["valkorn_02_two_versions_truth"]
+        },
+        {
+          "id": "main_market",
+          "name": "Центральний ринок",
+          "description": "Величезний ринок під відкритим небом. Тут можна купити все — від овочів до контрабандної магії.",
+          "services": ["shop", "black_market"]
+        }
+      ]
+    },
+    
+    {
+      "id": "valkorn_industrial_zone",
+      "name": "Промислова зона",
+      "type": "industrial",
+      "description": "Серце індустріальної потуги Валькорна. Фабрики працюють цілодобово. Пара, дим, грохіт машин.",
+      "wealth_level": "poor",
+      "danger_level": "medium",
+      "fog_density": 0.7,
+      "ambient_override": "heavy_machinery",
+      "enemies": ["factory_rogue", "steam_golem"],
+      "sub_zones": [
+        {
+          "id": "main_foundry",
+          "name": "Головна ливарня",
+          "description": "Величезний завод, де виробляють зброю для Ордену. Жар печей відчувається за сотню метрів."
+        },
+        {
+          "id": "steam_engine_core",
+          "name": "Паровий двигун",
+          "description": "Центральна паросилова установка, що живить все місто. Охороняється."
+        }
+      ]
+    },
+    
+    {
+      "id": "valkorn_new_ghetto",
+      "name": "Нове гетто",
+      "type": "slums",
+      "description": "Найбідніший район. Тут живуть біженці з болота, робітники заводів, злочинці. Брес тут керує своєю мережею.",
+      "wealth_level": "poor",
+      "danger_level": "high",
+      "fog_density": 0.6,
+      "npcs": ["bres", "refugees", "criminals"],
+      "faction": "underground",
+      "enemy_spawn": ["thug", "pickpocket"],
+      "quest_location": ["valkorn_03_right_price"]
+    },
+    
+    {
+      "id": "valkorn_monastery",
+      "name": "Монастир Вартових",
+      "type": "religious",
+      "description": "Старий монастир Ордену Ліхтарів. Тут тренуються нові Вартові та зберігаються священні артефакти.",
+      "wealth_level": "middle",
+      "danger_level": "low",
+      "music_override": "religious_chant",
+      "npcs": ["warden_master", "monk_trainers"],
+      "services": ["training", "blessing", "quest_board"],
+      "faction": "lightbearers"
+    }
+  ],
+  
+  "landmarks": [
+    {
+      "id": "iron_statue",
+      "name": "Статуя Залізного Вартового",
+      "location": "valkorn_trade_district",
+      "description": "Величезна залізна статуя засновника Валькорна. 15 метрів заввишки. Люди залишають тут монети на удачу."
+    },
+    {
+      "id": "great_clock_tower",
+      "name": "Велика Вежа Годинника",
+      "location": "valkorn_trade_district",
+      "description": "Механічна вежа з величезним годинником. Дзвони б'ють кожну годину, чутно по всьому місту."
+    }
+  ],
+  
+  "npcs": [
+    {
+      "id": "sebastian_marr_jester",
+      "location": "valkorn_palace_district",
+      "position": "throne_room",
+      "role": "court_jester",
+      "essential": true,
+      "secret_identity": "sebastian_marr"
+    },
+    {
+      "id": "odrin",
+      "location": "valkorn_palace_district",
+      "position": "palace_archive",
+      "role": "archivist",
+      "essential": true
+    },
+    {
+      "id": "tessa",
+      "location": "valkorn_trade_district",
+      "position": "tessa_workshop",
+      "role": "blacksmith",
+      "essential": true
+    },
+    {
+      "id": "bres",
+      "location": "valkorn_new_ghetto",
+      "role": "information_broker",
+      "essential": true
+    }
+  ],
+  
+  "quests": {
+    "starts_here": [
+      "valkorn_02_two_versions_truth",
+      "valkorn_03_right_price"
+    ],
+    "takes_place_here": [
+      "valkorn_01_man_from_swamp",
+      "valkorn_04_man_who_sent_rufin",
+      "valkorn_05_keeper_first_seal",
+      "episode_4_02_valkorn_climax"
+    ]
+  },
+  
+  "connections": [
+    {
+      "to": "greyford",
+      "travel_method": "carriage",
+      "travel_time": 300,
+      "cost": 50,
+      "description": "Східний шлях до Грейфорда (50 км)"
+    }
+  ],
+  
+  "factions": {
+    "dominant": "order_of_daggers_secret",
+    "present": ["lightbearers", "merchants_guild", "underground"],
+    "tension_level": "high"
+  },
+  
+  "economy": {
+    "primary": "industrial_manufacturing",
+    "exports": ["weapons", "armor", "machinery"],
+    "imports": ["food", "swamp_resources", "lumber"],
+    "currency": "silver_coin"
+  },
+  
+  "lore": {
+    "population": "~5000 жителів",
+    "founded": "200 років тому",
+    "government": "Monarchy під впливом Ордену Кинджалів (таємно)",
+    "military": "Найсильніша армія в регіоні",
+    "history": "Валькорн був заснований як фортеця після Прадавньої війни. З часом став індустріальним центром завдяки відкриттю паросилових технологій. Але таємно ним керує Себастьян Марр через Орден Семи Кинджалів."
+  },
+  
+  "secrets": [
+    "Блазень Фіпп — насправді Себастьян Марр, Вартовий Орд вважав мертвим 20 років",
+    "Під палацом знаходиться Перша Печатка, що тримає частину свідомості Моура",
+    "Тесса планує реформу Ордену Вартових",
+    "Промислова зона використовує магію болота як джерело енергії"
+  ],
+  
+  "special_events": {
+    "daily": [
+      {"time": "09:00", "event": "market_opening", "location": "valkorn_trade_district"},
+      {"time": "18:00", "event": "factory_shift_change", "location": "valkorn_industrial_zone"},
+      {"time": "22:00", "event": "curfew_start", "location": "all"}
+    ],
+    "story": [
+      {
+        "trigger": "valkorn_05_keeper_first_seal_complete",
+        "event": "sebastian_revealed",
+        "description": "Себастьян розкриває себе"
+      },
+      {
+        "trigger": "episode_4_02_valkorn_climax",
+        "event": "rebellion_outbreak",
+        "description": "Тесса підіймає повстання"
+      }
+    ]
+  }
+}

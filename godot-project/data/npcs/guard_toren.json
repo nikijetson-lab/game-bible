@@ -1,0 +1,74 @@
+{
+  "id": "guard_greyford",
+  "name": "Вартовий Торен",
+  "title": "Вартовий брами Грейфорда",
+  "race": "Human",
+  "age": 34,
+  
+  "description": "Міцний чоловік у залізній кірасі Ордену Вартових. Шолом з гербом — залізний кинджал. Стоїть біля воріт Грейфорда, перевіряючи всіх хто входить і виходить.",
+  
+  "personality": {
+    "traits": ["disciplined", "suspicious", "dutiful", "tired"],
+    "alignment": "lawful_neutral",
+    "speech_style": "military_formal"
+  },
+  
+  "location": {
+    "default": "greyford_main_gate",
+    "schedule": {
+      "morning": "greyford_main_gate",
+      "afternoon": "greyford_main_gate",
+      "evening": "greyford_barracks",
+      "night": "greyford_barracks"
+    }
+  },
+  
+  "reputation": {
+    "greyford": 30,
+    "lightbearers": 40,
+    "knives": 0,
+    "muri": -10
+  },
+  
+  "dialogues": {
+    "first_arrival": "guard/first_arrival.json",
+    "routine_check": "guard/routine_check.json",
+    "rumors": "guard/rumors.json",
+    "after_swamp": "guard/after_swamp.json"
+  },
+  
+  "services": {
+    "gate_keeper": true,
+    "information": true,
+    "basic_quests": true
+  },
+  
+  "quests": {
+    "gives": ["greyford_gate_watch", "missing_patrol"],
+    "involved": ["greyford_01_missing_recipient"]
+  },
+  
+  "relationships": {
+    "kelm": "respects_authority",
+    "ervan": "regular_customer",
+    "rufin": "saw_leave_city",
+    "protagonist": "professional_distance"
+  },
+  
+  "lore": {
+    "background": "Торен служить у Грейфорді 8 років. Він бачив багато — контрабандистів, біженців з болота, Мурі-торговців. Останнім часом нервує через збільшення зникнень.",
+    "duty": "Його обов'язок — не пускати небезпечних, записувати всіх хто виходить у болото. Руфін був останнім кого він пропустив три дні тому.",
+    "concerns": "Торен помічає що туман підступає ближче. Болотяні випари стали густішими. Щось не так з болотом.",
+    "secrets": [
+      "Бачив як Руфін виходив з міста з дивним пакунком",
+      "Знає що частина вартових бере хабарі від контрабандистів",
+      "Чув чутки про те що в болоті є древній храм"
+    ]
+  },
+  
+  "dialogue_flags": {
+    "suspicious_of_player": "Player reputation with Lightbearers < 0",
+    "friendly": "Player reputation with Greyford > 20",
+    "warns_about_swamp": "Player going to Hazemoor first time"
+  }
+}

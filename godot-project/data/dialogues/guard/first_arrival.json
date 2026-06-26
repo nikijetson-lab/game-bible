@@ -1,0 +1,163 @@
+{
+  "dialogue_id": "guard_first_arrival",
+  "npc": "guard_toren",
+  "context": "Гравець вперше підходить до воріт Грейфорда",
+  
+  "nodes": [
+    {
+      "id": "start",
+      "type": "npc_speech",
+      "speaker": "guard_toren",
+      "text": "*Вартовий у залізній кірасі піднімає руку*\n\nСтій. Хто ти і яка справа в Грейфорді?",
+      "next": "choice_01"
+    },
+    {
+      "id": "choice_01",
+      "type": "player_choice",
+      "choices": [
+        {
+          "text": "[Показати печатку Ордену] Вартовий-Курат. Офіційна справа.",
+          "next": "answer_official"
+        },
+        {
+          "text": "Мандрівник. Шукаю притулку на ніч.",
+          "next": "answer_traveler"
+        },
+        {
+          "text": "Це має значення? Пусти.",
+          "next": "answer_rude"
+        }
+      ]
+    },
+    {
+      "id": "answer_official",
+      "type": "npc_speech",
+      "speaker": "guard_toren",
+      "text": "*Перевіряє печатку, віддає честь*\n\nВибачте, пане. Торен, вартовий брами. Ми не чекали Вартового, але... *хмуриться* ...можливо саме час.",
+      "effects": {
+        "reputation": {"lightbearers": 5, "greyford": 3}
+      },
+      "next": "about_city"
+    },
+    {
+      "id": "answer_traveler",
+      "type": "npc_speech",
+      "speaker": "guard_toren",
+      "text": "*Оцінююче дивиться*\n\nМандрівник, кажеш? *помічає зброю* Озброєний мандрівник. Добре. Таверна «Скрипучий знак» — прямо, Ерван тримає. Але поводься смирно.",
+      "effects": {
+        "reputation": {"greyford": 1}
+      },
+      "next": "warning_swamp"
+    },
+    {
+      "id": "answer_rude",
+      "type": "npc_speech",
+      "speaker": "guard_toren",
+      "text": "*Рука лягає на меч*\n\nМає. Зараз часи неспокійні. Або назвеш справу, або розвернешся. Вибір твій.",
+      "effects": {
+        "reputation": {"greyford": -5, "lightbearers": -3}
+      },
+      "next": "choice_01b"
+    },
+    {
+      "id": "choice_01b",
+      "type": "player_choice",
+      "choices": [
+        {
+          "text": "[Показати печатку] Добре. Я Вартовий.",
+          "next": "answer_official_late"
+        },
+        {
+          "text": "Шукаю таверну. Більше нічого.",
+          "next": "answer_traveler"
+        }
+      ]
+    },
+    {
+      "id": "answer_official_late",
+      "type": "npc_speech",
+      "speaker": "guard_toren",
+      "text": "*Насуплено*\n\nПечатка справжня. Але манери — ні. Проходь, Вартовий. Адміністрація — на площі. Секретар Келм чекає.",
+      "effects": {
+        "reputation": {"lightbearers": 3, "greyford": -2}
+      },
+      "next": "about_city"
+    },
+    {
+      "id": "about_city",
+      "type": "npc_speech",
+      "speaker": "guard_toren",
+      "text": "Грейфорд — прикордонне місто. Ми тримаємо стіну проти болота. Але... *дивиться на туман* ...стіна не допомагає проти туману.",
+      "next": "choice_02"
+    },
+    {
+      "id": "warning_swamp",
+      "type": "npc_speech",
+      "speaker": "guard_toren",
+      "text": "І ще. Якщо думаєш йти в болото — не йди. Троє зникли цього місяця. Включно з кур'єром Ордену.",
+      "next": "choice_02"
+    },
+    {
+      "id": "choice_02",
+      "type": "player_choice",
+      "choices": [
+        {
+          "text": "Кур'єр Ордену? Маєш на увазі Руфіна?",
+          "next": "about_rufin"
+        },
+        {
+          "text": "Що відбувається в болоті?",
+          "next": "about_swamp"
+        },
+        {
+          "text": "Дякую. Я пішов.",
+          "next": "end_polite"
+        }
+      ]
+    },
+    {
+      "id": "about_rufin",
+      "type": "npc_speech",
+      "speaker": "guard_toren",
+      "text": "*Кивок*\n\nТак, Руфін. Картограф. Три дні тому вийшов через ці ворота з якимось пакунком. Сказав — справа Ордену. Більше його ніхто не бачив.",
+      "effects": {
+        "set_flag": "guard_saw_rufin",
+        "reputation": {"lightbearers": 2}
+      },
+      "next": "about_swamp"
+    },
+    {
+      "id": "about_swamp",
+      "type": "npc_speech",
+      "speaker": "guard_toren",
+      "text": "Туман густішає. Люди кажуть бачать вогники, чують голоси. Мурі приходять рідше. Навіть вони бояться чогось.",
+      "next": "final"
+    },
+    {
+      "id": "final",
+      "type": "npc_speech",
+      "speaker": "guard_toren",
+      "text": "Якщо дізнаєшся щось — повідом. Я тут щодня. Удачі, Вартовий.",
+      "effects": {
+        "set_flag": "entered_greyford",
+        "unlock_location": "greyford_town"
+      },
+      "next": "end"
+    },
+    {
+      "id": "end_polite",
+      "type": "npc_speech",
+      "speaker": "guard_toren",
+      "text": "*Відступає*\n\nПроходь. І будь обережний.",
+      "effects": {
+        "set_flag": "entered_greyford",
+        "unlock_location": "greyford_town"
+      },
+      "next": "end"
+    },
+    {
+      "id": "end",
+      "type": "end"
+    }
+  ]
+}

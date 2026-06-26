@@ -1,0 +1,102 @@
+{
+  "dialogue_id": "kelm_first_meeting",
+  "npc_id": "kelm",
+  "start_node": "node_0",
+  
+  "nodes": {
+    "node_0": {
+      "speaker": "Келм",
+      "text": "Вартовий? Нарешті. Ми вже тиждень чекаємо на когось із Ордену.",
+      "next": "node_1"
+    },
+    
+    "node_1": {
+      "speaker": "Келм",
+      "text": "Три дні тому ми відправили кур'єра, Руфіна, до болота. Він мав передати щось важливе... але не повернувся.",
+      "next": "node_2"
+    },
+    
+    "node_2": {
+      "speaker": "Келм",
+      "text": "Адміністрація стурбована. Руфін знав болото краще за інших, якщо з ним щось сталося — це погана ознака.",
+      "choices": [
+        {
+          "text": "Що він ніс із собою?",
+          "next_node": "node_artifact"
+        },
+        {
+          "text": "Хто бачив його останнім?",
+          "next_node": "node_witnesses"
+        },
+        {
+          "text": "Чому ви чекали тиждень?",
+          "next_node": "node_delay"
+        }
+      ]
+    },
+    
+    "node_artifact": {
+      "speaker": "Келм",
+      "text": "Це... секретна інформація. Я лише можу сказати, що це був артефакт, запечатаний Орденом. Важливий для безпеки регіону.",
+      "next": "node_2_return"
+    },
+    
+    "node_witnesses": {
+      "speaker": "Келм",
+      "text": "Він зайшов у таверну Ервана того вечора. Можливо, Ерван знає більше. Іди туди, розпитай.",
+      "next": "node_2_return",
+      "consequences": {
+        "quest_update": {
+          "quest_id": "greyford_01_missing_recipient",
+          "objective_id": "talk_to_kelm"
+        }
+      }
+    },
+    
+    "node_delay": {
+      "speaker": "Келм",
+      "text": "Спочатку думали, що він просто затримався. Болото непередбачуване. Але після трьох днів... ми зрозуміли, що щось не так.",
+      "next": "node_2_return"
+    },
+    
+    "node_2_return": {
+      "speaker": "Келм",
+      "text": "Ще щось хочеш знати?",
+      "choices": [
+        {
+          "text": "Що він ніс із собою?",
+          "next_node": "node_artifact",
+          "condition": {
+            "type": "flag",
+            "flag": "asked_about_artifact",
+            "invert": true
+          }
+        },
+        {
+          "text": "Хто бачив його останнім?",
+          "next_node": "node_witnesses",
+          "condition": {
+            "type": "flag",
+            "flag": "asked_about_witnesses",
+            "invert": true
+          }
+        },
+        {
+          "text": "Я піду в таверну.",
+          "next_node": "node_end"
+        }
+      ]
+    },
+    
+    "node_end": {
+      "speaker": "Келм",
+      "text": "Добре. Поговори з Ерваном. І будь обережний — болото не прощає помилок.",
+      "consequences": {
+        "quest_update": {
+          "quest_id": "greyford_01_missing_recipient",
+          "objective_id": "talk_to_kelm"
+        }
+      }
+    }
+  }
+}

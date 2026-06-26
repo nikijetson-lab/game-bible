@@ -75,6 +75,13 @@ godot-project/
 - [x] `player_controller.gd` (рух, камера)
 - [x] `quest_manager.gd` (квести, цілі)
 - [x] `reputation_manager.gd` (репутація з фракціями)
+- [x] `dialogue_manager.gd` (система діалогів з розгалуженням)
+- [x] `save_manager.gd` (збереження/завантаження)
+- [x] `inventory_manager.gd` (інвентар, предмети, крафт)
+- [x] Перший квест у JSON (`greyford_01_missing_recipient`)
+- [x] Діалоги для Келма та Ервана
+- [x] NPC database (Келм, Ерван)
+- [x] Items database (11 предметів)
 
 ### ⬜ **TODO (Next Steps):**
 - [ ] Створити сцену `Player.tscn` (CharacterBody3D)

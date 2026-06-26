@@ -1,0 +1,95 @@
+{
+  "id": "greyford_01_missing_recipient",
+  "title": "Адресат відсутній",
+  "description": "Вартовий прибув до Грейфорда, щоб розслідувати зникнення Руфіна, картографа-кур'єра, який не повернувся з болота.",
+  
+  "start_location": "greyford_administration",
+  "recommended_level": 1,
+  
+  "objectives": [
+    {
+      "id": "talk_to_kelm",
+      "description": "Поговорити з Серітом Келмом в Адміністрації",
+      "type": "talk",
+      "target": "npc_kelm",
+      "location": "greyford_administration",
+      "required": true
+    },
+    {
+      "id": "investigate_tavern",
+      "description": "Дізнатися про Руфіна в таверні Ервана",
+      "type": "talk",
+      "target": "npc_ervan",
+      "location": "greyford_tavern",
+      "required": true
+    },
+    {
+      "id": "choice_path",
+      "description": "Вирішити, що робити далі",
+      "type": "choice",
+      "required": true,
+      "choices": [
+        {
+          "id": "report_to_order",
+          "text": "Повідомити Орден про зникнення",
+          "consequences": {
+            "reputation": {
+              "lightbearers": 10,
+              "greyford": -5
+            },
+            "quest_start": {
+              "id": "greyford_02_order_investigation"
+            }
+          }
+        },
+        {
+          "id": "investigate_swamp",
+          "text": "Самостійно йти в болото",
+          "consequences": {
+            "reputation": {
+              "greyford": 5,
+              "muri": 5
+            },
+            "quest_start": {
+              "id": "hazemoor_01_path_through_swamp"
+            }
+          }
+        },
+        {
+          "id": "help_locals",
+          "text": "Спочатку допомогти місцевим",
+          "consequences": {
+            "reputation": {
+              "greyford": 15
+            },
+            "quest_start": {
+              "id": "greyford_sidequests"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  
+  "rewards": {
+    "experience": 100,
+    "items": [
+      {
+        "id": "item_silver_coin",
+        "amount": 50
+      }
+    ],
+    "reputation": {
+      "greyford": 10
+    }
+  },
+  
+  "lore": {
+    "background": "Руфін був відправлений до Хейзмуру три дні тому з важливим артефактом. Він не повернувся, і ніхто не знає, що з ним сталося.",
+    "notes": [
+      "Це перший квест гри, введення в світ Хейзмуру",
+      "Вибір в кінці визначає подальший шлях гравця",
+      "Пов'язаний з основною сюжетною лінією про Моура та артефакт"
+    ]
+  }
+}

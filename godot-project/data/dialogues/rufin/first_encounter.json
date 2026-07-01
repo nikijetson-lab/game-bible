@@ -1,0 +1,182 @@
+{
+  "dialogue_id": "rufin_first_encounter",
+  "npc": "rufin",
+  "context": "Перша зустріч на Галявині Моура. Руфін з'являється як примара.",
+  
+  "nodes": [
+    {
+      "id": "start",
+      "type": "npc_speech",
+      "speaker": "rufin",
+      "text": "*Крізь туман проступає безтілесна постать. Голос — ледь чутне відлуння.*\n\n...Вартовий? Ти... прийшов?",
+      "next": "choice_01"
+    },
+    {
+      "id": "choice_01",
+      "type": "player_choice",
+      "choices": [
+        {
+          "text": "Руфін? Це справді ти? Що з тобою сталось?",
+          "next": "answer_concern"
+        },
+        {
+          "text": "Хто ти? Покажися!",
+          "next": "answer_demand"
+        },
+        {
+          "text": "[Мовчати та спостерігати]",
+          "next": "answer_silence"
+        }
+      ]
+    },
+    {
+      "id": "answer_concern",
+      "type": "npc_speech",
+      "speaker": "rufin",
+      "text": "*Примара опускає погляд*\n\nТе що... залишилось. Я вже не Руфін. Не зовсім. Моур... забрав більшість.",
+      "effects": {
+        "reputation": {"lightbearers": 2}
+      },
+      "next": "explain"
+    },
+    {
+      "id": "answer_demand",
+      "type": "npc_speech",
+      "speaker": "rufin",
+      "text": "*Примара відступає*\n\nВибач... забув як говорити з живими. Я Руфін. Був Руфіном. Картограф Ордену.",
+      "next": "explain"
+    },
+    {
+      "id": "answer_silence",
+      "type": "npc_speech",
+      "speaker": "rufin",
+      "text": "*Примара чекає. Туман згущується.*\n\n...Мудро. Я теж мовчав коли побачив істину. Але мовчання не врятувало.",
+      "effects": {
+        "reputation": {"keepers": 2}
+      },
+      "next": "explain"
+    },
+    {
+      "id": "explain",
+      "type": "npc_speech",
+      "speaker": "rufin",
+      "text": "Три дні тому... ні, може три роки? Час тут не працює. Я приніс *артефакт*. Блазень сказав — це для захисту болота.",
+      "next": "choice_02"
+    },
+    {
+      "id": "choice_02",
+      "type": "player_choice",
+      "choices": [
+        {
+          "text": "Блазень? Ти маєш на увазі Себастьяна Марра?",
+          "condition": {"flag": "knows_marr_identity"},
+          "next": "confirm_marr"
+        },
+        {
+          "text": "Що за артефакт?",
+          "next": "about_artifact"
+        },
+        {
+          "text": "Що сталось коли ти його приніс?",
+          "next": "about_joining"
+        }
+      ]
+    },
+    {
+      "id": "confirm_marr",
+      "type": "npc_speech",
+      "speaker": "rufin",
+      "text": "*Очі примари спалахують*\n\nТи... знаєш? Так, Марр. Блазень. Той хто грає в шута двадцять років. Він знав. ВІН ВСЕ ЗНАВ!",
+      "effects": {
+        "set_flag": "rufin_revealed_marr"
+      },
+      "next": "about_artifact"
+    },
+    {
+      "id": "about_artifact",
+      "type": "npc_speech",
+      "speaker": "rufin",
+      "text": "Кристалічна матриця. В ній... частина Моура. Вирізана століття тому Орденом Семи Кинджалів. Вони хотіли використати його як зброю.",
+      "next": "about_joining"
+    },
+    {
+      "id": "about_joining",
+      "type": "npc_speech",
+      "speaker": "rufin",
+      "text": "*Голос стає ще тихішим*\n\nКоли я поклав артефакт тут... Моур взяв своє назад. А мене... я був місяці з тим уламком. Він прорісся в мене. І коли Моур з'єднався — забрав мене з собою.",
+      "next": "choice_03"
+    },
+    {
+      "id": "choice_03",
+      "type": "player_choice",
+      "choices": [
+        {
+          "text": "Можна тебе врятувати?",
+          "next": "answer_save"
+        },
+        {
+          "text": "Навіщо ти мені це кажеш?",
+          "next": "answer_why"
+        },
+        {
+          "text": "Де зараз артефакт?",
+          "next": "answer_artifact_location"
+        }
+      ]
+    },
+    {
+      "id": "answer_save",
+      "type": "npc_speech",
+      "speaker": "rufin",
+      "text": "*Примара усміхається сумно*\n\nТи добрий. Але ні. Мене немає. Це лише відлуння. Спогад привид. Врятуй інших.",
+      "effects": {
+        "reputation": {"lightbearers": 5}
+      },
+      "next": "warning"
+    },
+    {
+      "id": "answer_why",
+      "type": "npc_speech",
+      "speaker": "rufin",
+      "text": "Бо ти прийдеш сюди знову. В кінці. І тоді... *замовкає* ...вибір буде важким.",
+      "next": "warning"
+    },
+    {
+      "id": "answer_artifact_location",
+      "type": "npc_speech",
+      "speaker": "rufin",
+      "text": "Порожній. Моур забрав осколок. Але матриця... залишилась. Марр може створити нову. Він знає як.",
+      "effects": {
+        "set_flag": "knows_artifact_empty",
+        "reputation": {"knives": 5}
+      },
+      "next": "warning"
+    },
+    {
+      "id": "warning",
+      "type": "npc_speech",
+      "speaker": "rufin",
+      "text": "Слухай добре, Вартовий. Моур не злий. Він... древній. Людські поняття йому чужі. Але він небезпечний. Як океан. Як гора. Якщо розбудиш — всі поmруть.",
+      "next": "final"
+    },
+    {
+      "id": "final",
+      "type": "npc_speech",
+      "speaker": "rufin",
+      "text": "*Примара починає розсіюватись*\n\nМіа... вона утримує його. Але довго не протримає. Знайди Лілею. Ключниця... вона знає...\n\n*Зникає в тумані*",
+      "effects": {
+        "set_flag": "rufin_encounter_complete",
+        "update_quest": {
+          "quest_id": "hazemoor_02_halyna_dusha",
+          "objective": "talk_to_rufin",
+          "complete": true
+        }
+      },
+      "next": "end"
+    },
+    {
+      "id": "end",
+      "type": "end"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "dialogue_id": "ervan_about_rufin",
+  "npc_id": "ervan",
+  "start_node": "node_0",
+  
+  "nodes": {
+    "node_0": {
+      "speaker": "Ерван",
+      "text": "Вартовий у моїй таверні? Це рідкість. Що привело тебе сюди?",
+      "choices": [
+        {
+          "text": "Шукаю Руфіна. Ти бачив його?",
+          "next_node": "node_rufin"
+        },
+        {
+          "text": "Просто хочу випити.",
+          "next_node": "node_drink"
+        }
+      ]
+    },
+    
+    "node_rufin": {
+      "speaker": "Ерван",
+      "text": "Руфін... Так, він був тут три дні тому. Сидів у кутку, виглядав неспокійно. Щось його турбувало.",
+      "next": "node_rufin_2"
+    },
+    
+    "node_rufin_2": {
+      "speaker": "Ерван",
+      "text": "Він випив кілька кухлів, намагався розслабитися. Казав, що йде в болото з «важливим завданням». Не уточнював.",
+      "next": "node_rufin_3"
+    },
+    
+    "node_rufin_3": {
+      "speaker": "Ерван",
+      "text": "Перед тим як піти, він розмовляв з кимось біля дверей. Не бачив обличчя, але постать була в темному плащі.",
+      "choices": [
+        {
+          "text": "Хто це міг бути?",
+          "next_node": "node_mystery_person"
+        },
+        {
+          "text": "Він казав, куди саме йде в болоті?",
+          "next_node": "node_destination"
+        },
+        {
+          "text": "Дякую за інформацію.",
+          "next_node": "node_end"
+        }
+      ]
+    },
+    
+    "node_mystery_person": {
+      "speaker": "Ерван",
+      "text": "Не знаю. Місцеві кажуть, що останнім часом якісь темні постаті з'являються в місті. Може, із Валькорна... або з болота.",
+      "next": "node_rufin_3"
+    },
+    
+    "node_destination": {
+      "speaker": "Ерван",
+      "text": "Він згадував «Галявину». Більше нічого. Мурі про неї розповідають — місце, де болото «дихає». Але я б не радив туди йти.",
+      "next": "node_rufin_3"
+    },
+    
+    "node_drink": {
+      "speaker": "Ерван",
+      "text": "Гроші на столі, Вартовий. Тут усі платять.",
+      "choices": [
+        {
+          "text": "Насправді, я шукаю Руфіна.",
+          "next_node": "node_rufin"
+        },
+        {
+          "text": "Дай кухоль ейлю. (5 монет)",
+          "next_node": "node_buy_ale",
+          "condition": {
+            "type": "item",
+            "item_id": "item_silver_coin",
+            "min": 5
+          }
+        }
+      ]
+    },
+    
+    "node_buy_ale": {
+      "speaker": "Ерван",
+      "text": "Ось, смакуй. Якщо щось потрібно — спитай.",
+      "consequences": {
+        "remove_item": {
+          "item_id": "item_silver_coin",
+          "amount": 5
+        },
+        "add_item": {
+          "item_id": "item_ale",
+          "amount": 1
+        }
+      },
+      "next": "node_0"
+    },
+    
+    "node_end": {
+      "speaker": "Ерван",
+      "text": "Будь обережний у болоті, Вартовий. Багато хто не повертається звідти.",
+      "consequences": {
+        "quest_update": {
+          "quest_id": "greyford_01_missing_recipient",
+          "objective_id": "investigate_tavern"
+        },
+        "set_flag": "rufin_clues_obtained"
+      }
+    }
+  }
+}

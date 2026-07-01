@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#060402;overflow-x:auto}
+svg{display:block;width:100%;min-width:900px}
+</style>
+</head>
+<body>
+<svg viewBox="0 0 1520 620" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+
+<!-- Фон -->
+<rect width="1520" height="620" fill="#060402"/>
+<!-- Сітка -->
+<g stroke="#0e0b08" stroke-width="0.4" opacity="0.8">
+  <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#0e0b08" stroke-width="0.4"/>
+  </pattern>
+  <rect width="1520" height="620" fill="url(#grid)"/>
+</g>
+
+<!-- ЗАГОЛОВОК -->
+<rect x="510" y="3" width="500" height="28" fill="#0d0b08" stroke="#7a6a40" stroke-width="1"/>
+<text x="760" y="15" text-anchor="middle" fill="#c8b888" font-size="12" font-family="Georgia,serif" font-weight="bold">ЧОРНИЙ АРХІВ — Схема Підземного Комплексу</text>
+<text x="760" y="26" text-anchor="middle" fill="#786a48" font-size="7" font-family="Georgia,serif" font-style="italic">Мал. невідомий. Знайдено у кишені мертвого дослідника.</text>
+
+<!-- ════════ РІВЕНЬ 1: ВХІД ════════ -->
+<text x="195" y="18" text-anchor="middle" fill="#c8b888" font-size="11" font-family="Georgia,serif" font-weight="bold">РІВЕНЬ 1: ВХІД</text>
+
+<!-- 1A Прихований вхід -->
+<rect x="8" y="35" width="82" height="82" fill="#3a2e1e" stroke="#7a6a40" stroke-width="1.5"/>
+<!-- текстура -->
+<line x1="28" y1="35" x2="28" y2="117" stroke="rgba(4,3,1,0.35)" stroke-width="0.5"/>
+<line x1="48" y1="35" x2="48" y2="117" stroke="rgba(4,3,1,0.35)" stroke-width="0.5"/>
+<line x1="68" y1="35" x2="68" y2="117" stroke="rgba(4,3,1,0.35)" stroke-width="0.5"/>
+<line x1="8" y1="55" x2="90" y2="55" stroke="rgba(4,3,1,0.35)" stroke-width="0.5"/>
+<line x1="8" y1="75" x2="90" y2="75" stroke="rgba(4,3,1,0.35)" stroke-width="0.5"/>
+<line x1="8" y1="95" x2="90" y2="95" stroke="rgba(4,3,1,0.35)" stroke-width="0.5"/>
+<!-- badge -->
+<circle cx="21" cy="48" r="9" fill="#786030" stroke="#c8a840" stroke-width="1"/>
+<text x="21" y="52" text-anchor="middle" fill="#c8a840" font-size="8" font-family="Georgia,serif" font-weight="bold">1A</text>
+<text x="49" y="74" text-anchor="middle" fill="#c8b888" font-size="8" font-family="Georgia,serif" font-weight="bold">ПРИХОВАНИЙ</text>
+<text x="49" y="86" text-anchor="middle" fill="#c8b888" font-size="8" font-family="Georgia,serif" font-weight="bold">ВХІД</text>
+<text x="49" y="110" text-anchor="middle" fill="#786a48" font-size="7" font-family="Georgia,serif" font-style="italic">4×4м</text>
+<!-- таємна стіна пунктир -->
+<line x1="8" y1="35" x2="90" y2="35" stroke="#786030" stroke-width="1.5" stroke-dasharray="7,4"/>
+<text x="10" y="31" fill="#786030" font-size="7" font-style="italic">← книжкова шафа</text>
+
+<!-- Кор 1A→1B -->
+<rect x="90" y="58" width="32" height="22" fill="#3a2e1e" stroke="#7a6a40" stroke-width="1"/>
+
+<!-- 1B Кімната варти -->
+<rect x="122" y="32" width="126" height="115" fill="#3a2e1e" stroke="#7a6a40" stroke-width="1.5"/>
+<line x1="142" y1="32" x2="142" y2="147" stroke="rgba(4,3,1,0.35)" stroke-width="0.5"/>
+<line x1="162" y1="32" x2="162" y2="147" stroke="rgba(4,3,1,0.35)" stroke-width="0.5"/>
+<line x1="182" y1="32" x2="182" y2="147" stroke="rgba(4,3,1,0.35)" stroke-width="0.5"/>
+<line x1="202" y1="32" x2="202" y2="147" stroke="rgba(4,3,1,0.35)" stroke-width="0.5"/>
+<line x1="222" y1="32" x2="222" y2="147" stroke="rgba(4,3,1,0.35)" stroke-width="0.5"/>
+<line x1="122" y1="52" x2="248" y2="52" stroke="rgba(4,3,1,0.35)" stroke-width="0.5"/>
+<line x1="122" y1="72" x2="248" y2="72" stroke="rgba(4,3,1,0.35)" stroke-width="0.5"/>
+<line x1="122" y1="92" x2="248" y2="92" stroke="rgba(4,3,1,0.35)" stroke-width="0.5"/>
+<line x1="122" y1="112" x2="248" y2="112" stroke="rgba(4,3,1,0.35)" stroke-width="0.5"/>
+<line x1="122" y1="132" x2="248" y2="132" stroke="rgba(4,3,1,0.35)" stroke-width="0.5"/>
+<circle cx="135" cy="45" r="9" fill="#786030" stroke="#c8a840" stroke-width="1"/>
+<text x="135" y="49" text-anchor="middle" fill="#c8a840" font-size="8" font-family="Georgia,serif" font-weight="bold">1B</text>
+<text x="185" y="80" text-anchor="middle" fill="#c8b888" font-size="9" font-family="Georgia,serif" font-weight="bold">КІМНАТА</text>
+<text x="185" y="93" text-anchor="middle" fill="#c8b888" font-size="9" font-family="Georgia,serif" font-weight="bold">ВАРТИ</text>
+<text x="185" y="106" text-anchor="middle" fill="#786a48" font-size="7" font-style="italic">6×8м</text>
+<text x="138" y="138" fill="#786a48" font-size="8">⛓ манакли</text>
+
+<!-- Кор 1B→T -->
+<rect x="248" y="58" width="42" height="22" fill="#3a2e1e" stroke="#7a6a40" stroke-width="1"/>
+
+<!-- T-коридор вертикальний -->
+<rect x="290" y="18" width="30" height="215" fill="#3a2e1e" stroke="#7a6a40" stroke-width="1"/>
+<text x="305" y="128" text-anchor="middle" fill="#c8b888" font-size="9" font-family="Georgia,serif" font-weight="bold">T</text>
+
+<!-- Тупик -->
+<rect x="290" y="6" width="30" height="12" fill="#120e0a" stroke="#201810" stroke-width="1"/>
+<line x1="290" y1="6" x2="320" y2="18" stroke="#303020" stroke-width="1.5"/>
+<line x1="320" y1="6" x2="290" y2="18" stroke="#303020" stroke-width="1.5"/>
+<text x="305" y="16" text-anchor="middle" fill="#786a48" font-size="6">ТУПИК</text>
+
+<!-- T1 Пастка -->
+<polygon points="305,180 313,188 305,196 297,188" fill="#cc2828" opacity="0.9"/>
+<line x1="300" y1="183" x2="310" y2="193" stroke="white" stroke-width="1.2"/>
+<line x1="310" y1="183" x2="300" y2="193" stroke="white" stroke-width="1.2"/>
+<text x="305" y="206" text-anchor="middle" fill="#cc2828" font-size="6" font-style="italic">T1: яма</text>
+<text x="268" y="198" fill="#cc2828" font-size="7" font-style="italic">ЛІВА!</text>
+
+<!-- Бічна гілка схід від T -->
+<rect x="320" y="62" width="42" height="22" fill="#3a2e1e" stroke="#7a6a40" stroke-width="1"/>
+<!-- T2 Пастка -->
+<polygon points="340,73 348,81 340,89 332,81" fill="#8b5000" opacity="0.9"/>
+<line x1="335" y1="76" x2="345" y2="86" stroke="white" stroke-width="1.2"/>
+<line x1="345" y1="76" x2="335" y2="86" stroke="white" stroke-width="1.2"/>
+<text x="340" y="99" text-anchor="middle" fill="#8b5000" font-size="6">T2:дріт</text>
+
+<!-- Підсобне склепіння -->
+<rect x="362" y="36" width="105" height="88" fill="#201a10" stroke="#7a6a40" stroke-width="1.5"/>
+<text x="414" y="72" text-anchor="middle" fill="#c8b888" font-size="8" font-family="Georgia,serif" font-weight="bold">ПІДСОБНЕ</text>
+<text x="414" y="84" text-anchor="middle" fill="#c8b888" font-size="8" font-family="Georgia,serif" font-weight="bold">СКЛЕПІННЯ</text>
+<text x="414" y="110" text-anchor="middle" fill="#cc2828" font-size="7" font-style="italic">порожньо? ні.</text>
+
+<!-- Кор вниз до Р2 -->
+<rect x="290" y="233" width="30" height="48" fill="#3a2e1e" stroke="#7a6a40" stroke-width="1"/>
+<text x="305" y="292" text-anchor="middle" fill="#c8a840" font-size="9" font-family="Georgia,serif" font-weight="bold">▼ Р.2</text>
+
+<!-- Роздільник 1→2 -->
+<g opacity="0.4">
+  <rect x="478" y="0" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="12" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="24" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="36" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="48" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="60" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="72" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="84" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="96" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="108" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="120" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="132" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="144" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="156" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="168" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="180" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="192" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="204" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="216" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="228" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="240" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="252" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="264" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="276" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="288" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="300" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="312" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="324" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="336" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="348" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="360" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="372" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="384" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="396" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="408" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="420" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="432" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="444" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="456" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="468" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="480" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="492" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="504" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="516" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="528" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="540" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="552" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="564" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="576" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="588" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="600" width="2" height="8" fill="#7a6a40"/>
+  <rect x="478" y="612" width="2" height="8" fill="#7a6a40"/>
+</g>
+<text x="479" y="310" fill="#786a48" font-size="8" font-family="Georgia,serif" transform="rotate(-90,479,310)">Р.1 → Р.2</text>
+
+<!-- ════════ РІВЕНЬ 2: АРХІВ ════════ -->
+<text x="750" y="18" text-anchor="middle" fill="#c8b888" font-size="11" font-family="Georgia,serif" font-weight="bold">РІВЕНЬ 2: АРХІВ</text>
+
+<!-- Вестибюль -->
+<rect x="498" y="35" width="92" height="66" fill="#3a2e1e" stroke="#7a6a40" stroke-width="1.5"/>
+<text x="544" y="64" text-anchor="middle" fill="#c8b888" font-size="8" font-family="Georgia,serif" font-weight="bold">ВЕСТИ-</text>
+<text x="544" y="76" text-anchor="middle" fill="#c8b888" font-size="8" font-family="Georgia,serif" font-weight="bold">БЮЛЬ</text>
+
+<!-- Кор вестибюль → 2A -->
+<rect x="528" y="101" width="30" height="46" fill="#3a2e1e" stroke="#7a6a40" stroke-width="1"/>
+<!-- T3 газ -->
+<polygon points="543,122 551,130 543,138 535,130" fill="#8b8000" opacity="0.9"/>
+<line x1="538" y1="125" x2="548" y2="135" stroke="white" stroke-width="1.2"/>
+<line x1="548" y1="125" x2="538" y2="135" stroke="white" stroke-width="1.2"/>
+<text x="543" y="148" text-anchor="middle" fill="#8b8000" font-size="6" font-style="italic">T3:газ</text>
+<text x="500" y="158" fill="#cc2828" font-size="7" font-style="italic">← ЛІВА!</text>
+
+<!-- 2A Великий Сховок (АКТИВНА) -->
+<rect x="498" y="147" width="418" height="178" fill="#3a2e1e" stroke="#c8a840" stroke-width="2.5"/>
+<!-- Стелажі верх -->
+<rect x="514" y="151" width="13" height="7" fill="#302818"/><rect x="530" y="151" width="13" height="7" fill="#302818"/>
+<rect x="546" y="151" width="13" height="7" fill="#302818"/><rect x="562" y="151" width="13" height="7" fill="#302818"/>
+<rect x="578" y="151" width="13" height="7" fill="#302818"/><rect x="594" y="151" width="13" height="7" fill="#302818"/>
+<rect x="610" y="151" width="13" height="7" fill="#302818"/><rect x="626" y="151" width="13" height="7" fill="#302818"/>
+<rect x="642" y="151" width="13" height="7" fill="#302818"/><rect x="658" y="151" width="13" height="7" fill="#302818"/>
+<rect x="674" y="151" width="13" height="7" fill="#302818"/><rect x="690" y="151" width="13" height="7" fill="#302818"/>
+<rect x="706" y="151" width="13" height="7" fill="#302818"/><rect x="722" y="151" width="13" height="7" fill="#302818"/>
+<rect x="738" y="151" width="13" height="7" fill="#302818"/><rect x="754" y="151" width="13" height="7" fill="#302818"/>
+<rect x="770" y="151" width="13" height="7" fill="#302818"/><rect x="786" y="151" width="13" height="7" fill="#302818"/>
+<rect x="802" y="151" width="13" height="7" fill="#302818"/><rect x="818" y="151" width="13" height="7" fill="#302818"/>
+<rect x="834" y="151" width="13" height="7" fill="#302818"/><rect x="850" y="151" width="13" height="7" fill="#302818"/>
+<!-- Стелажі низ -->
+<rect x="514" y="314" width="13" height="7" fill="#302818"/><rect x="530" y="314" width="13" height="7" fill="#302818"/>
+<rect x="546" y="314" width="13" height="7" fill="#302818"/><rect x="562" y="314" width="13" height="7" fill="#302818"/>
+<rect x="578" y="314" width="13" height="7" fill="#302818"/><rect x="594" y="314" width="13" height="7" fill="#302818"/>
+<rect x="610" y="314" width="13" height="7" fill="#302818"/><rect x="626" y="314" width="13" height="7" fill="#302818"/>
+<rect x="642" y="314" width="13" height="7" fill="#302818"/><rect x="658" y="314" width="13" height="7" fill="#302818"/>
+<rect x="674" y="314" width="13" height="7" fill="#302818"/><rect x="690" y="314" width="13" height="7" fill="#302818"/>
+<rect x="706" y="314" width="13" height="7" fill="#302818"/><rect x="722" y="314" width="13" height="7" fill="#302818"/>
+<rect x="738" y="314" width="13" height="7" fill="#302818"/><rect x="754" y="314" width="13" height="7" fill="#302818"/>
+<rect x="770" y="314" width="13" height="7" fill="#302818"/><rect x="786" y="314" width="13" height="7" fill="#302818"/>
+<rect x="802" y="314" width="13" height="7" fill="#302818"/><rect x="818" y="314" width="13" height="7" fill="#302818"/>
+<rect x="834" y="314" width="13" height="7" fill="#302818"/><rect x="850" y="314" width="13" height="7" fill="#302818"/>
+
+<!-- Badge 2A -->
+<circle cx="511" cy="160" r="9" fill="#786030" stroke="#c8a840" stroke-width="1"/>
+<text x="511" y="164" text-anchor="middle" fill="#c8a840" font-size="8" font-family="Georgia,serif" font-weight="bold">2A</text>
+
+<!-- Артефакт з glow -->
+<circle cx="707" cy="248" r="55" fill="rgba(180,150,60,0.05)"/>
+<circle cx="707" cy="248" r="40" fill="rgba(180,150,60,0.09)"/>
+<circle cx="707" cy="248" r="28" fill="rgba(180,150,60,0.14)"/>
+<circle cx="707" cy="248" r="18" fill="rgba(180,150,60,0.2)"/>
+<circle cx="707" cy="248" r="40" fill="none" stroke="rgba(120,96,48,0.5)" stroke-width="0.8" stroke-dasharray="3,2"/>
+<circle cx="707" cy="248" r="28" fill="none" stroke="rgba(120,96,48,0.5)" stroke-width="0.8" stroke-dasharray="3,2"/>
+<rect x="699" y="232" width="16" height="30" rx="2" fill="#b8a870" stroke="#c8a840" stroke-width="1.5" filter="url(#glow)"/>
+<rect x="702" y="236" width="10" height="22" rx="2" fill="#d0c890"/>
+<ellipse cx="717" cy="256" rx="4" ry="2" fill="#8b000088"/>
+<ellipse cx="695" cy="259" rx="4" ry="2" fill="#8b000088"/>
+<text x="707" y="272" text-anchor="middle" fill="#c8a840" font-size="7" font-family="Georgia,serif" font-weight="bold">☆ АРТЕФАКТ</text>
+
+<!-- Назва 2A -->
+<text x="707" y="220" text-anchor="middle" fill="#c8b888" font-size="9" font-family="Georgia,serif" font-weight="bold">ВЕЛИКИЙ СХОВОК  8×20м</text>
+<text x="707" y="232" text-anchor="middle" fill="#786a48" font-size="7" font-style="italic">стелажі по периметру</text>
+
+<!-- Таємний хід → 2B (пунктир) -->
+<rect x="913" y="224" width="4" height="5" fill="#78603088"/>
+<rect x="913" y="231" width="4" height="5" fill="#78603088"/>
+<rect x="913" y="238" width="4" height="5" fill="#78603088"/>
+<rect x="913" y="245" width="4" height="5" fill="#78603088"/>
+<text x="908" y="220" text-anchor="end" fill="#786030" font-size="7" font-style="italic">&lt; таємний хід</text>
+<rect x="916" y="204" width="20" height="82" fill="#3a2e1e" stroke="#7a6a40" stroke-width="1"/>
+
+<!-- 2B Кабінет Себастьяна -->
+<rect x="936" y="155" width="132" height="128" fill="#3a2e1e" stroke="#7a6a40" stroke-width="1.5"/>
+<circle cx="949" cy="168" r="9" fill="#786030" stroke="#c8a840" stroke-width="1"/>
+<text x="949" y="172" text-anchor="middle" fill="#c8a840" font-size="8" font-family="Georgia,serif" font-weight="bold">2B</text>
+<text x="1002" y="200" text-anchor="middle" fill="#c8b888" font-size="8" font-family="Georgia,serif" font-weight="bold">КАБІНЕТ</text>
+<text x="1002" y="213" text-anchor="middle" fill="#c8b888" font-size="8" font-family="Georgia,serif" font-weight="bold">СЕБАСТЬЯНА</text>
+<text x="1002" y="226" text-anchor="middle" fill="#786a48" font-size="7" font-style="italic">4×5м</text>
+<polygon points="952,178 960,186 952,194 944,186" fill="#8b5000" opacity="0.9"/>
+<line x1="947" y1="181" x2="957" y2="191" stroke="white" stroke-width="1.2"/>
+<line x1="957" y1="181" x2="947" y2="191" stroke="white" stroke-width="1.2"/>
+<text x="952" y="204" text-anchor="middle" fill="#8b5000" font-size="6">T4</text>
+<text x="955" y="250" fill="#c8b888" font-size="9">♦ костюм</text>
+<text x="955" y="265" fill="#786a48" font-size="7" font-style="italic">🪞 до стіни</text>
+
+<!-- Коридори → 2C -->
+<rect x="554" y="325" width="30" height="58" fill="#3a2e1e" stroke="#7a6a40" stroke-width="1"/>
+<polygon points="569,344 577,352 569,360 561,352" fill="#cc2828" opacity="0.9"/>
+<line x1="564" y1="347" x2="574" y2="357" stroke="white" stroke-width="1.2"/>
+<line x1="574" y1="347" x2="564" y2="357" stroke="white" stroke-width="1.2"/>
+<text x="569" y="372" text-anchor="middle" fill="#cc2828" font-size="6">T5:шип</text>
+
+<rect x="606" y="325" width="30" height="58" fill="#3a2e1e" stroke="#7a6a40" stroke-width="1"/>
+<polygon points="621,360 629,368 621,376 613,368" fill="#8b8000" opacity="0.9"/>
+<line x1="616" y1="363" x2="626" y2="373" stroke="white" stroke-width="1.2"/>
+<line x1="626" y1="363" x2="616" y2="373" stroke="white" stroke-width="1.2"/>
+<text x="621" y="388" text-anchor="middle" fill="#8b8000" font-size="6">T6:газ</text>
+<text x="584" y="394" text-anchor="middle" fill="#cc2828" font-size="7" font-style="italic">ЛІВА!</text>
+
+<!-- 2C Порожня кімната -->
+<rect x="518" y="383" width="168" height="98" fill="#3a2e1e" stroke="#7a6a40" stroke-width="1.5"/>
+<circle cx="531" cy="396" r="9" fill="#786030" stroke="#c8a840" stroke-width="1"/>
+<text x="531" y="400" text-anchor="middle" fill="#c8a840" font-size="8" font-family="Georgia,serif" font-weight="bold">2C</text>
+<text x="602" y="420" text-anchor="middle" fill="#c8b888" font-size="8" font-family="Georgia,serif" font-weight="bold">ПОРОЖНЯ КІМНАТА</text>
+<text x="602" y="432" text-anchor="middle" fill="#786a48" font-size="7" font-style="italic">3×3м</text>
+<rect x="589" y="434" width="26" height="18" fill="#2a1808" stroke="#4a3020" stroke-width="1.5"/>
+<text x="602" y="452" text-anchor="middle" fill="#cc2828" font-size="13" font-family="Georgia,serif" font-weight="bold">???</text>
+
+<!-- Кор → Р3 -->
+<rect x="621" y="383" width="15" height="62" fill="#3a2e1e" stroke="#7a6a40" stroke-width="1"/>
+<text x="628" y="458" text-anchor="middle" fill="#c8a840" font-size="9" font-family="Georgia,serif" font-weight="bold">▼ Р.3</text>
+
+<!-- Роздільник 2→3 -->
+<g opacity="0.4">
+  <rect x="1058" y="0" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="12" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="24" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="36" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="48" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="60" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="72" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="84" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="96" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="108" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="120" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="132" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="144" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="156" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="168" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="180" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="192" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="204" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="216" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="228" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="240" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="252" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="264" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="276" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="288" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="300" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="312" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="324" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="336" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="348" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="360" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="372" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="384" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="396" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="408" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="420" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="432" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="444" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="456" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="468" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="480" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="492" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="504" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="516" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="528" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="540" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="552" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="564" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="576" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="588" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="600" width="2" height="8" fill="#7a6a40"/>
+  <rect x="1058" y="612" width="2" height="8" fill="#7a6a40"/>
+</g>
+<text x="1059" y="310" fill="#786a48" font-size="8" font-family="Georgia,serif" transform="rotate(-90,1059,310)">Р.2 → Р.3</text>
+
+<!-- ════════ РІВЕНЬ 3: ГЛИБИНА ════════ -->
+<text x="1290" y="18" text-anchor="middle" fill="#c8b888" font-size="11" font-family="Georgia,serif" font-weight="bold">РІВЕНЬ 3: ГЛИБИНА</text>
+
+<!-- Кор з Р2 -->
+<rect x="1082" y="28" width="30" height="90" fill="#3a2e1e" stroke="#7a6a40" stroke-width="1"/>
+
+<!-- Затоплений прохід -->
+<rect x="970" y="88" width="112" height="82" fill="#0a1828" stroke="#2a5a9a" stroke-width="1.5"/>
+<text x="1026" y="122" text-anchor="middle" fill="#2a5a9a" font-size="8" font-family="Georgia,serif" font-weight="bold">ЗАТОПЛЕНИЙ</text>
+<text x="1026" y="136" text-anchor="middle" fill="#2a5a9a" font-size="8" font-family="Georgia,serif" font-weight="bold">ПРОХІД</text>
+<text x="1026" y="150" text-anchor="middle" fill="#2a5a9aaa" font-size="7" font-style="italic">вода 1.5м</text>
+<text x="972" y="182" fill="#2a5a9a88" font-size="7" font-style="italic">→ під Хейзмуром</text>
+
+<!-- 3A Передкімната -->
+<rect x="1082" y="118" width="158" height="114" fill="#3a2e1e" stroke="#7a6a40" stroke-width="1.5"/>
+<circle cx="1095" cy="131" r="9" fill="#786030" stroke="#c8a840" stroke-width="1"/>
+<text x="1095" y="135" text-anchor="middle" fill="#c8a840" font-size="8" font-family="Georgia,serif" font-weight="bold">3A</text>
+<text x="1161" y="163" text-anchor="middle" fill="#c8b888" font-size="8" font-family="Georgia,serif" font-weight="bold">ПЕРЕДКІМНАТА</text>
+<text x="1161" y="176" text-anchor="middle" fill="#c8b888" font-size="8" font-family="Georgia,serif" font-weight="bold">РЕГУЛЯТОРА</text>
+<text x="1161" y="189" text-anchor="middle" fill="#786a48" font-size="7" font-style="italic">5×5м</text>
+
+<!-- Кривавна Печатка -->
+<rect x="1237" y="168" width="6" height="40" fill="#cc2828"/>
+<circle cx="1240" cy="188" r="13" fill="none" stroke="#cc2828" stroke-width="1"/>
+<circle cx="1240" cy="188" r="8" fill="none" stroke="#cc2828" stroke-width="1"/>
+<circle cx="1240" cy="188" r="4" fill="none" stroke="#cc2828" stroke-width="1"/>
+<line x1="1235" y1="183" x2="1228" y2="176" stroke="#cc2828" stroke-width="1.5"/>
+<line x1="1240" y1="181" x2="1240" y2="173" stroke="#cc2828" stroke-width="1.5"/>
+<line x1="1245" y1="183" x2="1252" y2="176" stroke="#cc2828" stroke-width="1.5"/>
+<line x1="1247" y1="188" x2="1255" y2="188" stroke="#cc2828" stroke-width="1.5"/>
+<line x1="1245" y1="193" x2="1252" y2="200" stroke="#cc2828" stroke-width="1.5"/>
+<line x1="1240" y1="195" x2="1240" y2="203" stroke="#cc2828" stroke-width="1.5"/>
+<line x1="1235" y1="193" x2="1228" y2="200" stroke="#cc2828" stroke-width="1.5"/>
+<line x1="1233" y1="188" x2="1225" y2="188" stroke="#cc2828" stroke-width="1.5"/>
+<text x="1250" y="172" fill="#cc2828" font-size="7" font-weight="bold">КРИВАВНА</text>
+<text x="1250" y="182" fill="#cc2828" font-size="7">ПЕЧАТКА</text>
+<text x="1250" y="196" fill="#cc2828" font-size="7" font-style="italic">тільки кров</text>
+<text x="1250" y="206" fill="#cc2828" font-size="7" font-style="italic">Ключника</text>
+
+<!-- Кор 3A→3B -->
+<rect x="1240" y="164" width="20" height="50" fill="#3a2e1e" stroke="#7a6a40" stroke-width="1"/>
+
+<!-- Підвал Регулятора -->
+<rect x="1255" y="88" width="195" height="375" fill="#0a0603" stroke="#3a1808" stroke-width="3"/>
+<!-- Ланцюги -->
+<circle cx="1278" cy="106" r="7" fill="#2a1808" stroke="#4a3020" stroke-width="1.5"/>
+<circle cx="1442" cy="106" r="7" fill="#2a1808" stroke="#4a3020" stroke-width="1.5"/>
+<circle cx="1278" cy="445" r="7" fill="#2a1808" stroke="#4a3020" stroke-width="1.5"/>
+<circle cx="1442" cy="445" r="7" fill="#2a1808" stroke="#4a3020" stroke-width="1.5"/>
+<!-- Ланцюгові лінії -->
+<line x1="1278" y1="106" x2="1368" y2="280" stroke="#3a2810" stroke-width="1" opacity="0.5"/>
+<line x1="1458" y1="106" x2="1368" y2="280" stroke="#3a2810" stroke-width="1" opacity="0.5"/>
+<line x1="1278" y1="445" x2="1368" y2="280" stroke="#3a2810" stroke-width="1" opacity="0.5"/>
+<line x1="1458" y1="445" x2="1368" y2="280" stroke="#3a2810" stroke-width="1" opacity="0.5"/>
+<!-- Чорна пляма -->
+<circle cx="1352" cy="280" r="58" fill="#040302"/>
+<circle cx="1352" cy="280" r="42" fill="#030201"/>
+<circle cx="1352" cy="280" r="28" fill="#020101"/>
+<circle cx="1352" cy="280" r="15" fill="#010101"/>
+<text x="1352" y="274" text-anchor="middle" fill="#786a4855" font-size="7" font-style="italic">не намагайся</text>
+<text x="1352" y="287" text-anchor="middle" fill="#786a4855" font-size="7" font-style="italic">дізнатись що там</text>
+<circle cx="1273" cy="101" r="9" fill="#786030" stroke="#c8a840" stroke-width="1"/>
+<text x="1273" y="105" text-anchor="middle" fill="#c8a840" font-size="8" font-family="Georgia,serif" font-weight="bold">3B</text>
+<text x="1352" y="474" text-anchor="middle" fill="#786a48" font-size="8" font-family="Georgia,serif">ПІДВАЛ РЕГУЛЯТОРА</text>
+
+<!-- Тунель -->
+<rect x="1452" y="162" width="46" height="30" fill="#3a2e1e" stroke="#7a6a40" stroke-width="1"/>
+<line x1="1522" y1="177" x2="1496" y2="177" stroke="#786a48" stroke-width="1.5" stroke-dasharray="5,5"/>
+<text x="1452" y="156" fill="#786a48" font-size="7" font-style="italic">→ невідомо куди</text>
+<text x="1452" y="204" fill="#cc2828" font-size="7" font-style="italic">стіни не природні</text>
+
+<!-- НОТАТКИ -->
+<text x="8" y="578" fill="#cc2828" font-size="8" font-style="italic">"Третій коридор — не ходи. Я ходив. Не ходи."</text>
+<text x="8" y="590" fill="#786a48" font-size="7" font-style="italic">"Після кровяної печатки компас не працює. Хтось приходив сюди до нас. Давно."</text>
+
+<!-- ЛЕГЕНДА -->
+<rect x="4" y="600" width="560" height="18" fill="#0d0b08" stroke="#7a6a40" stroke-width="1"/>
+<text x="14" y="612" fill="#cc2828" font-size="7">⬥ Пастка/яма</text>
+<text x="100" y="612" fill="#8b8000" font-size="7"> ⬥ Газ</text>
+<text x="146" y="612" fill="#786030" font-size="7"> --- Таємний хід</text>
+<text x="236" y="612" fill="#cc2828" font-size="7"> ❋ Печатка</text>
+<text x="296" y="612" fill="#786a48" font-size="7"> ▓ Стелажі</text>
+<text x="354" y="612" fill="#2a5a9a" font-size="7"> ██ Затоплений</text>
+<text x="430" y="612" fill="#786a48" font-size="7"> ● Тунель невідомо</text>
+
+</svg>
+</body>
+</html>

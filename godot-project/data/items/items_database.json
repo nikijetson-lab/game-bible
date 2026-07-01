@@ -1,0 +1,147 @@
+{
+  "items": [
+    {
+      "id": "item_silver_coin",
+      "name": "Срібна монета",
+      "description": "Стандартна валюта Валькорна. Прийнята скрізь.",
+      "type": "currency",
+      "icon": "res://assets/ui/icons/coin_silver.png",
+      "stackable": true,
+      "max_stack": 999,
+      "sellable": false,
+      "price": 1
+    },
+    
+    {
+      "id": "item_ale",
+      "name": "Кухоль ейлю",
+      "description": "Міцний ейль з таверни Ервана. Трохи відновлює сили.",
+      "type": "consumable",
+      "icon": "res://assets/ui/icons/ale.png",
+      "stackable": true,
+      "max_stack": 10,
+      "sellable": true,
+      "price": 5,
+      "effects": {
+        "stamina": 20
+      }
+    },
+    
+    {
+      "id": "item_bread",
+      "name": "Хліб",
+      "description": "Свіжий житній хліб. Відновлює трохи здоров'я.",
+      "type": "consumable",
+      "icon": "res://assets/ui/icons/bread.png",
+      "stackable": true,
+      "max_stack": 20,
+      "sellable": true,
+      "price": 3,
+      "effects": {
+        "heal": 15
+      }
+    },
+    
+    {
+      "id": "item_healing_herb",
+      "name": "Болотяна трава",
+      "description": "Лікувальна трава зібрана болотянами Мурі. Відновлює здоров'я.",
+      "type": "consumable",
+      "icon": "res://assets/ui/icons/herb_healing.png",
+      "stackable": true,
+      "max_stack": 20,
+      "sellable": true,
+      "price": 15,
+      "effects": {
+        "heal": 50
+      }
+    },
+    
+    {
+      "id": "item_dried_meat",
+      "name": "Сушене м'ясо",
+      "description": "Консервоване м'ясо для довгих подорожей.",
+      "type": "consumable",
+      "icon": "res://assets/ui/icons/meat_dried.png",
+      "stackable": true,
+      "max_stack": 20,
+      "sellable": true,
+      "price": 10,
+      "effects": {
+        "heal": 30,
+        "stamina": 10
+      }
+    },
+    
+    {
+      "id": "item_lantern_oil",
+      "name": "Олія для ліхтаря",
+      "description": "Спеціальна олія для Ліхтаря Вартового. Необхідна для освітлення темних місць.",
+      "type": "material",
+      "icon": "res://assets/ui/icons/oil.png",
+      "stackable": true,
+      "max_stack": 10,
+      "sellable": true,
+      "price": 20
+    },
+    
+    {
+      "id": "item_swamp_reed",
+      "name": "Болотний очерет",
+      "description": "Магічний очерет, зібраний у Хейзмурі. Використовується Мурі для захисних символів.",
+      "type": "material",
+      "icon": "res://assets/ui/icons/reed.png",
+      "stackable": true,
+      "max_stack": 50,
+      "sellable": true,
+      "price": 8
+    },
+    
+    {
+      "id": "item_iron_scrap",
+      "name": "Шматок заліза",
+      "description": "Уламок старого залізного знаряддя. Можна переплавити.",
+      "type": "material",
+      "icon": "res://assets/ui/icons/iron_scrap.png",
+      "stackable": true,
+      "max_stack": 99,
+      "sellable": true,
+      "price": 5
+    },
+    
+    {
+      "id": "item_copper_ingot",
+      "name": "Мідний злиток",
+      "description": "Очищена мідь. Використовується для крафту.",
+      "type": "material",
+      "icon": "res://assets/ui/icons/copper_ingot.png",
+      "stackable": true,
+      "max_stack": 50,
+      "sellable": true,
+      "price": 15
+    },
+    
+    {
+      "id": "item_silver_ingot",
+      "name": "Срібний злиток",
+      "description": "Чисте срібло. Рідкісний матеріал для магічних артефактів.",
+      "type": "material",
+      "icon": "res://assets/ui/icons/silver_ingot.png",
+      "stackable": true,
+      "max_stack": 20,
+      "sellable": true,
+      "price": 50
+    },
+    
+    {
+      "id": "quest_rufin_note",
+      "name": "Записка Руфіна",
+      "description": "Пожовкла записка з незрозумілими символами. Може містити підказку про його долю.",
+      "type": "quest",
+      "icon": "res://assets/ui/icons/note.png",
+      "stackable": false,
+      "sellable": false,
+      "price": 0
+    }
+  ]
+}

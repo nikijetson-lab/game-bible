@@ -1,0 +1,531 @@
+{
+  "source": "/mnt/d/vision art game.pdf",
+  "pages": 23,
+  "items": [
+    {
+      "id": 1,
+      "page": 1,
+      "file": "items/001_p01_ocheretianyi_povzun_30_hp_-_zasidka_v_ochereti.png",
+      "caption": "Очеретяний повзун (30 HP) — засідка в очереті",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 2,
+      "page": 1,
+      "file": "items/002_p01_rii_tumannykh_krovososiv_25_hp_-_khmara_v_imli.png",
+      "caption": "Рій туманних кровососів (25 HP) — хмара в імлі",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 3,
+      "page": 2,
+      "file": "items/003_p02_hnylyi_potopelnyk_45_hp_-_te_shcho_boloto_ne_viddalo.png",
+      "caption": "Гнилий потопельник (45 HP) — те, що болото не віддало",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 4,
+      "page": 2,
+      "file": "items/004_p02_murok-triasovyk_50-55_hp_-_vodna_zasidka.png",
+      "caption": "Мурок-трясовик (50–55 HP) — водна засідка",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 5,
+      "page": 2,
+      "file": "items/005_p02_murok-triasovyk_50-55_hp_-_vodna_zasidka.png",
+      "caption": "Мурок-трясовик (50–55 HP) — водна засідка",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 6,
+      "page": 3,
+      "file": "items/006_p03_maty_mia_-_tretii_shar_taiemnytsi.png",
+      "caption": "Мати Міа — третій шар таємниці",
+      "width": 701,
+      "height": 382
+    },
+    {
+      "id": 7,
+      "page": 3,
+      "file": "items/007_p03_ervan_-_khaziain_postoialoho_dvoru.png",
+      "caption": "Ерван — хазяїн постоялого двору",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 8,
+      "page": 4,
+      "file": "items/008_p04_sirra_-_moloda_myslyvytsia_muri.png",
+      "caption": "Сірра — молода мисливиця Мурі",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 9,
+      "page": 4,
+      "file": "items/009_p04_varrik_-_starshyi_myslyvets_muri.png",
+      "caption": "Варрік — старший мисливець Мурі",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 10,
+      "page": 5,
+      "file": "items/010_p05_stetson_-_korolivskyi_slidchyi.png",
+      "caption": "Стетсон — королівський слідчий",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 11,
+      "page": 5,
+      "file": "items/011_p05_bres_-_providnyk_po_hetto.png",
+      "caption": "Брес — провідник по гетто",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 12,
+      "page": 6,
+      "file": "items/012_p06_odrin_-_palatsovyi_arkhivarius.png",
+      "caption": "Одрін — палацовий архіваріус",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 13,
+      "page": 6,
+      "file": "items/013_p06_tessa_-_torhovyi_kvartal_valkorna.png",
+      "caption": "Тесса — Торговий квартал Валькорна",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 14,
+      "page": 7,
+      "file": "items/014_p07_damar_-_dilok_shcho_vkrav_ne_te.png",
+      "caption": "Дамар — ділок, що вкрав не те",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 15,
+      "page": 7,
+      "file": "items/015_p07_loen_-_poslanets_ordenu.png",
+      "caption": "Лоен — посланець Ордену",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 16,
+      "page": 7,
+      "file": "items/016_p07_loen_-_poslanets_ordenu.png",
+      "caption": "Лоен — посланець Ордену",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 17,
+      "page": 8,
+      "file": "items/017_p08_mour_-_svidomist_bolota_final_ep_1_haliavyna.png",
+      "caption": "Моур — свідомість болота (фінал еп. 1, Галявина)",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 18,
+      "page": 8,
+      "file": "items/018_p08_rufin_-_toi_khto_povernuvsia_porozhnim.png",
+      "caption": "Руфін — той, хто повернувся порожнім",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 19,
+      "page": 9,
+      "file": "items/019_p09_serit_kelm_-_administratyvnyi_slidchyi.png",
+      "caption": "Серіт Келм — адміністративний слідчий",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 20,
+      "page": 9,
+      "file": "items/020_p09_sebastian_marr_blazen_fipp_-_ochilnyk_ordenu_semy_kyndzhaliv.png",
+      "caption": "Себастьян Марр / Блазень Фіпп — очільник Ордену Семи Кинджалів",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 21,
+      "page": 10,
+      "file": "items/021_p10_iliia_marr_-_vartova-kurat.png",
+      "caption": "Ілія Марр — Вартова-Курат",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 22,
+      "page": 10,
+      "file": "items/022_p10_lileia_alteia_-_ostannia_z_kliuchnykiv.png",
+      "caption": "Лілея (Алтея) — остання з Ключників",
+      "width": 701,
+      "height": 382
+    },
+    {
+      "id": 23,
+      "page": 11,
+      "file": "items/023_p11_kaen_-_shaman_tykhoho_shelestu.png",
+      "caption": "Каен — шаман Тихого Шелесту",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 24,
+      "page": 11,
+      "file": "items/024_p11_hara_paik_-_kontrabandystska_kapitanka.png",
+      "caption": "Гара Пайк — контрабандистська капітанка",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 25,
+      "page": 12,
+      "file": "items/025_p12_brat_karos_-_khranytel_sviatoi_vei.png",
+      "caption": "Брат Карос — хранитель Святої Вей",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 26,
+      "page": 12,
+      "file": "items/026_p12_tovan_rid_-_klanovyi_rechnyk.png",
+      "caption": "Тован Рід — клановий речник",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 27,
+      "page": 13,
+      "file": "items/027_p13_mara_dens_-_likarka-samouchka.png",
+      "caption": "Мара Денс — лікарка-самоучка",
+      "width": 701,
+      "height": 382
+    },
+    {
+      "id": 28,
+      "page": 13,
+      "file": "items/028_p13_brin_oss_-_lohistychnyi_broker.png",
+      "caption": "Брін Осс — логістичний брокер",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 29,
+      "page": 14,
+      "file": "items/029_p14_kvartyrmeister_voss_-_korumpovanyi_chynovnyk.png",
+      "caption": "Квартирмейстер Восс — корумпований чиновник",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 30,
+      "page": 14,
+      "file": "items/030_p14_nera_veil_-_moloda_svidka_bonus.png",
+      "caption": "Нера Вейл — молода свідка (бонус)",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 31,
+      "page": 15,
+      "file": "items/031_p15_rizbiar_z_kvartalu_remisnykiv.png",
+      "caption": "Різьбяр з кварталу ремісників",
+      "width": 701,
+      "height": 382
+    },
+    {
+      "id": 32,
+      "page": 15,
+      "file": "items/032_p15_kushnir_-_toi_khto_znaie_vsikh.png",
+      "caption": "Кушнір — той, хто знає всіх",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 33,
+      "page": 16,
+      "file": "items/033_p16_barmen_portovoi_taverny.png",
+      "caption": "Бармен портової таверни",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 34,
+      "page": 16,
+      "file": "items/034_p16_kurtyzanka_-_ostannia_spivrozmovnytsia_rufina.png",
+      "caption": "Куртизанка — остання співрозмовниця Руфіна",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 35,
+      "page": 17,
+      "file": "items/035_p17_serzhant_vorit.png",
+      "caption": "Сержант воріт",
+      "width": 701,
+      "height": 382
+    },
+    {
+      "id": 36,
+      "page": 17,
+      "file": "items/036_p17_stara_sella_z_mirefolda.png",
+      "caption": "Стара Селла з Мірефолда",
+      "width": 701,
+      "height": 382
+    },
+    {
+      "id": 37,
+      "page": 18,
+      "file": "items/037_p18_matir_isra_vein_-_starsha_nastoiatelka.png",
+      "caption": "Матір Ісра Вейн — старша настоятелька",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 38,
+      "page": 18,
+      "file": "items/038_p18_skel_hanis_-_drenazhnyi_robitnyk.png",
+      "caption": "Скел Ганіс — дренажний робітник",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 39,
+      "page": 18,
+      "file": "items/039_p18_dyiakon_rein.png",
+      "caption": "Диякон Рейн",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 40,
+      "page": 19,
+      "file": "items/040_p19_prysutnist_-_te_shcho_vidpovidaie.png",
+      "caption": "Присутність — те, що відповідає",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 41,
+      "page": 19,
+      "file": "items/041_p19_zatoplena_kaplytsia_kliuchnykiv_eksterier.png",
+      "caption": "Затоплена каплиця ключників екстер'єр",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 42,
+      "page": 20,
+      "file": "items/042_p20_zatoplena_kaplytsia_kliuchnykiv_interier.png",
+      "caption": "Затоплена каплиця ключників інтер'єр",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 43,
+      "page": 20,
+      "file": "items/043_p20_zatoplena_tablytsia_zhertovnyk.png",
+      "caption": "Затоплена таблиця жертовник",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 44,
+      "page": 20,
+      "file": "items/044_p20_tvariuka_tvani-_slipyi_khyzhak_shalenoi_richky.png",
+      "caption": "Тварюка Твані— сліпий хижак Шаленої Річки",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 45,
+      "page": 21,
+      "file": "items/045_p21_ocheretianyi_blukach.png",
+      "caption": "Очеретяний Блукач",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 46,
+      "page": 21,
+      "file": "items/046_p21_vivtar_stahnatsii.png",
+      "caption": "Вівтар Стагнації",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 47,
+      "page": 21,
+      "file": "items/047_p21_popilni_stezhky_kheizmuru.png",
+      "caption": "\"Попільні стежки Хейзмуру\".",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 48,
+      "page": 22,
+      "file": "items/048_p22_vivtar_stahnatsii_v_ep4.png",
+      "caption": "Вівтар Стагнації в еп4",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 49,
+      "page": 22,
+      "file": "items/049_p22_portret_rufina.png",
+      "caption": "Портрет Руфіна",
+      "width": 701,
+      "height": 382
+    },
+    {
+      "id": 50,
+      "page": 22,
+      "file": "items/050_p22_chornyi_arkhiv_valkorna_u_ep4_tessa_reformovanyi_orden.png",
+      "caption": "Чорний Архів Валькорна у еп4 (Тесса, реформований Орден)",
+      "width": 701,
+      "height": 383
+    },
+    {
+      "id": 51,
+      "page": 23,
+      "file": "items/051_p23_vidkhid_heroia_-_try_shliakhy_finalna_stsena.png",
+      "caption": "Відхід Героя — Три Шляхи (Фінальна сцена)",
+      "width": 701,
+      "height": 392
+    }
+  ],
+  "page_records": [
+    {
+      "page": 1,
+      "file": "page_01.png",
+      "text": "Очеретяний повзун (30 HP) — засідка в очереті Рій туманних кровососів (25 HP) — хмара в імлі"
+    },
+    {
+      "page": 2,
+      "file": "page_02.png",
+      "text": "Гнилий потопельник (45 HP) — те, що болото не віддало Мурок-трясовик (50–55 HP) — водна засідка"
+    },
+    {
+      "page": 3,
+      "file": "page_03.png",
+      "text": "Дорослий мурок (90 HP) — страж Жертовника Мати Міа — третій шар таємниці Ерван — хазяїн постоялого двору"
+    },
+    {
+      "page": 4,
+      "file": "page_04.png",
+      "text": "Сірра — молода мисливиця Мурі Варрік — старший мисливець Мурі"
+    },
+    {
+      "page": 5,
+      "file": "page_05.png",
+      "text": "Стетсон — королівський слідчий Брес — провідник по гетто"
+    },
+    {
+      "page": 6,
+      "file": "page_06.png",
+      "text": "Одрін — палацовий архіваріус Тесса — Торговий квартал Валькорна"
+    },
+    {
+      "page": 7,
+      "file": "page_07.png",
+      "text": "Дамар — ділок, що вкрав не те Лоен — посланець Ордену"
+    },
+    {
+      "page": 8,
+      "file": "page_08.png",
+      "text": "Моур — свідомість болота (фінал еп. 1, Галявина) Руфін — той, хто повернувся порожнім"
+    },
+    {
+      "page": 9,
+      "file": "page_09.png",
+      "text": "Серіт Келм — адміністративний слідчий Себастьян Марр / Блазень Фіпп — очільник Ордену Семи Кинджалів"
+    },
+    {
+      "page": 10,
+      "file": "page_10.png",
+      "text": "Ілія Марр — Вартова-Курат Лілея (Алтея) — остання з Ключників"
+    },
+    {
+      "page": 11,
+      "file": "page_11.png",
+      "text": "Каен — шаман Тихого Шелесту Гара Пайк — контрабандистська капітанка"
+    },
+    {
+      "page": 12,
+      "file": "page_12.png",
+      "text": "Брат Карос — хранитель Святої Вей Тован Рід — клановий речник"
+    },
+    {
+      "page": 13,
+      "file": "page_13.png",
+      "text": "Мара Денс — лікарка-самоучка Брін Осс — логістичний брокер"
+    },
+    {
+      "page": 14,
+      "file": "page_14.png",
+      "text": "Квартирмейстер Восс — корумпований чиновник Нера Вейл — молода свідка (бонус)"
+    },
+    {
+      "page": 15,
+      "file": "page_15.png",
+      "text": "Різьбяр з кварталу ремісників Кушнір — той, хто знає всіх"
+    },
+    {
+      "page": 16,
+      "file": "page_16.png",
+      "text": "Бармен портової таверни Куртизанка — остання співрозмовниця Руфіна"
+    },
+    {
+      "page": 17,
+      "file": "page_17.png",
+      "text": "Сержант воріт Стара Селла з Мірефолда"
+    },
+    {
+      "page": 18,
+      "file": "page_18.png",
+      "text": "Матір Ісра Вейн — старша настоятелька Скел Ганіс — дренажний робітник Диякон Рейн"
+    },
+    {
+      "page": 19,
+      "file": "page_19.png",
+      "text": "Присутність — те, що відповідає Затоплена каплиця ключників екстер'єр"
+    },
+    {
+      "page": 20,
+      "file": "page_20.png",
+      "text": "Затоплена каплиця ключників інтер'єр Затоплена таблиця жертовник Тварюка Твані— сліпий хижак Шаленої Річки"
+    },
+    {
+      "page": 21,
+      "file": "page_21.png",
+      "text": "Очеретяний Блукач Вівтар Стагнації \"Попільні стежки Хейзмуру\"."
+    },
+    {
+      "page": 22,
+      "file": "page_22.png",
+      "text": "Вівтар Стагнації в еп4 Портрет Руфіна Чорний Архів Валькорна у еп4 (Тесса, реформований Орден)"
+    },
+    {
+      "page": 23,
+      "file": "page_23.png",
+      "text": "Відхід Героя — Три Шляхи (Фінальна сцена)"
+    }
+  ]
+}

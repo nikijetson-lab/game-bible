@@ -1,0 +1,75 @@
+# Hazemoor / Godot project ignores
+
+# Godot generated/import cache
+**/.godot/
+**/.import/
+*.translation
+
+# Godot export/build outputs
+export.cfg
+export_presets.cfg
+builds/
+build/
+dist/
+exports/
+*.exe
+*.pck
+*.zip
+*.apk
+*.aab
+*.dmg
+*.app
+*.x86_64
+*.arm64
+
+# Mono/C# Godot generated files
+.mono/
+**/.mono/
+data_*/
+mono_crash.*.json
+
+# Python caches / local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Node/web dependencies and generated output
+node_modules/
+.npm/
+.cache/
+.parcel-cache/
+.next/
+out/
+
+# Local/editor/system files
+.DS_Store
+Thumbs.db
+desktop.ini
+*~
+*.swp
+*.swo
+.directory
+.vscode/settings.json
+.idea/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+*.bak
+*.backup
+scratch/
+tmp/
+temp/
+
+# Secrets / local credentials
+.env
+.env.*
+*.pem
+*.key
+secrets.*
+credentials.*

@@ -1,0 +1,73 @@
+{
+  "id": "ervan",
+  "name": "Ерван",
+  "title": "Власник таверни «Скрипучий знак»",
+  "race": "Human",
+  "age": 52,
+  
+  "description": "Коренастий чоловік з густою сіро-рудою бородою. Носить фартух, завжди за барною стійкою. Знає всі плітки міста.",
+  
+  "personality": {
+    "traits": ["pragmatic", "observant", "gruff", "fair"],
+    "alignment": "neutral",
+    "speech_style": "casual"
+  },
+  
+  "location": {
+    "default": "greyford_tavern",
+    "schedule": {
+      "morning": "greyford_tavern",
+      "afternoon": "greyford_tavern",
+      "evening": "greyford_tavern",
+      "night": "greyford_tavern"
+    }
+  },
+  
+  "reputation": {
+    "greyford": 20,
+    "lightbearers": 0,
+    "knives": 5
+  },
+  
+  "dialogues": {
+    "first_meeting": "ervan/first_meeting.json",
+    "about_rufin": "ervan/about_rufin.json",
+    "default": "ervan/default.json",
+    "rumors": "ervan/rumors.json"
+  },
+  
+  "services": {
+    "merchant": true,
+    "innkeeper": true,
+    "rumor_source": true
+  },
+  
+  "shop": {
+    "items": [
+      {"id": "item_ale", "price": 5, "stock": -1},
+      {"id": "item_bread", "price": 3, "stock": -1},
+      {"id": "item_dried_meat", "price": 10, "stock": 20},
+      {"id": "item_healing_herb", "price": 15, "stock": 5}
+    ]
+  },
+  
+  "quests": {
+    "gives": ["greyford_tavern_troubles"],
+    "involved": ["greyford_01_missing_recipient"]
+  },
+  
+  "relationships": {
+    "kelm": "acquaintance",
+    "rufin": "regular_customer",
+    "muri_traders": "business_partner"
+  },
+  
+  "lore": {
+    "background": "Ерван відкрив таверну 20 років тому після того, як покинув службу в Ордені Вартових. Він бачив багато, і його таверна стала центром інформації в Грейфорді.",
+    "secrets": [
+      "Був свідком зустрічі Руфіна з таємничою постаттю",
+      "Має контакти з контрабандистами, які ходять у болото",
+      "Колись допоміг Мурі втекти від Ордену Кинджалів"
+    ]
+  }
+}

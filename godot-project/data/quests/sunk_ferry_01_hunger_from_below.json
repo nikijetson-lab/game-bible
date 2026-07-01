@@ -1,0 +1,143 @@
+{
+  "id": "sunk_ferry_01_hunger_from_below",
+  "title": "Голод знизу",
+  "description": "Жителі Сонк-Феррі скаржаться на зникнення риби та дивні звуки з води. Поромник Одрін просить розібратися.",
+  "category": "side",
+  "episode": 1,
+  "required_level": 2,
+  
+  "prerequisites": {
+    "quests_completed": ["hazemoor_01_path_through_swamp"],
+    "location_discovered": "sunk_ferry"
+  },
+  
+  "objectives": [
+    {
+      "id": "talk_odrin",
+      "description": "Поговорити з Одріном, поромником",
+      "type": "dialogue",
+      "target": "npc_odrin",
+      "optional": false
+    },
+    {
+      "id": "investigate_shore",
+      "description": "Оглянути берег річки (3 локації)",
+      "type": "investigate",
+      "target": "river_shore",
+      "locations": ["shore_north", "shore_pier", "shore_south"],
+      "current": 0,
+      "optional": false
+    },
+    {
+      "id": "find_clues",
+      "description": "Знайти сліди невідомої істоти",
+      "type": "find_object",
+      "target": "creature_tracks",
+      "optional": false
+    },
+    {
+      "id": "choice_hunt",
+      "description": "Вирішити що робити з істотою",
+      "type": "choice",
+      "target": "hunt_decision",
+      "optional": false
+    }
+  ],
+  
+  "choices": [
+    {
+      "id": "hunt_creature",
+      "text": "Полювати на істоту (ризиковано)",
+      "description": "Спробувати вбити річкового хижака. Небезпечно, але жителі будуть вдячні.",
+      "conditions": {
+        "player_level": 3,
+        "has_weapon": true
+      },
+      "consequences": {
+        "quest_branch": "hunt_path",
+        "reputation": {
+          "sunk_ferry_locals": 20,
+          "muri": -10
+        },
+        "unlock_quest": "sunk_ferry_02_beast_hunt"
+      }
+    },
+    {
+      "id": "negotiate_muri",
+      "text": "Знайти Мурі та попросити про допомогу",
+      "description": "Мурі знають болото краще. Можливо, вони допоможуть вирішити проблему без насильства.",
+      "conditions": {
+        "reputation_muri": 10,
+        "doctrine": "mediator"
+      },
+      "consequences": {
+        "quest_branch": "peace_path",
+        "reputation": {
+          "sunk_ferry_locals": 10,
+          "muri": 20
+        },
+        "unlock_quest": "sunk_ferry_03_muri_pact"
+      }
+    },
+    {
+      "id": "ignore_problem",
+      "text": "Порадити уникати річки вночі",
+      "description": "Це не твоя справа. Нехай місцеві самі розбираються.",
+      "conditions": {},
+      "consequences": {
+        "quest_complete": true,
+        "reputation": {
+          "sunk_ferry_locals": -15,
+          "lightbearers": -5
+        },
+        "narrative_flag": "sunk_ferry_abandoned"
+      }
+    }
+  ],
+  
+  "rewards": {
+    "experience": 200,
+    "money": 50,
+    "items": [],
+    "reputation": {},
+    "branch_rewards": {
+      "hunt_path": {
+        "items": [{"id": "item_river_trophy", "count": 1}],
+        "reputation": {"sunk_ferry_locals": 20}
+      },
+      "peace_path": {
+        "items": [{"id": "item_muri_amulet", "count": 1}],
+        "reputation": {"muri": 20}
+      }
+    }
+  },
+  
+  "dialogue_triggers": {
+    "on_start": "odrin/hunger_below_intro.json",
+    "on_investigate": "internal_voice/something_wrong.json",
+    "on_find_tracks": "odrin/these_are_bad.json",
+    "on_choice": "odrin/what_will_you_do.json"
+  },
+  
+  "lore": {
+    "summary": "Квест-розгалуження, що показує конфлікт між людськими поселеннями та болотною екосистемою. Перший вибір між насильством та дипломатією.",
+    "unlocks": [
+      "Знайомство з Одріном",
+      "Розуміння балансу болота",
+      "Можливість альянсу з Мурі"
+    ],
+    "consequences_matrix": "Див. game-bible/quests/holod-znuzu-naslidky.md"
+  },
+  
+  "mechanics": {
+    "time_limit": null,
+    "combat_encounter": {
+      "hunt_path": {
+        "enemy": "river_beast",
+        "difficulty": "hard"
+      }
+    },
+    "stealth_option": true,
+    "investigation_skill_checks": ["tracker", "lantern"]
+  }
+}

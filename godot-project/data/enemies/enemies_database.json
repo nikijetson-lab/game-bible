@@ -1,0 +1,775 @@
+{
+  "info": {
+    "version": "1.0",
+    "description": "Повна база даних ворогів для Hazemoor",
+    "categories": ["humans", "swamp_creatures", "undead", "bosses"]
+  },
+  
+  "humans": {
+    "bandit_rookie": {
+      "id": "bandit_rookie",
+      "name": "Молодий розбійник",
+      "description": "Недосвідчений бандит. Легко налякати.",
+      "category": "humans",
+      "threat_level": 1,
+      
+      "stats": {
+        "max_health": 40,
+        "defense": 5,
+        "move_speed": 3.5,
+        "attack_damage": 12,
+        "attack_speed": 1.2,
+        "detection_range": 8.0,
+        "attack_range": 1.8
+      },
+      
+      "resistances": {
+        "physical": 0.0,
+        "fire": 0.0,
+        "cold": 0.0,
+        "poison": 0.1,
+        "magic": 0.0
+      },
+      
+      "behavior": {
+        "aggression": "medium",
+        "flee_threshold": 0.3,
+        "call_for_help": true,
+        "patrol": true
+      },
+      
+      "loot": {
+        "silver_coins": [5, 15],
+        "items": [
+          {"id": "item_bread", "chance": 0.4},
+          {"id": "item_dried_meat", "chance": 0.2},
+          {"id": "weapon_rusty_dagger", "chance": 0.1}
+        ]
+      },
+      
+      "locations": ["greyford_outskirts", "hazemoor_edge", "roads"],
+      "xp_reward": 15
+    },
+    
+    "bandit_veteran": {
+      "id": "bandit_veteran",
+      "name": "Досвідчений розбійник",
+      "description": "Загартований в боях бандит. Знає, як триматися.",
+      "category": "humans",
+      "threat_level": 3,
+      
+      "stats": {
+        "max_health": 80,
+        "defense": 15,
+        "move_speed": 4.0,
+        "attack_damage": 25,
+        "attack_speed": 1.0,
+        "detection_range": 12.0,
+        "attack_range": 2.0,
+        "critical_chance": 0.1
+      },
+      
+      "resistances": {
+        "physical": 0.1,
+        "fire": 0.0,
+        "cold": 0.0,
+        "poison": 0.2,
+        "magic": 0.0
+      },
+      
+      "abilities": [
+        {
+          "name": "Power Strike",
+          "damage_multiplier": 1.5,
+          "cooldown": 8.0
+        }
+      ],
+      
+      "behavior": {
+        "aggression": "high",
+        "flee_threshold": 0.15,
+        "call_for_help": true,
+        "patrol": true,
+        "uses_tactics": true
+      },
+      
+      "loot": {
+        "silver_coins": [20, 50],
+        "items": [
+          {"id": "weapon_iron_sword", "chance": 0.15},
+          {"id": "item_healing_herb", "chance": 0.3},
+          {"id": "armor_leather_vest", "chance": 0.2}
+        ]
+      },
+      
+      "locations": ["greyford_outskirts", "roads", "abandoned_camps"],
+      "xp_reward": 45
+    },
+    
+    "smuggler": {
+      "id": "smuggler",
+      "name": "Контрабандист",
+      "description": "Торговець забороненим товаром. Хитрий і швидкий.",
+      "category": "humans",
+      "threat_level": 2,
+      
+      "stats": {
+        "max_health": 60,
+        "defense": 8,
+        "move_speed": 5.0,
+        "attack_damage": 18,
+        "attack_speed": 1.3,
+        "detection_range": 10.0,
+        "attack_range": 6.0
+      },
+      
+      "resistances": {
+        "physical": 0.0,
+        "fire": 0.0,
+        "cold": 0.1,
+        "poison": 0.3,
+        "magic": 0.0
+      },
+      
+      "abilities": [
+        {
+          "name": "Smoke Bomb",
+          "effect": "stun",
+          "duration": 2.0,
+          "cooldown": 15.0
+        },
+        {
+          "name": "Poison Dart",
+          "damage": 10,
+          "poison_dps": 5.0,
+          "poison_duration": 6.0,
+          "cooldown": 5.0
+        }
+      ],
+      
+      "behavior": {
+        "aggression": "low",
+        "flee_threshold": 0.5,
+        "call_for_help": false,
+        "patrol": false,
+        "prefers_range": true
+      },
+      
+      "loot": {
+        "silver_coins": [30, 80],
+        "items": [
+          {"id": "item_swamp_reed", "chance": 0.5},
+          {"id": "item_lantern_oil", "chance": 0.4},
+          {"id": "contraband_goods", "chance": 0.3},
+          {"id": "map_fragment", "chance": 0.1}
+        ]
+      },
+      
+      "locations": ["sonk_ferry", "swamp_paths", "hidden_camps"],
+      "xp_reward": 35
+    },
+    
+    "order_guard": {
+      "id": "order_guard",
+      "name": "Вартовий Ордену",
+      "description": "Залізний стражник Валькорна. Дисциплінований і вірний.",
+      "category": "humans",
+      "threat_level": 4,
+      
+      "stats": {
+        "max_health": 100,
+        "defense": 25,
+        "move_speed": 3.5,
+        "attack_damage": 30,
+        "attack_speed": 0.9,
+        "detection_range": 15.0,
+        "attack_range": 2.2,
+        "block_chance": 0.3
+      },
+      
+      "resistances": {
+        "physical": 0.2,
+        "fire": 0.1,
+        "cold": 0.1,
+        "poison": 0.15,
+        "magic": 0.1
+      },
+      
+      "abilities": [
+        {
+          "name": "Shield Bash",
+          "damage": 20,
+          "stun_duration": 1.5,
+          "cooldown": 10.0
+        },
+        {
+          "name": "Formation Defense",
+          "defense_bonus": 15,
+          "requires_allies": true
+        }
+      ],
+      
+      "behavior": {
+        "aggression": "medium",
+        "flee_threshold": 0.0,
+        "call_for_help": true,
+        "patrol": true,
+        "holds_position": true,
+        "disciplined": true
+      },
+      
+      "loot": {
+        "silver_coins": [10, 25],
+        "items": [
+          {"id": "weapon_iron_sword", "chance": 0.3},
+          {"id": "shield_iron", "chance": 0.2},
+          {"id": "order_insignia", "chance": 0.5}
+        ]
+      },
+      
+      "locations": ["greyford", "valkorn", "checkpoints"],
+      "xp_reward": 50,
+      "faction": "lightbearers"
+    },
+    
+    "corrupted_warden": {
+      "id": "corrupted_warden",
+      "name": "Зіпсований Вартовий",
+      "description": "Колишній Вартовий, зіпсований шепотами Моура.",
+      "category": "humans",
+      "threat_level": 6,
+      
+      "stats": {
+        "max_health": 150,
+        "defense": 20,
+        "move_speed": 4.5,
+        "attack_damage": 40,
+        "attack_speed": 1.1,
+        "detection_range": 20.0,
+        "attack_range": 2.5,
+        "critical_chance": 0.15
+      },
+      
+      "resistances": {
+        "physical": 0.15,
+        "fire": -0.2,
+        "cold": 0.2,
+        "poison": 0.4,
+        "magic": 0.5
+      },
+      
+      "abilities": [
+        {
+          "name": "Moura's Whisper",
+          "effect": "fear",
+          "duration": 3.0,
+          "cooldown": 12.0
+        },
+        {
+          "name": "Dark Strike",
+          "damage": 60,
+          "magic_damage": 20,
+          "cooldown": 8.0
+        },
+        {
+          "name": "Regeneration",
+          "heal_per_second": 2.0,
+          "passive": true
+        }
+      ],
+      
+      "behavior": {
+        "aggression": "very_high",
+        "flee_threshold": 0.0,
+        "call_for_help": false,
+        "patrol": false,
+        "relentless": true
+      },
+      
+      "loot": {
+        "silver_coins": [50, 120],
+        "items": [
+          {"id": "weapon_silver_sword", "chance": 0.2},
+          {"id": "corrupted_seal", "chance": 0.4},
+          {"id": "moura_fragment", "chance": 0.15}
+        ]
+      },
+      
+      "locations": ["deep_hazemoor", "sunken_abbey", "moura_clearing"],
+      "xp_reward": 120
+    }
+  },
+  
+  "swamp_creatures": {
+    "bog_lurker": {
+      "id": "bog_lurker",
+      "name": "Болотний причайдух",
+      "description": "Напівзатоплене створіння з темної води. Атакує з засідки.",
+      "category": "swamp_creatures",
+      "threat_level": 2,
+      
+      "stats": {
+        "max_health": 50,
+        "defense": 10,
+        "move_speed": 2.5,
+        "swim_speed": 5.0,
+        "attack_damage": 20,
+        "attack_speed": 1.0,
+        "detection_range": 6.0,
+        "attack_range": 1.5
+      },
+      
+      "resistances": {
+        "physical": 0.1,
+        "fire": -0.3,
+        "cold": 0.3,
+        "poison": 0.8,
+        "magic": 0.2
+      },
+      
+      "abilities": [
+        {
+          "name": "Ambush",
+          "damage_multiplier": 2.0,
+          "from_water": true
+        },
+        {
+          "name": "Mud Spit",
+          "effect": "slow",
+          "slow_amount": 0.5,
+          "duration": 4.0,
+          "cooldown": 8.0
+        }
+      ],
+      
+      "behavior": {
+        "aggression": "medium",
+        "flee_threshold": 0.25,
+        "ambush_predator": true,
+        "hides_in_water": true
+      },
+      
+      "loot": {
+        "silver_coins": [5, 15],
+        "items": [
+          {"id": "swamp_slime", "chance": 0.6},
+          {"id": "item_swamp_reed", "chance": 0.3}
+        ]
+      },
+      
+      "locations": ["hazemoor_shallow", "swamp_pools"],
+      "xp_reward": 25,
+      "weaknesses": ["fire"]
+    },
+    
+    "reed_stalker": {
+      "id": "reed_stalker",
+      "name": "Очеретяний ходець",
+      "description": "Високе створіння з очерету. Майже непомітне в траві.",
+      "category": "swamp_creatures",
+      "threat_level": 3,
+      
+      "stats": {
+        "max_health": 70,
+        "defense": 5,
+        "move_speed": 5.5,
+        "attack_damage": 28,
+        "attack_speed": 1.2,
+        "detection_range": 15.0,
+        "attack_range": 3.0
+      },
+      
+      "resistances": {
+        "physical": 0.0,
+        "fire": -0.5,
+        "cold": 0.1,
+        "poison": 0.6,
+        "magic": 0.3
+      },
+      
+      "abilities": [
+        {
+          "name": "Camouflage",
+          "passive": true,
+          "detection_penalty": 0.5
+        },
+        {
+          "name": "Piercing Strike",
+          "damage": 40,
+          "ignores_armor": 0.5,
+          "cooldown": 10.0
+        }
+      ],
+      
+      "behavior": {
+        "aggression": "high",
+        "flee_threshold": 0.2,
+        "stealth_hunter": true,
+        "prefers_tall_grass": true
+      },
+      
+      "loot": {
+        "silver_coins": [10, 30],
+        "items": [
+          {"id": "item_swamp_reed", "chance": 0.8},
+          {"id": "reed_fiber", "chance": 0.5},
+          {"id": "sharp_reed_blade", "chance": 0.15}
+        ]
+      },
+      
+      "locations": ["hazemoor_reeds", "tykhy_shelest_outskirts"],
+      "xp_reward": 40,
+      "weaknesses": ["fire", "aoe"]
+    },
+    
+    "swamp_wraith": {
+      "id": "swamp_wraith",
+      "name": "Болотний примар",
+      "description": "Духовна сутність болота. Неживе, але смертельне.",
+      "category": "swamp_creatures",
+      "threat_level": 5,
+      
+      "stats": {
+        "max_health": 90,
+        "defense": 5,
+        "move_speed": 4.0,
+        "hover": true,
+        "attack_damage": 35,
+        "magic_damage": 15,
+        "attack_speed": 0.8,
+        "detection_range": 18.0,
+        "attack_range": 2.0
+      },
+      
+      "resistances": {
+        "physical": 0.5,
+        "fire": 0.0,
+        "cold": 0.6,
+        "poison": 1.0,
+        "magic": 0.4
+      },
+      
+      "abilities": [
+        {
+          "name": "Phase Through",
+          "avoid_physical": true,
+          "cooldown": 15.0
+        },
+        {
+          "name": "Life Drain",
+          "damage": 25,
+          "heal_self": true,
+          "cooldown": 12.0
+        },
+        {
+          "name": "Spectral Wail",
+          "aoe_damage": 20,
+          "fear_duration": 2.0,
+          "radius": 5.0,
+          "cooldown": 20.0
+        }
+      ],
+      
+      "behavior": {
+        "aggression": "high",
+        "flee_threshold": 0.0,
+        "ethereal": true,
+        "territorial": true
+      },
+      
+      "loot": {
+        "silver_coins": [30, 70],
+        "items": [
+          {"id": "ectoplasm", "chance": 0.7},
+          {"id": "soul_shard", "chance": 0.3},
+          {"id": "wraith_essence", "chance": 0.2}
+        ]
+      },
+      
+      "locations": ["deep_hazemoor", "moura_clearing", "sunken_abbey"],
+      "xp_reward": 80,
+      "weaknesses": ["holy", "fire"],
+      "immune_to": ["poison", "bleed"]
+    },
+    
+    "corrupted_muri": {
+      "id": "corrupted_muri",
+      "name": "Зіпсований Мурі",
+      "description": "Мурі, поглинений темною магією Моура. Трагічна втрата.",
+      "category": "swamp_creatures",
+      "threat_level": 4,
+      
+      "stats": {
+        "max_health": 100,
+        "defense": 12,
+        "move_speed": 4.5,
+        "attack_damage": 32,
+        "poison_damage": 15,
+        "attack_speed": 1.1,
+        "detection_range": 14.0,
+        "attack_range": 2.5
+      },
+      
+      "resistances": {
+        "physical": 0.1,
+        "fire": -0.2,
+        "cold": 0.2,
+        "poison": 0.9,
+        "magic": 0.6
+      },
+      
+      "abilities": [
+        {
+          "name": "Toxic Cloud",
+          "aoe_damage": 10,
+          "poison_dps": 8.0,
+          "duration": 8.0,
+          "radius": 4.0,
+          "cooldown": 15.0
+        },
+        {
+          "name": "Reed Whip",
+          "damage": 40,
+          "bleed_chance": 0.4,
+          "cooldown": 6.0
+        }
+      ],
+      
+      "behavior": {
+        "aggression": "very_high",
+        "flee_threshold": 0.0,
+        "mindless": true,
+        "swarm_fighter": true
+      },
+      
+      "loot": {
+        "silver_coins": [15, 40],
+        "items": [
+          {"id": "corrupted_reed", "chance": 0.6},
+          {"id": "muri_charm_broken", "chance": 0.4},
+          {"id": "dark_essence", "chance": 0.2}
+        ]
+      },
+      
+      "locations": ["corrupted_areas", "moura_influence_zones"],
+      "xp_reward": 60,
+      "reputation_penalty": {"muri": -5}
+    }
+  },
+  
+  "bosses": {
+    "sebastian_marr": {
+      "id": "sebastian_marr",
+      "name": "Себастьян Марр (Блазень Фіпп)",
+      "description": "Колишній куратор Вартових, тепер служить Моуру.",
+      "category": "bosses",
+      "threat_level": 10,
+      
+      "stats": {
+        "max_health": 500,
+        "defense": 35,
+        "move_speed": 4.5,
+        "attack_damage": 60,
+        "magic_damage": 40,
+        "attack_speed": 1.2,
+        "detection_range": 25.0,
+        "attack_range": 3.0,
+        "critical_chance": 0.25,
+        "critical_multiplier": 2.0
+      },
+      
+      "resistances": {
+        "physical": 0.3,
+        "fire": 0.1,
+        "cold": 0.2,
+        "poison": 0.7,
+        "magic": 0.6
+      },
+      
+      "phases": [
+        {
+          "name": "Phase 1",
+          "health_threshold": 1.0,
+          "abilities": ["Dark Blade", "Summon Shadows"]
+        },
+        {
+          "name": "Phase 2",
+          "health_threshold": 0.5,
+          "abilities": ["Dark Blade", "Summon Shadows", "Moura's Madness", "Teleport"]
+        },
+        {
+          "name": "Phase 3",
+          "health_threshold": 0.25,
+          "abilities": ["All", "Desperate Strike"],
+          "enraged": true
+        }
+      ],
+      
+      "abilities": [
+        {
+          "name": "Dark Blade",
+          "damage": 80,
+          "magic_damage": 30,
+          "cooldown": 5.0
+        },
+        {
+          "name": "Summon Shadows",
+          "summons": ["shadow_minion", "shadow_minion"],
+          "cooldown": 20.0
+        },
+        {
+          "name": "Moura's Madness",
+          "aoe_damage": 50,
+          "confuse_duration": 4.0,
+          "radius": 8.0,
+          "cooldown": 25.0
+        },
+        {
+          "name": "Teleport",
+          "distance": 10.0,
+          "cooldown": 12.0
+        },
+        {
+          "name": "Desperate Strike",
+          "damage": 150,
+          "self_damage": 50,
+          "cooldown": 15.0
+        }
+      ],
+      
+      "behavior": {
+        "aggression": "very_high",
+        "intelligent": true,
+        "uses_environment": true,
+        "boss_fight": true
+      },
+      
+      "loot": {
+        "guaranteed": [
+          {"id": "sebastian_regulator_seal", "quest_item": true},
+          {"id": "first_seal_key", "quest_item": true}
+        ],
+        "silver_coins": [500, 1000],
+        "items": [
+          {"id": "weapon_corrupted_blade", "chance": 1.0},
+          {"id": "marr_journal", "chance": 1.0},
+          {"id": "rare_artifact", "chance": 0.5}
+        ]
+      },
+      
+      "locations": ["valkorn_archive_depths"],
+      "xp_reward": 500,
+      "achievement": "defeat_sebastian_marr"
+    },
+    
+    "moura_avatar": {
+      "id": "moura_avatar",
+      "name": "Аватар Моура",
+      "description": "Втілення свідомості болота. Древній і непереможний.",
+      "category": "bosses",
+      "threat_level": 12,
+      
+      "stats": {
+        "max_health": 800,
+        "defense": 40,
+        "move_speed": 3.0,
+        "attack_damage": 80,
+        "magic_damage": 60,
+        "attack_speed": 0.9,
+        "regeneration": 5.0,
+        "detection_range": 30.0,
+        "attack_range": 4.0
+      },
+      
+      "resistances": {
+        "physical": 0.4,
+        "fire": -0.3,
+        "cold": 0.5,
+        "poison": 1.0,
+        "magic": 0.8
+      },
+      
+      "phases": [
+        {
+          "name": "Awakening",
+          "health_threshold": 1.0,
+          "abilities": ["Swamp Strike", "Root Grasp"]
+        },
+        {
+          "name": "Fury",
+          "health_threshold": 0.66,
+          "abilities": ["Swamp Strike", "Root Grasp", "Tidal Wave", "Summon Lurkers"]
+        },
+        {
+          "name": "Desperation",
+          "health_threshold": 0.33,
+          "abilities": ["All", "Ancient Wrath"],
+          "regeneration_doubled": true
+        }
+      ],
+      
+      "abilities": [
+        {
+          "name": "Swamp Strike",
+          "damage": 100,
+          "poison_dps": 15.0,
+          "poison_duration": 10.0,
+          "cooldown": 4.0
+        },
+        {
+          "name": "Root Grasp",
+          "damage": 40,
+          "immobilize_duration": 3.0,
+          "aoe": true,
+          "cooldown": 15.0
+        },
+        {
+          "name": "Tidal Wave",
+          "aoe_damage": 80,
+          "knockback": true,
+          "radius": 12.0,
+          "cooldown": 20.0
+        },
+        {
+          "name": "Summon Lurkers",
+          "summons": ["bog_lurker", "bog_lurker", "reed_stalker"],
+          "cooldown": 30.0
+        },
+        {
+          "name": "Ancient Wrath",
+          "channel_time": 3.0,
+          "aoe_damage": 150,
+          "radius": 15.0,
+          "cooldown": 40.0
+        }
+      ],
+      
+      "behavior": {
+        "aggression": "absolute",
+        "intelligent": true,
+        "ancient": true,
+        "environmental_control": true,
+        "boss_fight": true,
+        "final_boss": true
+      },
+      
+      "loot": {
+        "guaranteed": [
+          {"id": "moura_heart", "quest_item": true},
+          {"id": "ancient_seal", "quest_item": true}
+        ],
+        "silver_coins": [1000, 2000],
+        "items": [
+          {"id": "weapon_moura_staff", "chance": 1.0},
+          {"id": "moura_blessing", "chance": 1.0},
+          {"id": "legendary_artifact", "chance": 0.3}
+        ]
+      },
+      
+      "locations": ["moura_clearing_final"],
+      "xp_reward": 1000,
+      "achievement": "defeat_moura",
+      "endings": ["depends_on_choices"]
+    }
+  }
+}

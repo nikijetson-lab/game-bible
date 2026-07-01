@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Shader" path="res://shaders/height_fog.gdshader" id="1"]
+
+[sub_resource type="ShaderMaterial" id="HeightFogMaterial"]
+shader = ExtResource("1")
+shader_parameter/fog_density = 0.35
+shader_parameter/height_falloff = 0.22
+shader_parameter/fog_albedo = Vector3(0.28, 0.31, 0.27)
+
+[node name="HeightFogVolume" type="FogVolume"]
+size = Vector3(150, 30, 150)
+material = SubResource("HeightFogMaterial")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/environment/height_fog_manager.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/environment/height_fog_volume.tscn" id="2"]
+
+[node name="HeightFogBank" type="Node3D"]
+
+[node name="HeightFogVolume" parent="." instance=ExtResource("2")]
+
+[node name="HeightFogManager" type="Node" parent="."]
+script = ExtResource("1")

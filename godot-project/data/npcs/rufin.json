@@ -1,0 +1,75 @@
+{
+  "id": "rufin",
+  "name": "Руфін",
+  "title": "Картограф і кур'єр Ордену",
+  "race": "Human",
+  "age": 28,
+  "status": "deceased_spirit",
+  
+  "description": "Примарний силует молодого чоловіка. Його обличчя важко розгледіти крізь туман, але очі горять тихим смутком. Одяг картографа тепер безтілісний, як і він сам.",
+  
+  "personality": {
+    "traits": ["dutiful", "melancholic", "lost", "protective"],
+    "alignment": "neutral_good",
+    "speech_style": "ethereal",
+    "voice_note": "Голос як відлуння, тихий шепіт"
+  },
+  
+  "location": {
+    "default": "hazemoor_moura_clearing",
+    "notes": "Прив'язаний до Галявини Моура, не може покинути"
+  },
+  
+  "reputation": {
+    "greyford": 20,
+    "lightbearers": 25,
+    "keepers": 10,
+    "muri": -5
+  },
+  
+  "dialogues": {
+    "first_encounter": "rufin/first_encounter.json",
+    "about_artifact": "rufin/about_artifact.json",
+    "about_marr": "rufin/about_marr.json",
+    "final_goodbye": "rufin/final_goodbye.json"
+  },
+  
+  "quests": {
+    "involved": [
+      "greyford_01_missing_recipient",
+      "hazemoor_02_halyna_dusha",
+      "episode_4_fate_of_rufin"
+    ]
+  },
+  
+  "relationships": {
+    "kelm": "colleague",
+    "sebastian_marr": "manipulator",
+    "moura": "consumed_by",
+    "protagonist": "warning_to"
+  },
+  
+  "lore": {
+    "background": "Руфін був талановитим картографом Ордену Вартових. Три дні тому отримав секретну місію від Себастьяна Марра — доставити артефакт у Хейзмур. Не знав, що артефакт містить фрагмент свідомості Моура.",
+    "death": "На Галявині Моура артефакт 'з'єднався' з головною свідомістю духа. Руфін, місяцями в контакті з осколком, був 'спустошений' — його емоційна та магічна сутність поглинута Моуром. Залишилась лише примарна оболонка.",
+    "current_state": "Існує як привид-відлуння. Не мертвий у класичному сенсі, але й не живий. Прив'язаний до місця смерті. Намагається попередити інших про небезпеку Моура.",
+    "secrets": [
+      "Знає справжню особу Блазня Фіппа (Себастьян Марр)",
+      "Бачив що артефакт зробив з його розумом",
+      "Розуміє, що Моур не зло, але смертельно небезпечний",
+      "Може розповісти де знаходиться архів Ордену Семи Кинджалів"
+    ]
+  },
+  
+  "special_mechanics": {
+    "ghost_form": true,
+    "can_touch": false,
+    "visible_conditions": ["player_has_lantern", "at_moura_clearing"],
+    "memory_fragments": [
+      "Спогад 1: Отримання місії від Марра",
+      "Спогад 2: Перша ніч з артефактом, кошмари",
+      "Спогад 3: Останній крок до Галявини",
+      "Спогад 4: Злиття з Моуром"
+    ]
+  }
+}

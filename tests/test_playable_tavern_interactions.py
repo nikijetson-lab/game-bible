@@ -120,6 +120,29 @@ def test_port_tavern_contains_no_unconfirmed_invented_lore():
             assert phrase not in text, f"Unconfirmed port-tavern lore {phrase!r} remains in {path.relative_to(ROOT)}"
 
 
+def test_player_controller_has_fall_reset():
+    text = read(GODOT / "scripts" / "gameplay" / "player_controller.gd")
+    assert "fall_reset_y" in text, "player controller must define a fall threshold"
+    assert "spawn_position" in text, "player controller must remember a safe spawn"
+    assert "global_position = spawn_position" in text, "player must teleport back to spawn on fall"
+
+
+def _count_boundary_collision_shapes(text: str) -> int:
+    return text.count('type="CollisionShape3D" parent="Boundaries"')
+
+
+def test_main_tavern_has_collision_boundaries():
+    text = read(GODOT / "scenes" / "locations" / "greyford" / "TavernInterior.tscn")
+    assert 'node name="Boundaries" type="StaticBody3D"' in text, "main tavern needs a physical Boundaries body"
+    assert _count_boundary_collision_shapes(text) >= 4, "main tavern needs at least 4 wall collision shapes"
+
+
+def test_port_tavern_has_collision_boundaries():
+    text = read(GODOT / "scenes" / "locations" / "greyford" / "PortTavernInterior.tscn")
+    assert 'node name="Boundaries" type="StaticBody3D"' in text, "port tavern needs a physical Boundaries body"
+    assert _count_boundary_collision_shapes(text) >= 4, "port tavern needs at least 4 wall collision shapes"
+
+
 def test_mia_and_kelm_locations_stay_outside_taverns():
     mia = load_json(GODOT / "data" / "npcs" / "mia.json")
     kelm = load_json(GODOT / "data" / "npcs" / "kelm.json")

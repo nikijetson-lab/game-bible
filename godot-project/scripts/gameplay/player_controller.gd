@@ -11,6 +11,10 @@ extends CharacterBody3D
 @export var acceleration: float = 10.0
 @export var friction: float = 15.0
 
+# Захист від падіння за межі сцени
+@export var fall_reset_y: float = -8.0
+var spawn_position: Vector3 = Vector3.ZERO
+
 # Параметри камери
 @export var mouse_sensitivity: float = 0.002
 @export var camera_distance: float = 3.0
@@ -30,6 +34,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready() -> void:
 	add_to_group("player")
+	spawn_position = global_position
 	interaction_area.area_entered.connect(_on_interaction_area_entered)
 	interaction_area.area_exited.connect(_on_interaction_area_exited)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -65,6 +70,13 @@ func _physics_process(delta: float) -> void:
 		try_interact()
 	
 	move_and_slide()
+	_check_fall_reset()
+
+func _check_fall_reset() -> void:
+	"""Повернути гравця на безпечний spawn, якщо він випав за межі сцени"""
+	if global_position.y < fall_reset_y:
+		global_position = spawn_position
+		velocity = Vector3.ZERO
 
 func handle_movement(delta: float) -> void:
 	"""Обробка руху WASD"""

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3]
+[gd_scene load_steps=20 format=3]
 
 [ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc_behavior"]
 [ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="2_player"]
@@ -55,6 +55,12 @@ material = SubResource("Mat_wet_dark_wood")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
 size = Vector3(15, 0.32, 10.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_boundary_long"]
+size = Vector3(15.6, 3.2, 0.55)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_boundary_side"]
+size = Vector3(0.55, 3.2, 11.1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_bar"]
 size = Vector3(6.5, 1.12, 0.9)
@@ -120,6 +126,24 @@ mesh = SubResource("BoxMesh_floor")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_floor")
+
+[node name="Boundaries" type="StaticBody3D" parent="."]
+
+[node name="NorthWall" type="CollisionShape3D" parent="Boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 5.55)
+shape = SubResource("BoxShape3D_boundary_long")
+
+[node name="SouthWall" type="CollisionShape3D" parent="Boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, -5.55)
+shape = SubResource("BoxShape3D_boundary_long")
+
+[node name="WestWall" type="CollisionShape3D" parent="Boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.75, 1.35, 0)
+shape = SubResource("BoxShape3D_boundary_side")
+
+[node name="EastWall" type="CollisionShape3D" parent="Boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.75, 1.35, 0)
+shape = SubResource("BoxShape3D_boundary_side")
 
 [node name="Architecture" type="Node3D" parent="."]
 

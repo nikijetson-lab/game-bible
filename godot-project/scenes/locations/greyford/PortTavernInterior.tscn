@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3]
+[gd_scene load_steps=21 format=3]
 
 [ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc_behavior"]
 [ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="2_player"]
@@ -65,6 +65,9 @@ size = Vector3(0.55, 3.2, 11.1)
 [sub_resource type="BoxMesh" id="BoxMesh_bar"]
 size = Vector3(6.5, 1.12, 0.9)
 material = SubResource("Mat_bar_worn")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bar"]
+size = Vector3(6.5, 1.12, 0.9)
 
 [sub_resource type="BoxMesh" id="BoxMesh_table"]
 size = Vector3(2.2, 0.18, 1.25)
@@ -182,6 +185,9 @@ transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BarCounter"]
 mesh = SubResource("BoxMesh_bar")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BarCounter"]
+shape = SubResource("BoxShape3D_bar")
 
 [node name="BarLamp" type="MeshInstance3D" parent="BarCounter"]
 transform = Transform3D(0.38, 0, 0, 0, 0.38, 0, 0, 0, 0.38, 1.95, 0.84, -0.14)

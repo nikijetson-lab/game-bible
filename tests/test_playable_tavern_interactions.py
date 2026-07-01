@@ -143,6 +143,24 @@ def test_port_tavern_has_collision_boundaries():
     assert _count_boundary_collision_shapes(text) >= 4, "port tavern needs at least 4 wall collision shapes"
 
 
+def _assert_bar_counter_blocks_player(scene_path: Path) -> None:
+    text = read(scene_path)
+    assert '[node name="BarCounter" type="StaticBody3D" parent="."]' in text, "bar counter must be a physics body"
+    assert '[sub_resource type="BoxShape3D" id="BoxShape3D_bar"]' in text, "bar counter needs a box collision shape resource"
+    assert '[node name="CollisionShape3D" type="CollisionShape3D" parent="BarCounter"]' in text, (
+        "bar counter must have a CollisionShape3D child so the player cannot walk through it"
+    )
+    assert 'shape = SubResource("BoxShape3D_bar")' in text, "bar counter collision must use the bar-sized shape"
+
+
+def test_main_tavern_bar_counter_blocks_player():
+    _assert_bar_counter_blocks_player(GODOT / "scenes" / "locations" / "greyford" / "TavernInterior.tscn")
+
+
+def test_port_tavern_bar_counter_blocks_player():
+    _assert_bar_counter_blocks_player(GODOT / "scenes" / "locations" / "greyford" / "PortTavernInterior.tscn")
+
+
 def test_mia_and_kelm_locations_stay_outside_taverns():
     mia = load_json(GODOT / "data" / "npcs" / "mia.json")
     kelm = load_json(GODOT / "data" / "npcs" / "kelm.json")

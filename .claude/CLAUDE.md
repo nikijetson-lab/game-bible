@@ -7,11 +7,12 @@
 - **Торкатись тільки того що потрібно.** Не рефакторити сусідній код. Якщо знайдено несвязану проблему — повідомити, не виправляти.
 - **Після будь-яких змін JS — збільшити ?v=N на відповідному script tag** в index.html.
 - **node_modules в .gitignore, ніколи не комітити test dependencies.**
+- **Godot cache не комітити:** `.godot/`, `.import/`, тимчасові export/build/log/cache папки мають лишатися поза git.
 - **Мінімум коду, нуль спекулятивних абстракцій.** Якщо є сумніви — запитати.
 
 ## ПРОЄКТ
 
-Hazemoor — 3D RPG на Unreal Engine 5, соло-розробка.
+Hazemoor — 3D dark gothic fantasy RPG на **Godot 4.7**, соло-розробка.
 Браузерний симулятор (`web/`) — інструмент для дебагу квестової логіки та наративних зв'язків.
 **Це НЕ фінальний продукт.** Не розвивати симулятор як основний продукт.
 
@@ -20,16 +21,32 @@ Hazemoor — 3D RPG на Unreal Engine 5, соло-розробка.
 ## СТРУКТУРА РЕПО
 
 ```
+godot-project/   — основний Godot 4.7 проєкт гри
+  project.godot  — конфіг Godot, autoload managers, input map
+  scenes/        — ігрові сцени (.tscn)
+  scripts/       — GDScript системи, AI, gameplay, UI
+  data/          — JSON NPC/dialogues/quests/items
+  tests/         — Godot headless smoke-тести
 quests/          — квест-файли (.md), джерело істини для сцен і діалогів
 web/             — браузерний narrative debugger
 web/app.js       — основна логіка симулятора
 web/quests-data.js — дані всіх сцен
-web/assets/maps/ — карти локацій (GDD assets для UE5)
+web/assets/maps/ — карти локацій (GDD/reference assets)
 web/assets/images/ — портрети персонажів і бестіарій
 design/          — world bible, GDD документи
 regions/         — лор по регіонах
 characters/      — характеристики персонажів
+docs/artifacts/  — імпортовані Hermes/GDD artifacts
+visual/          — concept art/reference material
 ```
+
+## GODOT WORKFLOW
+
+- Працювати в `godot-project/` як у головному ігровому проєкті.
+- Нові інтерактивні системи перевіряти headless smoke-тестом, коли це можливо.
+- Для сюжетних NPC використовувати `scripts/ai/AIPlanner.gd` і `scripts/ai/NPCBehavior.gd` як першу основу взаємодії.
+- Сцени локацій додавати в `scenes/locations/...` з реальними Node3D/Area3D вузлами, а не тільки документацією.
+- Godot `.uid` файли для нових `.gd`/resource файлів можна комітити разом із відповідним ресурсом.
 
 ## ОКРЕМІ ПРОЄКТИ — НІКОЛИ НЕ ЗМІШУВАТИ
 

@@ -4,44 +4,72 @@
   "title": "Прикордонне місто",
   "type": "hub",
   "size": "medium",
-  
   "description": "Останній форпост цивілізації перед болотом Хейзмур. Дерев'яні будинки притискаються один до одного на вузьких вулицях. Постійний дощ змиває бруд з булижників. Таверна Ервана світиться теплим світлом, контрастуючи з похмурою атмосферою міста.",
-  
   "atmosphere": {
     "mood": "gloomy_frontier",
     "weather": "light_rain",
     "fog_density": 0.3,
     "lighting": "overcast",
     "music_track": "The Path of the Goblin King",
-    "ambient_sounds": ["rain", "wind", "distant_chatter", "wood_creaking"]
+    "ambient_sounds": [
+      "rain",
+      "wind",
+      "distant_chatter",
+      "wood_creaking"
+    ]
   },
-  
   "time_of_day": "permanent_overcast",
-  
   "zones": [
     {
       "id": "greyford_main_street",
       "name": "Головна вулиця",
       "type": "street",
       "description": "Центральна дорога міста. Булижна мостова, по боках — лавки та житлові будинки.",
-      "spawn_point": {"x": 0, "y": 0, "z": 0},
-      "boundaries": {"min": {"x": -20, "z": -50}, "max": {"x": 20, "z": 50}}
+      "spawn_point": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "boundaries": {
+        "min": {
+          "x": -20,
+          "z": -50
+        },
+        "max": {
+          "x": 20,
+          "z": 50
+        }
+      }
     },
-    
     {
       "id": "greyford_tavern",
       "name": "Таверна «Скрипучий знак»",
       "type": "interior",
-      "description": "Затишна таверна з великим каміном. Запах смаженого м'яса та ейлю. Столи завжди напівзаповнені місцевими.",
+      "description": "Перша/основна таверна Грейфорда. Тепле світло, великий камін, запах ейлю й мокрого дерева. Ерван тримає бар і знає міські плітки про Руфіна.",
       "music_override": "Folk Round",
       "lighting_override": "warm_firelight",
-      "npcs": ["ervan", "generic_patron_1", "generic_patron_2", "generic_patron_3"],
-      "services": ["rest", "shop", "rumors"],
+      "npcs": [
+        "ervan",
+        "generic_patron_1",
+        "generic_patron_2",
+        "generic_patron_3"
+      ],
+      "services": [
+        "rest",
+        "shop",
+        "rumors"
+      ],
       "connections": [
-        {"to": "greyford_main_street", "door_position": {"x": -5, "y": 0, "z": 2}}
+        {
+          "to": "greyford_main_street",
+          "door_position": {
+            "x": -5,
+            "y": 0,
+            "z": 2
+          }
+        }
       ]
     },
-    
     {
       "id": "greyford_administration",
       "name": "Будівля Адміністрації",
@@ -49,89 +77,196 @@
       "description": "Сухий офіс з купами паперів. Запах чорнила та старого дерева. Келм за столом, завалений документами.",
       "music_override": "ambient_only",
       "lighting_override": "dim_candlelight",
-      "npcs": ["kelm", "generic_clerk"],
-      "services": ["quest_giver", "information"],
+      "npcs": [
+        "kelm",
+        "generic_clerk"
+      ],
+      "services": [
+        "quest_giver",
+        "information"
+      ],
       "connections": [
-        {"to": "greyford_main_street", "door_position": {"x": 15, "y": 0, "z": 10}}
+        {
+          "to": "greyford_main_street",
+          "door_position": {
+            "x": 15,
+            "y": 0,
+            "z": 10
+          }
+        }
       ]
     },
-    
     {
       "id": "greyford_market",
       "name": "Ринкова площа",
       "type": "plaza",
       "description": "Невелика площа з кількома торговими ларками. Мурі іноді приходять сюди продавати болотні товари.",
-      "npcs": ["generic_merchant_1", "generic_merchant_2", "guard_1"],
-      "services": ["shop"],
-      "special_events": ["muri_traders_arrival"]
+      "npcs": [
+        "generic_merchant_1",
+        "generic_merchant_2",
+        "guard_1"
+      ],
+      "services": [
+        "shop"
+      ],
+      "special_events": [
+        "muri_traders_arrival"
+      ]
     },
-    
     {
       "id": "greyford_gate",
       "name": "Міська брама",
       "type": "checkpoint",
       "description": "Масивні дерев'яні ворота, що ведуть до дороги на Сонк-Феррі. Двоє охоронців завжди на посту.",
-      "npcs": ["guard_gate_1", "guard_gate_2"],
+      "npcs": [
+        "guard_gate_1",
+        "guard_gate_2"
+      ],
       "connections": [
-        {"to": "road_to_sonk_ferry", "travel_time": 120}
+        {
+          "to": "road_to_sonk_ferry",
+          "travel_time": 120
+        }
       ],
       "checkpoint": {
         "requires_permission": false,
-        "guards_hostile_if_reputation": {"greyford": -20}
+        "guards_hostile_if_reputation": {
+          "greyford": -20
+        }
       }
     },
-    
     {
       "id": "greyford_docks",
       "name": "Річкові причали",
       "type": "docks",
       "description": "Маленькі дерев'яні причали. Кілька рибальських човнів. Контрабандисти іноді зустрічаються тут вночі.",
-      "npcs": ["fisherman", "smuggler"],
-      "services": ["fishing", "black_market"],
+      "npcs": [
+        "fisherman",
+        "smuggler"
+      ],
+      "services": [
+        "fishing",
+        "black_market"
+      ],
       "time_locked": {
         "black_market": "night_only"
-      }
+      },
+      "connections": [
+        {
+          "to": "greyford_port_tavern",
+          "door_position": {
+            "x": 6,
+            "y": 0,
+            "z": -4
+          }
+        }
+      ]
+    },
+    {
+      "id": "greyford_port_tavern",
+      "name": "Портова таверна",
+      "type": "interior",
+      "description": "Окрема таверна біля річкових причалів (за концепт-артом page_16): темне мокре дерево, рибальські сітки, мотузки й поплавці, старі карти на стінах, багато пляшок, олійні лампи та холодне дощове світло з високого вікна. За баром — портовий бармен; біля вікна за окремим столом сидить куртизанка в зеленій сукні — остання, хто говорив із Руфіном.",
+      "lighting_override": "cold_rain_and_oil_lamps",
+      "npcs": [
+        "port_bartender",
+        "cassandra",
+        "generic_drunk_sailor"
+      ],
+      "services": [
+        "rumors"
+      ],
+      "connections": [
+        {
+          "to": "greyford_docks",
+          "door_position": {
+            "x": -6,
+            "y": 0,
+            "z": 4
+          }
+        }
+      ]
     }
   ],
-  
   "npcs": [
     {
       "id": "ervan",
       "location": "greyford_tavern",
-      "position": {"x": 0, "y": 0, "z": -5},
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -5
+      },
       "role": "tavern_owner",
       "essential": true
     },
     {
       "id": "kelm",
       "location": "greyford_administration",
-      "position": {"x": 2, "y": 0, "z": 0},
+      "position": {
+        "x": 2,
+        "y": 0,
+        "z": 0
+      },
       "role": "quest_giver",
+      "essential": true
+    },
+    {
+      "id": "port_bartender",
+      "location": "greyford_port_tavern",
+      "position": {
+        "x": -3,
+        "y": 0,
+        "z": -3
+      },
+      "role": "port_tavern_bartender",
+      "essential": false
+    },
+    {
+      "id": "cassandra",
+      "location": "greyford_port_tavern",
+      "position": {
+        "x": 3,
+        "y": 0,
+        "z": 2
+      },
+      "role": "rufin_last_contact",
       "essential": true
     },
     {
       "id": "guard_gate_1",
       "location": "greyford_gate",
-      "position": {"x": -2, "y": 0, "z": 0},
+      "position": {
+        "x": -2,
+        "y": 0,
+        "z": 0
+      },
       "role": "guard",
       "patrol": false
     },
     {
       "id": "guard_gate_2",
       "location": "greyford_gate",
-      "position": {"x": 2, "y": 0, "z": 0},
+      "position": {
+        "x": 2,
+        "y": 0,
+        "z": 0
+      },
       "role": "guard",
       "patrol": false
     }
   ],
-  
   "points_of_interest": [
     {
       "id": "notice_board",
       "name": "Дошка оголошень",
       "type": "quest_board",
       "location": "greyford_market",
-      "position": {"x": 5, "y": 1.5, "z": 5},
+      "position": {
+        "x": 5,
+        "y": 1.5,
+        "z": 5
+      },
       "description": "Дерев'яна дошка з прибитими паперами. Тут можна знайти роботу."
     },
     {
@@ -139,21 +274,24 @@
       "name": "Статуя Вартового",
       "type": "landmark",
       "location": "greyford_main_street",
-      "position": {"x": 0, "y": 0, "z": 0},
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
       "description": "Стара кам'яна статуя невідомого Вартового. Напівзруйнована часом."
     }
   ],
-  
   "quests": {
     "starts_here": [
       "greyford_01_missing_recipient",
       "greyford_tavern_troubles"
     ],
     "passes_through": [
-      "hazemoor_01_path_through_swamp"
+      "hazemoor_01_path_through_swamp",
+      "greyford_01_missing_recipient"
     ]
   },
-  
   "connections": [
     {
       "to": "road_to_sonk_ferry",
@@ -173,7 +311,6 @@
       }
     }
   ],
-  
   "lore": {
     "population": "~200 жителів",
     "founded": "150 років тому",
@@ -181,7 +318,6 @@
     "economy": "Торгівля з Мурі, рибальство, контрабанда",
     "history": "Грейфорд був побудований як останній форпост перед болотом після Прадавньої війни. Спочатку це була військова застава, але поступово перетворилась на торговий пункт між людьми та Мурі."
   },
-  
   "secrets": [
     "У підвалі таверни — схованка контрабандистів",
     "Келм знає про таємні артефакти Ордену Кинджалів",

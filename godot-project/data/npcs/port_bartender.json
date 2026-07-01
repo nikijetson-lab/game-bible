@@ -1,0 +1,35 @@
+{
+  "id": "port_bartender",
+  "name": "Бармен портової таверни",
+  "race": "Human",
+  "age": 50,
+  "description": "Худорлявий, обвітрений чоловік середнього віку, коротке темне волосся зачесане назад. Світла сорочка з підкоченими рукавами, коричневий робочий фартух у плямах, зв’язка ключів на поясі; витирає металевий кухоль ганчіркою. (Вигляд — за концепт-артом page_16.)",
+  "art_reference": "visual/concept_art_vision/pages/page_16.png",
+  "personality": {
+    "traits": [
+      "suspicious",
+      "tired",
+      "pragmatic"
+    ],
+    "alignment": "neutral",
+    "speech_style": "short_gruff"
+  },
+  "location": {
+    "default": "greyford_port_tavern"
+  },
+  "dialogues": {
+    "default": "port_bartender/default.json"
+  },
+  "services": {
+    "rumor_source": true,
+    "drinks": true
+  },
+  "quests": {
+    "involved": [
+      "greyford_01_missing_recipient"
+    ]
+  },
+  "relationships": {
+    "cassandra": "regular"
+  }
+}

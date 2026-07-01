@@ -1,0 +1,262 @@
+[gd_scene load_steps=18 format=3]
+
+[ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc_behavior"]
+[ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="2_player"]
+
+[sub_resource type="Environment" id="Environment_port_tavern"]
+background_mode = 1
+background_color = Color(0.028, 0.034, 0.033, 1)
+ambient_light_source = 1
+ambient_light_color = Color(0.24, 0.28, 0.28, 1)
+ambient_light_energy = 0.42
+fog_enabled = true
+fog_light_color = Color(0.23, 0.29, 0.30, 1)
+fog_density = 0.05
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.024
+
+[sub_resource type="StandardMaterial3D" id="Mat_wet_dark_wood"]
+albedo_color = Color(0.12, 0.075, 0.045, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="Mat_bar_worn"]
+albedo_color = Color(0.19, 0.115, 0.065, 1)
+roughness = 0.95
+
+[sub_resource type="StandardMaterial3D" id="Mat_lamp_flame"]
+albedo_color = Color(1.0, 0.55, 0.20, 1)
+emission_enabled = true
+emission = Color(1.0, 0.48, 0.16, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="StandardMaterial3D" id="Mat_rain_window"]
+albedo_color = Color(0.18, 0.31, 0.38, 0.70)
+emission_enabled = true
+emission = Color(0.10, 0.23, 0.31, 1)
+emission_energy_multiplier = 0.55
+transparency = 1
+
+[sub_resource type="StandardMaterial3D" id="Mat_cassandra_green"]
+albedo_color = Color(0.045, 0.23, 0.15, 1)
+roughness = 0.42
+
+[sub_resource type="StandardMaterial3D" id="Mat_dirty_shirt"]
+albedo_color = Color(0.62, 0.56, 0.44, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="Mat_metal"]
+albedo_color = Color(0.34, 0.31, 0.25, 1)
+metallic = 0.65
+roughness = 0.58
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+size = Vector3(15, 0.32, 10.5)
+material = SubResource("Mat_wet_dark_wood")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
+size = Vector3(15, 0.32, 10.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bar"]
+size = Vector3(6.5, 1.12, 0.9)
+material = SubResource("Mat_bar_worn")
+
+[sub_resource type="BoxMesh" id="BoxMesh_table"]
+size = Vector3(2.2, 0.18, 1.25)
+material = SubResource("Mat_bar_worn")
+
+[sub_resource type="BoxMesh" id="BoxMesh_plank"]
+size = Vector3(0.18, 0.9, 0.18)
+material = SubResource("Mat_bar_worn")
+
+[sub_resource type="BoxMesh" id="BoxMesh_panel"]
+size = Vector3(1.7, 1.1, 0.08)
+material = SubResource("Mat_bar_worn")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_npc"]
+radius = 0.35
+height = 1.8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_interaction"]
+radius = 1.7
+
+[sub_resource type="SphereMesh" id="SphereMesh_prop"]
+radius = 0.12
+height = 0.4
+material = SubResource("Mat_metal")
+
+[node name="PortTavernInterior" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_port_tavern")
+
+[node name="RainWindowColdLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.766044, -0.321394, 0.55667, 0, 0.866025, 0.5, -0.642788, -0.383022, 0.663414, 0, 3.5, 0)
+light_color = Color(0.58, 0.72, 0.78, 1)
+light_energy = 0.9
+shadow_enabled = true
+
+[node name="BarLampLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.15, 2.4, -2.95)
+light_color = Color(1, 0.55, 0.22, 1)
+light_energy = 2.2
+omni_range = 6.5
+shadow_enabled = true
+
+[node name="CassandraTableLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.35, 1.35, 2.6)
+light_color = Color(1, 0.50, 0.20, 1)
+light_energy = 1.6
+omni_range = 4.0
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+transform = Transform3D(0.92388, 0, -0.382683, 0, 1, 0, 0.382683, 0, 0.92388, 0.0, 1.0, 4.1)
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_floor")
+
+[node name="Architecture" type="Node3D" parent="."]
+
+[node name="BackWall" type="MeshInstance3D" parent="Architecture"]
+transform = Transform3D(15, 0, 0, 0, 3.0, 0, 0, 0, 0.22, 0, 1.35, -5.18)
+mesh = SubResource("BoxMesh_plank")
+
+[node name="LeftWall" type="MeshInstance3D" parent="Architecture"]
+transform = Transform3D(0.22, 0, 0, 0, 3.0, 0, 0, 0, 10.5, -7.45, 1.35, 0)
+mesh = SubResource("BoxMesh_plank")
+
+[node name="RightWall" type="MeshInstance3D" parent="Architecture"]
+transform = Transform3D(0.22, 0, 0, 0, 3.0, 0, 0, 0, 10.5, 7.45, 1.35, 0)
+mesh = SubResource("BoxMesh_plank")
+
+[node name="CeilingBeamFront" type="MeshInstance3D" parent="Architecture"]
+transform = Transform3D(15, 0, 0, 0, 0.22, 0, 0, 0, 0.26, 0, 2.85, 2.2)
+mesh = SubResource("BoxMesh_plank")
+
+[node name="CeilingBeamBack" type="MeshInstance3D" parent="Architecture"]
+transform = Transform3D(15, 0, 0, 0, 0.22, 0, 0, 0, 0.26, 0, 2.85, -2.2)
+mesh = SubResource("BoxMesh_plank")
+
+[node name="RainWindowByCassandra" type="MeshInstance3D" parent="Architecture"]
+transform = Transform3D(2.65, 0, 0, 0, 1.55, 0, 0, 0, 0.05, 3.15, 1.65, 5.18)
+mesh = SubResource("BoxMesh_panel")
+material_override = SubResource("Mat_rain_window")
+
+[node name="SmallHighBarWindow" type="MeshInstance3D" parent="Architecture"]
+transform = Transform3D(1.45, 0, 0, 0, 0.9, 0, 0, 0, 0.05, -4.7, 1.95, -5.12)
+mesh = SubResource("BoxMesh_panel")
+material_override = SubResource("Mat_rain_window")
+
+[node name="BarCounter" type="StaticBody3D" parent="."]
+transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, -3.05, 0.58, -3.15)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BarCounter"]
+mesh = SubResource("BoxMesh_bar")
+
+[node name="BarLamp" type="MeshInstance3D" parent="BarCounter"]
+transform = Transform3D(0.38, 0, 0, 0, 0.38, 0, 0, 0, 0.38, 1.95, 0.84, -0.14)
+mesh = SubResource("SphereMesh_prop")
+material_override = SubResource("Mat_lamp_flame")
+
+[node name="KeysOnCounter" type="Label3D" parent="BarCounter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0, 0.82, 0.03)
+text = "ключі / кухоль / ганчірка"
+font_size = 18
+modulate = Color(0.62, 0.54, 0.39, 1)
+
+[node name="Bottles" type="Node3D" parent="BarCounter"]
+
+[node name="Bottle01" type="MeshInstance3D" parent="BarCounter/Bottles"]
+transform = Transform3D(0.75, 0, 0, 0, 1.35, 0, 0, 0, 0.75, -1.25, 0.74, -0.2)
+mesh = SubResource("SphereMesh_prop")
+
+[node name="Bottle02" type="MeshInstance3D" parent="BarCounter/Bottles"]
+transform = Transform3D(0.62, 0, 0, 0, 1.1, 0, 0, 0, 0.62, -0.78, 0.70, -0.23)
+mesh = SubResource("SphereMesh_prop")
+
+[node name="CassandraTable" type="Node3D" parent="."]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 3.25, 0.64, 2.58)
+
+[node name="TableTop" type="MeshInstance3D" parent="CassandraTable"]
+mesh = SubResource("BoxMesh_table")
+
+[node name="Lamp" type="MeshInstance3D" parent="CassandraTable"]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -0.25, 0.24, 0.03)
+mesh = SubResource("SphereMesh_prop")
+material_override = SubResource("Mat_lamp_flame")
+
+[node name="TableBottleAndMug" type="MeshInstance3D" parent="CassandraTable"]
+transform = Transform3D(0.7, 0, 0, 0, 1.05, 0, 0, 0, 0.7, 0.42, 0.2, -0.06)
+mesh = SubResource("SphereMesh_prop")
+
+[node name="WallProps" type="Node3D" parent="."]
+
+[node name="FishingNets" type="Label3D" parent="WallProps"]
+transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, -6.1, 1.65, -4.85)
+text = "сітки • мотузки • поплавці"
+font_size = 18
+modulate = Color(0.55, 0.49, 0.36, 1)
+
+[node name="HarborMap" type="Label3D" parent="WallProps"]
+transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 5.8, 1.7, -4.9)
+text = "карта причалів"
+font_size = 20
+modulate = Color(0.74, 0.62, 0.42, 1)
+
+[node name="DialogueAnchor" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, -1.4)
+
+[node name="NPCs" type="Node3D" parent="."]
+
+[node name="PortBartender" type="Area3D" parent="NPCs"]
+transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, -3.2, 0.95, -2.35)
+script = ExtResource("1_npc_behavior")
+npc_id = "port_bartender"
+npc_display_name = "Бармен портової таверни"
+default_dialogue_id = "default"
+interaction_prompt = "Поговорити"
+npc_state = {"id": "port_bartender", "name": "Бармен портової таверни", "services": {"rumor_source": true, "drinks": true}, "quests": {"involved": ["greyford_01_missing_recipient"]}, "dialogues": {"default": "port_bartender/default.json"}}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/PortBartender"]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/PortBartender"]
+mesh = SubResource("CapsuleMesh_npc")
+material_override = SubResource("Mat_dirty_shirt")
+
+[node name="NameLabel" type="Label3D" parent="NPCs/PortBartender"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+text = "Бармен"
+font_size = 24
+
+[node name="Cassandra" type="Area3D" parent="NPCs"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 3.65, 0.95, 2.05)
+script = ExtResource("1_npc_behavior")
+npc_id = "cassandra"
+npc_display_name = "Касандра"
+default_dialogue_id = "about_rufin"
+interaction_prompt = "Обережно заговорити"
+npc_state = {"id": "cassandra", "name": "Касандра", "visual_note": "зелена сукня, смарагдова шаль, стіл біля дощового вікна", "quests": {"involved": ["greyford_01_missing_recipient"]}, "dialogues": {"about_rufin": "cassandra/about_rufin.json"}}
+world_context = {"location": "greyford_port_tavern", "clue": "rufin_last_conversation"}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Cassandra"]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/Cassandra"]
+mesh = SubResource("CapsuleMesh_npc")
+material_override = SubResource("Mat_cassandra_green")
+
+[node name="NameLabel" type="Label3D" parent="NPCs/Cassandra"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+text = "Касандра"
+font_size = 28
+
+[node name="BackgroundDrunkSailor" type="MeshInstance3D" parent="NPCs"]
+transform = Transform3D(0.7, 0.15, 0, 0, 0.55, 0.1, 0, -0.1, 0.85, -0.9, 0.85, 1.45)
+mesh = SubResource("CapsuleMesh_npc")

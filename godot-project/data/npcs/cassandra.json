@@ -1,0 +1,33 @@
+{
+  "id": "cassandra",
+  "name": "Касандра",
+  "title": "Куртизанка портової таверни; остання співрозмовниця Руфіна",
+  "race": "Human",
+  "description": "Молода жінка у насиченій зеленій (смарагдовій) сукні з відкритими плечима, темне волосся зібране у вільну високу зачіску. Сидить боком за окремим столом біля дощового вікна портової таверни. (Вигляд — за концепт-артом page_16.)",
+  "art_reference": "visual/concept_art_vision/pages/page_16.png",
+  "canon_note": "На арті підпис — «Куртизанка — остання співрозмовниця Руфіна». Ім'я «Касандра» задане лором користувача, на арті імені немає.",
+  "personality": {
+    "traits": [
+      "observant",
+      "guarded",
+      "melancholic"
+    ],
+    "alignment": "neutral",
+    "speech_style": "soft_calculated"
+  },
+  "location": {
+    "default": "greyford_port_tavern"
+  },
+  "dialogues": {
+    "about_rufin": "cassandra/about_rufin.json",
+    "default": "cassandra/about_rufin.json"
+  },
+  "quests": {
+    "involved": [
+      "greyford_01_missing_recipient"
+    ]
+  },
+  "relationships": {
+    "rufin": "last_conversation"
+  }
+}

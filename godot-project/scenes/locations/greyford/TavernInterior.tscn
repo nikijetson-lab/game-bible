@@ -1,24 +1,77 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc_behavior"]
+[ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="2_player"]
 
 [sub_resource type="Environment" id="Environment_tavern"]
 background_mode = 1
-background_color = Color(0.08, 0.065, 0.05, 1)
+background_color = Color(0.045, 0.04, 0.035, 1)
 ambient_light_source = 1
-ambient_light_color = Color(0.45, 0.32, 0.2, 1)
-ambient_light_energy = 0.7
+ambient_light_color = Color(0.33, 0.25, 0.18, 1)
+ambient_light_energy = 0.48
 fog_enabled = true
-fog_light_color = Color(0.38, 0.30, 0.22, 1)
+fog_light_color = Color(0.30, 0.26, 0.22, 1)
+fog_density = 0.035
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.018
+
+[sub_resource type="StandardMaterial3D" id="Mat_dark_wood"]
+albedo_color = Color(0.18, 0.105, 0.055, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="Mat_wet_floor"]
+albedo_color = Color(0.10, 0.075, 0.055, 1)
+roughness = 0.55
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="Mat_warm_lamp"]
+albedo_color = Color(1.0, 0.58, 0.23, 1)
+emission_enabled = true
+emission = Color(1.0, 0.45, 0.16, 1)
+emission_energy_multiplier = 1.8
+
+[sub_resource type="StandardMaterial3D" id="Mat_cold_window"]
+albedo_color = Color(0.22, 0.36, 0.44, 0.72)
+emission_enabled = true
+emission = Color(0.12, 0.25, 0.34, 1)
+emission_energy_multiplier = 0.45
+transparency = 1
+
+[sub_resource type="StandardMaterial3D" id="Mat_paper_seal"]
+albedo_color = Color(0.72, 0.62, 0.46, 1)
+roughness = 0.8
+
+[sub_resource type="StandardMaterial3D" id="Mat_metal"]
+albedo_color = Color(0.33, 0.30, 0.25, 1)
+metallic = 0.45
+roughness = 0.62
 
 [sub_resource type="BoxMesh" id="BoxMesh_floor"]
-size = Vector3(16, 0.35, 12)
+size = Vector3(17, 0.35, 13)
+material = SubResource("Mat_wet_floor")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
-size = Vector3(16, 0.35, 12)
+size = Vector3(17, 0.35, 13)
 
 [sub_resource type="BoxMesh" id="BoxMesh_bar"]
-size = Vector3(5.5, 1.2, 0.8)
+size = Vector3(6.2, 1.2, 0.9)
+material = SubResource("Mat_dark_wood")
+
+[sub_resource type="BoxMesh" id="BoxMesh_table"]
+size = Vector3(2.0, 0.18, 1.25)
+material = SubResource("Mat_dark_wood")
+
+[sub_resource type="BoxMesh" id="BoxMesh_leg"]
+size = Vector3(0.16, 0.85, 0.16)
+material = SubResource("Mat_dark_wood")
+
+[sub_resource type="BoxMesh" id="BoxMesh_beam"]
+size = Vector3(0.32, 3.1, 0.32)
+material = SubResource("Mat_dark_wood")
+
+[sub_resource type="BoxMesh" id="BoxMesh_board"]
+size = Vector3(1.8, 1.2, 0.08)
+material = SubResource("Mat_dark_wood")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_npc"]
 radius = 0.35
@@ -27,20 +80,38 @@ height = 1.8
 [sub_resource type="SphereShape3D" id="SphereShape3D_interaction"]
 radius = 1.7
 
-[sub_resource type="BoxMesh" id="BoxMesh_board"]
-size = Vector3(1.8, 1.2, 0.08)
+[sub_resource type="SphereMesh" id="SphereMesh_bottle"]
+radius = 0.12
+height = 0.42
+material = SubResource("Mat_metal")
 
 [node name="TavernInterior" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_tavern")
 
-[node name="WarmLanternLight" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2, 0)
-light_color = Color(1, 0.62, 0.32, 1)
-light_energy = 2.4
-omni_range = 9.0
+[node name="ColdWindowLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.819152, -0.286788, 0.496732, 0, 0.866025, 0.5, -0.573576, -0.409576, 0.709406, 0, 4, 0)
+light_color = Color(0.45, 0.62, 0.75, 1)
+light_energy = 0.95
 shadow_enabled = true
+
+[node name="BarLanternLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2, 2.7, -3.05)
+light_color = Color(1, 0.58, 0.28, 1)
+light_energy = 2.7
+omni_range = 7.5
+shadow_enabled = true
+
+[node name="PrivateTableLanternLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 1.45, 2.65)
+light_color = Color(1, 0.54, 0.25, 1)
+light_energy = 1.75
+omni_range = 4.5
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+transform = Transform3D(0.92388, 0, -0.382683, 0, 1, 0, 0.382683, 0, 0.92388, 0.2, 1.0, 4.2)
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.175, 0)
@@ -51,17 +122,151 @@ mesh = SubResource("BoxMesh_floor")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_floor")
 
+[node name="Architecture" type="Node3D" parent="."]
+
+[node name="BackWall" type="MeshInstance3D" parent="Architecture"]
+transform = Transform3D(17, 0, 0, 0, 3.2, 0, 0, 0, 0.22, 0, 1.45, -6.4)
+mesh = SubResource("BoxMesh_leg")
+
+[node name="LeftWall" type="MeshInstance3D" parent="Architecture"]
+transform = Transform3D(0.22, 0, 0, 0, 3.2, 0, 0, 0, 13, -8.45, 1.45, 0)
+mesh = SubResource("BoxMesh_leg")
+
+[node name="RightWall" type="MeshInstance3D" parent="Architecture"]
+transform = Transform3D(0.22, 0, 0, 0, 3.2, 0, 0, 0, 13, 8.45, 1.45, 0)
+mesh = SubResource("BoxMesh_leg")
+
+[node name="CeilingBeam01" type="MeshInstance3D" parent="Architecture"]
+transform = Transform3D(17, 0, 0, 0, 0.25, 0, 0, 0, 0.28, 0, 3.1, -2.2)
+mesh = SubResource("BoxMesh_leg")
+
+[node name="CeilingBeam02" type="MeshInstance3D" parent="Architecture"]
+transform = Transform3D(17, 0, 0, 0, 0.25, 0, 0, 0, 0.28, 0, 3.1, 2.4)
+mesh = SubResource("BoxMesh_leg")
+
+[node name="PostNearBar" type="MeshInstance3D" parent="Architecture"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9, 1.3, -2.0)
+mesh = SubResource("BoxMesh_beam")
+
+[node name="PostPrivateTable" type="MeshInstance3D" parent="Architecture"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9, 1.3, 1.2)
+mesh = SubResource("BoxMesh_beam")
+
+[node name="RainWindowLarge" type="MeshInstance3D" parent="Architecture"]
+transform = Transform3D(2.5, 0, 0, 0, 1.45, 0, 0, 0, 0.05, 3.3, 1.65, 6.35)
+mesh = SubResource("BoxMesh_board")
+material_override = SubResource("Mat_cold_window")
+
+[node name="RainWindowBar" type="MeshInstance3D" parent="Architecture"]
+transform = Transform3D(1.8, 0, 0, 0, 1.15, 0, 0, 0, 0.05, -5.4, 1.65, -6.28)
+mesh = SubResource("BoxMesh_board")
+material_override = SubResource("Mat_cold_window")
+
+[node name="StairsToRooms" type="Node3D" parent="Architecture"]
+transform = Transform3D(0.766044, 0, -0.642788, 0, 1, 0, 0.642788, 0, 0.766044, 5.6, 0.18, -3.7)
+
+[node name="Step01" type="MeshInstance3D" parent="Architecture/StairsToRooms"]
+transform = Transform3D(1.8, 0, 0, 0, 0.18, 0, 0, 0, 0.55, 0, 0.15, 0)
+mesh = SubResource("BoxMesh_leg")
+
+[node name="Step02" type="MeshInstance3D" parent="Architecture/StairsToRooms"]
+transform = Transform3D(1.8, 0, 0, 0, 0.18, 0, 0, 0, 0.55, 0, 0.42, -0.5)
+mesh = SubResource("BoxMesh_leg")
+
+[node name="Step03" type="MeshInstance3D" parent="Architecture/StairsToRooms"]
+transform = Transform3D(1.8, 0, 0, 0, 0.18, 0, 0, 0, 0.55, 0, 0.69, -1.0)
+mesh = SubResource("BoxMesh_leg")
+
+[node name="Step04" type="MeshInstance3D" parent="Architecture/StairsToRooms"]
+transform = Transform3D(1.8, 0, 0, 0, 0.18, 0, 0, 0, 0.55, 0, 0.96, -1.5)
+mesh = SubResource("BoxMesh_leg")
+
 [node name="BarCounter" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0.6, 1, -2.8, 0.6, -3.2)
+transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, -3.1, 0.6, -3.35)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BarCounter"]
 mesh = SubResource("BoxMesh_bar")
+
+[node name="BottleRow" type="Node3D" parent="BarCounter"]
+
+[node name="Bottle01" type="MeshInstance3D" parent="BarCounter/BottleRow"]
+transform = Transform3D(0.7, 0, 0, 0, 1.4, 0, 0, 0, 0.7, -1.9, 0.78, -0.23)
+mesh = SubResource("SphereMesh_bottle")
+
+[node name="Bottle02" type="MeshInstance3D" parent="BarCounter/BottleRow"]
+transform = Transform3D(0.6, 0, 0, 0, 1.1, 0, 0, 0, 0.6, -1.45, 0.70, -0.25)
+mesh = SubResource("SphereMesh_bottle")
+
+[node name="Bottle03" type="MeshInstance3D" parent="BarCounter/BottleRow"]
+transform = Transform3D(0.8, 0, 0, 0, 1.25, 0, 0, 0, 0.8, -0.95, 0.73, -0.22)
+mesh = SubResource("SphereMesh_bottle")
+
+[node name="OilLampOnBar" type="MeshInstance3D" parent="BarCounter"]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 1.85, 0.88, -0.17)
+mesh = SubResource("SphereMesh_bottle")
+material_override = SubResource("Mat_warm_lamp")
+
+[node name="SealedLetter" type="MeshInstance3D" parent="BarCounter"]
+transform = Transform3D(0.72, 0, -0.1, 0, 0.04, 0, 0.1, 0, 0.48, -0.15, 0.74, 0.03)
+mesh = SubResource("BoxMesh_board")
+material_override = SubResource("Mat_paper_seal")
+
+[node name="PrivateRainTable" type="Node3D" parent="."]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 3.2, 0.65, 2.75)
+
+[node name="TableTop" type="MeshInstance3D" parent="PrivateRainTable"]
+mesh = SubResource("BoxMesh_table")
+
+[node name="LegA" type="MeshInstance3D" parent="PrivateRainTable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.78, -0.45, -0.48)
+mesh = SubResource("BoxMesh_leg")
+
+[node name="LegB" type="MeshInstance3D" parent="PrivateRainTable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.78, -0.45, -0.48)
+mesh = SubResource("BoxMesh_leg")
+
+[node name="LegC" type="MeshInstance3D" parent="PrivateRainTable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.78, -0.45, 0.48)
+mesh = SubResource("BoxMesh_leg")
+
+[node name="LegD" type="MeshInstance3D" parent="PrivateRainTable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.78, -0.45, 0.48)
+mesh = SubResource("BoxMesh_leg")
+
+[node name="TableLamp" type="MeshInstance3D" parent="PrivateRainTable"]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -0.25, 0.24, 0.05)
+mesh = SubResource("SphereMesh_bottle")
+material_override = SubResource("Mat_warm_lamp")
+
+[node name="CommonTables" type="Node3D" parent="."]
+
+[node name="TableNearEntrance" type="MeshInstance3D" parent="CommonTables"]
+transform = Transform3D(1, 0, 0.2, 0, 1, 0, -0.2, 0, 1, -2.1, 0.62, 2.3)
+mesh = SubResource("BoxMesh_table")
+
+[node name="TableByWall" type="MeshInstance3D" parent="CommonTables"]
+transform = Transform3D(0.9, 0, -0.35, 0, 1, 0, 0.35, 0, 0.9, 5.8, 0.62, 0.55)
+mesh = SubResource("BoxMesh_table")
+
+[node name="WallProps" type="Node3D" parent="."]
+
+[node name="FishingNet" type="Label3D" parent="WallProps"]
+transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, -6.3, 1.75, -5.95)
+text = "рибацькі сітки / мотузки"
+font_size = 18
+modulate = Color(0.55, 0.48, 0.36, 1)
+
+[node name="HarborMap" type="Label3D" parent="WallProps"]
+transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 5.65, 1.78, -6.05)
+text = "карта порту"
+font_size = 20
+modulate = Color(0.75, 0.64, 0.43, 1)
 
 [node name="DialogueAnchor" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0, 1.4, -1.8)
 
 [node name="QuestBoard" type="StaticBody3D" parent="."]
-transform = Transform3D(0.999391, 0, -0.0348995, 0, 1, 0, 0.0348995, 0, 0.999391, 5.8, 1.2, -4.6)
+transform = Transform3D(0.999391, 0, -0.0348995, 0, 1, 0, 0.0348995, 0, 0.999391, 6.9, 1.2, -4.7)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="QuestBoard"]
 mesh = SubResource("BoxMesh_board")
@@ -74,7 +279,7 @@ font_size = 24
 [node name="NPCs" type="Node3D" parent="."]
 
 [node name="Ervan" type="Area3D" parent="NPCs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0, 0.95, -2.1)
+transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, -3.15, 0.95, -2.45)
 script = ExtResource("1_npc_behavior")
 npc_id = "ervan"
 npc_display_name = "Ерван"
@@ -93,43 +298,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 text = "Ерван"
 font_size = 28
 
-[node name="Mia" type="Area3D" parent="NPCs"]
-transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 1.4, 0.95, 1.2)
-script = ExtResource("1_npc_behavior")
-npc_id = "mia"
-npc_display_name = "Міа"
-default_dialogue_id = "first_meeting"
-interaction_prompt = "Обережно заговорити"
-npc_state = {"id": "mia", "name": "Міа", "quests": {"gives": ["hazemoor_mia_path"], "involved": ["hazemoor_02_halyna_dusha"]}, "dialogues": {"first_meeting": "mia/first_meeting.json"}}
-world_context = {"danger_level": 3}
+[node name="BackgroundPatrons" type="Node3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Mia"]
-shape = SubResource("SphereShape3D_interaction")
-
-[node name="Body" type="MeshInstance3D" parent="NPCs/Mia"]
+[node name="DrunkPatronAtTable" type="MeshInstance3D" parent="BackgroundPatrons"]
+transform = Transform3D(0.7, 0.18, 0, 0, 0.55, 0.12, 0, -0.12, 0.85, -2.05, 0.95, 2.15)
 mesh = SubResource("CapsuleMesh_npc")
 
-[node name="NameLabel" type="Label3D" parent="NPCs/Mia"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
-text = "Міа"
-font_size = 28
-
-[node name="Kelm" type="Area3D" parent="NPCs"]
-transform = Transform3D(0.766044, 0, -0.642788, 0, 1, 0, 0.642788, 0, 0.766044, 3.0, 0.95, -0.8)
-script = ExtResource("1_npc_behavior")
-npc_id = "kelm"
-npc_display_name = "Келм"
-default_dialogue_id = "first_meeting"
-interaction_prompt = "Розпитати"
-npc_state = {"id": "kelm", "name": "Келм", "quests": {"involved": ["greyford_01_missing_recipient"]}, "dialogues": {"first_meeting": "kelm/first_meeting.json"}}
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Kelm"]
-shape = SubResource("SphereShape3D_interaction")
-
-[node name="Body" type="MeshInstance3D" parent="NPCs/Kelm"]
-mesh = SubResource("CapsuleMesh_npc")
-
-[node name="NameLabel" type="Label3D" parent="NPCs/Kelm"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
-text = "Келм"
-font_size = 28
+[node name="DrunkPatronLabel" type="Label3D" parent="BackgroundPatrons/DrunkPatronAtTable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
+text = "п'яний відвідувач"
+font_size = 18
+modulate = Color(0.58, 0.5, 0.38, 1)

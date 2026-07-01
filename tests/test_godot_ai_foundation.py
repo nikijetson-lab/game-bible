@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
-"""Smoke tests for the first real Godot NPC AI foundation.
-
-These tests intentionally stay lightweight: they validate that the project has
-actual Godot files for NPC planning/behavior and a Greyford tavern scene that
-instantiates the first narrative NPCs.
-"""
+"""Smoke tests for the Godot NPC AI foundation and Greyford taverns."""
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -35,17 +30,27 @@ def test_npc_behavior_script_exists_with_interaction_api():
     assert "AIPlanner.choose_intent" in text
 
 
-def test_greyford_tavern_scene_contains_first_three_npcs():
+def test_greyford_main_tavern_contains_ervan_only_as_story_npc():
     text = read(GODOT / "scenes" / "locations" / "greyford" / "TavernInterior.tscn")
     assert "res://scripts/ai/NPCBehavior.gd" in text
     assert 'npc_id = "ervan"' in text
-    assert 'npc_id = "mia"' in text
-    assert 'npc_id = "kelm"' in text
     assert 'npc_display_name = "Ерван"' in text
-    assert 'npc_display_name = "Міа"' in text
-    assert 'npc_display_name = "Келм"' in text
+    assert 'npc_id = "mia"' not in text
+    assert 'npc_id = "kelm"' not in text
+    assert 'npc_id = "cassandra"' not in text
     assert "DialogueAnchor" in text
     assert "QuestBoard" in text
+
+
+def test_greyford_port_tavern_contains_cassandra_and_port_bartender():
+    text = read(GODOT / "scenes" / "locations" / "greyford" / "PortTavernInterior.tscn")
+    assert "res://scripts/ai/NPCBehavior.gd" in text
+    assert 'npc_id = "cassandra"' in text
+    assert 'npc_display_name = "Касандра"' in text
+    assert 'npc_id = "port_bartender"' in text
+    assert 'npc_id = "mia"' not in text
+    assert 'npc_id = "kelm"' not in text
+    assert "DialogueAnchor" in text
 
 
 if __name__ == "__main__":

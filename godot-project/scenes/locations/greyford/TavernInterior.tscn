@@ -1,0 +1,135 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc_behavior"]
+
+[sub_resource type="Environment" id="Environment_tavern"]
+background_mode = 1
+background_color = Color(0.08, 0.065, 0.05, 1)
+ambient_light_source = 1
+ambient_light_color = Color(0.45, 0.32, 0.2, 1)
+ambient_light_energy = 0.7
+fog_enabled = true
+fog_light_color = Color(0.38, 0.30, 0.22, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+size = Vector3(16, 0.35, 12)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
+size = Vector3(16, 0.35, 12)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bar"]
+size = Vector3(5.5, 1.2, 0.8)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_npc"]
+radius = 0.35
+height = 1.8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_interaction"]
+radius = 1.7
+
+[sub_resource type="BoxMesh" id="BoxMesh_board"]
+size = Vector3(1.8, 1.2, 0.08)
+
+[node name="TavernInterior" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_tavern")
+
+[node name="WarmLanternLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2, 0)
+light_color = Color(1, 0.62, 0.32, 1)
+light_energy = 2.4
+omni_range = 9.0
+shadow_enabled = true
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.175, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_floor")
+
+[node name="BarCounter" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0.6, 1, -2.8, 0.6, -3.2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BarCounter"]
+mesh = SubResource("BoxMesh_bar")
+
+[node name="DialogueAnchor" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0, 1.4, -1.8)
+
+[node name="QuestBoard" type="StaticBody3D" parent="."]
+transform = Transform3D(0.999391, 0, -0.0348995, 0, 1, 0, 0.0348995, 0, 0.999391, 5.8, 1.2, -4.6)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="QuestBoard"]
+mesh = SubResource("BoxMesh_board")
+
+[node name="Label3D" type="Label3D" parent="QuestBoard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0.08)
+text = "Дошка чуток"
+font_size = 24
+
+[node name="NPCs" type="Node3D" parent="."]
+
+[node name="Ervan" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0, 0.95, -2.1)
+script = ExtResource("1_npc_behavior")
+npc_id = "ervan"
+npc_display_name = "Ерван"
+default_dialogue_id = "about_rufin"
+interaction_prompt = "Поговорити"
+npc_state = {"id": "ervan", "name": "Ерван", "services": {"innkeeper": true, "merchant": true, "rumor_source": true}, "quests": {"gives": ["greyford_tavern_troubles"], "involved": ["greyford_01_missing_recipient"]}, "dialogues": {"about_rufin": "ervan/about_rufin.json", "rumors": "ervan/rumors.json"}}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Ervan"]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/Ervan"]
+mesh = SubResource("CapsuleMesh_npc")
+
+[node name="NameLabel" type="Label3D" parent="NPCs/Ervan"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+text = "Ерван"
+font_size = 28
+
+[node name="Mia" type="Area3D" parent="NPCs"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 1.4, 0.95, 1.2)
+script = ExtResource("1_npc_behavior")
+npc_id = "mia"
+npc_display_name = "Міа"
+default_dialogue_id = "first_meeting"
+interaction_prompt = "Обережно заговорити"
+npc_state = {"id": "mia", "name": "Міа", "quests": {"gives": ["hazemoor_mia_path"], "involved": ["hazemoor_02_halyna_dusha"]}, "dialogues": {"first_meeting": "mia/first_meeting.json"}}
+world_context = {"danger_level": 3}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Mia"]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/Mia"]
+mesh = SubResource("CapsuleMesh_npc")
+
+[node name="NameLabel" type="Label3D" parent="NPCs/Mia"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+text = "Міа"
+font_size = 28
+
+[node name="Kelm" type="Area3D" parent="NPCs"]
+transform = Transform3D(0.766044, 0, -0.642788, 0, 1, 0, 0.642788, 0, 0.766044, 3.0, 0.95, -0.8)
+script = ExtResource("1_npc_behavior")
+npc_id = "kelm"
+npc_display_name = "Келм"
+default_dialogue_id = "first_meeting"
+interaction_prompt = "Розпитати"
+npc_state = {"id": "kelm", "name": "Келм", "quests": {"involved": ["greyford_01_missing_recipient"]}, "dialogues": {"first_meeting": "kelm/first_meeting.json"}}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Kelm"]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/Kelm"]
+mesh = SubResource("CapsuleMesh_npc")
+
+[node name="NameLabel" type="Label3D" parent="NPCs/Kelm"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+text = "Келм"
+font_size = 28

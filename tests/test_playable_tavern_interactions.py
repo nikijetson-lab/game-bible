@@ -247,6 +247,8 @@ def test_main_tavern_uses_meshy_glb_assets_as_visible_layer_with_fallback_collis
         assert expected in text, f"Expected Meshy tavern asset layer item {expected!r}"
     assert 'node name="CollisionShape3D" type="CollisionShape3D" parent="BarCounter"' in text
     assert 'node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Ervan"' in text
+    ervan_block = text[text.index('[node name="Body" type="MeshInstance3D" parent="NPCs/Ervan"]'):text.index('[node name="MeshyErvanModel" parent="NPCs/Ervan"')]
+    assert "visible = false" in ervan_block, "primitive capsule fallback must be hidden so Meshy Ervan is visible"
 
 
 def test_port_tavern_bar_counter_blocks_player():

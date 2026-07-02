@@ -374,20 +374,25 @@ npc_state = {"id": "ervan", "name": "Ерван", "services": {"innkeeper": true
 shape = SubResource("SphereShape3D_interaction")
 
 [node name="Body" type="MeshInstance3D" parent="NPCs/Ervan"]
+visible = false
 mesh = SubResource("CapsuleMesh_npc")
+metadata/fallback_note = "Hidden visual fallback; collision shape remains active and MeshyErvanModel is the visible character."
 
 [node name="MeshyErvanModel" parent="NPCs/Ervan" instance=ExtResource("4_ervan_glb")]
 transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
 
 [node name="LeatherApron" type="MeshInstance3D" parent="NPCs/Ervan"]
+visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, -0.05, 0.34)
 mesh = SubResource("BoxMesh_apron")
 
 [node name="ShoulderTowel" type="MeshInstance3D" parent="NPCs/Ervan"]
+visible = false
 transform = Transform3D(0.85, 0.18, 0, -0.18, 0.85, 0, 0, 0, 1, -0.28, 0.58, 0.23)
 mesh = SubResource("BoxMesh_towel")
 
 [node name="KeyRing" type="MeshInstance3D" parent="NPCs/Ervan"]
+visible = false
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0.42, -0.32, 0.28)
 mesh = SubResource("TorusMesh_keyring")
 material_override = SubResource("Mat_metal")

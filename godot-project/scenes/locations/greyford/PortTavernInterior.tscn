@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3]
+[gd_scene load_steps=22 format=3]
 
 [ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc_behavior"]
 [ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="2_player"]
+[ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="3_portal"]
 
 [sub_resource type="Environment" id="Environment_port_tavern"]
 background_mode = 1
@@ -286,6 +287,28 @@ material_override = SubResource("Mat_cassandra_green")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 text = "Касандра"
 font_size = 28
+
+[node name="Portals" type="Node3D" parent="."]
+
+[node name="ToCraftsmenQuarterPortal" type="Area3D" parent="Portals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.25, 1.0, 3.65)
+script = ExtResource("3_portal")
+destination_scene = "res://scenes/locations/greyford/CraftsmenQuarter.tscn"
+destination_location = "greyford_craftsmen_quarter"
+prompt = "Повернутися до кварталу ремісників"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/ToCraftsmenQuarterPortal"]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="ToGreyfordGatePortal" type="Area3D" parent="Portals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.25, 1.0, 3.65)
+script = ExtResource("3_portal")
+destination_scene = "res://scenes/locations/greyford/GreyfordGate.tscn"
+destination_location = "greyford_gate"
+prompt = "Йти до міської брами"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/ToGreyfordGatePortal"]
+shape = SubResource("SphereShape3D_interaction")
 
 [node name="BackgroundDrunkSailor" type="MeshInstance3D" parent="NPCs"]
 transform = Transform3D(0.7, 0.15, 0, 0, 0.55, 0.1, 0, -0.1, 0.85, -0.9, 0.85, 1.45)

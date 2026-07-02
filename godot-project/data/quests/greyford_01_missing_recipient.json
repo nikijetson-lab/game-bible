@@ -1,95 +1,216 @@
 {
   "id": "greyford_01_missing_recipient",
   "title": "Адресат відсутній",
-  "description": "Вартовий прибув до Грейфорда, щоб розслідувати зникнення Руфіна, картографа-кур'єра, який не повернувся з болота.",
-  
-  "start_location": "greyford_administration",
+  "code": "greyford-01",
+  "source_text": "quests/ep1-01-greyford-adresat-vidsutniy.md",
+  "description": "Вартовий прибуває до Грейфорда з листом для Руфіна, але адресат зник три дні тому. Потрібно відновити його маршрут через постоялий двір Ервана, кімнату Руфіна, квартал ремісників, портову таверну і міську браму.",
+  "start_location": "greyford_tavern",
   "recommended_level": 1,
-  
+  "structure": {
+    "acts": [
+      {
+        "id": "arrival",
+        "title": "Акт 1 — Прибуття",
+        "summary": "Гравець показує Ервану лист, отримує перший репутаційний вибір і доступ до кімнати Руфіна."
+      },
+      {
+        "id": "investigation",
+        "title": "Акт 2 — Розслідування",
+        "summary": "Гравець збирає щонайменше дві нитки: кімната Руфіна, квартал ремісників, портова таверна; Алтея є опціональною магічною ниткою."
+      },
+      {
+        "id": "departure",
+        "title": "Акт 3 — Вихід",
+        "summary": "Сержант брами підтверджує запис про Руфіна і відкриває маршрут до Тихого Шелесту."
+      }
+    ],
+    "minimum_investigation_threads_required": 2
+  },
   "objectives": [
     {
-      "id": "talk_to_kelm",
-      "description": "Поговорити з Серітом Келмом в Адміністрації",
-      "type": "talk",
-      "target": "npc_kelm",
-      "location": "greyford_administration",
-      "required": true
-    },
-    {
-      "id": "investigate_tavern",
-      "description": "Дізнатися про Руфіна в таверні Ервана",
+      "id": "talk_to_ervan",
+      "description": "Поговорити з Ерваном у постоялому дворі та показати лист для Руфіна",
       "type": "talk",
       "target": "npc_ervan",
       "location": "greyford_tavern",
-      "required": true
+      "required": true,
+      "act": "arrival",
+      "reputation_choice": "ervan_motivation"
     },
     {
-      "id": "choice_path",
-      "description": "Вирішити, що робити далі",
-      "type": "choice",
+      "id": "inspect_rufin_room",
+      "description": "Оглянути кімнату Руфіна: речі, зношений плащ, порожню шкіряну сумку з клеймом, болотяну глину і захисні знаки",
+      "type": "investigate",
+      "target": "rufin_room",
+      "location": "greyford_rufin_room",
       "required": true,
+      "act": "investigation",
+      "unlocks": [
+        "ask_craftsmen_quarter"
+      ]
+    },
+    {
+      "id": "ask_craftsmen_quarter",
+      "description": "Показати клеймо в кварталі ремісників: кушнір направляє до різьбяра, який згадує Тихий Шелест",
+      "type": "talk",
+      "target": "npc_carver",
+      "location": "greyford_craftsmen_quarter",
+      "required": true,
+      "act": "investigation"
+    },
+    {
+      "id": "question_port_tavern",
+      "description": "Розпитати портового бармена і куртизанку, останню співрозмовницю Руфіна, про його стан перед виходом у Хейзмур",
+      "type": "talk",
+      "target": "npc_cassandra",
+      "location": "greyford_port_tavern",
+      "required": true,
+      "act": "investigation"
+    },
+    {
+      "id": "consult_alteya_optional",
+      "description": "Опціонально простежити магічний підпис до Алтеї й дізнатися, що Руфін ніс уночі не ліхтар, а щось, що світилося",
+      "type": "talk",
+      "target": "npc_alteya",
+      "location": "greyford_alteya_hidden_room",
+      "required": false,
+      "act": "investigation",
+      "doctrine_hint": "Ліхтар або уважне дослідження захисних знаків"
+    },
+    {
+      "id": "speak_to_gate_sergeant",
+      "description": "Поговорити із сержантом міської брами, підтвердити запис про вихід Руфіна до Тихого Шелесту і вибрати привід власного виходу",
+      "type": "talk",
+      "target": "npc_gate_sergeant",
+      "location": "greyford_gate",
+      "required": true,
+      "act": "departure",
+      "reputation_choice": "gate_reason"
+    }
+  ],
+  "reputation_choices": [
+    {
+      "id": "ervan_motivation",
+      "npc": "ervan",
+      "prompt": "І що він тобі був — друг, боржник, чи ти просто наймит-кур'єр?",
       "choices": [
         {
-          "id": "report_to_order",
-          "text": "Повідомити Орден про зникнення",
-          "consequences": {
-            "reputation": {
-              "lightbearers": 10,
-              "greyford": -5
-            },
-            "quest_start": {
-              "id": "greyford_02_order_investigation"
-            }
-          }
+          "id": "duty",
+          "text": "Ми домовились. Я приїхав виконати свою частину.",
+          "signal": "Duty / ідеаліст"
         },
         {
-          "id": "investigate_swamp",
-          "text": "Самостійно йти в болото",
-          "consequences": {
-            "reputation": {
-              "greyford": 5,
-              "muri": 5
-            },
-            "quest_start": {
-              "id": "hazemoor_01_path_through_swamp"
-            }
-          }
+          "id": "personal_stake",
+          "text": "Він мав щось, що мені потрібне. Або знав когось, хто має.",
+          "signal": "Personal stake"
         },
         {
-          "id": "help_locals",
-          "text": "Спочатку допомогти місцевим",
-          "consequences": {
-            "reputation": {
-              "greyford": 15
-            },
-            "quest_start": {
-              "id": "greyford_sidequests"
-            }
-          }
+          "id": "pragmatist",
+          "text": "Просто доставив листа. Що далі — вже моя проблема.",
+          "signal": "Прагматик / наймит"
+        }
+      ]
+    },
+    {
+      "id": "gate_reason",
+      "npc": "gate_sergeant",
+      "prompt": "Ти теж туди? З якого приводу?",
+      "choices": [
+        {
+          "id": "truth",
+          "text": "Шукаю людину. Він пішов і не повернувся.",
+          "signal": "Правда"
+        },
+        {
+          "id": "half_truth",
+          "text": "Оглянути маршрут. Скарги на поселення.",
+          "signal": "Напівправда"
+        },
+        {
+          "id": "evasion",
+          "text": "Робота. Лист — мій пропуск.",
+          "signal": "Ухилення"
         }
       ]
     }
   ],
-  
+  "canonical_clues": [
+    {
+      "id": "letter_seal",
+      "location": "greyford_tavern",
+      "description": "На листі воскова печатка: два перехрещені кинджали тримають коло, у центрі — крапля. На цьому етапі це лише знак, не розкрита відповідь."
+    },
+    {
+      "id": "rufin_room_bag_and_clay",
+      "location": "greyford_rufin_room",
+      "description": "У кімнаті лишилися речі Руфіна: плащ, порожня шкіряна сумка з характерним клеймом, чорна болотяна глина і свіжі захисні знаки над дверима."
+    },
+    {
+      "id": "craftsman_tihyi_shelist",
+      "location": "greyford_craftsmen_quarter",
+      "description": "Кушнір скеровує до різьбяра. Різьбяр згадує, що Руфін питав про Тихий Шелест і ніс щось важке."
+    },
+    {
+      "id": "port_tavern_courtesan",
+      "location": "greyford_port_tavern",
+      "description": "Портовий бармен пам'ятає Руфіна з куртизанкою. Вона каже, що Руфін був наляканий не втечею, а тим, куди сам ішов."
+    },
+    {
+      "id": "alteya_glow_optional",
+      "location": "greyford_alteya_hidden_room",
+      "description": "Алтея бачила, як чоловік опису Руфіна ішов до болота вночі й ніс щось, що горіло в темряві, але не було ліхтарем."
+    },
+    {
+      "id": "gate_log",
+      "location": "greyford_gate",
+      "description": "Сержант має запис: Руфін вийшов через ворота в напрямку Тихого Шелесту."
+    }
+  ],
+  "doctrine_notes": {
+    "ranger": [
+      "Розпізнає чорний торф'яний шар з глибокого Хейзмуру в кімнаті Руфіна.",
+      "Помічає болотяне дерево в роботі різьбяра.",
+      "Через сержанта уточнює, що Руфін ніс незвично великий вантажний мішок."
+    ],
+    "lantern": [
+      "Бачить свіжі захисні знаки над дверима кімнати Руфіна.",
+      "Помічає схожі старі болотні знаки в кварталі ремісників.",
+      "Може вийти на Алтею і зрозуміти, що світіння не було фізичним світлом."
+    ],
+    "mediator": [
+      "Може укласти з різьбярем малу угоду: дізнатися долю Руфіна і повернутися з відповіддю.",
+      "Може легше розговорити куртизанку в портовій таверні.",
+      "Може обережно вивести Алтею на фразу, що світіння було куплене, а не знайдене."
+    ],
+    "judge": [
+      "Має сильніший офіційний контакт із сержантом брами.",
+      "Може отримати маршрут Руфіна через браму навіть без повного візиту до кварталу ремісників."
+    ]
+  },
+  "completion_conditions": {
+    "required_information": [
+      "Руфіна немає в Грейфорді",
+      "Руфін пішов у Тихий Шелест сам і цілеспрямовано",
+      "Руфін був наляканий тим, що міг знайти, а не тим, що тікало за ним",
+      "Руфін ніс вантаж або готував захист перед виходом"
+    ],
+    "unlocks_route": "route_to_tihyi_shelist"
+  },
+  "unlocks": [
+    "hazemoor_01_path_through_swamp"
+  ],
   "rewards": {
     "experience": 100,
-    "items": [
-      {
-        "id": "item_silver_coin",
-        "amount": 50
-      }
-    ],
-    "reputation": {
-      "greyford": 10
-    }
+    "items": [],
+    "reputation": {}
   },
-  
   "lore": {
-    "background": "Руфін був відправлений до Хейзмуру три дні тому з важливим артефактом. Він не повернувся, і ніхто не знає, що з ним сталося.",
+    "background": "Руфін був проміжною ланкою для карти, контакту в Хейзмурі та інструкції. Він зник три дні тому, залишивши кімнату в постоялому дворі з речами всередині.",
     "notes": [
-      "Це перший квест гри, введення в світ Хейзмуру",
-      "Вибір в кінці визначає подальший шлях гравця",
-      "Пов'язаний з основною сюжетною лінією про Моура та артефакт"
+      "Це стартовий квест, який знайомить із Грейфордом через розслідування, а не через екскурсію.",
+      "Печатка на листі фіксується як візуальний знак без пояснення на цьому етапі.",
+      "Два репутаційні вибори: мотивація перед Ерваном і привід виходу перед сержантом.",
+      "Алтея є опціональною прихованою ниткою, а не публічним NPC площі."
     ]
   }
 }

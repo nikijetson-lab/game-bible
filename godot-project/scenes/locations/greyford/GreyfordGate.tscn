@@ -1,0 +1,192 @@
+[gd_scene load_steps=18 format=3]
+
+[ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc_behavior"]
+[ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="2_portal"]
+[ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="3_player"]
+
+[sub_resource type="Environment" id="Environment_gate"]
+background_mode = 1
+background_color = Color(0.045, 0.050, 0.052, 1)
+ambient_light_source = 1
+ambient_light_color = Color(0.22, 0.25, 0.26, 1)
+ambient_light_energy = 0.55
+fog_enabled = true
+fog_light_color = Color(0.21, 0.25, 0.27, 1)
+fog_density = 0.04
+
+[sub_resource type="StandardMaterial3D" id="Mat_mud"]
+albedo_color = Color(0.09, 0.075, 0.06, 1)
+roughness = 0.72
+
+[sub_resource type="StandardMaterial3D" id="Mat_gate_wood"]
+albedo_color = Color(0.18, 0.11, 0.055, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="Mat_iron"]
+albedo_color = Color(0.22, 0.23, 0.24, 1)
+metallic = 0.55
+roughness = 0.6
+
+[sub_resource type="StandardMaterial3D" id="Mat_cloak"]
+albedo_color = Color(0.08, 0.09, 0.095, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="Mat_lamp"]
+albedo_color = Color(1.0, 0.48, 0.16, 1)
+emission_enabled = true
+emission = Color(1.0, 0.34, 0.09, 1)
+emission_energy_multiplier = 1.4
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+size = Vector3(16.0, 0.25, 11.0)
+material = SubResource("Mat_mud")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
+size = Vector3(16.0, 0.25, 11.0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_boundary_long"]
+size = Vector3(16.4, 2.8, 0.55)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_boundary_side"]
+size = Vector3(0.55, 2.8, 11.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gate"]
+size = Vector3(1, 1, 1)
+material = SubResource("Mat_gate_wood")
+
+[sub_resource type="BoxMesh" id="BoxMesh_iron"]
+size = Vector3(1, 1, 1)
+material = SubResource("Mat_iron")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_npc"]
+radius = 0.36
+height = 1.85
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_interaction"]
+radius = 1.55
+
+[sub_resource type="SphereMesh" id="SphereMesh_lamp"]
+radius = 0.2
+height = 0.4
+
+[node name="GreyfordGate" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gate")
+
+[node name="Player" parent="." instance=ExtResource("3_player")]
+transform = Transform3D(0.92388, 0, -0.382683, 0, 1, 0, 0.382683, 0, 0.92388, 0, 1.0, 4.25)
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_floor")
+
+[node name="Boundaries" type="StaticBody3D" parent="."]
+
+[node name="NorthWall" type="CollisionShape3D" parent="Boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 5.7)
+shape = SubResource("BoxShape3D_boundary_long")
+
+[node name="SouthWall" type="CollisionShape3D" parent="Boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -5.7)
+shape = SubResource("BoxShape3D_boundary_long")
+
+[node name="WestWall" type="CollisionShape3D" parent="Boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.25, 1.25, 0)
+shape = SubResource("BoxShape3D_boundary_side")
+
+[node name="EastWall" type="CollisionShape3D" parent="Boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.25, 1.25, 0)
+shape = SubResource("BoxShape3D_boundary_side")
+
+[node name="Architecture" type="Node3D" parent="."]
+
+[node name="MassiveWoodenGate" type="MeshInstance3D" parent="Architecture"]
+transform = Transform3D(5.4, 0, 0, 0, 3.9, 0, 0, 0, 0.36, 0, 1.75, -4.8)
+mesh = SubResource("BoxMesh_gate")
+
+[node name="IronBands" type="Label3D" parent="Architecture"]
+transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, 0, 2.1, -4.55)
+text = "залізні смуги / засув / мокре дерево"
+font_size = 20
+modulate = Color(0.58, 0.61, 0.60, 1)
+
+[node name="WatchPostLamp" type="MeshInstance3D" parent="Architecture"]
+transform = Transform3D(0.42, 0, 0, 0, 0.42, 0, 0, 0, 0.42, -3.4, 2.65, -4.05)
+mesh = SubResource("SphereMesh_lamp")
+material_override = SubResource("Mat_lamp")
+
+[node name="SwampFogLabel" type="Label3D" parent="Architecture"]
+transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 4.35, 1.2, -4.05)
+text = "туман за воротами"
+font_size = 20
+modulate = Color(0.42, 0.52, 0.50, 1)
+
+[node name="DialogueAnchor" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -1.3)
+
+[node name="NPCs" type="Node3D" parent="."]
+
+[node name="GateSergeant" type="Area3D" parent="NPCs"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -1.85, 0.95, -2.55)
+script = ExtResource("1_npc_behavior")
+npc_id = "gate_sergeant"
+npc_display_name = "Сержант воріт"
+default_dialogue_id = "about_rufin"
+interaction_prompt = "Поговорити з сержантом"
+npc_state = {"id": "gate_sergeant", "name": "Сержант воріт", "visual_note": "темний плащ, груба броня, журнал брами, мокре дерево і туман", "quests": {"involved": ["greyford_01_missing_recipient"]}, "dialogues": {"about_rufin": "gate_sergeant/about_rufin.json"}}
+world_context = {"location": "greyford_gate", "clue": "gate_log"}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/GateSergeant"]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/GateSergeant"]
+mesh = SubResource("CapsuleMesh_npc")
+material_override = SubResource("Mat_cloak")
+
+[node name="Breastplate" type="MeshInstance3D" parent="NPCs/GateSergeant"]
+transform = Transform3D(0.52, 0, 0, 0, 0.72, 0, 0, 0, 0.16, 0, 0.1, 0.33)
+mesh = SubResource("BoxMesh_iron")
+
+[node name="GateLog" type="Label3D" parent="NPCs/GateSergeant"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, -0.25, 0.25)
+text = "журнал виходів"
+font_size = 14
+modulate = Color(0.70, 0.62, 0.43, 1)
+
+[node name="NameLabel" type="Label3D" parent="NPCs/GateSergeant"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
+text = "Сержант"
+font_size = 24
+
+[node name="BackgroundGuard" type="MeshInstance3D" parent="NPCs"]
+transform = Transform3D(0.72, 0, 0.15, 0, 0.72, 0, -0.15, 0, 0.72, 2.2, 0.95, -2.7)
+mesh = SubResource("CapsuleMesh_npc")
+material_override = SubResource("Mat_iron")
+
+[node name="Portals" type="Node3D" parent="."]
+
+[node name="BackToPortTavernPortal" type="Area3D" parent="Portals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.95, 1.0, 3.8)
+script = ExtResource("2_portal")
+destination_scene = "res://scenes/locations/greyford/PortTavernInterior.tscn"
+destination_location = "greyford_port_tavern"
+prompt = "Повернутися до портової таверни"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/BackToPortTavernPortal"]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="ToSwampPortal" type="Area3D" parent="Portals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.95, 1.0, 3.8)
+script = ExtResource("2_portal")
+destination_scene = ""
+destination_location = "route_to_tihyi_shelist"
+prompt = "Вийти на дорогу до Тихого Шелесту"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/ToSwampPortal"]
+shape = SubResource("SphereShape3D_interaction")

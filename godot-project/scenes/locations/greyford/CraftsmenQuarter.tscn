@@ -1,0 +1,231 @@
+[gd_scene load_steps=20 format=3]
+
+[ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc_behavior"]
+[ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="2_portal"]
+[ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="3_player"]
+
+[sub_resource type="Environment" id="Environment_crafts"]
+background_mode = 1
+background_color = Color(0.050, 0.047, 0.042, 1)
+ambient_light_source = 1
+ambient_light_color = Color(0.25, 0.23, 0.18, 1)
+ambient_light_energy = 0.5
+fog_enabled = true
+fog_light_color = Color(0.26, 0.24, 0.20, 1)
+fog_density = 0.024
+
+[sub_resource type="StandardMaterial3D" id="Mat_floor"]
+albedo_color = Color(0.12, 0.085, 0.052, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="Mat_wood"]
+albedo_color = Color(0.24, 0.145, 0.075, 1)
+roughness = 0.86
+
+[sub_resource type="StandardMaterial3D" id="Mat_leather_apron"]
+albedo_color = Color(0.30, 0.16, 0.075, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="Mat_metal"]
+albedo_color = Color(0.35, 0.33, 0.30, 1)
+metallic = 0.45
+roughness = 0.58
+
+[sub_resource type="StandardMaterial3D" id="Mat_fur"]
+albedo_color = Color(0.38, 0.30, 0.22, 1)
+roughness = 0.96
+
+[sub_resource type="StandardMaterial3D" id="Mat_warm_fire"]
+albedo_color = Color(1.0, 0.42, 0.13, 1)
+emission_enabled = true
+emission = Color(1.0, 0.34, 0.08, 1)
+emission_energy_multiplier = 1.6
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+size = Vector3(14.0, 0.25, 10.0)
+material = SubResource("Mat_floor")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
+size = Vector3(14.0, 0.25, 10.0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_boundary_long"]
+size = Vector3(14.4, 2.8, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_boundary_side"]
+size = Vector3(0.5, 2.8, 10.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_table"]
+size = Vector3(3.1, 0.25, 1.55)
+material = SubResource("Mat_wood")
+
+[sub_resource type="BoxMesh" id="BoxMesh_tool"]
+size = Vector3(0.12, 0.55, 0.06)
+material = SubResource("Mat_metal")
+
+[sub_resource type="BoxMesh" id="BoxMesh_board"]
+size = Vector3(1.0, 1.0, 1.0)
+material = SubResource("Mat_wood")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_npc"]
+radius = 0.34
+height = 1.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_apron"]
+size = Vector3(0.62, 0.85, 0.12)
+material = SubResource("Mat_leather_apron")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_interaction"]
+radius = 1.45
+
+[sub_resource type="SphereMesh" id="SphereMesh_prop"]
+radius = 0.2
+height = 0.42
+
+[node name="CraftsmenQuarter" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_crafts")
+
+[node name="Player" parent="." instance=ExtResource("3_player")]
+transform = Transform3D(0.92388, 0, -0.382683, 0, 1, 0, 0.382683, 0, 0.92388, 0, 1.0, 4.1)
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_floor")
+
+[node name="Boundaries" type="StaticBody3D" parent="."]
+
+[node name="NorthWall" type="CollisionShape3D" parent="Boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 5.25)
+shape = SubResource("BoxShape3D_boundary_long")
+
+[node name="SouthWall" type="CollisionShape3D" parent="Boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -5.25)
+shape = SubResource("BoxShape3D_boundary_long")
+
+[node name="WestWall" type="CollisionShape3D" parent="Boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.25, 1.25, 0)
+shape = SubResource("BoxShape3D_boundary_side")
+
+[node name="EastWall" type="CollisionShape3D" parent="Boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.25, 1.25, 0)
+shape = SubResource("BoxShape3D_boundary_side")
+
+[node name="Architecture" type="Node3D" parent="."]
+
+[node name="WorkshopWall" type="MeshInstance3D" parent="Architecture"]
+transform = Transform3D(13.5, 0, 0, 0, 2.7, 0, 0, 0, 0.18, 0, 1.25, -4.85)
+mesh = SubResource("BoxMesh_board")
+
+[node name="HighColdWindows" type="Label3D" parent="Architecture"]
+transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, -4.2, 1.9, -4.65)
+text = "високі холодні вікна"
+font_size = 18
+modulate = Color(0.45, 0.54, 0.58, 1)
+
+[node name="SmallStoveGlow" type="MeshInstance3D" parent="Architecture"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 5.4, 0.75, -3.85)
+mesh = SubResource("SphereMesh_prop")
+material_override = SubResource("Mat_warm_fire")
+
+[node name="DialogueAnchor" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, -0.5)
+
+[node name="WoodcarverWorkbench" type="Node3D" parent="."]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -1.6, 0.65, -1.95)
+
+[node name="TableTop" type="MeshInstance3D" parent="WoodcarverWorkbench"]
+mesh = SubResource("BoxMesh_table")
+
+[node name="CarvingTools" type="Label3D" parent="WoodcarverWorkbench"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.27, 0.06)
+text = "різці / стамески / стружка"
+font_size = 16
+modulate = Color(0.70, 0.60, 0.42, 1)
+
+[node name="CurvedRootWood" type="MeshInstance3D" parent="WoodcarverWorkbench"]
+transform = Transform3D(1.7, 0.25, 0.1, -0.2, 0.35, 0, -0.1, 0, 0.45, 0.8, 0.25, 0.0)
+mesh = SubResource("BoxMesh_board")
+material_override = SubResource("Mat_wood")
+
+[node name="FurRack" type="Label3D" parent="."]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 4.35, 1.35, -2.2)
+text = "шкури / хутро / ремені"
+font_size = 20
+modulate = Color(0.60, 0.49, 0.35, 1)
+
+[node name="NPCs" type="Node3D" parent="."]
+
+[node name="Furrier" type="Area3D" parent="NPCs"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 4.1, 0.95, -1.45)
+script = ExtResource("1_npc_behavior")
+npc_id = "furrier"
+npc_display_name = "Кушнір"
+default_dialogue_id = "default"
+interaction_prompt = "Показати клеймо"
+npc_state = {"id": "furrier", "name": "Кушнір", "visual_note": "хутро, шкури, ремені; той, хто знає всіх", "quests": {"involved": ["greyford_01_missing_recipient"]}, "dialogues": {"default": "furrier/default.json"}}
+world_context = {"location": "greyford_craftsmen_quarter", "clue": "craftsman_tihyi_shelist"}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Furrier"]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/Furrier"]
+mesh = SubResource("CapsuleMesh_npc")
+material_override = SubResource("Mat_fur")
+
+[node name="NameLabel" type="Label3D" parent="NPCs/Furrier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+text = "Кушнір"
+font_size = 24
+
+[node name="Woodcarver" type="Area3D" parent="NPCs"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -2.05, 0.95, -1.3)
+script = ExtResource("1_npc_behavior")
+npc_id = "woodcarver"
+npc_display_name = "Різьбяр"
+default_dialogue_id = "about_rufin"
+interaction_prompt = "Поговорити з різьбярем"
+npc_state = {"id": "woodcarver", "name": "Різьбяр", "visual_note": "шкіряний фартух, нарукавники, верстак, різці, вигнутий корінь/гілка", "quests": {"involved": ["greyford_01_missing_recipient"]}, "dialogues": {"about_rufin": "woodcarver/about_rufin.json"}}
+world_context = {"location": "greyford_craftsmen_quarter", "clue": "craftsman_tihyi_shelist"}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Woodcarver"]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/Woodcarver"]
+mesh = SubResource("CapsuleMesh_npc")
+
+[node name="LeatherApron" type="MeshInstance3D" parent="NPCs/Woodcarver"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0.34)
+mesh = SubResource("BoxMesh_apron")
+
+[node name="NameLabel" type="Label3D" parent="NPCs/Woodcarver"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+text = "Різьбяр"
+font_size = 24
+
+[node name="Portals" type="Node3D" parent="."]
+
+[node name="BackToRufinRoomPortal" type="Area3D" parent="Portals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8, 1.0, 3.75)
+script = ExtResource("2_portal")
+destination_scene = "res://scenes/locations/greyford/RufinRoom.tscn"
+destination_location = "greyford_rufin_room"
+prompt = "Повернутися до кімнати Руфіна"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/BackToRufinRoomPortal"]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="ToPortTavernPortal" type="Area3D" parent="Portals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.8, 1.0, 3.75)
+script = ExtResource("2_portal")
+destination_scene = "res://scenes/locations/greyford/PortTavernInterior.tscn"
+destination_location = "greyford_port_tavern"
+prompt = "Йти до портової таверни"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/ToPortTavernPortal"]
+shape = SubResource("SphereShape3D_interaction")

@@ -11,6 +11,7 @@ These tests lock the current lore split:
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -93,6 +94,48 @@ def test_tavern_dialogues_are_dialogue_manager_compatible():
         assert_dialogue_manager_compatible(path)
 
 
+def test_greyford_missing_recipient_json_follows_ep1_01_canonical_route():
+    quest = load_json(GODOT / "data" / "quests" / "greyford_01_missing_recipient.json")
+    assert quest["start_location"] == "greyford_tavern"
+
+    objective_ids = [objective["id"] for objective in quest["objectives"]]
+    assert objective_ids == [
+        "talk_to_ervan",
+        "inspect_rufin_room",
+        "ask_craftsmen_quarter",
+        "question_port_tavern",
+        "consult_alteya_optional",
+        "speak_to_gate_sergeant",
+    ]
+    assert "talk_to_kelm" not in objective_ids
+    assert "choice_path" not in objective_ids
+
+    objective_locations = {objective["id"]: objective.get("location") for objective in quest["objectives"]}
+    assert objective_locations["talk_to_ervan"] == "greyford_tavern"
+    assert objective_locations["inspect_rufin_room"] == "greyford_rufin_room"
+    assert objective_locations["ask_craftsmen_quarter"] == "greyford_craftsmen_quarter"
+    assert objective_locations["question_port_tavern"] == "greyford_port_tavern"
+    assert objective_locations["consult_alteya_optional"] == "greyford_alteya_hidden_room"
+    assert objective_locations["speak_to_gate_sergeant"] == "greyford_gate"
+
+    assert quest["unlocks"] == ["hazemoor_01_path_through_swamp"]
+
+
+def test_greyford_missing_recipient_json_records_ep1_01_clues_without_spoiling_mour():
+    quest = load_json(GODOT / "data" / "quests" / "greyford_01_missing_recipient.json")
+    clue_ids = [clue["id"] for clue in quest["canonical_clues"]]
+    assert clue_ids == [
+        "letter_seal",
+        "rufin_room_bag_and_clay",
+        "craftsman_tihyi_shelist",
+        "port_tavern_courtesan",
+        "alteya_glow_optional",
+        "gate_log",
+    ]
+    assert "Орден Семи Кинджалів" not in json.dumps(quest, ensure_ascii=False)
+    assert "Моур" not in json.dumps(quest, ensure_ascii=False)
+
+
 def test_port_tavern_contains_no_unconfirmed_invented_lore():
     checked_paths = [
         GODOT / "data" / "locations" / "greyford.json",
@@ -157,6 +200,36 @@ def test_main_tavern_bar_counter_blocks_player():
     _assert_bar_counter_blocks_player(GODOT / "scenes" / "locations" / "greyford" / "TavernInterior.tscn")
 
 
+def _node_transform_z(text: str, node_header: str) -> float:
+    idx = text.index(node_header)
+    block = text[idx:]
+    match = re.search(r"transform = Transform3D\(([^\)]*)\)", block)
+    assert match, f"no transform found after {node_header!r}"
+    numbers = [float(n) for n in match.group(1).split(",")]
+    return numbers[11]
+
+
+def test_main_tavern_ervan_stands_behind_bar_counter():
+    text = read(GODOT / "scenes" / "locations" / "greyford" / "TavernInterior.tscn")
+    player_z = _node_transform_z(text, '[node name="Player" parent="." instance=ExtResource("2_player")]')
+    bar_z = _node_transform_z(text, '[node name="BarCounter" type="StaticBody3D" parent="."]')
+    ervan_z = _node_transform_z(text, '[node name="Ervan" type="Area3D" parent="NPCs"]')
+
+    # Guests (and the player) sit on the larger-z side of the bar.
+    assert player_z > bar_z, "player should spawn on the guest side of the bar"
+    # Ervan must stand on the opposite (service) side, i.e. more negative z than the counter.
+    assert ervan_z < bar_z, "Ervan must stand behind the bar counter, not on the guest side"
+
+
+def test_main_tavern_has_art_grounded_ervan_props():
+    text = read(GODOT / "scenes" / "locations" / "greyford" / "TavernInterior.tscn")
+    # From concept art page_03: leather apron, towel on shoulder, key ring with one brass key,
+    # hanging lantern on a ceiling beam, diamond-pane windows.
+    assert "фартух" in text, "Ervan should read as the leather-aproned innkeeper from page_03"
+    assert "ключі" in text or "ключ" in text, "Ervan should carry the key ring seen in page_03"
+    assert 'node name="HangingLantern"' in text, "art shows a lantern hanging from a ceiling beam"
+
+
 def test_port_tavern_bar_counter_blocks_player():
     _assert_bar_counter_blocks_player(GODOT / "scenes" / "locations" / "greyford" / "PortTavernInterior.tscn")
 
@@ -168,6 +241,126 @@ def test_mia_and_kelm_locations_stay_outside_taverns():
     assert "tavern" not in json.dumps(mia["location"], ensure_ascii=False).lower()
     assert kelm["location"]["default"] == "greyford_administration"
     assert "tavern" not in json.dumps(kelm["location"], ensure_ascii=False).lower()
+
+
+def test_block_a_interaction_scripts_exist_for_scene_links_and_clues():
+    portal = read(GODOT / "scripts" / "gameplay" / "LocationPortal.gd")
+    clue = read(GODOT / "scripts" / "gameplay" / "InspectClue.gd")
+
+    assert "class_name LocationPortal" in portal
+    assert "destination_scene" in portal
+    assert "destination_location" in portal
+    assert "func interact" in portal
+    assert 'add_to_group("interactable")' in portal
+
+    assert "class_name InspectClue" in clue
+    assert "clue_id" in clue
+    assert "quest_id" in clue
+    assert "func interact" in clue
+    assert 'add_to_group("interactable")' in clue
+
+
+def test_block_a_greyford_location_data_exposes_canonical_zones_and_links():
+    greyford = load_json(GODOT / "data" / "locations" / "greyford.json")
+    zones = {zone["id"]: zone for zone in greyford["zones"]}
+
+    for zone_id in [
+        "greyford_rufin_room",
+        "greyford_craftsmen_quarter",
+        "greyford_gate",
+    ]:
+        assert zone_id in zones, f"Block A zone missing from greyford.json: {zone_id}"
+
+    assert "woodcarver" in zones["greyford_craftsmen_quarter"].get("npcs", [])
+    assert "furrier" in zones["greyford_craftsmen_quarter"].get("npcs", [])
+    assert "gate_sergeant" in zones["greyford_gate"].get("npcs", [])
+
+    tavern_links = [link["to"] for link in zones["greyford_tavern"].get("connections", [])]
+    crafts_links = [link["to"] for link in zones["greyford_craftsmen_quarter"].get("connections", [])]
+    port_links = [link["to"] for link in zones["greyford_port_tavern"].get("connections", [])]
+    gate_links = [link["to"] for link in zones["greyford_gate"].get("connections", [])]
+
+    assert "greyford_rufin_room" in tavern_links
+    assert "greyford_craftsmen_quarter" in tavern_links
+    assert "greyford_port_tavern" in crafts_links
+    assert "greyford_gate" in port_links
+    assert "route_to_tihyi_shelist" in gate_links
+
+
+def test_block_a_scenes_exist_with_player_anchors_boundaries_and_portals():
+    scene_requirements = {
+        "RufinRoom.tscn": [
+            'node name="Player" parent="." instance=ExtResource',
+            'node name="DialogueAnchor" type="Marker3D"',
+            'node name="Boundaries" type="StaticBody3D"',
+            'node name="BackToTavernPortal" type="Area3D" parent="Portals"',
+            'node name="ToCraftsmenQuarterPortal" type="Area3D" parent="Portals"',
+            'destination_location = "greyford_craftsmen_quarter"',
+        ],
+        "CraftsmenQuarter.tscn": [
+            'node name="Player" parent="." instance=ExtResource',
+            'node name="DialogueAnchor" type="Marker3D"',
+            'node name="Boundaries" type="StaticBody3D"',
+            'node name="Furrier" type="Area3D" parent="NPCs"',
+            'npc_id = "furrier"',
+            'node name="Woodcarver" type="Area3D" parent="NPCs"',
+            'npc_id = "woodcarver"',
+            'node name="ToPortTavernPortal" type="Area3D" parent="Portals"',
+            'destination_location = "greyford_port_tavern"',
+        ],
+        "GreyfordGate.tscn": [
+            'node name="Player" parent="." instance=ExtResource',
+            'node name="DialogueAnchor" type="Marker3D"',
+            'node name="Boundaries" type="StaticBody3D"',
+            'node name="GateSergeant" type="Area3D" parent="NPCs"',
+            'npc_id = "gate_sergeant"',
+            'node name="ToSwampPortal" type="Area3D" parent="Portals"',
+            'destination_location = "route_to_tihyi_shelist"',
+        ],
+    }
+
+    for scene_name, required_strings in scene_requirements.items():
+        text = read(GODOT / "scenes" / "locations" / "greyford" / scene_name)
+        for expected in required_strings:
+            assert expected in text, f"{scene_name} missing {expected!r}"
+        assert _count_boundary_collision_shapes(text) >= 4, f"{scene_name} needs physical boundary walls"
+
+
+def test_block_a_rufin_room_contains_canonical_investigation_clues_only():
+    text = read(GODOT / "scenes" / "locations" / "greyford" / "RufinRoom.tscn")
+    required = [
+        "RufinRoomEmptyBed",
+        "RufinCloak",
+        "LeatherBagWithBrand",
+        "BlackBogClay",
+        "ProtectiveSigns",
+        "rufin_room_bag_and_clay",
+        "greyford_01_missing_recipient",
+    ]
+    for item in required:
+        assert item in text
+
+    forbidden = ["Моур", "Орден Семи Кинджалів", "Мія", "Келм"]
+    for phrase in forbidden:
+        assert phrase not in text, f"Rufin room must not spoil/merge unrelated canon: {phrase!r}"
+
+
+def test_block_a_dialogues_are_dialogue_manager_compatible_and_canonical():
+    dialogue_paths = [
+        GODOT / "data" / "dialogues" / "woodcarver" / "about_rufin.json",
+        GODOT / "data" / "dialogues" / "furrier" / "default.json",
+        GODOT / "data" / "dialogues" / "gate_sergeant" / "about_rufin.json",
+    ]
+    for path in dialogue_paths:
+        assert_dialogue_manager_compatible(path)
+
+    woodcarver = json.dumps(load_json(dialogue_paths[0]), ensure_ascii=False)
+    sergeant = json.dumps(load_json(dialogue_paths[2]), ensure_ascii=False)
+    assert "Тихий Шелест" in woodcarver
+    assert "щось важке" in woodcarver
+    assert "Руфін" in sergeant
+    assert "Тихого Шелесту" in sergeant or "Тихий Шелест" in sergeant
+    assert "route_to_tihyi_shelist" in sergeant
 
 
 if __name__ == "__main__":

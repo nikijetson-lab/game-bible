@@ -67,6 +67,24 @@
             "y": 0,
             "z": 2
           }
+        },
+        {
+          "to": "greyford_rufin_room",
+          "door_position": {
+            "x": 3,
+            "y": 0,
+            "z": -2
+          },
+          "scene": "res://scenes/locations/greyford/RufinRoom.tscn"
+        },
+        {
+          "to": "greyford_craftsmen_quarter",
+          "door_position": {
+            "x": 6,
+            "y": 0,
+            "z": 2
+          },
+          "scene": "res://scenes/locations/greyford/CraftsmenQuarter.tscn"
         }
       ]
     },
@@ -114,11 +132,64 @@
       ]
     },
     {
+      "id": "greyford_rufin_room",
+      "name": "Кімната Руфіна",
+      "type": "interior",
+      "description": "Мала кімната нагорі в таверні Ервана. Ліжко порожнє; лишилися плащ, порожня шкіряна сумка з клеймом, чорна болотяна глина і свіжі захисні знаки над дверима.",
+      "lighting_override": "cold_window_and_small_lamp",
+      "npcs": [],
+      "points_of_interest": [
+        "RufinRoomEmptyBed",
+        "RufinCloak",
+        "LeatherBagWithBrand",
+        "BlackBogClay",
+        "ProtectiveSigns"
+      ],
+      "connections": [
+        {
+          "to": "greyford_tavern",
+          "scene": "res://scenes/locations/greyford/TavernInterior.tscn"
+        },
+        {
+          "to": "greyford_craftsmen_quarter",
+          "scene": "res://scenes/locations/greyford/CraftsmenQuarter.tscn"
+        }
+      ]
+    },
+    {
+      "id": "greyford_craftsmen_quarter",
+      "name": "Квартал ремісників",
+      "type": "workshop_district",
+      "description": "Темні майстерні з мокрим деревом, високими холодними вікнами і теплим жаром маленьких печей. Кушнір упізнає клеймо; різьбяр згадує Тихий Шелест і важкий мішок Руфіна.",
+      "lighting_override": "cold_daylight_and_stove_glow",
+      "npcs": [
+        "furrier",
+        "woodcarver"
+      ],
+      "points_of_interest": [
+        "WoodcarverWorkbench",
+        "CarvingTools",
+        "CurvedRootWood",
+        "FurRack"
+      ],
+      "connections": [
+        {
+          "to": "greyford_rufin_room",
+          "scene": "res://scenes/locations/greyford/RufinRoom.tscn"
+        },
+        {
+          "to": "greyford_port_tavern",
+          "scene": "res://scenes/locations/greyford/PortTavernInterior.tscn"
+        }
+      ]
+    },
+    {
       "id": "greyford_gate",
       "name": "Міська брама",
       "type": "checkpoint",
-      "description": "Масивні дерев'яні ворота, що ведуть до дороги на Сонк-Феррі. Двоє охоронців завжди на посту.",
+      "description": "Масивні мокрі дерев’яні ворота на межі Грейфорда й дороги до болота. Сержант має журнал виходів і запис про Руфіна, який пішов до Тихого Шелесту.",
       "npcs": [
+        "gate_sergeant",
         "guard_gate_1",
         "guard_gate_2"
       ],
@@ -126,6 +197,17 @@
         {
           "to": "road_to_sonk_ferry",
           "travel_time": 120
+        },
+        {
+          "to": "greyford_port_tavern",
+          "scene": "res://scenes/locations/greyford/PortTavernInterior.tscn"
+        },
+        {
+          "to": "route_to_tihyi_shelist",
+          "travel_method": "walk",
+          "travel_time": 45,
+          "description": "Дорога через болото до Тихого Шелесту",
+          "unlocks": "hazemoor_01_path_through_swamp"
         }
       ],
       "checkpoint": {
@@ -184,6 +266,15 @@
             "y": 0,
             "z": 4
           }
+        },
+        {
+          "to": "greyford_gate",
+          "door_position": {
+            "x": 6,
+            "y": 0,
+            "z": 4
+          },
+          "scene": "res://scenes/locations/greyford/GreyfordGate.tscn"
         }
       ]
     }
@@ -254,6 +345,39 @@
       },
       "role": "guard",
       "patrol": false
+    },
+    {
+      "id": "furrier",
+      "location": "greyford_craftsmen_quarter",
+      "position": {
+        "x": 4.1,
+        "y": 0,
+        "z": -1.45
+      },
+      "role": "furrier_clue_source",
+      "essential": false
+    },
+    {
+      "id": "woodcarver",
+      "location": "greyford_craftsmen_quarter",
+      "position": {
+        "x": -2.05,
+        "y": 0,
+        "z": -1.3
+      },
+      "role": "craftsman_clue_source",
+      "essential": true
+    },
+    {
+      "id": "gate_sergeant",
+      "location": "greyford_gate",
+      "position": {
+        "x": -1.85,
+        "y": 0,
+        "z": -2.55
+      },
+      "role": "gate_sergeant",
+      "essential": true
     }
   ],
   "points_of_interest": [
@@ -306,6 +430,16 @@
       "travel_method": "fast_travel",
       "travel_time": 300,
       "description": "Західний шлях до Валькорна (50 км)",
+      "requirements": {
+        "unlocked_by_quest": "greyford_01_missing_recipient"
+      }
+    },
+    {
+      "to": "route_to_tihyi_shelist",
+      "from_zone": "greyford_gate",
+      "travel_method": "walk",
+      "travel_time": 45,
+      "description": "Канонічний вихід Block A до дороги на Тихий Шелест",
       "requirements": {
         "unlocked_by_quest": "greyford_01_missing_recipient"
       }

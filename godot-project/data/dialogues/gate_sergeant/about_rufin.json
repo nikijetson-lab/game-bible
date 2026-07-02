@@ -1,0 +1,74 @@
+{
+  "dialogue_id": "about_rufin",
+  "npc_id": "gate_sergeant",
+  "start_node": "start",
+  "context": "Сержант міської брами Грейфорда. Має журнал виходів; підтверджує маршрут Руфіна.",
+  "nodes": {
+    "start": {
+      "speaker": "Сержант",
+      "text": "Брама зачинена після заходу. Що тобі, Вартовий?",
+      "choices": [
+        {
+          "text": "Руфін виходив через ці ворота?",
+          "next_node": "log"
+        },
+        {
+          "text": "Мені треба вийти в болото.",
+          "next_node": "reason"
+        },
+        {
+          "text": "Пізніше.",
+          "next_node": "end"
+        }
+      ]
+    },
+    "log": {
+      "speaker": "Сержант",
+      "text": "*гортає журнал* Руфін. Так, є запис — вийшов три дні тому в напрямку Тихого Шелесту. Сам. Назад не проходив.",
+      "choices": [
+        {
+          "text": "Я піду за ним.",
+          "next_node": "reason"
+        },
+        {
+          "text": "Дякую.",
+          "next_node": "end"
+        }
+      ]
+    },
+    "reason": {
+      "speaker": "Сержант",
+      "text": "Ти теж туди? З якого приводу?",
+      "choices": [
+        {
+          "text": "Шукаю людину. Він пішов і не повернувся.",
+          "next_node": "open_route"
+        },
+        {
+          "text": "Оглянути маршрут. Скарги на поселення.",
+          "next_node": "open_route"
+        },
+        {
+          "text": "Робота. Лист — мій пропуск.",
+          "next_node": "open_route"
+        }
+      ]
+    },
+    "open_route": {
+      "speaker": "Сержант",
+      "text": "*відсуває засув* Дорога на Тихий Шелест — за ворітьми. Тримайся стежки Мурі й не сходь у трясовину.",
+      "consequences": {
+        "quest_update": {
+          "quest_id": "greyford_01_missing_recipient",
+          "objective_id": "speak_to_gate_sergeant"
+        },
+        "unlock_route": "route_to_tihyi_shelist",
+        "set_flag": "greyford_gate_opened"
+      }
+    },
+    "end": {
+      "speaker": "Сержант",
+      "text": "Брама тут. Надумаєш — підходь."
+    }
+  }
+}

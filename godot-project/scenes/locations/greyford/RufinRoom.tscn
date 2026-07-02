@@ -1,0 +1,219 @@
+[gd_scene load_steps=18 format=3]
+
+[ext_resource type="Script" path="res://scripts/gameplay/InspectClue.gd" id="1_clue"]
+[ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="2_portal"]
+[ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="3_player"]
+
+[sub_resource type="Environment" id="Environment_rufin_room"]
+background_mode = 1
+background_color = Color(0.055, 0.052, 0.048, 1)
+ambient_light_source = 1
+ambient_light_color = Color(0.22, 0.20, 0.17, 1)
+ambient_light_energy = 0.42
+fog_enabled = true
+fog_light_color = Color(0.20, 0.19, 0.17, 1)
+fog_density = 0.028
+
+[sub_resource type="StandardMaterial3D" id="Mat_floor"]
+albedo_color = Color(0.13, 0.09, 0.055, 1)
+roughness = 0.85
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall"]
+albedo_color = Color(0.16, 0.12, 0.075, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="Mat_cloth"]
+albedo_color = Color(0.09, 0.085, 0.08, 1)
+roughness = 0.95
+
+[sub_resource type="StandardMaterial3D" id="Mat_leather"]
+albedo_color = Color(0.26, 0.14, 0.075, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_black_clay"]
+albedo_color = Color(0.025, 0.024, 0.021, 1)
+roughness = 0.55
+
+[sub_resource type="StandardMaterial3D" id="Mat_cold_window"]
+albedo_color = Color(0.12, 0.22, 0.27, 0.72)
+emission_enabled = true
+emission = Color(0.08, 0.18, 0.24, 1)
+emission_energy_multiplier = 0.5
+transparency = 1
+
+[sub_resource type="StandardMaterial3D" id="Mat_warm_lamp"]
+albedo_color = Color(1.0, 0.53, 0.18, 1)
+emission_enabled = true
+emission = Color(1.0, 0.42, 0.12, 1)
+emission_energy_multiplier = 1.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+size = Vector3(8.0, 0.25, 6.0)
+material = SubResource("Mat_floor")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
+size = Vector3(8.0, 0.25, 6.0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_boundary_long"]
+size = Vector3(8.4, 2.8, 0.45)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_boundary_side"]
+size = Vector3(0.45, 2.8, 6.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_board"]
+size = Vector3(1, 1, 1)
+material = SubResource("Mat_wall")
+
+[sub_resource type="BoxMesh" id="BoxMesh_bed"]
+size = Vector3(2.4, 0.45, 1.05)
+material = SubResource("Mat_cloth")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_interaction"]
+radius = 1.25
+
+[sub_resource type="SphereMesh" id="SphereMesh_prop"]
+radius = 0.2
+height = 0.4
+
+[node name="RufinRoom" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rufin_room")
+
+[node name="Player" parent="." instance=ExtResource("3_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 2.25)
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_floor")
+
+[node name="Boundaries" type="StaticBody3D" parent="."]
+
+[node name="NorthWall" type="CollisionShape3D" parent="Boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 3.15)
+shape = SubResource("BoxShape3D_boundary_long")
+
+[node name="SouthWall" type="CollisionShape3D" parent="Boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -3.15)
+shape = SubResource("BoxShape3D_boundary_long")
+
+[node name="WestWall" type="CollisionShape3D" parent="Boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.15, 1.25, 0)
+shape = SubResource("BoxShape3D_boundary_side")
+
+[node name="EastWall" type="CollisionShape3D" parent="Boundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.15, 1.25, 0)
+shape = SubResource("BoxShape3D_boundary_side")
+
+[node name="Architecture" type="Node3D" parent="."]
+
+[node name="BackWallBoards" type="MeshInstance3D" parent="Architecture"]
+transform = Transform3D(8, 0, 0, 0, 2.65, 0, 0, 0, 0.14, 0, 1.25, -2.95)
+mesh = SubResource("BoxMesh_board")
+
+[node name="RainWindow" type="MeshInstance3D" parent="Architecture"]
+transform = Transform3D(1.7, 0, 0, 0, 1.0, 0, 0, 0, 0.04, -2.15, 1.55, -2.86)
+mesh = SubResource("BoxMesh_board")
+material_override = SubResource("Mat_cold_window")
+
+[node name="SmallLamp" type="MeshInstance3D" parent="Architecture"]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 2.75, 1.85, -2.45)
+mesh = SubResource("SphereMesh_prop")
+material_override = SubResource("Mat_warm_lamp")
+
+[node name="DialogueAnchor" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+
+[node name="InvestigationProps" type="Node3D" parent="."]
+
+[node name="RufinRoomEmptyBed" type="MeshInstance3D" parent="InvestigationProps"]
+transform = Transform3D(1, 0, 0.15, 0, 1, 0, -0.15, 0, 1, -2.35, 0.34, -1.15)
+mesh = SubResource("BoxMesh_bed")
+
+[node name="RufinCloak" type="Area3D" parent="InvestigationProps"]
+transform = Transform3D(0.9, 0, 0.2, 0, 1, 0, -0.2, 0, 0.9, -1.65, 0.7, -0.85)
+script = ExtResource("1_clue")
+clue_id = "rufin_room_bag_and_clay"
+quest_id = "greyford_01_missing_recipient"
+description = "Зношений плащ Руфіна лишився в кімнаті, наче господар не планував довгу дорогу назад."
+prompt = "Оглянути плащ Руфіна"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InvestigationProps/RufinCloak"]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="CloakMesh" type="MeshInstance3D" parent="InvestigationProps/RufinCloak"]
+mesh = SubResource("BoxMesh_bed")
+material_override = SubResource("Mat_cloth")
+
+[node name="LeatherBagWithBrand" type="Area3D" parent="InvestigationProps"]
+transform = Transform3D(0.7, 0, -0.12, 0, 0.7, 0, 0.12, 0, 0.7, 0.65, 0.38, -1.6)
+script = ExtResource("1_clue")
+clue_id = "rufin_room_bag_and_clay"
+quest_id = "greyford_01_missing_recipient"
+description = "Порожня шкіряна сумка з характерним клеймом: нитка до кварталу ремісників."
+prompt = "Оглянути сумку з клеймом"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InvestigationProps/LeatherBagWithBrand"]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="BagMesh" type="MeshInstance3D" parent="InvestigationProps/LeatherBagWithBrand"]
+mesh = SubResource("SphereMesh_prop")
+material_override = SubResource("Mat_leather")
+
+[node name="BlackBogClay" type="Area3D" parent="InvestigationProps"]
+transform = Transform3D(0.65, 0, 0.05, 0, 0.08, 0, -0.05, 0, 0.65, 1.25, 0.05, 0.55)
+script = ExtResource("1_clue")
+clue_id = "rufin_room_bag_and_clay"
+quest_id = "greyford_01_missing_recipient"
+description = "Чорна болотяна глина під підошвами й біля сумки Руфіна."
+prompt = "Оглянути чорну глину"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InvestigationProps/BlackBogClay"]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="ClayMesh" type="MeshInstance3D" parent="InvestigationProps/BlackBogClay"]
+mesh = SubResource("SphereMesh_prop")
+material_override = SubResource("Mat_black_clay")
+
+[node name="ProtectiveSigns" type="Area3D" parent="InvestigationProps"]
+transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, 2.65, 1.55, -2.78)
+script = ExtResource("1_clue")
+clue_id = "rufin_room_bag_and_clay"
+quest_id = "greyford_01_missing_recipient"
+description = "Свіжі захисні знаки над дверима. На цьому етапі це лише слід підготовки, не відповідь."
+prompt = "Оглянути захисні знаки"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InvestigationProps/ProtectiveSigns"]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="SignsLabel" type="Label3D" parent="InvestigationProps/ProtectiveSigns"]
+text = "захисні знаки"
+font_size = 18
+modulate = Color(0.68, 0.60, 0.42, 1)
+
+[node name="Portals" type="Node3D" parent="."]
+
+[node name="BackToTavernPortal" type="Area3D" parent="Portals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 1.0, 2.35)
+script = ExtResource("2_portal")
+destination_scene = "res://scenes/locations/greyford/TavernInterior.tscn"
+destination_location = "greyford_tavern"
+prompt = "Повернутися в таверну Ервана"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/BackToTavernPortal"]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="ToCraftsmenQuarterPortal" type="Area3D" parent="Portals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 1.0, 2.35)
+script = ExtResource("2_portal")
+destination_scene = "res://scenes/locations/greyford/CraftsmenQuarter.tscn"
+destination_location = "greyford_craftsmen_quarter"
+prompt = "Вийти до кварталу ремісників"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/ToCraftsmenQuarterPortal"]
+shape = SubResource("SphereShape3D_interaction")

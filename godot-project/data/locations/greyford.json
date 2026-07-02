@@ -275,6 +275,49 @@
             "z": 4
           },
           "scene": "res://scenes/locations/greyford/GreyfordGate.tscn"
+        },
+        {
+          "to": "greyford_alteya_hidden_room",
+          "type": "hidden_optional",
+          "optional": true,
+          "requires": "noticed_alteya_spatial_veil_signature"
+        }
+      ]
+    },
+    {
+      "id": "greyford_alteya_hidden_room",
+      "name": "Таємне помешкання Алтеї",
+      "type": "hidden_interior",
+      "scene_path": "res://scenes/locations/greyford/AlteyaHiddenRoom.tscn",
+      "optional": true,
+      "hidden": true,
+      "unlock_condition": "noticed_alteya_spatial_veil_signature",
+      "canon_source": [
+        "quests/ep1-01-greyford-adresat-vidsutniy.md#Вихід-Б-через-Алтею",
+        "regions/greyford.md#Таємне-помешкання-чаклунки",
+        "characters/lileya.md"
+      ],
+      "description": "Приховане помешкання за просторовою завісою. Тут живе Чаклунка Алтея — Лілея, єдина така фігура Грейфорда, не публічний NPC.",
+      "npcs": [
+        "alteya"
+      ],
+      "features": [
+        "spatial_veil_signature",
+        "larger_inside_than_outside",
+        "water_mirror",
+        "stone_arches",
+        "golden_cylinder"
+      ],
+      "connections": [
+        {
+          "to": "greyford_port_tavern",
+          "type": "hidden_return",
+          "optional": true
+        },
+        {
+          "to": "greyford_gate",
+          "type": "quiet_exit",
+          "optional": true
         }
       ]
     }
@@ -378,6 +421,16 @@
       },
       "role": "gate_sergeant",
       "essential": true
+    },
+    {
+      "id": "alteya",
+      "name": "Алтея / Лілея",
+      "zone": "greyford_alteya_hidden_room",
+      "role": "hidden_optional_witness",
+      "dialogue": "alteya/about_rufin",
+      "public": false,
+      "optional": true,
+      "canon_note": "Єдина така магічна постать Грейфорда у текстових квестах; не публічна площа/таверна NPC."
     }
   ],
   "points_of_interest": [

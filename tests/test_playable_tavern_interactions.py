@@ -350,17 +350,73 @@ def test_block_a_dialogues_are_dialogue_manager_compatible_and_canonical():
         GODOT / "data" / "dialogues" / "woodcarver" / "about_rufin.json",
         GODOT / "data" / "dialogues" / "furrier" / "default.json",
         GODOT / "data" / "dialogues" / "gate_sergeant" / "about_rufin.json",
+        GODOT / "data" / "dialogues" / "alteya" / "about_rufin.json",
     ]
     for path in dialogue_paths:
         assert_dialogue_manager_compatible(path)
 
     woodcarver = json.dumps(load_json(dialogue_paths[0]), ensure_ascii=False)
     sergeant = json.dumps(load_json(dialogue_paths[2]), ensure_ascii=False)
+    alteya = json.dumps(load_json(dialogue_paths[3]), ensure_ascii=False)
     assert "Тихий Шелест" in woodcarver
     assert "щось важке" in woodcarver
     assert "Руфін" in sergeant
     assert "Тихого Шелесту" in sergeant or "Тихий Шелест" in sergeant
     assert "route_to_tihyi_shelist" in sergeant
+    assert "Чаклунка Алтея" in alteya or "Лілея" in alteya
+    assert "горіло в темряві" in alteya
+    assert "Не ліхтар" in alteya
+    assert "вона нічого не знає про Руфіна особисто" in alteya
+
+
+def test_block_a_alteya_is_single_hidden_optional_witch_route_from_text_quests():
+    greyford = load_json(GODOT / "data" / "locations" / "greyford.json")
+    zones = {zone["id"]: zone for zone in greyford["zones"]}
+    assert "greyford_alteya_hidden_room" in zones
+
+    alteya_zone = zones["greyford_alteya_hidden_room"]
+    assert alteya_zone.get("type") == "hidden_interior"
+    assert alteya_zone.get("optional") is True
+    assert "alteya" in alteya_zone.get("npcs", [])
+    assert "Лілея" in json.dumps(alteya_zone, ensure_ascii=False)
+    assert "Чаклунка Алтея" in json.dumps(alteya_zone, ensure_ascii=False)
+
+    port_links = [link["to"] for link in zones["greyford_port_tavern"].get("connections", [])]
+    alteya_links = [link["to"] for link in alteya_zone.get("connections", [])]
+    assert "greyford_alteya_hidden_room" in port_links
+    assert "greyford_gate" in port_links  # route remains optional, not mandatory
+    assert "greyford_gate" in alteya_links
+
+    all_text = json.dumps(greyford, ensure_ascii=False).lower()
+    assert all_text.count("чаклунка") == 1, "Алтея/Лілея має бути єдиною чаклункою в Greyford data"
+    for public_zone_id in ["greyford_tavern", "greyford_port_tavern", "greyford_craftsmen_quarter", "greyford_gate"]:
+        assert "alteya" not in zones[public_zone_id].get("npcs", []), "Алтея не має бути public-square/tavern/gate NPC"
+
+
+def test_block_a_alteya_hidden_room_scene_has_hidden_portals_and_art_grounded_mood():
+    text = read(GODOT / "scenes" / "locations" / "greyford" / "AlteyaHiddenRoom.tscn")
+    required = [
+        'node name="Player" parent="." instance=ExtResource',
+        'node name="DialogueAnchor" type="Marker3D"',
+        'node name="Boundaries" type="StaticBody3D"',
+        'node name="Alteya" type="Area3D" parent="NPCs"',
+        'npc_id = "alteya"',
+        'npc_display_name = "Чаклунка Алтея / Лілея"',
+        'node name="WaterMirror"',
+        'node name="StoneArches"',
+        'node name="GoldenCylinder"',
+        'node name="SpatialVeilSignature"',
+        'node name="ToPortTavernPortal" type="Area3D" parent="Portals"',
+        'node name="ToGreyfordGatePortal" type="Area3D" parent="Portals"',
+        'destination_location = "greyford_gate"',
+        'is_hidden = true',
+        'optional = true',
+    ]
+    for expected in required:
+        assert expected in text, f"AlteyaHiddenRoom.tscn missing {expected!r}"
+    assert _count_boundary_collision_shapes(text) >= 4
+    for forbidden in ["Мія", "Келм", "цілителька", "відьма"]:
+        assert forbidden not in text
 
 
 if __name__ == "__main__":

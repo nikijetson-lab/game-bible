@@ -31,6 +31,12 @@ func _init() -> void:
 		failures
 	)
 	_check_scene(
+		"res://scenes/locations/greyford/AlteyaHiddenRoom.tscn",
+		["NPCs/Alteya", "Portals/ToPortTavernPortal", "Portals/ToGreyfordGatePortal", "InvestigationProps/VeilTraceClue"],
+		["NPCs/Mia", "NPCs/Kelm"],
+		failures
+	)
+	_check_scene(
 		"res://scenes/locations/greyford/GreyfordGate.tscn",
 		["NPCs/GateSergeant", "Portals/ToSwampPortal"],
 		["NPCs/Mia", "NPCs/Kelm"],

@@ -249,6 +249,49 @@ def test_main_tavern_uses_meshy_glb_assets_as_visible_layer_with_fallback_collis
     assert 'node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Ervan"' in text
     ervan_block = text[text.index('[node name="Body" type="MeshInstance3D" parent="NPCs/Ervan"]'):text.index('[node name="MeshyErvanModel" parent="NPCs/Ervan"')]
     assert "visible = false" in ervan_block, "primitive capsule fallback must be hidden so Meshy Ervan is visible"
+    # Canon (concept art 007_p03 + user staging note): the letter is not baked onto
+    # Ervan's apron and must not be visible on Ervan at scene start. It starts with
+    # the guard, then the dialogue handoff reveals it in Ervan's hands.
+    assert "res://assets/meshy/greyford_tavern/ervan_innkeeper_clean_apron.glb" in text, "clean-apron retextured Ervan GLB expected"
+    assert 'node name="HeldLetter" type="MeshInstance3D" parent="NPCs/Ervan"' in text, "sealed letter must be a held prop for the handoff beat"
+    assert 'node name="WaxSeal" type="MeshInstance3D" parent="NPCs/Ervan/HeldLetter"' in text, "letter carries the red wax seal from the art"
+    assert 'node name="GreyfordGuard" type="Area3D" parent="NPCs"' in text, "guard must bring the letter into the scene"
+    assert 'node name="CarriedLetter" type="MeshInstance3D" parent="NPCs/GreyfordGuard"' in text, "letter starts with the guard"
+    assert 'node name="LetterHandoffStaging" type="Node" parent="."' in text, "staging controller should switch letter visibility during dialogue"
+    assert 'metadata/removed_from_start = "Hidden: the sealed letter starts with the guard, not floating on the bar."' in text, "old bar letter/white plank must be hidden"
+    assert 'node name="GuardStart" type="Marker3D" parent="Staging"' in text
+    assert 'node name="GuardHandoff" type="Marker3D" parent="Staging"' in text
+    assert 'node name="ErvanLetterCloseup" type="Marker3D" parent="Staging"' in text
+    assert 'node name="WipingTowel" type="MeshInstance3D" parent="NPCs/Ervan"' in text, "Ervan starts by wiping the bar with the towel in hand"
+    assert 'wiping_towel_path = NodePath("../NPCs/Ervan/WipingTowel")' in text
+    assert 'shoulder_towel_path = NodePath("../NPCs/Ervan/ShoulderTowel")' in text
+    assert 'Mat_towel_cloth' in text, "towel must not use the pale paper material that read as a white plank"
+
+    shoulder_towel_block = text[text.index('[node name="ShoulderTowel" type="MeshInstance3D" parent="NPCs/Ervan"]'):]
+    shoulder_towel_block = shoulder_towel_block[:shoulder_towel_block.index("[node ", 10)]
+    assert "visible = false" in shoulder_towel_block, "shoulder towel appears only after the guard/dialogue starts"
+
+    wiping_towel_block = text[text.index('[node name="WipingTowel" type="MeshInstance3D" parent="NPCs/Ervan"]'):]
+    wiping_towel_block = wiping_towel_block[:wiping_towel_block.index("[node ", 10)]
+    assert "visible = false" not in wiping_towel_block, "wiping towel must be visible at scene start"
+
+    staging_script = read(GODOT / "scripts" / "gameplay" / "TavernLetterStaging.gd")
+    assert "func throw_towel_over_shoulder" in staging_script
+    assert "_set_visible(wiping_towel_path, false)" in staging_script
+    assert "_set_visible(shoulder_towel_path, true)" in staging_script
+    assert "_start_wiping()" in staging_script
+
+    held_letter_block = text[text.index('[node name="HeldLetter" type="MeshInstance3D" parent="NPCs/Ervan"]'):]
+    held_letter_block = held_letter_block[:held_letter_block.index("[node ", 10)]
+    assert "visible = false" in held_letter_block, "Ervan must not hold/show the letter at scene start"
+
+    bar_letter_block = text[text.index('[node name="SealedLetter" type="MeshInstance3D" parent="BarCounter"]'):]
+    bar_letter_block = bar_letter_block[:bar_letter_block.index("[node ", 10)]
+    assert "visible = false" in bar_letter_block, "old floating bar letter/white plank must be hidden"
+
+    apron_block = text[text.index('[node name="LeatherApron" type="MeshInstance3D" parent="NPCs/Ervan"]'):]
+    apron_block = apron_block[:apron_block.index("[node ", 10)]
+    assert "BoxMesh_letter" not in apron_block, "letter must not be parented to the apron"
 
 
 def test_port_tavern_bar_counter_blocks_player():

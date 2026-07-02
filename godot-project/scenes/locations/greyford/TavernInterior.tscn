@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3]
+[gd_scene load_steps=39 format=3]
 
 [ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc_behavior"]
 [ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="2_player"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" path="res://assets/meshy/greyford_tavern/tavern_bar_counter.glb" id="5_bar_glb"]
 [ext_resource type="PackedScene" path="res://assets/meshy/greyford_tavern/tavern_props_kit.glb" id="6_props_glb"]
 [ext_resource type="PackedScene" path="res://assets/meshy/greyford_tavern/creaking_sign.glb" id="7_sign_glb"]
+[ext_resource type="PackedScene" path="res://assets/meshy/greyford_tavern/ervan_innkeeper_clean_apron.glb" id="8_ervan_clean_glb"]
+[ext_resource type="Script" path="res://scripts/gameplay/TavernLetterStaging.gd" id="9_letter_staging"]
 
 [sub_resource type="Environment" id="Environment_tavern"]
 background_mode = 1
@@ -46,6 +48,14 @@ transparency = 1
 albedo_color = Color(0.72, 0.62, 0.46, 1)
 roughness = 0.8
 
+[sub_resource type="StandardMaterial3D" id="Mat_towel_cloth"]
+albedo_color = Color(0.58, 0.52, 0.40, 1)
+roughness = 0.95
+
+[sub_resource type="StandardMaterial3D" id="Mat_wax_seal"]
+albedo_color = Color(0.46, 0.035, 0.025, 1)
+roughness = 0.55
+
 [sub_resource type="StandardMaterial3D" id="Mat_metal"]
 albedo_color = Color(0.33, 0.30, 0.25, 1)
 metallic = 0.45
@@ -69,7 +79,7 @@ material = SubResource("Mat_leather_apron")
 
 [sub_resource type="BoxMesh" id="BoxMesh_towel"]
 size = Vector3(0.24, 0.5, 0.05)
-material = SubResource("Mat_paper_seal")
+material = SubResource("Mat_towel_cloth")
 
 [sub_resource type="TorusMesh" id="TorusMesh_keyring"]
 inner_radius = 0.05
@@ -78,6 +88,18 @@ outer_radius = 0.09
 [sub_resource type="BoxMesh" id="BoxMesh_key"]
 size = Vector3(0.04, 0.18, 0.02)
 material = SubResource("Mat_brass_key")
+
+[sub_resource type="BoxMesh" id="BoxMesh_letter"]
+size = Vector3(0.46, 0.30, 0.018)
+material = SubResource("Mat_paper_seal")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wax_seal"]
+top_radius = 0.055
+bottom_radius = 0.055
+height = 0.018
+radial_segments = 24
+rings = 1
+material = SubResource("Mat_wax_seal")
 
 [sub_resource type="BoxMesh" id="BoxMesh_floor"]
 size = Vector3(17, 0.35, 13)
@@ -290,9 +312,11 @@ mesh = SubResource("SphereMesh_bottle")
 material_override = SubResource("Mat_warm_lamp")
 
 [node name="SealedLetter" type="MeshInstance3D" parent="BarCounter"]
+visible = false
 transform = Transform3D(0.72, 0, -0.1, 0, 0.04, 0, 0.1, 0, 0.48, -0.15, 0.74, 0.03)
 mesh = SubResource("BoxMesh_board")
 material_override = SubResource("Mat_paper_seal")
+metadata/removed_from_start = "Hidden: the sealed letter starts with the guard, not floating on the bar."
 
 [node name="PrivateRainTable" type="Node3D" parent="."]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 3.2, 0.65, 2.75)
@@ -378,8 +402,20 @@ visible = false
 mesh = SubResource("CapsuleMesh_npc")
 metadata/fallback_note = "Hidden visual fallback; collision shape remains active and MeshyErvanModel is the visible character."
 
-[node name="MeshyErvanModel" parent="NPCs/Ervan" instance=ExtResource("4_ervan_glb")]
+[node name="MeshyErvanModel" parent="NPCs/Ervan" instance=ExtResource("8_ervan_clean_glb")]
 transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
+metadata/source_task_id = "019f21af-bd23-7c60-a0fb-302e9c52b314"
+metadata/note = "Retextured clean apron: the concept-art letter is restored as a separate prop in Ervan's hands, not baked onto the apron."
+
+[node name="HeldLetter" type="MeshInstance3D" parent="NPCs/Ervan"]
+visible = false
+transform = Transform3D(0.5, 0, 0, 0, 0.42, -0.26, 0, 0.16, 0.68, 0, 0.62, 0.42)
+mesh = SubResource("BoxMesh_letter")
+metadata/canon_note = "Hidden on scene start. The guard carries the sealed letter first; dialogue handoff shows Ervan with it. Base model is T-pose, so the prop is placed in front of the chest rather than gripped."
+
+[node name="WaxSeal" type="MeshInstance3D" parent="NPCs/Ervan/HeldLetter"]
+transform = Transform3D(0.82, 0, 0, 0, 0, -0.82, 0, 0.82, 0, 0.03, -0.035, 0.025)
+mesh = SubResource("CylinderMesh_wax_seal")
 
 [node name="LeatherApron" type="MeshInstance3D" parent="NPCs/Ervan"]
 visible = false
@@ -390,6 +426,12 @@ mesh = SubResource("BoxMesh_apron")
 visible = false
 transform = Transform3D(0.85, 0.18, 0, -0.18, 0.85, 0, 0, 0, 1, -0.28, 0.58, 0.23)
 mesh = SubResource("BoxMesh_towel")
+metadata/staging_note = "Hidden at scene start. The same towel appears here after the guard approaches and dialogue begins."
+
+[node name="WipingTowel" type="MeshInstance3D" parent="NPCs/Ervan"]
+transform = Transform3D(0.72, 0.08, 0.02, -0.1, 0.38, 0.03, -0.02, -0.04, 0.92, 0.72, -0.08, 0.78)
+mesh = SubResource("BoxMesh_towel")
+metadata/staging_note = "Scene start: Ervan wipes the bar with this towel in hand; TavernLetterStaging animates it across the counter."
 
 [node name="KeyRing" type="MeshInstance3D" parent="NPCs/Ervan"]
 visible = false
@@ -416,6 +458,63 @@ modulate = Color(0.64, 0.56, 0.42, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 text = "Ерван"
 font_size = 28
+
+[node name="GreyfordGuard" type="Area3D" parent="NPCs"]
+transform = Transform3D(0.819152, 0, 0.573576, 0, 1, 0, -0.573576, 0, 0.819152, 1.15, 0.95, 1.65)
+script = ExtResource("1_npc_behavior")
+npc_id = "greyford_guard_letter"
+npc_display_name = "вартовий"
+default_dialogue_id = "letter_handoff"
+interaction_prompt = "Поговорити"
+npc_state = {"id": "greyford_guard_letter", "name": "Вартовий", "role": "brings_sealed_letter_to_ervan", "quests": {"involved": ["greyford_01_missing_recipient"]}, "dialogues": {"letter_handoff": "greyford_guard/letter_handoff.json"}}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/GreyfordGuard"]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/GreyfordGuard"]
+mesh = SubResource("CapsuleMesh_npc")
+metadata/fallback_note = "Blockout guard who enters with the letter before the Ervan handoff."
+
+[node name="CarriedLetter" type="MeshInstance3D" parent="NPCs/GreyfordGuard"]
+transform = Transform3D(0.34, 0, 0, 0, 0.28, -0.18, 0, 0.1, 0.48, 0.12, 0.38, 0.34)
+mesh = SubResource("BoxMesh_letter")
+metadata/canon_note = "Scene start state: the sealed letter is with the guard, not floating at the bar and not in Ervan's hands yet."
+
+[node name="WaxSeal" type="MeshInstance3D" parent="NPCs/GreyfordGuard/CarriedLetter"]
+transform = Transform3D(0.72, 0, 0, 0, 0, -0.72, 0, 0.72, 0, 0.03, -0.035, 0.025)
+mesh = SubResource("CylinderMesh_wax_seal")
+
+[node name="NameLabel" type="Label3D" parent="NPCs/GreyfordGuard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+text = "вартовий"
+font_size = 22
+
+[node name="LetterHandoffStaging" type="Node" parent="."]
+script = ExtResource("9_letter_staging")
+guard_path = NodePath("../NPCs/GreyfordGuard")
+guard_start_marker_path = NodePath("../Staging/GuardStart")
+guard_handoff_marker_path = NodePath("../Staging/GuardHandoff")
+guard_letter_path = NodePath("../NPCs/GreyfordGuard/CarriedLetter")
+ervan_letter_path = NodePath("../NPCs/Ervan/HeldLetter")
+ervan_letter_closeup_marker_path = NodePath("../Staging/ErvanLetterCloseup")
+wiping_towel_path = NodePath("../NPCs/Ervan/WipingTowel")
+shoulder_towel_path = NodePath("../NPCs/Ervan/ShoulderTowel")
+wipe_travel = 0.55
+wipe_period = 1.4
+approach_duration = 1.8
+lowered_question = "Хто приніс це письмо — і чому на ньому немає адресата?"
+
+[node name="Staging" type="Node3D" parent="."]
+metadata/scene_beat = "Start: letter is with guard. Guard approaches Ervan. Dialogue handoff reveals Ervan with the letter; Ervan lowers it and asks the question."
+
+[node name="GuardStart" type="Marker3D" parent="Staging"]
+transform = Transform3D(0.819152, 0, 0.573576, 0, 1, 0, -0.573576, 0, 0.819152, 1.15, 0.95, 1.65)
+
+[node name="GuardHandoff" type="Marker3D" parent="Staging"]
+transform = Transform3D(0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, 0.34202, -1.2, 0.95, -2.38)
+
+[node name="ErvanLetterCloseup" type="Marker3D" parent="Staging"]
+transform = Transform3D(0.422618, -0.211309, 0.881236, 0, 0.97237, 0.233445, -0.906308, -0.098644, 0.410935, -2.05, 1.55, -2.0)
 
 [node name="Portals" type="Node3D" parent="."]
 

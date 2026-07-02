@@ -230,6 +230,25 @@ def test_main_tavern_has_art_grounded_ervan_props():
     assert 'node name="HangingLantern"' in text, "art shows a lantern hanging from a ceiling beam"
 
 
+def test_main_tavern_uses_meshy_glb_assets_as_visible_layer_with_fallback_collision():
+    text = read(GODOT / "scenes" / "locations" / "greyford" / "TavernInterior.tscn")
+    for expected in [
+        "res://assets/meshy/greyford_tavern/ervan_innkeeper.glb",
+        "res://assets/meshy/greyford_tavern/tavern_bar_counter.glb",
+        "res://assets/meshy/greyford_tavern/tavern_props_kit.glb",
+        "res://assets/meshy/greyford_tavern/creaking_sign.glb",
+        'node name="MeshyAssets" type="Node3D" parent="."',
+        'node name="MeshyErvanModel" parent="NPCs/Ervan" instance=ExtResource',
+        'node name="MeshyBarCounter" parent="MeshyAssets" instance=ExtResource',
+        'node name="MeshyPropsKit" parent="MeshyAssets" instance=ExtResource',
+        'node name="MeshyCreakingSign" parent="MeshyAssets" instance=ExtResource',
+        'metadata/credits_consumed = 90',
+    ]:
+        assert expected in text, f"Expected Meshy tavern asset layer item {expected!r}"
+    assert 'node name="CollisionShape3D" type="CollisionShape3D" parent="BarCounter"' in text
+    assert 'node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Ervan"' in text
+
+
 def test_port_tavern_bar_counter_blocks_player():
     _assert_bar_counter_blocks_player(GODOT / "scenes" / "locations" / "greyford" / "PortTavernInterior.tscn")
 

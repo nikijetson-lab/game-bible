@@ -1,8 +1,12 @@
-[gd_scene load_steps=29 format=3]
+[gd_scene load_steps=33 format=3]
 
 [ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc_behavior"]
 [ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="2_player"]
 [ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="3_portal"]
+[ext_resource type="PackedScene" path="res://assets/meshy/greyford_tavern/ervan_innkeeper.glb" id="4_ervan_glb"]
+[ext_resource type="PackedScene" path="res://assets/meshy/greyford_tavern/tavern_bar_counter.glb" id="5_bar_glb"]
+[ext_resource type="PackedScene" path="res://assets/meshy/greyford_tavern/tavern_props_kit.glb" id="6_props_glb"]
+[ext_resource type="PackedScene" path="res://assets/meshy/greyford_tavern/creaking_sign.glb" id="7_sign_glb"]
 
 [sub_resource type="Environment" id="Environment_tavern"]
 background_mode = 1
@@ -177,6 +181,21 @@ shape = SubResource("BoxShape3D_boundary_side")
 [node name="EastWall" type="CollisionShape3D" parent="Boundaries"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.75, 1.35, 0)
 shape = SubResource("BoxShape3D_boundary_side")
+
+[node name="MeshyAssets" type="Node3D" parent="."]
+metadata/task_ids = "ervan:019f217e-745c-7430-b4b6-d9d766fbd433;bar:019f217e-8a0b-72c8-a090-d2ac0049ac7f;props:019f217e-9640-72ca-9186-60a441319b54;sign:019f217e-a7c4-7cb3-96e5-54cc84190472"
+metadata/credits_consumed = 90
+metadata/source_reference = "visual/concept_art_vision/items/007_p03_ervan_-_khaziain_postoialoho_dvoru.png"
+metadata/note = "Visible Meshy GLB layer; primitive meshes and collision shapes remain as gameplay fallback."
+
+[node name="MeshyBarCounter" parent="MeshyAssets" instance=ExtResource("5_bar_glb")]
+transform = Transform3D(3.2476, 0, -0.2842, 0, 1.115, 0, 0.0811, 0, 0.9264, -3.1, 0.6, -3.35)
+
+[node name="MeshyPropsKit" parent="MeshyAssets" instance=ExtResource("6_props_glb")]
+transform = Transform3D(1.42, 0, 0.42, 0, 1.0, 0, -0.42, 0, 1.42, 3.1, 0.82, 2.45)
+
+[node name="MeshyCreakingSign" parent="MeshyAssets" instance=ExtResource("7_sign_glb")]
+transform = Transform3D(0.68, 0, 0, 0, 0.68, 0, 0, 0, 0.68, -6.65, 2.15, 4.75)
 
 [node name="Architecture" type="Node3D" parent="."]
 
@@ -356,6 +375,9 @@ shape = SubResource("SphereShape3D_interaction")
 
 [node name="Body" type="MeshInstance3D" parent="NPCs/Ervan"]
 mesh = SubResource("CapsuleMesh_npc")
+
+[node name="MeshyErvanModel" parent="NPCs/Ervan" instance=ExtResource("4_ervan_glb")]
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
 
 [node name="LeatherApron" type="MeshInstance3D" parent="NPCs/Ervan"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, -0.05, 0.34)

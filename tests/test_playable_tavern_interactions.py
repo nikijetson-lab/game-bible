@@ -230,6 +230,48 @@ def test_main_tavern_has_art_grounded_ervan_props():
     assert 'node name="HangingLantern"' in text, "art shows a lantern hanging from a ceiling beam"
 
 
+def test_main_tavern_has_full_art_grounded_interior_pass():
+    text = read(GODOT / "scenes" / "locations" / "greyford" / "TavernInterior.tscn")
+    required_nodes = [
+        'metadata/art_reference = "007_p03 Ervan innkeeper art: dark smoked wood, blue-gray haze, amber lantern pools, cluttered old tavern interior."',
+        'node name="LowCeiling" type="MeshInstance3D" parent="Architecture"',
+        'node name="CeilingRafterNorth" type="MeshInstance3D" parent="Architecture"',
+        'node name="BackPlasterInset" type="MeshInstance3D" parent="Architecture"',
+        'node name="Step06" type="MeshInstance3D" parent="Architecture/StairsToRooms"',
+        'node name="StairRailLeft" type="MeshInstance3D" parent="Architecture/StairsToRooms"',
+        'node name="BackBarShelves" type="Node3D" parent="BarCounter"',
+        'node name="ShelfBottleA" type="MeshInstance3D" parent="BarCounter/BackBarShelves"',
+        'node name="ShelfMugA" type="MeshInstance3D" parent="BarCounter/BackBarShelves"',
+        'node name="BenchNearEntranceA" type="MeshInstance3D" parent="CommonTables"',
+        'node name="BenchByWallA" type="MeshInstance3D" parent="CommonTables"',
+        'node name="MugNearEntrance" type="MeshInstance3D" parent="CommonTables"',
+        'node name="StorageProps" type="Node3D" parent="."',
+        'node name="BarrelStackA" type="MeshInstance3D" parent="StorageProps"',
+        'node name="CrateUnderStairs" type="MeshInstance3D" parent="StorageProps"',
+        'node name="RopeBundle" type="MeshInstance3D" parent="WallProps"',
+        'node name="WeatheredMenuBoard" type="Label3D" parent="WallProps"',
+        'node name="SmokeHazeCard" type="MeshInstance3D" parent="WallProps"',
+        'Mat_smoked_plaster',
+        'Mat_soot_wood',
+        'Mat_smoke_haze',
+    ]
+    for expected in required_nodes:
+        assert expected in text, f"Expected full tavern interior detail {expected!r}"
+
+    required_colliders = [
+        'node name="TavernInteriorColliders" type="StaticBody3D" parent="."',
+        'node name="PrivateTableCollision" type="CollisionShape3D" parent="TavernInteriorColliders"',
+        'node name="EntranceTableCollision" type="CollisionShape3D" parent="TavernInteriorColliders"',
+        'node name="WallTableCollision" type="CollisionShape3D" parent="TavernInteriorColliders"',
+        'node name="StairsCollision" type="CollisionShape3D" parent="TavernInteriorColliders"',
+        'node name="PostNearBarCollision" type="CollisionShape3D" parent="TavernInteriorColliders"',
+        'node name="PostPrivateTableCollision" type="CollisionShape3D" parent="TavernInteriorColliders"',
+    ]
+    for expected in required_colliders:
+        assert expected in text, f"Expanded tavern interior must keep furniture/navigation collision: {expected!r}"
+
+
+
 def test_main_tavern_uses_meshy_glb_assets_as_visible_layer_with_fallback_collision():
     text = read(GODOT / "scenes" / "locations" / "greyford" / "TavernInterior.tscn")
     for expected in [

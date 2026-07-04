@@ -1,15 +1,16 @@
-[gd_scene load_steps=18 format=3]
+[gd_scene load_steps=19 format=3]
 
 [ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc_behavior"]
 [ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="2_portal"]
 [ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="3_player"]
+[ext_resource type="Script" path="res://scripts/gameplay/GreyfordGateArtAssembly.gd" id="20_gate_art"]
 
 [sub_resource type="Environment" id="Environment_gate"]
 background_mode = 1
 background_color = Color(0.045, 0.050, 0.052, 1)
-ambient_light_source = 1
-ambient_light_color = Color(0.22, 0.25, 0.26, 1)
-ambient_light_energy = 0.55
+ambient_light_source = 2
+ambient_light_color = Color(0.36, 0.42, 0.48, 1)
+ambient_light_energy = 4.6
 fog_enabled = true
 fog_light_color = Color(0.21, 0.25, 0.27, 1)
 fog_density = 0.04
@@ -190,3 +191,6 @@ prompt = "Вийти на дорогу до Тихого Шелесту"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/ToSwampPortal"]
 shape = SubResource("SphereShape3D_interaction")
+
+[node name="GateArtAssembly" type="Node3D" parent="."]
+script = ExtResource("20_gate_art")

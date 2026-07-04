@@ -1,74 +1,100 @@
 {
-  "dialogue_id": "ervan_about_rufin",
+  "dialogue_id": "about_rufin",
   "npc_id": "ervan",
   "start_node": "node_0",
-  
   "nodes": {
     "node_0": {
       "speaker": "Ерван",
-      "text": "Вартовий у моїй таверні? Це рідкість. Що привело тебе сюди?",
+      "text": "Лист від Руфіна. Значить, ти його шукаєш. І що він тобі був — друг, боржник, чи ти просто наймит-кур'єр?",
       "choices": [
         {
-          "text": "Шукаю Руфіна. Ти бачив його?",
-          "next_node": "node_rufin"
+          "text": "Ми домовились. Я приїхав виконати свою частину.",
+          "next_node": "response_duty",
+          "consequences": {
+            "reputation": {
+              "lightbearers": 1
+            },
+            "set_flag": "ervan_motive_duty"
+          }
         },
         {
-          "text": "Просто хочу випити.",
+          "text": "Він мав щось, що мені потрібне. Або знав когось, хто має.",
+          "next_node": "response_personal",
+          "consequences": {
+            "set_flag": "ervan_motive_personal"
+          }
+        },
+        {
+          "text": "Просто доставив листа. Що далі — вже моя проблема.",
+          "next_node": "response_pragmatic",
+          "consequences": {
+            "set_flag": "ervan_motive_pragmatic"
+          }
+        },
+        {
+          "text": "Спочатку дай випити. Поговоримо потім.",
           "next_node": "node_drink"
         }
-      ]
+      ],
+      "consequences": {
+        "set_flag": "has_rufin_letter"
+      }
     },
-    
-    "node_rufin": {
+    "response_duty": {
       "speaker": "Ерван",
-      "text": "Руфін... Так, він був тут три дні тому. Сидів у кутку, виглядав неспокійно. Щось його турбувало.",
-      "next": "node_rufin_2"
+      "text": "Поважаю. Не часто зустрінеш того, хто тримає слово. Руфін зник три дні тому. Кімната досі оплачена, речі лишились.",
+      "next": "room_offer"
     },
-    
-    "node_rufin_2": {
+    "response_personal": {
       "speaker": "Ерван",
-      "text": "Він випив кілька кухлів, намагався розслабитися. Казав, що йде в болото з «важливим завданням». Не уточнював.",
-      "next": "node_rufin_3"
+      "text": "Хм. Ну дивись, твоя справа. Руфін зник три дні тому. Кімната досі оплачена, речі лишились.",
+      "next": "room_offer"
     },
-    
-    "node_rufin_3": {
+    "response_pragmatic": {
       "speaker": "Ерван",
-      "text": "Перед тим як піти, він розмовляв з кимось біля дверей. Не бачив обличчя, але постать була в темному плащі.",
+      "text": "Ясно. Доставив — і вільний. Руфін зник три дні тому. Кімната досі оплачена, речі лишились.",
+      "next": "room_offer"
+    },
+    "room_offer": {
+      "speaker": "Ерван",
+      "text": "Можеш глянути його кімнату. Вона на другому поверсі, треті двері ліворуч.",
       "choices": [
         {
-          "text": "Хто це міг бути?",
-          "next_node": "node_mystery_person"
+          "text": "Піду огляну кімнату.",
+          "next_node": "node_end",
+          "consequences": {
+            "set_flag": "rufin_room_unlocked"
+          }
         },
         {
-          "text": "Він казав, куди саме йде в болоті?",
-          "next_node": "node_destination"
-        },
-        {
-          "text": "Дякую за інформацію.",
-          "next_node": "node_end"
+          "text": "Розкажи, де ще можна про нього дізнатись.",
+          "next_node": "node_port_recommend"
         }
       ]
     },
-    
-    "node_mystery_person": {
+    "node_port_recommend": {
       "speaker": "Ерван",
-      "text": "Не знаю. Місцеві кажуть, що останнім часом якісь темні постаті з'являються в місті. Може, із Валькорна... або з болота.",
-      "next": "node_rufin_3"
+      "text": "Чув, що Руфіна бачили в портовій таверні. Бармен має пам'ятати його.",
+      "consequences": {
+        "set_flag": "ervan_recommendation"
+      },
+      "choices": [
+        {
+          "text": "Піду огляну кімнату.",
+          "next_node": "node_end",
+          "consequences": {
+            "set_flag": "rufin_room_unlocked"
+          }
+        }
+      ]
     },
-    
-    "node_destination": {
-      "speaker": "Ерван",
-      "text": "Він згадував «Галявину». Більше нічого. Мурі про неї розповідають — місце, де болото «дихає». Але я б не радив туди йти.",
-      "next": "node_rufin_3"
-    },
-    
     "node_drink": {
       "speaker": "Ерван",
       "text": "Гроші на столі, Вартовий. Тут усі платять.",
       "choices": [
         {
           "text": "Насправді, я шукаю Руфіна.",
-          "next_node": "node_rufin"
+          "next_node": "node_0"
         },
         {
           "text": "Дай кухоль ейлю. (5 монет)",
@@ -81,7 +107,6 @@
         }
       ]
     },
-    
     "node_buy_ale": {
       "speaker": "Ерван",
       "text": "Ось, смакуй. Якщо щось потрібно — спитай.",
@@ -97,17 +122,9 @@
       },
       "next": "node_0"
     },
-    
     "node_end": {
       "speaker": "Ерван",
-      "text": "Будь обережний у болоті, Вартовий. Багато хто не повертається звідти.",
-      "consequences": {
-        "quest_update": {
-          "quest_id": "greyford_01_missing_recipient",
-          "objective_id": "investigate_tavern"
-        },
-        "set_flag": "rufin_clues_obtained"
-      }
+      "text": "Якщо знайдеш його — скажи, що кімната чекає."
     }
   }
 }

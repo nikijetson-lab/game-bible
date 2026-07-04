@@ -192,7 +192,23 @@ func check_condition(condition: Dictionary) -> bool:
 		
 		"flag":
 			var flag_name = condition.get("flag", "")
-			# TODO: Global flags system
+			return GameManager.has_flag(flag_name)
+		
+		"not_flag":
+			var flag_name = condition.get("flag", "")
+			return not GameManager.has_flag(flag_name)
+		
+		"doctrine":
+			# Доктрина Вартового: lantern/judge/mediator/scout
+			var doctrine = condition.get("value", "")
+			return GameManager.player_doctrine == doctrine
+		
+		"any_of":
+			# Хоча б одна з вкладених умов
+			var subconditions = condition.get("conditions", [])
+			for sub in subconditions:
+				if check_condition(sub):
+					return true
 			return false
 		
 		_:
@@ -221,11 +237,14 @@ func apply_consequences(consequences: Dictionary) -> void:
 		GameManager.quest_manager.start_quest(quest_data)
 		print("Quest started: ", quest_data.get("id", "?"))
 	
-	# Встановити глобальний флаг
+	# Встановити глобальний флаг (рядок або масив рядків)
 	if consequences.has("set_flag"):
-		var flag_name = consequences["set_flag"]
-		# TODO: Global flags system
-		print("Flag set: ", flag_name)
+		var flag_value = consequences["set_flag"]
+		if flag_value is Array:
+			for f in flag_value:
+				GameManager.set_flag(str(f))
+		else:
+			GameManager.set_flag(str(flag_value))
 
 # Допоміжні функції для UI
 func get_current_speaker() -> String:

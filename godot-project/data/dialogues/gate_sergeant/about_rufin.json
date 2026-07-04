@@ -42,14 +42,59 @@
       "choices": [
         {
           "text": "Шукаю людину. Він пішов і не повернувся.",
-          "next_node": "open_route"
+          "next_node": "truth_response"
         },
         {
           "text": "Оглянути маршрут. Скарги на поселення.",
-          "next_node": "open_route"
+          "next_node": "halftruth_response"
         },
         {
           "text": "Робота. Лист — мій пропуск.",
+          "next_node": "evasion_response"
+        }
+      ]
+    },
+    "truth_response": {
+      "speaker": "Сержант",
+      "text": "*киває* Правду кажеш. Хто шукає — той знайде. Прохід відкритий.",
+      "consequences": {
+        "reputation": {
+          "greyford": 2
+        },
+        "set_flag": [
+          "sergeant_told_truth",
+          "sergeant_recommendation"
+        ]
+      },
+      "choices": [
+        {
+          "text": "Відчиняй.",
+          "next_node": "open_route"
+        }
+      ]
+    },
+    "halftruth_response": {
+      "speaker": "Сержант",
+      "text": "*злегка примружується* Скарги — то справа міської варти, а не Вартового Світла. Але тобі видніше.",
+      "choices": [
+        {
+          "text": "Розраховуй на це.",
+          "next_node": "open_route"
+        }
+      ]
+    },
+    "evasion_response": {
+      "speaker": "Сержант",
+      "text": "*звіряється зі мною, потім із тобою* Лист — це ще не все. Я запам'ятовую тих, хто недоговорює.",
+      "consequences": {
+        "reputation": {
+          "greyford": -2
+        },
+        "set_flag": "sergeant_remembers_evasion"
+      },
+      "choices": [
+        {
+          "text": "Просто відчини.",
           "next_node": "open_route"
         }
       ]
@@ -64,6 +109,23 @@
         },
         "unlock_route": "route_to_tihyi_shelist",
         "set_flag": "greyford_gate_opened"
+      },
+      "choices": [
+        {
+          "text": "Ніс він щось незвичне?",
+          "condition": {
+            "type": "doctrine",
+            "value": "scout"
+          },
+          "next_node": "scout_detail"
+        }
+      ]
+    },
+    "scout_detail": {
+      "speaker": "Сержант",
+      "text": "Ага, пригадую. Не дорожній — більше схожий на вантажний.",
+      "consequences": {
+        "set_flag": "rufin_carried_cargo"
       }
     },
     "end": {

@@ -1,15 +1,16 @@
-[gd_scene load_steps=20 format=3]
+[gd_scene load_steps=21 format=3]
 
 [ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc_behavior"]
 [ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="2_portal"]
 [ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="3_player"]
+[ext_resource type="Script" path="res://scripts/gameplay/CraftsmenQuarterArtAssembly.gd" id="25_craft_art"]
 
 [sub_resource type="Environment" id="Environment_crafts"]
 background_mode = 1
 background_color = Color(0.050, 0.047, 0.042, 1)
-ambient_light_source = 1
-ambient_light_color = Color(0.25, 0.23, 0.18, 1)
-ambient_light_energy = 0.5
+ambient_light_source = 2
+ambient_light_color = Color(0.38, 0.42, 0.44, 1)
+ambient_light_energy = 4.8
 fog_enabled = true
 fog_light_color = Color(0.26, 0.24, 0.20, 1)
 fog_density = 0.024
@@ -229,3 +230,6 @@ prompt = "Йти до портової таверни"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/ToPortTavernPortal"]
 shape = SubResource("SphereShape3D_interaction")
+
+[node name="CraftsmenArtAssembly" type="Node3D" parent="."]
+script = ExtResource("25_craft_art")

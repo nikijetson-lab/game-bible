@@ -21,6 +21,18 @@ const SHOTS := [
 		"out": "res://screenshots/greyford_gate_art_check.png",
 		"cam_pos": Vector3(4.5, 2.6, 3.5),
 		"cam_look": Vector3(-0.5, 2.0, -6.0)
+	},
+	{
+		"scene": "res://scenes/locations/greyford/CraftsmenQuarter.tscn",
+		"out": "res://screenshots/craftsmen_quarter_art_check.png",
+		"cam_pos": Vector3(0.5, 1.8, 3.5),
+		"cam_look": Vector3(-1.0, 1.4, -5.0)
+	},
+	{
+		"scene": "res://scenes/locations/hazemoor/SwampPath.tscn",
+		"out": "res://screenshots/swamp_path_art_check.png",
+		"cam_pos": Vector3(1.5, 1.6, 18.0),
+		"cam_look": Vector3(0.0, 0.6, 15.0)
 	}
 ]
 

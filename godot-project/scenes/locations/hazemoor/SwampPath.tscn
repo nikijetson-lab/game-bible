@@ -1,0 +1,190 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="1_portal"]
+[ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="2_player"]
+[ext_resource type="Script" path="res://scripts/gameplay/SwampLessonTrigger.gd" id="3_lesson"]
+[ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="4_npc"]
+[ext_resource type="Script" path="res://scripts/gameplay/SwampPathArtAssembly.gd" id="5_swamp_art"]
+
+[sub_resource type="Environment" id="Environment_swamp_path"]
+background_mode = 1
+background_color = Color(0.30, 0.32, 0.34, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.40, 0.43, 0.46, 1)
+ambient_light_energy = 1.6
+fog_enabled = true
+fog_light_color = Color(0.38, 0.40, 0.43, 1)
+fog_density = 0.012
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.006
+
+[sub_resource type="BoxShape3D" id="BoxShape_walkway"]
+size = Vector3(2.4, 0.2, 46)
+
+[sub_resource type="SphereShape3D" id="SphereShape_interact"]
+radius = 1.6
+
+[node name="SwampPath" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_swamp_path")
+
+[node name="OvercastLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.25, 0.433013, 0, 0.866025, 0.5, -0.5, -0.433013, 0.75, 0, 10, 0)
+light_color = Color(0.55, 0.58, 0.62, 1)
+light_energy = 1.1
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 21)
+
+[node name="WalkwayFloor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WalkwayFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape_walkway")
+
+[node name="GroundFallback" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GroundFallback"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+shape = SubResource("BoxShape_walkway")
+
+[node name="NPCs" type="Node3D" parent="."]
+
+[node name="Mia" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 1.0, 18.5)
+script = ExtResource("4_npc")
+npc_id = "mia"
+npc_display_name = "Міа"
+default_dialogue_id = "first_meeting"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Mia"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/Mia"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+
+[node name="Lessons" type="Node3D" parent="."]
+
+[node name="Lesson1_NoiseOnWater" type="Area3D" parent="Lessons"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 14)
+script = ExtResource("3_lesson")
+episode_id = "ep1_02_lesson_1"
+episode_title = "Шум на воді"
+situation_text = "Міа рухається безшумно. Ти — ні. Болото звучить навколо: хтось реагує на кроки, завмираючи, далі, далі від протоки. Міа зупиняється і дивиться на тебе. Без слів."
+option_texts = PackedStringArray("Сповільнитись, ступати м'якше", "Зупинитись і дивитись, як вона ставить ноги", "Продовжити як ішов", "Тривожно озирнутись")
+option_deltas = PackedInt32Array(1, 1, 0, -1)
+aftermath_text = "Здобич, яку Міа вистежувала, втрачена. Але урок отримано."
+prompt = "Момент вибору: Шум на воді"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lessons/Lesson1_NoiseOnWater"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Lesson2_NightSpark" type="Area3D" parent="Lessons"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 8)
+script = ExtResource("3_lesson")
+episode_id = "ep1_02_lesson_2"
+episode_title = "Нічна іскра"
+situation_text = "Хтось або щось спостерігає з темряви. Світлячки? Чи не світлячки? У темряві — десятки рухомих жовтих цяток."
+option_texts = PackedStringArray("Спитати Міа — що це?", "Підняти зброю, готуючись", "Спостерігати, не рухаючись")
+option_deltas = PackedInt32Array(1, -1, 0)
+aftermath_text = "«Ти не мусиш боятися всього, що світиться в темряві. Деяке світло просто дивиться — чи варто його боятись.»"
+prompt = "Момент вибору: Нічна іскра"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lessons/Lesson2_NightSpark"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Lesson3_DeepWater" type="Area3D" parent="Lessons"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 2)
+script = ExtResource("3_lesson")
+episode_id = "ep1_02_lesson_3"
+episode_title = "Глибока вода"
+situation_text = "Стариця — широка чорна вода без видимого дна. Міа пірнає і зникає під водою. Довго не з'являється."
+option_texts = PackedStringArray("Чекати", "Пірнати, шукати її", "Кричати, гукати її")
+option_deltas = PackedInt32Array(1, 0, -1)
+aftermath_text = "Болото не завжди небезпечне. Воно просто інше. Страх — поганий порадник. Увага — добрий."
+prompt = "Момент вибору: Глибока вода"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lessons/Lesson3_DeepWater"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Lesson4_NameAtNight" type="Area3D" parent="Lessons"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -4)
+script = ExtResource("3_lesson")
+episode_id = "ep1_02_lesson_4"
+episode_title = "Ім'я вночі"
+situation_text = "Міа спить неспокійно — вперше. Ти чуєш слово, яке вона повторює уві сні. Це ім'я. Воно звучить мовою Мурі — чуже, але запам'ятовується. Вранці:"
+option_texts = PackedStringArray("Спитати — чиє це ім'я?", "Мовчати, але запам'ятати", "Спитати прямо, коли вона не в настрої говорити")
+option_deltas = PackedInt32Array(1, 0, -1)
+aftermath_text = "Чиє саме ім'я — лишилось відкритим. Воно може стати важливим пізніше."
+prompt = "Момент вибору: Ім'я вночі"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lessons/Lesson4_NameAtNight"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Lesson5_ForbiddenPlace" type="Area3D" parent="Lessons"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -10)
+script = ExtResource("3_lesson")
+episode_id = "ep1_02_lesson_5"
+episode_title = "Заборонене місце"
+situation_text = "Міа веде тебе в обхід. Вона зупиняється, дивиться в один бік, потім змінює маршрут. Вона навмисно уникає одного місця."
+option_texts = PackedStringArray("Спитати, що там", "Спробувати піти туди сам", "Мовчки йти за нею")
+option_deltas = PackedInt32Array(1, -1, 0)
+aftermath_text = "«Там щось дуже давнє. Не тривожне. Але й не людське. І не наше. Його не треба турбувати.»"
+prompt = "Момент вибору: Заборонене місце"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lessons/Lesson5_ForbiddenPlace"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Lesson6_ForeignTrace" type="Area3D" parent="Lessons"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -16)
+script = ExtResource("3_lesson")
+episode_id = "ep1_02_lesson_6"
+episode_title = "Чужий слід"
+situation_text = "Міа раптом зупиняється над нерухомою водою. Торкає поверхню. Потім швидко повертається: «Тихо. Не рухайся.» Під водою — щось велике. Не активне. Але територіальне."
+option_texts = PackedStringArray("Стояти на місці, не дихаючи. Чекати знаку Міа", "Повільно відступати", "Спробувати розгледіти, що там")
+option_deltas = PackedInt32Array(1, 0, -1)
+aftermath_text = "Не все, що можна побачити, варто чіпати. Іноді спостереження — це теж дія."
+prompt = "Момент вибору: Чужий слід"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lessons/Lesson6_ForeignTrace"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Lesson7_LastCrossing" type="Area3D" parent="Lessons"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -21)
+script = ExtResource("3_lesson")
+episode_id = "ep1_02_lesson_7"
+episode_title = "Останній перехід"
+situation_text = "Створіння. Те, про що казав шаман — таке, що не можна перемогти. Тільки пройти. Міа проходить повз нього, дивиться йому в очі — не виклично, не зі страхом. Тепер — твоя черга."
+option_texts = PackedStringArray("Не поспішати. Пройти, як вона", "Пройти швидко, не дивлячись", "Приготувати зброю про всяк випадок")
+option_deltas = PackedInt32Array(1, 0, -1)
+aftermath_text = "Межа Тихого Шелесту — позаду останній глейовий місток."
+prompt = "Момент вибору: Останній перехід"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lessons/Lesson7_LastCrossing"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Portals" type="Node3D" parent="."]
+
+[node name="BackToGreyfordGate" type="Area3D" parent="Portals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 23.5)
+script = ExtResource("1_portal")
+destination_scene = "res://scenes/locations/greyford/GreyfordGate.tscn"
+prompt = "Повернутись до воріт Грейфорда"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/BackToGreyfordGate"]
+shape = SubResource("SphereShape_interact")
+
+[node name="ToTykhyiShelest" type="Area3D" parent="Portals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, -23.5)
+script = ExtResource("1_portal")
+destination_scene = ""
+destination_location = "tykhyi_shelest"
+prompt = "Межа Тихого Шелесту"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/ToTykhyiShelest"]
+shape = SubResource("SphereShape_interact")
+
+[node name="SwampArtAssembly" type="Node3D" parent="."]
+script = ExtResource("5_swamp_art")

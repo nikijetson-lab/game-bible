@@ -185,7 +185,7 @@ shape = SubResource("SphereShape3D_interaction")
 [node name="ToSwampPortal" type="Area3D" parent="Portals"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.95, 1.0, 3.8)
 script = ExtResource("2_portal")
-destination_scene = ""
+destination_scene = "res://scenes/locations/hazemoor/SwampPath.tscn"
 destination_location = "route_to_tihyi_shelist"
 prompt = "Вийти на дорогу до Тихого Шелесту"
 

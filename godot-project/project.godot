@@ -31,6 +31,7 @@ Inventory="*res://scripts/core/inventory_manager.gd"
 Combat="*res://scripts/core/combat_manager.gd"
 Weather="*res://scripts/core/weather_manager.gd"
 HeightFog="*res://scripts/environment/height_fog_manager.gd"
+MiaTrust="*res://scripts/core/mia_trust_track.gd"
 
 [display]
 

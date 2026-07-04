@@ -1,131 +1,44 @@
-[gd_scene load_steps=53 format=3]
+[gd_scene format=3 uid="uid://b4cuhxe4kiou8"]
 
-[ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc_behavior"]
+[ext_resource type="Script" uid="uid://cd506symrgbqy" path="res://scripts/ai/NPCBehavior.gd" id="1_npc_behavior"]
 [ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="2_player"]
-[ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="3_portal"]
-[ext_resource type="PackedScene" path="res://assets/meshy/greyford_tavern/ervan_innkeeper.glb" id="4_ervan_glb"]
-[ext_resource type="PackedScene" path="res://assets/meshy/greyford_tavern/tavern_bar_counter.glb" id="5_bar_glb"]
-[ext_resource type="PackedScene" path="res://assets/meshy/greyford_tavern/tavern_props_kit.glb" id="6_props_glb"]
-[ext_resource type="PackedScene" path="res://assets/meshy/greyford_tavern/creaking_sign.glb" id="7_sign_glb"]
-[ext_resource type="PackedScene" path="res://assets/meshy/greyford_tavern/ervan_innkeeper_clean_apron.glb" id="8_ervan_clean_glb"]
-[ext_resource type="Script" path="res://scripts/gameplay/TavernLetterStaging.gd" id="9_letter_staging"]
+[ext_resource type="Script" uid="uid://bi240e334a5c1" path="res://scripts/gameplay/LocationPortal.gd" id="3_portal"]
+[ext_resource type="PackedScene" uid="uid://yrh3kbusop24" path="res://assets/meshy/greyford_tavern/tavern_bar_counter.glb" id="5_bar_glb"]
+[ext_resource type="PackedScene" uid="uid://pvyd2yij5j3i" path="res://assets/meshy/greyford_tavern/tavern_props_kit.glb" id="6_props_glb"]
+[ext_resource type="PackedScene" uid="uid://bdupbcmbixd80" path="res://assets/meshy/greyford_tavern/creaking_sign.glb" id="7_sign_glb"]
+[ext_resource type="PackedScene" uid="uid://c3xas6wavhhvo" path="res://assets/meshy/greyford_tavern/ervan_innkeeper_clean_apron.glb" id="8_ervan_clean_glb"]
+[ext_resource type="Script" uid="uid://b7vunloj4gifh" path="res://scripts/gameplay/TavernLetterStaging.gd" id="9_letter_staging"]
+[ext_resource type="Texture2D" uid="uid://ca18umewh04uw" path="res://assets/textures/greyford_tavern/dark_wood_planks.png" id="10_tex_dark_wood"]
+[ext_resource type="Texture2D" uid="uid://cimrmmagur424" path="res://assets/textures/greyford_tavern/wet_floor_planks.png" id="11_tex_wet_floor"]
+[ext_resource type="Texture2D" uid="uid://ci6f1m670xef8" path="res://assets/textures/greyford_tavern/smoked_plaster.png" id="12_tex_plaster"]
+[ext_resource type="Texture2D" uid="uid://cn7c7ncllsyu7" path="res://assets/textures/greyford_tavern/soot_beams.png" id="13_tex_soot_beams"]
+[ext_resource type="Texture2D" uid="uid://dyrdec34tsjc0" path="res://assets/textures/greyford_tavern/barrel_staves.png" id="14_tex_barrel"]
+[ext_resource type="Texture2D" uid="uid://cncurqrorj5qs" path="res://assets/textures/greyford_tavern/crate_boards.png" id="15_tex_crate"]
+[ext_resource type="Texture2D" uid="uid://dfwntuww45eus" path="res://assets/textures/greyford_tavern/dirty_towel_cloth.png" id="16_tex_towel"]
+[ext_resource type="Texture2D" uid="uid://uuhhki7ygns" path="res://assets/textures/greyford_tavern/aged_paper.png" id="17_tex_paper"]
+[ext_resource type="Texture2D" uid="uid://cpi6tstota0ou" path="res://assets/textures/greyford_tavern/rainy_cold_window.png" id="18_tex_window"]
+[ext_resource type="Script" uid="uid://chdd65bcnql7h" path="res://scripts/gameplay/TavernArtAssembly.gd" id="19_art_assembly"]
 
 [sub_resource type="Environment" id="Environment_tavern"]
 background_mode = 1
-background_color = Color(0.045, 0.04, 0.035, 1)
-ambient_light_source = 1
-ambient_light_color = Color(0.33, 0.25, 0.18, 1)
-ambient_light_energy = 0.48
+background_color = Color(0.025, 0.03, 0.035, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.38, 0.44, 0.50, 1)
+ambient_light_energy = 4.5
 fog_enabled = true
-fog_light_color = Color(0.30, 0.26, 0.22, 1)
-fog_density = 0.035
+fog_light_color = Color(0.24, 0.28, 0.33, 1)
+fog_density = 0.018
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.018
-
-[sub_resource type="StandardMaterial3D" id="Mat_dark_wood"]
-albedo_color = Color(0.18, 0.105, 0.055, 1)
-roughness = 0.9
+volumetric_fog_density = 0.012
 
 [sub_resource type="StandardMaterial3D" id="Mat_wet_floor"]
-albedo_color = Color(0.10, 0.075, 0.055, 1)
-roughness = 0.55
-metallic = 0.0
-
-[sub_resource type="StandardMaterial3D" id="Mat_warm_lamp"]
-albedo_color = Color(1.0, 0.58, 0.23, 1)
-emission_enabled = true
-emission = Color(1.0, 0.45, 0.16, 1)
-emission_energy_multiplier = 1.8
-
-[sub_resource type="StandardMaterial3D" id="Mat_cold_window"]
-albedo_color = Color(0.22, 0.36, 0.44, 0.72)
-emission_enabled = true
-emission = Color(0.12, 0.25, 0.34, 1)
-emission_energy_multiplier = 0.45
-transparency = 1
-
-[sub_resource type="StandardMaterial3D" id="Mat_smoked_plaster"]
-albedo_color = Color(0.19, 0.23, 0.23, 1)
-roughness = 0.92
-
-[sub_resource type="StandardMaterial3D" id="Mat_soot_wood"]
-albedo_color = Color(0.09, 0.075, 0.055, 1)
-roughness = 0.96
-
-[sub_resource type="StandardMaterial3D" id="Mat_rope_net"]
-albedo_color = Color(0.44, 0.36, 0.24, 1)
-roughness = 0.88
-
-[sub_resource type="StandardMaterial3D" id="Mat_clay_mug"]
-albedo_color = Color(0.42, 0.27, 0.16, 1)
-roughness = 0.86
-
-[sub_resource type="StandardMaterial3D" id="Mat_smoke_haze"]
-albedo_color = Color(0.36, 0.42, 0.42, 0.28)
-transparency = 1
-roughness = 1.0
-
-
-[sub_resource type="StandardMaterial3D" id="Mat_paper_seal"]
-albedo_color = Color(0.72, 0.62, 0.46, 1)
-roughness = 0.8
-
-[sub_resource type="StandardMaterial3D" id="Mat_towel_cloth"]
-albedo_color = Color(0.58, 0.52, 0.40, 1)
-roughness = 0.95
-
-[sub_resource type="StandardMaterial3D" id="Mat_wax_seal"]
-albedo_color = Color(0.46, 0.035, 0.025, 1)
-roughness = 0.55
-
-[sub_resource type="StandardMaterial3D" id="Mat_metal"]
-albedo_color = Color(0.33, 0.30, 0.25, 1)
-metallic = 0.45
-roughness = 0.62
-
-[sub_resource type="StandardMaterial3D" id="Mat_leather_apron"]
-albedo_color = Color(0.29, 0.16, 0.08, 1)
+albedo_color = Color(0.46, 0.36, 0.27, 1)
+albedo_texture = ExtResource("11_tex_wet_floor")
 roughness = 0.85
 
-[sub_resource type="StandardMaterial3D" id="Mat_brass_key"]
-albedo_color = Color(0.78, 0.6, 0.22, 1)
-metallic = 0.7
-roughness = 0.35
-emission_enabled = true
-emission = Color(0.35, 0.26, 0.08, 1)
-emission_energy_multiplier = 0.3
-
-[sub_resource type="BoxMesh" id="BoxMesh_apron"]
-size = Vector3(0.62, 0.9, 0.12)
-material = SubResource("Mat_leather_apron")
-
-[sub_resource type="BoxMesh" id="BoxMesh_towel"]
-size = Vector3(0.24, 0.5, 0.05)
-material = SubResource("Mat_towel_cloth")
-
-[sub_resource type="TorusMesh" id="TorusMesh_keyring"]
-inner_radius = 0.05
-outer_radius = 0.09
-
-[sub_resource type="BoxMesh" id="BoxMesh_key"]
-size = Vector3(0.04, 0.18, 0.02)
-material = SubResource("Mat_brass_key")
-
-[sub_resource type="BoxMesh" id="BoxMesh_letter"]
-size = Vector3(0.46, 0.30, 0.018)
-material = SubResource("Mat_paper_seal")
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_wax_seal"]
-top_radius = 0.055
-bottom_radius = 0.055
-height = 0.018
-radial_segments = 24
-rings = 1
-material = SubResource("Mat_wax_seal")
-
 [sub_resource type="BoxMesh" id="BoxMesh_floor"]
-size = Vector3(17, 0.35, 13)
 material = SubResource("Mat_wet_floor")
+size = Vector3(17, 0.35, 13)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
 size = Vector3(17, 0.35, 13)
@@ -136,18 +49,117 @@ size = Vector3(17.6, 3.2, 0.55)
 [sub_resource type="BoxShape3D" id="BoxShape3D_boundary_side"]
 size = Vector3(0.55, 3.2, 13.6)
 
-[sub_resource type="BoxMesh" id="BoxMesh_bar"]
-size = Vector3(6.2, 1.2, 0.9)
+[sub_resource type="StandardMaterial3D" id="Mat_dark_wood"]
+albedo_color = Color(0.55, 0.38, 0.22, 1)
+albedo_texture = ExtResource("10_tex_dark_wood")
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="BoxMesh_leg"]
 material = SubResource("Mat_dark_wood")
+size = Vector3(0.16, 0.85, 0.16)
+
+[sub_resource type="StandardMaterial3D" id="Mat_smoked_plaster"]
+albedo_color = Color(0.58, 0.64, 0.62, 1)
+albedo_texture = ExtResource("12_tex_plaster")
+roughness = 0.92
+
+[sub_resource type="BoxMesh" id="BoxMesh_board"]
+material = SubResource("Mat_dark_wood")
+size = Vector3(1.8, 1.2, 0.08)
+
+[sub_resource type="StandardMaterial3D" id="Mat_soot_wood"]
+albedo_color = Color(0.42, 0.31, 0.22, 1)
+albedo_texture = ExtResource("13_tex_soot_beams")
+roughness = 0.96
+
+[sub_resource type="StandardMaterial3D" id="Mat_warm_lamp"]
+albedo_color = Color(1, 0.58, 0.23, 1)
+emission_enabled = true
+emission = Color(1, 0.45, 0.16, 1)
+emission_energy_multiplier = 1.8
+
+[sub_resource type="StandardMaterial3D" id="Mat_metal"]
+albedo_color = Color(0.33, 0.3, 0.25, 1)
+metallic = 0.45
+roughness = 0.62
+
+[sub_resource type="SphereMesh" id="SphereMesh_bottle"]
+material = SubResource("Mat_metal")
+radius = 0.12
+height = 0.42
+
+[sub_resource type="BoxMesh" id="BoxMesh_beam"]
+material = SubResource("Mat_dark_wood")
+size = Vector3(0.32, 3.1, 0.32)
+
+[sub_resource type="StandardMaterial3D" id="Mat_cold_window"]
+transparency = 1
+albedo_color = Color(0.65, 0.86, 0.95, 0.82)
+albedo_texture = ExtResource("18_tex_window")
+emission_enabled = true
+emission = Color(0.18, 0.36, 0.48, 1)
+emission_energy_multiplier = 0.75
+
+[sub_resource type="BoxMesh" id="BoxMesh_bar"]
+material = SubResource("Mat_dark_wood")
+size = Vector3(6.2, 1.2, 0.9)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bar"]
 size = Vector3(6.2, 1.2, 0.9)
 
+[sub_resource type="StandardMaterial3D" id="Mat_paper_seal"]
+albedo_color = Color(0.9, 0.78, 0.56, 1)
+albedo_texture = ExtResource("17_tex_paper")
+roughness = 0.8
+
+[sub_resource type="StandardMaterial3D" id="Mat_clay_mug"]
+albedo_color = Color(0.42, 0.27, 0.16, 1)
+roughness = 0.86
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mug"]
+material = SubResource("Mat_clay_mug")
+top_radius = 0.08
+bottom_radius = 0.07
+height = 0.18
+radial_segments = 12
+rings = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_table"]
+material = SubResource("Mat_dark_wood")
+size = Vector3(2, 0.18, 1.25)
+
+[sub_resource type="StandardMaterial3D" id="Mat_rope_net"]
+albedo_color = Color(0.64, 0.53, 0.36, 1)
+albedo_texture = ExtResource("16_tex_towel")
+roughness = 0.88
+
+[sub_resource type="TorusMesh" id="TorusMesh_keyring"]
+inner_radius = 0.05
+outer_radius = 0.09
+
+[sub_resource type="StandardMaterial3D" id="Mat_smoke_haze"]
+transparency = 1
+albedo_color = Color(0.36, 0.42, 0.42, 0.28)
+
+[sub_resource type="StandardMaterial3D" id="Mat_barrel_staves"]
+albedo_color = Color(0.72, 0.45, 0.22, 1)
+albedo_texture = ExtResource("14_tex_barrel")
+roughness = 0.88
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_barrel"]
+material = SubResource("Mat_barrel_staves")
+top_radius = 0.32
+bottom_radius = 0.36
+height = 0.82
+radial_segments = 16
+
+[sub_resource type="StandardMaterial3D" id="Mat_crate_boards"]
+albedo_color = Color(0.7, 0.43, 0.22, 1)
+albedo_texture = ExtResource("15_tex_crate")
+roughness = 0.9
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_table_collision"]
 size = Vector3(2.15, 0.32, 1.4)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_bench_collision"]
-size = Vector3(1.75, 0.45, 0.42)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_stair_collision"]
 size = Vector3(2.2, 1.05, 2.4)
@@ -155,559 +167,669 @@ size = Vector3(2.2, 1.05, 2.4)
 [sub_resource type="BoxShape3D" id="BoxShape3D_post_collision"]
 size = Vector3(0.48, 2.8, 0.48)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_barrel"]
-top_radius = 0.32
-bottom_radius = 0.36
-height = 0.82
-radial_segments = 16
-rings = 4
-material = SubResource("Mat_dark_wood")
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_mug"]
-top_radius = 0.08
-bottom_radius = 0.07
-height = 0.18
-radial_segments = 12
-rings = 1
-material = SubResource("Mat_clay_mug")
-
-
-[sub_resource type="BoxMesh" id="BoxMesh_table"]
-size = Vector3(2.0, 0.18, 1.25)
-material = SubResource("Mat_dark_wood")
-
-[sub_resource type="BoxMesh" id="BoxMesh_leg"]
-size = Vector3(0.16, 0.85, 0.16)
-material = SubResource("Mat_dark_wood")
-
-[sub_resource type="BoxMesh" id="BoxMesh_beam"]
-size = Vector3(0.32, 3.1, 0.32)
-material = SubResource("Mat_dark_wood")
-
-[sub_resource type="BoxMesh" id="BoxMesh_board"]
-size = Vector3(1.8, 1.2, 0.08)
-material = SubResource("Mat_dark_wood")
+[sub_resource type="SphereShape3D" id="SphereShape3D_interaction"]
+radius = 1.7
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_npc"]
 radius = 0.35
 height = 1.8
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_interaction"]
-radius = 1.7
+[sub_resource type="BoxMesh" id="BoxMesh_letter"]
+material = SubResource("Mat_paper_seal")
+size = Vector3(0.46, 0.3, 0.018)
 
-[sub_resource type="SphereMesh" id="SphereMesh_bottle"]
-radius = 0.12
-height = 0.42
-material = SubResource("Mat_metal")
+[sub_resource type="StandardMaterial3D" id="Mat_wax_seal"]
+albedo_color = Color(0.46, 0.035, 0.025, 1)
+roughness = 0.55
 
-[node name="TavernInterior" type="Node3D"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_wax_seal"]
+material = SubResource("Mat_wax_seal")
+top_radius = 0.055
+bottom_radius = 0.055
+height = 0.018
+radial_segments = 24
+rings = 1
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[sub_resource type="StandardMaterial3D" id="Mat_leather_apron"]
+albedo_color = Color(0.29, 0.16, 0.08, 1)
+roughness = 0.85
+
+[sub_resource type="BoxMesh" id="BoxMesh_apron"]
+material = SubResource("Mat_leather_apron")
+size = Vector3(0.62, 0.9, 0.12)
+
+[sub_resource type="StandardMaterial3D" id="Mat_towel_cloth"]
+albedo_color = Color(0.74, 0.66, 0.48, 1)
+albedo_texture = ExtResource("16_tex_towel")
+roughness = 0.95
+
+[sub_resource type="BoxMesh" id="BoxMesh_towel"]
+material = SubResource("Mat_towel_cloth")
+size = Vector3(0.24, 0.5, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="Mat_brass_key"]
+albedo_color = Color(0.78, 0.6, 0.22, 1)
+metallic = 0.7
+roughness = 0.35
+emission_enabled = true
+emission = Color(0.35, 0.26, 0.08, 1)
+emission_energy_multiplier = 0.3
+
+[sub_resource type="BoxMesh" id="BoxMesh_key"]
+material = SubResource("Mat_brass_key")
+size = Vector3(0.04, 0.18, 0.02)
+
+[node name="TavernInterior" type="Node3D" unique_id=1405664555]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=470120778]
 environment = SubResource("Environment_tavern")
 
-[node name="ColdWindowLight" type="DirectionalLight3D" parent="."]
+[node name="ColdWindowLight" type="DirectionalLight3D" parent="." unique_id=1930933333]
 transform = Transform3D(0.819152, -0.286788, 0.496732, 0, 0.866025, 0.5, -0.573576, -0.409576, 0.709406, 0, 4, 0)
-light_color = Color(0.45, 0.62, 0.75, 1)
-light_energy = 0.95
+light_color = Color(0.55, 0.68, 0.80, 1)
+light_energy = 2.1
 shadow_enabled = true
 
-[node name="BarLanternLight" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2, 2.7, -3.05)
-light_color = Color(1, 0.58, 0.28, 1)
-light_energy = 2.7
+[node name="WindowColdSpill1" type="OmniLight3D" parent="." unique_id=1930933401]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9, 2.0, -2.2)
+light_color = Color(0.55, 0.68, 0.82, 1)
+light_energy = 2.6
+shadow_enabled = false
 omni_range = 7.5
-shadow_enabled = true
 
-[node name="PrivateTableLanternLight" type="OmniLight3D" parent="."]
+[node name="WindowColdSpill2" type="OmniLight3D" parent="." unique_id=1930933402]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9, 2.0, 2.4)
+light_color = Color(0.55, 0.68, 0.82, 1)
+light_energy = 2.6
+shadow_enabled = false
+omni_range = 7.5
+
+[node name="WindowColdSpillRight" type="OmniLight3D" parent="." unique_id=1930933403]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9, 2.0, 0.2)
+light_color = Color(0.52, 0.64, 0.78, 1)
+light_energy = 2.0
+shadow_enabled = false
+omni_range = 6.5
+
+[node name="HallCeilingFill" type="OmniLight3D" parent="." unique_id=1930933404]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2.6, 0.4)
+light_color = Color(0.46, 0.54, 0.62, 1)
+light_energy = 1.4
+shadow_enabled = false
+omni_range = 11.0
+
+[node name="BarLanternLight" type="OmniLight3D" parent="." unique_id=1653638063]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2, 2.7, -3.05)
+light_color = Color(1, 0.52, 0.22, 1)
+light_energy = 3.2
+shadow_enabled = true
+omni_range = 9.0
+
+[node name="PrivateTableLanternLight" type="OmniLight3D" parent="." unique_id=1139089209]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 1.45, 2.65)
-light_color = Color(1, 0.54, 0.25, 1)
-light_energy = 1.75
-omni_range = 4.5
+light_color = Color(1, 0.5, 0.22, 1)
+light_energy = 1.1
 shadow_enabled = true
+omni_range = 3.6
 
-[node name="Player" parent="." instance=ExtResource("2_player")]
-transform = Transform3D(0.92388, 0, -0.382683, 0, 1, 0, 0.382683, 0, 0.92388, 0.2, 1.0, 4.2)
+[node name="Player" parent="." unique_id=1940649330 instance=ExtResource("2_player")]
+transform = Transform3D(0.92388, 0, -0.382683, 0, 1, 0, 0.382683, 0, 0.92388, 0.2, 1, 4.2)
 
-[node name="Floor" type="StaticBody3D" parent="."]
+[node name="ArtAssembly" type="Node3D" parent="." unique_id=1622492634]
+script = ExtResource("19_art_assembly")
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=1873083661]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.175, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=1936463884]
 mesh = SubResource("BoxMesh_floor")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1477289483]
 shape = SubResource("BoxShape3D_floor")
 
-[node name="Boundaries" type="StaticBody3D" parent="."]
+[node name="Boundaries" type="StaticBody3D" parent="." unique_id=1008219334]
 
-[node name="NorthWall" type="CollisionShape3D" parent="Boundaries"]
+[node name="NorthWall" type="CollisionShape3D" parent="Boundaries" unique_id=607303275]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 6.75)
 shape = SubResource("BoxShape3D_boundary_long")
 
-[node name="SouthWall" type="CollisionShape3D" parent="Boundaries"]
+[node name="SouthWall" type="CollisionShape3D" parent="Boundaries" unique_id=1962292449]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, -6.75)
 shape = SubResource("BoxShape3D_boundary_long")
 
-[node name="WestWall" type="CollisionShape3D" parent="Boundaries"]
+[node name="WestWall" type="CollisionShape3D" parent="Boundaries" unique_id=1934047024]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.75, 1.35, 0)
 shape = SubResource("BoxShape3D_boundary_side")
 
-[node name="EastWall" type="CollisionShape3D" parent="Boundaries"]
+[node name="EastWall" type="CollisionShape3D" parent="Boundaries" unique_id=106802400]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.75, 1.35, 0)
 shape = SubResource("BoxShape3D_boundary_side")
 
-[node name="MeshyAssets" type="Node3D" parent="."]
+[node name="MeshyAssets" type="Node3D" parent="." unique_id=1605883345]
 metadata/task_ids = "ervan:019f217e-745c-7430-b4b6-d9d766fbd433;bar:019f217e-8a0b-72c8-a090-d2ac0049ac7f;props:019f217e-9640-72ca-9186-60a441319b54;sign:019f217e-a7c4-7cb3-96e5-54cc84190472"
 metadata/credits_consumed = 90
 metadata/source_reference = "visual/concept_art_vision/items/007_p03_ervan_-_khaziain_postoialoho_dvoru.png"
 metadata/note = "Visible Meshy GLB layer; primitive meshes and collision shapes remain as gameplay fallback."
 
-[node name="MeshyBarCounter" parent="MeshyAssets" instance=ExtResource("5_bar_glb")]
+[node name="MeshyBarCounter" parent="MeshyAssets" unique_id=1490801440 instance=ExtResource("5_bar_glb")]
 transform = Transform3D(3.2476, 0, -0.2842, 0, 1.115, 0, 0.0811, 0, 0.9264, -3.1, 0.6, -3.35)
 
-[node name="MeshyPropsKit" parent="MeshyAssets" instance=ExtResource("6_props_glb")]
-transform = Transform3D(1.42, 0, 0.42, 0, 1.0, 0, -0.42, 0, 1.42, 3.1, 0.82, 2.45)
+[node name="MeshyPropsKit" parent="MeshyAssets" unique_id=1883932704 instance=ExtResource("6_props_glb")]
+transform = Transform3D(1.42, 0, 0.42, 0, 1, 0, -0.42, 0, 1.42, 3.1, 0.82, 2.45)
 
-[node name="MeshyCreakingSign" parent="MeshyAssets" instance=ExtResource("7_sign_glb")]
+[node name="MeshyCreakingSign" parent="MeshyAssets" unique_id=1207522806 instance=ExtResource("7_sign_glb")]
 transform = Transform3D(0.68, 0, 0, 0, 0.68, 0, 0, 0, 0.68, -6.65, 2.15, 4.75)
 
-[node name="Architecture" type="Node3D" parent="."]
+[node name="Architecture" type="Node3D" parent="." unique_id=783882590]
 metadata/art_reference = "007_p03 Ervan innkeeper art: dark smoked wood, blue-gray haze, amber lantern pools, cluttered old tavern interior."
 
-[node name="BackWall" type="MeshInstance3D" parent="Architecture"]
+[node name="BackWall" type="MeshInstance3D" parent="Architecture" unique_id=1100586262]
 transform = Transform3D(17, 0, 0, 0, 3.2, 0, 0, 0, 0.22, 0, 1.45, -6.4)
 mesh = SubResource("BoxMesh_leg")
 
-[node name="LeftWall" type="MeshInstance3D" parent="Architecture"]
+[node name="LeftWall" type="MeshInstance3D" parent="Architecture" unique_id=2041464272]
 transform = Transform3D(0.22, 0, 0, 0, 3.2, 0, 0, 0, 13, -8.45, 1.45, 0)
 mesh = SubResource("BoxMesh_leg")
 
-[node name="RightWall" type="MeshInstance3D" parent="Architecture"]
+[node name="RightWall" type="MeshInstance3D" parent="Architecture" unique_id=899409996]
 transform = Transform3D(0.22, 0, 0, 0, 3.2, 0, 0, 0, 13, 8.45, 1.45, 0)
 mesh = SubResource("BoxMesh_leg")
 
-[node name="BackPlasterInset" type="MeshInstance3D" parent="Architecture"]
+[node name="BackPlasterInset" type="MeshInstance3D" parent="Architecture" unique_id=2005122289]
 transform = Transform3D(12.8, 0, 0, 0, 2.3, 0, 0, 0, 0.08, 0.75, 1.45, -6.18)
-mesh = SubResource("BoxMesh_board")
 material_override = SubResource("Mat_smoked_plaster")
+mesh = SubResource("BoxMesh_board")
 
-[node name="LeftPlasterInset" type="MeshInstance3D" parent="Architecture"]
+[node name="LeftPlasterInset" type="MeshInstance3D" parent="Architecture" unique_id=73861923]
 transform = Transform3D(0.08, 0, 0, 0, 2.25, 0, 0, 0, 9.6, -8.18, 1.45, 0.25)
-mesh = SubResource("BoxMesh_board")
 material_override = SubResource("Mat_smoked_plaster")
+mesh = SubResource("BoxMesh_board")
 
-[node name="RightPlasterInset" type="MeshInstance3D" parent="Architecture"]
+[node name="RightPlasterInset" type="MeshInstance3D" parent="Architecture" unique_id=458101744]
 transform = Transform3D(0.08, 0, 0, 0, 2.25, 0, 0, 0, 9.6, 8.18, 1.45, 0.25)
-mesh = SubResource("BoxMesh_board")
 material_override = SubResource("Mat_smoked_plaster")
+mesh = SubResource("BoxMesh_board")
 
-[node name="LowCeiling" type="MeshInstance3D" parent="Architecture"]
+[node name="LowCeiling" type="MeshInstance3D" parent="Architecture" unique_id=270711556]
 transform = Transform3D(17, 0, 0, 0, 0.18, 0, 0, 0, 13, 0, 3.18, 0)
-mesh = SubResource("BoxMesh_leg")
 material_override = SubResource("Mat_soot_wood")
+mesh = SubResource("BoxMesh_leg")
 
-[node name="CeilingRafterNorth" type="MeshInstance3D" parent="Architecture"]
+[node name="CeilingRafterNorth" type="MeshInstance3D" parent="Architecture" unique_id=492210213]
 transform = Transform3D(0.34, 0, 0, 0, 0.24, 0, 0, 0, 13.2, -3.8, 2.98, 0)
-mesh = SubResource("BoxMesh_leg")
 material_override = SubResource("Mat_soot_wood")
+mesh = SubResource("BoxMesh_leg")
 
-[node name="CeilingRafterSouth" type="MeshInstance3D" parent="Architecture"]
+[node name="CeilingRafterSouth" type="MeshInstance3D" parent="Architecture" unique_id=822525880]
 transform = Transform3D(0.34, 0, 0, 0, 0.24, 0, 0, 0, 13.2, 3.8, 2.98, 0)
-mesh = SubResource("BoxMesh_leg")
 material_override = SubResource("Mat_soot_wood")
+mesh = SubResource("BoxMesh_leg")
 
-[node name="CeilingBeam01" type="MeshInstance3D" parent="Architecture"]
+[node name="CeilingBeam01" type="MeshInstance3D" parent="Architecture" unique_id=1809996467]
 transform = Transform3D(17, 0, 0, 0, 0.25, 0, 0, 0, 0.28, 0, 3.1, -2.2)
 mesh = SubResource("BoxMesh_leg")
 
-[node name="CeilingBeam02" type="MeshInstance3D" parent="Architecture"]
+[node name="CeilingBeam02" type="MeshInstance3D" parent="Architecture" unique_id=1911547710]
 transform = Transform3D(17, 0, 0, 0, 0.25, 0, 0, 0, 0.28, 0, 3.1, 2.4)
 mesh = SubResource("BoxMesh_leg")
 
-[node name="HangingLantern" type="MeshInstance3D" parent="Architecture"]
+[node name="HangingLantern" type="MeshInstance3D" parent="Architecture" unique_id=83740726]
 transform = Transform3D(0.34, 0, 0, 0, 0.52, 0, 0, 0, 0.34, -1.9, 2.35, -1.2)
-mesh = SubResource("SphereMesh_bottle")
 material_override = SubResource("Mat_warm_lamp")
+mesh = SubResource("SphereMesh_bottle")
 
-[node name="PostNearBar" type="MeshInstance3D" parent="Architecture"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9, 1.3, -2.0)
+[node name="PostNearBar" type="MeshInstance3D" parent="Architecture" unique_id=884887294]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9, 1.3, -2)
 mesh = SubResource("BoxMesh_beam")
 
-[node name="PostPrivateTable" type="MeshInstance3D" parent="Architecture"]
+[node name="PostPrivateTable" type="MeshInstance3D" parent="Architecture" unique_id=1350172469]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9, 1.3, 1.2)
 mesh = SubResource("BoxMesh_beam")
 
-[node name="RainWindowLarge" type="MeshInstance3D" parent="Architecture"]
+[node name="RainWindowLarge" type="MeshInstance3D" parent="Architecture" unique_id=370876924]
 transform = Transform3D(2.5, 0, 0, 0, 1.45, 0, 0, 0, 0.05, 3.3, 1.65, 6.35)
-mesh = SubResource("BoxMesh_board")
 material_override = SubResource("Mat_cold_window")
+mesh = SubResource("BoxMesh_board")
 
-[node name="RainWindowBar" type="MeshInstance3D" parent="Architecture"]
+[node name="RainWindowBar" type="MeshInstance3D" parent="Architecture" unique_id=1667096250]
 transform = Transform3D(1.8, 0, 0, 0, 1.15, 0, 0, 0, 0.05, -5.4, 1.65, -6.28)
-mesh = SubResource("BoxMesh_board")
 material_override = SubResource("Mat_cold_window")
+mesh = SubResource("BoxMesh_board")
 
-[node name="StairsToRooms" type="Node3D" parent="Architecture"]
+[node name="RainWindowLargeFrameTop" type="MeshInstance3D" parent="Architecture" unique_id=1260435982]
+transform = Transform3D(2.75, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 3.3, 2.43, 6.28)
+material_override = SubResource("Mat_soot_wood")
+mesh = SubResource("BoxMesh_leg")
+
+[node name="RainWindowLargeFrameBottom" type="MeshInstance3D" parent="Architecture" unique_id=1243844776]
+transform = Transform3D(2.75, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 3.3, 0.87, 6.28)
+material_override = SubResource("Mat_soot_wood")
+mesh = SubResource("BoxMesh_leg")
+
+[node name="RainWindowLargeFrameLeft" type="MeshInstance3D" parent="Architecture" unique_id=1643039906]
+transform = Transform3D(0.12, 0, 0, 0, 1.55, 0, 0, 0, 0.12, 1.93, 1.65, 6.28)
+material_override = SubResource("Mat_soot_wood")
+mesh = SubResource("BoxMesh_leg")
+
+[node name="RainWindowLargeFrameRight" type="MeshInstance3D" parent="Architecture" unique_id=1758013966]
+transform = Transform3D(0.12, 0, 0, 0, 1.55, 0, 0, 0, 0.12, 4.67, 1.65, 6.28)
+material_override = SubResource("Mat_soot_wood")
+mesh = SubResource("BoxMesh_leg")
+
+[node name="RainWindowBarFrameTop" type="MeshInstance3D" parent="Architecture" unique_id=2019194587]
+transform = Transform3D(2, 0, 0, 0, 0.11, 0, 0, 0, 0.12, -5.4, 2.28, -6.18)
+material_override = SubResource("Mat_soot_wood")
+mesh = SubResource("BoxMesh_leg")
+
+[node name="RainWindowBarFrameBottom" type="MeshInstance3D" parent="Architecture" unique_id=1772478831]
+transform = Transform3D(2, 0, 0, 0, 0.11, 0, 0, 0, 0.12, -5.4, 1.02, -6.18)
+material_override = SubResource("Mat_soot_wood")
+mesh = SubResource("BoxMesh_leg")
+
+[node name="StairsToRooms" type="Node3D" parent="Architecture" unique_id=2109843142]
 transform = Transform3D(0.766044, 0, -0.642788, 0, 1, 0, 0.642788, 0, 0.766044, 5.6, 0.18, -3.7)
 
-[node name="Step01" type="MeshInstance3D" parent="Architecture/StairsToRooms"]
+[node name="Step01" type="MeshInstance3D" parent="Architecture/StairsToRooms" unique_id=1956912021]
 transform = Transform3D(1.8, 0, 0, 0, 0.18, 0, 0, 0, 0.55, 0, 0.15, 0)
+material_override = SubResource("Mat_dark_wood")
 mesh = SubResource("BoxMesh_leg")
 
-[node name="Step02" type="MeshInstance3D" parent="Architecture/StairsToRooms"]
+[node name="Step02" type="MeshInstance3D" parent="Architecture/StairsToRooms" unique_id=1949353545]
 transform = Transform3D(1.8, 0, 0, 0, 0.18, 0, 0, 0, 0.55, 0, 0.42, -0.5)
+material_override = SubResource("Mat_dark_wood")
 mesh = SubResource("BoxMesh_leg")
 
-[node name="Step03" type="MeshInstance3D" parent="Architecture/StairsToRooms"]
-transform = Transform3D(1.8, 0, 0, 0, 0.18, 0, 0, 0, 0.55, 0, 0.69, -1.0)
+[node name="Step03" type="MeshInstance3D" parent="Architecture/StairsToRooms" unique_id=978588564]
+transform = Transform3D(1.8, 0, 0, 0, 0.18, 0, 0, 0, 0.55, 0, 0.69, -1)
+material_override = SubResource("Mat_dark_wood")
 mesh = SubResource("BoxMesh_leg")
 
-[node name="Step04" type="MeshInstance3D" parent="Architecture/StairsToRooms"]
+[node name="Step04" type="MeshInstance3D" parent="Architecture/StairsToRooms" unique_id=216527919]
 transform = Transform3D(1.8, 0, 0, 0, 0.18, 0, 0, 0, 0.55, 0, 0.96, -1.5)
+material_override = SubResource("Mat_dark_wood")
 mesh = SubResource("BoxMesh_leg")
 
-[node name="Step05" type="MeshInstance3D" parent="Architecture/StairsToRooms"]
-transform = Transform3D(1.8, 0, 0, 0, 0.18, 0, 0, 0, 0.55, 0, 1.23, -2.0)
+[node name="Step05" type="MeshInstance3D" parent="Architecture/StairsToRooms" unique_id=202639149]
+transform = Transform3D(1.8, 0, 0, 0, 0.18, 0, 0, 0, 0.55, 0, 1.23, -2)
+material_override = SubResource("Mat_dark_wood")
 mesh = SubResource("BoxMesh_leg")
 
-[node name="Step06" type="MeshInstance3D" parent="Architecture/StairsToRooms"]
-transform = Transform3D(1.8, 0, 0, 0, 0.18, 0, 0, 0, 0.55, 0, 1.50, -2.5)
+[node name="Step06" type="MeshInstance3D" parent="Architecture/StairsToRooms" unique_id=63819143]
+transform = Transform3D(1.8, 0, 0, 0, 0.18, 0, 0, 0, 0.55, 0, 1.5, -2.5)
+material_override = SubResource("Mat_dark_wood")
 mesh = SubResource("BoxMesh_leg")
 
-[node name="StairRailLeft" type="MeshInstance3D" parent="Architecture/StairsToRooms"]
+[node name="StairRailLeft" type="MeshInstance3D" parent="Architecture/StairsToRooms" unique_id=879439285]
 transform = Transform3D(0.16, 0, 0, 0, 1.15, 0, 0, 0, 2.8, -0.98, 0.95, -1.22)
-mesh = SubResource("BoxMesh_leg")
 material_override = SubResource("Mat_soot_wood")
+mesh = SubResource("BoxMesh_leg")
 
-[node name="StairRailRight" type="MeshInstance3D" parent="Architecture/StairsToRooms"]
+[node name="StairRailRight" type="MeshInstance3D" parent="Architecture/StairsToRooms" unique_id=2012895187]
 transform = Transform3D(0.16, 0, 0, 0, 1.15, 0, 0, 0, 2.8, 0.98, 0.95, -1.22)
-mesh = SubResource("BoxMesh_leg")
 material_override = SubResource("Mat_soot_wood")
+mesh = SubResource("BoxMesh_leg")
 
-[node name="BarCounter" type="StaticBody3D" parent="."]
+[node name="BarCounter" type="StaticBody3D" parent="." unique_id=2014354413]
 transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, -3.1, 0.6, -3.35)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="BarCounter"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BarCounter" unique_id=684110187]
 mesh = SubResource("BoxMesh_bar")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BarCounter"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BarCounter" unique_id=1301748671]
 shape = SubResource("BoxShape3D_bar")
 
-[node name="BottleRow" type="Node3D" parent="BarCounter"]
+[node name="BottleRow" type="Node3D" parent="BarCounter" unique_id=863441499]
 
-[node name="Bottle01" type="MeshInstance3D" parent="BarCounter/BottleRow"]
+[node name="Bottle01" type="MeshInstance3D" parent="BarCounter/BottleRow" unique_id=599881358]
 transform = Transform3D(0.7, 0, 0, 0, 1.4, 0, 0, 0, 0.7, -1.9, 0.78, -0.23)
 mesh = SubResource("SphereMesh_bottle")
 
-[node name="Bottle02" type="MeshInstance3D" parent="BarCounter/BottleRow"]
-transform = Transform3D(0.6, 0, 0, 0, 1.1, 0, 0, 0, 0.6, -1.45, 0.70, -0.25)
+[node name="Bottle02" type="MeshInstance3D" parent="BarCounter/BottleRow" unique_id=311682400]
+transform = Transform3D(0.6, 0, 0, 0, 1.1, 0, 0, 0, 0.6, -1.45, 0.7, -0.25)
 mesh = SubResource("SphereMesh_bottle")
 
-[node name="Bottle03" type="MeshInstance3D" parent="BarCounter/BottleRow"]
+[node name="Bottle03" type="MeshInstance3D" parent="BarCounter/BottleRow" unique_id=748169936]
 transform = Transform3D(0.8, 0, 0, 0, 1.25, 0, 0, 0, 0.8, -0.95, 0.73, -0.22)
 mesh = SubResource("SphereMesh_bottle")
 
-[node name="OilLampOnBar" type="MeshInstance3D" parent="BarCounter"]
+[node name="OilLampOnBar" type="MeshInstance3D" parent="BarCounter" unique_id=1214065749]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 1.85, 0.88, -0.17)
-mesh = SubResource("SphereMesh_bottle")
 material_override = SubResource("Mat_warm_lamp")
+mesh = SubResource("SphereMesh_bottle")
 
-[node name="SealedLetter" type="MeshInstance3D" parent="BarCounter"]
-visible = false
+[node name="SealedLetter" type="MeshInstance3D" parent="BarCounter" unique_id=10075072]
 transform = Transform3D(0.72, 0, -0.1, 0, 0.04, 0, 0.1, 0, 0.48, -0.15, 0.74, 0.03)
-mesh = SubResource("BoxMesh_board")
+visible = false
 material_override = SubResource("Mat_paper_seal")
+mesh = SubResource("BoxMesh_board")
 metadata/removed_from_start = "Hidden: the sealed letter starts with the guard, not floating on the bar."
 
-[node name="BackBarShelves" type="Node3D" parent="BarCounter"]
+[node name="BackBarShelves" type="Node3D" parent="BarCounter" unique_id=60075663]
 metadata/art_note = "Shelves and clutter behind Ervan, matching the concept-art tavern density without blocking collision."
 
-[node name="ShelfUpper" type="MeshInstance3D" parent="BarCounter/BackBarShelves"]
+[node name="ShelfUpper" type="MeshInstance3D" parent="BarCounter/BackBarShelves" unique_id=1136023063]
 transform = Transform3D(2.65, 0, 0, 0, 0.12, 0, 0, 0, 0.28, -0.85, 1.55, -0.48)
+material_override = SubResource("Mat_soot_wood")
 mesh = SubResource("BoxMesh_leg")
 
-[node name="ShelfLower" type="MeshInstance3D" parent="BarCounter/BackBarShelves"]
+[node name="ShelfLower" type="MeshInstance3D" parent="BarCounter/BackBarShelves" unique_id=1157757581]
 transform = Transform3D(2.65, 0, 0, 0, 0.12, 0, 0, 0, 0.28, -0.85, 1.15, -0.48)
+material_override = SubResource("Mat_soot_wood")
 mesh = SubResource("BoxMesh_leg")
 
-[node name="ShelfBottleA" type="MeshInstance3D" parent="BarCounter/BackBarShelves"]
+[node name="ShelfBottleA" type="MeshInstance3D" parent="BarCounter/BackBarShelves" unique_id=1672690935]
 transform = Transform3D(0.48, 0, 0, 0, 0.9, 0, 0, 0, 0.48, -1.8, 1.31, -0.48)
 mesh = SubResource("SphereMesh_bottle")
 
-[node name="ShelfBottleB" type="MeshInstance3D" parent="BarCounter/BackBarShelves"]
+[node name="ShelfBottleB" type="MeshInstance3D" parent="BarCounter/BackBarShelves" unique_id=269194656]
 transform = Transform3D(0.42, 0, 0, 0, 0.72, 0, 0, 0, 0.42, -1.25, 1.34, -0.48)
 mesh = SubResource("SphereMesh_bottle")
 
-[node name="ShelfMugA" type="MeshInstance3D" parent="BarCounter/BackBarShelves"]
+[node name="ShelfMugA" type="MeshInstance3D" parent="BarCounter/BackBarShelves" unique_id=624858910]
 transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -0.45, 1.28, -0.48)
 mesh = SubResource("CylinderMesh_mug")
 
-[node name="ShelfMugB" type="MeshInstance3D" parent="BarCounter/BackBarShelves"]
+[node name="ShelfMugB" type="MeshInstance3D" parent="BarCounter/BackBarShelves" unique_id=776016450]
 transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.05, 1.28, -0.48)
 mesh = SubResource("CylinderMesh_mug")
 
-[node name="PrivateRainTable" type="Node3D" parent="."]
+[node name="PrivateRainTable" type="Node3D" parent="." unique_id=1439663054]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 3.2, 0.65, 2.75)
 
-[node name="TableTop" type="MeshInstance3D" parent="PrivateRainTable"]
+[node name="TableTop" type="MeshInstance3D" parent="PrivateRainTable" unique_id=1276000832]
 mesh = SubResource("BoxMesh_table")
 
-[node name="LegA" type="MeshInstance3D" parent="PrivateRainTable"]
+[node name="LegA" type="MeshInstance3D" parent="PrivateRainTable" unique_id=445145404]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.78, -0.45, -0.48)
 mesh = SubResource("BoxMesh_leg")
 
-[node name="LegB" type="MeshInstance3D" parent="PrivateRainTable"]
+[node name="LegB" type="MeshInstance3D" parent="PrivateRainTable" unique_id=893874775]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.78, -0.45, -0.48)
 mesh = SubResource("BoxMesh_leg")
 
-[node name="LegC" type="MeshInstance3D" parent="PrivateRainTable"]
+[node name="LegC" type="MeshInstance3D" parent="PrivateRainTable" unique_id=2089422984]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.78, -0.45, 0.48)
 mesh = SubResource("BoxMesh_leg")
 
-[node name="LegD" type="MeshInstance3D" parent="PrivateRainTable"]
+[node name="LegD" type="MeshInstance3D" parent="PrivateRainTable" unique_id=389259023]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.78, -0.45, 0.48)
 mesh = SubResource("BoxMesh_leg")
 
-[node name="TableLamp" type="MeshInstance3D" parent="PrivateRainTable"]
+[node name="TableLamp" type="MeshInstance3D" parent="PrivateRainTable" unique_id=1305158163]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -0.25, 0.24, 0.05)
-mesh = SubResource("SphereMesh_bottle")
 material_override = SubResource("Mat_warm_lamp")
+mesh = SubResource("SphereMesh_bottle")
 
-[node name="CommonTables" type="Node3D" parent="."]
+[node name="CommonTables" type="Node3D" parent="." unique_id=366135297]
 
-[node name="TableNearEntrance" type="MeshInstance3D" parent="CommonTables"]
+[node name="TableNearEntrance" type="MeshInstance3D" parent="CommonTables" unique_id=508023644]
 transform = Transform3D(1, 0, 0.2, 0, 1, 0, -0.2, 0, 1, -2.1, 0.62, 2.3)
+material_override = SubResource("Mat_dark_wood")
 mesh = SubResource("BoxMesh_table")
 
-[node name="TableByWall" type="MeshInstance3D" parent="CommonTables"]
+[node name="TableByWall" type="MeshInstance3D" parent="CommonTables" unique_id=1184960525]
 transform = Transform3D(0.9, 0, -0.35, 0, 1, 0, 0.35, 0, 0.9, 5.8, 0.62, 0.55)
+material_override = SubResource("Mat_dark_wood")
 mesh = SubResource("BoxMesh_table")
 
-[node name="BenchNearEntranceA" type="MeshInstance3D" parent="CommonTables"]
-transform = Transform3D(1.6, 0, 0.18, 0, 0.28, 0, -0.18, 0, 0.36, -2.0, 0.46, 1.38)
+[node name="BenchNearEntranceA" type="MeshInstance3D" parent="CommonTables" unique_id=1730489024]
+transform = Transform3D(1.6, 0, 0.18, 0, 0.28, 0, -0.18, 0, 0.36, -2, 0.46, 1.38)
+material_override = SubResource("Mat_dark_wood")
 mesh = SubResource("BoxMesh_leg")
 
-[node name="BenchNearEntranceB" type="MeshInstance3D" parent="CommonTables"]
+[node name="BenchNearEntranceB" type="MeshInstance3D" parent="CommonTables" unique_id=1603670236]
 transform = Transform3D(1.6, 0, 0.18, 0, 0.28, 0, -0.18, 0, 0.36, -2.35, 0.46, 3.18)
+material_override = SubResource("Mat_dark_wood")
 mesh = SubResource("BoxMesh_leg")
 
-[node name="BenchByWallA" type="MeshInstance3D" parent="CommonTables"]
+[node name="BenchByWallA" type="MeshInstance3D" parent="CommonTables" unique_id=878900025]
 transform = Transform3D(1.45, 0, -0.28, 0, 0.28, 0, 0.28, 0, 0.36, 5.2, 0.46, -0.25)
+material_override = SubResource("Mat_dark_wood")
 mesh = SubResource("BoxMesh_leg")
 
-[node name="BenchByWallB" type="MeshInstance3D" parent="CommonTables"]
+[node name="BenchByWallB" type="MeshInstance3D" parent="CommonTables" unique_id=1936654831]
 transform = Transform3D(1.45, 0, -0.28, 0, 0.28, 0, 0.28, 0, 0.36, 6.35, 0.46, 1.45)
+material_override = SubResource("Mat_dark_wood")
 mesh = SubResource("BoxMesh_leg")
 
-[node name="MugNearEntrance" type="MeshInstance3D" parent="CommonTables"]
+[node name="MugNearEntrance" type="MeshInstance3D" parent="CommonTables" unique_id=1364741870]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -1.75, 0.86, 2.18)
 mesh = SubResource("CylinderMesh_mug")
 
-[node name="MugByWall" type="MeshInstance3D" parent="CommonTables"]
+[node name="MugByWall" type="MeshInstance3D" parent="CommonTables" unique_id=236334561]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 5.95, 0.86, 0.4)
 mesh = SubResource("CylinderMesh_mug")
 
-[node name="WallProps" type="Node3D" parent="."]
+[node name="WallProps" type="Node3D" parent="." unique_id=1354587016]
 
-[node name="FishingNet" type="Label3D" parent="WallProps"]
+[node name="FishingNet" type="Label3D" parent="WallProps" unique_id=261531598]
 transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, -6.3, 1.75, -5.95)
+modulate = Color(0.55, 0.48, 0.36, 1)
 text = "рибацькі сітки / мотузки"
 font_size = 18
-modulate = Color(0.55, 0.48, 0.36, 1)
 
-[node name="HarborMap" type="Label3D" parent="WallProps"]
+[node name="HarborMap" type="Label3D" parent="WallProps" unique_id=108320513]
 transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 5.65, 1.78, -6.05)
+modulate = Color(0.75, 0.64, 0.43, 1)
 text = "карта порту"
 font_size = 20
-modulate = Color(0.75, 0.64, 0.43, 1)
 
-[node name="RopeBundle" type="MeshInstance3D" parent="WallProps"]
+[node name="RopeBundle" type="MeshInstance3D" parent="WallProps" unique_id=1961460685]
 transform = Transform3D(1.15, 0, 0, 0, 0.35, 0, 0, 0, 0.18, -6.55, 1.15, -5.78)
-mesh = SubResource("TorusMesh_keyring")
 material_override = SubResource("Mat_rope_net")
+mesh = SubResource("TorusMesh_keyring")
 
-[node name="WeatheredMenuBoard" type="Label3D" parent="WallProps"]
+[node name="WeatheredMenuBoard" type="Label3D" parent="WallProps" unique_id=948321465]
 transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, -3.9, 1.92, -6.04)
+modulate = Color(0.68, 0.55, 0.34, 1)
 text = "ель / юшка / нічліг"
 font_size = 18
-modulate = Color(0.68, 0.55, 0.34, 1)
 
-[node name="SmokeHazeCard" type="MeshInstance3D" parent="WallProps"]
+[node name="SmokeHazeCard" type="MeshInstance3D" parent="WallProps" unique_id=1702991979]
 transform = Transform3D(5.6, 0, 0, 0, 1.2, 0, 0, 0, 0.04, -0.6, 2.05, -1.8)
-mesh = SubResource("BoxMesh_board")
 material_override = SubResource("Mat_smoke_haze")
+mesh = SubResource("BoxMesh_board")
 
-[node name="StorageProps" type="Node3D" parent="."]
+[node name="StorageProps" type="Node3D" parent="." unique_id=972481603]
 metadata/art_note = "Rustic inn clutter: barrels, crates, sacks and stacked supplies kept to the room edges to preserve navigation."
 
-[node name="BarrelStackA" type="MeshInstance3D" parent="StorageProps"]
+[node name="BarrelStackA" type="MeshInstance3D" parent="StorageProps" unique_id=1764299503]
 transform = Transform3D(1, 0, 0, 0, 1.15, 0, 0, 0, 1, -6.95, 0.45, -3.85)
 mesh = SubResource("CylinderMesh_barrel")
 
-[node name="BarrelStackB" type="MeshInstance3D" parent="StorageProps"]
-transform = Transform3D(0.85, 0, 0, 0, 1.0, 0, 0, 0, 0.85, -6.35, 0.38, -3.48)
+[node name="BarrelStackB" type="MeshInstance3D" parent="StorageProps" unique_id=334978068]
+transform = Transform3D(0.85, 0, 0, 0, 1, 0, 0, 0, 0.85, -6.35, 0.38, -3.48)
 mesh = SubResource("CylinderMesh_barrel")
 
-[node name="CrateUnderStairs" type="MeshInstance3D" parent="StorageProps"]
+[node name="CrateUnderStairs" type="MeshInstance3D" parent="StorageProps" unique_id=1947937761]
 transform = Transform3D(0.92, 0, 0, 0, 0.65, 0, 0, 0, 0.82, 6.1, 0.32, -2.45)
+material_override = SubResource("Mat_crate_boards")
 mesh = SubResource("BoxMesh_leg")
 
-[node name="CrateNearEntrance" type="MeshInstance3D" parent="StorageProps"]
+[node name="CrateNearEntrance" type="MeshInstance3D" parent="StorageProps" unique_id=1173304071]
 transform = Transform3D(0.72, 0, 0.1, 0, 0.52, 0, -0.1, 0, 0.72, -6.85, 0.26, 4.65)
+material_override = SubResource("Mat_crate_boards")
 mesh = SubResource("BoxMesh_leg")
 
-[node name="SackNearBar" type="MeshInstance3D" parent="StorageProps"]
+[node name="SackNearBar" type="MeshInstance3D" parent="StorageProps" unique_id=426262961]
 transform = Transform3D(0.45, 0, -0.12, 0, 0.7, 0, 0.12, 0, 0.45, -5.75, 0.34, -4.85)
-mesh = SubResource("SphereMesh_bottle")
 material_override = SubResource("Mat_rope_net")
+mesh = SubResource("SphereMesh_bottle")
 
-[node name="TavernInteriorColliders" type="StaticBody3D" parent="."]
+[node name="TavernInteriorColliders" type="StaticBody3D" parent="." unique_id=69406038]
 metadata/collision_note = "Invisible gameplay blockers for expanded furniture/interior dressing."
 
-[node name="PrivateTableCollision" type="CollisionShape3D" parent="TavernInteriorColliders"]
+[node name="PrivateTableCollision" type="CollisionShape3D" parent="TavernInteriorColliders" unique_id=1283258784]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 3.2, 0.72, 2.75)
 shape = SubResource("BoxShape3D_table_collision")
 
-[node name="EntranceTableCollision" type="CollisionShape3D" parent="TavernInteriorColliders"]
+[node name="EntranceTableCollision" type="CollisionShape3D" parent="TavernInteriorColliders" unique_id=615520865]
 transform = Transform3D(0.980581, 0, 0.196116, 0, 1, 0, -0.196116, 0, 0.980581, -2.1, 0.72, 2.3)
 shape = SubResource("BoxShape3D_table_collision")
 
-[node name="WallTableCollision" type="CollisionShape3D" parent="TavernInteriorColliders"]
+[node name="WallTableCollision" type="CollisionShape3D" parent="TavernInteriorColliders" unique_id=1286632310]
 transform = Transform3D(0.932005, 0, -0.362446, 0, 1, 0, 0.362446, 0, 0.932005, 5.8, 0.72, 0.55)
 shape = SubResource("BoxShape3D_table_collision")
 
-[node name="StairsCollision" type="CollisionShape3D" parent="TavernInteriorColliders"]
+[node name="StairsCollision" type="CollisionShape3D" parent="TavernInteriorColliders" unique_id=1215092282]
 transform = Transform3D(0.766044, 0, -0.642788, 0, 1, 0, 0.642788, 0, 0.766044, 5.6, 0.72, -4.45)
 shape = SubResource("BoxShape3D_stair_collision")
 
-[node name="PostNearBarCollision" type="CollisionShape3D" parent="TavernInteriorColliders"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9, 1.25, -2.0)
+[node name="PostNearBarCollision" type="CollisionShape3D" parent="TavernInteriorColliders" unique_id=1762166308]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9, 1.25, -2)
 shape = SubResource("BoxShape3D_post_collision")
 
-[node name="PostPrivateTableCollision" type="CollisionShape3D" parent="TavernInteriorColliders"]
+[node name="PostPrivateTableCollision" type="CollisionShape3D" parent="TavernInteriorColliders" unique_id=652944182]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9, 1.25, 1.2)
 shape = SubResource("BoxShape3D_post_collision")
 
-[node name="DialogueAnchor" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0, 1.4, -1.8)
+[node name="DialogueAnchor" type="Marker3D" parent="." unique_id=1441484077]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.4, -1.8)
 
-[node name="QuestBoard" type="StaticBody3D" parent="."]
+[node name="QuestBoard" type="StaticBody3D" parent="." unique_id=1934566815]
 transform = Transform3D(0.999391, 0, -0.0348995, 0, 1, 0, 0.0348995, 0, 0.999391, 6.9, 1.2, -4.7)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="QuestBoard"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="QuestBoard" unique_id=1902988200]
 mesh = SubResource("BoxMesh_board")
 
-[node name="Label3D" type="Label3D" parent="QuestBoard"]
+[node name="Label3D" type="Label3D" parent="QuestBoard" unique_id=1477383788]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0.08)
 text = "Дошка чуток"
 font_size = 24
 
-[node name="NPCs" type="Node3D" parent="."]
+[node name="NPCs" type="Node3D" parent="." unique_id=1110797096]
 
-[node name="Ervan" type="Area3D" parent="NPCs"]
+[node name="Ervan" type="Area3D" parent="NPCs" unique_id=1601494975]
 transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, -3.15, 0.95, -4.28)
 script = ExtResource("1_npc_behavior")
 npc_id = "ervan"
 npc_display_name = "Ерван"
 default_dialogue_id = "about_rufin"
 interaction_prompt = "Поговорити"
-npc_state = {"id": "ervan", "name": "Ерван", "services": {"innkeeper": true, "merchant": true, "rumor_source": true}, "quests": {"gives": ["greyford_tavern_troubles"], "involved": ["greyford_01_missing_recipient"]}, "dialogues": {"about_rufin": "ervan/about_rufin.json", "rumors": "ervan/rumors.json"}}
+npc_state = {
+"dialogues": {
+"about_rufin": "ervan/about_rufin.json",
+"rumors": "ervan/rumors.json"
+},
+"id": "ervan",
+"name": "Ерван",
+"quests": {
+"gives": ["greyford_tavern_troubles"],
+"involved": ["greyford_01_missing_recipient"]
+},
+"services": {
+"innkeeper": true,
+"merchant": true,
+"rumor_source": true
+}
+}
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Ervan"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Ervan" unique_id=688429233]
 shape = SubResource("SphereShape3D_interaction")
 
-[node name="Body" type="MeshInstance3D" parent="NPCs/Ervan"]
+[node name="Body" type="MeshInstance3D" parent="NPCs/Ervan" unique_id=1340658774]
 visible = false
 mesh = SubResource("CapsuleMesh_npc")
 metadata/fallback_note = "Hidden visual fallback; collision shape remains active and MeshyErvanModel is the visible character."
 
-[node name="MeshyErvanModel" parent="NPCs/Ervan" instance=ExtResource("8_ervan_clean_glb")]
+[node name="MeshyErvanModel" parent="NPCs/Ervan" unique_id=422842936 instance=ExtResource("8_ervan_clean_glb")]
 transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
 metadata/source_task_id = "019f21af-bd23-7c60-a0fb-302e9c52b314"
 metadata/note = "Retextured clean apron: the concept-art letter is restored as a separate prop in Ervan's hands, not baked onto the apron."
 
-[node name="HeldLetter" type="MeshInstance3D" parent="NPCs/Ervan"]
-visible = false
+[node name="HeldLetter" type="MeshInstance3D" parent="NPCs/Ervan" unique_id=236925795]
 transform = Transform3D(0.5, 0, 0, 0, 0.42, -0.26, 0, 0.16, 0.68, 0, 0.62, 0.42)
+visible = false
 mesh = SubResource("BoxMesh_letter")
 metadata/canon_note = "Hidden on scene start. The guard carries the sealed letter first; dialogue handoff shows Ervan with it. Base model is T-pose, so the prop is placed in front of the chest rather than gripped."
 
-[node name="WaxSeal" type="MeshInstance3D" parent="NPCs/Ervan/HeldLetter"]
+[node name="WaxSeal" type="MeshInstance3D" parent="NPCs/Ervan/HeldLetter" unique_id=1113609409]
 transform = Transform3D(0.82, 0, 0, 0, 0, -0.82, 0, 0.82, 0, 0.03, -0.035, 0.025)
 mesh = SubResource("CylinderMesh_wax_seal")
 
-[node name="LeatherApron" type="MeshInstance3D" parent="NPCs/Ervan"]
-visible = false
+[node name="LeatherApron" type="MeshInstance3D" parent="NPCs/Ervan" unique_id=40199794]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, -0.05, 0.34)
+visible = false
 mesh = SubResource("BoxMesh_apron")
 
-[node name="ShoulderTowel" type="MeshInstance3D" parent="NPCs/Ervan"]
-visible = false
+[node name="ShoulderTowel" type="MeshInstance3D" parent="NPCs/Ervan" unique_id=179308337]
 transform = Transform3D(0.85, 0.18, 0, -0.18, 0.85, 0, 0, 0, 1, -0.28, 0.58, 0.23)
+visible = false
 mesh = SubResource("BoxMesh_towel")
 metadata/staging_note = "Hidden at scene start. The same towel appears here after the guard approaches and dialogue begins."
 
-[node name="WipingTowel" type="MeshInstance3D" parent="NPCs/Ervan"]
+[node name="WipingTowel" type="MeshInstance3D" parent="NPCs/Ervan" unique_id=406197173]
 transform = Transform3D(0.72, 0.08, 0.02, -0.1, 0.38, 0.03, -0.02, -0.04, 0.92, 0.72, -0.08, 0.78)
 mesh = SubResource("BoxMesh_towel")
 metadata/staging_note = "Scene start: Ervan wipes the bar with this towel in hand; TavernLetterStaging animates it across the counter."
 
-[node name="KeyRing" type="MeshInstance3D" parent="NPCs/Ervan"]
-visible = false
+[node name="KeyRing" type="MeshInstance3D" parent="NPCs/Ervan" unique_id=297247916]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0.42, -0.32, 0.28)
-mesh = SubResource("TorusMesh_keyring")
+visible = false
 material_override = SubResource("Mat_metal")
+mesh = SubResource("TorusMesh_keyring")
 
-[node name="BrassKey" type="MeshInstance3D" parent="NPCs/Ervan/KeyRing"]
+[node name="BrassKey" type="MeshInstance3D" parent="NPCs/Ervan/KeyRing" unique_id=732356050]
 transform = Transform3D(0.7, 0.25, 0, -0.25, 0.7, 0, 0, 0, 1, 0.03, -0.13, 0)
 mesh = SubResource("BoxMesh_key")
 
-[node name="IronKey" type="MeshInstance3D" parent="NPCs/Ervan/KeyRing"]
+[node name="IronKey" type="MeshInstance3D" parent="NPCs/Ervan/KeyRing" unique_id=457367197]
 transform = Transform3D(0.55, -0.2, 0, 0.2, 0.55, 0, 0, 0, 1, -0.04, -0.15, 0.02)
-mesh = SubResource("BoxMesh_key")
 material_override = SubResource("Mat_metal")
+mesh = SubResource("BoxMesh_key")
 
-[node name="ArtNotes" type="Label3D" parent="NPCs/Ervan"]
+[node name="ArtNotes" type="Label3D" parent="NPCs/Ervan" unique_id=1386947508]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.95, 0)
+modulate = Color(0.64, 0.56, 0.42, 1)
 text = "шкіряний фартух / ключі / рушник"
 font_size = 12
-modulate = Color(0.64, 0.56, 0.42, 1)
 
-[node name="NameLabel" type="Label3D" parent="NPCs/Ervan"]
+[node name="NameLabel" type="Label3D" parent="NPCs/Ervan" unique_id=667194115]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 text = "Ерван"
 font_size = 28
 
-[node name="GreyfordGuard" type="Area3D" parent="NPCs"]
+[node name="GreyfordGuard" type="Area3D" parent="NPCs" unique_id=496632789]
 transform = Transform3D(0.819152, 0, 0.573576, 0, 1, 0, -0.573576, 0, 0.819152, 1.15, 0.95, 1.65)
 script = ExtResource("1_npc_behavior")
 npc_id = "greyford_guard_letter"
 npc_display_name = "вартовий"
 default_dialogue_id = "letter_handoff"
 interaction_prompt = "Поговорити"
-npc_state = {"id": "greyford_guard_letter", "name": "Вартовий", "role": "brings_sealed_letter_to_ervan", "quests": {"involved": ["greyford_01_missing_recipient"]}, "dialogues": {"letter_handoff": "greyford_guard/letter_handoff.json"}}
+npc_state = {
+"dialogues": {
+"letter_handoff": "greyford_guard/letter_handoff.json"
+},
+"id": "greyford_guard_letter",
+"name": "Вартовий",
+"quests": {
+"involved": ["greyford_01_missing_recipient"]
+},
+"role": "brings_sealed_letter_to_ervan"
+}
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/GreyfordGuard"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/GreyfordGuard" unique_id=777362793]
 shape = SubResource("SphereShape3D_interaction")
 
-[node name="Body" type="MeshInstance3D" parent="NPCs/GreyfordGuard"]
+[node name="Body" type="MeshInstance3D" parent="NPCs/GreyfordGuard" unique_id=1473619959]
 mesh = SubResource("CapsuleMesh_npc")
 metadata/fallback_note = "Blockout guard who enters with the letter before the Ervan handoff."
 
-[node name="CarriedLetter" type="MeshInstance3D" parent="NPCs/GreyfordGuard"]
+[node name="CarriedLetter" type="MeshInstance3D" parent="NPCs/GreyfordGuard" unique_id=1690834820]
 transform = Transform3D(0.34, 0, 0, 0, 0.28, -0.18, 0, 0.1, 0.48, 0.12, 0.38, 0.34)
 mesh = SubResource("BoxMesh_letter")
 metadata/canon_note = "Scene start state: the sealed letter is with the guard, not floating at the bar and not in Ervan's hands yet."
 
-[node name="WaxSeal" type="MeshInstance3D" parent="NPCs/GreyfordGuard/CarriedLetter"]
+[node name="WaxSeal" type="MeshInstance3D" parent="NPCs/GreyfordGuard/CarriedLetter" unique_id=1995379669]
 transform = Transform3D(0.72, 0, 0, 0, 0, -0.72, 0, 0.72, 0, 0.03, -0.035, 0.025)
 mesh = SubResource("CylinderMesh_wax_seal")
 
-[node name="NameLabel" type="Label3D" parent="NPCs/GreyfordGuard"]
+[node name="NameLabel" type="Label3D" parent="NPCs/GreyfordGuard" unique_id=507714308]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 text = "вартовий"
 font_size = 22
 
-[node name="LetterHandoffStaging" type="Node" parent="."]
+[node name="LetterHandoffStaging" type="Node" parent="." unique_id=604755686]
 script = ExtResource("9_letter_staging")
 guard_path = NodePath("../NPCs/GreyfordGuard")
 guard_start_marker_path = NodePath("../Staging/GuardStart")
@@ -717,53 +839,49 @@ ervan_letter_path = NodePath("../NPCs/Ervan/HeldLetter")
 ervan_letter_closeup_marker_path = NodePath("../Staging/ErvanLetterCloseup")
 wiping_towel_path = NodePath("../NPCs/Ervan/WipingTowel")
 shoulder_towel_path = NodePath("../NPCs/Ervan/ShoulderTowel")
-wipe_travel = 0.55
-wipe_period = 1.4
-approach_duration = 1.8
-lowered_question = "Хто приніс це письмо — і чому на ньому немає адресата?"
 
-[node name="Staging" type="Node3D" parent="."]
+[node name="Staging" type="Node3D" parent="." unique_id=1059468539]
 metadata/scene_beat = "Start: letter is with guard. Guard approaches Ervan. Dialogue handoff reveals Ervan with the letter; Ervan lowers it and asks the question."
 
-[node name="GuardStart" type="Marker3D" parent="Staging"]
+[node name="GuardStart" type="Marker3D" parent="Staging" unique_id=619587770]
 transform = Transform3D(0.819152, 0, 0.573576, 0, 1, 0, -0.573576, 0, 0.819152, 1.15, 0.95, 1.65)
 
-[node name="GuardHandoff" type="Marker3D" parent="Staging"]
+[node name="GuardHandoff" type="Marker3D" parent="Staging" unique_id=628476691]
 transform = Transform3D(0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, 0.34202, -1.2, 0.95, -2.38)
 
-[node name="ErvanLetterCloseup" type="Marker3D" parent="Staging"]
-transform = Transform3D(0.422618, -0.211309, 0.881236, 0, 0.97237, 0.233445, -0.906308, -0.098644, 0.410935, -2.05, 1.55, -2.0)
+[node name="ErvanLetterCloseup" type="Marker3D" parent="Staging" unique_id=628990402]
+transform = Transform3D(0.422618, -0.211309, 0.881236, 0, 0.97237, 0.233445, -0.906308, -0.098644, 0.410935, -2.05, 1.55, -2)
 
-[node name="Portals" type="Node3D" parent="."]
+[node name="Portals" type="Node3D" parent="." unique_id=737968315]
 
-[node name="ToRufinRoomPortal" type="Area3D" parent="Portals"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.95, 1.0, -1.85)
+[node name="ToRufinRoomPortal" type="Area3D" parent="Portals" unique_id=2000168475]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.95, 1, -1.85)
 script = ExtResource("3_portal")
 destination_scene = "res://scenes/locations/greyford/RufinRoom.tscn"
 destination_location = "greyford_rufin_room"
 prompt = "Піднятися до кімнати Руфіна"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/ToRufinRoomPortal"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/ToRufinRoomPortal" unique_id=2117011114]
 shape = SubResource("SphereShape3D_interaction")
 
-[node name="ToCraftsmenQuarterPortal" type="Area3D" parent="Portals"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 1.0, 3.65)
+[node name="ToCraftsmenQuarterPortal" type="Area3D" parent="Portals" unique_id=1108933278]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 1, 3.65)
 script = ExtResource("3_portal")
 destination_scene = "res://scenes/locations/greyford/CraftsmenQuarter.tscn"
 destination_location = "greyford_craftsmen_quarter"
 prompt = "Вийти до кварталу ремісників"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/ToCraftsmenQuarterPortal"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/ToCraftsmenQuarterPortal" unique_id=900356057]
 shape = SubResource("SphereShape3D_interaction")
 
-[node name="BackgroundPatrons" type="Node3D" parent="."]
+[node name="BackgroundPatrons" type="Node3D" parent="." unique_id=1170687592]
 
-[node name="DrunkPatronAtTable" type="MeshInstance3D" parent="BackgroundPatrons"]
+[node name="DrunkPatronAtTable" type="MeshInstance3D" parent="BackgroundPatrons" unique_id=343975770]
 transform = Transform3D(0.7, 0.18, 0, 0, 0.55, 0.12, 0, -0.12, 0.85, -2.05, 0.95, 2.15)
 mesh = SubResource("CapsuleMesh_npc")
 
-[node name="DrunkPatronLabel" type="Label3D" parent="BackgroundPatrons/DrunkPatronAtTable"]
+[node name="DrunkPatronLabel" type="Label3D" parent="BackgroundPatrons/DrunkPatronAtTable" unique_id=415082493]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
+modulate = Color(0.58, 0.5, 0.38, 1)
 text = "п'яний відвідувач"
 font_size = 18
-modulate = Color(0.58, 0.5, 0.38, 1)

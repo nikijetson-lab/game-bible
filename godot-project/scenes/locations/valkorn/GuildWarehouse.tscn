@@ -1,6 +1,7 @@
 [gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc"]
+[ext_resource type="Script" path="res://scripts/gameplay/GuildWarehouseArtAssembly.gd" id="2_art"]
 
 [sub_resource type="Environment" id="Env_warehouse"]
 background_mode = 1
@@ -39,7 +40,6 @@ shape = SubResource("SphereShape_interact")
 [node name="Body" type="MeshInstance3D" parent="Damar"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 
-[ext_resource type="Script" path="res://scripts/gameplay/GuildWarehouseArtAssembly.gd" id="2_art"]
 
 [node name="GuildWarehouseArtAssembly" type="Node3D" parent="."]
 script = ExtResource("2_art")

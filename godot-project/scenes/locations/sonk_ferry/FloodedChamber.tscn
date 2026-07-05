@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc"]
 [ext_resource type="Script" path="res://scripts/gameplay/InspectClue.gd" id="2_clue"]
+[ext_resource type="Script" path="res://scripts/gameplay/SonkFerrySubArtAssembly.gd" id="4_art"]
 
 [sub_resource type="Environment" id="Env_flooded"]
 background_mode = 1
@@ -150,7 +151,6 @@ clue_category = "investigation"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RitualOfferingsClue"]
 shape = SubResource("SphereShape_interact")
 
-[ext_resource type="Script" path="res://scripts/gameplay/SonkFerrySubArtAssembly.gd" id="4_art"]
 
 [node name="SonkFerrySubArtAssembly" type="Node3D" parent="."]
 script = ExtResource("4_art")

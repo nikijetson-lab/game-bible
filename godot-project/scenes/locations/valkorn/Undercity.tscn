@@ -1,6 +1,7 @@
 [gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://scripts/gameplay/InspectClue.gd" id="1_clue"]
+[ext_resource type="Script" path="res://scripts/gameplay/ValkornUndercityArtAssembly.gd" id="2_art"]
 
 [sub_resource type="Environment" id="Env_underground"]
 background_mode = 1
@@ -71,7 +72,6 @@ script = ExtResource("1_clue")
 clue_id = "fabric_scrap"
 clue_text = "Клаптик тканини із символом. Свіжий. Хтось прийшов раніше."
 
-[ext_resource type="Script" path="res://scripts/gameplay/ValkornUndercityArtAssembly.gd" id="2_art"]
 
 [node name="ValkornUndercityArtAssembly" type="Node3D" parent="."]
 script = ExtResource("2_art")

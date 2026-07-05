@@ -1,6 +1,7 @@
 [gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc"]
+[ext_resource type="Script" path="res://scripts/gameplay/BlackArchiveArtAssembly.gd" id="2_art"]
 
 [sub_resource type="Environment" id="Env_archive"]
 background_mode = 1
@@ -52,7 +53,6 @@ shape = SubResource("SphereShape_interact")
 [node name="Body" type="MeshInstance3D" parent="FippUnmasked"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 
-[ext_resource type="Script" path="res://scripts/gameplay/BlackArchiveArtAssembly.gd" id="2_art"]
 
 [node name="BlackArchiveArtAssembly" type="Node3D" parent="."]
 script = ExtResource("2_art")

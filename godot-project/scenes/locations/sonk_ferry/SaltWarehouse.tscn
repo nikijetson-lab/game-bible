@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc"]
 [ext_resource type="Script" path="res://scripts/gameplay/InspectClue.gd" id="2_clue"]
+[ext_resource type="Script" path="res://scripts/gameplay/SonkFerrySubArtAssembly.gd" id="3_art"]
 
 [sub_resource type="Environment" id="Env_salt"]
 background_mode = 1
@@ -79,7 +80,6 @@ script = ExtResource("2_clue")
 clue_id = "salt_meeting"
 clue_text = "Приховане місце передачі. Тут сходяться ліки, підроблені печатки й приватні книги. Сьогодні вночі — зустріч."
 
-[ext_resource type="Script" path="res://scripts/gameplay/SonkFerrySubArtAssembly.gd" id="3_art"]
 
 [node name="SonkFerrySubArtAssembly" type="Node3D" parent="."]
 script = ExtResource("3_art")

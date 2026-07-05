@@ -1,9 +1,9 @@
-[gd_scene load_steps=24 format=3]
+[gd_scene format=3 uid="uid://bckygpybyv7wu"]
 
-[ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc_behavior"]
+[ext_resource type="Script" uid="uid://cd506symrgbqy" path="res://scripts/ai/NPCBehavior.gd" id="1_npc_behavior"]
 [ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="2_player"]
-[ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="3_portal"]
-[ext_resource type="Script" path="res://scripts/gameplay/InspectClue.gd" id="4_clue"]
+[ext_resource type="Script" uid="uid://bi240e334a5c1" path="res://scripts/gameplay/LocationPortal.gd" id="3_portal"]
+[ext_resource type="Script" uid="uid://dl0nchorsaiy0" path="res://scripts/gameplay/InspectClue.gd" id="4_clue"]
 
 [sub_resource type="Environment" id="Environment_alteya"]
 background_mode = 1
@@ -12,23 +12,32 @@ ambient_light_source = 1
 ambient_light_color = Color(0.34, 0.48, 0.45, 1)
 ambient_light_energy = 0.62
 fog_enabled = true
+fog_light_color = Color(0.42, 0.6, 0.56, 1)
 fog_density = 0.055
-fog_light_color = Color(0.42, 0.60, 0.56, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_floor"]
-size = Vector3(13.0, 0.14, 9.0)
 
 [sub_resource type="BoxShape3D" id="BoxShape_floor"]
-size = Vector3(13.0, 0.18, 9.0)
+size = Vector3(13, 0.18, 9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+size = Vector3(13, 0.14, 9)
+
+[sub_resource type="StandardMaterial3D" id="Material_floor"]
+albedo_color = Color(0.12, 0.15, 0.14, 1)
+roughness = 0.95
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_water"]
 size = Vector2(11.5, 7.4)
 
+[sub_resource type="StandardMaterial3D" id="Material_water"]
+transparency = 1
+albedo_color = Color(0.1, 0.27, 0.25, 0.58)
+roughness = 0.12
+
 [sub_resource type="BoxShape3D" id="BoxShape_wall_long"]
-size = Vector3(13.0, 2.7, 0.35)
+size = Vector3(13, 2.7, 0.35)
 
 [sub_resource type="BoxShape3D" id="BoxShape_wall_short"]
-size = Vector3(0.35, 2.7, 9.0)
+size = Vector3(0.35, 2.7, 9)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_column"]
 top_radius = 0.28
@@ -36,22 +45,41 @@ bottom_radius = 0.34
 height = 4.2
 radial_segments = 14
 
+[sub_resource type="StandardMaterial3D" id="Material_stone"]
+albedo_color = Color(0.2, 0.25, 0.22, 1)
+roughness = 0.9
+
 [sub_resource type="BoxMesh" id="BoxMesh_arch_block"]
 size = Vector3(1.3, 0.45, 0.36)
 
 [sub_resource type="BoxMesh" id="BoxMesh_door"]
 size = Vector3(2.3, 3.2, 0.25)
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_alteya"]
-radius = 0.34
-height = 1.85
+[sub_resource type="StandardMaterial3D" id="Material_veil"]
+transparency = 1
+albedo_color = Color(0.36, 0.86, 0.7, 0.42)
+emission_enabled = true
+emission = Color(0.18, 0.55, 0.42, 1)
+emission_energy_multiplier = 0.35
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape_interaction"]
 radius = 0.95
 height = 1.9
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_interaction"]
-radius = 1.15
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_alteya"]
+radius = 0.34
+height = 1.85
+
+[sub_resource type="StandardMaterial3D" id="Material_dark_cloth"]
+albedo_color = Color(0.035, 0.04, 0.045, 1)
+roughness = 0.85
+
+[sub_resource type="BoxMesh" id="BoxMesh_stole"]
+size = Vector3(0.16, 1.35, 0.035)
+
+[sub_resource type="StandardMaterial3D" id="Material_pale_stole"]
+albedo_color = Color(0.62, 0.62, 0.53, 1)
+roughness = 0.7
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_golden_cylinder"]
 top_radius = 0.12
@@ -59,164 +87,140 @@ bottom_radius = 0.12
 height = 0.65
 radial_segments = 16
 
-[sub_resource type="BoxMesh" id="BoxMesh_stole"]
-size = Vector3(0.16, 1.35, 0.035)
-
-[sub_resource type="StandardMaterial3D" id="Material_floor"]
-albedo_color = Color(0.12, 0.15, 0.14, 1)
-roughness = 0.95
-
-[sub_resource type="StandardMaterial3D" id="Material_water"]
-albedo_color = Color(0.10, 0.27, 0.25, 0.58)
-metallic = 0.0
-roughness = 0.12
-alpha_scissor_threshold = 0.01
-transparency = 1
-
-[sub_resource type="StandardMaterial3D" id="Material_stone"]
-albedo_color = Color(0.20, 0.25, 0.22, 1)
-roughness = 0.9
-
-[sub_resource type="StandardMaterial3D" id="Material_dark_cloth"]
-albedo_color = Color(0.035, 0.04, 0.045, 1)
-roughness = 0.85
-
-[sub_resource type="StandardMaterial3D" id="Material_pale_stole"]
-albedo_color = Color(0.62, 0.62, 0.53, 1)
-roughness = 0.7
-
 [sub_resource type="StandardMaterial3D" id="Material_gold"]
-albedo_color = Color(0.95, 0.70, 0.28, 1)
+albedo_color = Color(0.95, 0.7, 0.28, 1)
 metallic = 0.65
 roughness = 0.22
 
-[sub_resource type="StandardMaterial3D" id="Material_veil"]
-albedo_color = Color(0.36, 0.86, 0.70, 0.42)
-emission_enabled = true
-emission = Color(0.18, 0.55, 0.42, 1)
-emission_energy_multiplier = 0.35
-transparency = 1
+[sub_resource type="SphereShape3D" id="SphereShape3D_interaction"]
+radius = 1.15
 
-[node name="AlteyaHiddenRoom" type="Node3D"]
+[node name="AlteyaHiddenRoom" type="Node3D" unique_id=1044203592]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=253283214]
 environment = SubResource("Environment_alteya")
 
-[node name="Player" parent="." instance=ExtResource("2_player")]
+[node name="Player" parent="." unique_id=1835909720 instance=ExtResource("2_player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 3.2)
 
-[node name="SpawnPoint" type="Marker3D" parent="."]
+[node name="SpawnPoint" type="Marker3D" parent="." unique_id=1147900858]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 3.2)
 
-[node name="DialogueAnchor" type="Marker3D" parent="."]
+[node name="DialogueAnchor" type="Marker3D" parent="." unique_id=2076662177]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, -1.2)
 
-[node name="Floor" type="StaticBody3D" parent="."]
+[node name="Floor" type="StaticBody3D" parent="." unique_id=1840830863]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1328595738]
 shape = SubResource("BoxShape_floor")
 
-[node name="FloorMesh" type="MeshInstance3D" parent="Floor"]
+[node name="FloorMesh" type="MeshInstance3D" parent="Floor" unique_id=655260695]
 mesh = SubResource("BoxMesh_floor")
 surface_material_override/0 = SubResource("Material_floor")
 
-[node name="WaterMirror" type="MeshInstance3D" parent="."]
+[node name="WaterMirror" type="MeshInstance3D" parent="." unique_id=1275519077]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09, -0.2)
 mesh = SubResource("PlaneMesh_water")
 surface_material_override/0 = SubResource("Material_water")
 
-[node name="Boundaries" type="StaticBody3D" parent="."]
+[node name="Boundaries" type="StaticBody3D" parent="." unique_id=339910011]
 
-[node name="NorthWall" type="CollisionShape3D" parent="Boundaries"]
+[node name="NorthWall" type="CollisionShape3D" parent="Boundaries" unique_id=1849023257]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, -4.65)
 shape = SubResource("BoxShape_wall_long")
 
-[node name="SouthWall" type="CollisionShape3D" parent="Boundaries"]
+[node name="SouthWall" type="CollisionShape3D" parent="Boundaries" unique_id=1369272063]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 4.65)
 shape = SubResource("BoxShape_wall_long")
 
-[node name="WestWall" type="CollisionShape3D" parent="Boundaries"]
+[node name="WestWall" type="CollisionShape3D" parent="Boundaries" unique_id=1592491157]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.65, 1.35, 0)
 shape = SubResource("BoxShape_wall_short")
 
-[node name="EastWall" type="CollisionShape3D" parent="Boundaries"]
+[node name="EastWall" type="CollisionShape3D" parent="Boundaries" unique_id=1403409069]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.65, 1.35, 0)
 shape = SubResource("BoxShape_wall_short")
 
-[node name="Architecture" type="Node3D" parent="."]
+[node name="Architecture" type="Node3D" parent="." unique_id=1821844661]
 
-[node name="StoneArches" type="Node3D" parent="Architecture"]
+[node name="StoneArches" type="Node3D" parent="Architecture" unique_id=881463511]
 
-[node name="LeftColumn" type="MeshInstance3D" parent="Architecture/StoneArches"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.55, 2.0, -3.2)
+[node name="LeftColumn" type="MeshInstance3D" parent="Architecture/StoneArches" unique_id=1885001325]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.55, 2, -3.2)
 mesh = SubResource("CylinderMesh_column")
 surface_material_override/0 = SubResource("Material_stone")
 
-[node name="RightColumn" type="MeshInstance3D" parent="Architecture/StoneArches"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.55, 2.0, -3.2)
+[node name="RightColumn" type="MeshInstance3D" parent="Architecture/StoneArches" unique_id=2028712806]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.55, 2, -3.2)
 mesh = SubResource("CylinderMesh_column")
 surface_material_override/0 = SubResource("Material_stone")
 
-[node name="ArchLintel" type="MeshInstance3D" parent="Architecture/StoneArches"]
+[node name="ArchLintel" type="MeshInstance3D" parent="Architecture/StoneArches" unique_id=2041644726]
 transform = Transform3D(4.2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.1, -3.2)
 mesh = SubResource("BoxMesh_arch_block")
 surface_material_override/0 = SubResource("Material_stone")
 
-[node name="BackWoodenDoors" type="MeshInstance3D" parent="Architecture"]
+[node name="BackWoodenDoors" type="MeshInstance3D" parent="Architecture" unique_id=2101377614]
 transform = Transform3D(1, 0, 0.08, 0, 1, 0, -0.08, 0, 1, 0, 1.7, -3.45)
 mesh = SubResource("BoxMesh_door")
 surface_material_override/0 = SubResource("Material_stone")
 
-[node name="SpatialVeilSignature" type="MeshInstance3D" parent="Architecture"]
+[node name="SpatialVeilSignature" type="MeshInstance3D" parent="Architecture" unique_id=1523648665]
 transform = Transform3D(0.18, 0, 0, 0, 2.1, 0, 0, 0, 0.18, -4.9, 1.25, 2.25)
 mesh = SubResource("CylinderMesh_column")
 surface_material_override/0 = SubResource("Material_veil")
 
-[node name="NPCs" type="Node3D" parent="."]
+[node name="NPCs" type="Node3D" parent="." unique_id=660161221]
 
-[node name="Alteya" type="Area3D" parent="NPCs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, -1.35)
+[node name="Alteya" type="Area3D" parent="NPCs" unique_id=1054736243]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1.35)
 script = ExtResource("1_npc_behavior")
 npc_id = "alteya"
 npc_display_name = "Чаклунка Алтея / Лілея"
 default_dialogue_id = "about_rufin"
 interaction_prompt = "Говорити тихо з"
-world_context = {"location": "greyford_alteya_hidden_room", "quest": "greyford_01_missing_recipient", "route": "optional_hidden", "canon_source": "quests/ep1-01-greyford-adresat-vidsutniy.md"}
+world_context = {
+"canon_source": "quests/ep1-01-greyford-adresat-vidsutniy.md",
+"location": "greyford_alteya_hidden_room",
+"quest": "greyford_01_missing_recipient",
+"route": "optional_hidden"
+}
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Alteya"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Alteya" unique_id=1507489431]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.356713, -1.403456, 0.7293639)
 shape = SubResource("CapsuleShape_interaction")
 
-[node name="Body" type="MeshInstance3D" parent="NPCs/Alteya"]
+[node name="Body" type="MeshInstance3D" parent="NPCs/Alteya" unique_id=1801192388]
 mesh = SubResource("CapsuleMesh_alteya")
 surface_material_override/0 = SubResource("Material_dark_cloth")
 
-[node name="PaleFrontStole" type="MeshInstance3D" parent="NPCs/Alteya"]
+[node name="PaleFrontStole" type="MeshInstance3D" parent="NPCs/Alteya" unique_id=1809374309]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0.36)
 mesh = SubResource("BoxMesh_stole")
 surface_material_override/0 = SubResource("Material_pale_stole")
 
-[node name="GoldenCylinder" type="MeshInstance3D" parent="NPCs/Alteya"]
+[node name="GoldenCylinder" type="MeshInstance3D" parent="NPCs/Alteya" unique_id=30425405]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0.2, 0.58)
 mesh = SubResource("CylinderMesh_golden_cylinder")
 surface_material_override/0 = SubResource("Material_gold")
 
-[node name="InvestigationProps" type="Node3D" parent="."]
+[node name="InvestigationProps" type="Node3D" parent="." unique_id=557828518]
 
-[node name="VeilTraceClue" type="Area3D" parent="InvestigationProps"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7, 1.0, 2.3)
+[node name="VeilTraceClue" type="Area3D" parent="InvestigationProps" unique_id=1825917192]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7, 1, 2.3)
 script = ExtResource("4_clue")
 clue_id = "alteya_spatial_veil_signature"
 quest_id = "greyford_01_missing_recipient"
 description = "На звичайних дверях лишився той самий магічний підпис, що біля кімнати Руфіна і в кварталі ремісників."
 prompt = "Розпізнати просторову завісу"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="InvestigationProps/VeilTraceClue"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InvestigationProps/VeilTraceClue" unique_id=1800131982]
 shape = SubResource("SphereShape3D_interaction")
 
-[node name="Portals" type="Node3D" parent="."]
+[node name="Portals" type="Node3D" parent="." unique_id=514993167]
 
-[node name="ToPortTavernPortal" type="Area3D" parent="Portals"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25, 1.0, 2.7)
+[node name="ToPortTavernPortal" type="Area3D" parent="Portals" unique_id=1382180525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25, 1, 2.7)
 script = ExtResource("3_portal")
 destination_scene = "res://scenes/locations/greyford/PortTavernInterior.tscn"
 destination_location = "greyford_port_tavern"
@@ -224,11 +228,11 @@ prompt = "Вийти крізь завісу назад"
 is_hidden = true
 optional = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/ToPortTavernPortal"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/ToPortTavernPortal" unique_id=295222170]
 shape = SubResource("SphereShape3D_interaction")
 
-[node name="ToGreyfordGatePortal" type="Area3D" parent="Portals"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25, 1.0, 2.7)
+[node name="ToGreyfordGatePortal" type="Area3D" parent="Portals" unique_id=1945772902]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25, 1, 2.7)
 script = ExtResource("3_portal")
 destination_scene = "res://scenes/locations/greyford/GreyfordGate.tscn"
 destination_location = "greyford_gate"
@@ -236,24 +240,24 @@ prompt = "Вийти непомітною дорогою до брами"
 is_hidden = true
 optional = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/ToGreyfordGatePortal"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/ToGreyfordGatePortal" unique_id=1733159449]
 shape = SubResource("SphereShape3D_interaction")
 
-[node name="Lighting" type="Node3D" parent="."]
+[node name="Lighting" type="Node3D" parent="." unique_id=1943681922]
 
-[node name="ColdTopLight" type="OmniLight3D" parent="Lighting"]
+[node name="ColdTopLight" type="OmniLight3D" parent="Lighting" unique_id=1963322503]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -1.5)
-light_color = Color(0.55, 0.75, 0.70, 1)
+light_color = Color(0.55, 0.75, 0.7, 1)
 light_energy = 1.4
 omni_range = 7.0
 
-[node name="WarmCylinderAccent" type="OmniLight3D" parent="Lighting"]
+[node name="WarmCylinderAccent" type="OmniLight3D" parent="Lighting" unique_id=80655740]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45, -0.78)
-light_color = Color(1.0, 0.72, 0.36, 1)
+light_color = Color(1, 0.72, 0.36, 1)
 light_energy = 0.55
 omni_range = 2.5
 
-[node name="ArtNotes" type="Node" parent="."]
+[node name="ArtNotes" type="Node" parent="." unique_id=938442888]
 metadata/source = "visual/concept_art_vision/items/022_p10_lileia_alteia_-_ostannia_z_kliuchnykiv.png; quests/ep1-01-greyford-adresat-vidsutniy.md; regions/greyford.md; characters/lileya.md"
 metadata/notes = "Hidden optional room: cold flooded stone interior, arches, water reflection, dark robed central figure, pale front stole, golden cylinder, spatial veil signature. No public witch NPC; no extra witch invented."
 metadata/canon_role = "Чаклунка Алтея / Лілея — єдина чаклунка Грейфорда, optional hidden route witness before the gate."

@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/gameplay/InspectClue.gd" id="1_clue"]
+
+[sub_resource type="Environment" id="Env_chapel"]
+background_mode = 1
+background_color = Color(0.03, 0.04, 0.05, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.18, 0.20, 0.22, 1)
+ambient_light_energy = 0.7
+fog_enabled = true
+fog_light_color = Color(0.12, 0.14, 0.15, 1)
+fog_density = 0.030
+
+[sub_resource type="StandardMaterial3D" id="Mat_stone_wet"]
+albedo_color = Color(0.22, 0.21, 0.20, 1)
+roughness = 0.70
+
+[sub_resource type="BoxShape3D" id="BoxShape_small"]
+size = Vector3(6, 3.5, 8)
+
+[sub_resource type="SphereShape3D" id="SphereShape_interact"]
+radius = 1.6
+
+[node name="FloodedChapel" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env_chapel")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+shape = SubResource("BoxShape_small")
+
+[node name="NicheClue" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, -2)
+script = ExtResource("1_clue")
+clue_id = "flooded_chapel_niche"
+clue_text = "Поховальна ніша в затопленій каплиці. Попільний знак на стіні — дзеркально перевернутий. Очерет навколо шиї тіла — свіжий. Розбитий ліхтар №7 біля ніг."
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NicheClue"]
+shape = SubResource("SphereShape_interact")

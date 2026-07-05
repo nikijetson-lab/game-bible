@@ -1,0 +1,23 @@
+{
+  "id": "varrik",
+  "name": "Варрік",
+  "title": "Старший мисливець, вартовий вежі",
+  "race": "Muri",
+  "age": 48,
+  "description": "Старший мисливець Тихого Шелесту. Вартує у високій дерев'яній вежі з ліхтарем — вартовий пост, що бачить усе поселення.",
+  "personality": {
+    "traits": ["stoic", "observant", "distrustful", "honorable"],
+    "alignment": "neutral",
+    "speech_style": "terse",
+    "voice_note": "Говорить рідко. Коли мовчить — говорить більше."
+  },
+  "location": {
+    "default": "tykhy_shelest_varrik_tower",
+    "building": "varrik_watchtower"
+  },
+  "relationships": {
+    "kaen": "respected_elder",
+    "sirra": "protective_uncle",
+    "mia": "watches_from_distance"
+  }
+}

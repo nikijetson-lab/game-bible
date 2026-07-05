@@ -1,0 +1,151 @@
+[gd_scene load_steps=14 format=3]
+
+[ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc"]
+[ext_resource type="Script" path="res://scripts/gameplay/InspectClue.gd" id="2_clue"]
+
+[sub_resource type="Environment" id="Env_flooded"]
+background_mode = 1
+background_color = Color(0.02, 0.03, 0.04, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.20, 0.22, 0.25, 1)
+ambient_light_energy = 1.2
+fog_enabled = true
+fog_light_color = Color(0.15, 0.18, 0.20, 1)
+fog_density = 0.028
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.015
+
+[sub_resource type="StandardMaterial3D" id="Mat_stone_old"]
+albedo_color = Color(0.25, 0.24, 0.22, 1)
+roughness = 0.80
+
+[sub_resource type="StandardMaterial3D" id="Mat_water_muddy"]
+albedo_color = Color(0.04, 0.06, 0.05, 1)
+roughness = 0.06
+metallic = 0.2
+
+[sub_resource type="StandardMaterial3D" id="Mat_wood_wreck"]
+albedo_color = Color(0.12, 0.08, 0.05, 1)
+roughness = 0.90
+
+[sub_resource type="StandardMaterial3D" id="Mat_pact_seal"]
+albedo_color = Color(0.40, 0.36, 0.30, 1)
+roughness = 0.55
+metallic = 0.3
+
+[sub_resource type="StandardMaterial3D" id="Mat_reed"]
+albedo_color = Color(0.14, 0.18, 0.10, 1)
+roughness = 0.85
+
+[sub_resource type="BoxShape3D" id="BoxShape_chamber_floor"]
+size = Vector3(30, 0.3, 25)
+
+[sub_resource type="BoxShape3D" id="BoxShape_barge"]
+size = Vector3(4, 0.4, 8)
+
+[sub_resource type="SphereShape3D" id="SphereShape_interact"]
+radius = 1.6
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+size = Vector3(30, 0.3, 25)
+material = SubResource("Mat_stone_old")
+
+[sub_resource type="BoxMesh" id="BoxMesh_water_mud"]
+size = Vector3(30, 0.1, 25)
+material = SubResource("Mat_water_muddy")
+
+[sub_resource type="BoxMesh" id="BoxMesh_barge"]
+size = Vector3(4, 0.4, 8)
+material = SubResource("Mat_wood_wreck")
+
+[node name="FloodedChamber" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env_flooded")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.7, -0.5, 0.5, 0, 0.7, 0.7, -0.7, -0.5, 0.5, 0, 6, 0)
+light_color = Color(0.25, 0.28, 0.30, 1)
+light_energy = 0.4
+
+; === МУЛ-ВОДА (muddy water floor) ===
+[node name="MudWater" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+mesh = SubResource("BoxMesh_water_mud")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+shape = SubResource("BoxShape_chamber_floor")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+mesh = SubResource("BoxMesh_floor")
+
+; === РОЗКОЛОТІ БАРЖІ (stuck in reeds) ===
+[node name="WreckedBarge1" type="StaticBody3D" parent="."]
+transform = Transform3D(0, 0, -1, 0, 1, 0, -1, 0, 0, -6, 0.2, 4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WreckedBarge1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+shape = SubResource("BoxShape_barge")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WreckedBarge1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+mesh = SubResource("BoxMesh_barge")
+
+[node name="WreckedBarge2" type="StaticBody3D" parent="."]
+transform = Transform3D(0.5, 0, -0.866, 0, 1, 0, -0.866, 0, -0.5, 8, 0.2, -2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WreckedBarge2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+shape = SubResource("BoxShape_barge")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WreckedBarge2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+mesh = SubResource("BoxMesh_barge")
+
+; === СТАРА КАМ'ЯНА КЛАДКА З ПЕЧАТКАМИ ПАКТУ ===
+[node name="PactWall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.5, -10)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PactWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape_barge")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PactWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+mesh = SubResource("BoxMesh_barge")
+material_override = SubResource("Mat_pact_seal")
+
+; === CLUES ===
+[node name="PactSealClue" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 2.0, -9)
+script = ExtResource("2_clue")
+clue_id = "pact_seal"
+clue_text = "Оголена стара кам'яна кладка з печатками Пакту. Символи вицвілі, але ще помітні. Цим стінам — століття."
+clue_category = "investigation"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PactSealClue"]
+shape = SubResource("SphereShape_interact")
+
+[node name="GrainBargeClue" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.6, 4)
+script = ExtResource("2_clue")
+clue_id = "grain_barge"
+clue_text = "Розколота зернова баржа, застрягла в очеретяних каналах. Частина мішків розкидана, частина зникла. Сліди волочіння ведуть до води."
+clue_category = "investigation"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GrainBargeClue"]
+shape = SubResource("SphereShape_interact")
+
+[node name="RitualOfferingsClue" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.3, -8)
+script = ExtResource("2_clue")
+clue_id = "ritual_offerings"
+clue_text = "Ритуальні жертви біля води: хліб, риба, і — чужі речі. Не з Мірефолда. Хтось кличе мертвих."
+clue_category = "investigation"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RitualOfferingsClue"]
+shape = SubResource("SphereShape_interact")

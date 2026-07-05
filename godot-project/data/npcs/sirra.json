@@ -1,0 +1,21 @@
+{
+  "id": "sirra",
+  "name": "Сірра",
+  "title": "Юна перекладачка",
+  "race": "Muri",
+  "age": 16,
+  "description": "Молода дівчина Мурі. Єдина в поселенні, хто вільно говорить загальною мовою. Навчив Каен.",
+  "personality": {
+    "traits": ["curious", "helpful", "brave", "playful"],
+    "alignment": "neutral_good",
+    "speech_style": "informal",
+    "voice_note": "Говорить тихо, щоб не чули дорослі. Часто озирається."
+  },
+  "location": {
+    "default": "tykhy_shelest_center"
+  },
+  "relationships": {
+    "kaen": "mentor",
+    "varrik": "protective_uncle"
+  }
+}

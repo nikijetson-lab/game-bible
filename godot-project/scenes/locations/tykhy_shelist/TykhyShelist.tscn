@@ -1,0 +1,472 @@
+[gd_scene load_steps=28 format=3]
+
+[ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc"]
+[ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="2_portal"]
+[ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="3_player"]
+[ext_resource type="Script" path="res://scripts/gameplay/TykhyShelistArtAssembly.gd" id="4_art"]
+
+[sub_resource type="Environment" id="Env_tykhy_water"]
+background_mode = 1
+background_color = Color(0.04, 0.06, 0.05, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.28, 0.32, 0.30, 1)
+ambient_light_energy = 1.5
+fog_enabled = true
+fog_light_color = Color(0.22, 0.26, 0.24, 1)
+fog_density = 0.016
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.007
+
+[sub_resource type="StandardMaterial3D" id="Mat_swamp_water"]
+albedo_color = Color(0.04, 0.08, 0.05, 1)
+roughness = 0.08
+metallic = 0.25
+
+[sub_resource type="StandardMaterial3D" id="Mat_wood_dark"]
+albedo_color = Color(0.16, 0.11, 0.06, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="Mat_wood_plank"]
+albedo_color = Color(0.20, 0.14, 0.08, 1)
+roughness = 0.85
+
+[sub_resource type="StandardMaterial3D" id="Mat_hut_wall"]
+albedo_color = Color(0.15, 0.12, 0.08, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="Mat_hut_roof"]
+albedo_color = Color(0.10, 0.07, 0.04, 1)
+roughness = 0.95
+
+[sub_resource type="StandardMaterial3D" id="Mat_totem"]
+albedo_color = Color(0.22, 0.16, 0.09, 1)
+roughness = 0.78
+
+[sub_resource type="StandardMaterial3D" id="Mat_warm_fire"]
+albedo_color = Color(1.0, 0.45, 0.15, 1)
+emission_enabled = true
+emission = Color(1.0, 0.38, 0.10, 1)
+emission_energy_multiplier = 2.5
+
+[sub_resource type="StandardMaterial3D" id="Mat_bark"]
+albedo_color = Color(0.25, 0.18, 0.10, 1)
+roughness = 0.90
+
+[sub_resource type="StandardMaterial3D" id="Mat_ritual"]
+albedo_color = Color(0.30, 0.22, 0.14, 1)
+roughness = 0.70
+metallic = 0.15
+
+[sub_resource type="StandardMaterial3D" id="Mat_green_glow"]
+albedo_color = Color(0.1, 0.6, 0.3, 1)
+emission_enabled = true
+emission = Color(0.1, 0.7, 0.3, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="BoxShape3D" id="BoxShape_water"]
+size = Vector3(70, 0.1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape_large_platform"]
+size = Vector3(12, 0.25, 14)
+
+[sub_resource type="BoxShape3D" id="BoxShape_platform_med"]
+size = Vector3(8, 0.25, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape_walkway"]
+size = Vector3(2.0, 0.2, 8.0)
+
+[sub_resource type="BoxShape3D" id="BoxShape_tower_base"]
+size = Vector3(3.0, 0.25, 3.0)
+
+[sub_resource type="SphereShape3D" id="SphereShape_interact"]
+radius = 1.6
+
+[sub_resource type="BoxMesh" id="BoxMesh_water"]
+size = Vector3(70, 0.1, 50)
+material = SubResource("Mat_swamp_water")
+
+[sub_resource type="BoxMesh" id="BoxMesh_cent_platform"]
+size = Vector3(12, 0.25, 14)
+material = SubResource("Mat_wood_plank")
+
+[sub_resource type="BoxMesh" id="BoxMesh_platform_med"]
+size = Vector3(8, 0.25, 8)
+material = SubResource("Mat_wood_plank")
+
+[sub_resource type="BoxMesh" id="BoxMesh_walkway"]
+size = Vector3(2.0, 0.2, 8.0)
+material = SubResource("Mat_wood_plank")
+
+[sub_resource type="CylinderMesh" id="Cyl_totem"]
+top_radius = 0.3
+bottom_radius = 0.4
+height = 3.5
+material = SubResource("Mat_totem")
+
+[sub_resource type="CylinderMesh" id="Cyl_pile"]
+top_radius = 0.2
+bottom_radius = 0.25
+height = 2.0
+material = SubResource("Mat_wood_dark")
+
+[node name="TykhyShelist" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env_tykhy_water")
+
+[node name="OvercastLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.3, 0.4, 0, 0.8, 0.6, -0.5, -0.52, 0.69, 0, 10, 0)
+light_color = Color(0.35, 0.38, 0.40, 1)
+light_energy = 0.7
+shadow_enabled = true
+
+; =================== WATER SURFACE (священні води — вся сцена на воді) ===================
+[node name="WaterSurface" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+mesh = SubResource("BoxMesh_water")
+
+; Sacred Waters warning — центральна зона «не ходити»
+[node name="SacredWatersZone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -6)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SacredWatersZone"]
+transform = Transform3D(10, 0, 0, 0, 0.3, 0, 0, 0, 8, 0, 0, 0)
+shape = SubResource("BoxShape_platform_med")
+
+; =================== PLAYER SPAWN (прибуває на торговий причал) ===================
+[node name="Player" parent="." instance=ExtResource("3_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 1.2, -10)
+
+; =================== ТОРГОВИЙ ПРИЧАЛ (єдиний вхід) ===================
+[node name="TradingDock" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0.15, -10)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TradingDock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+shape = SubResource("BoxShape_platform_med")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TradingDock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+mesh = SubResource("BoxMesh_platform_med")
+
+; Палі під причалом
+[node name="Pile1" type="MeshInstance3D" parent="TradingDock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -0.8, 3)
+mesh = SubResource("Cyl_pile")
+
+[node name="Pile2" type="MeshInstance3D" parent="TradingDock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -0.8, 3)
+mesh = SubResource("Cyl_pile")
+
+[node name="Pile3" type="MeshInstance3D" parent="TradingDock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -0.8, -3)
+mesh = SubResource("Cyl_pile")
+
+[node name="Pile4" type="MeshInstance3D" parent="TradingDock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -0.8, -3)
+mesh = SubResource("Cyl_pile")
+
+; =================== ЦЕНТРАЛЬНА ПЛАТФОРМА ===================
+[node name="CentralPlatform" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -6)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CentralPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+shape = SubResource("BoxShape_large_platform")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CentralPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+mesh = SubResource("BoxMesh_cent_platform")
+
+; Тотем на центральній платформі
+[node name="Totem" type="MeshInstance3D" parent="CentralPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
+mesh = SubResource("Cyl_totem")
+
+; =================== ЦЕНТРАЛЬНЕ БАГАТТЯ ===================
+[node name="CentralFire" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -6)
+
+[node name="FireLight" type="OmniLight3D" parent="CentralFire"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 0)
+light_color = Color(1.0, 0.5, 0.15, 1)
+light_energy = 4.0
+omni_range = 12.0
+omni_attenuation = 1.0
+shadow_enabled = false
+
+[node name="FireMesh" type="MeshInstance3D" parent="CentralFire"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.5, 0)
+mesh = SubResource("Cyl_totem")
+material_override = SubResource("Mat_warm_fire")
+
+; =================== ВЕЖА ВАРРИКА (вартовий пост) ===================
+[node name="VarrikTower" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0.15, -20)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VarrikTower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+shape = SubResource("BoxShape_tower_base")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VarrikTower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+mesh = SubResource("BoxMesh_cent_platform")
+
+; Tower body
+[node name="TowerBody" type="MeshInstance3D" parent="VarrikTower"]
+transform = Transform3D(1.2, 0, 0, 0, 2.5, 0, 0, 0, 1.2, 0, 1.5, 0)
+mesh = SubResource("Cyl_totem")
+
+; Lantern on top
+[node name="TowerLantern" type="OmniLight3D" parent="VarrikTower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
+light_color = Color(1.0, 0.6, 0.2, 1)
+light_energy = 2.5
+omni_range = 8.0
+
+[node name="TowerLanternMesh" type="MeshInstance3D" parent="VarrikTower"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 4.2, 0)
+mesh = SubResource("Cyl_totem")
+material_override = SubResource("Mat_warm_fire")
+
+; =================== ЛІКАРСЬКИЙ ДІМ КАЄНА (Лікарський район) ===================
+[node name="KaenMedicalHouse" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0.15, -16)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KaenMedicalHouse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+shape = SubResource("BoxShape_platform_med")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="KaenMedicalHouse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+mesh = SubResource("BoxMesh_platform_med")
+
+; Дім (стіни + дах)
+[node name="HouseBody" type="MeshInstance3D" parent="KaenMedicalHouse"]
+transform = Transform3D(2.2, 0, 0, 0, 1.6, 0, 0, 0, 1.8, 0, 1.1, 0)
+mesh = SubResource("Cyl_totem")
+material_override = SubResource("Mat_hut_wall")
+
+[node name="HouseRoof" type="MeshInstance3D" parent="KaenMedicalHouse"]
+transform = Transform3D(2.4, 0, 0, 0, 0.6, 0, 0, 0, 2.0, 0, 2.1, 0)
+mesh = SubResource("Cyl_totem")
+material_override = SubResource("Mat_hut_roof")
+
+; Кора з записами
+[node name="BarkRecords" type="MeshInstance3D" parent="KaenMedicalHouse"]
+transform = Transform3D(0.6, 0, 0, 0, 0.03, 0, 0, 0, 0.5, 1.5, 0.4, 1.0)
+mesh = SubResource("Cyl_pile")
+material_override = SubResource("Mat_bark")
+
+; Ритуальні предмети
+[node name="RitualItem1" type="MeshInstance3D" parent="KaenMedicalHouse"]
+transform = Transform3D(0.3, 0, 0, 0, 0.4, 0, 0, 0, 0.3, -0.5, 0.3, 1.2)
+mesh = SubResource("Cyl_totem")
+material_override = SubResource("Mat_ritual")
+
+; Інтер'єрне світло
+[node name="InteriorLight" type="OmniLight3D" parent="KaenMedicalHouse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+light_color = Color(1.0, 0.55, 0.2, 1)
+light_energy = 2.0
+omni_range = 5.0
+
+; =================== ДІМ МІА ===================
+[node name="MiaHouse" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.15, -6)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MiaHouse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+shape = SubResource("BoxShape_tower_base")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MiaHouse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+mesh = SubResource("BoxMesh_cent_platform")
+
+[node name="HouseBody" type="MeshInstance3D" parent="MiaHouse"]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 1.0, 0)
+mesh = SubResource("Cyl_totem")
+material_override = SubResource("Mat_hut_wall")
+
+[node name="HouseRoof" type="MeshInstance3D" parent="MiaHouse"]
+transform = Transform3D(1.6, 0, 0, 0, 0.5, 0, 0, 0, 1.6, 0, 1.9, 0)
+mesh = SubResource("Cyl_totem")
+material_override = SubResource("Mat_hut_roof")
+
+; =================== СВЯТИНЯ «МАТИ МІЯ» (третій шар таємниці) ===================
+[node name="MotherMiaShrine" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0.15, 2)
+
+[node name="ShrineBase" type="MeshInstance3D" parent="MotherMiaShrine"]
+transform = Transform3D(2, 0, 0, 0, 0.3, 0, 0, 0, 2, 0, 0.15, 0)
+mesh = SubResource("BoxMesh_platform_med")
+material_override = SubResource("Mat_ritual")
+
+[node name="ShrineStatue" type="MeshInstance3D" parent="MotherMiaShrine"]
+transform = Transform3D(0.5, 0, 0, 0, 1.8, 0, 0, 0, 0.5, 0, 1.1, 0)
+mesh = SubResource("Cyl_totem")
+material_override = SubResource("Mat_totem")
+
+[node name="ShrineGlow" type="OmniLight3D" parent="MotherMiaShrine"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 0)
+light_color = Color(0.1, 0.7, 0.3, 1)
+light_energy = 1.5
+omni_range = 5.0
+
+; =================== МІСТКИ (walkways connecting platforms) ===================
+[node name="Walkways" type="Node3D" parent="."]
+
+; Central → Medical district
+[node name="Walkway_C_M" type="StaticBody3D" parent="Walkways"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.15, -11)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walkways/Walkway_C_M"]
+shape = SubResource("BoxShape_walkway")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walkways/Walkway_C_M"]
+mesh = SubResource("BoxMesh_walkway")
+
+; Central → Trading dock
+[node name="Walkway_C_T" type="StaticBody3D" parent="Walkways"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0.15, -8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walkways/Walkway_C_T"]
+shape = SubResource("BoxShape_walkway")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walkways/Walkway_C_T"]
+mesh = SubResource("BoxMesh_walkway")
+
+; Central → Varrik's tower
+[node name="Walkway_C_V" type="StaticBody3D" parent="Walkways"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 11, 0.15, -13)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walkways/Walkway_C_V"]
+shape = SubResource("BoxShape_walkway")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walkways/Walkway_C_V"]
+mesh = SubResource("BoxMesh_walkway")
+
+; Medical → Mia's house
+[node name="Walkway_M_Mi" type="StaticBody3D" parent="Walkways"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0.15, -11)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walkways/Walkway_M_Mi"]
+shape = SubResource("BoxShape_walkway")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walkways/Walkway_M_Mi"]
+mesh = SubResource("BoxMesh_walkway")
+
+; Trading → Shrine
+[node name="Walkway_T_S" type="StaticBody3D" parent="Walkways"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 24, 0.15, -4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walkways/Walkway_T_S"]
+shape = SubResource("BoxShape_walkway")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walkways/Walkway_T_S"]
+mesh = SubResource("BoxMesh_walkway")
+
+[node name="Walkway_C_S" type="StaticBody3D" parent="Walkways"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 10, 0.15, -2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walkways/Walkway_C_S"]
+shape = SubResource("BoxShape_walkway")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walkways/Walkway_C_S"]
+mesh = SubResource("BoxMesh_walkway")
+
+; =================== NPCs ===================
+[node name="NPCs" type="Node3D" parent="."]
+
+[node name="Kaen" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0.9, -16)
+script = ExtResource("1_npc")
+npc_id = "kaen"
+npc_display_name = "Каен"
+default_dialogue_id = "first_meeting"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Kaen"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/Kaen"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+
+[node name="Varrik" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0.9, -20)
+script = ExtResource("1_npc")
+npc_id = "varrik"
+npc_display_name = "Варрік"
+default_dialogue_id = "about_rufin"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Varrik"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/Varrik"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+
+[node name="Sirra" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -4)
+script = ExtResource("1_npc")
+npc_id = "sirra"
+npc_display_name = "Сірра"
+default_dialogue_id = "first_meeting"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Sirra"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/Sirra"]
+transform = Transform3D(1, 0, 0, 0, 0.75, 0, 0, 0, 1, 0, 0.6, 0)
+
+[node name="MiaMother" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.85, -6)
+script = ExtResource("1_npc")
+npc_id = "mia_mother"
+npc_display_name = "Мати Міа"
+default_dialogue_id = "about_mia"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/MiaMother"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/MiaMother"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+
+; =================== ПОРТАЛ НА ЗАБОРОНЕНУ ГАЛЯВИНУ ===================
+[node name="GladePortal" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0.6, 4)
+script = ExtResource("2_portal")
+target_scene = "res://scenes/locations/tykhy_shelist/ForbiddenGlade.tscn"
+spawn_point = Vector3(0, 1.0, 5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GladePortal"]
+shape = SubResource("SphereShape_interact")
+
+; =================== GREEN WISP LIGHTS (вогні на воді) ===================
+[node name="WispLights" type="Node3D" parent="."]
+
+[node name="Wisp1" type="OmniLight3D" parent="WispLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0.3, -22)
+light_color = Color(0.1, 0.6, 0.3, 1)
+light_energy = 1.0
+omni_range = 4.0
+
+[node name="Wisp2" type="OmniLight3D" parent="WispLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0.3, -25)
+light_color = Color(0.1, 0.6, 0.3, 1)
+light_energy = 1.0
+omni_range = 4.0
+
+[node name="Wisp3" type="OmniLight3D" parent="WispLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.3, 5)
+light_color = Color(0.1, 0.6, 0.3, 1)
+light_energy = 1.0
+omni_range = 4.0
+
+[node name="Wisp4" type="OmniLight3D" parent="WispLights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0.3, 8)
+light_color = Color(0.1, 0.6, 0.3, 1)
+light_energy = 1.0
+omni_range = 4.0
+
+; =================== ART ASSEMBLY (дрібні хатини на палях) ===================
+[node name="ArtAssembly" type="Node3D" parent="."]
+script = ExtResource("4_art")

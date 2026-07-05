@@ -1,143 +1,154 @@
 {
-  "id": "sunk_ferry_01_hunger_from_below",
+  "id": "sonk_ferry_01_hunger_from_below",
   "title": "Голод знизу",
-  "description": "Жителі Сонк-Феррі скаржаться на зникнення риби та дивні звуки з води. Поромник Одрін просить розібратися.",
-  "category": "side",
+  "description": "Зерновий конвой зник біля Затонулої Сторожової Дороги. Голод, корупція, контрабанда — і потривожені мерці Пакту під водою.",
+  "category": "main",
   "episode": 1,
-  "required_level": 2,
-  
+  "canonical_outcome": "C",
   "prerequisites": {
-    "quests_completed": ["hazemoor_01_path_through_swamp"],
-    "location_discovered": "sunk_ferry"
+    "quests_completed": ["tykhy_shelest_01"]
   },
-  
-  "objectives": [
-    {
-      "id": "talk_odrin",
-      "description": "Поговорити з Одріном, поромником",
-      "type": "dialogue",
-      "target": "npc_odrin",
-      "optional": false
+  "phases": {
+    "arrival": {
+      "title": "Прибуття і шум",
+      "location": "sonk_ferry",
+      "objectives": [
+        {"id":"notice_board","description":"Оглянути дошку оголошень","type":"inspect"},
+        {"id":"meet_nera","description":"Поговорити з Нерою Вейл","type":"talk","target":"nera"},
+        {"id":"meet_voss","description":"Зустріти квартирмейстера Восса","type":"talk","target":"voss"}
+      ]
     },
-    {
-      "id": "investigate_shore",
-      "description": "Оглянути берег річки (3 локації)",
-      "type": "investigate",
-      "target": "river_shore",
-      "locations": ["shore_north", "shore_pier", "shore_south"],
-      "current": 0,
-      "optional": false
+    "investigation": {
+      "title": "Розслідування",
+      "objectives": [
+        {"id":"convoy_books","description":"Знайти розбіжності в конвойних книгах","type":"investigate"},
+        {"id":"drag_marks","description":"Знайти сліди волочіння на Сторожовій Дорозі","type":"investigate"},
+        {"id":"shrine_trail","description":"Виявити жертовну стежку біля Мірефолда","type":"investigate"},
+        {"id":"burial_records","description":"Отримати поховальні списки від брата Кароса","type":"talk","target":"karos"}
+      ]
     },
-    {
-      "id": "find_clues",
-      "description": "Знайти сліди невідомої істоти",
-      "type": "find_object",
-      "target": "creature_tracks",
-      "optional": false
-    },
-    {
-      "id": "choice_hunt",
-      "description": "Вирішити що робити з істотою",
-      "type": "choice",
-      "target": "hunt_decision",
-      "optional": false
-    }
-  ],
-  
-  "choices": [
-    {
-      "id": "hunt_creature",
-      "text": "Полювати на істоту (ризиковано)",
-      "description": "Спробувати вбити річкового хижака. Небезпечно, але жителі будуть вдячні.",
-      "conditions": {
-        "player_level": 3,
-        "has_weapon": true
-      },
-      "consequences": {
-        "quest_branch": "hunt_path",
-        "reputation": {
-          "sunk_ferry_locals": 20,
-          "muri": -10
-        },
-        "unlock_quest": "sunk_ferry_02_beast_hunt"
-      }
-    },
-    {
-      "id": "negotiate_muri",
-      "text": "Знайти Мурі та попросити про допомогу",
-      "description": "Мурі знають болото краще. Можливо, вони допоможуть вирішити проблему без насильства.",
-      "conditions": {
-        "reputation_muri": 10,
-        "doctrine": "mediator"
-      },
-      "consequences": {
-        "quest_branch": "peace_path",
-        "reputation": {
-          "sunk_ferry_locals": 10,
-          "muri": 20
-        },
-        "unlock_quest": "sunk_ferry_03_muri_pact"
-      }
-    },
-    {
-      "id": "ignore_problem",
-      "text": "Порадити уникати річки вночі",
-      "description": "Це не твоя справа. Нехай місцеві самі розбираються.",
-      "conditions": {},
-      "consequences": {
-        "quest_complete": true,
-        "reputation": {
-          "sunk_ferry_locals": -15,
-          "lightbearers": -5
-        },
-        "narrative_flag": "sunk_ferry_abandoned"
-      }
-    }
-  ],
-  
-  "rewards": {
-    "experience": 200,
-    "money": 50,
-    "items": [],
-    "reputation": {},
-    "branch_rewards": {
-      "hunt_path": {
-        "items": [{"id": "item_river_trophy", "count": 1}],
-        "reputation": {"sunk_ferry_locals": 20}
-      },
-      "peace_path": {
-        "items": [{"id": "item_muri_amulet", "count": 1}],
-        "reputation": {"muri": 20}
-      }
+    "confrontation": {
+      "title": "Конфронтація в Затопленій Камері",
+      "location": "flooded_chamber",
+      "enemy": "reed_wraiths",
+      "hazards": ["water_surges","mud_collapse","low_visibility"]
     }
   },
-  
-  "dialogue_triggers": {
-    "on_start": "odrin/hunger_below_intro.json",
-    "on_investigate": "internal_voice/something_wrong.json",
-    "on_find_tracks": "odrin/these_are_bad.json",
-    "on_choice": "odrin/what_will_you_do.json"
-  },
-  
-  "lore": {
-    "summary": "Квест-розгалуження, що показує конфлікт між людськими поселеннями та болотною екосистемою. Перший вибір між насильством та дипломатією.",
-    "unlocks": [
-      "Знайомство з Одріном",
-      "Розуміння балансу болота",
-      "Можливість альянсу з Мурі"
-    ],
-    "consequences_matrix": "Див. game-bible/quests/holod-znuzu-naslidky.md"
-  },
-  
-  "mechanics": {
-    "time_limit": null,
-    "combat_encounter": {
-      "hunt_path": {
-        "enemy": "river_beast",
-        "difficulty": "hard"
-      }
+  "resolutions": {
+    "A": {
+      "title": "Публічне викриття",
+      "description": "Розкрити відведення зерна, поховальні злочини й прорив камери відкрито.",
+      "set_flag": "hunger_outcome_public_exposure",
+      "faction_shifts": {
+        "fortress_admin": -30,
+        "keepers_st_vey": 15,
+        "muri_ferrymen": 10,
+        "smugglers_survival": -5,
+        "smugglers_predatory": 10,
+        "wandering_wardens_confessors": 15,
+        "wandering_wardens_restoration": -15
+      },
+      "reputation_tags": ["truth_over_stability","dangerous_to_power"],
+      "world_changes": [
+        "public_books_guarded_or_burned",
+        "ration_queues_militarized",
+        "rumors_spread_through_sonk_ferry",
+        "mirefold_gets_aid_but_hostile_visits",
+        "st_vey_overcrowded"
+      ],
+      "next_quest_hooks": [
+        "serit_kelm_arrives_for_control",
+        "witness_disappears_before_testimony",
+        "hardliners_push_emergency_mandate"
+      ]
     },
-    "stealth_option": true,
-    "investigation_skill_checks": ["tracker", "lantern"]
+    "B": {
+      "title": "Контрольоване стримування",
+      "description": "Придушити скандал, нейтралізувати Очеретяних, дозволити обмежену реформу.",
+      "set_flag": "hunger_outcome_controlled_containment",
+      "faction_shifts": {
+        "fortress_admin": 25,
+        "keepers_st_vey_strict": 10,
+        "keepers_st_vey_merciful": -10,
+        "muri_ferrymen": -5,
+        "smugglers_predatory": -15,
+        "smugglers_survival": 5,
+        "wandering_wardens_restoration": 15,
+        "wandering_wardens_confessors": -10
+      },
+      "reputation_tags": ["effective","cold","complicit"],
+      "world_changes": [
+        "guard_patrols_more_organized",
+        "supply_reports_harsher_language",
+        "st_vey_records_hidden_under_guard",
+        "sunk_watchtower_road_passable_sooner"
+      ],
+      "next_quest_hooks": [
+        "administration_offers_closed_work",
+        "mirefold_files_private_accusation",
+        "residual_warden_questions_morality"
+      ]
+    },
+    "C": {
+      "title": "Місцева угода",
+      "description": "Перенаправити припаси, укласти неофіційні домовленості — компроміс виживання.",
+      "set_flag": "hunger_outcome_local_deal",
+      "faction_shifts": {
+        "fortress_admin": -20,
+        "keepers_st_vey_merciful": 10,
+        "keepers_st_vey_strict": -15,
+        "muri_ferrymen": 25,
+        "smugglers_survival": 20,
+        "smugglers_predatory": 10,
+        "wandering_wardens_frontier": 15,
+        "wandering_wardens_restoration": -15
+      },
+      "reputation_tags": ["useful","suspicious","close_to_the_mud"],
+      "world_changes": [
+        "hidden_goods_in_back_rooms",
+        "sonk_ferry_authority_slowly_weakens",
+        "mirefold_stabilizes_unevenly",
+        "smugglers_bolder_on_evening_routes"
+      ],
+      "next_quest_hooks": [
+        "brin_oss_offers_deeper_access",
+        "gara_paik_attempts_permanent_dependency",
+        "officials_prepare_purge_as_anti_bandit"
+      ]
+    },
+    "D": {
+      "title": "Ритуальне милосердя",
+      "description": "Пріоритезувати мертвих — правильне поховання, духовний ремонт, навіть ціною голоду.",
+      "set_flag": "hunger_outcome_ritual_mercy",
+      "faction_shifts": {
+        "fortress_admin": -35,
+        "keepers_st_vey_merciful": 30,
+        "keepers_st_vey_strict": 15,
+        "muri_ferrymen_spiritual": 15,
+        "muri_ferrymen_hungry": -20,
+        "smugglers": -10,
+        "wandering_wardens_lantern": 25,
+        "wandering_wardens_confessors": 20,
+        "wandering_wardens_restoration": -10
+      },
+      "reputation_tags": ["uncanny","chose_dead_over_living","serious_about_the_land"],
+      "world_changes": [
+        "burial_sites_restored_or_remarked",
+        "st_vey_gains_mourners_and_watchers",
+        "some_routes_remain_dangerous",
+        "sonk_ferry_quieter_under_deficit_discipline"
+      ],
+      "next_quest_hooks": [
+        "mother_isra_vayn_offers_deeper_burial_archives",
+        "hunger_riots_create_populist_anti_shrine_movement",
+        "ritual_imitator_goes_wrong_in_another_village"
+      ]
+    }
+  },
+  "doctrines": {
+    "judge": ["force_confessions","seize_records","public_verdict"],
+    "scout": ["reconstruct_route","spot_false_trails","prepare_territory"],
+    "lantern": ["interpret_shrine","protect_against_fear","calming_ritual"],
+    "mediator": ["trade_protection","recruit_smugglers","control_blame"]
   }
 }

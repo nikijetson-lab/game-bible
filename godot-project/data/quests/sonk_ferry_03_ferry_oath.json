@@ -1,0 +1,46 @@
+{
+  "id": "sonk_ferry_03_ferry_oath",
+  "title": "Поромна присяга",
+  "description": "Тіло поромника в воді. Тован Рід і Нера Вейл — на межі відкритого конфлікту. Серіт Келм спостерігає. Хто контролюватиме маршрути?",
+  "category": "main",
+  "episode": 1,
+  "prerequisites": {
+    "quests_completed": ["sonk_ferry_02_salt_in_book"]
+  },
+  "phases": {
+    "open_rift": {
+      "title": "Відкритий розрив",
+      "description": "Тіло на причалі. Тован і Нера — публічна конфронтація. Перший вибір: стати арбітром, почати з тіла, або говорити з Келмом.",
+      "first_choice": ["arbiter","investigate_body","talk_to_kelm"]
+    },
+    "investigation": {
+      "title": "Розслідування саботажу",
+      "clues": [
+        {"id":"cut_rope","desc":"Канат перерізаний рівно — гострий інструмент, малий розмір"},
+        {"id":"boat_track","desc":"Слід малого човна з очерету вночі"},
+        {"id":"wrist_knot","desc":"Специфічний вузол — хтось із болота"},
+        {"id":"mud_boots","desc":"Чоботи на бруді — малий розмір"},
+        {"id":"witness_silence","desc":"Троє поромників уникають дивитись на канат"}
+      ],
+      "evidence_counter": "0-5 affects resolution quality"
+    },
+    "political": {
+      "title": "Політична розвилка",
+      "options": ["temporary_truce","support_tovan","support_nera","propose_third_way","use_evidence_politically"]
+    },
+    "night_council": {
+      "title": "Нічна рада",
+      "location": "damaged_ferry_dock",
+      "description": "Факели, чорна вода, гнилі дошки. Гравець посередині між Тованом і Нерою."
+    }
+  },
+  "kelm_timer": {"days":4,"day5":"auto_result_G"},
+  "resolutions": {
+    "A":{"title":"Рада Тована","desc":"Маршрути стабілізуються. Тован — найвпливовіший."},
+    "B":{"title":"Розосереджений контроль","desc":"Незалежні переправи. Нера тримає лінію."},
+    "V":{"title":"Структура гравця","desc":"Ротаційна модель під Вартовийом."},
+    "G":{"title":"Адміністративне захоплення","desc":"Келм діє. Поромники стають службовцями."}
+  },
+  "variables": ["poromna_result","poromna_saboteur","poromna_kelm_standing"],
+  "leads_to": ["popil_pid_kaplytseyu","nizh_kvoty"]
+}

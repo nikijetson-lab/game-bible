@@ -1,0 +1,24 @@
+{
+  "id": "kaen",
+  "name": "Каен",
+  "title": "Шаман і лікар Тихого Шелесту",
+  "race": "Muri",
+  "age": 55,
+  "description": "Шаман поселення Мурі на палях. Лікар, хранитель знань. Прийомний батько Міа. Його дім — у Лікарському районі, позначений зеленим хрестом.",
+  "personality": {
+    "traits": ["wise", "protective", "guarded", "loving"],
+    "alignment": "neutral_good",
+    "speech_style": "measured",
+    "voice_note": "Говорить повільно, зважуючи. Знає кілька фраз загальною мовою."
+  },
+  "location": {
+    "default": "tykhy_shelest_medical_district",
+    "building": "kaen_medical_house"
+  },
+  "relationships": {
+    "mia": "adoptive_father",
+    "mia_mother": "husband",
+    "varrik": "respected_elder",
+    "sirra": "mentor"
+  }
+}

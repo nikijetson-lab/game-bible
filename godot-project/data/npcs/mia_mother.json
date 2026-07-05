@@ -1,0 +1,21 @@
+{
+  "id": "mia_mother",
+  "name": "Мати Міа",
+  "title": "Дружина шамана",
+  "race": "Muri",
+  "age": 50,
+  "description": "Дружина Каена, прийомна мати Міа. Знає більше, ніж говорить — і те, що вона знає, болить.",
+  "personality": {
+    "traits": ["quiet", "knowing", "sorrowful", "strong"],
+    "alignment": "neutral_good",
+    "speech_style": "short",
+    "voice_note": "Говорить коротко, але кожне слово важить. В якийсь момент — каже те, чого не планувала."
+  },
+  "location": {
+    "default": "tykhy_shelest_family_hut"
+  },
+  "relationships": {
+    "kaen": "wife",
+    "mia": "adoptive_mother"
+  }
+}

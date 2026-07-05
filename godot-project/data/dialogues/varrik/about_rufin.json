@@ -1,0 +1,92 @@
+{
+  "dialogue_id": "varrik_about_rufin",
+  "npc_id": "varrik",
+  "start_node": "start",
+  "context": "Розмова з Варріком — старшим мисливцем. Знає всіх, хто входить і виходить.",
+  "nodes": {
+    "start": {
+      "speaker": "Варрік",
+      "text": "*Дивиться на тебе. Не говорить. Питає Мур'атом — Сірра або Міа перекладає:*\n\n«Навіщо тобі ця людина?»",
+      "choices": [
+        {
+          "text": "Правда — шукаю, бо він зник і хтось чекає.",
+          "next_node": "truth_path"
+        },
+        {
+          "text": "Напівправда — він мав щось важливе.",
+          "next_node": "half_truth"
+        },
+        {
+          "text": "Через Міа — вона просить його говорити.",
+          "next_node": "mia_path",
+          "condition": {"type": "flag", "flag": "mia_with_hero"}
+        }
+      ]
+    },
+    "truth_path": {
+      "speaker": "Варрік",
+      "text": "*Слухає. Не відповідає одразу — але очі вже не такі закриті.*\n\nДвері відчинені. Але він ще не говорить.",
+      "next": "what_varrik_knows",
+      "consequences": {
+        "set_flag": "varrik_truth_path"
+      }
+    },
+    "half_truth": {
+      "speaker": "Варрік",
+      "text": "*Закривається. Відвертається.*\n\nЧужинець говорить не все. Мисливець це чує.\n\nПотрібен інший підхід.",
+      "next": "what_varrik_knows"
+    },
+    "mia_path": {
+      "speaker": "Варрік",
+      "text": "*Міа говорить за тебе. Варрік слухає її — їй він вірить.*\n\nГаразд. Слухай.",
+      "next": "what_varrik_knows",
+      "consequences": {
+        "set_flag": "varrik_mia_path"
+      }
+    },
+    "what_varrik_knows": {
+      "speaker": "Варрік",
+      "text": "Твій Руфін був тут. Три дні. Мурі дозволили — він знав кілька слів Мур'ату і поводився правильно.\n\nПитав про заборонену галявину. Я не відповів.\n\nВін пішов сам — у напрямку галявини. Не повернувся.",
+      "next": "what_he_carried"
+    },
+    "what_he_carried": {
+      "speaker": "Варрік",
+      "text": "Я не шукав. Це не моя справа — чужинець пішов куди не треба.\n\nАле я пам'ятаю.\n\n*Пауза.*\n\nВін ніс щось що світилось. Не ліхтар.",
+      "choices": [
+        {
+          "text": "Я піду на галявину.",
+          "next_node": "varrik_warns"
+        },
+        {
+          "text": "Розкажи мені про галявину.",
+          "next_node": "varrik_silent"
+        },
+        {
+          "text": "Дякую. Це важливо.",
+          "next_node": "varrik_nods"
+        }
+      ]
+    },
+    "varrik_warns": {
+      "speaker": "Варрік",
+      "text": "*Не зупиняє. Але дивиться — не як на дурня, а як на того, хто йде туди, куди не треба.*",
+      "consequences": {
+        "set_flag": "varrik_talked"
+      }
+    },
+    "varrik_silent": {
+      "speaker": "Варрік",
+      "text": "*Мовчить. Відвертається.*\n\nТе, що заборонено — заборонено не законом.",
+      "consequences": {
+        "set_flag": "varrik_talked"
+      }
+    },
+    "varrik_nods": {
+      "speaker": "Варрік",
+      "text": "*Киває — один раз. Для мисливця це багато.*",
+      "consequences": {
+        "set_flag": "varrik_talked"
+      }
+    }
+  }
+}

@@ -1,143 +1,37 @@
 {
   "id": "valkorn_01_man_from_swamp",
   "title": "Людина з болота",
-  "description": "Вартовий прибуває до Валькорна — столиці Ордену. Але його зустрічають підозрою: він приніс запах болота.",
+  "description": "Герой прибуває до Валькорна з Ілією Марр. Блазень Фіпп впізнає його на ринковій площі. Три нитки: Стетсон, Брес, Тесса.",
   "category": "main",
   "episode": 2,
-  "required_level": 5,
-  
-  "prerequisites": {
-    "quests_completed": ["hazemoor_02_clearing_verdict"],
-    "reputation_lightbearers": -5
-  },
-  
-  "objectives": [
-    {
-      "id": "enter_valkorn",
-      "description": "Увійти в місто Валькорн",
-      "type": "area_trigger",
-      "target": "valkorn_gate",
-      "optional": false
+  "prerequisites": {"quests_completed": ["sonk_ferry_04_quota_knife"],"flag":"quota_result_V"},
+  "threads": {
+    "stetson": {
+      "title": "Стетсон",
+      "question": "союзник за яку ціну?",
+      "location": "valkorn_palace_quarter",
+      "knows": ["order_crown_relations","tessa_likely","artifact_partial"],
+      "wants": "order_financial_evidence"
     },
-    {
-      "id": "gate_inspection",
-      "description": "Пройти інспекцію на воротах",
-      "type": "dialogue",
-      "target": "npc_gate_captain",
-      "optional": false
+    "bres": {
+      "title": "Нове гетто",
+      "question": "хто знає місто?",
+      "location": "valkorn_new_ghetto",
+      "reveals": "tessa_location"
     },
-    {
-      "id": "reach_order_hq",
-      "description": "Дійти до штабу Ордену Вартових",
-      "type": "area_trigger",
-      "target": "lightbearers_hq",
-      "optional": false
-    },
-    {
-      "id": "report_commander",
-      "description": "Доповісти Командору Стетсону про Руфіна",
-      "type": "dialogue",
-      "target": "npc_stetson",
-      "optional": false
-    },
-    {
-      "id": "meet_tessa",
-      "description": "Зустрітися з Тессою в таверні",
-      "type": "dialogue",
-      "target": "npc_tessa",
-      "optional": false
-    }
-  ],
-  
-  "choices": [
-    {
-      "id": "report_truth",
-      "text": "Розповісти всю правду про Руфіна та Моура",
-      "description": "Чесно доповісти про те, що сталося в болоті. Ризик: тебе можуть вважати скомпрометованим.",
-      "conditions": {},
-      "consequences": {
-        "reputation": {
-          "lightbearers": -10,
-          "knives": 5
-        },
-        "narrative_flag": "stetson_suspicious",
-        "unlock_dialogue": "stetson_distrust.json"
-      }
-    },
-    {
-      "id": "partial_truth",
-      "text": "Розповісти частково, приховавши деякі деталі",
-      "description": "Вибірково доповісти — не згадувати про шепіт Ілії та Моура.",
-      "conditions": {
-        "doctrine": "tracker"
-      },
-      "consequences": {
-        "reputation": {
-          "lightbearers": 0
-        },
-        "narrative_flag": "stetson_neutral",
-        "unlock_quest": "valkorn_02_hidden_truth"
-      }
-    },
-    {
-      "id": "lie",
-      "text": "Збрехати — Руфін просто зник",
-      "description": "Сказати, що Руфін мертвий, без подробиць. Небезпечно якщо розкриють.",
-      "conditions": {
-        "doctrine": "judge"
-      },
-      "consequences": {
-        "reputation": {
-          "lightbearers": 5
-        },
-        "narrative_flag": "stetson_deceived",
-        "future_consequences": "betrayal_risk"
-      }
-    }
-  ],
-  
-  "rewards": {
-    "experience": 300,
-    "money": 100,
-    "items": [
-      {"id": "item_valkorn_pass", "count": 1}
-    ],
-    "reputation": {
-      "valkorn_citizens": 10
+    "tessa": {
+      "title": "Перша зустріч із Тессою",
+      "question": "хто вона?",
+      "location": "valkorn_trade_quarter",
+      "tones": ["open","cautious","hostile"]
     }
   },
-  
-  "dialogue_triggers": {
-    "on_enter_city": "ambient/valkorn_arrival.json",
-    "at_gate": "gate_captain/inspection.json",
-    "at_hq": "stetson/report_rufin.json",
-    "tavern_meeting": "tessa/first_meeting.json",
-    "on_complete": "internal_voice/iliya_valkorn_comment.json"
+  "min_threads": 2,
+  "opening_scene": "fipp_market_encounter",
+  "resolved_secrets": {
+    "stetson_wants": "order_financial_evidence_for_crown_purge",
+    "tessa_knows_glade": "if_open_tone_she_knows_hero_contacted_mour",
+    "odrin_knows_order": "yes_fears_them_hiding_third_point_coordinates"
   },
-  
-  "lore": {
-    "summary": "Прибуття до Валькорна відкриває політичні інтриги Ордену. Твоя репутація як 'людини з болота' слідуватиме тобою весь Епізод 2.",
-    "unlocks": [
-      "Відкривається Валькорн для дослідження",
-      "Знайомство з Тессою та Стетсоном",
-      "Перші натяки на змову Себастьяна Марра"
-    ]
-  },
-  
-  "mechanics": {
-    "city_reputation": {
-      "initial": 0,
-      "affected_by": "swamp_smell"
-    },
-    "npc_reactions": {
-      "guards": "suspicious",
-      "merchants": "cautious",
-      "order_members": "judgmental"
-    },
-    "unlock_locations": [
-      "valkorn_market",
-      "valkorn_palace_district",
-      "valkorn_ghetto"
-    ]
-  }
+  "leads_to": "valkorn_dvi_versii_pravdy"
 }

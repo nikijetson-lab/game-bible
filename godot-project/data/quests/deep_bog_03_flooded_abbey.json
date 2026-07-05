@@ -1,0 +1,22 @@
+{
+  "id": "deep_bog_03_flooded_abbey",
+  "title": "Затоплена Обитель",
+  "description": "Чорна Твань. Руїни монастиря Ключників. Друга Печатка. Фінальний вибір долі Хейзмуру.",
+  "category": "main",
+  "episode": 3,
+  "episode_end": true,
+  "prerequisites": {"quests_completed": ["deep_bog_02_mad_ferry"]},
+  "hero_state": "skin cracked like willow bark, fingers numb, breath whistles, First Seal barely holds back whispers",
+  "acts": {
+    "black_mire": {
+      "hazard": "green poison gas from peat chasms, First Seal field needed",
+      "lileya_role": "guides via clan markers on stone pillars, warns of quicksand",
+      "ilia_voice": "whispered, exhausted — 'If your silver dies, I die in your thoughts'"
+    },
+    "flooded_abbey": {
+      "location": "half-submerged monastery ruins, black arches",
+      "second_seal": "dark bog copper, hot, rusted, fused with earth flesh"
+    }
+  },
+  "leads_to": "ep4"
+}

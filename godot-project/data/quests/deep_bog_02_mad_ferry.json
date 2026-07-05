@@ -1,0 +1,18 @@
+{
+  "id": "deep_bog_02_mad_ferry",
+  "title": "Шалений пором",
+  "description": "Тихий Шелест. Лілея в кам'яній вежі. Друга Печатка з болотяної міді в Чорній Твані. Шалена Річка блокує шлях.",
+  "category": "main",
+  "episode": 3,
+  "prerequisites": {"quests_completed": ["deep_bog_01_voice_from_fog"]},
+  "npcs": {
+    "lileya": {
+      "title": "Остання з роду Ключників",
+      "location": "stone_tower_tykhy_shelest",
+      "reaction": "sorrow, not fear — understands the price of his choice",
+      "reveals": "Second Seal — dark bog copper, hot and rusted, fused with earth, keeps Mour imprisoned"
+    }
+  },
+  "obstacle": "Mad River — black, churning, anomalous currents. Chain ferry blocked by Muri.",
+  "leads_to": "deep_bog_03_flooded_abbey"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "valkorn_04_messenger_of_rufin",
+  "title": "Людина, що послала Руфіна",
+  "description": "Лоен запрошує на зустріч у дипломатичному кварталі. Три питання. Один вибір, що змінить усе.",
+  "category": "main",
+  "episode": 2,
+  "prerequisites": {"quests_completed": ["valkorn_03_right_price"]},
+  "loen_answers": {
+    "why_rufin": "Потрібен артефакт. Руфін знав болото. Хочемо стабілізувати Моур, а не знищити.",
+    "mour_plan": "Підпорядкувати силу. Хто контролює трясовину — контролює фронтир.",
+    "keeper": "Ніколи не бачив обличчя. Листи з печаткою. Запах торфу та м'яти. Золоте чорнило. Ближче до палацу.",
+    "underground": "Знаємо про спадщину. Карта Одріна не під контролем."
+  },
+  "alignment": {
+    "A_cooperate": {"order_rep":30,"stetson":"cold","ilia":"shocked"},
+    "B_neutral": {"order_rep":10,"immunity":"temporary"},
+    "V_oppose": {"order_rep":-40,"stetson":"key_ally"}
+  },
+  "clue": "keeper_smell_and_ink -> points to Fipp (Sebastian Marr) in palace",
+  "leads_to": "valkorn_khranitel_pershoyi_pechatky"
+}

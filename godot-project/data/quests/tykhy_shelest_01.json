@@ -1,0 +1,78 @@
+{
+  "id": "tykhy_shelest_01",
+  "title": "Тихий Шелест",
+  "description": "Поселення Мурі в глибині Хейзмуру. Чотири нитки долі переплітаються: Руфін, Каен, Міа і статус героя.",
+  "category": "main",
+  "episode": 1,
+  "required_level": 1,
+  "prerequisites": {
+    "quests_completed": ["hazemoor_01_path_through_swamp"]
+  },
+  "threads": {
+    "rufin": {
+      "title": "Той, хто знав дорогу",
+      "key_npc": "varrik",
+      "objectives": [
+        {"id": "ask_varrik", "description": "Запитати Варріка про Руфіна", "type": "talk", "target": "varrik"},
+        {"id": "find_glade", "description": "Знайти заборонену галявину", "type": "area_trigger", "target": "forbidden_glade"},
+        {"id": "find_rufin", "description": "Знайти Руфіна на галявині", "type": "talk", "target": "rufin_glade"}
+      ]
+    },
+    "kaen": {
+      "title": "Що батьки не кажуть",
+      "key_npc": "kaen",
+      "objectives": [
+        {"id": "meet_kaen", "description": "Зустріти Каена в лікарському домі", "type": "talk", "target": "kaen"},
+        {"id": "learn_truth", "description": "Дізнатися правду про походження Міа", "type": "talk", "target": "kaen"},
+        {"id": "talk_mother", "description": "Поговорити з матір'ю Міа", "type": "talk", "target": "mia_mother", "optional": true}
+      ]
+    },
+    "mia": {
+      "title": "Друге рішення",
+      "key_npc": "mia",
+      "objectives": [
+        {"id": "trigger_mia_talk", "description": "Міа вирішує говорити з Каеном", "type": "scripted"},
+        {"id": "mia_decision", "description": "Міа приймає рішення йти з героєм", "type": "scripted"}
+      ],
+      "triggers": [
+        "hero_found_rufin",
+        "hero_told_mia_truth",
+        "mia_found_records"
+      ]
+    },
+    "hero_status": {
+      "title": "Чужинець у сітці",
+      "key_npc": "sirra",
+      "optional": true,
+      "condition": "hero_without_mia",
+      "objectives": [
+        {"id": "help_sirra", "description": "Допомогти Сіррі (принести з болота)", "type": "collect", "target": "swamp_plant"},
+        {"id": "help_kaen", "description": "Принести компонент для ліків", "type": "collect", "target": "medicine_component"},
+        {"id": "help_hunters", "description": "Допомогти мисливцям з перешкодою", "type": "scripted"}
+      ]
+    }
+  },
+  "required_for_exit": ["rufin", "mia"],
+  "rewards": {
+    "experience": 200,
+    "reputation": {"muri": 20},
+    "items": [
+      {"id": "item_rufin_journal", "count": 1},
+      {"id": "item_empty_artifact", "count": 1}
+    ]
+  },
+  "dialogue_triggers": {
+    "on_enter": "internal_voice/tykhy_shelest_arrival.json",
+    "on_exit": "internal_voice/leaving_settlement.json"
+  },
+  "location_type": "one_shot",
+  "return_disabled": true,
+  "lore": {
+    "unlocks": [
+      "Правда про походження Міа",
+      "Руфін знайдений — але змінений",
+      "Гачок на зовнішній світ: хто послав Руфіна",
+      "Відкриває наступну локацію Хейзмуру"
+    ]
+  }
+}

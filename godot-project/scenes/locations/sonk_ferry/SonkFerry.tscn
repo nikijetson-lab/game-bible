@@ -1,480 +1,480 @@
-1|[gd_scene load_steps=33 format=3]
-2|
-3|[ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc"]
-4|[ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="2_portal"]
-5|[ext_resource type="Script" path="res://scripts/gameplay/InspectClue.gd" id="3_clue"]
-6|[ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="4_player"]
-7|
-8|[sub_resource type="Environment" id="Env_sonk"]
-9|background_mode = 1
-10|background_color = Color(0.08, 0.09, 0.10, 1)
-11|ambient_light_source = 2
-12|ambient_light_color = Color(0.38, 0.40, 0.43, 1)
-13|ambient_light_energy = 2.2
-14|fog_enabled = true
-15|fog_light_color = Color(0.28, 0.30, 0.33, 1)
-16|fog_density = 0.014
-17|volumetric_fog_enabled = true
-18|volumetric_fog_density = 0.006
-19|
-20|[sub_resource type="StandardMaterial3D" id="Mat_river"]
-21|albedo_color = Color(0.06, 0.12, 0.14, 1)
-22|roughness = 0.10
-23|metallic = 0.3
-24|
-25|[sub_resource type="StandardMaterial3D" id="Mat_ground_north"]
-26|albedo_color = Color(0.18, 0.16, 0.12, 1)
-27|roughness = 0.90
-28|
-29|[sub_resource type="StandardMaterial3D" id="Mat_ground_south"]
-30|albedo_color = Color(0.14, 0.16, 0.10, 1)
-31|roughness = 0.92
-32|
-33|[sub_resource type="StandardMaterial3D" id="Mat_stone"]
-34|albedo_color = Color(0.30, 0.28, 0.25, 1)
-35|roughness = 0.75
-36|
-37|[sub_resource type="StandardMaterial3D" id="Mat_wood_dock"]
-38|albedo_color = Color(0.22, 0.16, 0.09, 1)
-39|roughness = 0.82
-40|
-41|[sub_resource type="StandardMaterial3D" id="Mat_wood_stilt"]
-42|albedo_color = Color(0.18, 0.12, 0.07, 1)
-43|roughness = 0.88
-44|
-45|[sub_resource type="StandardMaterial3D" id="Mat_roof_blue"]
-46|albedo_color = Color(0.15, 0.18, 0.22, 1)
-47|roughness = 0.70
-48|
-49|[sub_resource type="StandardMaterial3D" id="Mat_fire"]
-50|albedo_color = Color(1.0, 0.45, 0.15, 1)
-51|emission_enabled = true
-52|emission = Color(1.0, 0.38, 0.10, 1)
-53|emission_energy_multiplier = 2.0
-54|
-55|[sub_resource type="StandardMaterial3D" id="Mat_chain"]
-56|albedo_color = Color(0.25, 0.22, 0.18, 1)
-57|metallic = 0.7
-58|roughness = 0.5
-59|
-60|[sub_resource type="StandardMaterial3D" id="Mat_chapel_stone"]
-61|albedo_color = Color(0.35, 0.33, 0.30, 1)
-62|roughness = 0.72
-63|
-64|[sub_resource type="StandardMaterial3D" id="Mat_cross"]
-65|albedo_color = Color(0.45, 0.40, 0.35, 1)
-66|roughness = 0.60
-67|
-68|[sub_resource type="BoxShape3D" id="BoxShape_river"]
-69|size = Vector3(120, 0.1, 20)
-70|
-71|[sub_resource type="BoxShape3D" id="BoxShape_north_ground"]
-72|size = Vector3(120, 0.3, 30)
-73|
-74|[sub_resource type="BoxShape3D" id="BoxShape_south_ground"]
-75|size = Vector3(80, 0.3, 20)
-76|
-77|[sub_resource type="BoxShape3D" id="BoxShape_bastion"]
-78|size = Vector3(10, 5.0, 8)
-79|
-80|[sub_resource type="BoxShape3D" id="BoxShape_chapel"]
-81|size = Vector3(6, 4.0, 8)
-82|
-83|[sub_resource type="BoxShape3D" id="BoxShape_dock"]
-84|size = Vector3(8, 0.3, 6)
-85|
-86|[sub_resource type="BoxShape3D" id="BoxShape_stilt_house"]
-87|size = Vector3(4, 2.5, 4)
-88|
-89|[sub_resource type="SphereShape3D" id="SphereShape_interact"]
-90|radius = 1.6
-91|
-92|[sub_resource type="BoxMesh" id="BoxMesh_river"]
-93|size = Vector3(120, 0.1, 20)
-94|material = SubResource("Mat_river")
-95|
-96|[sub_resource type="BoxMesh" id="BoxMesh_north"]
-97|size = Vector3(120, 0.3, 30)
-98|material = SubResource("Mat_ground_north")
-99|
-100|[sub_resource type="BoxMesh" id="BoxMesh_south"]
-101|size = Vector3(80, 0.3, 20)
-102|material = SubResource("Mat_ground_south")
-103|
-104|[sub_resource type="BoxMesh" id="BoxMesh_bastion"]
-105|size = Vector3(10, 5.0, 8)
-106|material = SubResource("Mat_stone")
-107|
-108|[sub_resource type="BoxMesh" id="BoxMesh_chapel"]
-109|size = Vector3(6, 4.0, 8)
-110|material = SubResource("Mat_chapel_stone")
-111|
-112|[sub_resource type="CylinderMesh" id="Cyl_pile"]
-113|top_radius = 0.2
-114|bottom_radius = 0.25
-115|height = 2.5
-116|material = SubResource("Mat_wood_stilt")
-117|
-118|[node name="SonkFerry" type="Node3D"]
-119|
-120|[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-121|environment = SubResource("Env_sonk")
-122|
-123|[node name="OvercastLight" type="DirectionalLight3D" parent="."]
-124|transform = Transform3D(0.866, -0.3, 0.4, 0, 0.8, 0.6, -0.5, -0.52, 0.69, 0, 15, 0)
-125|light_color = Color(0.40, 0.42, 0.45, 1)
-126|light_energy = 0.8
-127|shadow_enabled = true
-128|
-129|; =================== РІЧКА (центр) ===================
-130|[node name="River" type="MeshInstance3D" parent="."]
-131|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
-132|mesh = SubResource("BoxMesh_river")
-133|
-134|; =================== ПІВНІЧНИЙ БЕРЕГ ===================
-135|[node name="NorthBank" type="StaticBody3D" parent="."]
-136|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 20)
-137|
-138|[node name="CollisionShape3D" type="CollisionShape3D" parent="NorthBank"]
-139|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
-140|shape = SubResource("BoxShape_north_ground")
-141|
-142|[node name="MeshInstance3D" type="MeshInstance3D" parent="NorthBank"]
-143|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
-144|mesh = SubResource("BoxMesh_north")
-145|
-146|; =================== ПІВДЕННИЙ БЕРЕГ ===================
-147|[node name="SouthBank" type="StaticBody3D" parent="."]
-148|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, -30)
-149|
-150|[node name="CollisionShape3D" type="CollisionShape3D" parent="SouthBank"]
-151|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
-152|shape = SubResource("BoxShape_south_ground")
-153|
-154|[node name="MeshInstance3D" type="MeshInstance3D" parent="SouthBank"]
-155|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
-156|mesh = SubResource("BoxMesh_south")
-157|
-158|; =================== ОПЛОТ (єдина суха будівля, кам'яна) ===================
-159|[node name="Bastion" type="StaticBody3D" parent="."]
-160|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 2.2, 25)
-161|
-162|[node name="CollisionShape3D" type="CollisionShape3D" parent="Bastion"]
-163|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
-164|shape = SubResource("BoxShape_bastion")
-165|
-166|[node name="MeshInstance3D" type="MeshInstance3D" parent="Bastion"]
-167|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
-168|mesh = SubResource("BoxMesh_bastion")
-169|
-170|; Blue banner roof
-171|[node name="RoofBanner" type="MeshInstance3D" parent="Bastion"]
-172|transform = Transform3D(10, 0, 0, 0, 0.3, 0, 0, 0, 8, 0, 5.2, 0)
-173|mesh = SubResource("BoxMesh_river")
-174|material_override = SubResource("Mat_roof_blue")
-175|
-176|; =================== КАПЛИЦЯ СВЯТОЇ ВЕЙ (кам'яна, на палях) ===================
-177|[node name="ChapelStVey" type="StaticBody3D" parent="."]
-178|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 1.5, 5)
-179|
-180|[node name="CollisionShape3D" type="CollisionShape3D" parent="ChapelStVey"]
-181|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0, 0)
-182|shape = SubResource("BoxShape_chapel")
-183|
-184|[node name="MeshInstance3D" type="MeshInstance3D" parent="ChapelStVey"]
-185|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0, 0)
-186|mesh = SubResource("BoxMesh_chapel")
-187|
-188|; Палі під каплицею
-189|[node name="Pile1" type="MeshInstance3D" parent="ChapelStVey"]
-190|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -0.8, 3)
-191|mesh = SubResource("Cyl_pile")
-192|[node name="Pile2" type="MeshInstance3D" parent="ChapelStVey"]
-193|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.8, 3)
-194|mesh = SubResource("Cyl_pile")
-195|[node name="Pile3" type="MeshInstance3D" parent="ChapelStVey"]
-196|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -0.8, -3)
-197|mesh = SubResource("Cyl_pile")
-198|[node name="Pile4" type="MeshInstance3D" parent="ChapelStVey"]
-199|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.8, -3)
-200|mesh = SubResource("Cyl_pile")
-201|
-202|; Хрест на даху
-203|[node name="Cross" type="MeshInstance3D" parent="ChapelStVey"]
-204|transform = Transform3D(0.3, 0, 0, 0, 1.2, 0, 0, 0, 0.3, 0, 4.5, -3)
-205|mesh = SubResource("Cyl_pile")
-206|material_override = SubResource("Mat_cross")
-207|
-208|; Тепле світло з вікон
-209|[node name="ChapelLight" type="OmniLight3D" parent="ChapelStVey"]
-210|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
-211|light_color = Color(1.0, 0.55, 0.25, 1)
-212|light_energy = 2.0
-213|omni_range = 7.0
-214|
-215|; =================== ПОРОМНИЙ ПРИЧАЛ ===================
-216|[node name="FerryDock" type="StaticBody3D" parent="."]
-217|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 0.15, 12)
-218|
-219|[node name="CollisionShape3D" type="CollisionShape3D" parent="FerryDock"]
-220|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
-221|shape = SubResource("BoxShape_dock")
-222|
-223|[node name="MeshInstance3D" type="MeshInstance3D" parent="FerryDock"]
-224|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
-225|mesh = SubResource("BoxMesh_chapel")
-226|material_override = SubResource("Mat_wood_dock")
-227|
-228|; Ланцюг через річку
-229|[node name="Chain" type="MeshInstance3D" parent="FerryDock"]
-230|transform = Transform3D(0.5, 0, 0, 0, 0.3, 0, 0, 0, 18, 0, 0.5, -10)
-231|mesh = SubResource("Cyl_pile")
-232|material_override = SubResource("Mat_chain")
-233|
-234|; =================== ТОРГОВИЙ МАЙДАН ===================
-235|[node name="TradeSquare" type="StaticBody3D" parent="."]
-236|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.15, 22)
-237|
-238|[node name="CollisionShape3D" type="CollisionShape3D" parent="TradeSquare"]
-239|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
-240|shape = SubResource("BoxShape_dock")
-241|
-242|[node name="MeshInstance3D" type="MeshInstance3D" parent="TradeSquare"]
-243|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
-244|mesh = SubResource("BoxMesh_chapel")
-245|material_override = SubResource("Mat_wood_dock")
-246|
-247|; =================== КОНТРАБАНДИСТСЬКИЙ ПРИЧАЛ ===================
-248|[node name="SmugglerDock" type="StaticBody3D" parent="."]
-249|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0.1, 10)
-250|
-251|[node name="CollisionShape3D" type="CollisionShape3D" parent="SmugglerDock"]
-252|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
-253|shape = SubResource("BoxShape_dock")
-254|
-255|[node name="MeshInstance3D" type="MeshInstance3D" parent="SmugglerDock"]
-256|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
-257|mesh = SubResource("BoxMesh_chapel")
-258|material_override = SubResource("Mat_wood_dock")
-259|
-260|; =================== НИЖНІЙ ЯРУС (палі, 40 см води після дощів) ===================
-261|[node name="LowerTierPlatform" type="StaticBody3D" parent="."]
-262|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -0.15, -28)
-263|
-264|[node name="CollisionShape3D" type="CollisionShape3D" parent="LowerTierPlatform"]
-265|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
-266|shape = SubResource("BoxShape_dock")
-267|
-268|[node name="MeshInstance3D" type="MeshInstance3D" parent="LowerTierPlatform"]
-269|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
-270|mesh = SubResource("BoxMesh_chapel")
-271|material_override = SubResource("Mat_wood_dock")
-272|
-273|; =================== СОЛЯНИЙ САРАЙ ===================
-274|[node name="SaltWarehouse" type="StaticBody3D" parent="."]
-275|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.0, -8)
-276|
-277|[node name="CollisionShape3D" type="CollisionShape3D" parent="SaltWarehouse"]
-278|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 0)
-279|shape = SubResource("BoxShape_stilt_house")
-280|
-281|[node name="MeshInstance3D" type="MeshInstance3D" parent="SaltWarehouse"]
-282|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 0)
-283|mesh = SubResource("BoxMesh_chapel")
-284|material_override = SubResource("Mat_wood_dock")
-285|
-286|; =================== МІРЕФОЛД (кладовище на пагорбі) ===================
-287|[node name="Mirefold" type="StaticBody3D" parent="."]
-288|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 1.5, 20)
-289|
-290|[node name="CollisionShape3D" type="CollisionShape3D" parent="Mirefold"]
-291|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
-292|shape = SubResource("BoxShape_dock")
-293|
-294|[node name="MeshInstance3D" type="MeshInstance3D" parent="Mirefold"]
-295|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
-296|mesh = SubResource("BoxMesh_chapel")
-297|material_override = SubResource("Mat_ground_north")
-298|
-299|; Хрести
-300|[node name="Cross1" type="MeshInstance3D" parent="Mirefold"]
-301|transform = Transform3D(0.2, 0, 0, 0, 1.0, 0, 0, 0, 0.2, -2, 1.2, 1)
-302|mesh = SubResource("Cyl_pile")
-303|material_override = SubResource("Mat_cross")
-304|
-305|[node name="Cross2" type="MeshInstance3D" parent="Mirefold"]
-306|transform = Transform3D(0.2, 0, 0, 0, 1.0, 0, 0, 0, 0.2, 1, 1.2, -1)
-307|mesh = SubResource("Cyl_pile")
-308|material_override = SubResource("Mat_cross")
-309|
-310|; =================== РІЧКОВІ ВОГНІ (на стовпах) ===================
-311|[node name="RiverFires" type="Node3D" parent="."]
-312|
-313|[node name="FirePillar1" type="OmniLight3D" parent="RiverFires"]
-314|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.0, -5)
-315|light_color = Color(1.0, 0.45, 0.12, 1)
-316|light_energy = 2.0
-317|omni_range = 6.0
-318|
-319|[node name="FirePillar2" type="OmniLight3D" parent="RiverFires"]
-320|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1.0, -5)
-321|light_color = Color(1.0, 0.45, 0.12, 1)
-322|light_energy = 2.0
-323|omni_range = 6.0
-324|
-325|; =================== NPC ===================
-326|[node name="NPCs" type="Node3D" parent="."]
-327|
-328|; Player spawn
-329|[node name="Player" parent="." instance=ExtResource("4_player")]
-330|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 1.2, 22)
-331|
-332|; Galren Voss — квартирмейстер, в Оплоті
-333|[node name="Voss" type="Area3D" parent="NPCs"]
-334|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 4.5, 22)
-335|script = ExtResource("1_npc")
-336|npc_id = "voss"
-337|npc_display_name = "Квартирмейстер Восс"
-338|default_dialogue_id = "first_meeting"
-339|
-340|[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Voss"]
-341|shape = SubResource("SphereShape_interact")
-342|
-343|[node name="Body" type="MeshInstance3D" parent="NPCs/Voss"]
-344|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-345|
-346|; Nera Vail — поромний майстер, біля причалу
-347|[node name="Nera" type="Area3D" parent="NPCs"]
-348|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 0.8, 10)
-349|script = ExtResource("1_npc")
-350|npc_id = "nera"
-351|npc_display_name = "Нера Вейл"
-352|default_dialogue_id = "first_meeting"
-353|
-354|[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Nera"]
-355|shape = SubResource("SphereShape_interact")
-356|
-357|[node name="Body" type="MeshInstance3D" parent="NPCs/Nera"]
-358|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
-359|
-360|; Brother Karos — хранитель, біля каплиці
-361|[node name="Karos" type="Area3D" parent="NPCs"]
-362|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 3.8, 3)
-363|script = ExtResource("1_npc")
-364|npc_id = "karos"
-365|npc_display_name = "Брат Карос"
-366|default_dialogue_id = "first_meeting"
-367|
-368|[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Karos"]
-369|shape = SubResource("SphereShape_interact")
-370|
-371|[node name="Body" type="MeshInstance3D" parent="NPCs/Karos"]
-372|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-373|
-374|; Old Sella — старійшина Мірефолда
-375|[node name="Sella" type="Area3D" parent="NPCs"]
-376|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 2.8, 20)
-377|script = ExtResource("1_npc")
-378|npc_id = "sella"
-379|npc_display_name = "Стара Селла"
-380|default_dialogue_id = "first_meeting"
-381|
-382|[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Sella"]
-383|shape = SubResource("SphereShape_interact")
-384|
-385|[node name="Body" type="MeshInstance3D" parent="NPCs/Sella"]
-386|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
-387|
-388|; Брін Осс — логістичний брокер
-389|[node name="BrinOss" type="Area3D" parent="NPCs"]
-390|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0.8, 18)
-391|script = ExtResource("1_npc")
-392|npc_id = "brin_oss"
-393|npc_display_name = "Брін Осс"
-394|default_dialogue_id = "first_meeting"
-395|
-396|[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/BrinOss"]
-397|shape = SubResource("SphereShape_interact")
-398|
-399|[node name="Body" type="MeshInstance3D" parent="NPCs/BrinOss"]
-400|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
-401|
-402|; Гара Пайк — контрабандистка
-403|[node name="GaraPaik" type="Area3D" parent="NPCs"]
-404|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0.8, 8)
-405|script = ExtResource("1_npc")
-406|npc_id = "gara_paik"
-407|npc_display_name = "Гара Пайк"
-408|default_dialogue_id = "first_meeting"
-409|
-410|[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/GaraPaik"]
-411|shape = SubResource("SphereShape_interact")
-412|
-413|[node name="Body" type="MeshInstance3D" parent="NPCs/GaraPaik"]
-414|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
-415|
-416|; Тован Рід — клановий речник
-417|[node name="TovanRid" type="Area3D" parent="NPCs"]
-418|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 4.5, 24)
-419|script = ExtResource("1_npc")
-420|npc_id = "tovan_rid"
-421|npc_display_name = "Тован Рід"
-422|default_dialogue_id = "first_meeting"
-423|
-424|[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/TovanRid"]
-425|shape = SubResource("SphereShape_interact")
-426|
-427|[node name="Body" type="MeshInstance3D" parent="NPCs/TovanRid"]
-428|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-429|
-430|; Мара Денс — лікарка
-431|[node name="MaraDens" type="Area3D" parent="NPCs"]
-432|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.7, -26)
-433|script = ExtResource("1_npc")
-434|npc_id = "mara_dens"
-435|npc_display_name = "Мара Денс"
-436|default_dialogue_id = "first_meeting"
-437|
-438|[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/MaraDens"]
-439|shape = SubResource("SphereShape_interact")
-440|
-441|[node name="Body" type="MeshInstance3D" parent="NPCs/MaraDens"]
-442|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
-443|
-444|; Серіт Келм — адміністративний спостерігач
-445|[node name="Kelm" type="Area3D" parent="NPCs"]
-446|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 1.0, 20)
-447|script = ExtResource("1_npc")
-448|npc_id = "kelm"
-449|npc_display_name = "Серіт Келм"
-450|default_dialogue_id = "first_meeting"
-451|
-452|[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Kelm"]
-453|shape = SubResource("SphereShape_interact")
-454|
-455|[node name="Body" type="MeshInstance3D" parent="NPCs/Kelm"]
-456|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-457|
-458|; Board of notices (дошка оголошень)
-459|[node name="NoticeBoard" type="Area3D" parent="."]
-460|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.0, 24)
-461|script = ExtResource("3_clue")
-462|clue_id = "sonk_notice_board"
-463|clue_text = "Оголошення про винагороду за докази контрабанди або надприродної атаки. Зерновий конвой зник біля Затонулої Сторожової Дороги."
-464|
-465|[node name="CollisionShape3D" type="CollisionShape3D" parent="NoticeBoard"]
-466|shape = SubResource("SphereShape_interact")
-467|
-468|; =================== ПОРТАЛ: Затоплена Сторожова Дорога → Затоплена Каплиця ===================
-469|[node name="FloodedChapelPortal" type="Area3D" parent="."]
-470|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0.5, -20)
-471|script = ExtResource("2_portal")
-472|target_scene = "res://scenes/locations/sonk_ferry/FloodedChamber.tscn"
-473|spawn_point = Vector3(0, 1.0, 5)
-474|
-475|[node name="CollisionShape3D" type="CollisionShape3D" parent="FloodedChapelPortal"]
-476|shape = SubResource("SphereShape_interact")
-477|
+[gd_scene load_steps=33 format=3]
+
+[ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc"]
+[ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="2_portal"]
+[ext_resource type="Script" path="res://scripts/gameplay/InspectClue.gd" id="3_clue"]
+[ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="4_player"]
+
+[sub_resource type="Environment" id="Env_sonk"]
+background_mode = 1
+background_color = Color(0.08, 0.09, 0.10, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.38, 0.40, 0.43, 1)
+ambient_light_energy = 2.2
+fog_enabled = true
+fog_light_color = Color(0.28, 0.30, 0.33, 1)
+fog_density = 0.014
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.006
+
+[sub_resource type="StandardMaterial3D" id="Mat_river"]
+albedo_color = Color(0.06, 0.12, 0.14, 1)
+roughness = 0.10
+metallic = 0.3
+
+[sub_resource type="StandardMaterial3D" id="Mat_ground_north"]
+albedo_color = Color(0.18, 0.16, 0.12, 1)
+roughness = 0.90
+
+[sub_resource type="StandardMaterial3D" id="Mat_ground_south"]
+albedo_color = Color(0.14, 0.16, 0.10, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="Mat_stone"]
+albedo_color = Color(0.30, 0.28, 0.25, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_wood_dock"]
+albedo_color = Color(0.22, 0.16, 0.09, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_wood_stilt"]
+albedo_color = Color(0.18, 0.12, 0.07, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="Mat_roof_blue"]
+albedo_color = Color(0.15, 0.18, 0.22, 1)
+roughness = 0.70
+
+[sub_resource type="StandardMaterial3D" id="Mat_fire"]
+albedo_color = Color(1.0, 0.45, 0.15, 1)
+emission_enabled = true
+emission = Color(1.0, 0.38, 0.10, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="StandardMaterial3D" id="Mat_chain"]
+albedo_color = Color(0.25, 0.22, 0.18, 1)
+metallic = 0.7
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="Mat_chapel_stone"]
+albedo_color = Color(0.35, 0.33, 0.30, 1)
+roughness = 0.72
+
+[sub_resource type="StandardMaterial3D" id="Mat_cross"]
+albedo_color = Color(0.45, 0.40, 0.35, 1)
+roughness = 0.60
+
+[sub_resource type="BoxShape3D" id="BoxShape_river"]
+size = Vector3(120, 0.1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape_north_ground"]
+size = Vector3(120, 0.3, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape_south_ground"]
+size = Vector3(80, 0.3, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape_bastion"]
+size = Vector3(10, 5.0, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape_chapel"]
+size = Vector3(6, 4.0, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape_dock"]
+size = Vector3(8, 0.3, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape_stilt_house"]
+size = Vector3(4, 2.5, 4)
+
+[sub_resource type="SphereShape3D" id="SphereShape_interact"]
+radius = 1.6
+
+[sub_resource type="BoxMesh" id="BoxMesh_river"]
+size = Vector3(120, 0.1, 20)
+material = SubResource("Mat_river")
+
+[sub_resource type="BoxMesh" id="BoxMesh_north"]
+size = Vector3(120, 0.3, 30)
+material = SubResource("Mat_ground_north")
+
+[sub_resource type="BoxMesh" id="BoxMesh_south"]
+size = Vector3(80, 0.3, 20)
+material = SubResource("Mat_ground_south")
+
+[sub_resource type="BoxMesh" id="BoxMesh_bastion"]
+size = Vector3(10, 5.0, 8)
+material = SubResource("Mat_stone")
+
+[sub_resource type="BoxMesh" id="BoxMesh_chapel"]
+size = Vector3(6, 4.0, 8)
+material = SubResource("Mat_chapel_stone")
+
+[sub_resource type="CylinderMesh" id="Cyl_pile"]
+top_radius = 0.2
+bottom_radius = 0.25
+height = 2.5
+material = SubResource("Mat_wood_stilt")
+
+[node name="SonkFerry" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env_sonk")
+
+[node name="OvercastLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866, -0.3, 0.4, 0, 0.8, 0.6, -0.5, -0.52, 0.69, 0, 15, 0)
+light_color = Color(0.40, 0.42, 0.45, 1)
+light_energy = 0.8
+shadow_enabled = true
+
+; =================== РІЧКА (центр) ===================
+[node name="River" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+mesh = SubResource("BoxMesh_river")
+
+; =================== ПІВНІЧНИЙ БЕРЕГ ===================
+[node name="NorthBank" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 20)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NorthBank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+shape = SubResource("BoxShape_north_ground")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NorthBank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+mesh = SubResource("BoxMesh_north")
+
+; =================== ПІВДЕННИЙ БЕРЕГ ===================
+[node name="SouthBank" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, -30)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SouthBank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+shape = SubResource("BoxShape_south_ground")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SouthBank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+mesh = SubResource("BoxMesh_south")
+
+; =================== ОПЛОТ (єдина суха будівля, кам'яна) ===================
+[node name="Bastion" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 2.2, 25)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bastion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("BoxShape_bastion")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bastion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("BoxMesh_bastion")
+
+; Blue banner roof
+[node name="RoofBanner" type="MeshInstance3D" parent="Bastion"]
+transform = Transform3D(10, 0, 0, 0, 0.3, 0, 0, 0, 8, 0, 5.2, 0)
+mesh = SubResource("BoxMesh_river")
+material_override = SubResource("Mat_roof_blue")
+
+; =================== КАПЛИЦЯ СВЯТОЇ ВЕЙ (кам'яна, на палях) ===================
+[node name="ChapelStVey" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 1.5, 5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChapelStVey"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0, 0)
+shape = SubResource("BoxShape_chapel")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ChapelStVey"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0, 0)
+mesh = SubResource("BoxMesh_chapel")
+
+; Палі під каплицею
+[node name="Pile1" type="MeshInstance3D" parent="ChapelStVey"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -0.8, 3)
+mesh = SubResource("Cyl_pile")
+[node name="Pile2" type="MeshInstance3D" parent="ChapelStVey"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.8, 3)
+mesh = SubResource("Cyl_pile")
+[node name="Pile3" type="MeshInstance3D" parent="ChapelStVey"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -0.8, -3)
+mesh = SubResource("Cyl_pile")
+[node name="Pile4" type="MeshInstance3D" parent="ChapelStVey"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.8, -3)
+mesh = SubResource("Cyl_pile")
+
+; Хрест на даху
+[node name="Cross" type="MeshInstance3D" parent="ChapelStVey"]
+transform = Transform3D(0.3, 0, 0, 0, 1.2, 0, 0, 0, 0.3, 0, 4.5, -3)
+mesh = SubResource("Cyl_pile")
+material_override = SubResource("Mat_cross")
+
+; Тепле світло з вікон
+[node name="ChapelLight" type="OmniLight3D" parent="ChapelStVey"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+light_color = Color(1.0, 0.55, 0.25, 1)
+light_energy = 2.0
+omni_range = 7.0
+
+; =================== ПОРОМНИЙ ПРИЧАЛ ===================
+[node name="FerryDock" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 0.15, 12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FerryDock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+shape = SubResource("BoxShape_dock")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FerryDock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+mesh = SubResource("BoxMesh_chapel")
+material_override = SubResource("Mat_wood_dock")
+
+; Ланцюг через річку
+[node name="Chain" type="MeshInstance3D" parent="FerryDock"]
+transform = Transform3D(0.5, 0, 0, 0, 0.3, 0, 0, 0, 18, 0, 0.5, -10)
+mesh = SubResource("Cyl_pile")
+material_override = SubResource("Mat_chain")
+
+; =================== ТОРГОВИЙ МАЙДАН ===================
+[node name="TradeSquare" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.15, 22)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TradeSquare"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+shape = SubResource("BoxShape_dock")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TradeSquare"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+mesh = SubResource("BoxMesh_chapel")
+material_override = SubResource("Mat_wood_dock")
+
+; =================== КОНТРАБАНДИСТСЬКИЙ ПРИЧАЛ ===================
+[node name="SmugglerDock" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0.1, 10)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SmugglerDock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("BoxShape_dock")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SmugglerDock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+mesh = SubResource("BoxMesh_chapel")
+material_override = SubResource("Mat_wood_dock")
+
+; =================== НИЖНІЙ ЯРУС (палі, 40 см води після дощів) ===================
+[node name="LowerTierPlatform" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -0.15, -28)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LowerTierPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("BoxShape_dock")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LowerTierPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+mesh = SubResource("BoxMesh_chapel")
+material_override = SubResource("Mat_wood_dock")
+
+; =================== СОЛЯНИЙ САРАЙ ===================
+[node name="SaltWarehouse" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.0, -8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SaltWarehouse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 0)
+shape = SubResource("BoxShape_stilt_house")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SaltWarehouse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 0)
+mesh = SubResource("BoxMesh_chapel")
+material_override = SubResource("Mat_wood_dock")
+
+; =================== МІРЕФОЛД (кладовище на пагорбі) ===================
+[node name="Mirefold" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 1.5, 20)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mirefold"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("BoxShape_dock")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mirefold"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+mesh = SubResource("BoxMesh_chapel")
+material_override = SubResource("Mat_ground_north")
+
+; Хрести
+[node name="Cross1" type="MeshInstance3D" parent="Mirefold"]
+transform = Transform3D(0.2, 0, 0, 0, 1.0, 0, 0, 0, 0.2, -2, 1.2, 1)
+mesh = SubResource("Cyl_pile")
+material_override = SubResource("Mat_cross")
+
+[node name="Cross2" type="MeshInstance3D" parent="Mirefold"]
+transform = Transform3D(0.2, 0, 0, 0, 1.0, 0, 0, 0, 0.2, 1, 1.2, -1)
+mesh = SubResource("Cyl_pile")
+material_override = SubResource("Mat_cross")
+
+; =================== РІЧКОВІ ВОГНІ (на стовпах) ===================
+[node name="RiverFires" type="Node3D" parent="."]
+
+[node name="FirePillar1" type="OmniLight3D" parent="RiverFires"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.0, -5)
+light_color = Color(1.0, 0.45, 0.12, 1)
+light_energy = 2.0
+omni_range = 6.0
+
+[node name="FirePillar2" type="OmniLight3D" parent="RiverFires"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1.0, -5)
+light_color = Color(1.0, 0.45, 0.12, 1)
+light_energy = 2.0
+omni_range = 6.0
+
+; =================== NPC ===================
+[node name="NPCs" type="Node3D" parent="."]
+
+; Player spawn
+[node name="Player" parent="." instance=ExtResource("4_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 1.2, 22)
+
+; Galren Voss — квартирмейстер, в Оплоті
+[node name="Voss" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 4.5, 22)
+script = ExtResource("1_npc")
+npc_id = "voss"
+npc_display_name = "Квартирмейстер Восс"
+default_dialogue_id = "first_meeting"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Voss"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/Voss"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+
+; Nera Vail — поромний майстер, біля причалу
+[node name="Nera" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 0.8, 10)
+script = ExtResource("1_npc")
+npc_id = "nera"
+npc_display_name = "Нера Вейл"
+default_dialogue_id = "first_meeting"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Nera"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/Nera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+
+; Brother Karos — хранитель, біля каплиці
+[node name="Karos" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 3.8, 3)
+script = ExtResource("1_npc")
+npc_id = "karos"
+npc_display_name = "Брат Карос"
+default_dialogue_id = "first_meeting"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Karos"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/Karos"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+
+; Old Sella — старійшина Мірефолда
+[node name="Sella" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 2.8, 20)
+script = ExtResource("1_npc")
+npc_id = "sella"
+npc_display_name = "Стара Селла"
+default_dialogue_id = "first_meeting"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Sella"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/Sella"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+
+; Брін Осс — логістичний брокер
+[node name="BrinOss" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0.8, 18)
+script = ExtResource("1_npc")
+npc_id = "brin_oss"
+npc_display_name = "Брін Осс"
+default_dialogue_id = "first_meeting"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/BrinOss"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/BrinOss"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+
+; Гара Пайк — контрабандистка
+[node name="GaraPaik" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0.8, 8)
+script = ExtResource("1_npc")
+npc_id = "gara_paik"
+npc_display_name = "Гара Пайк"
+default_dialogue_id = "first_meeting"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/GaraPaik"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/GaraPaik"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+
+; Тован Рід — клановий речник
+[node name="TovanRid" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 4.5, 24)
+script = ExtResource("1_npc")
+npc_id = "tovan_rid"
+npc_display_name = "Тован Рід"
+default_dialogue_id = "first_meeting"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/TovanRid"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/TovanRid"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+
+; Мара Денс — лікарка
+[node name="MaraDens" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.7, -26)
+script = ExtResource("1_npc")
+npc_id = "mara_dens"
+npc_display_name = "Мара Денс"
+default_dialogue_id = "first_meeting"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/MaraDens"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/MaraDens"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+
+; Серіт Келм — адміністративний спостерігач
+[node name="Kelm" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 1.0, 20)
+script = ExtResource("1_npc")
+npc_id = "kelm"
+npc_display_name = "Серіт Келм"
+default_dialogue_id = "first_meeting"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Kelm"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/Kelm"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+
+; Board of notices (дошка оголошень)
+[node name="NoticeBoard" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.0, 24)
+script = ExtResource("3_clue")
+clue_id = "sonk_notice_board"
+clue_text = "Оголошення про винагороду за докази контрабанди або надприродної атаки. Зерновий конвой зник біля Затонулої Сторожової Дороги."
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NoticeBoard"]
+shape = SubResource("SphereShape_interact")
+
+; =================== ПОРТАЛ: Затоплена Сторожова Дорога → Затоплена Каплиця ===================
+[node name="FloodedChapelPortal" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0.5, -20)
+script = ExtResource("2_portal")
+target_scene = "res://scenes/locations/sonk_ferry/FloodedChamber.tscn"
+spawn_point = Vector3(0, 1.0, 5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloodedChapelPortal"]
+shape = SubResource("SphereShape_interact")
+
 [ext_resource type="Script" path="res://scripts/gameplay/SonkFerryArtAssembly.gd" id="5_art"]
 
 [node name="SonkFerryArtAssembly" type="Node3D" parent="."]

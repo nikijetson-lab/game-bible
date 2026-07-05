@@ -1,44 +1,44 @@
-1|[gd_scene load_steps=6 format=3]
-2|
-3|[ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc"]
-4|
-5|[sub_resource type="Environment" id="Env_warehouse"]
-6|background_mode = 1
-7|background_color = Color(0.06, 0.07, 0.08, 1)
-8|ambient_light_source = 2
-9|ambient_light_color = Color(0.35, 0.37, 0.40, 1)
-10|ambient_light_energy = 1.5
-11|
-12|[sub_resource type="BoxShape3D" id="BoxShape_warehouse"]
-13|size = Vector3(12, 4.0, 10)
-14|
-15|[sub_resource type="SphereShape3D" id="SphereShape_interact"]
-16|radius = 1.6
-17|
-18|[node name="GuildWarehouse" type="Node3D"]
-19|
-20|[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-21|environment = SubResource("Env_warehouse")
-22|
-23|[node name="Floor" type="StaticBody3D" parent="."]
-24|
-25|[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-26|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.0, 0)
-27|shape = SubResource("BoxShape_warehouse")
-28|
-29|[node name="Damar" type="Area3D" parent="."]
-30|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 2)
-31|script = ExtResource("1_npc")
-32|npc_id = "damar"
-33|npc_display_name = "Дамар"
-34|default_dialogue_id = "first_meeting"
-35|
-36|[node name="CollisionShape3D" type="CollisionShape3D" parent="Damar"]
-37|shape = SubResource("SphereShape_interact")
-38|
-39|[node name="Body" type="MeshInstance3D" parent="Damar"]
-40|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
-41|
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc"]
+
+[sub_resource type="Environment" id="Env_warehouse"]
+background_mode = 1
+background_color = Color(0.06, 0.07, 0.08, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.35, 0.37, 0.40, 1)
+ambient_light_energy = 1.5
+
+[sub_resource type="BoxShape3D" id="BoxShape_warehouse"]
+size = Vector3(12, 4.0, 10)
+
+[sub_resource type="SphereShape3D" id="SphereShape_interact"]
+radius = 1.6
+
+[node name="GuildWarehouse" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env_warehouse")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.0, 0)
+shape = SubResource("BoxShape_warehouse")
+
+[node name="Damar" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 2)
+script = ExtResource("1_npc")
+npc_id = "damar"
+npc_display_name = "Дамар"
+default_dialogue_id = "first_meeting"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Damar"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Body" type="MeshInstance3D" parent="Damar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+
 [ext_resource type="Script" path="res://scripts/gameplay/GuildWarehouseArtAssembly.gd" id="2_art"]
 
 [node name="GuildWarehouseArtAssembly" type="Node3D" parent="."]

@@ -1,176 +1,176 @@
-1|[gd_scene load_steps=15 format=3]
-2|
-3|[ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc"]
-4|[ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="2_player"]
-5|
-6|[sub_resource type="Environment" id="Env_valkorn"]
-7|background_mode = 1
-8|background_color = Color(0.12, 0.13, 0.15, 1)
-9|ambient_light_source = 2
-10|ambient_light_color = Color(0.45, 0.47, 0.50, 1)
-11|ambient_light_energy = 2.5
-12|fog_enabled = true
-13|fog_light_color = Color(0.35, 0.37, 0.40, 1)
-14|fog_density = 0.008
-15|
-16|[sub_resource type="StandardMaterial3D" id="Mat_stone"]
-17|albedo_color = Color(0.38, 0.36, 0.34, 1)
-18|roughness = 0.70
-19|
-20|[sub_resource type="StandardMaterial3D" id="Mat_wood_dock"]
-21|albedo_color = Color(0.20, 0.14, 0.08, 1)
-22|roughness = 0.82
-23|
-24|[sub_resource type="StandardMaterial3D" id="Mat_roof"]
-25|albedo_color = Color(0.18, 0.15, 0.12, 1)
-26|roughness = 0.75
-27|
-28|[sub_resource type="BoxShape3D" id="BoxShape_ground"]
-29|size = Vector3(80, 0.3, 60)
-30|
-31|[sub_resource type="BoxShape3D" id="BoxShape_building"]
-32|size = Vector3(8, 5.0, 8)
-33|
-34|[sub_resource type="BoxShape3D" id="BoxShape_dock"]
-35|size = Vector3(10, 0.3, 6)
-36|
-37|[sub_resource type="SphereShape3D" id="SphereShape_interact"]
-38|radius = 1.6
-39|
-40|[sub_resource type="BoxMesh" id="BoxMesh_ground"]
-41|size = Vector3(80, 0.3, 60)
-42|material = SubResource("Mat_stone")
-43|
-44|[sub_resource type="BoxMesh" id="BoxMesh_building"]
-45|size = Vector3(8, 5.0, 8)
-46|material = SubResource("Mat_stone")
-47|
-48|[sub_resource type="BoxMesh" id="BoxMesh_dock"]
-49|size = Vector3(10, 0.3, 6)
-50|material = SubResource("Mat_wood_dock")
-51|
-52|[node name="ValkornPort" type="Node3D"]
-53|
-54|[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-55|environment = SubResource("Env_valkorn")
-56|
-57|[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-58|transform = Transform3D(0.866, -0.2, 0.45, 0, 0.9, 0.4, -0.5, -0.35, 0.8, 0, 15, 0)
-59|light_color = Color(0.55, 0.57, 0.60, 1)
-60|light_energy = 1.2
-61|shadow_enabled = true
-62|
-63|[node name="Player" parent="." instance=ExtResource("2_player")]
-64|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1.2, 20)
-65|
-66|[node name="Ground" type="StaticBody3D" parent="."]
-67|
-68|[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
-69|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
-70|shape = SubResource("BoxShape_ground")
-71|
-72|[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
-73|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
-74|mesh = SubResource("BoxMesh_ground")
-75|
-76|[node name="Dock" type="StaticBody3D" parent="."]
-77|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0.15, 10)
-78|
-79|[node name="CollisionShape3D" type="CollisionShape3D" parent="Dock"]
-80|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
-81|shape = SubResource("BoxShape_dock")
-82|
-83|[node name="MeshInstance3D" type="MeshInstance3D" parent="Dock"]
-84|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
-85|mesh = SubResource("BoxMesh_dock")
-86|
-87|[node name="MarketSquare" type="StaticBody3D" parent="."]
-88|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.15, 10)
-89|
-90|[node name="CollisionShape3D" type="CollisionShape3D" parent="MarketSquare"]
-91|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
-92|shape = SubResource("BoxShape_building")
-93|
-94|[node name="MeshInstance3D" type="MeshInstance3D" parent="MarketSquare"]
-95|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
-96|mesh = SubResource("BoxMesh_building")
-97|
-98|[node name="PalaceGate" type="StaticBody3D" parent="."]
-99|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 1.5, 10)
-100|
-101|[node name="CollisionShape3D" type="CollisionShape3D" parent="PalaceGate"]
-102|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
-103|shape = SubResource("BoxShape_building")
-104|
-105|[node name="MeshInstance3D" type="MeshInstance3D" parent="PalaceGate"]
-106|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
-107|mesh = SubResource("BoxMesh_building")
-108|
-109|[node name="Inn" type="StaticBody3D" parent="."]
-110|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 1.5, -10)
-111|
-112|[node name="CollisionShape3D" type="CollisionShape3D" parent="Inn"]
-113|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-114|shape = SubResource("BoxShape_building")
-115|
-116|[node name="MeshInstance3D" type="MeshInstance3D" parent="Inn"]
-117|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-118|mesh = SubResource("BoxMesh_building")
-119|
-120|[node name="NPCs" type="Node3D" parent="."]
-121|
-122|[node name="IliaMarr" type="Area3D" parent="NPCs"]
-123|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0.9, 18)
-124|script = ExtResource("1_npc")
-125|npc_id = "ilia_marr"
-126|npc_display_name = "Ілія Марр"
-127|default_dialogue_id = "first_meeting"
-128|
-129|[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/IliaMarr"]
-130|shape = SubResource("SphereShape_interact")
-131|
-132|[node name="Body" type="MeshInstance3D" parent="NPCs/IliaMarr"]
-133|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
-134|
-135|[node name="Stetson" type="Area3D" parent="NPCs"]
-136|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 5.0, 8)
-137|script = ExtResource("1_npc")
-138|npc_id = "stetson_valkorn"
-139|npc_display_name = "Стетсон"
-140|default_dialogue_id = "first_meeting"
-141|
-142|[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Stetson"]
-143|shape = SubResource("SphereShape_interact")
-144|
-145|[node name="Body" type="MeshInstance3D" parent="NPCs/Stetson"]
-146|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-147|
-148|[node name="Bres" type="Area3D" parent="NPCs"]
-149|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0.8, -15)
-150|script = ExtResource("1_npc")
-151|npc_id = "bres"
-152|npc_display_name = "Брес"
-153|default_dialogue_id = "first_meeting"
-154|
-155|[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Bres"]
-156|shape = SubResource("SphereShape_interact")
-157|
-158|[node name="Body" type="MeshInstance3D" parent="NPCs/Bres"]
-159|transform = Transform3D(1, 0, 0, 0, 0.8, 0, 0, 0, 1, 0, 0.7, 0)
-160|
-161|[node name="Fipp" type="Area3D" parent="NPCs"]
-162|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.8, 12)
-163|script = ExtResource("1_npc")
-164|npc_id = "fipp"
-165|npc_display_name = "Блазень Фіпп"
-166|default_dialogue_id = "market_encounter"
-167|
-168|[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Fipp"]
-169|shape = SubResource("SphereShape_interact")
-170|
-171|[node name="Body" type="MeshInstance3D" parent="NPCs/Fipp"]
-172|transform = Transform3D(1, 0, 0, 0, 0.7, 0, 0, 0, 1, 0, 0.6, 0)
-173|
+[gd_scene load_steps=15 format=3]
+
+[ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc"]
+[ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="2_player"]
+
+[sub_resource type="Environment" id="Env_valkorn"]
+background_mode = 1
+background_color = Color(0.12, 0.13, 0.15, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.45, 0.47, 0.50, 1)
+ambient_light_energy = 2.5
+fog_enabled = true
+fog_light_color = Color(0.35, 0.37, 0.40, 1)
+fog_density = 0.008
+
+[sub_resource type="StandardMaterial3D" id="Mat_stone"]
+albedo_color = Color(0.38, 0.36, 0.34, 1)
+roughness = 0.70
+
+[sub_resource type="StandardMaterial3D" id="Mat_wood_dock"]
+albedo_color = Color(0.20, 0.14, 0.08, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_roof"]
+albedo_color = Color(0.18, 0.15, 0.12, 1)
+roughness = 0.75
+
+[sub_resource type="BoxShape3D" id="BoxShape_ground"]
+size = Vector3(80, 0.3, 60)
+
+[sub_resource type="BoxShape3D" id="BoxShape_building"]
+size = Vector3(8, 5.0, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape_dock"]
+size = Vector3(10, 0.3, 6)
+
+[sub_resource type="SphereShape3D" id="SphereShape_interact"]
+radius = 1.6
+
+[sub_resource type="BoxMesh" id="BoxMesh_ground"]
+size = Vector3(80, 0.3, 60)
+material = SubResource("Mat_stone")
+
+[sub_resource type="BoxMesh" id="BoxMesh_building"]
+size = Vector3(8, 5.0, 8)
+material = SubResource("Mat_stone")
+
+[sub_resource type="BoxMesh" id="BoxMesh_dock"]
+size = Vector3(10, 0.3, 6)
+material = SubResource("Mat_wood_dock")
+
+[node name="ValkornPort" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env_valkorn")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866, -0.2, 0.45, 0, 0.9, 0.4, -0.5, -0.35, 0.8, 0, 15, 0)
+light_color = Color(0.55, 0.57, 0.60, 1)
+light_energy = 1.2
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1.2, 20)
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+shape = SubResource("BoxShape_ground")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+mesh = SubResource("BoxMesh_ground")
+
+[node name="Dock" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0.15, 10)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+shape = SubResource("BoxShape_dock")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Dock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+mesh = SubResource("BoxMesh_dock")
+
+[node name="MarketSquare" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.15, 10)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MarketSquare"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+shape = SubResource("BoxShape_building")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MarketSquare"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+mesh = SubResource("BoxMesh_building")
+
+[node name="PalaceGate" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 1.5, 10)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PalaceGate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("BoxShape_building")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PalaceGate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("BoxMesh_building")
+
+[node name="Inn" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 1.5, -10)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Inn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape_building")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Inn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+mesh = SubResource("BoxMesh_building")
+
+[node name="NPCs" type="Node3D" parent="."]
+
+[node name="IliaMarr" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0.9, 18)
+script = ExtResource("1_npc")
+npc_id = "ilia_marr"
+npc_display_name = "Ілія Марр"
+default_dialogue_id = "first_meeting"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/IliaMarr"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/IliaMarr"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+
+[node name="Stetson" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 5.0, 8)
+script = ExtResource("1_npc")
+npc_id = "stetson_valkorn"
+npc_display_name = "Стетсон"
+default_dialogue_id = "first_meeting"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Stetson"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/Stetson"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+
+[node name="Bres" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0.8, -15)
+script = ExtResource("1_npc")
+npc_id = "bres"
+npc_display_name = "Брес"
+default_dialogue_id = "first_meeting"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Bres"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/Bres"]
+transform = Transform3D(1, 0, 0, 0, 0.8, 0, 0, 0, 1, 0, 0.7, 0)
+
+[node name="Fipp" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.8, 12)
+script = ExtResource("1_npc")
+npc_id = "fipp"
+npc_display_name = "Блазень Фіпп"
+default_dialogue_id = "market_encounter"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Fipp"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/Fipp"]
+transform = Transform3D(1, 0, 0, 0, 0.7, 0, 0, 0, 1, 0, 0.6, 0)
+
 [ext_resource type="Script" path="res://scripts/gameplay/ValkornPortQuarterArtAssembly.gd" id="3_art"]
 
 [node name="ValkornPortQuarterArtAssembly" type="Node3D" parent="."]

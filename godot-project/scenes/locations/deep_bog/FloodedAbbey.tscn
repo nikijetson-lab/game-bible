@@ -1,55 +1,55 @@
-1|[gd_scene load_steps=6 format=3]
-2|
-3|[ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="1_portal"]
-4|[ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="2_npc"]
-5|
-6|[sub_resource type="Environment" id="Env_flooded_abbey"]
-7|background_mode = 1
-8|background_color = Color(0.05, 0.08, 0.10, 1)
-9|ambient_light_color = Color(0.12, 0.15, 0.18, 1)
-10|ambient_light_energy = 0.5
-11|fog_enabled = true
-12|fog_light_color = Color(0.15, 0.18, 0.12, 1)
-13|fog_density = 0.028
-14|volumetric_fog_enabled = true
-15|volumetric_fog_density = 0.018
-16|
-17|[sub_resource type="BoxShape3D" id="BoxShape_ground"]
-18|size = Vector3(10, 0.2, 50)
-19|
-20|[node name="FloodedAbbey" type="Node3D"]
-21|
-22|[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-23|environment = SubResource("Env_flooded_abbey")
-24|
-25|[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-26|transform = Transform3D(0.5, -0.4, 0.7, 0, 0.8, 0.5, -0.8, -0.2, 0.5, 0, 6, 0)
-27|light_color = Color(0.10, 0.15, 0.20, 1)
-28|light_energy = 0.3
-29|shadow_enabled = true
-30|
-31|[node name="WalkwayFloor" type="StaticBody3D" parent="."]
-32|[node name="CollisionShape3D" type="CollisionShape3D" parent="WalkwayFloor"]
-33|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
-34|shape = SubResource("BoxShape_ground")
-35|
-36|[node name="NPCs" type="Node3D" parent="."]
-37|
-38|[node name="Lileya" type="Area3D" parent="NPCs"]
-39|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 20)
-40|script = ExtResource("2_npc")
-41|npc_id = "lileya"
-42|npc_display_name = "Лілея"
-43|default_dialogue_id = "flooded_abbey"
-44|
-45|[node name="Portals" type="Node3D" parent="."]
-46|
-47|[node name="BackToFerry" type="Area3D" parent="Portals"]
-48|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 23)
-49|script = ExtResource("1_portal")
-50|destination_location = "deep_bog_02"
-51|prompt = "Повернутись до Порому"
-52|
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="1_portal"]
+[ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="2_npc"]
+
+[sub_resource type="Environment" id="Env_flooded_abbey"]
+background_mode = 1
+background_color = Color(0.05, 0.08, 0.10, 1)
+ambient_light_color = Color(0.12, 0.15, 0.18, 1)
+ambient_light_energy = 0.5
+fog_enabled = true
+fog_light_color = Color(0.15, 0.18, 0.12, 1)
+fog_density = 0.028
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.018
+
+[sub_resource type="BoxShape3D" id="BoxShape_ground"]
+size = Vector3(10, 0.2, 50)
+
+[node name="FloodedAbbey" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env_flooded_abbey")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.5, -0.4, 0.7, 0, 0.8, 0.5, -0.8, -0.2, 0.5, 0, 6, 0)
+light_color = Color(0.10, 0.15, 0.20, 1)
+light_energy = 0.3
+shadow_enabled = true
+
+[node name="WalkwayFloor" type="StaticBody3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WalkwayFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+shape = SubResource("BoxShape_ground")
+
+[node name="NPCs" type="Node3D" parent="."]
+
+[node name="Lileya" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 20)
+script = ExtResource("2_npc")
+npc_id = "lileya"
+npc_display_name = "Лілея"
+default_dialogue_id = "flooded_abbey"
+
+[node name="Portals" type="Node3D" parent="."]
+
+[node name="BackToFerry" type="Area3D" parent="Portals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 23)
+script = ExtResource("1_portal")
+destination_location = "deep_bog_02"
+prompt = "Повернутись до Порому"
+
 [ext_resource type="Script" path="res://scripts/gameplay/DeepBogArtAssembly.gd" id="3_art"]
 
 [node name="DeepBogArtAssembly" type="Node3D" parent="."]

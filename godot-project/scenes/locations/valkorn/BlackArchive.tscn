@@ -57,3 +57,4 @@
 [node name="BlackArchiveArtAssembly" type="Node3D" parent="."]
 script = ExtResource("2_art")
 
+

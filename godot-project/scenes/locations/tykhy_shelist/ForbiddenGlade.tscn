@@ -148,3 +148,4 @@
 [node name="ForbiddenGladeArtAssembly" type="Node3D" parent="."]
 script = ExtResource("3_art")
 
+

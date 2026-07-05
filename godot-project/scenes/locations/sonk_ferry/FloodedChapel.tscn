@@ -47,3 +47,4 @@
 [node name="SonkFerrySubArtAssembly" type="Node3D" parent="."]
 script = ExtResource("4_art")
 
+

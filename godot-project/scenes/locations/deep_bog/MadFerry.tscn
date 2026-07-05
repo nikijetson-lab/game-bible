@@ -61,3 +61,4 @@
 [node name="DeepBogArtAssembly" type="Node3D" parent="."]
 script = ExtResource("3_art")
 
+

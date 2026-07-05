@@ -176,3 +176,4 @@
 [node name="ValkornPortQuarterArtAssembly" type="Node3D" parent="."]
 script = ExtResource("3_art")
 
+

@@ -44,3 +44,4 @@
 [node name="GuildWarehouseArtAssembly" type="Node3D" parent="."]
 script = ExtResource("2_art")
 
+

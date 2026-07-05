@@ -76,3 +76,4 @@
 [node name="ValkornUndercityArtAssembly" type="Node3D" parent="."]
 script = ExtResource("2_art")
 
+

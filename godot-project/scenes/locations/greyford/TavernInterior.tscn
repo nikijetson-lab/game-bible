@@ -789,6 +789,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 text = "Ерван"
 font_size = 28
 
+[node name="Varrik" type="Area3D" parent="NPCs" unique_id=8501494975]
+transform = Transform3D(0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, 0.939693, -4.8, 0.95, 2.5)
+script = ExtResource("1_npc_behavior")
+npc_id = "varrik"
+npc_display_name = "Варрік"
+default_dialogue_id = "first_meeting"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Varrik" unique_id=588229433]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/Varrik" unique_id=2340658774]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+mesh = SubResource("CapsuleMesh_npc")
+material_override = SubResource("Mat_clay_mug")
+
+[node name="NameLabel" type="Label3D" parent="NPCs/Varrik" unique_id=567194115]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+text = "Варрік"
+font_size = 22
+
 [node name="GreyfordGuard" type="Area3D" parent="NPCs" unique_id=496632789]
 transform = Transform3D(0.819152, 0, 0.573576, 0, 1, 0, -0.573576, 0, 0.819152, 1.15, 0.95, 1.65)
 script = ExtResource("1_npc_behavior")
@@ -813,7 +833,23 @@ shape = SubResource("SphereShape3D_interaction")
 
 [node name="Body" type="MeshInstance3D" parent="NPCs/GreyfordGuard" unique_id=1473619959]
 mesh = SubResource("CapsuleMesh_npc")
+material_override = SubResource("Mat_leather_apron")
 metadata/fallback_note = "Blockout guard who enters with the letter before the Ervan handoff."
+
+[node name="GuardHelmet" type="MeshInstance3D" parent="NPCs/GreyfordGuard" unique_id=9473619959]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
+mesh = SubResource("SphereMesh_bottle")
+material_override = SubResource("Mat_metal")
+
+[node name="GuardShoulderL" type="MeshInstance3D" parent="NPCs/GreyfordGuard" unique_id=8473619959]
+transform = Transform3D(0.6, 0, 0, 0, 0.3, 0, 0, 0, 0.4, -0.35, 0.7, 0)
+mesh = SubResource("BoxMesh_leg")
+material_override = SubResource("Mat_metal")
+
+[node name="GuardShoulderR" type="MeshInstance3D" parent="NPCs/GreyfordGuard" unique_id=7473619959]
+transform = Transform3D(0.6, 0, 0, 0, 0.3, 0, 0, 0, 0.4, 0.35, 0.7, 0)
+mesh = SubResource("BoxMesh_leg")
+material_override = SubResource("Mat_metal")
 
 [node name="CarriedLetter" type="MeshInstance3D" parent="NPCs/GreyfordGuard" unique_id=1690834820]
 transform = Transform3D(0.34, 0, 0, 0, 0.28, -0.18, 0, 0.1, 0.48, 0.12, 0.38, 0.34)

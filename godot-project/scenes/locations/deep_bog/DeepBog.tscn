@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="1_portal"]
+
+[sub_resource type="Environment" id="Env_deep_bog"]
+background_mode = 1
+background_color = Color(0.12, 0.14, 0.12, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.18, 0.22, 0.18, 1)
+ambient_light_energy = 0.7
+fog_enabled = true
+fog_light_color = Color(0.25, 0.28, 0.22, 1)
+fog_density = 0.035
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.02
+
+[sub_resource type="BoxShape3D" id="BoxShape_ground"]
+size = Vector3(8, 0.2, 60)
+
+[node name="DeepBog" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env_deep_bog")
+
+[node name="Moonlight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.35, 0.35, 0, 0.7, 0.7, -0.5, -0.6, 0.6, 0, 12, 0)
+light_color = Color(0.15, 0.22, 0.18, 1)
+light_energy = 0.4
+shadow_enabled = true
+
+[node name="WalkwayFloor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WalkwayFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("BoxShape_ground")
+
+[node name="Portals" type="Node3D" parent="."]
+
+[node name="ToMadFerry" type="Area3D" parent="Portals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -28)
+script = ExtResource("1_portal")
+destination_scene = ""
+destination_location = "deep_bog_02"
+prompt = "Крізь туман — до Божевільного Порома"

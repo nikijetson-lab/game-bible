@@ -1,0 +1,9 @@
+{
+  "id": "deep_bog_03_flooded_sanctuary",
+  "title": "Затоплене Святилище",
+  "description": "Варіант Затопленої Обителі — альтернативний фінал Епізоду 3.",
+  "category": "main",
+  "episode": 3,
+  "episode_end": true,
+  "leads_to": "ep4"
+}

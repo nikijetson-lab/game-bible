@@ -1,0 +1,17 @@
+{
+  "id": "hazemoor_01_path_through_swamp",
+  "dialogues": {
+    "hazemoor_warning": {
+      "trigger": "on_start",
+      "text": "Хейзмур — не просто болото. Це старе місце. Воно дихає. Воно пам'ятає. Не довіряй тиші."
+    },
+    "ilia_first_whisper": {
+      "trigger": "on_enter_swamp",
+      "text": "Ти чуєш мене? Я тут. Я завжди була тут. Просто... раніше ти не міг слухати."
+    },
+    "clearing_reached": {
+      "trigger": "on_complete",
+      "text": "Галявина. Тут тихіше. Але це не кінець — лише початок."
+    }
+  }
+}

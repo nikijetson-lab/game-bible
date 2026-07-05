@@ -1,0 +1,5 @@
+{
+  "id": "something_is_wrong",
+  "trigger": "after_investigation",
+  "text": "Щось не так. Свідчення не збігаються. Один із них бреше — але хто і чому?"
+}

@@ -1,76 +1,84 @@
 extends Node3D
-## ValkornPortQuarterArtAssembly — builds port city district
-## Docks, inn, wide streets, sea wind, salt smell
 
-@export var build_on_ready: bool = true
+# Valkorn Port Quarter — docks, inn, wide cobbled streets, sea wind atmosphere
+const TEX_WOOD := "res://assets/textures/greyford_tavern/dark_wood_planks.png"
+const TEX_FLOOR := "res://assets/textures/greyford_tavern/wet_floor_planks.png"
+const TEX_BEAMS := "res://assets/textures/greyford_tavern/soot_beams.png"
+const TEX_CRATE := "res://assets/textures/greyford_tavern/crate_boards.png"
+
+var mat_wood: StandardMaterial3D
+var mat_floor: StandardMaterial3D
+var mat_stone: StandardMaterial3D
+var mat_beam: StandardMaterial3D
+var mat_crate: StandardMaterial3D
+var mat_metal: StandardMaterial3D
+var mat_warm: StandardMaterial3D
+var mat_cobble: StandardMaterial3D
 
 func _ready() -> void:
-	if build_on_ready:
-		await get_tree().process_frame
-		build_port()
-
-func build_port() -> void:
+	_create_materials()
 	_build_docks()
 	_build_inn()
 	_build_streets()
 
-func _box(parent: Node3D, size: Vector3, pos: Vector3, color: Color, metal: bool = false) -> void:
-	var mi := MeshInstance3D.new()
-	var mat := StandardMaterial3D.new()
-	mat.albedo_color = color
-	mat.roughness = 0.85
-	if metal:
-		mat.metallic = 0.6
-		mat.roughness = 0.5
-	var bm := BoxMesh.new()
-	bm.size = size
-	bm.material = mat
-	mi.mesh = bm
-	mi.position = pos
-	parent.add_child(mi)
+func _create_materials() -> void:
+	mat_wood = _mat(Color(0.22, 0.15, 0.09), TEX_WOOD, 0.9)
+	mat_floor = _mat(Color(0.18, 0.12, 0.08), TEX_FLOOR, 0.88)
+	mat_stone = _mat(Color(0.33, 0.35, 0.36), "", 0.85)
+	mat_beam = _mat(Color(0.12, 0.09, 0.07), TEX_BEAMS, 0.96)
+	mat_crate = _mat(Color(0.44, 0.27, 0.14), TEX_CRATE, 0.9)
+	mat_metal = _mat(Color(0.24, 0.22, 0.18), "", 0.55); mat_metal.metallic = 0.45
+	mat_warm = _mat(Color(0.95, 0.50, 0.15), "", 0.55)
+	mat_warm.emission_enabled = true; mat_warm.emission = Color(0.85, 0.38, 0.08)
+	mat_warm.emission_energy_multiplier = 1.8
+	mat_cobble = _mat(Color(0.32, 0.33, 0.34), "", 0.92)
+
+func _mat(color: Color, tex_path: String, roughness: float) -> StandardMaterial3D:
+	var m := StandardMaterial3D.new(); m.albedo_color = color; m.roughness = roughness
+	m.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
+	if tex_path != "":
+		var tex := load(tex_path)
+		if tex is Texture2D: m.albedo_texture = tex
+	return m
+
+func _box(p: Node3D, nm: String, pos: Vector3, sz: Vector3, mat: Material) -> void:
+	var m := BoxMesh.new(); m.size = sz; var mi := MeshInstance3D.new()
+	mi.name = nm; mi.mesh = m; mi.material_override = mat
+	mi.position = pos; p.add_child(mi)
+
+func _cyl(p: Node3D, nm: String, pos: Vector3, r: float, h: float, mat: Material) -> void:
+	var m := CylinderMesh.new(); m.top_radius = r; m.bottom_radius = r
+	m.height = h; m.radial_segments = 18; var mi := MeshInstance3D.new()
+	mi.name = nm; mi.mesh = m; mi.material_override = mat
+	mi.position = pos; p.add_child(mi)
 
 func _build_docks() -> void:
 	var d := Node3D.new(); d.name = "Docks"; d.position = Vector3(0, 0, 5); add_child(d)
-	var wood := Color(0.22, 0.14, 0.08, 1)
-	var stone := Color(0.38, 0.40, 0.42, 1)
-	# Pier platform
-	_box(d, Vector3(12, 0.4, 6), Vector3(0, 0, 0), wood)
-	# Stone pillars
+	_box(d, "PierPlatform", Vector3(0, 0, 0), Vector3(12, 0.4, 6), mat_floor)
 	for x in [-4, -1.5, 1.5, 4]:
-		_box(d, Vector3(0.5, 2.5, 0.5), Vector3(x, -1, 2), stone)
-	# Mooring posts
+		_cyl(d, "StonePillar", Vector3(x, -0.8, 2), 0.25, 2.5, mat_stone)
 	for z in [-1.5, 1.5]:
-		_box(d, Vector3(0.15, 1.5, 0.15), Vector3(5, 0.8, z), wood)
-		_box(d, Vector3(0.15, 1.5, 0.15), Vector3(-5, 0.8, z), wood)
-	# Cargo crates
-	for i in range(6):
-		_box(d, Vector3(0.6, 0.5, 0.6), Vector3(randf_range(-3, 3), 0.45, randf_range(-1, 1)), Color(0.35, 0.22, 0.12, 1))
+		_cyl(d, "MooringPost", Vector3(5, 0.8, z), 0.08, 1.5, mat_beam)
+		_cyl(d, "MooringPost", Vector3(-5, 0.8, z), 0.08, 1.5, mat_beam)
+	for i in range(8):
+		_box(d, "Crate%d"%i, Vector3(randf_range(-3, 3), 0.45, randf_range(-1, 1)), Vector3(0.6, 0.5, 0.6), mat_crate)
 
 func _build_inn() -> void:
-	var inn := Node3D.new(); inn.name = "Inn"; inn.position = Vector3(4, 0, -2); add_child(inn)
-	var inn_color := Color(0.28, 0.18, 0.10, 1)
-	# Main building
-	_box(inn, Vector3(5, 3.5, 4), Vector3(0, 1.8, 0), inn_color)
-	# Sign
-	_box(inn, Vector3(2, 0.4, 0.1), Vector3(0, 2.8, 2.1), Color(0.2, 0.1, 0.05, 1))
-	# Warm windows
-	_box(inn, Vector3(1, 0.8, 0.05), Vector3(-1.5, 1.8, 1.95), Color(0.9, 0.55, 0.2, 1))
-	_box(inn, Vector3(1, 0.8, 0.05), Vector3(1.5, 1.8, 1.95), Color(0.9, 0.55, 0.2, 1))
-	# Lantern
-	_box(inn, Vector3(0.12, 0.3, 0.12), Vector3(1.8, 1.5, 2.0), Color(1, 0.45, 0.15, 1))
+	var inn := Node3D.new(); inn.name = "Inn"; inn.position = Vector3(4.5, 0, -3); add_child(inn)
+	_box(inn, "InnBody", Vector3(0, 1.8, 0), Vector3(5, 3.5, 4), mat_wood)
+	_box(inn, "InnSign", Vector3(0, 2.8, 2.1), Vector3(2.2, 0.4, 0.1), mat_beam)
+	_box(inn, "WarmWindowL", Vector3(-1.5, 1.8, 1.95), Vector3(1, 0.8, 0.05), mat_warm)
+	_box(inn, "WarmWindowR", Vector3(1.5, 1.8, 1.95), Vector3(1, 0.8, 0.05), mat_warm)
+	_box(inn, "DoorLantern", Vector3(1.8, 1.5, 2.0), Vector3(0.12, 0.3, 0.12), mat_warm)
 
 func _build_streets() -> void:
 	var st := Node3D.new(); st.name = "Streets"; st.position = Vector3(0, 0, -4); add_child(st)
-	var cobble := Color(0.32, 0.33, 0.34, 1)
-	# Wide street
-	_box(st, Vector3(10, 0.1, 8), Vector3(0, -0.15, 0), cobble)
-	# Street lamps
+	_box(st, "CobbledStreet", Vector3(0, -0.15, 0), Vector3(10, 0.1, 8), mat_cobble)
 	for i in range(4):
-		var z := -3.0 + i * 2.0
-		_box(st, Vector3(0.06, 2, 0.06), Vector3(3.5, 1.1, z), Color(0.25, 0.25, 0.25, 1), true)
-		_box(st, Vector3(0.2, 0.2, 0.2), Vector3(3.5, 2.2, z), Color(1, 0.5, 0.2, 1))
-		_box(st, Vector3(0.06, 2, 0.06), Vector3(-3.5, 1.1, z), Color(0.25, 0.25, 0.25, 1), true)
-		_box(st, Vector3(0.2, 0.2, 0.2), Vector3(-3.5, 2.2, z), Color(1, 0.5, 0.2, 1))
-	# Benches
-	_box(st, Vector3(1.5, 0.12, 0.4), Vector3(2, 0.25, 0), Color(0.25, 0.15, 0.08, 1))
-	_box(st, Vector3(1.5, 0.12, 0.4), Vector3(-2, 0.25, 2), Color(0.25, 0.15, 0.08, 1))
+		var z := -3.0 + i*2.0
+		_box(st, "LampPostL%d"%i, Vector3(3.5, 1.1, z), Vector3(0.06, 2, 0.06), mat_metal)
+		_box(st, "LampGlowL%d"%i, Vector3(3.5, 2.2, z), Vector3(0.2, 0.2, 0.2), mat_warm)
+		_box(st, "LampPostR%d"%i, Vector3(-3.5, 1.1, z), Vector3(0.06, 2, 0.06), mat_metal)
+		_box(st, "LampGlowR%d"%i, Vector3(-3.5, 2.2, z), Vector3(0.2, 0.2, 0.2), mat_warm)
+	_box(st, "BenchL", Vector3(2, 0.25, 0), Vector3(1.5, 0.12, 0.4), mat_wood)
+	_box(st, "BenchR", Vector3(-2, 0.25, 2), Vector3(1.5, 0.12, 0.4), mat_wood)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=33 format=3]
+[gd_scene load_steps=34 format=3]
 
 [ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc"]
 [ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="2_portal"]
 [ext_resource type="Script" path="res://scripts/gameplay/InspectClue.gd" id="3_clue"]
 [ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="4_player"]
+[ext_resource type="Script" path="res://scripts/gameplay/FerryQuestMechanics.gd" id="8_ferry_m"]
 
 [sub_resource type="Environment" id="Env_sonk"]
 background_mode = 1
@@ -476,6 +477,9 @@ spawn_point = Vector3(0, 1.0, 5)
 shape = SubResource("SphereShape_interact")
 
 [ext_resource type="Script" path="res://scripts/gameplay/SonkFerryArtAssembly.gd" id="5_art"]
+
+[node name="FerryQuestMechanics" type="Node3D" parent="."]
+script = ExtResource("8_ferry_m")
 
 [node name="SonkFerryArtAssembly" type="Node3D" parent="."]
 script = ExtResource("5_art")

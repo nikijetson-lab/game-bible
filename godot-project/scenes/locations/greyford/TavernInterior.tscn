@@ -789,26 +789,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 text = "Ерван"
 font_size = 28
 
-[node name="Varrik" type="Area3D" parent="NPCs" unique_id=8501494975]
-transform = Transform3D(0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, 0.939693, -4.8, 0.95, 2.5)
-script = ExtResource("1_npc_behavior")
-npc_id = "varrik"
-npc_display_name = "Варрік"
-default_dialogue_id = "first_meeting"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Varrik" unique_id=588229433]
-shape = SubResource("SphereShape3D_interaction")
-
-[node name="Body" type="MeshInstance3D" parent="NPCs/Varrik" unique_id=2340658774]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-mesh = SubResource("CapsuleMesh_npc")
-material_override = SubResource("Mat_clay_mug")
-
-[node name="NameLabel" type="Label3D" parent="NPCs/Varrik" unique_id=567194115]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
-text = "Варрік"
-font_size = 22
-
 [node name="GreyfordGuard" type="Area3D" parent="NPCs" unique_id=496632789]
 transform = Transform3D(0.819152, 0, 0.573576, 0, 1, 0, -0.573576, 0, 0.819152, 1.15, 0.95, 1.65)
 script = ExtResource("1_npc_behavior")

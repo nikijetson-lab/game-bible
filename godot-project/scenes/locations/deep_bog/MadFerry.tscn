@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="1_portal"]
 [ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="2_npc"]
+[ext_resource type="Script" path="res://scripts/gameplay/MadRiverMechanics.gd" id="6_river"]
 
 [sub_resource type="Environment" id="Env_mad_ferry"]
 background_mode = 1
@@ -55,6 +56,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -18)
 script = ExtResource("1_portal")
 destination_location = "deep_bog_03"
 prompt = "Переправитись через Шалену Річку"
+
+[node name="RiverMechanics" type="Node3D" parent="."]
+script = ExtResource("6_river")
 
 [ext_resource type="Script" path="res://scripts/gameplay/DeepBogArtAssembly.gd" id="3_art"]
 

@@ -76,9 +76,9 @@ func _create_region_markers() -> void:
 
 	for region_id in regions:
 		var data: Dictionary = regions[region_id]
-		var pos := data.get("map_position", {"x": 0.5, "y": 0.5})
-		var icon_text := icon_map.get(data.get("icon", "castle"), "📍")
-		var name := data.get("name", region_id)
+		var pos: Dictionary = data.get("map_position", {"x": 0.5, "y": 0.5})
+		var icon_text: String = icon_map.get(data.get("icon", "castle"), "📍")
+		var name: String = data.get("name", region_id)
 
 		var btn := Button.new()
 		btn.name = "Marker_" + region_id
@@ -168,7 +168,7 @@ func _update_info_panel() -> void:
 		if conn.is_empty():
 			travel_button.visible = false
 		else:
-			var mins := conn.get("travel_time_minutes", 60)
+			var mins: int = conn.get("travel_time_minutes", 60)
 			travel_button.text = "Подорож (%d хв)" % mins
 			travel_button.tooltip_text = conn.get("description", "")
 			travel_button.visible = true

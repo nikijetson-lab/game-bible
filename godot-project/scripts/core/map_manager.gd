@@ -92,9 +92,9 @@ func get_available_connections(from_id: String) -> Array:
 	"""Повертає список доступних для подорожі регіонів із поточного"""
 	var available: Array = []
 	for conn in world_data.get("connections", []):
-		var source := conn.get("from", "")
+		var source: String = conn.get("from", "")
 		if source == from_id or conn.get("from_region", "") == from_id:
-			var target := conn.get("to", "")
+			var target: String = conn.get("to", "")
 			if is_region_discovered(target):
 				available.append({"region": target, "connection": conn})
 	return available
@@ -112,7 +112,7 @@ func travel_to_region(to_region: String) -> void:
 		push_error("MapManager: No connection from ", current_region, " to ", to_region)
 		return
 
-	var travel_time := conn.get("travel_time_minutes", 60)
+	var travel_time: int = conn.get("travel_time_minutes", 60)
 	travel_started.emit(current_region, to_region, travel_time)
 
 	var entry_scene := get_region_entry_scene(to_region)

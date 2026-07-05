@@ -26,12 +26,12 @@ func enter_gas_hazard() -> void:
 	_trigger_ilia("ilia_abbey_02")
 
 func _trigger_ilia(trigger_id: String) -> void:
-	var path := "res://data/dialogues/deep_bog/flooded_abbey.json"
-	if not FileAccess.file_exists(path): return
-	var f := FileAccess.open(path, FileAccess.READ)
-	var data := JSON.parse_string(f.get_as_text())
-	if data == null: return
-	for l in data.get("dialogues", {}).get("ilia_abbey", []):
+	var path_f: String = "res://data/dialogues/deep_bog/flooded_abbey.json"
+	if not FileAccess.file_exists(path_f): return
+	var f_f: FileAccess = FileAccess.open(path_f, FileAccess.READ)
+	var data_f: Variant = JSON.parse_string(f_f.get_as_text())
+	if data_f == null: return
+	for l in data_f.get("dialogues", {}).get("ilia_abbey", []):
 		if l.get("trigger", "") == trigger_id:
 			_emit(trigger_id, l.get("text", ""))
 			return

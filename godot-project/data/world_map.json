@@ -4,206 +4,206 @@
   "description": "Прикордонний регіон, що розпадається під тиском Порожнього Сезону.",
 
   "regions": {
-    "greyford": {
-      "name": "Грейфорд",
-      "title": "Адміністративний Аванпост",
-      "episode": 1,
-      "discovered": true,
-      "map_position": {"x": 0.65, "y": 0.22},
-      "entry_scene": "res://scenes/locations/greyford/TavernInterior.tscn",
-      "description": "Останній форпост цивілізації перед болотом. Сіра каменюка, вологе темне дерево, провислі дахи.",
-      "icon": "castle"
-    },
-    "sonk_ferry": {
-      "name": "Сонк-Феррі",
-      "title": "Остання Переправа",
-      "episode": 1,
-      "discovered": false,
-      "map_position": {"x": 0.55, "y": 0.42},
-      "entry_scene": "res://scenes/locations/sonk_ferry/SonkFerry.tscn",
-      "description": "Хаотична мережа дерев'яних платформ і містків на гнилих стовпах над чорною водою.",
-      "icon": "village",
-      "unlock_quest": "greyford_01_missing_recipient"
-    },
-    "hazemoor": {
-      "name": "Хейзмур",
-      "title": "Глибоке Болото",
-      "episode": 1,
-      "discovered": false,
-      "map_position": {"x": 0.70, "y": 0.75},
-      "entry_scene": "res://scenes/locations/hazemoor/SwampPath.tscn",
-      "description": "Імлиста flood-sick низина чорної води, торф'яних полів та гниючих хуторів.",
-      "icon": "swamp",
-      "unlock_quest": "sonk_ferry_ferrymans_oath"
-    },
-    "tykhy_shelest": {
-      "name": "Тихий Шелест",
-      "title": "Приховане селище Мурі",
-      "episode": 1,
-      "discovered": false,
-      "map_position": {"x": 0.80, "y": 0.58},
-      "entry_scene": "res://scenes/locations/tykhy_shelist/TykhyShelist.tscn",
-      "description": "Система дерев'яних платформ на палях між гігантськими болотяними деревами.",
-      "icon": "stilt_village",
-      "unlock_quest": "hazemoor_01_path_through_swamp"
-    },
-    "mirefold": {
-      "name": "Мірефолд",
-      "title": "Занедбаний хутір",
-      "episode": 1,
-      "discovered": false,
-      "map_position": {"x": 0.45, "y": 0.52},
-      "entry_scene": "",
-      "description": "Гниючі халупи з солом'яними дахами, вкритими мохом. Земля під ногами — як губка.",
-      "icon": "ruins",
-      "unlock_quest": "sonk_ferry_hunger_from_below"
-    },
-    "lantern_house": {
-      "name": "Ліхтарний Дім Святої Вей",
-      "title": "Монастирська каплиця-притулок",
-      "episode": 1,
-      "discovered": false,
-      "map_position": {"x": 0.65, "y": 0.48},
-      "entry_scene": "",
-      "description": "Древня кам'яна кладка, наполовину занурена у болото. Вікна з мутним зеленим склом.",
-      "icon": "chapel",
-      "unlock_quest": "sonk_ferry_hunger_from_below"
-    },
-    "mour_glade": {
-      "name": "Галявина Моура",
-      "title": "Серце Хейзмуру",
-      "episode": 1,
-      "discovered": false,
-      "map_position": {"x": 0.60, "y": 0.88},
-      "entry_scene": "res://scenes/locations/tykhy_shelist/ForbiddenGlade.tscn",
-      "description": "Широка дзеркальна гладь чорної води. Абсолютна тиша. Вночі вода світиться синім.",
-      "icon": "magic_circle",
-      "unlock_quest": "tykhy_shelest_trust_trial"
-    },
-    "valkorn": {
-      "name": "Валькорн",
-      "title": "Місто Семи Кинджалів та Порожніх Обіцянок",
-      "episode": 2,
-      "discovered": false,
-      "map_position": {"x": 0.10, "y": 0.12},
-      "entry_scene": "res://scenes/locations/valkorn/PortQuarter.tscn",
-      "description": "Величезне стратифіковане портове місто з білого та сірого граніту на морському узбережжі.",
-      "icon": "capital",
-      "unlock_quest": "mour_glade_contact"
-    },
-    "monastery_cloister": {
-      "name": "Монастирський Клуатр Семи Кинджалів",
-      "title": "Таємна обитель Ордену",
-      "episode": 2,
-      "discovered": false,
-      "map_position": {"x": 0.20, "y": 0.28},
-      "entry_scene": "",
-      "description": "Древній монастир із закритою бібліотекою, каплицею та таємним ходом до колекторів.",
-      "icon": "monastery",
-      "unlock_quest": "valkorn_02_two_versions_of_truth"
-    }
+	"greyford": {
+	  "name": "Грейфорд",
+	  "title": "Адміністративний Аванпост",
+	  "episode": 1,
+	  "discovered": true,
+	  "map_position": {"x": 0.65, "y": 0.22},
+	  "entry_scene": "res://scenes/locations/greyford/TavernInterior.tscn",
+	  "description": "Останній форпост цивілізації перед болотом. Сіра каменюка, вологе темне дерево, провислі дахи.",
+	  "icon": "castle"
+	},
+	"sonk_ferry": {
+	  "name": "Сонк-Феррі",
+	  "title": "Остання Переправа",
+	  "episode": 1,
+	  "discovered": false,
+	  "map_position": {"x": 0.55, "y": 0.42},
+	  "entry_scene": "res://scenes/locations/sonk_ferry/SonkFerry.tscn",
+	  "description": "Хаотична мережа дерев'яних платформ і містків на гнилих стовпах над чорною водою.",
+	  "icon": "village",
+	  "unlock_quest": "greyford_01_missing_recipient"
+	},
+	"hazemoor": {
+	  "name": "Хейзмур",
+	  "title": "Глибоке Болото",
+	  "episode": 1,
+	  "discovered": false,
+	  "map_position": {"x": 0.70, "y": 0.75},
+	  "entry_scene": "res://scenes/locations/hazemoor/SwampPath.tscn",
+	  "description": "Імлиста flood-sick низина чорної води, торф'яних полів та гниючих хуторів.",
+	  "icon": "swamp",
+	  "unlock_quest": "sonk_ferry_ferrymans_oath"
+	},
+	"tykhy_shelest": {
+	  "name": "Тихий Шелест",
+	  "title": "Приховане селище Мурі",
+	  "episode": 1,
+	  "discovered": false,
+	  "map_position": {"x": 0.80, "y": 0.58},
+	  "entry_scene": "res://scenes/locations/tykhy_shelist/TykhyShelist.tscn",
+	  "description": "Система дерев'яних платформ на палях між гігантськими болотяними деревами.",
+	  "icon": "stilt_village",
+	  "unlock_quest": "hazemoor_01_path_through_swamp"
+	},
+	"mirefold": {
+	  "name": "Мірефолд",
+	  "title": "Занедбаний хутір",
+	  "episode": 1,
+	  "discovered": false,
+	  "map_position": {"x": 0.45, "y": 0.52},
+	  "entry_scene": "",
+	  "description": "Гниючі халупи з солом'яними дахами, вкритими мохом. Земля під ногами — як губка.",
+	  "icon": "ruins",
+	  "unlock_quest": "sonk_ferry_hunger_from_below"
+	},
+	"lantern_house": {
+	  "name": "Ліхтарний Дім Святої Вей",
+	  "title": "Монастирська каплиця-притулок",
+	  "episode": 1,
+	  "discovered": false,
+	  "map_position": {"x": 0.65, "y": 0.48},
+	  "entry_scene": "",
+	  "description": "Древня кам'яна кладка, наполовину занурена у болото. Вікна з мутним зеленим склом.",
+	  "icon": "chapel",
+	  "unlock_quest": "sonk_ferry_hunger_from_below"
+	},
+	"mour_glade": {
+	  "name": "Галявина Моура",
+	  "title": "Серце Хейзмуру",
+	  "episode": 1,
+	  "discovered": false,
+	  "map_position": {"x": 0.60, "y": 0.88},
+	  "entry_scene": "res://scenes/locations/tykhy_shelist/ForbiddenGlade.tscn",
+	  "description": "Широка дзеркальна гладь чорної води. Абсолютна тиша. Вночі вода світиться синім.",
+	  "icon": "magic_circle",
+	  "unlock_quest": "tykhy_shelest_trust_trial"
+	},
+	"valkorn": {
+	  "name": "Валькорн",
+	  "title": "Місто Семи Кинджалів та Порожніх Обіцянок",
+	  "episode": 2,
+	  "discovered": false,
+	  "map_position": {"x": 0.10, "y": 0.12},
+	  "entry_scene": "res://scenes/locations/valkorn/PortQuarter.tscn",
+	  "description": "Величезне стратифіковане портове місто з білого та сірого граніту на морському узбережжі.",
+	  "icon": "capital",
+	  "unlock_quest": "mour_glade_contact"
+	},
+	"monastery_cloister": {
+	  "name": "Монастирський Клуатр Семи Кинджалів",
+	  "title": "Таємна обитель Ордену",
+	  "episode": 2,
+	  "discovered": false,
+	  "map_position": {"x": 0.20, "y": 0.28},
+	  "entry_scene": "",
+	  "description": "Древній монастир із закритою бібліотекою, каплицею та таємним ходом до колекторів.",
+	  "icon": "monastery",
+	  "unlock_quest": "valkorn_02_two_versions_of_truth"
+	}
   },
 
   "connections": [
-    {
-      "from": "greyford",
-      "to": "valkorn",
-      "name": "Західний шлях",
-      "travel_method": "road",
-      "travel_time_minutes": 300,
-      "distance_km": 50,
-      "description": "50 km західний шлях до столиці",
-      "unlock_quest": "mour_glade_contact"
-    },
-    {
-      "from": "greyford",
-      "to": "sonk_ferry",
-      "name": "Річковий шлях",
-      "travel_method": "walk",
-      "travel_time_minutes": 30,
-      "distance_km": 5,
-      "description": "30 хвилин пішки вздовж річки",
-      "unlock_quest": "greyford_01_missing_recipient"
-    },
-    {
-      "from": "greyford",
-      "to": "tykhy_shelest",
-      "name": "Болотяна стежка",
-      "travel_method": "swamp_walk",
-      "travel_time_minutes": 180,
-      "distance_km": 15,
-      "description": "3 години через болото",
-      "unlock_quest": "greyford_01_missing_recipient"
-    },
-    {
-      "from": "sonk_ferry",
-      "to": "mirefold",
-      "name": "Південна дорога",
-      "travel_method": "walk",
-      "travel_time_minutes": 45,
-      "distance_km": 8,
-      "description": "Дорога через ліс до занедбаного хутора",
-      "unlock_quest": "sonk_ferry_hunger_from_below"
-    },
-    {
-      "from": "sonk_ferry",
-      "to": "lantern_house",
-      "name": "Ліхтарні доріжки",
-      "travel_method": "swamp_walk",
-      "travel_time_minutes": 30,
-      "distance_km": 4,
-      "description": "Стежка позначена ліхтарями",
-      "unlock_quest": "sonk_ferry_hunger_from_below"
-    },
-    {
-      "from": "sonk_ferry",
-      "to": "hazemoor",
-      "name": "Шлях болота",
-      "travel_method": "swamp_walk",
-      "travel_time_minutes": 120,
-      "distance_km": 12,
-      "description": "2 години через глибоке болото",
-      "unlock_quest": "sonk_ferry_salt_in_the_books"
-    },
-    {
-      "from": "tykhy_shelest",
-      "to": "mour_glade",
-      "name": "Ритуал занурення",
-      "travel_method": "ritual",
-      "travel_time_minutes": 60,
-      "distance_km": 5,
-      "description": "Священний шлях через туман до Галявини Моура",
-      "unlock_quest": "tykhy_shelest_trust_trial"
-    },
-    {
-      "from": "valkorn",
-      "to": "monastery_cloister",
-      "name": "Вулиці Валькорна",
-      "travel_method": "city_walk",
-      "travel_time_minutes": 15,
-      "distance_km": 1,
-      "description": "Через Дипломатичний квартал до Клуатру",
-      "unlock_quest": "valkorn_02_two_versions_of_truth"
-    }
+	{
+	  "from": "greyford",
+	  "to": "valkorn",
+	  "name": "Західний шлях",
+	  "travel_method": "road",
+	  "travel_time_minutes": 300,
+	  "distance_km": 50,
+	  "description": "50 km західний шлях до столиці",
+	  "unlock_quest": "mour_glade_contact"
+	},
+	{
+	  "from": "greyford",
+	  "to": "sonk_ferry",
+	  "name": "Річковий шлях",
+	  "travel_method": "walk",
+	  "travel_time_minutes": 30,
+	  "distance_km": 5,
+	  "description": "30 хвилин пішки вздовж річки",
+	  "unlock_quest": "greyford_01_missing_recipient"
+	},
+	{
+	  "from": "greyford",
+	  "to": "tykhy_shelest",
+	  "name": "Болотяна стежка",
+	  "travel_method": "swamp_walk",
+	  "travel_time_minutes": 180,
+	  "distance_km": 15,
+	  "description": "3 години через болото",
+	  "unlock_quest": "greyford_01_missing_recipient"
+	},
+	{
+	  "from": "sonk_ferry",
+	  "to": "mirefold",
+	  "name": "Південна дорога",
+	  "travel_method": "walk",
+	  "travel_time_minutes": 45,
+	  "distance_km": 8,
+	  "description": "Дорога через ліс до занедбаного хутора",
+	  "unlock_quest": "sonk_ferry_hunger_from_below"
+	},
+	{
+	  "from": "sonk_ferry",
+	  "to": "lantern_house",
+	  "name": "Ліхтарні доріжки",
+	  "travel_method": "swamp_walk",
+	  "travel_time_minutes": 30,
+	  "distance_km": 4,
+	  "description": "Стежка позначена ліхтарями",
+	  "unlock_quest": "sonk_ferry_hunger_from_below"
+	},
+	{
+	  "from": "sonk_ferry",
+	  "to": "hazemoor",
+	  "name": "Шлях болота",
+	  "travel_method": "swamp_walk",
+	  "travel_time_minutes": 120,
+	  "distance_km": 12,
+	  "description": "2 години через глибоке болото",
+	  "unlock_quest": "sonk_ferry_salt_in_the_books"
+	},
+	{
+	  "from": "tykhy_shelest",
+	  "to": "mour_glade",
+	  "name": "Ритуал занурення",
+	  "travel_method": "ritual",
+	  "travel_time_minutes": 60,
+	  "distance_km": 5,
+	  "description": "Священний шлях через туман до Галявини Моура",
+	  "unlock_quest": "tykhy_shelest_trust_trial"
+	},
+	{
+	  "from": "valkorn",
+	  "to": "monastery_cloister",
+	  "name": "Вулиці Валькорна",
+	  "travel_method": "city_walk",
+	  "travel_time_minutes": 15,
+	  "distance_km": 1,
+	  "description": "Через Дипломатичний квартал до Клуатру",
+	  "unlock_quest": "valkorn_02_two_versions_of_truth"
+	}
   ],
 
   "travel_methods": {
-    "walk": {"icon": "boot", "color": "#8B7355"},
-    "road": {"icon": "cart", "color": "#A09080"},
-    "swamp_walk": {"icon": "skull", "color": "#4A6741", "danger": "medium"},
-    "ritual": {"icon": "magic", "color": "#7B68EE", "danger": "high"},
-    "city_walk": {"icon": "building", "color": "#708090"}
+	"walk": {"icon": "boot", "color": "#8B7355"},
+	"road": {"icon": "cart", "color": "#A09080"},
+	"swamp_walk": {"icon": "skull", "color": "#4A6741", "danger": "medium"},
+	"ritual": {"icon": "magic", "color": "#7B68EE", "danger": "high"},
+	"city_walk": {"icon": "building", "color": "#708090"}
   },
 
   "icons": {
-    "castle": "🏰",
-    "village": "🏘️",
-    "swamp": "🌿",
-    "stilt_village": "🏚️",
-    "ruins": "💀",
-    "chapel": "⛪",
-    "magic_circle": "❓",
-    "capital": "🏛️",
-    "monastery": "📿"
+	"castle": "🏰",
+	"village": "🏘️",
+	"swamp": "🌿",
+	"stilt_village": "🏚️",
+	"ruins": "💀",
+	"chapel": "⛪",
+	"magic_circle": "❓",
+	"capital": "🏛️",
+	"monastery": "📿"
   }
 }

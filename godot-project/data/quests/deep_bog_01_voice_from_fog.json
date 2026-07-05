@@ -6,25 +6,25 @@
   "episode": 3,
   "canon_previous": "valkorn_05_lantern_path",
   "hero_state": {
-    "skin": "earthy, cold, fingertips blackened with peat",
-    "breath": "wheezing, metallic taste of blood and mint",
-    "first_seal": "dampens Mour whispers, dries mud in radius",
-    "bolo_weaving": "manipulate bog emanations — costs stamina, causes pain"
+	"skin": "earthy, cold, fingertips blackened with peat",
+	"breath": "wheezing, metallic taste of blood and mint",
+	"first_seal": "dampens Mour whispers, dries mud in radius",
+	"bolo_weaving": "manipulate bog emanations — costs stamina, causes pain"
   },
   "ilia_anchor": {
-    "nature": "voice in hero's head only, invisible to others",
-    "function": "warns of madness, reminds of name, guides through fog",
-    "isolation": "she stayed in Valkorn to stabilize Wardens"
+	"nature": "voice in hero's head only, invisible to others",
+	"function": "warns of madness, reminds of name, guides through fog",
+	"isolation": "she stayed in Valkorn to stabilize Wardens"
   },
   "acts": {
-    "return_to_mist": {
-      "mechanic": "dense fog, no minimap, sanity drain, seductive whispers",
-      "breakthrough": "grab Ilia's voice — sanity restored, path revealed with Warden stakes"
-    },
-    "scarred_path": {
-      "obstacle": "black root-webs, peat chasms, poison gas",
-      "bolo_weaving_use": "touch roots to make them part — costs stamina, Ilia begs him to stop"
-    }
+	"return_to_mist": {
+	  "mechanic": "dense fog, no minimap, sanity drain, seductive whispers",
+	  "breakthrough": "grab Ilia's voice — sanity restored, path revealed with Warden stakes"
+	},
+	"scarred_path": {
+	  "obstacle": "black root-webs, peat chasms, poison gas",
+	  "bolo_weaving_use": "touch roots to make them part — costs stamina, Ilia begs him to stop"
+	}
   },
   "leads_to": "deep_bog_02_mad_ferry"
 }

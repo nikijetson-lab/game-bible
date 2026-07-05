@@ -1,342 +1,342 @@
 {
   "locations": [
-    {
-      "id": "greyford_tavern",
-      "name": "Таверна «Скрипучий знак»",
-      "description": "Тепла затишна таверна з каміном",
-      
-      "ambient_loops": [
-        {
-          "sound": "res://assets/audio/ambience/fire_crackle.ogg",
-          "volume_db": -15,
-          "loop": true,
-          "fade_distance": [5.0, 15.0],
-          "position_3d": true,
-          "source_position": [0, 1, 0]
-        },
-        {
-          "sound": "res://assets/audio/ambience/tavern_chatter.ogg",
-          "volume_db": -20,
-          "loop": true,
-          "fade_distance": [0.0, 20.0],
-          "position_3d": false
-        },
-        {
-          "sound": "res://assets/audio/ambience/wood_creak.ogg",
-          "volume_db": -25,
-          "loop": true,
-          "random_pitch": [0.9, 1.1]
-        }
-      ],
-      
-      "music": {
-        "track": "res://assets/audio/music/folk_round.ogg",
-        "volume_db": -18,
-        "loop": true,
-        "crossfade_duration": 3.0
-      },
-      
-      "weather_override": "none"
-    },
-    
-    {
-      "id": "greyford_streets",
-      "name": "Вулиці Грейфорда",
-      "description": "Бруковані вулиці під сірим небом",
-      
-      "ambient_loops": [
-        {
-          "sound": "res://assets/audio/ambience/wind_light.ogg",
-          "volume_db": -12,
-          "loop": true
-        },
-        {
-          "sound": "res://assets/audio/ambience/rain_light.ogg",
-          "volume_db": -16,
-          "loop": true,
-          "condition": "weather_rain"
-        },
-        {
-          "sound": "res://assets/audio/ambience/distant_bell.ogg",
-          "volume_db": -28,
-          "loop": false,
-          "random_interval": [60, 180]
-        },
-        {
-          "sound": "res://assets/audio/ambience/footsteps_distant.ogg",
-          "volume_db": -22,
-          "loop": true,
-          "random_pitch": [0.95, 1.05]
-        }
-      ],
-      
-      "music": {
-        "track": "res://assets/audio/music/path_of_goblin_king.ogg",
-        "volume_db": -20,
-        "loop": true
-      },
-      
-      "weather_override": "overcast"
-    },
-    
-    {
-      "id": "hazemoor_swamp",
-      "name": "Болото Хейзмур",
-      "description": "Густий туман, жахливі звуки, обманливі вогники",
-      
-      "ambient_loops": [
-        {
-          "sound": "res://assets/audio/ambience/swamp_ambience.ogg",
-          "volume_db": -10,
-          "loop": true
-        },
-        {
-          "sound": "res://assets/audio/ambience/water_drip.ogg",
-          "volume_db": -18,
-          "loop": true,
-          "random_pitch": [0.8, 1.2]
-        },
-        {
-          "sound": "res://assets/audio/ambience/creature_calls.ogg",
-          "volume_db": -22,
-          "loop": false,
-          "random_interval": [15, 45]
-        },
-        {
-          "sound": "res://assets/audio/ambience/whispers.ogg",
-          "volume_db": -30,
-          "loop": false,
-          "random_interval": [30, 90],
-          "comment": "Шепоти Моура"
-        },
-        {
-          "sound": "res://assets/audio/ambience/reed_rustle.ogg",
-          "volume_db": -20,
-          "loop": true
-        }
-      ],
-      
-      "music": {
-        "track": "res://assets/audio/music/darkest_child.ogg",
-        "volume_db": -22,
-        "loop": true
-      },
-      
-      "weather_override": "fog"
-    },
-    
-    {
-      "id": "valkorn_palace",
-      "name": "Палац Валькорна",
-      "description": "Величні залізні зали, пара та механізми",
-      
-      "ambient_loops": [
-        {
-          "sound": "res://assets/audio/ambience/steam_hiss.ogg",
-          "volume_db": -14,
-          "loop": true
-        },
-        {
-          "sound": "res://assets/audio/ambience/machinery_distant.ogg",
-          "volume_db": -18,
-          "loop": true
-        },
-        {
-          "sound": "res://assets/audio/ambience/footsteps_stone.ogg",
-          "volume_db": -24,
-          "loop": true,
-          "random_pitch": [0.9, 1.1]
-        },
-        {
-          "sound": "res://assets/audio/ambience/metal_creak.ogg",
-          "volume_db": -20,
-          "loop": false,
-          "random_interval": [20, 60]
-        }
-      ],
-      
-      "music": {
-        "track": "res://assets/audio/music/the_descent.ogg",
-        "volume_db": -18,
-        "loop": true
-      },
-      
-      "weather_override": "none"
-    },
-    
-    {
-      "id": "valkorn_archive",
-      "name": "Підземний Архів",
-      "description": "Темні похмурі коридори під палацом",
-      
-      "ambient_loops": [
-        {
-          "sound": "res://assets/audio/ambience/dungeon_drip.ogg",
-          "volume_db": -16,
-          "loop": true
-        },
-        {
-          "sound": "res://assets/audio/ambience/torch_burn.ogg",
-          "volume_db": -18,
-          "loop": true,
-          "position_3d": true
-        },
-        {
-          "sound": "res://assets/audio/ambience/chains_rattle.ogg",
-          "volume_db": -28,
-          "loop": false,
-          "random_interval": [30, 90]
-        }
-      ],
-      
-      "music": {
-        "track": "res://assets/audio/music/danse_macabre.ogg",
-        "volume_db": -20,
-        "loop": true
-      },
-      
-      "weather_override": "none"
-    },
-    
-    {
-      "id": "sunken_abbey",
-      "name": "Затоплена Обитель",
-      "description": "Напівзатоплений храм Ключників",
-      
-      "ambient_loops": [
-        {
-          "sound": "res://assets/audio/ambience/water_lapping.ogg",
-          "volume_db": -12,
-          "loop": true
-        },
-        {
-          "sound": "res://assets/audio/ambience/echo_distant.ogg",
-          "volume_db": -22,
-          "loop": false,
-          "random_interval": [20, 60]
-        },
-        {
-          "sound": "res://assets/audio/ambience/chant_faint.ogg",
-          "volume_db": -32,
-          "loop": true,
-          "comment": "Привиди молитов"
-        },
-        {
-          "sound": "res://assets/audio/ambience/stone_rumble.ogg",
-          "volume_db": -25,
-          "loop": false,
-          "random_interval": [60, 180]
-        }
-      ],
-      
-      "music": {
-        "track": "res://assets/audio/music/descent_deeper.ogg",
-        "volume_db": -22,
-        "loop": true
-      },
-      
-      "weather_override": "fog"
-    },
-    
-    {
-      "id": "moura_clearing",
-      "name": "Галявина Моура",
-      "description": "Священне місце, центр магії болота",
-      
-      "ambient_loops": [
-        {
-          "sound": "res://assets/audio/ambience/magic_hum.ogg",
-          "volume_db": -14,
-          "loop": true,
-          "comment": "Магічна аура"
-        },
-        {
-          "sound": "res://assets/audio/ambience/whispers_moura.ogg",
-          "volume_db": -16,
-          "loop": true,
-          "comment": "Голос Моура"
-        },
-        {
-          "sound": "res://assets/audio/ambience/wind_eerie.ogg",
-          "volume_db": -18,
-          "loop": true
-        },
-        {
-          "sound": "res://assets/audio/ambience/heartbeat_slow.ogg",
-          "volume_db": -24,
-          "loop": true,
-          "comment": "Дихання болота"
-        }
-      ],
-      
-      "music": {
-        "track": "res://assets/audio/music/darkest_child.ogg",
-        "volume_db": -20,
-        "loop": true
-      },
-      
-      "weather_override": "fog"
-    },
-    
-    {
-      "id": "tykhy_shelest",
-      "name": "Тихий Шелест",
-      "description": "Селище Мурі на палях",
-      
-      "ambient_loops": [
-        {
-          "sound": "res://assets/audio/ambience/water_gentle.ogg",
-          "volume_db": -15,
-          "loop": true
-        },
-        {
-          "sound": "res://assets/audio/ambience/wood_creak_soft.ogg",
-          "volume_db": -22,
-          "loop": true
-        },
-        {
-          "sound": "res://assets/audio/ambience/muri_chants.ogg",
-          "volume_db": -28,
-          "loop": false,
-          "random_interval": [40, 120],
-          "comment": "Співи Мурі"
-        },
-        {
-          "sound": "res://assets/audio/ambience/birds_swamp.ogg",
-          "volume_db": -26,
-          "loop": true
-        }
-      ],
-      
-      "music": {
-        "track": "res://assets/audio/music/winter_reflections.ogg",
-        "volume_db": -22,
-        "loop": true
-      },
-      
-      "weather_override": "light_fog"
-    }
+	{
+	  "id": "greyford_tavern",
+	  "name": "Таверна «Скрипучий знак»",
+	  "description": "Тепла затишна таверна з каміном",
+	  
+	  "ambient_loops": [
+		{
+		  "sound": "res://assets/audio/ambience/fire_crackle.ogg",
+		  "volume_db": -15,
+		  "loop": true,
+		  "fade_distance": [5.0, 15.0],
+		  "position_3d": true,
+		  "source_position": [0, 1, 0]
+		},
+		{
+		  "sound": "res://assets/audio/ambience/tavern_chatter.ogg",
+		  "volume_db": -20,
+		  "loop": true,
+		  "fade_distance": [0.0, 20.0],
+		  "position_3d": false
+		},
+		{
+		  "sound": "res://assets/audio/ambience/wood_creak.ogg",
+		  "volume_db": -25,
+		  "loop": true,
+		  "random_pitch": [0.9, 1.1]
+		}
+	  ],
+	  
+	  "music": {
+		"track": "res://assets/audio/music/folk_round.ogg",
+		"volume_db": -18,
+		"loop": true,
+		"crossfade_duration": 3.0
+	  },
+	  
+	  "weather_override": "none"
+	},
+	
+	{
+	  "id": "greyford_streets",
+	  "name": "Вулиці Грейфорда",
+	  "description": "Бруковані вулиці під сірим небом",
+	  
+	  "ambient_loops": [
+		{
+		  "sound": "res://assets/audio/ambience/wind_light.ogg",
+		  "volume_db": -12,
+		  "loop": true
+		},
+		{
+		  "sound": "res://assets/audio/ambience/rain_light.ogg",
+		  "volume_db": -16,
+		  "loop": true,
+		  "condition": "weather_rain"
+		},
+		{
+		  "sound": "res://assets/audio/ambience/distant_bell.ogg",
+		  "volume_db": -28,
+		  "loop": false,
+		  "random_interval": [60, 180]
+		},
+		{
+		  "sound": "res://assets/audio/ambience/footsteps_distant.ogg",
+		  "volume_db": -22,
+		  "loop": true,
+		  "random_pitch": [0.95, 1.05]
+		}
+	  ],
+	  
+	  "music": {
+		"track": "res://assets/audio/music/path_of_goblin_king.ogg",
+		"volume_db": -20,
+		"loop": true
+	  },
+	  
+	  "weather_override": "overcast"
+	},
+	
+	{
+	  "id": "hazemoor_swamp",
+	  "name": "Болото Хейзмур",
+	  "description": "Густий туман, жахливі звуки, обманливі вогники",
+	  
+	  "ambient_loops": [
+		{
+		  "sound": "res://assets/audio/ambience/swamp_ambience.ogg",
+		  "volume_db": -10,
+		  "loop": true
+		},
+		{
+		  "sound": "res://assets/audio/ambience/water_drip.ogg",
+		  "volume_db": -18,
+		  "loop": true,
+		  "random_pitch": [0.8, 1.2]
+		},
+		{
+		  "sound": "res://assets/audio/ambience/creature_calls.ogg",
+		  "volume_db": -22,
+		  "loop": false,
+		  "random_interval": [15, 45]
+		},
+		{
+		  "sound": "res://assets/audio/ambience/whispers.ogg",
+		  "volume_db": -30,
+		  "loop": false,
+		  "random_interval": [30, 90],
+		  "comment": "Шепоти Моура"
+		},
+		{
+		  "sound": "res://assets/audio/ambience/reed_rustle.ogg",
+		  "volume_db": -20,
+		  "loop": true
+		}
+	  ],
+	  
+	  "music": {
+		"track": "res://assets/audio/music/darkest_child.ogg",
+		"volume_db": -22,
+		"loop": true
+	  },
+	  
+	  "weather_override": "fog"
+	},
+	
+	{
+	  "id": "valkorn_palace",
+	  "name": "Палац Валькорна",
+	  "description": "Величні залізні зали, пара та механізми",
+	  
+	  "ambient_loops": [
+		{
+		  "sound": "res://assets/audio/ambience/steam_hiss.ogg",
+		  "volume_db": -14,
+		  "loop": true
+		},
+		{
+		  "sound": "res://assets/audio/ambience/machinery_distant.ogg",
+		  "volume_db": -18,
+		  "loop": true
+		},
+		{
+		  "sound": "res://assets/audio/ambience/footsteps_stone.ogg",
+		  "volume_db": -24,
+		  "loop": true,
+		  "random_pitch": [0.9, 1.1]
+		},
+		{
+		  "sound": "res://assets/audio/ambience/metal_creak.ogg",
+		  "volume_db": -20,
+		  "loop": false,
+		  "random_interval": [20, 60]
+		}
+	  ],
+	  
+	  "music": {
+		"track": "res://assets/audio/music/the_descent.ogg",
+		"volume_db": -18,
+		"loop": true
+	  },
+	  
+	  "weather_override": "none"
+	},
+	
+	{
+	  "id": "valkorn_archive",
+	  "name": "Підземний Архів",
+	  "description": "Темні похмурі коридори під палацом",
+	  
+	  "ambient_loops": [
+		{
+		  "sound": "res://assets/audio/ambience/dungeon_drip.ogg",
+		  "volume_db": -16,
+		  "loop": true
+		},
+		{
+		  "sound": "res://assets/audio/ambience/torch_burn.ogg",
+		  "volume_db": -18,
+		  "loop": true,
+		  "position_3d": true
+		},
+		{
+		  "sound": "res://assets/audio/ambience/chains_rattle.ogg",
+		  "volume_db": -28,
+		  "loop": false,
+		  "random_interval": [30, 90]
+		}
+	  ],
+	  
+	  "music": {
+		"track": "res://assets/audio/music/danse_macabre.ogg",
+		"volume_db": -20,
+		"loop": true
+	  },
+	  
+	  "weather_override": "none"
+	},
+	
+	{
+	  "id": "sunken_abbey",
+	  "name": "Затоплена Обитель",
+	  "description": "Напівзатоплений храм Ключників",
+	  
+	  "ambient_loops": [
+		{
+		  "sound": "res://assets/audio/ambience/water_lapping.ogg",
+		  "volume_db": -12,
+		  "loop": true
+		},
+		{
+		  "sound": "res://assets/audio/ambience/echo_distant.ogg",
+		  "volume_db": -22,
+		  "loop": false,
+		  "random_interval": [20, 60]
+		},
+		{
+		  "sound": "res://assets/audio/ambience/chant_faint.ogg",
+		  "volume_db": -32,
+		  "loop": true,
+		  "comment": "Привиди молитов"
+		},
+		{
+		  "sound": "res://assets/audio/ambience/stone_rumble.ogg",
+		  "volume_db": -25,
+		  "loop": false,
+		  "random_interval": [60, 180]
+		}
+	  ],
+	  
+	  "music": {
+		"track": "res://assets/audio/music/descent_deeper.ogg",
+		"volume_db": -22,
+		"loop": true
+	  },
+	  
+	  "weather_override": "fog"
+	},
+	
+	{
+	  "id": "moura_clearing",
+	  "name": "Галявина Моура",
+	  "description": "Священне місце, центр магії болота",
+	  
+	  "ambient_loops": [
+		{
+		  "sound": "res://assets/audio/ambience/magic_hum.ogg",
+		  "volume_db": -14,
+		  "loop": true,
+		  "comment": "Магічна аура"
+		},
+		{
+		  "sound": "res://assets/audio/ambience/whispers_moura.ogg",
+		  "volume_db": -16,
+		  "loop": true,
+		  "comment": "Голос Моура"
+		},
+		{
+		  "sound": "res://assets/audio/ambience/wind_eerie.ogg",
+		  "volume_db": -18,
+		  "loop": true
+		},
+		{
+		  "sound": "res://assets/audio/ambience/heartbeat_slow.ogg",
+		  "volume_db": -24,
+		  "loop": true,
+		  "comment": "Дихання болота"
+		}
+	  ],
+	  
+	  "music": {
+		"track": "res://assets/audio/music/darkest_child.ogg",
+		"volume_db": -20,
+		"loop": true
+	  },
+	  
+	  "weather_override": "fog"
+	},
+	
+	{
+	  "id": "tykhy_shelest",
+	  "name": "Тихий Шелест",
+	  "description": "Селище Мурі на палях",
+	  
+	  "ambient_loops": [
+		{
+		  "sound": "res://assets/audio/ambience/water_gentle.ogg",
+		  "volume_db": -15,
+		  "loop": true
+		},
+		{
+		  "sound": "res://assets/audio/ambience/wood_creak_soft.ogg",
+		  "volume_db": -22,
+		  "loop": true
+		},
+		{
+		  "sound": "res://assets/audio/ambience/muri_chants.ogg",
+		  "volume_db": -28,
+		  "loop": false,
+		  "random_interval": [40, 120],
+		  "comment": "Співи Мурі"
+		},
+		{
+		  "sound": "res://assets/audio/ambience/birds_swamp.ogg",
+		  "volume_db": -26,
+		  "loop": true
+		}
+	  ],
+	  
+	  "music": {
+		"track": "res://assets/audio/music/winter_reflections.ogg",
+		"volume_db": -22,
+		"loop": true
+	  },
+	  
+	  "weather_override": "light_fog"
+	}
   ],
   
   "global_layers": {
-    "combat_music": {
-      "track": "res://assets/audio/music/combat_theme.ogg",
-      "volume_db": -16,
-      "priority": 100,
-      "crossfade_duration": 1.0
-    },
-    "danger_stinger": {
-      "sound": "res://assets/audio/sfx/danger_sting.ogg",
-      "volume_db": -10,
-      "priority": 90
-    }
+	"combat_music": {
+	  "track": "res://assets/audio/music/combat_theme.ogg",
+	  "volume_db": -16,
+	  "priority": 100,
+	  "crossfade_duration": 1.0
+	},
+	"danger_stinger": {
+	  "sound": "res://assets/audio/sfx/danger_sting.ogg",
+	  "volume_db": -10,
+	  "priority": 90
+	}
   },
   
   "audio_settings": {
-    "master_volume": 0.8,
-    "music_volume": 0.7,
-    "sfx_volume": 0.9,
-    "ambience_volume": 0.8,
-    "voice_volume": 1.0
+	"master_volume": 0.8,
+	"music_volume": 0.7,
+	"sfx_volume": 0.9,
+	"ambience_volume": 0.8,
+	"voice_volume": 1.0
   }
 }

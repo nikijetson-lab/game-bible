@@ -812,6 +812,7 @@ npc_state = {
 shape = SubResource("SphereShape3D_interaction")
 
 [node name="Body" type="MeshInstance3D" parent="NPCs/GreyfordGuard" unique_id=1473619959]
+visible = false
 mesh = SubResource("CapsuleMesh_npc")
 material_override = SubResource("Mat_leather_apron")
 metadata/fallback_note = "Blockout guard who enters with the letter before the Ervan handoff."
@@ -893,6 +894,7 @@ shape = SubResource("SphereShape3D_interaction")
 [node name="BackgroundPatrons" type="Node3D" parent="." unique_id=1170687592]
 
 [node name="DrunkPatronAtTable" type="MeshInstance3D" parent="BackgroundPatrons" unique_id=343975770]
+visible = false
 transform = Transform3D(0.7, 0.18, 0, 0, 0.55, 0.12, 0, -0.12, 0.85, -2.05, 0.95, 2.15)
 mesh = SubResource("CapsuleMesh_npc")
 

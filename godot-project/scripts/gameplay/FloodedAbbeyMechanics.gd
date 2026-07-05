@@ -40,5 +40,4 @@ func _show_event(id: String, text: String) -> void:
 	_emit(id, text)
 
 func _emit(id: String, text: String) -> void:
-	if Events.has_signal("show_dialogue_line"):
-		Events.emit_signal("show_dialogue_line", text, "abbey")
+	print("[%s] %s" % ["abbey", text])

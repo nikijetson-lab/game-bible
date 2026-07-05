@@ -24,14 +24,14 @@ func _ready() -> void:
 	_show_opening()
 
 func _load_dialogues() -> void:
-	var path := "res://data/dialogues/deep_bog/voice_from_fog.json"
+	var path: String = "res://data/dialogues/deep_bog/voice_from_fog.json"
 	if not FileAccess.file_exists(path):
 		return
-	var f := FileAccess.open(path, FileAccess.READ)
-	var data := JSON.parse_string(f.get_as_text())
+	var f: FileAccess = FileAccess.open(path, FileAccess.READ)
+	var data: Variant = JSON.parse_string(f.get_as_text())
 	if data == null: return
 	
-	var d := data.get("dialogues", {})
+	var d: Dictionary = data.get("dialogues", {})
 	for w in d.get("fog_whispers", []):
 		_whispers.append(w)
 	for l in d.get("ilia_voice", []):
@@ -55,7 +55,7 @@ func _process(delta: float) -> void:
 
 func _play_random_whisper() -> void:
 	if _whispers.is_empty(): return
-	var w := _whispers[randi() % _whispers.size()]
+	var w: Dictionary = _whispers[randi() % _whispers.size()]
 	_show_text(w.get("text", ""), "fog")
 
 func _trigger_ilia(trigger_id: String) -> void:
@@ -65,19 +65,19 @@ func _trigger_ilia(trigger_id: String) -> void:
 			return
 
 func _trigger_hero_thought(id: String) -> void:
-	var path := "res://data/dialogues/deep_bog/voice_from_fog.json"
-	if not FileAccess.file_exists(path): return
-	var f := FileAccess.open(path, FileAccess.READ)
-	var data := JSON.parse_string(f.get_as_text())
-	if data == null: return
-	for h in data.get("dialogues", {}).get("hero_internal", []):
+	var path_h: String = "res://data/dialogues/deep_bog/voice_from_fog.json"
+	if not FileAccess.file_exists(path_h): return
+	var f_h: FileAccess = FileAccess.open(path_h, FileAccess.READ)
+	var data_h: Variant = JSON.parse_string(f_h.get_as_text())
+	if data_h == null: return
+	for h in data_h.get("dialogues", {}).get("hero_internal", []):
 		if h.get("trigger", "") == id:
 			_show_text(h.get("text", ""), "hero")
 			return
 
 func _show_text(text: String, speaker: String) -> void:
-	# Signal to UI layer
-	Events.emit_signal("show_dialogue_line", text, speaker)
+	# Signal to UI layer — print fallback until Events autoload is wired
+	print("[%s] %s" % [speaker, text])
 
 func _game_over_fog() -> void:
 	_show_text("Туман поглинає тебе. Ти більше не пам'ятаєш свого імені.", "system")

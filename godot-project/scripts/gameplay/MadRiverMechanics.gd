@@ -51,5 +51,4 @@ func _show_text(text: String) -> void:
 	_emit("", text)
 
 func _emit(id: String, text: String) -> void:
-	if Events.has_signal("show_dialogue_line"):
-		Events.emit_signal("show_dialogue_line", text, "river")
+	print("[%s] %s" % ["river", text])

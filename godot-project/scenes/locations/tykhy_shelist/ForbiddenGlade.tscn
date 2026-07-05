@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc"]
 [ext_resource type="Script" path="res://scripts/gameplay/InspectClue.gd" id="2_clue"]
+[ext_resource type="Script" path="res://scripts/gameplay/ForbiddenGladeArtAssembly.gd" id="3_art"]
 
 [sub_resource type="Environment" id="Env_glade"]
 background_mode = 1
@@ -143,7 +144,6 @@ clue_category = "investigation"
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("SphereShape_interact")
 
-[ext_resource type="Script" path="res://scripts/gameplay/ForbiddenGladeArtAssembly.gd" id="3_art"]
 
 [node name="ForbiddenGladeArtAssembly" type="Node3D" parent="."]
 script = ExtResource("3_art")

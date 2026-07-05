@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc"]
 [ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="2_player"]
+[ext_resource type="Script" path="res://scripts/gameplay/ValkornPortQuarterArtAssembly.gd" id="3_art"]
 
 [sub_resource type="Environment" id="Env_valkorn"]
 background_mode = 1
@@ -171,7 +172,6 @@ shape = SubResource("SphereShape_interact")
 [node name="Body" type="MeshInstance3D" parent="NPCs/Fipp"]
 transform = Transform3D(1, 0, 0, 0, 0.7, 0, 0, 0, 1, 0, 0.6, 0)
 
-[ext_resource type="Script" path="res://scripts/gameplay/ValkornPortQuarterArtAssembly.gd" id="3_art"]
 
 [node name="ValkornPortQuarterArtAssembly" type="Node3D" parent="."]
 script = ExtResource("3_art")

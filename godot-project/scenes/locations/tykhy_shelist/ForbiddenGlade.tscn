@@ -1,144 +1,150 @@
-[gd_scene load_steps=13 format=3]
+1|[gd_scene load_steps=14 format=3]
+2|
+3|[ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc"]
+4|[ext_resource type="Script" path="res://scripts/gameplay/InspectClue.gd" id="2_clue"]
+5|
+6|[sub_resource type="Environment" id="Env_glade"]
+7|background_mode = 1
+8|background_color = Color(0.03, 0.04, 0.05, 1)
+9|ambient_light_source = 2
+10|ambient_light_color = Color(0.28, 0.30, 0.33, 1)
+11|ambient_light_energy = 1.8
+12|fog_enabled = true
+13|fog_light_color = Color(0.24, 0.26, 0.28, 1)
+14|fog_density = 0.022
+15|volumetric_fog_enabled = true
+16|volumetric_fog_density = 0.012
+17|
+18|[sub_resource type="StandardMaterial3D" id="Mat_burned_grass"]
+19|albedo_color = Color(0.08, 0.07, 0.05, 1)
+20|roughness = 0.95
+21|
+22|[sub_resource type="StandardMaterial3D" id="Mat_dead_grass"]
+23|albedo_color = Color(0.15, 0.12, 0.08, 1)
+24|roughness = 0.97
+25|
+26|[sub_resource type="StandardMaterial3D" id="Mat_water_dark"]
+27|albedo_color = Color(0.03, 0.05, 0.04, 1)
+28|roughness = 0.08
+29|metallic = 0.4
+30|
+31|[sub_resource type="StandardMaterial3D" id="Mat_ground_dark"]
+32|albedo_color = Color(0.08, 0.10, 0.07, 1)
+33|roughness = 0.98
+34|
+35|[sub_resource type="BoxShape3D" id="BoxShape_glade_ground"]
+36|size = Vector3(30, 0.3, 30)
+37|
+38|[sub_resource type="CylinderShape3D" id="CylShape_burn_circle"]
+39|radius = 2.5
+40|height = 0.05
+41|
+42|[sub_resource type="SphereShape3D" id="SphereShape_interact"]
+43|radius = 1.6
+44|
+45|[sub_resource type="BoxMesh" id="BoxMesh_glade"]
+46|size = Vector3(30, 0.3, 30)
+47|material = SubResource("Mat_ground_dark")
+48|
+49|[sub_resource type="CylinderMesh" id="CylMesh_burn"]
+50|top_radius = 2.5
+51|bottom_radius = 2.5
+52|height = 0.05
+53|material = SubResource("Mat_burned_grass")
+54|
+55|[node name="ForbiddenGlade" type="Node3D"]
+56|
+57|[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+58|environment = SubResource("Env_glade")
+59|
+60|[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+61|transform = Transform3D(0.866025, -0.3, 0.4, 0, 0.8, 0.6, -0.5, -0.52, 0.69, 0, 8, 0)
+62|light_color = Color(0.35, 0.38, 0.42, 1)
+63|light_energy = 0.6
+64|
+65|[node name="Ground" type="StaticBody3D" parent="."]
+66|
+67|[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+68|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+69|shape = SubResource("BoxShape_glade_ground")
+70|
+71|[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+72|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+73|mesh = SubResource("BoxMesh_glade")
+74|
+75|; === Burned circle (випалена трава колом) ===
+76|[node name="BurnedCircle" type="MeshInstance3D" parent="."]
+77|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.35, -5)
+78|mesh = SubResource("CylMesh_burn")
+79|
+80|; === Dead grass ring (мертва трава навколо) ===
+81|[node name="DeadGrassRing" type="MeshInstance3D" parent="."]
+82|transform = Transform3D(7, 0, 0, 0, 0.02, 0, 0, 0, 7, 3, 0.02, -5)
+83|mesh = SubResource("BoxMesh_glade")
+84|material_override = SubResource("Mat_dead_grass")
+85|
+86|; === Water pool (вода, куди дивиться Руфін) ===
+87|[node name="WaterPool" type="MeshInstance3D" parent="."]
+88|transform = Transform3D(5, 0, 0, 0, 0.04, 0, 0, 0, 4, 8, 0.04, -3)
+89|mesh = SubResource("BoxMesh_glade")
+90|material_override = SubResource("Mat_water_dark")
+91|
+92|[node name="WaterSurface" type="MeshInstance3D" parent="."]
+93|transform = Transform3D(5, 0, 0, 0, 0.01, 0, 0, 0, 4, 8, 0.1, -3)
+94|mesh = SubResource("BoxMesh_glade")
+95|material_override = SubResource("Mat_water_dark")
+96|
+97|; === Footprint clue (відбиток ступні) ===
+98|[node name="FootprintClue" type="Area3D" parent="."]
+99|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.35, -5)
+100|script = ExtResource("2_clue")
+101|clue_id = "footprint_glade"
+102|clue_text = "Випалена трава колом. В центрі — чіткий відбиток людської ступні, втиснутий у ґрунт глибше ніж можливо. Трава навколо не горить — мертва, ніби висмоктана."
+103|clue_category = "investigation"
+104|
+105|[node name="CollisionShape3D" type="CollisionShape3D" parent="FootprintClue"]
+106|shape = SubResource("SphereShape_interact")
+107|
+108|; === Ruphin (живий, змінений — сидить на краю галявини, дивиться на воду) ===
+109|[node name="Ruphin" type="Area3D" parent="."]
+110|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.35, -2)
+111|script = ExtResource("1_npc")
+112|npc_id = "rufin_glade"
+113|npc_display_name = "Руфін"
+114|default_dialogue_id = "at_glade"
+115|
+116|[node name="CollisionShape3D" type="CollisionShape3D" parent="Ruphin"]
+117|shape = SubResource("SphereShape_interact")
+118|
+119|[node name="Body" type="MeshInstance3D" parent="Ruphin"]
+120|transform = Transform3D(1, 0, 0, 0, 0.8, 0, 0, 0, 1, 0, 0.7, 0)
+121|
+122|; === Artifact clue (камінь у руці Руфіна) ===
+123|[node name="ArtifactClue" type="Area3D" parent="."]
+124|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2, 0.85, -1.5)
+125|script = ExtResource("2_clue")
+126|clue_id = "artifact_empty"
+127|clue_text = "Руфін тримає невеликий камінь із заглибленням всередині. Колись він світився — Варрік бачив, Алтея в Грейфорді підтвердила. Тепер камінь темний, холодний, порожній."
+128|clue_category = "investigation"
+129|
+130|[node name="CollisionShape3D" type="CollisionShape3D" parent="ArtifactClue"]
+131|transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+132|shape = SubResource("SphereShape_interact")
+133|
+134|; === Journal clue (щоденник Руфіна) ===
+135|[node name="JournalClue" type="Area3D" parent="."]
+136|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0.35, -1)
+137|script = ExtResource("2_clue")
+138|clue_id = "rufin_journal"
+139|clue_text = "В його щоденнику останній запис — одне недописане слово: «Воно…» Далі — пустий аркуш. Слова написані, але почерк ламаний, ніби рука тремтіла."
+140|clue_category = "investigation"
+141|
+142|[node name="CollisionShape3D" type="CollisionShape3D" parent="JournalClue"]
+143|transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+144|shape = SubResource("SphereShape_interact")
+145|
+[ext_resource type="Script" path="res://scripts/gameplay/ForbiddenGladeArtAssembly.gd" id="3_art"]
 
-[ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc"]
-[ext_resource type="Script" path="res://scripts/gameplay/InspectClue.gd" id="2_clue"]
+[node name="ForbiddenGladeArtAssembly" type="Node3D" parent="."]
+script = ExtResource("3_art")
 
-[sub_resource type="Environment" id="Env_glade"]
-background_mode = 1
-background_color = Color(0.03, 0.04, 0.05, 1)
-ambient_light_source = 2
-ambient_light_color = Color(0.28, 0.30, 0.33, 1)
-ambient_light_energy = 1.8
-fog_enabled = true
-fog_light_color = Color(0.24, 0.26, 0.28, 1)
-fog_density = 0.022
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.012
-
-[sub_resource type="StandardMaterial3D" id="Mat_burned_grass"]
-albedo_color = Color(0.08, 0.07, 0.05, 1)
-roughness = 0.95
-
-[sub_resource type="StandardMaterial3D" id="Mat_dead_grass"]
-albedo_color = Color(0.15, 0.12, 0.08, 1)
-roughness = 0.97
-
-[sub_resource type="StandardMaterial3D" id="Mat_water_dark"]
-albedo_color = Color(0.03, 0.05, 0.04, 1)
-roughness = 0.08
-metallic = 0.4
-
-[sub_resource type="StandardMaterial3D" id="Mat_ground_dark"]
-albedo_color = Color(0.08, 0.10, 0.07, 1)
-roughness = 0.98
-
-[sub_resource type="BoxShape3D" id="BoxShape_glade_ground"]
-size = Vector3(30, 0.3, 30)
-
-[sub_resource type="CylinderShape3D" id="CylShape_burn_circle"]
-radius = 2.5
-height = 0.05
-
-[sub_resource type="SphereShape3D" id="SphereShape_interact"]
-radius = 1.6
-
-[sub_resource type="BoxMesh" id="BoxMesh_glade"]
-size = Vector3(30, 0.3, 30)
-material = SubResource("Mat_ground_dark")
-
-[sub_resource type="CylinderMesh" id="CylMesh_burn"]
-top_radius = 2.5
-bottom_radius = 2.5
-height = 0.05
-material = SubResource("Mat_burned_grass")
-
-[node name="ForbiddenGlade" type="Node3D"]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Env_glade")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.866025, -0.3, 0.4, 0, 0.8, 0.6, -0.5, -0.52, 0.69, 0, 8, 0)
-light_color = Color(0.35, 0.38, 0.42, 1)
-light_energy = 0.6
-
-[node name="Ground" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
-shape = SubResource("BoxShape_glade_ground")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
-mesh = SubResource("BoxMesh_glade")
-
-; === Burned circle (випалена трава колом) ===
-[node name="BurnedCircle" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.35, -5)
-mesh = SubResource("CylMesh_burn")
-
-; === Dead grass ring (мертва трава навколо) ===
-[node name="DeadGrassRing" type="MeshInstance3D" parent="."]
-transform = Transform3D(7, 0, 0, 0, 0.02, 0, 0, 0, 7, 3, 0.02, -5)
-mesh = SubResource("BoxMesh_glade")
-material_override = SubResource("Mat_dead_grass")
-
-; === Water pool (вода, куди дивиться Руфін) ===
-[node name="WaterPool" type="MeshInstance3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 0.04, 0, 0, 0, 4, 8, 0.04, -3)
-mesh = SubResource("BoxMesh_glade")
-material_override = SubResource("Mat_water_dark")
-
-[node name="WaterSurface" type="MeshInstance3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 0.01, 0, 0, 0, 4, 8, 0.1, -3)
-mesh = SubResource("BoxMesh_glade")
-material_override = SubResource("Mat_water_dark")
-
-; === Footprint clue (відбиток ступні) ===
-[node name="FootprintClue" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.35, -5)
-script = ExtResource("2_clue")
-clue_id = "footprint_glade"
-clue_text = "Випалена трава колом. В центрі — чіткий відбиток людської ступні, втиснутий у ґрунт глибше ніж можливо. Трава навколо не горить — мертва, ніби висмоктана."
-clue_category = "investigation"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FootprintClue"]
-shape = SubResource("SphereShape_interact")
-
-; === Ruphin (живий, змінений — сидить на краю галявини, дивиться на воду) ===
-[node name="Ruphin" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.35, -2)
-script = ExtResource("1_npc")
-npc_id = "rufin_glade"
-npc_display_name = "Руфін"
-default_dialogue_id = "at_glade"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ruphin"]
-shape = SubResource("SphereShape_interact")
-
-[node name="Body" type="MeshInstance3D" parent="Ruphin"]
-transform = Transform3D(1, 0, 0, 0, 0.8, 0, 0, 0, 1, 0, 0.7, 0)
-
-; === Artifact clue (камінь у руці Руфіна) ===
-[node name="ArtifactClue" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2, 0.85, -1.5)
-script = ExtResource("2_clue")
-clue_id = "artifact_empty"
-clue_text = "Руфін тримає невеликий камінь із заглибленням всередині. Колись він світився — Варрік бачив, Алтея в Грейфорді підтвердила. Тепер камінь темний, холодний, порожній."
-clue_category = "investigation"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ArtifactClue"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-shape = SubResource("SphereShape_interact")
-
-; === Journal clue (щоденник Руфіна) ===
-[node name="JournalClue" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0.35, -1)
-script = ExtResource("2_clue")
-clue_id = "rufin_journal"
-clue_text = "В його щоденнику останній запис — одне недописане слово: «Воно…» Далі — пустий аркуш. Слова написані, але почерк ламаний, ніби рука тремтіла."
-clue_category = "investigation"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="JournalClue"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-shape = SubResource("SphereShape_interact")

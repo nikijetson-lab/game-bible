@@ -1,72 +1,78 @@
-[gd_scene load_steps=7 format=3]
+1|[gd_scene load_steps=8 format=3]
+2|
+3|[ext_resource type="Script" path="res://scripts/gameplay/InspectClue.gd" id="1_clue"]
+4|
+5|[sub_resource type="Environment" id="Env_underground"]
+6|background_mode = 1
+7|background_color = Color(0.02, 0.02, 0.03, 1)
+8|ambient_light_source = 2
+9|ambient_light_color = Color(0.15, 0.16, 0.18, 1)
+10|ambient_light_energy = 0.6
+11|fog_enabled = true
+12|fog_light_color = Color(0.08, 0.09, 0.10, 1)
+13|fog_density = 0.035
+14|
+15|[sub_resource type="StandardMaterial3D" id="Mat_stone_old"]
+16|albedo_color = Color(0.20, 0.19, 0.18, 1)
+17|roughness = 0.82
+18|
+19|[sub_resource type="StandardMaterial3D" id="Mat_order_door"]
+20|albedo_color = Color(0.28, 0.25, 0.22, 1)
+21|roughness = 0.65
+22|metallic = 0.2
+23|
+24|[sub_resource type="BoxShape3D" id="BoxShape_tunnel"]
+25|size = Vector3(4, 3.0, 30)
+26|
+27|[sub_resource type="SphereShape3D" id="SphereShape_interact"]
+28|radius = 1.6
+29|
+30|[node name="Undercity" type="Node3D"]
+31|
+32|[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+33|environment = SubResource("Env_underground")
+34|
+35|[node name="Floor" type="StaticBody3D" parent="."]
+36|
+37|[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+38|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+39|shape = SubResource("BoxShape_tunnel")
+40|
+41|[node name="WallInscription" type="Area3D" parent="."]
+42|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, -10)
+43|script = ExtResource("1_clue")
+44|clue_id = "ancient_runes"
+45|clue_text = "Прадавнє рунічне письмо Засновників Ордену Мандруючих Вартових: «Хто торкнеться Печатки без Ліхтаря — втратить тінь»."
+46|
+47|[node name="CollisionShape3D" type="CollisionShape3D" parent="WallInscription"]
+48|shape = SubResource("SphereShape_interact")
+49|
+50|[node name="OrderDoor" type="Area3D" parent="."]
+51|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, 8)
+52|script = ExtResource("1_clue")
+53|clue_id = "order_chamber"
+54|clue_text = "Закрита камера із символом Ордену Семи Кинджалів. Всередині — тіла трьох шпигунів, зачинених тут роками тому."
+55|
+56|[node name="CollisionShape3D" type="CollisionShape3D" parent="OrderDoor"]
+57|shape = SubResource("SphereShape_interact")
+58|
+59|[node name="EmptyPedestal" type="Area3D" parent="."]
+60|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -12)
+61|script = ExtResource("1_clue")
+62|clue_id = "empty_pedestal"
+63|clue_text = "Постамент у кінці підземелля. Порожній. Без пилу — наче хтось прибирав нещодавно. Артефакт уже взяли."
+64|
+65|[node name="CollisionShape3D" type="CollisionShape3D" parent="EmptyPedestal"]
+66|shape = SubResource("SphereShape_interact")
+67|
+68|[node name="FabricScrap" type="Area3D" parent="."]
+69|transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.3, -11)
+70|script = ExtResource("1_clue")
+71|clue_id = "fabric_scrap"
+72|clue_text = "Клаптик тканини із символом. Свіжий. Хтось прийшов раніше."
+73|
+[ext_resource type="Script" path="res://scripts/gameplay/ValkornUndercityArtAssembly.gd" id="2_art"]
 
-[ext_resource type="Script" path="res://scripts/gameplay/InspectClue.gd" id="1_clue"]
+[node name="ValkornUndercityArtAssembly" type="Node3D" parent="."]
+script = ExtResource("2_art")
 
-[sub_resource type="Environment" id="Env_underground"]
-background_mode = 1
-background_color = Color(0.02, 0.02, 0.03, 1)
-ambient_light_source = 2
-ambient_light_color = Color(0.15, 0.16, 0.18, 1)
-ambient_light_energy = 0.6
-fog_enabled = true
-fog_light_color = Color(0.08, 0.09, 0.10, 1)
-fog_density = 0.035
-
-[sub_resource type="StandardMaterial3D" id="Mat_stone_old"]
-albedo_color = Color(0.20, 0.19, 0.18, 1)
-roughness = 0.82
-
-[sub_resource type="StandardMaterial3D" id="Mat_order_door"]
-albedo_color = Color(0.28, 0.25, 0.22, 1)
-roughness = 0.65
-metallic = 0.2
-
-[sub_resource type="BoxShape3D" id="BoxShape_tunnel"]
-size = Vector3(4, 3.0, 30)
-
-[sub_resource type="SphereShape3D" id="SphereShape_interact"]
-radius = 1.6
-
-[node name="Undercity" type="Node3D"]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Env_underground")
-
-[node name="Floor" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
-shape = SubResource("BoxShape_tunnel")
-
-[node name="WallInscription" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, -10)
-script = ExtResource("1_clue")
-clue_id = "ancient_runes"
-clue_text = "Прадавнє рунічне письмо Засновників Ордену Мандруючих Вартових: «Хто торкнеться Печатки без Ліхтаря — втратить тінь»."
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WallInscription"]
-shape = SubResource("SphereShape_interact")
-
-[node name="OrderDoor" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, 8)
-script = ExtResource("1_clue")
-clue_id = "order_chamber"
-clue_text = "Закрита камера із символом Ордену Семи Кинджалів. Всередині — тіла трьох шпигунів, зачинених тут роками тому."
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="OrderDoor"]
-shape = SubResource("SphereShape_interact")
-
-[node name="EmptyPedestal" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -12)
-script = ExtResource("1_clue")
-clue_id = "empty_pedestal"
-clue_text = "Постамент у кінці підземелля. Порожній. Без пилу — наче хтось прибирав нещодавно. Артефакт уже взяли."
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EmptyPedestal"]
-shape = SubResource("SphereShape_interact")
-
-[node name="FabricScrap" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.3, -11)
-script = ExtResource("1_clue")
-clue_id = "fabric_scrap"
-clue_text = "Клаптик тканини із символом. Свіжий. Хтось прийшов раніше."

@@ -36,6 +36,10 @@ func _ready() -> void:
 	_build_windows()
 	_build_tables_and_chairs()
 	_build_storage_and_detail_props()
+	_build_fireplace()
+	_build_coat_hooks()
+	_build_ceiling_tankards()
+	_build_floor_rushes()
 
 func _hide_failed_visual_blockout() -> void:
 	# Keep gameplay nodes, NPCs, portals, and collision. Hide only the previous visual layer
@@ -269,6 +273,68 @@ func _build_storage_and_detail_props() -> void:
 	_candle_lantern(props, "BarCandleLantern", Vector3(-5.15, 1.34, -3.48), 1.25)
 	# Cloth/towel bundles in the room palette.
 	_box(props, "DirtyClothOnBar", Vector3(-1.2, 1.24, -3.72), Vector3(0.72, 0.05, 0.32), mat_cloth, Vector3(0, 0, 8))
+
+func _build_fireplace() -> void:
+	var fp := Node3D.new()
+	fp.name = "ArtFireplace"
+	fp.position = Vector3(5.6, 0.0, -5.5)
+	add_child(fp)
+	# Stone hearth base
+	_box(fp, "HearthBase", Vector3(0, 0.15, 0), Vector3(2.4, 0.35, 1.5), mat_metal)
+	# Stone surround
+	_box(fp, "SurroundBack", Vector3(0, 1.25, -0.65), Vector3(2.0, 2.5, 0.3), mat_metal)
+	_box(fp, "SurroundLeft", Vector3(-0.95, 1.25, 0.05), Vector3(0.3, 2.5, 1.6), mat_metal)
+	_box(fp, "SurroundRight", Vector3(0.95, 1.25, 0.05), Vector3(0.3, 2.5, 1.6), mat_metal)
+	# Mantel
+	_box(fp, "Mantel", Vector3(0, 2.4, 0.05), Vector3(2.3, 0.18, 0.6), mat_beam)
+	# Fire in hearth
+	_box(fp, "FireGlow", Vector3(0, 0.45, 0.2), Vector3(1.2, 0.5, 0.5), mat_warm)
+	# Logs
+	for lx in [-0.3, 0.0, 0.3]:
+		_box(fp, "Log%d" % lx, Vector3(lx, 0.25, 0.15), Vector3(0.7, 0.12, 0.12), mat_beam)
+	# Ash
+	_box(fp, "Ash", Vector3(0, 0.12, 0.1), Vector3(1.6, 0.04, 0.7), mat_wall)
+	# Poker leaning
+	_box(fp, "Poker", Vector3(0.8, 0.5, 0.3), Vector3(0.04, 1.2, 0.04), mat_metal, Vector3(12, 0, 0))
+	# Tankard on mantel
+	_cylinder(fp, "MantelMug", Vector3(-0.45, 2.55, 0.1), 0.07, 0.18, mat_crate)
+
+func _build_coat_hooks() -> void:
+	var hooks := Node3D.new()
+	hooks.name = "ArtCoatHooks"
+	hooks.position = Vector3(-5.5, 0.0, 5.0)
+	add_child(hooks)
+	# Wooden rail
+	_box(hooks, "CoatRail", Vector3(0, 1.85, 0), Vector3(2.0, 0.08, 0.08), mat_beam)
+	# Hooks
+	for x in [-0.6, 0, 0.6]:
+		_box(hooks, "Hook%d" % x, Vector3(x, 1.7, 0.12), Vector3(0.05, 0.2, 0.05), mat_metal)
+	# Hanging cloaks
+	for x in [-0.6, 0.0]:
+		_box(hooks, "Cloak%d" % x, Vector3(x, 1.15, 0.2), Vector3(0.5, 0.9, 0.06), mat_cloth)
+
+func _build_ceiling_tankards() -> void:
+	var tank := Node3D.new()
+	tank.name = "ArtCeilingTankards"
+	add_child(tank)
+	for i in range(8):
+		var x := -5.0 + i * 1.5
+		var z := 2.0 + sin(float(i) * 0.8) * 1.5
+		_box(tank, "TankHook%d" % i, Vector3(x, 2.78, z), Vector3(0.04, 0.2, 0.04), mat_metal)
+		_cylinder(tank, "Tankard%d" % i, Vector3(x, 2.52, z), 0.08, 0.22, mat_crate)
+
+func _build_floor_rushes() -> void:
+	var rushes := Node3D.new()
+	rushes.name = "ArtFloorRushes"
+	add_child(rushes)
+	var straw_mat := StandardMaterial3D.new()
+	straw_mat.albedo_color = Color(0.45, 0.40, 0.22, 1)
+	straw_mat.roughness = 0.95
+	for i in range(40):
+		var x := randf_range(-7.5, 7.5)
+		var z := randf_range(-5.5, 5.5)
+		_box(rushes, "Reed%d" % i, Vector3(x, 0.02, z),
+			Vector3(0.03, 0.015, 0.12 + randf() * 0.3), straw_mat, Vector3(0, randf_range(-25, 25), 0))
 
 func _candle_lantern(parent: Node3D, name: String, pos: Vector3, scale_factor: float) -> Node3D:
 	var lantern := Node3D.new()

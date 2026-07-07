@@ -1,0 +1,21 @@
+{
+  "id": "furrier",
+  "name": "Кушнір",
+  "display_name": "Кушнір",
+  "location": "greyford_craftsmen_quarter",
+  "role": "craftsman",
+  "description": "Кушнір у кварталі ремісників. Першим оглядає шкіряну сумку Руфіна з клеймом і скеровує гравця до різьбяра — той краще пам'ятає Руфіна.",
+  "dialogues": {
+    "default": "furrier/default.json"
+  },
+  "quests": {
+    "involved": ["greyford_01_missing_recipient"]
+  },
+  "appearance": {
+    "age": "середній",
+    "build": "кремезний",
+    "hair": "темний з сивиною",
+    "clothing": "шкіряний фартух, рукавички",
+    "notable": "пахне дубильною корою"
+  }
+}

@@ -23,6 +23,11 @@ signal ervan_lowered_letter(question: String)
 @export var ervan_letter_path: NodePath
 @export var ervan_letter_closeup_marker_path: NodePath
 
+# Модель Ервана — для анімації погойдування під час протирання.
+@export var ervan_model_path: NodePath
+@export var wipe_sway_amplitude: float = 0.06
+@export var wipe_sway_period: float = 2.1
+
 # Рушник: той самий предмет у двох станах — у руці (протирання) і на плечі.
 @export var wiping_towel_path: NodePath
 @export var shoulder_towel_path: NodePath
@@ -34,6 +39,7 @@ signal ervan_lowered_letter(question: String)
 
 var handoff_complete: bool = false
 var _wipe_tween: Tween = null
+var _ervan_sway_tween: Tween = null
 
 func _ready() -> void:
 	reset_to_scene_start()
@@ -55,7 +61,7 @@ func reset_to_scene_start() -> void:
 		guard.global_transform = start.global_transform
 
 func _start_wiping() -> void:
-	"""Цикл протирання: рушник їздить туди-сюди по стійці."""
+	"""Цикл протирання: рушник їздить туди-сюди по стійці, Ерван злегка погойдується."""
 	var towel := get_node_or_null(wiping_towel_path) as Node3D
 	if towel == null:
 		return
@@ -66,10 +72,23 @@ func _start_wiping() -> void:
 	_wipe_tween.tween_property(towel, "position:x", base_x + wipe_travel, wipe_period).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	_wipe_tween.tween_property(towel, "position:x", base_x, wipe_period).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
+	# Анімація моделі Ервана — легке погойдування вперед-назад
+	var ervan_model := get_node_or_null(ervan_model_path) as Node3D
+	if ervan_model != null:
+		if _ervan_sway_tween != null and _ervan_sway_tween.is_valid():
+			_ervan_sway_tween.kill()
+		var base_rot_z: float = ervan_model.rotation.z
+		_ervan_sway_tween = create_tween().set_loops()
+		_ervan_sway_tween.tween_property(ervan_model, "rotation:z", base_rot_z + wipe_sway_amplitude, wipe_sway_period).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		_ervan_sway_tween.tween_property(ervan_model, "rotation:z", base_rot_z - wipe_sway_amplitude, wipe_sway_period).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
 func _stop_wiping() -> void:
 	if _wipe_tween != null and _wipe_tween.is_valid():
 		_wipe_tween.kill()
 	_wipe_tween = null
+	if _ervan_sway_tween != null and _ervan_sway_tween.is_valid():
+		_ervan_sway_tween.kill()
+	_ervan_sway_tween = null
 
 func throw_towel_over_shoulder() -> void:
 	"""Початок діалогу: рушник з руки летить на плече (той самий предмет)."""

@@ -1,9 +1,11 @@
-[gd_scene load_steps=23 format=3]
+[gd_scene load_steps=25 format=3]
 
 [ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc_behavior"]
 [ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="2_player"]
 [ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="3_portal"]
 [ext_resource type="Script" path="res://scripts/gameplay/PortTavernArtAssembly.gd" id="20_port_art"]
+[ext_resource type="PackedScene" path="res://assets/meshy/greyford_port_tavern/cassandra_courtesan.glb" id="21_cassandra_glb"]
+[ext_resource type="PackedScene" path="res://assets/meshy/greyford_port_tavern/port_bartender.glb" id="22_bartender_glb"]
 
 [sub_resource type="Environment" id="Environment_port_tavern"]
 background_mode = 1
@@ -259,8 +261,13 @@ npc_state = {"id": "port_bartender", "name": "Бармен портової та
 shape = SubResource("SphereShape3D_interaction")
 
 [node name="Body" type="MeshInstance3D" parent="NPCs/PortBartender"]
+visible = false
 mesh = SubResource("CapsuleMesh_npc")
 material_override = SubResource("Mat_dirty_shirt")
+
+[node name="MeshyBartenderModel" parent="NPCs/PortBartender" instance=ExtResource("22_bartender_glb")]
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
+metadata/source_task_id = "019f3b51-9a73-7c01-ad21-60332d14e18b"
 
 [node name="NameLabel" type="Label3D" parent="NPCs/PortBartender"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
@@ -281,8 +288,13 @@ world_context = {"location": "greyford_port_tavern", "clue": "rufin_last_convers
 shape = SubResource("SphereShape3D_interaction")
 
 [node name="Body" type="MeshInstance3D" parent="NPCs/Cassandra"]
+visible = false
 mesh = SubResource("CapsuleMesh_npc")
 material_override = SubResource("Mat_cassandra_green")
+
+[node name="MeshyCassandraModel" parent="NPCs/Cassandra" instance=ExtResource("21_cassandra_glb")]
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
+metadata/source_task_id = "019f3b44-f210-7fb4-8214-eeb713a2997f"
 
 [node name="NameLabel" type="Label3D" parent="NPCs/Cassandra"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
@@ -322,6 +334,16 @@ optional = true
 required_flag = "noticed_alteya_spatial_veil_signature"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/HiddenAlteyaVeilPortal"]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="ToStreetPortal" type="Area3D" parent="Portals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 1.0, -3.8)
+script = ExtResource("3_portal")
+destination_scene = "res://scenes/locations/greyford/GreyfordStreet.tscn"
+destination_location = "greyford_street"
+prompt = "Вийти на вулицю Грейфорда"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/ToStreetPortal"]
 shape = SubResource("SphereShape3D_interaction")
 
 [node name="BackgroundDrunkSailor" type="MeshInstance3D" parent="NPCs"]

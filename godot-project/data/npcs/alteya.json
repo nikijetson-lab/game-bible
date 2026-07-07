@@ -1,0 +1,23 @@
+{
+  "id": "alteya",
+  "name": "Алтея",
+  "display_name": "Алтея",
+  "aliases": ["Лілея"],
+  "location": "greyford_alteya_hidden_room",
+  "role": "witch_seer",
+  "description": "Чаклунка, що ховається в потаємній кімнаті Грейфорда. Бачила, як чоловік опису Руфіна йшов до болота вночі й ніс щось, що горіло в темряві, але не було ліхтарем. Опціональна нитка розслідування.",
+  "dialogues": {
+    "about_rufin": "alteya/about_rufin.json"
+  },
+  "quests": {
+    "involved": ["greyford_01_missing_recipient", "greyford_side_01_witch_trouble"]
+  },
+  "is_hidden": true,
+  "appearance": {
+    "age": "невизначений",
+    "build": "тендітна",
+    "hair": "довге, темне",
+    "clothing": "темний плащ з капюшоном",
+    "notable": "свічки, захисні знаки навколо"
+  }
+}

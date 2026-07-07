@@ -1,0 +1,10 @@
+{
+  "id": "guard_tovar",
+  "name": "Товар",
+  "display_name": "Вартовий Товар",
+  "location": "greyford_street",
+  "role": "witness",
+  "description": "Молодий вартовий Грейфорда. Упереджений проти Алтеї через виховання в Ордені, але чесний у фактах.",
+  "dialogues": {"witch_testimony": "guard_tovar/testimony.json"},
+  "quests": {"involved": ["greyford_side_01_witch_trouble"]}
+}

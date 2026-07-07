@@ -1,0 +1,79 @@
+{
+  "dialogue_id": "letter_handoff",
+  "npc_id": "greyford_guard_letter",
+  "start_node": "node_0",
+  "nodes": {
+    "node_0": {
+      "speaker": "Вартовий",
+      "text": "Я шукаю Руфіна. Маю лист — терміновий. Ерван сказав, що ти тут частий гість. Не бачив його?",
+      "choices": [
+        {
+          "text": "Руфін зник три дні тому. Покажи листа.",
+          "next_node": "guard_shows_letter",
+          "consequences": {
+            "set_flag": "has_rufin_letter"
+          }
+        },
+        {
+          "text": "Я тут недавно. Розкажи, що в листі.",
+          "next_node": "guard_describes"
+        }
+      ]
+    },
+    "guard_shows_letter": {
+      "speaker": "Вартовий",
+      "text": "Ось. Печатка: два перехрещені кинджали тримають коло, у центрі — крапля. Я думав, це звичайна доставка. Але якщо він зник…",
+      "choices": [
+        {
+          "text": "Я візьму листа. Спробую знайти Руфіна.",
+          "next_node": "guard_hands_over",
+          "consequences": {
+            "set_flag": "guard_gave_letter"
+          }
+        },
+        {
+          "text": "Де ти востаннє чув про нього?",
+          "next_node": "guard_last_news"
+        }
+      ]
+    },
+    "guard_describes": {
+      "speaker": "Вартовий",
+      "text": "Лист запечатаний — не мені його розкривати. Сказано доставити Руфіну особисто. Але печатка… два кинджали, коло, крапля. Не схоже на звичайну кореспонденцію.",
+      "choices": [
+        {
+          "text": "Дай листа. Я розберуся.",
+          "next_node": "guard_hands_over",
+          "consequences": {
+            "set_flag": "guard_gave_letter"
+          }
+        }
+      ]
+    },
+    "guard_hands_over": {
+      "speaker": "Вартовий",
+      "text": "Тримай. Якщо знайдеш його — скажи, що лист із зовні. А якщо ні… печатку не розкривай без потреби.",
+      "consequences": {
+        "set_flag": "letter_received_from_guard"
+      },
+      "choices": [
+        {
+          "text": "Піду до Ервана. Він знає більше.",
+          "next_node": "node_end",
+          "consequences": {
+            "set_flag": "quest_greyford_01_started"
+          }
+        }
+      ]
+    },
+    "guard_last_news": {
+      "speaker": "Вартовий",
+      "text": "Чув тільки, що він зупинився тут, у Ервана. Думав, застати його за сніданком. Але його нема вже три дні.",
+      "next": "guard_hands_over"
+    },
+    "node_end": {
+      "speaker": "Вартовий",
+      "text": "Удачі. Якщо що — я ще буду в місті до вечора."
+    }
+  }
+}

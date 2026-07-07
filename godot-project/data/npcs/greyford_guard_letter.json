@@ -1,0 +1,21 @@
+{
+  "id": "greyford_guard_letter",
+  "name": "Вартовий",
+  "display_name": "Вартовий",
+  "location": "greyford_tavern",
+  "role": "courier_guard",
+  "description": "Вартовий, що прибув до Грейфорда з листом для Руфіна. Не знаходить адресата в постоялому дворі й передає лист Ервану. Запускає весь ланцюг розслідування.",
+  "dialogues": {
+    "letter_handoff": "greyford_guard_letter/letter_handoff.json"
+  },
+  "quests": {
+    "involved": ["greyford_01_missing_recipient"]
+  },
+  "appearance": {
+    "age": "молодий",
+    "build": "стрункий, вишколений",
+    "hair": "короткий",
+    "clothing": "мундир варти, плащ",
+    "notable": "тримає запечатаний лист"
+  }
+}

@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3]
+[gd_scene load_steps=20 format=3]
 
 [ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc_behavior"]
 [ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="2_portal"]
 [ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="3_player"]
 [ext_resource type="Script" path="res://scripts/gameplay/GreyfordGateArtAssembly.gd" id="20_gate_art"]
+[ext_resource type="PackedScene" path="res://assets/meshy/greyford_gate/gate_sergeant.glb" id="21_sergeant_glb"]
 
 [sub_resource type="Environment" id="Environment_gate"]
 background_mode = 1
@@ -147,8 +148,13 @@ world_context = {"location": "greyford_gate", "clue": "gate_log"}
 shape = SubResource("SphereShape3D_interaction")
 
 [node name="Body" type="MeshInstance3D" parent="NPCs/GateSergeant"]
+visible = false
 mesh = SubResource("CapsuleMesh_npc")
 material_override = SubResource("Mat_cloak")
+
+[node name="MeshySergeantModel" parent="NPCs/GateSergeant" instance=ExtResource("21_sergeant_glb")]
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
+metadata/source_task_id = "019f3b61-2db1-7d61-9d26-a6f8552b5479"
 
 [node name="Breastplate" type="MeshInstance3D" parent="NPCs/GateSergeant"]
 transform = Transform3D(0.52, 0, 0, 0, 0.72, 0, 0, 0, 0.16, 0, 0.1, 0.33)
@@ -180,6 +186,16 @@ destination_location = "greyford_port_tavern"
 prompt = "Повернутися до портової таверни"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/BackToPortTavernPortal"]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="ToStreetPortal" type="Area3D" parent="Portals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 1.0, -3.2)
+script = ExtResource("2_portal")
+destination_scene = "res://scenes/locations/greyford/GreyfordStreet.tscn"
+destination_location = "greyford_street"
+prompt = "Повернутися на вулицю Грейфорда"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/ToStreetPortal"]
 shape = SubResource("SphereShape3D_interaction")
 
 [node name="ToSwampPortal" type="Area3D" parent="Portals"]

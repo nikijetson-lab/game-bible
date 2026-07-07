@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3]
+[gd_scene load_steps=43 format=3]
 
 [ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc"]
 [ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="2_portal"]
@@ -6,6 +6,15 @@
 [ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="4_player"]
 [ext_resource type="Script" path="res://scripts/gameplay/SonkFerryArtAssembly.gd" id="5_art"]
 [ext_resource type="Script" path="res://scripts/gameplay/FerryQuestMechanics.gd" id="8_ferry_m"]
+[ext_resource type="PackedScene" path="res://assets/meshy/sonk_ferry/voss_quartermaster.glb" id="30_voss_glb"]
+[ext_resource type="PackedScene" path="res://assets/meshy/sonk_ferry/nera_veil.glb" id="31_nera_glb"]
+[ext_resource type="PackedScene" path="res://assets/meshy/sonk_ferry/sella_elder.glb" id="32_sella_glb"]
+[ext_resource type="PackedScene" path="res://assets/meshy/sonk_ferry/brin_oss.glb" id="33_brin_glb"]
+[ext_resource type="PackedScene" path="res://assets/meshy/sonk_ferry/gara_paik.glb" id="34_gara_glb"]
+[ext_resource type="PackedScene" path="res://assets/meshy/sonk_ferry/mara_dens.glb" id="35_mara_glb"]
+[ext_resource type="PackedScene" path="res://assets/meshy/sonk_ferry/isra_vayn.glb" id="36_isra_glb"]
+[ext_resource type="PackedScene" path="res://assets/meshy/sonk_ferry/skel_ganis.glb" id="37_skel_glb"]
+[ext_resource type="PackedScene" path="res://assets/meshy/sonk_ferry/deacon_rein.glb" id="38_rein_glb"]
 
 [sub_resource type="Environment" id="Env_sonk"]
 background_mode = 1
@@ -344,6 +353,10 @@ shape = SubResource("SphereShape_interact")
 
 [node name="Body" type="MeshInstance3D" parent="NPCs/Voss"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+visible = false
+
+[node name="Model" parent="NPCs/Voss" instance=ExtResource("30_voss_glb")]
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
 
 ; Nera Vail — поромний майстер, біля причалу
 [node name="Nera" type="Area3D" parent="NPCs"]
@@ -358,6 +371,10 @@ shape = SubResource("SphereShape_interact")
 
 [node name="Body" type="MeshInstance3D" parent="NPCs/Nera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+visible = false
+
+[node name="Model" parent="NPCs/Nera" instance=ExtResource("31_nera_glb")]
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
 
 ; Brother Karos — хранитель, біля каплиці
 [node name="Karos" type="Area3D" parent="NPCs"]
@@ -386,6 +403,10 @@ shape = SubResource("SphereShape_interact")
 
 [node name="Body" type="MeshInstance3D" parent="NPCs/Sella"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+visible = false
+
+[node name="Model" parent="NPCs/Sella" instance=ExtResource("32_sella_glb")]
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
 
 ; Брін Осс — логістичний брокер
 [node name="BrinOss" type="Area3D" parent="NPCs"]
@@ -400,6 +421,10 @@ shape = SubResource("SphereShape_interact")
 
 [node name="Body" type="MeshInstance3D" parent="NPCs/BrinOss"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+visible = false
+
+[node name="Model" parent="NPCs/BrinOss" instance=ExtResource("33_brin_glb")]
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
 
 ; Гара Пайк — контрабандистка
 [node name="GaraPaik" type="Area3D" parent="NPCs"]
@@ -414,6 +439,10 @@ shape = SubResource("SphereShape_interact")
 
 [node name="Body" type="MeshInstance3D" parent="NPCs/GaraPaik"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+visible = false
+
+[node name="Model" parent="NPCs/GaraPaik" instance=ExtResource("34_gara_glb")]
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
 
 ; Тован Рід — клановий речник
 [node name="TovanRid" type="Area3D" parent="NPCs"]
@@ -442,6 +471,10 @@ shape = SubResource("SphereShape_interact")
 
 [node name="Body" type="MeshInstance3D" parent="NPCs/MaraDens"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+visible = false
+
+[node name="Model" parent="NPCs/MaraDens" instance=ExtResource("35_mara_glb")]
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
 
 ; Серіт Келм — адміністративний спостерігач
 [node name="Kelm" type="Area3D" parent="NPCs"]
@@ -456,6 +489,60 @@ shape = SubResource("SphereShape_interact")
 
 [node name="Body" type="MeshInstance3D" parent="NPCs/Kelm"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+
+; Мати Ісра Вейн — настоятелька
+[node name="IsraVayn" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 3.8, 5)
+script = ExtResource("1_npc")
+npc_id = "isra_vayn"
+npc_display_name = "Мати Ісра Вейн"
+default_dialogue_id = "first_meeting"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/IsraVayn"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/IsraVayn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+visible = false
+
+[node name="Model" parent="NPCs/IsraVayn" instance=ExtResource("36_isra_glb")]
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
+
+; Скел Ганіс — дренажний робітник
+[node name="SkelGanis" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0.7, -5)
+script = ExtResource("1_npc")
+npc_id = "skel_ganis"
+npc_display_name = "Скел Ганіс"
+default_dialogue_id = "first_meeting"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/SkelGanis"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/SkelGanis"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+visible = false
+
+[node name="Model" parent="NPCs/SkelGanis" instance=ExtResource("37_skel_glb")]
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
+
+; Диякон Рейн
+[node name="DeaconRein" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 3.8, 1)
+script = ExtResource("1_npc")
+npc_id = "deacon_rein"
+npc_display_name = "Диякон Рейн"
+default_dialogue_id = "first_meeting"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/DeaconRein"]
+shape = SubResource("SphereShape_interact")
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/DeaconRein"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+visible = false
+
+[node name="Model" parent="NPCs/DeaconRein" instance=ExtResource("38_rein_glb")]
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
 
 ; Board of notices (дошка оголошень)
 [node name="NoticeBoard" type="Area3D" parent="."]

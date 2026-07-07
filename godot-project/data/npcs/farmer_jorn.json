@@ -1,0 +1,10 @@
+{
+  "id": "farmer_jorn",
+  "name": "Йорн",
+  "display_name": "Фермер Йорн",
+  "location": "greyford_street",
+  "role": "witness",
+  "description": "Чесний фермер, свідок у справі Алтеї. Бачив, як вона збирала трави біля болота, але не вірить у чаклунство.",
+  "dialogues": {"witch_testimony": "farmer_jorn/testimony.json"},
+  "quests": {"involved": ["greyford_side_01_witch_trouble"]}
+}

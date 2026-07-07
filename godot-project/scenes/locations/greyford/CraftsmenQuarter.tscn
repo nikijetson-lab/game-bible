@@ -1,9 +1,11 @@
-[gd_scene load_steps=21 format=3]
+[gd_scene load_steps=23 format=3]
 
 [ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc_behavior"]
 [ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="2_portal"]
 [ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="3_player"]
 [ext_resource type="Script" path="res://scripts/gameplay/CraftsmenQuarterArtAssembly.gd" id="25_craft_art"]
+[ext_resource type="PackedScene" path="res://assets/meshy/greyford_craftsmen/woodcarver.glb" id="26_woodcarver_glb"]
+[ext_resource type="PackedScene" path="res://assets/meshy/greyford_craftsmen/furrier.glb" id="27_furrier_glb"]
 
 [sub_resource type="Environment" id="Environment_crafts"]
 background_mode = 1
@@ -176,8 +178,13 @@ world_context = {"location": "greyford_craftsmen_quarter", "clue": "craftsman_ti
 shape = SubResource("SphereShape3D_interaction")
 
 [node name="Body" type="MeshInstance3D" parent="NPCs/Furrier"]
+visible = false
 mesh = SubResource("CapsuleMesh_npc")
 material_override = SubResource("Mat_fur")
+
+[node name="MeshyFurrierModel" parent="NPCs/Furrier" instance=ExtResource("27_furrier_glb")]
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
+metadata/source_task_id = "019f3b6e-fad7-783d-ba76-be64cf1924b6"
 
 [node name="NameLabel" type="Label3D" parent="NPCs/Furrier"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
@@ -198,7 +205,12 @@ world_context = {"location": "greyford_craftsmen_quarter", "clue": "craftsman_ti
 shape = SubResource("SphereShape3D_interaction")
 
 [node name="Body" type="MeshInstance3D" parent="NPCs/Woodcarver"]
+visible = false
 mesh = SubResource("CapsuleMesh_npc")
+
+[node name="MeshyWoodcarverModel" parent="NPCs/Woodcarver" instance=ExtResource("26_woodcarver_glb")]
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
+metadata/source_task_id = "019f3b68-dc44-781a-bfca-3add5122c1f6"
 
 [node name="LeatherApron" type="MeshInstance3D" parent="NPCs/Woodcarver"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0.34)
@@ -229,6 +241,26 @@ destination_location = "greyford_port_tavern"
 prompt = "Йти до портової таверни"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/ToPortTavernPortal"]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="ToTavernPortal" type="Area3D" parent="Portals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8, 1.0, -3.2)
+script = ExtResource("2_portal")
+destination_scene = "res://scenes/locations/greyford/TavernInterior.tscn"
+destination_location = "greyford_tavern"
+prompt = "Повернутися до головної таверни"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/ToTavernPortal"]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="ToStreetPortal" type="Area3D" parent="Portals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8, 1.0, 0.75)
+script = ExtResource("2_portal")
+destination_scene = "res://scenes/locations/greyford/GreyfordStreet.tscn"
+destination_location = "greyford_street"
+prompt = "Вийти на вулицю Грейфорда"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/ToStreetPortal"]
 shape = SubResource("SphereShape3D_interaction")
 
 [node name="CraftsmenArtAssembly" type="Node3D" parent="."]

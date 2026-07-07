@@ -113,16 +113,18 @@ func _build_hall_shell() -> void:
 	_box(shell, "SmokedLeftWall", Vector3(-8.3, 1.55, -0.4), Vector3(0.28, 3.1, 12.6), mat_wall)
 	_box(shell, "SmokedRightWall", Vector3(8.3, 1.55, -0.4), Vector3(0.28, 3.1, 12.6), mat_wall)
 	# Front wall is split into pieces around the entrance, not omitted.
-	_box(shell, "FrontWallLeftOfDoor", Vector3(-5.7, 1.55, 5.88), Vector3(5.2, 3.1, 0.28), mat_wall)
-	_box(shell, "FrontWallRightOfDoor", Vector3(5.7, 1.55, 5.88), Vector3(5.2, 3.1, 0.28), mat_wall)
-	_box(shell, "FrontWallAboveDoorLintel", Vector3(0, 2.55, 5.88), Vector3(6.2, 1.1, 0.28), mat_wall)
-	_box(shell, "FrontEntranceDoorFrameTop", Vector3(0, 2.05, 5.68), Vector3(3.05, 0.28, 0.36), mat_beam)
+	_box(shell, "FrontWallLeftOfDoor", Vector3(-5.01, 1.55, 5.88), Vector3(6.58, 3.1, 0.28), mat_wall)
+	_box(shell, "FrontWallRightOfDoor", Vector3(5.01, 1.55, 5.88), Vector3(6.58, 3.1, 0.28), mat_wall)
+	_box(shell, "FrontWallAboveDoorLintel", Vector3(0, 2.55, 5.88), Vector3(3.72, 1.1, 0.28), mat_wall)
+	_box(shell, "FrontEntranceDoorFrameTop", Vector3(0, 2.05, 5.68), Vector3(3.72, 0.28, 0.36), mat_beam)
 	_box(shell, "FrontEntranceDoorFrameLeft", Vector3(-1.72, 0.97, 5.68), Vector3(0.28, 1.95, 0.36), mat_beam)
 	_box(shell, "FrontEntranceDoorFrameRight", Vector3(1.72, 0.97, 5.68), Vector3(0.28, 1.95, 0.36), mat_beam)
 	# Door leaf is open against the wall so the room remains visibly enterable.
-	_box(shell, "OpenFrontPlankDoor", Vector3(2.25, 0.94, 5.48), Vector3(1.06, 1.82, 0.18), mat_wood, Vector3(0, 28, 0))
-	_box(shell, "DoorIronStrapTop", Vector3(2.25, 1.45, 5.36), Vector3(0.94, 0.07, 0.05), mat_metal, Vector3(0, 28, 0))
-	_box(shell, "DoorIronStrapBottom", Vector3(2.25, 0.55, 5.36), Vector3(0.94, 0.07, 0.05), mat_metal, Vector3(0, 28, 0))
+	_box(shell, "OpenFrontPlankDoor", Vector3(2.1, 0.94, 5.48), Vector3(1.06, 1.82, 0.18), mat_wood, Vector3(0, 28, 0))
+	_box(shell, "DoorIronStrapTop", Vector3(2.1, 1.45, 5.36), Vector3(0.94, 0.07, 0.05), mat_metal, Vector3(0, 28, 0))
+	_box(shell, "DoorIronStrapBottom", Vector3(2.1, 0.55, 5.36), Vector3(0.94, 0.07, 0.05), mat_metal, Vector3(0, 28, 0))
+	# Dark back-panel behind the door opening so bright environment light doesn't bleed through.
+	_box(shell, "DoorBackPanel", Vector3(0, 0.97, 6.02), Vector3(3.44, 1.95, 0.15), mat_beam)
 	_box(shell, "LowWoodenCeiling", Vector3(0, 3.08, -0.4), Vector3(16.6, 0.18, 12.6), mat_beam)
 
 	# Heavy beams and posts: dense enough to read as a low medieval tavern ceiling.
@@ -139,8 +141,8 @@ func _build_hall_shell() -> void:
 	_box(shell, "BackWainscot", Vector3(0, 0.72, -6.25), Vector3(16.2, 0.75, 0.16), mat_wood)
 	_box(shell, "LeftWainscot", Vector3(-8.12, 0.72, -0.4), Vector3(0.16, 0.75, 12.1), mat_wood)
 	_box(shell, "RightWainscot", Vector3(8.12, 0.72, -0.4), Vector3(0.16, 0.75, 12.1), mat_wood)
-	_box(shell, "FrontWainscotLeft", Vector3(-5.7, 0.72, 5.66), Vector3(5.0, 0.75, 0.16), mat_wood)
-	_box(shell, "FrontWainscotRight", Vector3(5.7, 0.72, 5.66), Vector3(5.0, 0.75, 0.16), mat_wood)
+	_box(shell, "FrontWainscotLeft", Vector3(-5.01, 0.72, 5.66), Vector3(6.38, 0.75, 0.16), mat_wood)
+	_box(shell, "FrontWainscotRight", Vector3(5.01, 0.72, 5.66), Vector3(6.38, 0.75, 0.16), mat_wood)
 
 func _build_bar_and_shelves() -> void:
 	var bar := Node3D.new()

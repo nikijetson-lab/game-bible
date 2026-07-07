@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="2_player"]
 [ext_resource type="Script" uid="uid://bi240e334a5c1" path="res://scripts/gameplay/LocationPortal.gd" id="3_portal"]
 [ext_resource type="Script" uid="uid://dl0nchorsaiy0" path="res://scripts/gameplay/InspectClue.gd" id="4_clue"]
+[ext_resource type="PackedScene" path="res://assets/meshy/greyford_alteya/alteya_witch_real.glb" id="30_alteya_glb"]
 
 [sub_resource type="Environment" id="Environment_alteya"]
 background_mode = 1
@@ -191,8 +192,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.356713, -1.403456, 0.729363
 shape = SubResource("CapsuleShape_interaction")
 
 [node name="Body" type="MeshInstance3D" parent="NPCs/Alteya" unique_id=1801192388]
+visible = false
 mesh = SubResource("CapsuleMesh_alteya")
 surface_material_override/0 = SubResource("Material_dark_cloth")
+
+[node name="MeshyAlteyaModel" parent="NPCs/Alteya" instance=ExtResource("30_alteya_glb")]
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
+metadata/source_task_id = "019f3b74-d675-71c9-b2d9-70699d1fa516"
 
 [node name="PaleFrontStole" type="MeshInstance3D" parent="NPCs/Alteya" unique_id=1809374309]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0.36)

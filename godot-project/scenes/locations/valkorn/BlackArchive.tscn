@@ -1,60 +1,143 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc"]
-[ext_resource type="Script" path="res://scripts/gameplay/BlackArchiveArtAssembly.gd" id="2_art"]
+[ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://assets/meshy/valkorn/tessa_merchant.glb" id="4_tessa_glb"]
+[ext_resource type="PackedScene" path="res://assets/meshy/valkorn/archivist.glb" id="5_archivist_glb"]
+[ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="3_portal"]
 
 [sub_resource type="Environment" id="Env_archive"]
 background_mode = 1
-background_color = Color(0.02, 0.02, 0.03, 1)
+background_color = Color(0.02, 0.03, 0.04, 1)
 ambient_light_source = 2
-ambient_light_color = Color(0.25, 0.26, 0.28, 1)
-ambient_light_energy = 1.0
+ambient_light_color = Color(0.22, 0.24, 0.28, 1)
+ambient_light_energy = 4.5
 fog_enabled = true
-fog_light_color = Color(0.10, 0.11, 0.12, 1)
+fog_light_color = Color(0.15, 0.18, 0.20, 1)
 fog_density = 0.015
 
-[sub_resource type="StandardMaterial3D" id="Mat_black_wood"]
-albedo_color = Color(0.08, 0.07, 0.06, 1)
-roughness = 0.60
+[sub_resource type="StandardMaterial3D" id="Mat_floor"]
+albedo_color = Color(0.16, 0.14, 0.12, 1); roughness = 0.94
+[sub_resource type="StandardMaterial3D" id="Mat_wall"]
+albedo_color = Color(0.20, 0.18, 0.16, 1); roughness = 0.92
+[sub_resource type="StandardMaterial3D" id="Mat_lamp"]
+albedo_color = Color(0.9, 0.5, 0.12, 1); emission_enabled = true; emission = Color(0.7, 0.3, 0.06, 1); emission_energy_multiplier = 1.0
+[sub_resource type="StandardMaterial3D" id="Mat_artifact"]
+albedo_color = Color(0.3, 0.8, 0.5, 1); emission_enabled = true; emission = Color(0.2, 0.7, 0.4, 1); emission_energy_multiplier = 2.0
 
-[sub_resource type="BoxShape3D" id="BoxShape_archive"]
-size = Vector3(16, 5.0, 14)
-
-[sub_resource type="SphereShape3D" id="SphereShape_interact"]
-radius = 1.6
+[sub_resource type="BoxMesh" id="BoxMesh_room"]
+size = Vector3(8, 3.5, 6)
+[sub_resource type="BoxMesh" id="BoxMesh_corridor"]
+size = Vector3(2.5, 3.5, 4)
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+size = Vector3(30, 0.2, 35)
+[sub_resource type="SphereMesh" id="SphereMesh_lamp"]
+radius = 0.10; height = 0.22
+[sub_resource type="SphereMesh" id="SphereMesh_artifact"]
+radius = 0.35; height = 0.6
+[sub_resource type="SphereShape3D" id="Sphere_interact"]
+radius = 1.5
 
 [node name="BlackArchive" type="Node3D"]
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Env_archive")
+[node name="Player" parent="." instance=ExtResource("2_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 12)
 
-[node name="Floor" type="StaticBody3D" parent="."]
+; === FLOOR ===
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, -8)
+mesh = SubResource("BoxMesh_floor"); material_override = SubResource("Mat_floor")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 0)
-shape = SubResource("BoxShape_archive")
+; === LEVEL 1: ENTRANCE ===
+[node name="EntranceHall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 8)
+mesh = SubResource("BoxMesh_room"); material_override = SubResource("Mat_wall")
 
-[node name="CandleLight" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.8, 0)
-light_color = Color(1.0, 0.55, 0.2, 1)
-light_energy = 1.5
-omni_range = 8.0
+[node name="StorageL1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1.75, 0)
+mesh = SubResource("BoxMesh_room"); material_override = SubResource("Mat_wall")
 
-[node name="FippUnmasked" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -3)
-script = ExtResource("1_npc")
-npc_id = "fipp"
-npc_display_name = "Себастьян Марр"
-default_dialogue_id = "unmasked"
+[node name="Vestibule" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1.75, 0)
+mesh = SubResource("BoxMesh_room"); material_override = SubResource("Mat_wall")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FippUnmasked"]
-shape = SubResource("SphereShape_interact")
+; Corridors L1
+[node name="CorrL1_H" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 4)
+mesh = SubResource("BoxMesh_corridor"); material_override = SubResource("Mat_wall")
 
-[node name="Body" type="MeshInstance3D" parent="FippUnmasked"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+; === CENTRAL ===
+[node name="DiningHall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -8)
+mesh = SubResource("BoxMesh_room"); material_override = SubResource("Mat_wall")
 
+[node name="SecOffice" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1.75, -14)
+mesh = SubResource("BoxMesh_room"); material_override = SubResource("Mat_wall")
 
-[node name="BlackArchiveArtAssembly" type="Node3D" parent="."]
-script = ExtResource("2_art")
+; Corridor central
+[node name="CorrC_V" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -11)
+mesh = SubResource("BoxMesh_corridor"); material_override = SubResource("Mat_wall")
 
+; === LEVEL 5: DEPTH ===
+[node name="DeepStorage" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -22)
+mesh = SubResource("BoxMesh_room"); material_override = SubResource("Mat_wall")
 
+; === ARTIFACT ===
+[node name="Artifact" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, -8)
+mesh = SubResource("SphereMesh_artifact"); material_override = SubResource("Mat_artifact")
+
+; === LIGHTS ===
+[node name="Lamp1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 3.1, 8)
+mesh = SubResource("SphereMesh_lamp"); material_override = SubResource("Mat_lamp")
+[node name="Lamp2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 3.1, 8)
+mesh = SubResource("SphereMesh_lamp"); material_override = SubResource("Mat_lamp")
+[node name="Lamp3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1, -8)
+mesh = SubResource("SphereMesh_lamp"); material_override = SubResource("Mat_lamp")
+[node name="Lamp4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1, -22)
+mesh = SubResource("SphereMesh_lamp"); material_override = SubResource("Mat_lamp")
+
+; === PORTALS ===
+[node name="Portals" type="Node3D" parent="."]
+[node name="ToPortQuarter" type="Area3D" parent="Portals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 14)
+script = ExtResource("3_portal")
+destination_scene = "res://scenes/locations/valkorn/PortQuarter.tscn"
+destination_location = "valkorn_port_quarter"
+prompt = "Вийти до Портового Кварталу"
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/ToPortQuarter"]
+shape = SubResource("Sphere_interact")
+
+; === NPC ===
+[node name="NPCs" type="Node3D" parent="."]
+[node name="Tessa" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 4)
+script = ExtResource("1_npc"); npc_id = "tessa_valkorn"; npc_display_name = "Тесса"; default_dialogue_id = "first_meeting"
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Tessa"]
+shape = SubResource("Sphere_interact")
+[node name="Body" type="MeshInstance3D" parent="NPCs/Tessa"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+visible = false
+
+[node name="Model" parent="NPCs/Tessa" instance=ExtResource("4_tessa_glb")]
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
+
+[node name="Archivist" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, -20)
+script = ExtResource("1_npc"); npc_id = "archivist_valkorn"; npc_display_name = "Архіваріус"; default_dialogue_id = "first_meeting"
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Archivist"]
+shape = SubResource("Sphere_interact")
+[node name="Body" type="MeshInstance3D" parent="NPCs/Archivist"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+visible = false
+
+[node name="Model" parent="NPCs/Archivist" instance=ExtResource("5_archivist_glb")]
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)

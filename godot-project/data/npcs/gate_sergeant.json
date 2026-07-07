@@ -1,0 +1,21 @@
+{
+  "id": "gate_sergeant",
+  "name": "Сержант брами",
+  "display_name": "Сержант",
+  "location": "greyford_gate",
+  "role": "guard_captain",
+  "description": "Сержант міської брами Грейфорда. Веде записи про тих, хто виходить і входить. Має запис про Руфіна — той вийшов три дні тому в напрямку Тихого Шелесту. Дисциплінований, але не без співчуття.",
+  "dialogues": {
+    "about_rufin": "gate_sergeant/about_rufin.json"
+  },
+  "quests": {
+    "involved": ["greyford_01_missing_recipient"]
+  },
+  "appearance": {
+    "age": "за 40",
+    "build": "військова виправка",
+    "hair": "короткий, сивий",
+    "clothing": "мундир варти Грейфорда, плащ",
+    "notable": "журнал записів біля поста"
+  }
+}

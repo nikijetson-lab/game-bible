@@ -1,0 +1,11 @@
+{
+  "id": "merchant_lysa",
+  "name": "Лиса",
+  "display_name": "Торговець Лиса",
+  "location": "greyford_street",
+  "role": "witness",
+  "description": "Місцева торговка, яка звинувачує Алтею в чаклунстві. Насправді хоче отримати її землю під склад. Брехлива свідчиня.",
+  "dialogues": {"witch_testimony": "merchant_lysa/testimony.json"},
+  "quests": {"involved": ["greyford_side_01_witch_trouble"]},
+  "is_antagonist_partial": true
+}

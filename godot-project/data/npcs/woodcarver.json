@@ -1,0 +1,21 @@
+{
+  "id": "woodcarver",
+  "name": "Різьбяр",
+  "display_name": "Різьбяр",
+  "location": "greyford_craftsmen_quarter",
+  "role": "craftsman",
+  "description": "Літній різьбяр по дереву в кварталі ремісників Грейфорда. Руфін приходив до нього перед зникненням — питав про Тихий Шелест і ніс щось важке. Пам'ятає замовлення та обличчя.",
+  "dialogues": {
+    "about_rufin": "woodcarver/about_rufin.json"
+  },
+  "quests": {
+    "involved": ["greyford_01_missing_recipient"]
+  },
+  "appearance": {
+    "age": "літній",
+    "build": "сухий, жилавий",
+    "hair": "сивий, короткий",
+    "clothing": "робочий фартух, простий одяг ремісника",
+    "notable": "руки в тирсі, окуляри на лобі"
+  }
+}

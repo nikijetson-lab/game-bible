@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="2_player"]
 [ext_resource type="Script" uid="uid://bi240e334a5c1" path="res://scripts/gameplay/LocationPortal.gd" id="3_portal"]
 [ext_resource type="PackedScene" uid="uid://yrh3kbusop24" path="res://assets/meshy/greyford_tavern/tavern_bar_counter.glb" id="5_bar_glb"]
-[ext_resource type="PackedScene" uid="uid://pvyd2yij5j3i" path="res://assets/meshy/greyford_tavern/tavern_props_kit.glb" id="6_props_glb"]
 [ext_resource type="PackedScene" uid="uid://bdupbcmbixd80" path="res://assets/meshy/greyford_tavern/creaking_sign.glb" id="7_sign_glb"]
 [ext_resource type="PackedScene" uid="uid://c3xas6wavhhvo" path="res://assets/meshy/greyford_tavern/ervan_innkeeper_clean_apron.glb" id="8_ervan_clean_glb"]
 [ext_resource type="Script" uid="uid://b7vunloj4gifh" path="res://scripts/gameplay/TavernLetterStaging.gd" id="9_letter_staging"]
@@ -18,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://uuhhki7ygns" path="res://assets/textures/greyford_tavern/aged_paper.png" id="17_tex_paper"]
 [ext_resource type="Texture2D" uid="uid://cpi6tstota0ou" path="res://assets/textures/greyford_tavern/rainy_cold_window.png" id="18_tex_window"]
 [ext_resource type="Script" uid="uid://chdd65bcnql7h" path="res://scripts/gameplay/TavernArtAssembly.gd" id="19_art_assembly"]
+[ext_resource type="PackedScene" path="res://assets/meshy/greyford_tavern/greyford_guard_walk.glb" id="20_guard_walk_glb"]
+[ext_resource type="Script" path="res://scripts/gameplay/GuardWalkAnim.gd" id="21_guard_walk_anim"]
 
 [sub_resource type="Environment" id="Environment_tavern"]
 background_mode = 1
@@ -273,6 +274,7 @@ shadow_enabled = true
 omni_range = 3.6
 
 [node name="Player" parent="." unique_id=1940649330 instance=ExtResource("2_player")]
+visible = false
 transform = Transform3D(0.92388, 0, -0.382683, 0, 1, 0, 0.382683, 0, 0.92388, 0.2, 1, 4.2)
 
 [node name="ArtAssembly" type="Node3D" parent="." unique_id=1622492634]
@@ -314,10 +316,8 @@ metadata/note = "Visible Meshy GLB layer; primitive meshes and collision shapes 
 [node name="MeshyBarCounter" parent="MeshyAssets" unique_id=1490801440 instance=ExtResource("5_bar_glb")]
 transform = Transform3D(3.2476, 0, -0.2842, 0, 1.115, 0, 0.0811, 0, 0.9264, -3.1, 0.6, -3.35)
 
-[node name="MeshyPropsKit" parent="MeshyAssets" unique_id=1883932704 instance=ExtResource("6_props_glb")]
-transform = Transform3D(1.42, 0, 0.42, 0, 1, 0, -0.42, 0, 1.42, 3.1, 0.82, 2.45)
-
 [node name="MeshyCreakingSign" parent="MeshyAssets" unique_id=1207522806 instance=ExtResource("7_sign_glb")]
+visible = false
 transform = Transform3D(0.68, 0, 0, 0, 0.68, 0, 0, 0, 0.68, -6.65, 2.15, 4.75)
 
 [node name="Architecture" type="Node3D" parent="." unique_id=783882590]
@@ -325,14 +325,17 @@ metadata/art_reference = "007_p03 Ervan innkeeper art: dark smoked wood, blue-gr
 
 [node name="BackWall" type="MeshInstance3D" parent="Architecture" unique_id=1100586262]
 transform = Transform3D(17, 0, 0, 0, 3.2, 0, 0, 0, 0.22, 0, 1.45, -6.4)
+material_override = SubResource("Mat_smoked_plaster")
 mesh = SubResource("BoxMesh_leg")
 
 [node name="LeftWall" type="MeshInstance3D" parent="Architecture" unique_id=2041464272]
 transform = Transform3D(0.22, 0, 0, 0, 3.2, 0, 0, 0, 13, -8.45, 1.45, 0)
+material_override = SubResource("Mat_smoked_plaster")
 mesh = SubResource("BoxMesh_leg")
 
 [node name="RightWall" type="MeshInstance3D" parent="Architecture" unique_id=899409996]
 transform = Transform3D(0.22, 0, 0, 0, 3.2, 0, 0, 0, 13, 8.45, 1.45, 0)
+material_override = SubResource("Mat_smoked_plaster")
 mesh = SubResource("BoxMesh_leg")
 
 [node name="BackPlasterInset" type="MeshInstance3D" parent="Architecture" unique_id=2005122289]
@@ -349,6 +352,11 @@ mesh = SubResource("BoxMesh_board")
 transform = Transform3D(0.08, 0, 0, 0, 2.25, 0, 0, 0, 9.6, 8.18, 1.45, 0.25)
 material_override = SubResource("Mat_smoked_plaster")
 mesh = SubResource("BoxMesh_board")
+
+[node name="FrontWall" type="MeshInstance3D" parent="Architecture" unique_id=409112599]
+transform = Transform3D(1, 0, 0, 0, 9.2, 0, 0, 0, 0.017, 0, 1.45, 6.4)
+material_override = SubResource("Mat_smoked_plaster")
+mesh = SubResource("BoxMesh_floor")
 
 [node name="LowCeiling" type="MeshInstance3D" parent="Architecture" unique_id=270711556]
 transform = Transform3D(17, 0, 0, 0, 0.18, 0, 0, 0, 13, 0, 3.18, 0)
@@ -635,10 +643,12 @@ metadata/art_note = "Rustic inn clutter: barrels, crates, sacks and stacked supp
 
 [node name="BarrelStackA" type="MeshInstance3D" parent="StorageProps" unique_id=1764299503]
 transform = Transform3D(1, 0, 0, 0, 1.15, 0, 0, 0, 1, -6.95, 0.45, -3.85)
+material_override = SubResource("Mat_soot_wood")
 mesh = SubResource("CylinderMesh_barrel")
 
 [node name="BarrelStackB" type="MeshInstance3D" parent="StorageProps" unique_id=334978068]
 transform = Transform3D(0.85, 0, 0, 0, 1, 0, 0, 0, 0.85, -6.35, 0.38, -3.48)
+material_override = SubResource("Mat_soot_wood")
 mesh = SubResource("CylinderMesh_barrel")
 
 [node name="CrateUnderStairs" type="MeshInstance3D" parent="StorageProps" unique_id=1947937761]
@@ -733,7 +743,7 @@ mesh = SubResource("CapsuleMesh_npc")
 metadata/fallback_note = "Hidden visual fallback; collision shape remains active and MeshyErvanModel is the visible character."
 
 [node name="MeshyErvanModel" parent="NPCs/Ervan" unique_id=422842936 instance=ExtResource("8_ervan_clean_glb")]
-transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.85, 0)
 metadata/source_task_id = "019f21af-bd23-7c60-a0fb-302e9c52b314"
 metadata/note = "Retextured clean apron: the concept-art letter is restored as a separate prop in Ervan's hands, not baked onto the apron."
 
@@ -819,20 +829,24 @@ metadata/fallback_note = "Blockout guard who enters with the letter before the E
 
 [node name="GuardHelmet" type="MeshInstance3D" parent="NPCs/GreyfordGuard" unique_id=9473619959]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
+visible = false
 mesh = SubResource("SphereMesh_bottle")
 material_override = SubResource("Mat_metal")
 
 [node name="GuardShoulderL" type="MeshInstance3D" parent="NPCs/GreyfordGuard" unique_id=8473619959]
 transform = Transform3D(0.6, 0, 0, 0, 0.3, 0, 0, 0, 0.4, -0.35, 0.7, 0)
+visible = false
 mesh = SubResource("BoxMesh_leg")
 material_override = SubResource("Mat_metal")
 
 [node name="GuardShoulderR" type="MeshInstance3D" parent="NPCs/GreyfordGuard" unique_id=7473619959]
 transform = Transform3D(0.6, 0, 0, 0, 0.3, 0, 0, 0, 0.4, 0.35, 0.7, 0)
+visible = false
 mesh = SubResource("BoxMesh_leg")
 material_override = SubResource("Mat_metal")
 
 [node name="CarriedLetter" type="MeshInstance3D" parent="NPCs/GreyfordGuard" unique_id=1690834820]
+visible = false
 transform = Transform3D(0.34, 0, 0, 0, 0.28, -0.18, 0, 0.1, 0.48, 0.12, 0.38, 0.34)
 mesh = SubResource("BoxMesh_letter")
 metadata/canon_note = "Scene start state: the sealed letter is with the guard, not floating at the bar and not in Ervan's hands yet."
@@ -846,6 +860,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 text = "вартовий"
 font_size = 22
 
+[node name="MeshyGuardModel" parent="NPCs/GreyfordGuard" unique_id=642936789 instance=ExtResource("20_guard_walk_glb")]
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.85, 0)
+metadata/source_task_id = "019f3382-ea26-7458-9fcd-e602109c1247"
+metadata/note = "Rigged guard with walk animation. Replaces blockout sphere+shoulders."
+
+[node name="WalkAnim" type="Node3D" parent="NPCs/GreyfordGuard/MeshyGuardModel"]
+script = ExtResource("21_guard_walk_anim")
+
 [node name="LetterHandoffStaging" type="Node" parent="." unique_id=604755686]
 script = ExtResource("9_letter_staging")
 guard_path = NodePath("../NPCs/GreyfordGuard")
@@ -856,6 +878,7 @@ ervan_letter_path = NodePath("../NPCs/Ervan/HeldLetter")
 ervan_letter_closeup_marker_path = NodePath("../Staging/ErvanLetterCloseup")
 wiping_towel_path = NodePath("../NPCs/Ervan/WipingTowel")
 shoulder_towel_path = NodePath("../NPCs/Ervan/ShoulderTowel")
+ervan_model_path = NodePath("../NPCs/Ervan/MeshyErvanModel")
 
 [node name="Staging" type="Node3D" parent="." unique_id=1059468539]
 metadata/scene_beat = "Start: letter is with guard. Guard approaches Ervan. Dialogue handoff reveals Ervan with the letter; Ervan lowers it and asks the question."
@@ -889,6 +912,16 @@ destination_location = "greyford_craftsmen_quarter"
 prompt = "Вийти до кварталу ремісників"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/ToCraftsmenQuarterPortal" unique_id=900356057]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="ToStreetPortal" type="Area3D" parent="Portals" unique_id=900356058]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 6.0)
+script = ExtResource("3_portal")
+destination_scene = "res://scenes/locations/greyford/GreyfordStreet.tscn"
+destination_location = "greyford_street"
+prompt = "Вийти на вулицю Грейфорда"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/ToStreetPortal" unique_id=900356059]
 shape = SubResource("SphereShape3D_interaction")
 
 [node name="BackgroundPatrons" type="Node3D" parent="." unique_id=1170687592]

@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bdupbcmbixd80" path="res://assets/meshy/greyford_tavern/creaking_sign.glb" id="7_sign_glb"]
 [ext_resource type="PackedScene" uid="uid://c3xas6wavhhvo" path="res://assets/meshy/greyford_tavern/ervan_innkeeper_clean_apron.glb" id="8_ervan_clean_glb"]
 [ext_resource type="Script" uid="uid://b7vunloj4gifh" path="res://scripts/gameplay/TavernLetterStaging.gd" id="9_letter_staging"]
+[ext_resource type="Script" path="res://scripts/gameplay/WaitressPatrol.gd" id="24_waitress"]
+[ext_resource type="Script" path="res://scripts/gameplay/BuildWaitress.gd" id="25_build_waitress"]
 [ext_resource type="Texture2D" uid="uid://ca18umewh04uw" path="res://assets/textures/greyford_tavern/dark_wood_planks.png" id="10_tex_dark_wood"]
 [ext_resource type="Texture2D" uid="uid://cimrmmagur424" path="res://assets/textures/greyford_tavern/wet_floor_planks.png" id="11_tex_wet_floor"]
 [ext_resource type="Texture2D" uid="uid://ci6f1m670xef8" path="res://assets/textures/greyford_tavern/smoked_plaster.png" id="12_tex_plaster"]
@@ -872,6 +874,28 @@ script = ExtResource("21_guard_walk_anim")
 script = ExtResource("9_letter_staging")
 guard_path = NodePath("../NPCs/GreyfordGuard")
 guard_start_marker_path = NodePath("../Staging/GuardStart")
+
+[node name="Waitress" type="Area3D" parent="NPCs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1, 0.6, -3.35)
+script = ExtResource("24_waitress")
+npc_id = "tavern_waitress"
+npc_display_name = "офіціантка"
+
+[node name="Body" type="MeshInstance3D" parent="NPCs/Waitress"]
+mesh = SubResource("CapsuleMesh_npc")
+material_override = SubResource("Mat_leather_apron")
+
+[node name="Label" type="Label3D" parent="NPCs/Waitress"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
+modulate = Color(0.58, 0.5, 0.38, 1)
+text = "офіціантка"
+font_size = 18
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Waitress"]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="Model" type="Node3D" parent="NPCs/Waitress"]
+script = ExtResource("25_build_waitress")
 guard_handoff_marker_path = NodePath("../Staging/GuardHandoff")
 guard_letter_path = NodePath("../NPCs/GreyfordGuard/CarriedLetter")
 ervan_letter_path = NodePath("../NPCs/Ervan/HeldLetter")
@@ -927,7 +951,7 @@ shape = SubResource("SphereShape3D_interaction")
 [node name="BackgroundPatrons" type="Node3D" parent="." unique_id=1170687592]
 
 [node name="DrunkPatronAtTable" type="MeshInstance3D" parent="BackgroundPatrons" unique_id=343975770]
-transform = Transform3D(0.7, 0.18, 0, 0, 0.55, 0.12, 0, -0.12, 0.85, -2.05, 0.95, 2.15)
+transform = Transform3D(0.7, 0.18, 0, 0, 0.55, 0.12, 0, -0.12, 0.85, -2.05, 0.55, 2.15)
 mesh = SubResource("CapsuleMesh_npc")
 
 [node name="DrunkPatronLabel" type="Label3D" parent="BackgroundPatrons/DrunkPatronAtTable" unique_id=415082493]

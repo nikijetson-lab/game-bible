@@ -153,7 +153,7 @@ mesh = SubResource("CapsuleMesh_npc")
 material_override = SubResource("Mat_cloak")
 
 [node name="MeshySergeantModel" parent="NPCs/GateSergeant" instance=ExtResource("21_sergeant_glb")]
-transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.85, 0)
 metadata/source_task_id = "019f3b61-2db1-7d61-9d26-a6f8552b5479"
 
 [node name="Breastplate" type="MeshInstance3D" parent="NPCs/GateSergeant"]

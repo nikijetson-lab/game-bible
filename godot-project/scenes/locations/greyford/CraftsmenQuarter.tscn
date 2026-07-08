@@ -183,7 +183,7 @@ mesh = SubResource("CapsuleMesh_npc")
 material_override = SubResource("Mat_fur")
 
 [node name="MeshyFurrierModel" parent="NPCs/Furrier" instance=ExtResource("27_furrier_glb")]
-transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.85, 0)
 metadata/source_task_id = "019f3b6e-fad7-783d-ba76-be64cf1924b6"
 
 [node name="NameLabel" type="Label3D" parent="NPCs/Furrier"]
@@ -209,7 +209,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_npc")
 
 [node name="MeshyWoodcarverModel" parent="NPCs/Woodcarver" instance=ExtResource("26_woodcarver_glb")]
-transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.85, 0)
 metadata/source_task_id = "019f3b68-dc44-781a-bfca-3add5122c1f6"
 
 [node name="LeatherApron" type="MeshInstance3D" parent="NPCs/Woodcarver"]

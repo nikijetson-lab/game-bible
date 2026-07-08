@@ -356,7 +356,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 visible = false
 
 [node name="Model" parent="NPCs/Voss" instance=ExtResource("30_voss_glb")]
-transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.85, 0)
 
 ; Nera Vail — поромний майстер, біля причалу
 [node name="Nera" type="Area3D" parent="NPCs"]
@@ -374,7 +374,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 visible = false
 
 [node name="Model" parent="NPCs/Nera" instance=ExtResource("31_nera_glb")]
-transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.85, 0)
 
 ; Brother Karos — хранитель, біля каплиці
 [node name="Karos" type="Area3D" parent="NPCs"]
@@ -406,7 +406,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 visible = false
 
 [node name="Model" parent="NPCs/Sella" instance=ExtResource("32_sella_glb")]
-transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.85, 0)
 
 ; Брін Осс — логістичний брокер
 [node name="BrinOss" type="Area3D" parent="NPCs"]
@@ -424,7 +424,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 visible = false
 
 [node name="Model" parent="NPCs/BrinOss" instance=ExtResource("33_brin_glb")]
-transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.85, 0)
 
 ; Гара Пайк — контрабандистка
 [node name="GaraPaik" type="Area3D" parent="NPCs"]
@@ -442,7 +442,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 visible = false
 
 [node name="Model" parent="NPCs/GaraPaik" instance=ExtResource("34_gara_glb")]
-transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.85, 0)
 
 ; Тован Рід — клановий речник
 [node name="TovanRid" type="Area3D" parent="NPCs"]
@@ -474,7 +474,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 visible = false
 
 [node name="Model" parent="NPCs/MaraDens" instance=ExtResource("35_mara_glb")]
-transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.85, 0)
 
 ; Серіт Келм — адміністративний спостерігач
 [node name="Kelm" type="Area3D" parent="NPCs"]
@@ -506,7 +506,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 visible = false
 
 [node name="Model" parent="NPCs/IsraVayn" instance=ExtResource("36_isra_glb")]
-transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.85, 0)
 
 ; Скел Ганіс — дренажний робітник
 [node name="SkelGanis" type="Area3D" parent="NPCs"]
@@ -524,7 +524,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 visible = false
 
 [node name="Model" parent="NPCs/SkelGanis" instance=ExtResource("37_skel_glb")]
-transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.85, 0)
 
 ; Диякон Рейн
 [node name="DeaconRein" type="Area3D" parent="NPCs"]
@@ -542,7 +542,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 visible = false
 
 [node name="Model" parent="NPCs/DeaconRein" instance=ExtResource("38_rein_glb")]
-transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.85, 0)
 
 ; Board of notices (дошка оголошень)
 [node name="NoticeBoard" type="Area3D" parent="."]

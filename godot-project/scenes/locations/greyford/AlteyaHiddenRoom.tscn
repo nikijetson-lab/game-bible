@@ -198,7 +198,7 @@ mesh = SubResource("CapsuleMesh_alteya")
 surface_material_override/0 = SubResource("Material_dark_cloth")
 
 [node name="MeshyAlteyaModel" parent="NPCs/Alteya" instance=ExtResource("30_alteya_glb")]
-transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.05, 0)
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.85, 0)
 metadata/source_task_id = "019f3b74-d675-71c9-b2d9-70699d1fa516"
 
 [node name="PaleFrontStole" type="MeshInstance3D" parent="NPCs/Alteya" unique_id=1809374309]

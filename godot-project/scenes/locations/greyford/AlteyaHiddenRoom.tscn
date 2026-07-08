@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cd506symrgbqy" path="res://scripts/ai/NPCBehavior.gd" id="1_npc_behavior"]
 [ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="2_player"]
 [ext_resource type="Script" uid="uid://bi240e334a5c1" path="res://scripts/gameplay/LocationPortal.gd" id="3_portal"]
+[ext_resource type="Script" path="res://scripts/gameplay/AlteyaHiddenRoomArtAssembly.gd" id="5_art"]
 [ext_resource type="Script" uid="uid://dl0nchorsaiy0" path="res://scripts/gameplay/InspectClue.gd" id="4_clue"]
 [ext_resource type="PackedScene" path="res://assets/meshy/greyford_alteya/alteya_witch_real.glb" id="30_alteya_glb"]
 
@@ -268,3 +269,6 @@ metadata/source = "visual/concept_art_vision/items/022_p10_lileia_alteia_-_ostan
 metadata/notes = "Hidden optional room: cold flooded stone interior, arches, water reflection, dark robed central figure, pale front stole, golden cylinder, spatial veil signature. No public witch NPC; no extra witch invented."
 metadata/canon_role = "Чаклунка Алтея / Лілея — єдина чаклунка Грейфорда, optional hidden route witness before the gate."
 metadata/episode_route = "Port tavern / Cassandra -> optional Alteya hidden room -> Greyford gate / sergeant -> route_to_tihyi_shelist"
+
+[node name="AlteyaArtAssembly" type="Node3D" parent="."]
+script = ExtResource("5_art")

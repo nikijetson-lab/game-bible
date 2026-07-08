@@ -1,76 +1,47 @@
 extends Node3D
-
-# DeepBog — Episode 3: dense fog, root webs, peat chasms, Warden stakes, poison gas
-const TEX_WOOD := "res://assets/textures/greyford_tavern/dark_wood_planks.png"
-const TEX_BEAMS := "res://assets/textures/greyford_tavern/soot_beams.png"
-
-var mat_wood: StandardMaterial3D
-var mat_beam: StandardMaterial3D
-var mat_root: StandardMaterial3D
-var mat_mud: StandardMaterial3D
-var mat_deep_water: StandardMaterial3D
-var mat_gas: StandardMaterial3D
-var mat_stake_glow: StandardMaterial3D
+# DeepBogArtAssembly — темне болото, мертві дерева, туман, кістки, болотяний газ.
 
 func _ready() -> void:
-	_create_materials()
-	_build_warden_stakes()
-	_build_root_webs()
-	_build_peat_chasms()
-	_build_poison_gas()
+	var mud := _mat(Color(0.06,0.07,0.05), 0.97)
+	var bark := _mat(Color(0.08,0.07,0.05), 0.95)
+	var bone := _mat(Color(0.5,0.45,0.38), 0.85)
+	var gas := _mat(Color(0.1,0.4,0.1), 0.1)
+	gas.emission_enabled=true; gas.emission=Color(0.05,0.3,0.05); gas.emission_energy_multiplier=2.0
+	var plank := _mat(Color(0.15,0.12,0.08), 0.92)
+	var fog := _mat(Color(0.04,0.06,0.04,0.08), 0.01)
+	
+	var root := Node3D.new(); root.name = "DeepBogDressing"; add_child(root)
+	
+	# === БАГНО ===
+	var ground := _box(Vector3(40,0.06,30), mud); ground.position=Vector3(0,0.03,-2); root.add_child(ground)
+	
+	# === МЕРТВІ ДЕРЕВА ===
+	for i in 12:
+		var t:=_cyl(0.15,3+randf()*4, bark)
+		t.position=Vector3(-18+randf()*36,1.5,-15+randf()*25); t.rotation_degrees.z=-25+randf()*50; t.rotation_degrees.x=-15+randf()*30; root.add_child(t)
+	
+	# === КІСТКИ ===
+	for i in 15:
+		var b:=_box(Vector3(0.06,0.04,0.3+randf()*0.3), bone)
+		b.position=Vector3(-15+randf()*30,0.05,-12+randf()*20); root.add_child(b)
+	
+	# === БОЛОТЯНИЙ ГАЗ ===
+	for i in 8:
+		var g:=_cyl(0.08+randf()*0.08,0.2+randf()*0.2, gas)
+		g.position=Vector3(-15+randf()*30,0.3+randf()*1.5,-10+randf()*18); root.add_child(g)
+		var gl:=_omni(Color(0.05,0.4,0.05),1.0,4.0); gl.position=g.position; root.add_child(gl)
+	
+	# === ДОШКИ МІСТКА ===
+	for i in 8:
+		var p:=_box(Vector3(0.8,0.04,0.25), plank)
+		p.position=Vector3(-10+randf()*20,0.08,-5+randf()*15); root.add_child(p)
+	
+	# === ТУМАН ===
+	for i in 10:
+		var f:=_box(Vector3(4,1.5,0.02), fog)
+		f.position=Vector3(-16+randf()*32,0.8+randf()*2,-12+randf()*22); root.add_child(f)
 
-func _create_materials() -> void:
-	mat_wood = _mat(Color(0.22, 0.15, 0.09), TEX_WOOD, 0.9)
-	mat_beam = _mat(Color(0.12, 0.09, 0.07), TEX_BEAMS, 0.96)
-	mat_root = _mat(Color(0.04, 0.03, 0.02), "", 0.92)
-	mat_mud = _mat(Color(0.06, 0.05, 0.03), "", 0.95)
-	mat_deep_water = _mat(Color(0.02, 0.03, 0.02), "", 0.3)
-	mat_gas = _mat(Color(0.3, 0.5, 0.15, 0.45), "", 0.8)
-	mat_gas.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	mat_gas.albedo_color.a = 0.45
-	mat_stake_glow = _mat(Color(0.45, 0.5, 0.35), "", 0.6)
-	mat_stake_glow.emission_enabled = true
-	mat_stake_glow.emission = Color(0.35, 0.4, 0.25)
-	mat_stake_glow.emission_energy_multiplier = 1.5
-
-func _mat(color: Color, tex_path: String, roughness: float) -> StandardMaterial3D:
-	var m := StandardMaterial3D.new(); m.albedo_color = color; m.roughness = roughness
-	m.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
-	if tex_path != "":
-		var tex := load(tex_path)
-		if tex is Texture2D: m.albedo_texture = tex
-	return m
-
-func _box(p: Node3D, nm: String, pos: Vector3, sz: Vector3, mat: Material) -> void:
-	var m := BoxMesh.new(); m.size = sz; var mi := MeshInstance3D.new()
-	mi.name = nm; mi.mesh = m; mi.material_override = mat
-	mi.position = pos; p.add_child(mi)
-
-func _build_warden_stakes() -> void:
-	var stakes := Node3D.new(); stakes.name = "WardenStakes"; add_child(stakes)
-	for i in range(12):
-		var z := -24.0 + i*4.5
-		var x := sin(float(i)*0.7)*2.8
-		_box(stakes, "Stake%d"%i, Vector3(x, 0.85, z), Vector3(0.08, 1.6, 0.08), mat_beam)
-		_box(stakes, "Glow%d"%i, Vector3(x, 1.7, z), Vector3(0.12, 0.12, 0.12), mat_stake_glow)
-
-func _build_root_webs() -> void:
-	var roots := Node3D.new(); roots.name = "RootWebs"; add_child(roots)
-	for i in range(10):
-		var z := -20.0 + i*4.0; var x := sin(float(i)*0.9)*2.5
-		_box(roots, "RootMain%d"%i, Vector3(x, 0.3, z), Vector3(4.5, 0.12, 0.12), mat_root)
-		_box(roots, "RootCross%d"%i, Vector3(x+1.5, 0.3, z), Vector3(0.12, 0.12, 2.8), mat_root)
-		_box(roots, "RootV%d"%i, Vector3(x+0.8, 0.8, z), Vector3(0.08, 1.3, 0.08), mat_root)
-
-func _build_peat_chasms() -> void:
-	var chasms := Node3D.new(); chasms.name = "PeatChasms"; add_child(chasms)
-	for i in range(6):
-		var z := -18.0 + i*6.0; var x := sin(float(i)*1.3)*3.2
-		_box(chasms, "ChasmMud%d"%i, Vector3(x, -0.25, z), Vector3(3.5, 0.06, 2), mat_mud)
-		_box(chasms, "ChasmWater%d"%i, Vector3(x, -0.38, z), Vector3(2.8, 0.06, 1.5), mat_deep_water)
-
-func _build_poison_gas() -> void:
-	var gas := Node3D.new(); gas.name = "PoisonGas"; add_child(gas)
-	for i in range(8):
-		var z := -21.0 + i*5.0; var x := cos(float(i)*1.1)*2.5
-		_box(gas, "GasCloud%d"%i, Vector3(x, 0.9, z), Vector3(2, 1.2, 2), mat_gas)
+func _mat(c:Color,r:float)->StandardMaterial3D: var m:=StandardMaterial3D.new(); m.albedo_color=c; m.roughness=r; return m
+func _box(s:Vector3,mat:Material)->MeshInstance3D: var mi:=MeshInstance3D.new(); var m:=BoxMesh.new(); m.size=s; m.material=mat; mi.mesh=m; return mi
+func _cyl(r:float,h:float,mat:Material)->MeshInstance3D: var mi:=MeshInstance3D.new(); var m:=CylinderMesh.new(); m.top_radius=r; m.bottom_radius=r; m.height=h; m.material=mat; mi.mesh=m; return mi
+func _omni(col:Color,energy:float,range:float)->OmniLight3D: var l:=OmniLight3D.new(); l.light_color=col; l.light_energy=energy; l.omni_range=range; return l

@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git status)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git add*)",
+      "Bash(git commit*)",
+      "Read(*)",
+      "Grep(*)",
+      "Glob(*)"
+    ],
+    "deny": [
+      "Bash(git push --force*)",
+      "Bash(git branch*)",
+      "Bash(git checkout -b*)",
+      "Bash(rm -rf*)",
+      "Write(**/.godot/**)",
+      "Write(**/.import/**)",
+      "Read(.env)",
+      "Read(**/secrets/**)"
+    ],
+    "ask": [
+      "Bash(git push*)",
+      "Write(godot-project/scripts/ai/**)",
+      "Write(quests/**)"
+    ]
+  },
+  "model": "sonnet"
+}

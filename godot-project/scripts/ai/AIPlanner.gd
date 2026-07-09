@@ -33,11 +33,11 @@ static func choose_intent(npc_state: Dictionary, world_context: Dictionary = {},
 	if bool(services.get("rumor_source", false)):
 		return _intent(Intent.SHARE_RUMOR, "rumors", "NPC може поділитися чуткою.")
 
-	if bool(services.get("merchant", false)) or bool(services.get("innkeeper", false)):
-		return _intent(Intent.TRADE, "default", "NPC доступний як сервісний персонаж.")
-
 	if available_dialogues.has("first_meeting") and not has_met_player:
 		return _intent(Intent.TALK, "first_meeting", "Перше знайомство з NPC.")
+
+	if bool(services.get("merchant", false)) or bool(services.get("innkeeper", false)):
+		return _intent(Intent.TRADE, "default", "NPC доступний як сервісний персонаж.")
 
 	return _intent(Intent.TALK, "default", "Звичайна розмова.")
 

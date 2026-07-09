@@ -22,8 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://uuhhki7ygns" path="res://assets/textures/greyford_tavern/aged_paper.png" id="17_tex_paper"]
 [ext_resource type="Texture2D" uid="uid://cpi6tstota0ou" path="res://assets/textures/greyford_tavern/rainy_cold_window.png" id="18_tex_window"]
 [ext_resource type="Script" uid="uid://chdd65bcnql7h" path="res://scripts/gameplay/TavernArtAssembly.gd" id="19_art_assembly"]
-[ext_resource type="PackedScene" path="res://assets/meshy/greyford_tavern/greyford_guard_walk.glb" id="20_guard_walk_glb"]
-[ext_resource type="Script" path="res://scripts/gameplay/GuardWalkAnim.gd" id="21_guard_walk_anim"]
+[ext_resource type="PackedScene" uid="uid://d32eyd8lruxk6" path="res://assets/meshy/greyford_tavern/greyford_guard_walk.glb" id="20_guard_walk_glb"]
+[ext_resource type="Script" uid="uid://bru0greifj1fd" path="res://scripts/gameplay/GuardWalkAnim.gd" id="21_guard_walk_anim"]
 
 [sub_resource type="Environment" id="Environment_tavern"]
 background_mode = 1
@@ -866,12 +866,11 @@ text = "вартовий"
 font_size = 22
 
 [node name="MeshyGuardModel" parent="NPCs/GreyfordGuard" unique_id=642936789 instance=ExtResource("20_guard_walk_glb")]
-transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.85, 0)
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, -0.95, 0)
+script = ExtResource("21_guard_walk_anim")
 metadata/source_task_id = "019f3382-ea26-7458-9fcd-e602109c1247"
 metadata/note = "Rigged guard with walk animation. Replaces blockout sphere+shoulders."
 
-[node name="WalkAnim" type="Node3D" parent="NPCs/GreyfordGuard/MeshyGuardModel"]
-script = ExtResource("21_guard_walk_anim")
 
 [node name="LetterHandoffStaging" type="Node" parent="." unique_id=604755686]
 script = ExtResource("9_letter_staging")

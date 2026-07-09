@@ -70,8 +70,11 @@ func update_objective(quest_id: String, objective_id: String, progress: int = 1)
 	
 	for objective in quest.objectives:
 		if objective.id == objective_id:
+			# Вже завершену ціль не оновлюємо повторно (без подвійних подій/нагород)
+			if objective.is_completed:
+				return
 			objective.current_progress += progress
-			
+
 			# Перевірити завершення цілі
 			if objective.current_progress >= objective.target_progress:
 				objective.is_completed = true

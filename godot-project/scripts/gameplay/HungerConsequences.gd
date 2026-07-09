@@ -48,6 +48,22 @@ const RESOLUTION_MATRIX: Dictionary = {
 	},
 }
 
+## Map ep1-04 narrative sub-factions to the canonical ReputationManager ledger.
+## ReputationManager currently tracks only five top-level factions; without this
+## alias layer every detailed hunger shift is rejected as "Unknown faction".
+const FACTION_ALIAS: Dictionary = {
+	"fortress_admin": "greyford",
+	"keepers_st_vey": "keepers",
+	"keepers_st_vey_strict": "keepers",
+	"keepers_st_vey_merciful": "keepers",
+	"muri_ferrymen": "muri",
+	"muri_ferrymen_spiritual": "muri",
+	"muri_ferrymen_hungry": "muri",
+	"smugglers": "knives",
+	"smugglers_predatory": "knives",
+	"smugglers_survival": "knives",
+}
+
 ## Apply consequences for a given resolution key ("A", "B", "C", or "D").
 static func apply(resolution_key: String) -> void:
 	if not RESOLUTION_MATRIX.has(resolution_key):
@@ -60,13 +76,24 @@ static func apply(resolution_key: String) -> void:
 	GameManager.set_flag(data["set_flag"])
 	print("Hunger outcome: ", data["set_flag"])
 
-	# Apply faction reputation shifts
+	# Apply faction reputation shifts. The matrix uses narrative sub-factions,
+	# while ReputationManager stores canonical top-level factions; aggregate before
+	# touching the ledger so no consequence is lost to "Unknown faction".
+	var canonical_shifts: Dictionary = _canonicalize_faction_shifts(data["faction_shifts"])
 	if GameManager.has_method("apply_faction_shifts"):
-		GameManager.apply_faction_shifts(data["faction_shifts"])
+		GameManager.apply_faction_shifts(canonical_shifts)
 	elif GameManager.reputation_manager:
-		for faction: String in data["faction_shifts"]:
-			var delta: int = data["faction_shifts"][faction]
+		for faction: String in canonical_shifts:
+			var delta: int = canonical_shifts[faction]
 			GameManager.reputation_manager.modify_reputation(faction, delta)
 			print("  Reputation %s %+d" % [faction, delta])
 
 	print("HungerConsequences applied: ", resolution_key)
+
+static func _canonicalize_faction_shifts(raw_shifts: Dictionary) -> Dictionary:
+	var canonical: Dictionary = {}
+	for raw_faction: String in raw_shifts:
+		var faction: String = FACTION_ALIAS.get(raw_faction, raw_faction)
+		var delta: int = raw_shifts[raw_faction]
+		canonical[faction] = int(canonical.get(faction, 0)) + delta
+	return canonical

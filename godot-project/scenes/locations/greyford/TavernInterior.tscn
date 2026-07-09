@@ -6,12 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://yrh3kbusop24" path="res://assets/meshy/greyford_tavern/tavern_bar_counter.glb" id="5_bar_glb"]
 [ext_resource type="PackedScene" uid="uid://bdupbcmbixd80" path="res://assets/meshy/greyford_tavern/creaking_sign.glb" id="7_sign_glb"]
 [ext_resource type="PackedScene" uid="uid://c3xas6wavhhvo" path="res://assets/meshy/greyford_tavern/ervan_innkeeper_clean_apron.glb" id="8_ervan_clean_glb"]
-[ext_resource type="Script" uid="uid://b7vunloj4gifh" path="res://scripts/gameplay/TavernLetterStaging.gd" id="9_letter_staging"]
-[ext_resource type="Script" path="res://scripts/gameplay/WaitressPatrol.gd" id="24_waitress"]
-[ext_resource type="Script" path="res://scripts/gameplay/BuildWaitress.gd" id="25_build_waitress"]
-[ext_resource type="Script" path="res://scripts/gameplay/BuildPatron.gd" id="26_build_patron"]
-[ext_resource type="Script" path="res://scripts/gameplay/BuildTrader.gd" id="27_build_trader"]
-[ext_resource type="Script" path="res://scripts/gameplay/BuildOldWoman.gd" id="28_build_oldwoman"]
+[ext_resource type="Script" uid="uid://c47nyc01hcynr" path="res://scripts/gameplay/TavernLetterStaging.gd" id="9_letter_staging"]
 [ext_resource type="Texture2D" uid="uid://ca18umewh04uw" path="res://assets/textures/greyford_tavern/dark_wood_planks.png" id="10_tex_dark_wood"]
 [ext_resource type="Texture2D" uid="uid://cimrmmagur424" path="res://assets/textures/greyford_tavern/wet_floor_planks.png" id="11_tex_wet_floor"]
 [ext_resource type="Texture2D" uid="uid://ci6f1m670xef8" path="res://assets/textures/greyford_tavern/smoked_plaster.png" id="12_tex_plaster"]
@@ -21,15 +16,20 @@
 [ext_resource type="Texture2D" uid="uid://dfwntuww45eus" path="res://assets/textures/greyford_tavern/dirty_towel_cloth.png" id="16_tex_towel"]
 [ext_resource type="Texture2D" uid="uid://uuhhki7ygns" path="res://assets/textures/greyford_tavern/aged_paper.png" id="17_tex_paper"]
 [ext_resource type="Texture2D" uid="uid://cpi6tstota0ou" path="res://assets/textures/greyford_tavern/rainy_cold_window.png" id="18_tex_window"]
-[ext_resource type="Script" uid="uid://chdd65bcnql7h" path="res://scripts/gameplay/TavernArtAssembly.gd" id="19_art_assembly"]
+[ext_resource type="Script" uid="uid://bc8ypvalkvrwo" path="res://scripts/gameplay/TavernArtAssembly.gd" id="19_art_assembly"]
 [ext_resource type="PackedScene" uid="uid://d32eyd8lruxk6" path="res://assets/meshy/greyford_tavern/greyford_guard_walk.glb" id="20_guard_walk_glb"]
 [ext_resource type="Script" uid="uid://bru0greifj1fd" path="res://scripts/gameplay/GuardWalkAnim.gd" id="21_guard_walk_anim"]
+[ext_resource type="Script" uid="uid://qcsxlvpc3d0u" path="res://scripts/gameplay/WaitressPatrol.gd" id="24_waitress"]
+[ext_resource type="PackedScene" uid="uid://diherycdfuhhe" path="res://assets/meshy/greyford_tavern/waitress.glb" id="25_waitress_glb"]
+[ext_resource type="PackedScene" uid="uid://boohtdwnpfbyb" path="res://assets/meshy/greyford_tavern/drunk_sailor.glb" id="26_drunk_glb"]
+[ext_resource type="PackedScene" uid="uid://cst3syya802i0" path="res://assets/meshy/greyford_tavern/merchant_patron.glb" id="27_merchant_glb"]
+[ext_resource type="PackedScene" uid="uid://ciyjn68ny6trg" path="res://assets/meshy/greyford_tavern/old_woman_patron.glb" id="28_oldwoman_glb"]
 
 [sub_resource type="Environment" id="Environment_tavern"]
 background_mode = 1
 background_color = Color(0.025, 0.03, 0.035, 1)
 ambient_light_source = 2
-ambient_light_color = Color(0.38, 0.44, 0.50, 1)
+ambient_light_color = Color(0.38, 0.44, 0.5, 1)
 ambient_light_energy = 4.5
 fog_enabled = true
 fog_light_color = Color(0.24, 0.28, 0.33, 1)
@@ -55,6 +55,11 @@ size = Vector3(17.6, 3.2, 0.55)
 [sub_resource type="BoxShape3D" id="BoxShape3D_boundary_side"]
 size = Vector3(0.55, 3.2, 13.6)
 
+[sub_resource type="StandardMaterial3D" id="Mat_smoked_plaster"]
+albedo_color = Color(0.58, 0.64, 0.62, 1)
+albedo_texture = ExtResource("12_tex_plaster")
+roughness = 0.92
+
 [sub_resource type="StandardMaterial3D" id="Mat_dark_wood"]
 albedo_color = Color(0.55, 0.38, 0.22, 1)
 albedo_texture = ExtResource("10_tex_dark_wood")
@@ -64,14 +69,9 @@ roughness = 0.9
 material = SubResource("Mat_dark_wood")
 size = Vector3(0.16, 0.85, 0.16)
 
-[sub_resource type="StandardMaterial3D" id="Mat_smoked_plaster"]
-albedo_color = Color(0.58, 0.64, 0.62, 1)
-albedo_texture = ExtResource("12_tex_plaster")
-roughness = 0.92
-
 [sub_resource type="BoxMesh" id="BoxMesh_board"]
 material = SubResource("Mat_dark_wood")
-size = Vector3(1.8, 1.2, 0.08)
+size = Vector3(1.8, 1.2, 0.001)
 
 [sub_resource type="StandardMaterial3D" id="Mat_soot_wood"]
 albedo_color = Color(0.42, 0.31, 0.22, 1)
@@ -232,36 +232,32 @@ environment = SubResource("Environment_tavern")
 
 [node name="ColdWindowLight" type="DirectionalLight3D" parent="." unique_id=1930933333]
 transform = Transform3D(0.819152, -0.286788, 0.496732, 0, 0.866025, 0.5, -0.573576, -0.409576, 0.709406, 0, 4, 0)
-light_color = Color(0.55, 0.68, 0.80, 1)
+light_color = Color(0.55, 0.68, 0.8, 1)
 light_energy = 2.1
 shadow_enabled = true
 
 [node name="WindowColdSpill1" type="OmniLight3D" parent="." unique_id=1930933401]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9, 2.0, -2.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9, 2, -2.2)
 light_color = Color(0.55, 0.68, 0.82, 1)
 light_energy = 2.6
-shadow_enabled = false
 omni_range = 7.5
 
 [node name="WindowColdSpill2" type="OmniLight3D" parent="." unique_id=1930933402]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9, 2.0, 2.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9, 2, 2.4)
 light_color = Color(0.55, 0.68, 0.82, 1)
 light_energy = 2.6
-shadow_enabled = false
 omni_range = 7.5
 
 [node name="WindowColdSpillRight" type="OmniLight3D" parent="." unique_id=1930933403]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9, 2.0, 0.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9, 2, 0.2)
 light_color = Color(0.52, 0.64, 0.78, 1)
 light_energy = 2.0
-shadow_enabled = false
 omni_range = 6.5
 
 [node name="HallCeilingFill" type="OmniLight3D" parent="." unique_id=1930933404]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2.6, 0.4)
+transform = Transform3D(4.551935, 0, 0, 0, 4.551935, 0, 0, 0, 4.551935, 0.5, 2.6, 0.4)
 light_color = Color(0.46, 0.54, 0.62, 1)
 light_energy = 1.4
-shadow_enabled = false
 omni_range = 11.0
 
 [node name="BarLanternLight" type="OmniLight3D" parent="." unique_id=1653638063]
@@ -279,8 +275,8 @@ shadow_enabled = true
 omni_range = 3.6
 
 [node name="Player" parent="." unique_id=1940649330 instance=ExtResource("2_player")]
-visible = false
 transform = Transform3D(0.92388, 0, -0.382683, 0, 1, 0, 0.382683, 0, 0.92388, 0.2, 1, 4.2)
+visible = false
 
 [node name="ArtAssembly" type="Node3D" parent="." unique_id=1622492634]
 script = ExtResource("19_art_assembly")
@@ -322,8 +318,8 @@ metadata/note = "Visible Meshy GLB layer; primitive meshes and collision shapes 
 transform = Transform3D(3.2476, 0, -0.2842, 0, 1.115, 0, 0.0811, 0, 0.9264, -3.1, 0.6, -3.35)
 
 [node name="MeshyCreakingSign" parent="MeshyAssets" unique_id=1207522806 instance=ExtResource("7_sign_glb")]
-visible = false
 transform = Transform3D(0.68, 0, 0, 0, 0.68, 0, 0, 0, 0.68, -6.65, 2.15, 4.75)
+visible = false
 
 [node name="Architecture" type="Node3D" parent="." unique_id=783882590]
 metadata/art_reference = "007_p03 Ervan innkeeper art: dark smoked wood, blue-gray haze, amber lantern pools, cluttered old tavern interior."
@@ -639,7 +635,7 @@ text = "ель / юшка / нічліг"
 font_size = 18
 
 [node name="SmokeHazeCard" type="MeshInstance3D" parent="WallProps" unique_id=1702991979]
-transform = Transform3D(5.6, 0, 0, 0, 1.2, 0, 0, 0, 0.04, -0.6, 2.05, -1.8)
+transform = Transform3D(5.6, 0, 0, 0, 1.2, 0, 0, 0, 0.04, -0.6, 2.05, -1.80158)
 material_override = SubResource("Mat_smoke_haze")
 mesh = SubResource("BoxMesh_board")
 
@@ -828,31 +824,31 @@ shape = SubResource("SphereShape3D_interaction")
 
 [node name="Body" type="MeshInstance3D" parent="NPCs/GreyfordGuard" unique_id=1473619959]
 visible = false
-mesh = SubResource("CapsuleMesh_npc")
 material_override = SubResource("Mat_leather_apron")
+mesh = SubResource("CapsuleMesh_npc")
 metadata/fallback_note = "Blockout guard who enters with the letter before the Ervan handoff."
 
-[node name="GuardHelmet" type="MeshInstance3D" parent="NPCs/GreyfordGuard" unique_id=9473619959]
+[node name="GuardHelmet" type="MeshInstance3D" parent="NPCs/GreyfordGuard" unique_id=883685367]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
 visible = false
-mesh = SubResource("SphereMesh_bottle")
 material_override = SubResource("Mat_metal")
+mesh = SubResource("SphereMesh_bottle")
 
-[node name="GuardShoulderL" type="MeshInstance3D" parent="NPCs/GreyfordGuard" unique_id=8473619959]
+[node name="GuardShoulderL" type="MeshInstance3D" parent="NPCs/GreyfordGuard" unique_id=-116314633]
 transform = Transform3D(0.6, 0, 0, 0, 0.3, 0, 0, 0, 0.4, -0.35, 0.7, 0)
 visible = false
-mesh = SubResource("BoxMesh_leg")
 material_override = SubResource("Mat_metal")
+mesh = SubResource("BoxMesh_leg")
 
-[node name="GuardShoulderR" type="MeshInstance3D" parent="NPCs/GreyfordGuard" unique_id=7473619959]
+[node name="GuardShoulderR" type="MeshInstance3D" parent="NPCs/GreyfordGuard" unique_id=-1116314633]
 transform = Transform3D(0.6, 0, 0, 0, 0.3, 0, 0, 0, 0.4, 0.35, 0.7, 0)
 visible = false
-mesh = SubResource("BoxMesh_leg")
 material_override = SubResource("Mat_metal")
+mesh = SubResource("BoxMesh_leg")
 
 [node name="CarriedLetter" type="MeshInstance3D" parent="NPCs/GreyfordGuard" unique_id=1690834820]
-visible = false
 transform = Transform3D(0.34, 0, 0, 0, 0.28, -0.18, 0, 0.1, 0.48, 0.12, 0.38, 0.34)
+visible = false
 mesh = SubResource("BoxMesh_letter")
 metadata/canon_note = "Scene start state: the sealed letter is with the guard, not floating at the bar and not in Ervan's hands yet."
 
@@ -871,22 +867,28 @@ script = ExtResource("21_guard_walk_anim")
 metadata/source_task_id = "019f3382-ea26-7458-9fcd-e602109c1247"
 metadata/note = "Rigged guard with walk animation. Replaces blockout sphere+shoulders."
 
+[node name="Waitress" type="Area3D" parent="NPCs" unique_id=995981913]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1, 0.6, -3.35)
+script = ExtResource("24_waitress")
+metadata/role = "реальна Meshy GLB офіціантка; патрулює між баром і столами"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/Waitress" unique_id=1660714332]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="MeshyWaitressModel" parent="NPCs/Waitress" unique_id=813897424 instance=ExtResource("25_waitress_glb")]
+transform = Transform3D(0.68, 0, 0, 0, 0.92, 0, 0, 0, 0.76, 0, 0.85, 0)
+metadata/source = "Meshy economical NPC pipeline, GLB replaces rejected primitive BuildWaitress"
+
+[node name="NameLabel" type="Label3D" parent="NPCs/Waitress" unique_id=83581867]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
+modulate = Color(0.64, 0.56, 0.42, 1)
+text = "офіціантка"
+font_size = 18
 
 [node name="LetterHandoffStaging" type="Node" parent="." unique_id=604755686]
 script = ExtResource("9_letter_staging")
 guard_path = NodePath("../NPCs/GreyfordGuard")
 guard_start_marker_path = NodePath("../Staging/GuardStart")
-
-[node name="Waitress" type="Node3D" parent="NPCs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1, 0.4, -3.35)
-script = ExtResource("25_build_waitress")
-guard_handoff_marker_path = NodePath("../Staging/GuardHandoff")
-guard_letter_path = NodePath("../NPCs/GreyfordGuard/CarriedLetter")
-ervan_letter_path = NodePath("../NPCs/Ervan/HeldLetter")
-ervan_letter_closeup_marker_path = NodePath("../Staging/ErvanLetterCloseup")
-wiping_towel_path = NodePath("../NPCs/Ervan/WipingTowel")
-shoulder_towel_path = NodePath("../NPCs/Ervan/ShoulderTowel")
-ervan_model_path = NodePath("../NPCs/Ervan/MeshyErvanModel")
 
 [node name="Staging" type="Node3D" parent="." unique_id=1059468539]
 metadata/scene_beat = "Start: letter is with guard. Guard approaches Ervan. Dialogue handoff reveals Ervan with the letter; Ervan lowers it and asks the question."
@@ -923,7 +925,7 @@ prompt = "Вийти до кварталу ремісників"
 shape = SubResource("SphereShape3D_interaction")
 
 [node name="ToStreetPortal" type="Area3D" parent="Portals" unique_id=900356058]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 6.0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 6)
 script = ExtResource("3_portal")
 destination_scene = "res://scenes/locations/greyford/GreyfordStreet.tscn"
 destination_location = "greyford_street"
@@ -933,24 +935,46 @@ prompt = "Вийти на вулицю Грейфорда"
 shape = SubResource("SphereShape3D_interaction")
 
 [node name="BackgroundPatrons" type="Node3D" parent="." unique_id=1170687592]
+metadata/role = "Місцеві за столами: реальні Meshy GLB, не primitive/capsule placeholders. Пози занижені до лавок, повернуті до столів."
 
-[node name="DrunkPatron" type="Node3D" parent="BackgroundPatrons"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.4, 0.5)
-script = ExtResource("26_build_patron")
-[node name="Label" type="Label3D" parent="BackgroundPatrons/DrunkPatron"]
-transform = Transform3D(1,0,0,0,1,0,0,0,1,0,1.6,0)
-modulate = Color(0.58,0.5,0.38,1); text = "п'яний"; font_size=18
+[node name="DrunkPatron" type="Node3D" parent="BackgroundPatrons" unique_id=394213067]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -2.25, 0.18, 1.02)
+metadata/pose = "пересаджений на лаву біля лівого столу: низько, ближче до лавки, корпус нахилений до кухля"
 
-[node name="Trader" type="Node3D" parent="BackgroundPatrons"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.4, 1.5)
-script = ExtResource("27_build_trader")
-[node name="Label" type="Label3D" parent="BackgroundPatrons/Trader"]
-transform = Transform3D(1,0,0,0,1,0,0,0,1,0,1.6,0)
-modulate = Color(0.58,0.5,0.38,1); text = "торговець"; font_size=18
+[node name="MeshyDrunkSailorModel" parent="BackgroundPatrons/DrunkPatron" unique_id=2127346537 instance=ExtResource("26_drunk_glb")]
+transform = Transform3D(0.58, 0, 0, 0, 0.5, -0.18, 0, 0.1, 0.58, 0, 0.38, 0)
+metadata/source = "Meshy GLB drunk_sailor.glb"
 
-[node name="OldWoman" type="Node3D" parent="BackgroundPatrons"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0, 0.4, -1.0)
-script = ExtResource("28_build_oldwoman")
-[node name="Label" type="Label3D" parent="BackgroundPatrons/OldWoman"]
-transform = Transform3D(1,0,0,0,1,0,0,0,1,0,1.6,0)
-modulate = Color(0.58,0.5,0.38,1); text = "старенька"; font_size=18
+[node name="Label" type="Label3D" parent="BackgroundPatrons/DrunkPatron" unique_id=559890979]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45, 0)
+modulate = Color(0.58, 0.5, 0.38, 1)
+text = "п'яний"
+font_size = 18
+
+[node name="MerchantPatron" type="Node3D" parent="BackgroundPatrons" unique_id=1138209910]
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 5.95, 0.18, 1.42)
+metadata/pose = "пересаджений на BenchByWallB біля TableByWall: низько, обличчям до столу/інших гостей, не стоїть поруч"
+
+[node name="MeshyMerchantModel" parent="BackgroundPatrons/MerchantPatron" unique_id=608019610 instance=ExtResource("27_merchant_glb")]
+transform = Transform3D(0.6, 0, 0, 0, 0.52, -0.14, 0, 0.08, 0.6, 0, 0.39, 0)
+metadata/source = "Meshy GLB merchant_patron.glb"
+
+[node name="Label" type="Label3D" parent="BackgroundPatrons/MerchantPatron" unique_id=44863095]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45, 0)
+modulate = Color(0.58, 0.5, 0.38, 1)
+text = "торговець"
+font_size = 18
+
+[node name="OldWomanPatron" type="Node3D" parent="BackgroundPatrons" unique_id=733881176]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 5.08, 0.16, -0.28)
+metadata/pose = "пересаджена на BenchByWallA біля TableByWall: нижча за інших, корпус трохи нахилений до столу, не висить"
+
+[node name="MeshyOldWomanModel" parent="BackgroundPatrons/OldWomanPatron" unique_id=1840206495 instance=ExtResource("28_oldwoman_glb")]
+transform = Transform3D(0.54, 0, 0, 0, 0.47, -0.13, 0, 0.07, 0.54, 0, 0.35, 0)
+metadata/source = "Meshy GLB old_woman_patron.glb"
+
+[node name="Label" type="Label3D" parent="BackgroundPatrons/OldWomanPatron" unique_id=641109848]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
+modulate = Color(0.58, 0.5, 0.38, 1)
+text = "старенька"
+font_size = 18

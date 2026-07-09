@@ -1,22 +1,53 @@
 extends Node3D
-# Створює офіціантку з примітивів + власні матеріали
+# BuildHuman — будує людиноподібну фігуру з циліндрів + сфери (пропорційно)
 
-func _ready():
-	var skin = StandardMaterial3D.new(); skin.albedo_color=Color(0.82,0.65,0.48); skin.roughness=0.75
-	var hair = StandardMaterial3D.new(); hair.albedo_color=Color(0.15,0.08,0.04); hair.roughness=0.85
-	var dress = StandardMaterial3D.new(); dress.albedo_color=Color(0.25,0.30,0.45); dress.roughness=0.80
-	var apron = StandardMaterial3D.new(); apron.albedo_color=Color(0.72,0.68,0.60); apron.roughness=0.88
+func _ready() -> void:
+	build(0.82, 0.65, 0.48,  # skin
+	      0.15, 0.08, 0.04,  # hair
+	      0.25, 0.30, 0.45,  # top
+	      0.72, 0.68, 0.60,  # apron
+	      0.28, 0.18, 0.08)  # tray
+
+func build(skin_r, skin_g, skin_b, hair_r, hair_g, hair_b, top_r, top_g, top_b, apr_r, apr_g, apr_b, tray_r, tray_g, tray_b):
+	# === ГОЛОВА ===
+	_add_sph(0, 1.62, 0.17, skin_r, skin_g, skin_b)
+	# Волосся
+	_add_box(0, 1.62, -0.06, 0.24, 0.30, 0.22, hair_r, hair_g, hair_b)
 	
-	_add_sphere(Vector3(0,1.55,0),0.18,skin)      # голова
-	_add_box(Vector3(0,1.55,-0.05),Vector3(0.20,0.28,0.22),hair) # волосся
-	_add_cyl(Vector3(0,1.15,0),0.16,0.7,dress)     # тіло
-	_add_box(Vector3(0,1.0,0.1),Vector3(0.18,0.45,0.06),apron) # фартух
-	for s in[-1,1]: _add_cyl(Vector3(s*0.18,1.4,0),0.04,0.55,skin) # руки
-	var tray_m=StandardMaterial3D.new(); tray_m.albedo_color=Color(0.28,0.18,0.08); tray_m.roughness=0.82
-	_add_box(Vector3(0.2,1.1,0.25),Vector3(0.25,0.04,0.18),tray_m) # таця
-	for s in[-1,1]: _add_cyl(Vector3(0.2+s*0.06,1.13,0.25),0.03,0.08,tray_m)
-	for s in[-1,1]: _add_cyl(Vector3(s*0.06,0.55,0),0.05,0.5,StandardMaterial3D.new())
+	# === ШИЯ ===
+	_add_cyl(0, 1.40, 0.06, 0.12, skin_r, skin_g, skin_b)
+	
+	# === ТОРС ===
+	_add_cyl(0, 1.10, 0.18, 0.65, top_r, top_g, top_b)
+	
+	# === РУКИ ===
+	_add_cyl(0.22, 1.40, 0.05, 0.55, skin_r, skin_g, skin_b)
+	_add_cyl(-0.22, 1.40, 0.05, 0.55, skin_r, skin_g, skin_b)
+	
+	# === НОГИ ===
+	_add_cyl(0.08, 0.45, 0.06, 0.65, 0.15, 0.12, 0.10)
+	_add_cyl(-0.08, 0.45, 0.06, 0.65, 0.15, 0.12, 0.10)
+	
+	# === ФАРТУХ ===
+	_add_box(0, 0.85, 0.14, 0.24, 0.50, 0.06, apr_r, apr_g, apr_b)
+	
+	# === ТАЦЯ ===
+	_add_box(0.28, 0.95, 0.22, 0.30, 0.04, 0.20, tray_r, tray_g, tray_b)
 
-func _add_box(pos,size,mat): var mi=MeshInstance3D.new(); mi.mesh=BoxMesh.new(); mi.mesh.size=size; mi.mesh.material=mat; mi.position=pos; add_child(mi)
-func _add_cyl(pos,r,h,mat): var mi=MeshInstance3D.new(); mi.mesh=CylinderMesh.new(); mi.mesh.top_radius=r; mi.mesh.bottom_radius=r; mi.mesh.height=h; mi.mesh.material=mat; mi.position=pos; add_child(mi)
-func _add_sphere(pos,r,mat): var mi=MeshInstance3D.new(); mi.mesh=SphereMesh.new(); mi.mesh.radius=r; mi.mesh.height=r*2; mi.mesh.material=mat; mi.position=pos; add_child(mi)
+func _add_sph(x, y, r, cr, cg, cb):
+	var mi := MeshInstance3D.new()
+	var m := SphereMesh.new(); m.radius = r; m.height = r*2
+	var mat := StandardMaterial3D.new(); mat.albedo_color = Color(cr,cg,cb); mat.roughness = 0.7
+	m.material = mat; mi.mesh = m; mi.position = Vector3(x,y,0); add_child(mi)
+
+func _add_cyl(x, y, r, h, cr, cg, cb):
+	var mi := MeshInstance3D.new()
+	var m := CylinderMesh.new(); m.top_radius = r; m.bottom_radius = r; m.height = h
+	var mat := StandardMaterial3D.new(); mat.albedo_color = Color(cr,cg,cb); mat.roughness = 0.8
+	m.material = mat; mi.mesh = m; mi.position = Vector3(x,y,0); add_child(mi)
+
+func _add_box(x, y, z, sx, sy, sz, cr, cg, cb):
+	var mi := MeshInstance3D.new()
+	var m := BoxMesh.new(); m.size = Vector3(sx, sy, sz)
+	var mat := StandardMaterial3D.new(); mat.albedo_color = Color(cr,cg,cb); mat.roughness = 0.85
+	m.material = mat; mi.mesh = m; mi.position = Vector3(x,y,z); add_child(mi)

@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://vxse7n3bsopu"
-path="res://.godot/imported/tessa_merchant_0.jpg-e3f6773023d876f1e8e69ebf46c38c2a.ctex"
+path.s3tc="res://.godot/imported/tessa_merchant_0.jpg-e3f6773023d876f1e8e69ebf46c38c2a.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "13185a7c3887a175916be12d5da7d08f"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/meshy/valkorn/tessa_merchant_0.jpg"
-dest_files=["res://.godot/imported/tessa_merchant_0.jpg-e3f6773023d876f1e8e69ebf46c38c2a.ctex"]
+dest_files=["res://.godot/imported/tessa_merchant_0.jpg-e3f6773023d876f1e8e69ebf46c38c2a.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -40,4 +41,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

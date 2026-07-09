@@ -105,7 +105,7 @@ func load_data(data: Dictionary) -> void:
 	"""Завантажити дані репутації"""
 	for faction in data:
 		if factions.has(faction):
-			factions[faction] = data[faction]
+			factions[faction] = clamp(int(data[faction]), REP_MIN, REP_MAX)
 
 # Приклад використання в квесті:
 # ReputationManager.modify_reputation("greyford", 5)  # +5 до Грейфорда

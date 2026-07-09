@@ -37,8 +37,8 @@ func deal_damage(attacker: Node, target: Node, base_damage: float, damage_type: 
 		return
 	
 	# Отримати статистику цілі
-	var defense: float = target.get("defense") if target.has("defense") else 0.0
-	var resistances: Dictionary = target.get("resistances") if target.has("resistances") else {}
+	var defense: float = _get_float_property(target, "defense", 0.0)
+	var resistances: Dictionary = _get_dictionary_property(target, "resistances", {})
 	
 	# Розрахувати фінальний урон
 	var final_damage: float = calculate_damage(base_damage, defense, damage_type, resistances)
@@ -59,6 +59,25 @@ func deal_damage(attacker: Node, target: Node, base_damage: float, damage_type: 
 	# Перевірити смерть
 	if target.has_method("is_dead") and target.is_dead():
 		on_entity_died(target)
+
+func _has_property(node: Node, property_name: String) -> bool:
+	for prop in node.get_property_list():
+		if str(prop.get("name", "")) == property_name:
+			return true
+	return false
+
+func _get_float_property(node: Node, property_name: String, default_value: float) -> float:
+	if not _has_property(node, property_name):
+		return default_value
+	return float(node.get(property_name))
+
+func _get_dictionary_property(node: Node, property_name: String, default_value: Dictionary) -> Dictionary:
+	if not _has_property(node, property_name):
+		return default_value
+	var value: Variant = node.get(property_name)
+	if typeof(value) != TYPE_DICTIONARY:
+		return default_value
+	return value as Dictionary
 
 func calculate_damage(base: float, defense: float, damage_type: int, resistances: Dictionary) -> float:
 	"""Розрахувати фінальний урон з урахуванням захисту"""

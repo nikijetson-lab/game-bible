@@ -24,9 +24,11 @@ func _ready() -> void:
 	]
 	
 	for shop in shops:
-		var p := shop.pos
+		var p: Vector3 = shop["pos"]
+		var shop_name: String = shop["name"]
+		var shop_tool: String = shop["tool"]
 		# Фасад
-		var facade := _box(Vector3(3,3.5,0.3), plaster if shop.name in ["Різьбяр","Кушнір","Столяр"] else timber)
+		var facade := _box(Vector3(3,3.5,0.3), plaster if shop_name in ["Різьбяр","Кушнір","Столяр"] else timber)
 		facade.position = p; root.add_child(facade)
 		# Двері
 		var door := _box(Vector3(0.8,2.2,0.1), wood)
@@ -35,9 +37,9 @@ func _ready() -> void:
 		var sign := _box(Vector3(1.5,0.3,0.08), sign_wood)
 		sign.position = p + Vector3(0,1.6,0.2); root.add_child(sign)
 		# Інструмент біля входу
-		if shop.tool == "chisel":
+		if shop_tool == "chisel":
 			var ch := _box(Vector3(0.03,0.03,0.4), iron); ch.position = p+Vector3(0.5,0.3,0.3); root.add_child(ch)
-		elif shop.tool == "hammer":
+		elif shop_tool == "hammer":
 			var hm := _box(Vector3(0.1,0.08,0.4), iron); hm.position = p+Vector3(0.4,0.4,0.3); root.add_child(hm)
 		# Тирса/стружка біля дверей
 		for i in 10:

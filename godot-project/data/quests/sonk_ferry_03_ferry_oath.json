@@ -91,5 +91,243 @@
   "leads_to": [
     "hazemoor_02_ashes_under_chapel",
     "sonk_ferry_04_quota_knife"
+  ],
+  "start_location": "sonk_ferry",
+  "structure": {
+    "acts": [
+      {
+        "id": "open_rift",
+        "title": "Акт 1 — Відкритий розрив",
+        "summary": "Тіло поромника на причалі. Тован і Нера — публічна конфронтація. Герой обирає: стати арбітром, почати з тіла, або говорити з Келмом."
+      },
+      {
+        "id": "investigation",
+        "title": "Акт 2 — Розслідування саботажу",
+        "summary": "Герой збирає докази (evidence 0-5): перерізаний канат, слід човна, специфічний вузол, чоботи, свідки."
+      },
+      {
+        "id": "political",
+        "title": "Акт 3 — Політична розвилка",
+        "summary": "Герой обирає політичну стратегію: тимчасове перемир'я, підтримка Тована, підтримка Нери, третій шлях, або політичне використання доказів."
+      },
+      {
+        "id": "night_council",
+        "title": "Акт 4 — Нічна рада",
+        "summary": "Факели, чорна вода, гнилі дошки. Герой посередині між Тованом і Нерою на пошкодженому поромному доку. Фінальний вибір A/B/V/G."
+      }
+    ],
+    "kelm_timer_days": 4,
+    "kelm_timer_auto": "G",
+    "phase_order": [
+      "open_rift",
+      "investigation",
+      "political",
+      "night_council"
+    ]
+  },
+  "objectives": [
+    {
+      "id": "find_body",
+      "description": "Виявити тіло поромника на причалі",
+      "type": "area_trigger",
+      "target": "ferry_dock_body",
+      "location": "sonk_ferry_dock",
+      "required": true,
+      "act": "open_rift"
+    },
+    {
+      "id": "open_rift_choice",
+      "description": "Обрати перший крок: стати арбітром, дослідити тіло, або поговорити з Келмом",
+      "type": "choice",
+      "target": "open_rift_approach",
+      "location": "sonk_ferry_dock",
+      "required": true,
+      "act": "open_rift",
+      "options": [
+        "arbiter",
+        "investigate_body",
+        "talk_to_kelm"
+      ],
+      "unlocks": [
+        "clue_cut_rope",
+        "clue_boat_track",
+        "clue_wrist_knot",
+        "clue_mud_boots",
+        "clue_witness_silence"
+      ]
+    },
+    {
+      "id": "clue_cut_rope",
+      "description": "Дослідити перерізаний канат (рівний зріз — гострий інструмент, малий розмір)",
+      "type": "investigate",
+      "target": "cut_rope",
+      "location": "sonk_ferry_dock",
+      "required": false,
+      "optional": true,
+      "act": "investigation",
+      "investigation_clue": true,
+      "evidence_points": 1
+    },
+    {
+      "id": "clue_boat_track",
+      "description": "Знайти слід малого човна з очерету вночі",
+      "type": "investigate",
+      "target": "boat_track",
+      "location": "sonk_ferry_shore",
+      "required": false,
+      "optional": true,
+      "act": "investigation",
+      "investigation_clue": true,
+      "evidence_points": 1
+    },
+    {
+      "id": "clue_wrist_knot",
+      "description": "Розпізнати специфічний вузол — хтось із болота",
+      "type": "investigate",
+      "target": "wrist_knot",
+      "location": "sonk_ferry_dock",
+      "required": false,
+      "optional": true,
+      "act": "investigation",
+      "investigation_clue": true,
+      "evidence_points": 1
+    },
+    {
+      "id": "clue_mud_boots",
+      "description": "Знайти чоботи на бруді — малий розмір",
+      "type": "investigate",
+      "target": "mud_boots",
+      "location": "sonk_ferry_shore",
+      "required": false,
+      "optional": true,
+      "act": "investigation",
+      "investigation_clue": true,
+      "evidence_points": 1
+    },
+    {
+      "id": "clue_witness_silence",
+      "description": "Помітити: троє поромників уникають дивитись на канат",
+      "type": "observe",
+      "target": "witness_silence",
+      "location": "sonk_ferry_dock",
+      "required": false,
+      "optional": true,
+      "act": "investigation",
+      "investigation_clue": true,
+      "evidence_points": 1
+    },
+    {
+      "id": "political_choice",
+      "description": "Обрати політичну стратегію: перемир'я, Тован, Нера, третій шлях або політичне використання доказів",
+      "type": "choice",
+      "target": "political_strategy",
+      "location": "sonk_ferry",
+      "required": true,
+      "act": "political",
+      "options": [
+        "temporary_truce",
+        "support_tovan",
+        "support_nera",
+        "third_way",
+        "use_evidence_politically"
+      ],
+      "unlocks": [
+        "night_council"
+      ]
+    },
+    {
+      "id": "night_council",
+      "description": "Взяти участь у Нічній раді на пошкодженому поромному доку",
+      "type": "area_trigger",
+      "target": "damaged_ferry_dock",
+      "location": "damaged_ferry_dock",
+      "required": true,
+      "act": "night_council",
+      "atmosphere": "torches_black_water_rotting_planks",
+      "unlocks": [
+        "resolve_ferry_oath"
+      ]
+    },
+    {
+      "id": "resolve_ferry_oath",
+      "description": "Винести вердикт: Рада Тована (A), Контроль Нери (B), Структура гравця (V), або Келм захоплює (G — авто на день 5)",
+      "type": "choice",
+      "target": "ferry_oath_resolution",
+      "location": "sonk_ferry",
+      "required": true,
+      "act": "night_council",
+      "choice_ref": "ferry_oath_resolution"
+    }
+  ],
+  "completion_conditions": {
+    "required_objectives": [
+      "find_body",
+      "open_rift_choice",
+      "political_choice",
+      "night_council",
+      "resolve_ferry_oath"
+    ],
+    "evidence_minimum_for_quality": 3,
+    "evidence_pool": [
+      "clue_cut_rope",
+      "clue_boat_track",
+      "clue_wrist_knot",
+      "clue_mud_boots",
+      "clue_witness_silence"
+    ],
+    "kelm_timer_days": 4,
+    "kelm_timer_auto_outcome": "G",
+    "resolution_choice": "ferry_oath_resolution",
+    "unlocks_routes": [
+      "route_to_hazemoor_chapel",
+      "route_to_sonk_ferry_tribunal"
+    ]
+  },
+  "resolution_choice": {
+    "id": "ferry_oath_resolution",
+    "prompt": "Хто контролюватиме поромні маршрути?",
+    "options": [
+      {
+        "id": "A",
+        "resolution": "A",
+        "text": "Рада Тована",
+        "desc": "Маршрути стабілізуються. Тован — найвпливовіший.",
+        "set_flag": "poromna_outcome_tovan_council",
+        "set_variable": "poromna_result",
+        "value": "A"
+      },
+      {
+        "id": "B",
+        "resolution": "B",
+        "text": "Розосереджений контроль",
+        "desc": "Незалежні переправи. Нера тримає лінію.",
+        "set_flag": "poromna_outcome_nera_control",
+        "set_variable": "poromna_result",
+        "value": "B"
+      },
+      {
+        "id": "V",
+        "resolution": "V",
+        "text": "Структура гравця",
+        "desc": "Ротаційна модель під Вартовийом.",
+        "set_flag": "poromna_outcome_player_structure",
+        "set_variable": "poromna_result",
+        "value": "V"
+      },
+      {
+        "id": "G",
+        "resolution": "G",
+        "text": "Адміністративне захоплення",
+        "desc": "Келм діє. Поромники стають службовцями.",
+        "set_flag": "poromna_outcome_kelm_takeover",
+        "set_variable": "poromna_result",
+        "value": "G",
+        "auto_on_timer_expiry": true
+      }
+    ]
+  },
+  "unlocks": [
+    "hazemoor_02_ashes_under_chapel",
+    "sonk_ferry_04_quota_knife"
   ]
 }

@@ -63,7 +63,7 @@ Historical alias table:
 
 ### 4. Mixed schemas
 
-Seven quests are currently structured/engine-ready with a top-level `objectives[]` list:
+Eight quests are currently structured/engine-ready with a top-level `objectives[]` list:
 
 - `greyford_01_missing_recipient`
 - `greyford_side_01_witch_trouble`
@@ -72,6 +72,7 @@ Seven quests are currently structured/engine-ready with a top-level `objectives[
 - `tykhy_shelest_01`
 - `sonk_ferry_01_hunger_from_below`
 - `sonk_ferry_02_salt_in_book`
+- `sonk_ferry_03_ferry_oath`
 
 Everything else is prose/design structure (`threads`, `phases`, `acts`, `branches`, custom fields). Those quests need conversion into machine-readable objectives, triggers, conditions, and resolutions before they can be fully playable.
 
@@ -103,7 +104,7 @@ Legend:
 | 5 | `tykhy_shelest_01` | 1 | Тихий Шелест | structured | Muri settlement; Rufin/Mia/Kaen truth; one-shot location | no | no | UI, REP, INV, CUT, VO | Converted to 13 top-level objectives with thread grouping preserved. Needs runtime wiring: one-shot lockout, Mia scripted decision, route_to_sonk_ferry. |
 | 6 | `sonk_ferry_01_hunger_from_below` | 1 | Голод знизу | structured | Grain convoy, corruption, dead Pact, flooded chamber | yes | no | UI, REP, COMBAT, INV, CUT, VO | Converted to 10 top-level objectives + resolution choice A/B/C/D (canonical=C). Needs runtime wiring: investigation pool, reed_wraiths encounter, faction shift hooks. |
 | 7 | `sonk_ferry_02_salt_in_book` | 1 | Сіль у книзі | structured | Medicine sabotage and aid-network compromise | no | no | UI, REP, CUT, VO | Converted to 12 objectives across 4 acts. Resolution choice A/B/C/D. Gate: hunger_outcome_local_deal flag from sonk_ferry_01. Needs runtime wiring. |
-| 8 | `sonk_ferry_03_ferry_oath` | 1 | Поромна присяга | prose:phases | Ferry murder, Tovan/Nera/Kelm political control | no | yes | UI, REP, CUT, VO | Implement evidence counter 0-5, Kelm day timer, night council, four political resolutions. |
+| 8 | `sonk_ferry_03_ferry_oath` | 1 | Поромна присяга | structured | Ferry murder, Tovan/Nera/Kelm political control | no | yes | UI, REP, CUT, VO | Converted to 10 objectives. Evidence pool 0-5, Kelm 4-day timer auto→G, night council with 4 resolutions A/B/V/G. Needs runtime wiring. |
 | 9 | `hazemoor_02_ashes_under_chapel` | 1 | Попіл під каплицею | prose:phases | Flooded chapel body, reversed ash sign, ritual disturbance | no | yes | UI, REP, CUT, VO | Implement Rein 3-day timer, disturbance 0-5, archive trust, ritual prep bonuses and four resolutions. |
 | 10 | `sonk_ferry_04_quota_knife` | 1 | Ніж квоти | prose | Administrative tribunal and route to Valkorn | no | pressure formula | UI, REP, CUT, VO | Implement evidence/counter-evidence collection, tribunal formula, transit branch to Valkorn. |
 | 11 | `hazemoor_02_glade_and_mour` | 1 | Галявина і дух | prose:phases | Mour manifestation, Mia revelation, Order-symbol reveal, mount | no | no | UI, INV, CUT, VO | Major cinematic quest. Needs Mour manifestation, underwater vision, Mia state, mount unlock, artifact item. |
@@ -188,6 +189,6 @@ Legend:
 ## Immediate implementation order
 
 1. Keep `tools/validate_quest_canon.py . --strict` green.
-2. Continue prose conversion in canon order (`sonk_ferry_03_ferry_oath` next).
+2. Continue prose conversion in canon order (`hazemoor_02_ashes_under_chapel` next).
 4. Add quest graph smoke test to regular project checks.
 5. Only then continue building gameplay/UI/content, otherwise content will keep drifting.

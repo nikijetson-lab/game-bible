@@ -70,5 +70,182 @@
     "loen_reaction": "mobilizes_spies_creating_street_tension",
     "guild_master": "Albrecht_knows_more_supplies_Stetson"
   },
-  "leads_to": "valkorn_04_messenger_of_rufin"
+  "leads_to": "valkorn_04_messenger_of_rufin",
+  "start_location": "valkorn_trade_quarter",
+  "structure": {
+    "acts": [
+      {
+        "id": "recon",
+        "title": "Акт 1 — Розвідка складу",
+        "summary": "Брес знайшов склад. Герой проводить розвідку через доктрину: scout (патрулі), mediator (підкуплений вантажник), judge (публічні записи), lantern (присутність артефакту)."
+      },
+      {
+        "id": "approach",
+        "title": "Акт 2 — Підхід до Дамара",
+        "summary": "Герой обирає шлях: через Бреса, через гільдійного чиновника, або напряму."
+      },
+      {
+        "id": "negotiation",
+        "title": "Акт 3 — Розмова з Дамаром",
+        "summary": "Герой веде переговори: купити, сказати правду, погрожувати, запропонувати Орден як покупця, доповісти гільдії."
+      },
+      {
+        "id": "tessa_interrupt",
+        "title": "Акт 4 — Тесса і вибір",
+        "summary": "Тесса втручається: союзниця з власною метою (добре), конкурентка (нейтрально), саботаж (погано). Фінальний результат A/B/V/G."
+      }
+    ],
+    "phase_order": [
+      "recon",
+      "approach",
+      "negotiation",
+      "tessa_interrupt"
+    ]
+  },
+  "objectives": [
+    {
+      "id": "locate_warehouse",
+      "description": "Брес показує склад Торгової гільдії — де Дамар тримає артефакт",
+      "type": "scripted",
+      "target": "bres_intel",
+      "location": "valkorn_trade_quarter",
+      "required": true,
+      "act": "recon"
+    },
+    {
+      "id": "recon_warehouse",
+      "description": "Провести розвідку складу за доктриною: scout=патрулі, mediator=підкуплений вантажник, judge=публічні записи, lantern=присутність артефакту",
+      "type": "investigate",
+      "target": "warehouse_recon",
+      "location": "valkorn_trade_quarter",
+      "required": true,
+      "act": "recon",
+      "doctrine_approaches": {
+        "scout": "guard_patterns",
+        "mediator": "bribed_loader",
+        "judge": "public_records",
+        "lantern": "artifact_presence"
+      },
+      "unlocks": [
+        "approach_damar"
+      ]
+    },
+    {
+      "id": "approach_damar",
+      "description": "Обрати підхід до Дамара: через Бреса, через гільдійного чиновника, або напряму",
+      "type": "choice",
+      "target": "damar_approach",
+      "location": "valkorn_trade_quarter",
+      "required": true,
+      "act": "approach",
+      "options": [
+        "through_bres",
+        "through_guild_official",
+        "direct"
+      ],
+      "unlocks": [
+        "negotiate_damar"
+      ]
+    },
+    {
+      "id": "negotiate_damar",
+      "description": "Вести переговори з Дамаром: купити, сказати правду, погрожувати, запропонувати Орден як покупця, доповісти гільдії",
+      "type": "choice",
+      "target": "damar_negotiation",
+      "location": "valkorn_trade_quarter",
+      "required": true,
+      "act": "negotiation",
+      "options": [
+        "buy",
+        "tell_truth",
+        "threaten",
+        "offer_order_as_buyer",
+        "report_to_guild"
+      ],
+      "unlocks": [
+        "tessa_arrives"
+      ]
+    },
+    {
+      "id": "tessa_arrives",
+      "description": "Тесса втручається в угоду — її ставлення залежить від попередніх виборів",
+      "type": "scripted",
+      "target": "tessa_interrupt",
+      "location": "valkorn_trade_quarter",
+      "required": true,
+      "act": "tessa_interrupt",
+      "tessa_states": {
+        "good": "ally_with_own_goal",
+        "neutral": "competitor",
+        "bad": "sabotage"
+      },
+      "unlocks": [
+        "resolve_right_price"
+      ]
+    },
+    {
+      "id": "resolve_right_price",
+      "description": "Результат: Герой бере артефакт (A), Тесса бере (B), Гільдія конфіскує (V), Знищено/зникло (G)",
+      "type": "choice",
+      "target": "right_price_outcome",
+      "location": "valkorn_trade_quarter",
+      "required": true,
+      "act": "tessa_interrupt",
+      "choice_ref": "right_price_outcome"
+    }
+  ],
+  "completion_conditions": {
+    "required_objectives": [
+      "locate_warehouse",
+      "recon_warehouse",
+      "approach_damar",
+      "negotiate_damar",
+      "tessa_arrives",
+      "resolve_right_price"
+    ],
+    "resolution_choice": "right_price_outcome",
+    "canon_damar_source": "overheard_odrin_in_tavern",
+    "unlocks_route": "route_to_valkorn_messenger"
+  },
+  "resolution_choice": {
+    "id": "right_price_outcome",
+    "prompt": "Хто отримає артефакт?",
+    "options": [
+      {
+        "id": "A",
+        "resolution": "A",
+        "text": "Герой бере артефакт",
+        "desc": "Дамар продає. Артефакт у героя.",
+        "set_flag": "right_price_A_hero_has_artifact",
+        "effect": "artifact_in_hero_possession"
+      },
+      {
+        "id": "B",
+        "resolution": "B",
+        "text": "Тесса бере артефакт",
+        "desc": "Спізнився. Тесса ховає під підлогою.",
+        "set_flag": "right_price_B_tessa_has_artifact",
+        "effect": "tessa_hides_under_shop_floor_as_bargaining_chip"
+      },
+      {
+        "id": "V",
+        "resolution": "V",
+        "text": "У гільдії/адміністрації",
+        "desc": "Конфісковано системою.",
+        "set_flag": "right_price_V_guild_confiscated",
+        "effect": "confiscated_by_system"
+      },
+      {
+        "id": "G",
+        "resolution": "G",
+        "text": "Знищено/зникло",
+        "desc": "Дамар позбувся. Або Лоен втрутився.",
+        "set_flag": "right_price_G_destroyed_lost",
+        "effect": "damar_destroyed_or_loen_intervened"
+      }
+    ]
+  },
+  "unlocks": [
+    "valkorn_04_messenger_of_rufin"
+  ]
 }

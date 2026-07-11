@@ -6,33 +6,74 @@
   "episode": 1,
   "required_level": 1,
   "prerequisites": {
-    "quests_completed": ["hazemoor_01_path_through_swamp"]
+    "quests_completed": [
+      "hazemoor_01_path_through_swamp"
+    ]
   },
   "threads": {
     "rufin": {
       "title": "Той, хто знав дорогу",
       "key_npc": "varrik",
       "objectives": [
-        {"id": "ask_varrik", "description": "Запитати Варріка про Руфіна", "type": "talk", "target": "varrik"},
-        {"id": "find_glade", "description": "Знайти заборонену галявину", "type": "area_trigger", "target": "forbidden_glade"},
-        {"id": "find_rufin", "description": "Знайти Руфіна на галявині", "type": "talk", "target": "rufin_glade"}
+        {
+          "id": "ask_varrik",
+          "description": "Запитати Варріка про Руфіна",
+          "type": "talk",
+          "target": "varrik"
+        },
+        {
+          "id": "find_glade",
+          "description": "Знайти заборонену галявину",
+          "type": "area_trigger",
+          "target": "forbidden_glade"
+        },
+        {
+          "id": "find_rufin",
+          "description": "Знайти Руфіна на галявині",
+          "type": "talk",
+          "target": "rufin_glade"
+        }
       ]
     },
     "kaen": {
       "title": "Що батьки не кажуть",
       "key_npc": "kaen",
       "objectives": [
-        {"id": "meet_kaen", "description": "Зустріти Каена в лікарському домі", "type": "talk", "target": "kaen"},
-        {"id": "learn_truth", "description": "Дізнатися правду про походження Міа", "type": "talk", "target": "kaen"},
-        {"id": "talk_mother", "description": "Поговорити з матір'ю Міа", "type": "talk", "target": "mia_mother", "optional": true}
+        {
+          "id": "meet_kaen",
+          "description": "Зустріти Каена в лікарському домі",
+          "type": "talk",
+          "target": "kaen"
+        },
+        {
+          "id": "learn_truth",
+          "description": "Дізнатися правду про походження Міа",
+          "type": "talk",
+          "target": "kaen"
+        },
+        {
+          "id": "talk_mother",
+          "description": "Поговорити з матір'ю Міа",
+          "type": "talk",
+          "target": "mia_mother",
+          "optional": true
+        }
       ]
     },
     "mia": {
       "title": "Друге рішення",
       "key_npc": "mia",
       "objectives": [
-        {"id": "trigger_mia_talk", "description": "Міа вирішує говорити з Каеном", "type": "scripted"},
-        {"id": "mia_decision", "description": "Міа приймає рішення йти з героєм", "type": "scripted"}
+        {
+          "id": "trigger_mia_talk",
+          "description": "Міа вирішує говорити з Каеном",
+          "type": "scripted"
+        },
+        {
+          "id": "mia_decision",
+          "description": "Міа приймає рішення йти з героєм",
+          "type": "scripted"
+        }
       ],
       "triggers": [
         "hero_found_rufin",
@@ -46,19 +87,44 @@
       "optional": true,
       "condition": "hero_without_mia",
       "objectives": [
-        {"id": "help_sirra", "description": "Допомогти Сіррі (принести з болота)", "type": "collect", "target": "swamp_plant"},
-        {"id": "help_kaen", "description": "Принести компонент для ліків", "type": "collect", "target": "medicine_component"},
-        {"id": "help_hunters", "description": "Допомогти мисливцям з перешкодою", "type": "scripted"}
+        {
+          "id": "help_sirra",
+          "description": "Допомогти Сіррі (принести з болота)",
+          "type": "collect",
+          "target": "swamp_plant"
+        },
+        {
+          "id": "help_kaen",
+          "description": "Принести компонент для ліків",
+          "type": "collect",
+          "target": "medicine_component"
+        },
+        {
+          "id": "help_hunters",
+          "description": "Допомогти мисливцям з перешкодою",
+          "type": "scripted"
+        }
       ]
     }
   },
-  "required_for_exit": ["rufin", "mia"],
+  "required_for_exit": [
+    "rufin",
+    "mia"
+  ],
   "rewards": {
     "experience": 200,
-    "reputation": {"muri": 20},
+    "reputation": {
+      "muri": 20
+    },
     "items": [
-      {"id": "item_rufin_journal", "count": 1},
-      {"id": "item_empty_artifact", "count": 1}
+      {
+        "id": "item_rufin_journal",
+        "count": 1
+      },
+      {
+        "id": "item_empty_artifact",
+        "count": 1
+      }
     ]
   },
   "dialogue_triggers": {
@@ -74,5 +140,240 @@
       "Гачок на зовнішній світ: хто послав Руфіна",
       "Відкриває наступну локацію Хейзмуру"
     ]
-  }
+  },
+  "start_location": "tykhy_shelest",
+  "leads_to": "sonk_ferry_01_hunger_from_below",
+  "structure": {
+    "acts": [
+      {
+        "id": "arrival",
+        "title": "Акт 1 — Поселення на воді",
+        "summary": "Герой входить у Тихий Шелест, знайомиться з Мурі й отримує нитки Руфіна, Каена та Міа."
+      },
+      {
+        "id": "truth_threads",
+        "title": "Акт 2 — Чотири нитки долі",
+        "summary": "Герой збирає правду про Руфіна, походження Міа, рішення Міа і власний статус серед Мурі."
+      },
+      {
+        "id": "departure",
+        "title": "Акт 3 — Друге рішення",
+        "summary": "Після знайденого Руфіна і правди про Міа стається її рішення йти з героєм; відкривається шлях до Сонк-Феррі."
+      }
+    ],
+    "required_threads": [
+      "rufin",
+      "mia"
+    ],
+    "optional_threads": [
+      "kaen",
+      "hero_status"
+    ],
+    "one_shot_location": true
+  },
+  "objectives": [
+    {
+      "id": "enter_tykhy_shelest",
+      "description": "Увійти до поселення Мурі в глибині Хейзмуру",
+      "type": "area_trigger",
+      "target": "tykhy_shelest",
+      "location": "tykhy_shelest",
+      "required": true,
+      "act": "arrival",
+      "thread": "arrival",
+      "unlocks": [
+        "ask_varrik"
+      ]
+    },
+    {
+      "id": "ask_varrik",
+      "description": "Запитати Варріка про Руфіна",
+      "type": "talk",
+      "target": "varrik",
+      "location": "tykhy_shelest",
+      "required": true,
+      "act": "truth_threads",
+      "thread": "rufin",
+      "unlocks": [
+        "find_glade"
+      ]
+    },
+    {
+      "id": "find_glade",
+      "description": "Знайти заборонену галявину",
+      "type": "area_trigger",
+      "target": "forbidden_glade",
+      "location": "forbidden_glade",
+      "required": true,
+      "act": "truth_threads",
+      "thread": "rufin",
+      "unlocks": [
+        "find_rufin"
+      ]
+    },
+    {
+      "id": "find_rufin",
+      "description": "Знайти Руфіна на галявині",
+      "type": "talk",
+      "target": "rufin_glade",
+      "location": "forbidden_glade",
+      "required": true,
+      "act": "truth_threads",
+      "thread": "rufin",
+      "sets_flags": [
+        "hero_found_rufin"
+      ],
+      "unlocks": [
+        "trigger_mia_talk"
+      ]
+    },
+    {
+      "id": "meet_kaen",
+      "description": "Зустріти Каена в лікарському домі",
+      "type": "talk",
+      "target": "kaen",
+      "location": "tykhy_shelest_healer_house",
+      "required": true,
+      "act": "truth_threads",
+      "thread": "kaen",
+      "unlocks": [
+        "learn_truth"
+      ]
+    },
+    {
+      "id": "learn_truth",
+      "description": "Дізнатися правду про походження Міа",
+      "type": "talk",
+      "target": "kaen",
+      "location": "tykhy_shelest_healer_house",
+      "required": true,
+      "act": "truth_threads",
+      "thread": "kaen",
+      "sets_flags": [
+        "hero_told_mia_truth"
+      ],
+      "unlocks": [
+        "trigger_mia_talk"
+      ]
+    },
+    {
+      "id": "talk_mother",
+      "description": "Поговорити з матір'ю Міа",
+      "type": "talk",
+      "target": "mia_mother",
+      "location": "tykhy_shelest",
+      "required": false,
+      "optional": true,
+      "act": "truth_threads",
+      "thread": "kaen"
+    },
+    {
+      "id": "mia_records",
+      "description": "Дочекатися, коли Міа знаходить записи, потрібні для її другого рішення",
+      "type": "scripted",
+      "target": "mia_found_records",
+      "location": "tykhy_shelest",
+      "required": true,
+      "act": "truth_threads",
+      "thread": "mia",
+      "sets_flags": [
+        "mia_found_records"
+      ],
+      "unlocks": [
+        "trigger_mia_talk"
+      ]
+    },
+    {
+      "id": "trigger_mia_talk",
+      "description": "Міа вирішує говорити з Каеном",
+      "type": "scripted",
+      "target": "mia",
+      "location": "tykhy_shelest",
+      "required": true,
+      "act": "departure",
+      "thread": "mia",
+      "requires_flags": [
+        "hero_found_rufin",
+        "hero_told_mia_truth",
+        "mia_found_records"
+      ],
+      "unlocks": [
+        "mia_decision"
+      ]
+    },
+    {
+      "id": "mia_decision",
+      "description": "Міа приймає рішення йти з героєм",
+      "type": "scripted",
+      "target": "mia",
+      "location": "tykhy_shelest",
+      "required": true,
+      "act": "departure",
+      "thread": "mia",
+      "sets_flags": [
+        "mia_decided_to_join"
+      ],
+      "unlocks": [
+        "route_to_sonk_ferry"
+      ]
+    },
+    {
+      "id": "help_sirra",
+      "description": "Допомогти Сіррі — принести з болота потрібну рослину",
+      "type": "collect",
+      "target": "swamp_plant",
+      "location": "tykhy_shelest_swamp_edge",
+      "required": false,
+      "optional": true,
+      "act": "truth_threads",
+      "thread": "hero_status",
+      "condition": "hero_without_mia"
+    },
+    {
+      "id": "help_kaen",
+      "description": "Принести компонент для ліків Каену",
+      "type": "collect",
+      "target": "medicine_component",
+      "location": "tykhy_shelest_swamp_edge",
+      "required": false,
+      "optional": true,
+      "act": "truth_threads",
+      "thread": "hero_status",
+      "condition": "hero_without_mia"
+    },
+    {
+      "id": "help_hunters",
+      "description": "Допомогти мисливцям з перешкодою",
+      "type": "scripted",
+      "target": "muri_hunters_obstacle",
+      "location": "tykhy_shelest",
+      "required": false,
+      "optional": true,
+      "act": "truth_threads",
+      "thread": "hero_status",
+      "condition": "hero_without_mia"
+    }
+  ],
+  "completion_conditions": {
+    "required_objectives": [
+      "find_rufin",
+      "trigger_mia_talk",
+      "mia_decision"
+    ],
+    "required_flags": [
+      "hero_found_rufin",
+      "hero_told_mia_truth",
+      "mia_found_records",
+      "mia_decided_to_join"
+    ],
+    "required_threads": [
+      "rufin",
+      "mia"
+    ],
+    "unlocks_route": "route_to_sonk_ferry",
+    "blocks_return": true
+  },
+  "unlocks": [
+    "sonk_ferry_01_hunger_from_below"
+  ]
 }

@@ -205,5 +205,8 @@ Legend:
 ⬜ 7. Runtime quest loading: extend QuestManager to load JSON, check prereqs, propagate leads_to
 ⬜ 8. Scene transitions & location portals
 ⬜ 9. NPC wiring & dialogue triggers
-⬜ 10. Quest journal UI, reputation screen, timers
-⬜ 11. Combat, Bolo-Weaving, cutscenes, VO pipeline
+✅ 10. Quest journal UI (J key, 3 sections, real-time sync)
+✅ 11. TimerManager (Rein/Kelm/disturbance), BoloWeaving (4 abilities), CutsceneManager (11 scenes)
+✅ 12. Mechanics scripts wired to QuestManager: TykhyShelest, Valkorn, FerryQuest
+✅ 13. Main menu → Greyford Tavern canonical start
+⬜ 14. Godot editor: place LocationPortals, wire NPC models, combat encounters, VFX, audio/VO

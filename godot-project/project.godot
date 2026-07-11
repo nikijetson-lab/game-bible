@@ -34,6 +34,9 @@ HeightFog="*res://scripts/environment/height_fog_manager.gd"
 MiaTrust="*res://scripts/core/mia_trust_track.gd"
 MapManager="*res://scripts/core/map_manager.gd"
 SceneRegistry="*res://scripts/core/scene_registry.gd"
+TimerManager="*res://scripts/core/timer_manager.gd"
+BoloWeaving="*res://scripts/core/bolo_weaving.gd"
+CutsceneManager="*res://scripts/core/cutscene_manager.gd"
 
 [display]
 

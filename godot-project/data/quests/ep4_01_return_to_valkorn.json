@@ -1,1 +1,102 @@
-{"id":"ep4_01_return_to_valkorn","title":"Повернення до Валькорна","episode":4,"branches":{"A_iron":{"desc":"Парадний плащ Ордену, мертві руки. Себастьян дає Арбалет Залізного Завіту. Тесса в гніві.","reward":"Iron Covenant Crossbow, silver traps. Bolo-Weaving locked forever."},"B_reed":{"desc":"Повернення з Мією. Болото квітне. Ілія у Валькорні готує опір.","reward":"Bolo-Weaving enhanced, bog allies."},"V_balance":{"desc":"Лілея супроводжує. Компроміс: Печатки стабілізують, не знищують."}}}
+{
+  "id": "ep4_01_return_to_valkorn",
+  "title": "Повернення до Валькорна",
+  "episode": 4,
+  "branches": {
+    "A_iron": {
+      "desc": "Парадний плащ Ордену, мертві руки. Себастьян дає Арбалет Залізного Завіту. Тесса в гніві.",
+      "reward": "Iron Covenant Crossbow, silver traps. Bolo-Weaving locked forever."
+    },
+    "B_reed": {
+      "desc": "Повернення з Мією. Болото квітне. Ілія у Валькорні готує опір.",
+      "reward": "Bolo-Weaving enhanced, bog allies."
+    },
+    "V_balance": {
+      "desc": "Лілея супроводжує. Компроміс: Печатки стабілізують, не знищують."
+    }
+  },
+  "start_location": "valkorn",
+  "category": "main",
+  "description": "Повернення до Валькорна після вердикту в Затопленій Обителі. Три гілки — три різні повернення.",
+  "structure": {
+    "acts": [
+      {
+        "id": "return",
+        "title": "Акт 1 — Повернення",
+        "summary": "Герой повертається до Валькорна. Шлях залежить від вердикту Епізоду 3: A_iron (парадний плащ Ордену, мертві руки, Себастьян дає Арбалет), B_reed (повернення з Мією, болото квітне, Ілія готує опір), V_balance (Лілея супроводжує, компроміс стабілізації)."
+      }
+    ],
+    "branched_by": "ep3_verdict",
+    "phase_order": [
+      "return"
+    ]
+  },
+  "objectives": [
+    {
+      "id": "return_to_valkorn",
+      "description": "Повернутися до Валькорна після вердикту в Затопленій Обителі",
+      "type": "area_trigger",
+      "target": "valkorn",
+      "location": "valkorn",
+      "required": true,
+      "act": "return",
+      "branched_by": "ep3_verdict",
+      "unlocks": [
+        "branch_specific_scene"
+      ]
+    },
+    {
+      "id": "branch_specific_scene",
+      "description": "Пройти сцену повернення залежно від вердикту Ep3",
+      "type": "scripted",
+      "target": "branch_return_scene",
+      "location": "valkorn",
+      "required": true,
+      "act": "return",
+      "branches": {
+        "A_iron": {
+          "desc": "Парадний плащ Ордену, мертві руки. Себастьян дає Арбалет Залізного Завіту. Тесса в гніві.",
+          "reward": "Iron Covenant Crossbow, silver traps. Bolo-Weaving locked forever."
+        },
+        "B_reed": {
+          "desc": "Повернення з Мією. Болото квітне. Ілія у Валькорні готує опір.",
+          "reward": "Bolo-Weaving enhanced, bog allies."
+        },
+        "V_balance": {
+          "desc": "Лілея супроводжує. Компроміс: Печатки стабілізують, не знищують."
+        }
+      },
+      "unlocks": [
+        "ep4_return_complete"
+      ]
+    },
+    {
+      "id": "ep4_return_complete",
+      "description": "Завершити повернення: отримати гілкову винагороду та підготуватись до кульмінації у Валькорні",
+      "type": "scripted",
+      "target": "return_summary",
+      "location": "valkorn",
+      "required": true,
+      "act": "return",
+      "choice_ref": "ep3_verdict_legacy"
+    }
+  ],
+  "completion_conditions": {
+    "required_objectives": [
+      "return_to_valkorn",
+      "branch_specific_scene",
+      "ep4_return_complete"
+    ],
+    "branched_by": "ep3_verdict",
+    "rewards_per_branch": {
+      "A_iron": "Iron Covenant Crossbow, silver traps. Bolo-Weaving locked forever.",
+      "B_reed": "Bolo-Weaving enhanced, bog allies.",
+      "V_balance": "Seals stabilize, do not destroy."
+    },
+    "unlocks_route": "route_to_valkorn_climax"
+  },
+  "leads_to": "ep4_02_valkorn_climax",
+  "unlocks": [
+    "ep4_02_valkorn_climax"
+  ]
+}

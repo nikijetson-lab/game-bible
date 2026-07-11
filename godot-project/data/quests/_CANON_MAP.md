@@ -63,7 +63,7 @@ Historical alias table:
 
 ### 4. Mixed schemas
 
-Fifteen quests are currently structured/engine-ready with a top-level `objectives[]` list:
+Sixteen quests are currently structured/engine-ready with a top-level `objectives[]` list:
 
 - `greyford_01_missing_recipient`
 - `greyford_side_01_witch_trouble`
@@ -80,6 +80,7 @@ Fifteen quests are currently structured/engine-ready with a top-level `objective
 - `valkorn_02_two_truths`
 - `valkorn_03_right_price`
 - `valkorn_04_messenger_of_rufin`
+- `valkorn_05_keeper_of_first_seal`
 
 Everything else is prose/design structure (`threads`, `phases`, `acts`, `branches`, custom fields). Those quests need conversion into machine-readable objectives, triggers, conditions, and resolutions before they can be fully playable.
 
@@ -119,7 +120,7 @@ Legend:
 | 13 | `valkorn_02_two_truths` | 2 | Дві версії правди | structured | Odrin vs Tessa; undercity; artifact stolen by Damar | no | no | UI, REP, CUT, VO | Converted to 11 objectives. Dual path (Odrin/Tessa), 3-way crossroads, underground with ancient runes/order chamber/empty pedestal/Damar reveal. leads_to valkorn_03. |
 | 14 | `valkorn_03_right_price` | 2 | Правильна ціна | structured | Trade guild warehouse; Damar sells artifact | no | no | UI, REP, INV, CUT, VO | Converted to 6 objectives. 4 doctrine recon approaches, 3 approach paths, 5 negotiation options, Tessa interrupt, 4 outcomes A/B/V/G. |
 | 15 | `valkorn_04_messenger_of_rufin` | 2 | Людина, що послала Руфіна | structured | Loen meeting; Order plan; clue points to Fipp/Sebastian | no | no | UI, REP, CUT, VO | Converted to 7 objectives. Loen 4 answers (why_rufin/mour_plan/keeper/underground), alignment A/B/V, clue: Fipp=Sebastian Marr. |
-| 16 | `valkorn_05_keeper_of_first_seal` | 2 | Хранитель Першої Печатки | prose | Sebastian reveal, First Seal, Ilia shock, Ep2 finale | yes | no | UI, REP, COMBAT, INV, CUT, VO | Major finale. Needs infiltration paths, black archive, boss/elite combat or treaty/fusion alternatives. |
+| 16 | `valkorn_05_keeper_of_first_seal` | 2 | Хранитель Першої Печатки | structured | Sebastian reveal, First Seal, Ilia shock, Ep2 finale | yes | no | UI, REP, COMBAT, INV, CUT, VO | Ep2 finale. Converted to 8 objectives. 3 infiltration paths, Sebastian=Fipp reveal, Ilia recognition/confrontation, 3 choices A/B/V (judge combat/mediator treaty/lantern fusion). leads_to deep_bog_01. |
 | 17 | `deep_bog_01_voice_from_fog` | 3 | Голос із туману | prose:acts | Hero decaying after fusion; Ilia as mental anchor; fog/sanity | no | sanity drain | UI, COMBAT, CUT, VO | Convert sanity/fog/no-minimap mechanics; implement Bolo-Weaving root obstacle with stamina/pain. |
 | 18 | `deep_bog_02_mad_ferry` | 3 | Шалений пором | prose | Lileya, Second Seal reveal, Mad River obstacle | no | no | UI, CUT, VO | Convert Lileya scene and river/ferry obstacle. Needs stone tower / chain ferry content. |
 | 19 | `deep_bog_03_flooded_sanctuary` | 3 | Затоплена Обитель | prose | Second Seal finale; Mia vs Lileya; Iron/Reed/Balance verdicts | no | no | UI, REP, INV, CUT, VO | Canon Ep3 finale. Needs three irreversible world-state branches feeding all Ep4 files. |

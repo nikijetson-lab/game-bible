@@ -63,5 +63,212 @@
     }
   },
   "epilogue": "Balcony at dawn. Valkorn in fog. Episode 2 ends. Episode 3: Heart of the Bog awaits.",
-  "leads_to": "deep_bog_01_voice_from_fog"
+  "leads_to": "deep_bog_01_voice_from_fog",
+  "start_location": "valkorn_palace",
+  "structure": {
+    "acts": [
+      {
+        "id": "infiltration",
+        "title": "Акт 1 — Проникнення",
+        "summary": "Герой проникає до Чорного Архіву під палацом одним із трьох шляхів: суддя (Стетсон дає нічні перепустки), посередник (Тесса — костюми слуг), слідопит (дренажна система від доків)."
+      },
+      {
+        "id": "reveal",
+        "title": "Акт 2 — Викриття",
+        "summary": "Чорний Архів: мокро, холодно, запах торфу та м'яти. Фіпп змиває грим — Себастьян Марр. Камінь героя горить. Перша Печатка: срібно-болотяний циліндр, пульсує, глушить шепіт Моура."
+      },
+      {
+        "id": "iliya_confrontation",
+        "title": "Акт 3 — Ілія",
+        "summary": "Ілія впізнає дядька, якого вважала мертвим 20 років. Він вчив її першому кодексу, дав перший кварцовий кристал. Вона називає його вбивцею — він розкриває велику мету."
+      },
+      {
+        "id": "choice",
+        "title": "Акт 4 — Три шляхи, одна доля",
+        "summary": "Герой обирає: Шлях Судді (арешт/вбивство, бій), Шлях Посередника (таємний договір), Шлях Ліхтаря (злиття Печатки з Каменем Моура). Епілог: балкон на світанку, Валькорн у тумані."
+      }
+    ],
+    "episode_end": true,
+    "phase_order": [
+      "infiltration",
+      "reveal",
+      "iliya_confrontation",
+      "choice"
+    ]
+  },
+  "objectives": [
+    {
+      "id": "reach_black_archive",
+      "description": "Проникнути до Чорного Архіву під палацом",
+      "type": "area_trigger",
+      "target": "black_archive_under_library",
+      "location": "black_archive",
+      "required": true,
+      "act": "infiltration",
+      "unlocks": [
+        "infiltration_choice"
+      ]
+    },
+    {
+      "id": "infiltration_choice",
+      "description": "Обрати шлях: Суддя — Стетсон дає нічні перепустки, Посередник — Тесса влаштовує костюми слуг на банкеті, Слідопит — дренажна система від доків до королівського саду",
+      "type": "choice",
+      "target": "infiltration_path",
+      "location": "valkorn_palace",
+      "required": true,
+      "act": "infiltration",
+      "options": [
+        "judge_path",
+        "mediator_path",
+        "tracker_path"
+      ],
+      "paths": {
+        "judge": "Stetson grants night passes",
+        "mediator": "Tessa arranges servant disguises",
+        "tracker": "Storm drain from docks to royal garden"
+      },
+      "unlocks": [
+        "witness_reveal"
+      ]
+    },
+    {
+      "id": "witness_reveal",
+      "description": "Побачити як Фіпп змиває грим — і стає Себастьяном Марром, лідером Ордену Семи Кинджалів",
+      "type": "scripted",
+      "target": "sebastian_reveal",
+      "location": "black_archive",
+      "required": true,
+      "act": "reveal",
+      "atmosphere": "wet_cold_peat_mint",
+      "sets_flags": [
+        "sebastian_revealed"
+      ]
+    },
+    {
+      "id": "mour_resonance",
+      "description": "Відчути як Камінь Моура горить і пульсує болотяним світлом у присутності Першої Печатки",
+      "type": "scripted",
+      "target": "mour_stone_resonance",
+      "location": "black_archive",
+      "required": true,
+      "act": "reveal",
+      "sets_flags": [
+        "mour_resonance_active"
+      ]
+    },
+    {
+      "id": "inspect_first_seal",
+      "description": "Побачити Першу Печатку: срібно-болотяний циліндр, пульсує м'яко, глушить шепіт Моура",
+      "type": "inspect",
+      "target": "first_seal",
+      "location": "black_archive",
+      "required": true,
+      "act": "reveal",
+      "description_text": "silver-bog-iron cylinder, pulses softly, silences Mour whispers",
+      "sets_flags": [
+        "first_seal_inspected"
+      ]
+    },
+    {
+      "id": "iliya_recognition",
+      "description": "Ілія впізнає Себастьяна — свого дядька, якого вважала мертвим 20 років. Він вчив її першому кодексу, дав перший кварцовий кристал.",
+      "type": "scripted",
+      "target": "iliya_sebastian",
+      "location": "black_archive",
+      "required": true,
+      "act": "iliya_confrontation",
+      "iliya_memory": "taught her first codex, gave her first quartz focus crystal",
+      "sets_flags": [
+        "iliya_sebastian_recognized"
+      ]
+    },
+    {
+      "id": "iliya_accuses",
+      "description": "Ілія називає Себастьяна вбивцею. Він розкриває велику мету: Орден збудував дерев'яні стіни проти припливу. Болото не вмирає. Порожній Сезон змиє Валькорн, якщо не навчитись спрямовувати цю силу.",
+      "type": "scripted",
+      "target": "iliya_sebastian_confrontation",
+      "location": "black_archive",
+      "required": true,
+      "act": "iliya_confrontation",
+      "sebastian_philosophy": "Order built wooden walls against tide. Swamp doesn't die. Empty Season will wash away Valkorn unless we learn to channel this force.",
+      "sets_flags": [
+        "sebastian_purpose_revealed"
+      ],
+      "unlocks": [
+        "ep2_final_choice"
+      ]
+    },
+    {
+      "id": "ep2_final_choice",
+      "description": "Обрати долю Валькорна: Шлях Судді (арешт/вбивство + бій), Шлях Посередника (таємний договір), Шлях Ліхтаря (злиття Печатки з Каменем — герой стає живим провідником)",
+      "type": "choice",
+      "target": "keeper_final_choice",
+      "location": "black_archive",
+      "required": true,
+      "act": "choice",
+      "choice_ref": "keeper_final_choice"
+    }
+  ],
+  "completion_conditions": {
+    "required_objectives": [
+      "reach_black_archive",
+      "infiltration_choice",
+      "witness_reveal",
+      "mour_resonance",
+      "inspect_first_seal",
+      "iliya_recognition",
+      "iliya_accuses",
+      "ep2_final_choice"
+    ],
+    "episode_2_end": true,
+    "resolution_choice": "keeper_final_choice",
+    "unlocks_route": "route_to_deep_bog"
+  },
+  "resolution_choice": {
+    "id": "keeper_final_choice",
+    "prompt": "Як завершити зустріч із Хранителем Першої Печатки?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Шлях Судді / Закон Фронтиру",
+        "action": "Arrest or kill Sebastian, take First Seal for Crown",
+        "combat": "mental illusions + 2 elite Order mercenaries",
+        "ilia": "broken but loyal — 'The Sebastian Marr I knew died 20 years ago'",
+        "consequences": {
+          "order_rep": -100,
+          "stetson": "triumphant",
+          "hero_title": "Defender of Valkorn"
+        },
+        "set_flag": "keeper_outcome_A_judge"
+      },
+      {
+        "id": "B",
+        "text": "Шлях Посередника / Договір Тіней",
+        "action": "Secret treaty — Sebastian keeps Order, protects frontier, gives Black Archive access",
+        "ilia": "cold, tense — 'We made a deal with a monster wearing my uncle's face'",
+        "consequences": {
+          "order_rep": 40,
+          "stetson": "suspicious",
+          "gain": "Archive Key + spy network"
+        },
+        "set_flag": "keeper_outcome_B_mediator"
+      },
+      {
+        "id": "V",
+        "text": "Шлях Ліхтаря / Вердикт Злиття",
+        "action": "Merge First Seal with Mour Stone — hero becomes living conduit",
+        "ritual": "agonizing fusion, Ilia anchors hero's mind with her Lantern",
+        "ilia": "Tragic Moral Anchor — permanent mental link, voice in hero's head",
+        "consequences": {
+          "gain": "Bolo-Weaving skill branch",
+          "sebastian": "retires into shadows",
+          "ilia": "mental voice companion"
+        },
+        "set_flag": "keeper_outcome_V_lantern"
+      }
+    ]
+  },
+  "unlocks": [
+    "deep_bog_01_voice_from_fog"
+  ]
 }

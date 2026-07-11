@@ -6,12 +6,13 @@ extends Control
 
 func _ready() -> void:
 	# Додати QuestJournal
-	var qj_scene := load("res://scenes/ui/quest_journal.tscn")
+	var qj_scene: PackedScene = load("res://scenes/ui/quest_journal.tscn")
 	if qj_scene:
-		var qj := qj_scene.instantiate()
+		var qj: Node = qj_scene.instantiate()
 		qj.name = "QuestJournal"
 		add_child(qj)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
 		GameManager.pause_game()
+

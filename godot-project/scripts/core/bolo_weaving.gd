@@ -71,8 +71,8 @@ func part_roots() -> bool:
 	"""Bolo-Weaving: розсунути чорне коріння. Повертає true якщо вдало."""
 	if state == State.LOCKED:
 		return false
-	var cost := root_part_cost * (enhanced_cost_mult if state == State.ENHANCED else 1.0)
-	var pain := root_part_pain * (enhanced_pain_mult if state == State.ENHANCED else 1.0)
+	var cost: float = root_part_cost * (enhanced_cost_mult if state == State.ENHANCED else 1.0)
+	var pain: float = root_part_pain * (enhanced_pain_mult if state == State.ENHANCED else 1.0)
 	if stamina < cost:
 		return false
 	stamina -= cost
@@ -85,8 +85,8 @@ func navigate_fog() -> bool:
 	"""Знайти шлях у густому тумані."""
 	if state == State.LOCKED:
 		return false
-	var cost := fog_navigate_cost * (enhanced_cost_mult if state == State.ENHANCED else 1.0)
-	var pain := fog_navigate_pain * (enhanced_pain_mult if state == State.ENHANCED else 1.0)
+	var cost: float = fog_navigate_cost * (enhanced_cost_mult if state == State.ENHANCED else 1.0)
+	var pain: float = fog_navigate_pain * (enhanced_pain_mult if state == State.ENHANCED else 1.0)
 	if stamina < cost:
 		return false
 	stamina -= cost
@@ -98,8 +98,8 @@ func sense_mour() -> bool:
 	"""Відчути напрямок до Моура (пасивний радар)."""
 	if state == State.LOCKED:
 		return false
-	var cost := mour_sense_cost * (enhanced_cost_mult if state == State.ENHANCED else 1.0)
-	var pain := mour_sense_pain * (enhanced_pain_mult if state == State.ENHANCED else 1.0)
+	var cost: float = mour_sense_cost * (enhanced_cost_mult if state == State.ENHANCED else 1.0)
+	var pain: float = mour_sense_pain * (enhanced_pain_mult if state == State.ENHANCED else 1.0)
 	if stamina < cost:
 		return false
 	stamina -= cost
@@ -111,8 +111,8 @@ func seal_resonance() -> bool:
 	"""Використати резонанс Печаток (late-game)."""
 	if state != State.ENHANCED:
 		return false
-	var cost := seal_resonance_cost
-	var pain := seal_resonance_pain
+	var cost: float = seal_resonance_cost
+	var pain: float = seal_resonance_pain
 	if stamina < cost:
 		return false
 	stamina -= cost
@@ -153,3 +153,4 @@ func load_data(data: Dictionary) -> void:
 	state = data.get("state", State.LOCKED)
 	stamina = data.get("stamina", max_stamina)
 	pain_level = data.get("pain_level", 0.0)
+

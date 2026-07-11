@@ -27,13 +27,13 @@ func _on_body_entered(body: Node3D) -> void:
 	_travel()
 
 func _travel() -> void:
-	var gm := _game_manager()
+	var gm: Node = _game_manager()
 	if not gm:
 		return
 
 	# Якщо є квест для запуску — пробуємо
 	if not start_quest_id.is_empty():
-		var qm := _quest_manager()
+		var qm: Node = _quest_manager()
 		if qm and qm.has_method("try_start_quest"):
 			qm.try_start_quest(start_quest_id)
 
@@ -45,3 +45,4 @@ func _game_manager():
 
 func _quest_manager():
 	return get_node_or_null("/root/Quests")
+

@@ -29,14 +29,14 @@ func _ready() -> void:
 
 func _load_npc_registry() -> void:
 	"""Завантажити NPC registry для крос-референсу quest→dialogue."""
-	var path := "res://data/npcs/npc_registry.json"
+	var path: Variant = "res://data/npcs/npc_registry.json"
 	if not FileAccess.file_exists(path):
 		push_warning("NPC registry not found: " + path)
 		return
-	var file := FileAccess.open(path, FileAccess.READ)
-	var text := file.get_as_text()
+	var file: FileAccess = FileAccess.open(path, FileAccess.READ)
+	var text: String = file.get_as_text()
 	file.close()
-	var json := JSON.new()
+	var json: Variant = JSON.new()
 	if json.parse(text) == OK:
 		_npc_registry = json.data
 		print("NPC registry loaded: ", _npc_registry.get("npc_dialogues", {}).size(), " NPCs")
@@ -44,7 +44,7 @@ func _load_npc_registry() -> void:
 func load_dialogues() -> void:
 	"""Завантажити всі діалоги з data/dialogues/."""
 	# Використовуємо NPC registry для списку папок
-	var dialogues_map := _npc_registry.get("npc_dialogues", {})
+	var dialogues_map: Variant = _npc_registry.get("npc_dialogues", {})
 	if dialogues_map.is_empty():
 		# Fallback: скануємо диск
 		_scan_dialogue_folders()
@@ -55,8 +55,8 @@ func load_dialogues() -> void:
 			continue
 		# Завантажуємо перший файл як default
 		var first_file: String = files[0]
-		var path := "res://data/dialogues/%s/%s" % [npc_id, first_file]
-		var data := load_dialogue_file(path)
+		var path: Variant = "res://data/dialogues/%s/%s" % [npc_id, first_file]
+		var data: Dictionary = load_dialogue_file(path)
 		if not data.is_empty():
 			dialogue_database[npc_id] = data
 			_dialogue_files[npc_id] = path
@@ -64,20 +64,20 @@ func load_dialogues() -> void:
 
 func _scan_dialogue_folders() -> void:
 	"""Сканувати data/dialogues/ для пошуку папок NPC."""
-	var dir := DirAccess.open("res://data/dialogues")
+	var dir: DirAccess = DirAccess.open("res://data/dialogues")
 	if dir == null:
 		return
 	dir.list_dir_begin()
-	var folder := dir.get_next()
+	var folder: String = dir.get_next()
 	while folder != "":
 		if dir.current_is_dir() and not folder.begins_with("_"):
-			var sub := DirAccess.open("res://data/dialogues/" + folder)
+			var sub: DirAccess = DirAccess.open("res://data/dialogues/" + folder)
 			if sub:
 				sub.list_dir_begin()
-				var f := sub.get_next()
+				var f: String = sub.get_next()
 				while f != "":
 					if f.ends_with(".json") and not sub.current_is_dir():
-						var path := "res://data/dialogues/%s/%s" % [folder, f]
+						var path: Variant = "res://data/dialogues/%s/%s" % [folder, f]
 						dialogue_database[folder] = load_dialogue_file(path)
 						_dialogue_files[folder] = path
 						break
@@ -91,7 +91,7 @@ func start_dialogue(npc_id: String, dialogue_id: String = "default") -> void:
 		return
 
 	# Резолвити NPC alias (quest target -> dialogue folder)
-	var resolved := _resolve_npc(npc_id)
+	var resolved: String = _resolve_npc(npc_id)
 	var path: String
 	var data: Dictionary = {}
 
@@ -252,20 +252,20 @@ func _resolve_npc(npc_id: String) -> String:
 		return aliases[npc_id]
 	# Strip npc_ prefix and try
 	if npc_id.begins_with("npc_"):
-		var bare := npc_id.substr(4)
+		var bare: String = npc_id.substr(4)
 		if _npc_registry.get("npc_dialogues", {}).has(bare):
 			return bare
 	return npc_id
 
 func _auto_complete_npc_objectives(npc_id: String) -> void:
 	"""Авто-завершити quest objectives типу 'talk' що таргетять цього NPC."""
-	var qm := get_node_or_null("/root/Quests")
+	var qm: Node = get_node_or_null("/root/Quests")
 	if not qm or not qm.has_method("complete_objective"):
 		return
 	var targets: Array = _npc_registry.get("quest_targets", {}).get(npc_id, [])
 	if targets.is_empty():
 		# Спробувати резолвнуту версію
-		var resolved := _resolve_npc(npc_id)
+		var resolved: String = _resolve_npc(npc_id)
 		if resolved != npc_id:
 			targets = _npc_registry.get("quest_targets", {}).get(resolved, [])
 	for t in targets:
@@ -332,7 +332,7 @@ func apply_consequences(consequences: Dictionary) -> void:
 	if consequences.has("quest_update"):
 		var quest_id = consequences["quest_update"]["quest_id"]
 		var objective_id = consequences["quest_update"]["objective_id"]
-		var qm := get_node_or_null("/root/Quests")
+		var qm: Node = get_node_or_null("/root/Quests")
 		if qm and qm.has_method("complete_objective"):
 			qm.complete_objective(quest_id, objective_id)
 		print("Quest objective completed: ", objective_id)
@@ -340,7 +340,7 @@ func apply_consequences(consequences: Dictionary) -> void:
 	# Старт квесту
 	if consequences.has("quest_start"):
 		var quest_id = consequences["quest_start"]
-		var qm2 := get_node_or_null("/root/Quests")
+		var qm2: Node = get_node_or_null("/root/Quests")
 		if qm2 and qm2.has_method("try_start_quest"):
 			qm2.try_start_quest(quest_id)
 		print("Quest started: ", quest_id)
@@ -374,3 +374,5 @@ func get_current_text() -> String:
 	var node: Dictionary = nodes.get(current_node_id, {})
 	
 	return node.get("text", "")
+
+

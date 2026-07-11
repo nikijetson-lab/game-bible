@@ -155,7 +155,7 @@ func play(cutscene_id: String) -> bool:
 
 	_is_playing = true
 	_current_id = cutscene_id
-	var scene := SCENES[cutscene_id]
+	var scene: Dictionary = SCENES[cutscene_id]
 	_steps = scene["steps"]
 	_step_index = 0
 
@@ -179,18 +179,18 @@ func _advance() -> void:
 
 	match step.get("type", ""):
 		"fade_in", "fade_out", "pause":
-			var duration := step.get("duration", 1.0)
+			var duration: Variant = step.get("duration", 1.0)
 			await get_tree().create_timer(duration).timeout
 		"dialogue":
-			var duration := step.get("duration", step.get("text", "").length() * 0.05 + 1.5)
+			var duration: Variant = step.get("duration", step.get("text", "").length() * 0.05 + 1.5)
 			await get_tree().create_timer(duration).timeout
 		"camera_focus", "vfx":
-			var duration := step.get("duration", 1.5)
+			var duration: Variant = step.get("duration", 1.5)
 			await get_tree().create_timer(duration).timeout
 		"quest_trigger":
-			var qm := get_node_or_null("/root/Quests")
+			var qm: Node = get_node_or_null("/root/Quests")
 			if qm:
-				var flag := step.get("quest_flag", "")
+				var flag: Variant = step.get("quest_flag", "")
 				if not flag.is_empty():
 					GameManager.set_flag(flag)
 		"credits":
@@ -201,7 +201,7 @@ func _advance() -> void:
 
 func _end() -> void:
 	_is_playing = false
-	var cid := _current_id
+	var cid: Variant = _current_id
 	_current_id = ""
 	_steps.clear()
 	cutscene_ended.emit(cid)
@@ -212,3 +212,5 @@ func is_playing() -> bool:
 
 func get_scene_list() -> Array:
 	return SCENES.keys()
+
+

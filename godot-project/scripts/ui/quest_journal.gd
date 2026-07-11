@@ -31,12 +31,12 @@ func toggle() -> void:
 
 func _build_ui() -> void:
 	# Головний контейнер
-	var panel := PanelContainer.new()
+	var panel: PanelContainer = PanelContainer.new()
 	panel.name = "QuestPanel"
 	panel.size = Vector2(600, 500)
 	panel.position = Vector2(20, 20)
 	# Темний напівпрозорий фон
-	var style := StyleBoxFlat.new()
+	var style: StyleBoxFlat = StyleBoxFlat.new()
 	style.bg_color = Color(0.05, 0.05, 0.08, 0.92)
 	style.set_corner_radius_all(8)
 	style.set_border_width_all(1)
@@ -45,21 +45,21 @@ func _build_ui() -> void:
 	add_child(panel)
 	_panel = panel
 
-	var scroll := ScrollContainer.new()
+	var scroll: ScrollContainer = ScrollContainer.new()
 	scroll.name = "Scroll"
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	panel.add_child(scroll)
 
-	var main_vbox := VBoxContainer.new()
+	var main_vbox: VBoxContainer = VBoxContainer.new()
 	main_vbox.name = "MainVBox"
 	scroll.add_child(main_vbox)
 
 	# Заголовок
-	var title := _make_label("📜 ЖУРНАЛ КВЕСТІВ", 24, Color(0.9, 0.7, 0.3))
+	var title: Variant = _make_label("📜 ЖУРНАЛ КВЕСТІВ", 24, Color(0.9, 0.7, 0.3))
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	main_vbox.add_child(title)
 
-	var sep1 := HSeparator.new()
+	var sep1: HSeparator = HSeparator.new()
 	main_vbox.add_child(sep1)
 
 	# Активні квести
@@ -68,7 +68,7 @@ func _build_ui() -> void:
 	_active_list.name = "Active"
 	main_vbox.add_child(_active_list)
 
-	var sep2 := HSeparator.new()
+	var sep2: HSeparator = HSeparator.new()
 	main_vbox.add_child(sep2)
 
 	# Доступні квести
@@ -77,7 +77,7 @@ func _build_ui() -> void:
 	_available_list.name = "Available"
 	main_vbox.add_child(_available_list)
 
-	var sep3 := HSeparator.new()
+	var sep3: HSeparator = HSeparator.new()
 	main_vbox.add_child(sep3)
 
 	# Завершені
@@ -90,7 +90,7 @@ func _make_section_header(text: String) -> Label:
 	return _make_label(text, 18, Color(0.85, 0.65, 0.3))
 
 func _make_label(text: String, size: int = 14, color: Color = Color.WHITE) -> Label:
-	var label := Label.new()
+	var label: Label = Label.new()
 	label.text = text
 	label.add_theme_font_size_override("font_size", size)
 	label.add_theme_color_override("font_color", color)
@@ -98,19 +98,19 @@ func _make_label(text: String, size: int = 14, color: Color = Color.WHITE) -> La
 	return label
 
 func _make_quest_entry(quest_id: String, objectives: Array, color: Color = Color.WHITE) -> VBoxContainer:
-	var entry := VBoxContainer.new()
+	var entry: VBoxContainer = VBoxContainer.new()
 	entry.name = quest_id
-	var qdata := _qm.get_quest_data(quest_id) if _qm else {}
-	var title_text := qdata.get("title", quest_id)
-	var loc := qdata.get("start_location", "?")
+	var qdata: Variant = _qm.get_quest_data(quest_id) if _qm else {}
+	var title_text: Variant = qdata.get("title", quest_id)
+	var loc: Variant = qdata.get("start_location", "?")
 
-	var header := _make_label("▸ %s  [%s]" % [title_text, loc], 15, color)
+	var header: Variant = _make_label("▸ %s  [%s]" % [title_text, loc], 15, color)
 	entry.add_child(header)
 
 	for obj in objectives:
-		var done_mark := "✓" if _qm and _qm.completed_objectives.get(quest_id, []).has(obj.get("id", "")) else "○"
-		var desc := obj.get("description", "?")
-		var obj_label := _make_label("   %s %s" % [done_mark, desc], 13, color.darkened(0.3))
+		var done_mark: Variant = "✓" if _qm and _qm.completed_objectives.get(quest_id, []).has(obj.get("id", "")) else "○"
+		var desc: Variant = obj.get("description", "?")
+		var obj_label: Variant = _make_label("   %s %s" % [done_mark, desc], 13, color.darkened(0.3))
 		entry.add_child(obj_label)
 
 	return entry
@@ -143,7 +143,7 @@ func _refresh() -> void:
 		var qdata: Dictionary = _qm.get_quest_data(qid)
 		if qdata.is_empty():
 			continue
-		var entry := _make_label("▸ %s" % qdata.get("title", qid), 14, Color(0.5, 0.5, 0.5))
+		var entry: Variant = _make_label("▸ %s" % qdata.get("title", qid), 14, Color(0.5, 0.5, 0.5))
 		_completed_list.add_child(entry)
 
 func _clear_list(list: VBoxContainer) -> void:
@@ -163,3 +163,5 @@ func _subscribe_signals() -> void:
 func _on_quest_changed(_qid: String = "") -> void:
 	if _is_open:
 		_refresh()
+
+

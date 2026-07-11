@@ -13,6 +13,7 @@ class_name LocationPortal
 @export var is_hidden: bool = false
 @export var optional: bool = false
 @export var required_flag: String = ""
+@export var start_quest_id: String = ""
 
 func _ready() -> void:
 	add_to_group("interactable")

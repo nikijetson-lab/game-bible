@@ -1,0 +1,84 @@
+{
+  "_meta": "Auto-generated portal map. Maps scene files to their outgoing portals.",
+  "portals": {
+    "res://scenes/locations/greyford/TavernInterior.tscn": [
+      {"to": "res://scenes/locations/greyford/CraftsmenQuarter.tscn", "label": "Квартал ремісників", "pos": [-5, 1, -3]},
+      {"to": "res://scenes/locations/greyford/GreyfordStreet.tscn", "label": "Вулиця", "pos": [6, 1, 0]},
+      {"to": "res://scenes/locations/greyford/RufinRoom.tscn", "label": "Кімната Руфіна", "pos": [0, 3, 5]}
+    ],
+    "res://scenes/locations/greyford/CraftsmenQuarter.tscn": [
+      {"to": "res://scenes/locations/greyford/TavernInterior.tscn", "label": "Постоялий двір", "pos": [5, 1, 3]}
+    ],
+    "res://scenes/locations/greyford/GreyfordStreet.tscn": [
+      {"to": "res://scenes/locations/greyford/TavernInterior.tscn", "label": "Постоялий двір", "pos": [-6, 1, 0]},
+      {"to": "res://scenes/locations/greyford/GreyfordGate.tscn", "label": "Міська брама", "pos": [10, 1, 0]},
+      {"to": "res://scenes/locations/greyford/PortTavernInterior.tscn", "label": "Портова таверна", "pos": [-4, 1, 8]}
+    ],
+    "res://scenes/locations/greyford/GreyfordGate.tscn": [
+      {"to": "res://scenes/locations/greyford/GreyfordStreet.tscn", "label": "Вулиця", "pos": [-10, 1, 0]},
+      {"to": "res://scenes/locations/hazemoor/SwampPath.tscn", "label": "Хейзмур", "pos": [0, 1, -8], "quest_start": "hazemoor_01_path_through_swamp"}
+    ],
+    "res://scenes/locations/greyford/PortTavernInterior.tscn": [
+      {"to": "res://scenes/locations/greyford/GreyfordStreet.tscn", "label": "Вулиця", "pos": [4, 1, -8]}
+    ],
+    "res://scenes/locations/greyford/RufinRoom.tscn": [
+      {"to": "res://scenes/locations/greyford/TavernInterior.tscn", "label": "Постоялий двір", "pos": [0, 1, -5]}
+    ],
+    "res://scenes/locations/greyford/AlteyaHiddenRoom.tscn": [
+      {"to": "res://scenes/locations/greyford/GreyfordStreet.tscn", "label": "Вулиця", "pos": [0, 1, -3]}
+    ],
+    "res://scenes/locations/hazemoor/SwampPath.tscn": [
+      {"to": "res://scenes/locations/greyford/GreyfordGate.tscn", "label": "Грейфорд", "pos": [0, 1, 8]},
+      {"to": "res://scenes/locations/tykhy_shelist/TykhyShelist.tscn", "label": "Тихий Шелест", "pos": [20, 1, 0], "quest_start": "tykhy_shelest_01"},
+      {"to": "res://scenes/locations/tykhy_shelist/ForbiddenGlade.tscn", "label": "Заборонена галявина", "pos": [15, 1, 15]}
+    ],
+    "res://scenes/locations/tykhy_shelist/TykhyShelist.tscn": [
+      {"to": "res://scenes/locations/hazemoor/SwampPath.tscn", "label": "Хейзмур", "pos": [-20, 1, 0]},
+      {"to": "res://scenes/locations/tykhy_shelist/ForbiddenGlade.tscn", "label": "Галявина", "pos": [8, 1, 10]},
+      {"to": "res://scenes/locations/deep_bog/MadFerry.tscn", "label": "Шалений Пором", "pos": [25, 1, 0]}
+    ],
+    "res://scenes/locations/tykhy_shelist/ForbiddenGlade.tscn": [
+      {"to": "res://scenes/locations/tykhy_shelist/TykhyShelist.tscn", "label": "Тихий Шелест", "pos": [-8, 1, -10]}
+    ],
+    "res://scenes/locations/sonk_ferry/SonkFerry.tscn": [
+      {"to": "res://scenes/locations/sonk_ferry/FloodedChamber.tscn", "label": "Затоплена камера", "pos": [8, 1, 5]},
+      {"to": "res://scenes/locations/sonk_ferry/FloodedChapel.tscn", "label": "Каплиця", "pos": [-5, 1, 8]},
+      {"to": "res://scenes/locations/sonk_ferry/SaltWarehouse.tscn", "label": "Соляний склад", "pos": [-8, 1, -5]}
+    ],
+    "res://scenes/locations/sonk_ferry/FloodedChamber.tscn": [
+      {"to": "res://scenes/locations/sonk_ferry/SonkFerry.tscn", "label": "Сонк Феррі", "pos": [-8, 1, -5]}
+    ],
+    "res://scenes/locations/sonk_ferry/FloodedChapel.tscn": [
+      {"to": "res://scenes/locations/sonk_ferry/SonkFerry.tscn", "label": "Сонк Феррі", "pos": [5, 1, -8]}
+    ],
+    "res://scenes/locations/sonk_ferry/SaltWarehouse.tscn": [
+      {"to": "res://scenes/locations/sonk_ferry/SonkFerry.tscn", "label": "Сонк Феррі", "pos": [8, 1, 5]}
+    ],
+    "res://scenes/locations/valkorn/PortQuarter.tscn": [
+      {"to": "res://scenes/locations/valkorn/BlackArchive.tscn", "label": "Чорний Архів", "pos": [5, 1, 10]},
+      {"to": "res://scenes/locations/valkorn/Undercity.tscn", "label": "Підземелля", "pos": [-5, 1, 8]},
+      {"to": "res://scenes/locations/valkorn/GuildWarehouse.tscn", "label": "Склад гільдії", "pos": [10, 1, -5]}
+    ],
+    "res://scenes/locations/valkorn/BlackArchive.tscn": [
+      {"to": "res://scenes/locations/valkorn/PortQuarter.tscn", "label": "Валькорн", "pos": [-5, 1, -10]}
+    ],
+    "res://scenes/locations/valkorn/Undercity.tscn": [
+      {"to": "res://scenes/locations/valkorn/PortQuarter.tscn", "label": "Валькорн", "pos": [5, 1, -8]}
+    ],
+    "res://scenes/locations/valkorn/GuildWarehouse.tscn": [
+      {"to": "res://scenes/locations/valkorn/PortQuarter.tscn", "label": "Валькорн", "pos": [-10, 1, 5]}
+    ],
+    "res://scenes/locations/deep_bog/DeepBog.tscn": [
+      {"to": "res://scenes/locations/deep_bog/MadFerry.tscn", "label": "Шалений Пором", "pos": [10, 1, 0]},
+      {"to": "res://scenes/locations/deep_bog/FloodedAbbey.tscn", "label": "Затоплена Обитель", "pos": [-10, 1, 8]}
+    ],
+    "res://scenes/locations/deep_bog/MadFerry.tscn": [
+      {"to": "res://scenes/locations/deep_bog/DeepBog.tscn", "label": "Глибоке Болото", "pos": [-10, 1, 0]},
+      {"to": "res://scenes/locations/deep_bog/FloodedAbbey.tscn", "label": "Затоплена Обитель", "pos": [0, 1, 15]}
+    ],
+    "res://scenes/locations/deep_bog/FloodedAbbey.tscn": [
+      {"to": "res://scenes/locations/deep_bog/DeepBog.tscn", "label": "Глибоке Болото", "pos": [10, 1, -8]},
+      {"to": "res://scenes/locations/deep_bog/MadFerry.tscn", "label": "Шалений Пором", "pos": [0, 1, -15]}
+    ]
+  }
+}

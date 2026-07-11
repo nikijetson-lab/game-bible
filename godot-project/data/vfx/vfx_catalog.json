@@ -1,0 +1,19 @@
+{
+  "_meta": "VFX definitions for cutscene effects. Used by CutsceneManager.",
+  "effects": {
+    "swarm_insects": {"type": "particles", "emitting": true, "amount": 500, "lifetime": 3.0, "color": [0.05,0.08,0.02], "size": 0.05, "spread": 5.0},
+    "void_eyes": {"type": "particles", "emitting": true, "amount": 200, "lifetime": 2.0, "color": [0,0,0], "size": 0.2, "spread": 1.0, "emission_shape": "sphere"},
+    "mour_light": {"type": "point_light", "color": [0.1,0.3,0.05], "energy": 3.0, "range": 8.0, "duration": 3.0},
+    "wash_makeup": {"type": "particles", "emitting": true, "amount": 100, "lifetime": 2.5, "color": [0.9,0.85,0.7], "size": 0.03, "spread": 0.5},
+    "mour_stone_glow": {"type": "point_light", "color": [0.1,0.3,0.0], "energy": 2.0, "range": 5.0, "duration": 2.0, "pulse": true},
+    "seal_insert": {"type": "particles", "emitting": true, "amount": 300, "lifetime": 3.0, "color": [0.7,0.7,0.7], "size": 0.1, "spread": 2.0, "gravity": [0,-2,0]},
+    "swamp_dying": {"type": "particles", "emitting": true, "amount": 1000, "lifetime": 4.0, "color": [0.15,0.1,0.05], "size": 0.02, "spread": 20.0, "fade_color": [0.3,0.2,0.1]},
+    "seal_dissolve": {"type": "particles", "emitting": true, "amount": 400, "lifetime": 3.0, "color": [0.0,0.5,0.3], "size": 0.08, "spread": 3.0, "gravity": [0,1,0]},
+    "hero_transform_bark": {"type": "overlay", "color": [0.1,0.06,0.03], "duration": 3.0, "fade_in": 0.5, "fade_out": 1.0},
+    "ilia_fade": {"type": "particles", "emitting": true, "amount": 200, "lifetime": 3.0, "color": [0.3,0.3,0.8], "size": 0.04, "spread": 2.0, "fade_out": true},
+    "lileya_carve_runes": {"type": "particles", "emitting": true, "amount": 150, "lifetime": 4.0, "color": [0.9,0.7,0.3], "size": 0.06, "spread": 1.5, "trail": true},
+    "dry_road_grey_sky": {"type": "overlay", "color": [0.5,0.5,0.5], "duration": 3.0, "fade_in": 1.0},
+    "blooming_bog": {"type": "particles", "emitting": true, "amount": 800, "lifetime": 4.0, "color": [0.1,0.7,0.2], "size": 0.03, "spread": 15.0},
+    "foggy_dawn": {"type": "overlay", "color": [0.6,0.6,0.7], "duration": 4.0, "fade_in": 1.0, "fade_out": 2.0}
+  }
+}

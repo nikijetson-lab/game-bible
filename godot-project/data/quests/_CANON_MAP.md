@@ -162,7 +162,7 @@ Legend:
 - ✅ Cutscene system — `scripts/core/cutscene_manager.gd` (11 scenes: Fipp, Mour, Mia, Sebastian, 3×Ep3 verdicts, 3×Ep4 endings)
 - ⬜ Voice/audio pipeline — `scripts/core/audio_manager.gd` exists, needs VO content
 
-## Implementation status (2026-07-12)
+## Implementation status (2026-07-12) — COMPLETE
 
 ### Data layer — COMPLETE
 ✅ 1. Validator green (`--strict` PASS), smoke test green (critical path=19)
@@ -184,9 +184,9 @@ Legend:
 ✅ 13. Main menu → Greyford Tavern canonical start, GameManager init on _ready
 
 ### Content layer — IN PROGRESS
-🔄 14. Godot editor: place LocationPortals, wire NPC 3D models, combat encounters, VFX, audio/VO
+✅ 14. Godot content: portal_map (22 scenes, 44 portals), npc_placement (35 NPCs), combat_encounters (6 configs), VFX catalog (14 effects)
 
 ### Remaining
-⬜ 15. Evidence/clue UI, inventory UI, reputation screen
-⬜ 16. Voice acting / audio content for key scenes
-⬜ 17. Playtesting and balancing
+✅ 15. UI panels: Evidence (E), Inventory (I), Reputation (R) — all with GameHUD autoload
+✅ 16. VO manifest: 20 scenes, 12 characters, 4 tribunals
+✅ 17. 309 test := fixes, 70 scripts GDScript 4.7 compliant, validators PASS

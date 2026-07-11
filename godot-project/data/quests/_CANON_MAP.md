@@ -63,7 +63,7 @@ Historical alias table:
 
 ### 4. Mixed schemas
 
-Eleven quests are currently structured/engine-ready with a top-level `objectives[]` list:
+Twelve quests are currently structured/engine-ready with a top-level `objectives[]` list:
 
 - `greyford_01_missing_recipient`
 - `greyford_side_01_witch_trouble`
@@ -76,6 +76,7 @@ Eleven quests are currently structured/engine-ready with a top-level `objectives
 - `hazemoor_02_ashes_under_chapel`
 - `sonk_ferry_04_quota_knife`
 - `hazemoor_02_glade_and_mour`
+- `valkorn_01_man_from_swamp`
 
 Everything else is prose/design structure (`threads`, `phases`, `acts`, `branches`, custom fields). Those quests need conversion into machine-readable objectives, triggers, conditions, and resolutions before they can be fully playable.
 
@@ -111,7 +112,7 @@ Legend:
 | 9 | `hazemoor_02_ashes_under_chapel` | 1 | Попіл під каплицею | structured | Flooded chapel body, reversed ash sign, ritual disturbance | no | yes | UI, REP, CUT, VO | Converted to 17 objectives. Rein 3-day timer auto→G. Disturbance 0-5 counter. Ritual bonus formula. 4 resolutions A/B/V/G. Needs runtime wiring. |
 | 10 | `sonk_ferry_04_quota_knife` | 1 | Ніж квоти | structured | Administrative tribunal and route to Valkorn | no | pressure formula | UI, REP, CUT, VO | Ep1 finale. Converted to 11 objectives. Counter-evidence pool (0-6), tribunal formula, 4 threshold-gated outcomes A/B/V/G. Transit routes to Valkorn per outcome. episode_end=true. |
 | 11 | `hazemoor_02_glade_and_mour` | 1 | Галявина і дух | structured | Mour manifestation, Mia revelation, Order-symbol reveal, mount | no | no | UI, INV, CUT, VO | Ep1 capstone. Converted to 15 objectives. 4 acts with Mour Q&A, underwater vision, 3 outcome branches. Rewards: mour_sense, empty_stone, winged mount. Order of Seven Daggers revealed. |
-| 12 | `valkorn_01_man_from_swamp` | 2 | Людина з болота | prose:threads | Arrival with Ilia; Fipp market encounter; Stetson/Bres/Tessa threads | no | no | UI, REP, CUT, VO | Convert 3 threads, min_threads=2, opening scene with Fipp. Needs Valkorn locations/NPCs. |
+| 12 | `valkorn_01_man_from_swamp` | 2 | Людина з болота | structured | Arrival with Ilia; Fipp market encounter; Stetson/Bres/Tessa threads | no | no | UI, REP, CUT, VO | Converted to 7 objectives. Gate: quota_result_V. 3 threads (min 2), Fipp opening scene, Stetson/Tessa/Odrin secrets resolved. leads_to valkorn_02. |
 | 13 | `valkorn_02_two_truths` | 2 | Дві версії правди | prose:threads | Odrin vs Tessa; undercity; artifact stolen by Damar | no | no | UI, REP, CUT, VO | Convert two information paths and crossroads; implement undercity findings. |
 | 14 | `valkorn_03_right_price` | 2 | Правильна ціна | prose:phases | Trade guild warehouse; Damar sells artifact | no | no | UI, REP, INV, CUT, VO | Convert recon/approach/negotiation; implement Tessa interrupt and four artifact outcomes. |
 | 15 | `valkorn_04_messenger_of_rufin` | 2 | Людина, що послала Руфіна | prose | Loen meeting; Order plan; clue points to Fipp/Sebastian | no | no | UI, REP, CUT, VO | Convert dialogue choice/alignment; update Order/Stetson/Ilia relationship consequences. |

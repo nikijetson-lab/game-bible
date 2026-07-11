@@ -46,5 +46,162 @@
     "tessa_knows_glade": "if_open_tone_she_knows_hero_contacted_mour",
     "odrin_knows_order": "yes_fears_them_hiding_third_point_coordinates"
   },
-  "leads_to": "valkorn_02_two_truths"
+  "leads_to": "valkorn_02_two_truths",
+  "start_location": "valkorn_market_square",
+  "structure": {
+    "acts": [
+      {
+        "id": "arrival",
+        "title": "Акт 1 — Прибуття до Валькорна",
+        "summary": "Герой прибуває з Ілією Марр. Блазень Фіпп впізнає його на ринковій площі. Перша сцена: fipp_market_encounter."
+      },
+      {
+        "id": "threads",
+        "title": "Акт 2 — Три нитки",
+        "summary": "Герой розслідує три нитки: Стетсон (палацовий квартал, союзник за яку ціну?), Брес (нове гетто, хто знає місто?), Тесса (торговий квартал, перша зустріч). Мінімум 2 нитки."
+      }
+    ],
+    "min_threads": 2,
+    "threads_available": [
+      "stetson",
+      "bres",
+      "tessa"
+    ],
+    "opening_scene": "fipp_market_encounter",
+    "phase_order": [
+      "arrival",
+      "threads"
+    ]
+  },
+  "objectives": [
+    {
+      "id": "enter_valkorn",
+      "description": "Увійти до Валькорна з Ілією Марр",
+      "type": "area_trigger",
+      "target": "valkorn_gate",
+      "location": "valkorn",
+      "required": true,
+      "act": "arrival"
+    },
+    {
+      "id": "fipp_market_encounter",
+      "description": "Блазень Фіпп впізнає героя на ринковій площі",
+      "type": "scripted",
+      "target": "fipp",
+      "location": "valkorn_market_square",
+      "required": true,
+      "act": "arrival",
+      "scene": "fipp_market_encounter",
+      "unlocks": [
+        "thread_stetson",
+        "thread_bres",
+        "thread_tessa"
+      ]
+    },
+    {
+      "id": "thread_stetson",
+      "description": "Відвідати Стетсона в палацовому кварталі: союзник за яку ціну?",
+      "type": "talk",
+      "target": "stetson",
+      "location": "valkorn_palace_quarter",
+      "required": true,
+      "act": "threads",
+      "thread": "stetson",
+      "knows": [
+        "order_crown_relations",
+        "tessa_likely",
+        "artifact_partial"
+      ],
+      "wants": "order_financial_evidence",
+      "sets_flags": [
+        "stetson_met"
+      ]
+    },
+    {
+      "id": "thread_bres",
+      "description": "Дослідити нове гетто: хто знає місто? Брес покаже де Тесса",
+      "type": "talk",
+      "target": "bres",
+      "location": "valkorn_new_ghetto",
+      "required": true,
+      "act": "threads",
+      "thread": "bres",
+      "reveals": "tessa_location",
+      "sets_flags": [
+        "bres_met"
+      ]
+    },
+    {
+      "id": "thread_tessa",
+      "description": "Перша зустріч із Тессою в торговому кварталі: обрати тон — відкритий, обережний, ворожий",
+      "type": "talk",
+      "target": "tessa",
+      "location": "valkorn_trade_quarter",
+      "required": true,
+      "act": "threads",
+      "thread": "tessa",
+      "tone_options": [
+        "open",
+        "cautious",
+        "hostile"
+      ],
+      "open_tone_bonus": "tessa_knows_hero_contacted_mour",
+      "sets_flags": [
+        "tessa_met"
+      ]
+    },
+    {
+      "id": "min_threads_check",
+      "description": "Завершити щонайменше 2 з 3 ниток (Стетсон/Брес/Тесса)",
+      "type": "counter",
+      "target": "threads_completed",
+      "location": "valkorn",
+      "required": true,
+      "act": "threads",
+      "min_required": 2,
+      "threads_pool": [
+        "thread_stetson",
+        "thread_bres",
+        "thread_tessa"
+      ],
+      "unlocks": [
+        "resolve_valkorn_arrival"
+      ]
+    },
+    {
+      "id": "resolve_valkorn_arrival",
+      "description": "Підсумувати прибуття: секрети Стетсона, позиція Тесси, знання Одріна про Орден",
+      "type": "scripted",
+      "target": "valkorn_arrival_summary",
+      "location": "valkorn",
+      "required": true,
+      "act": "threads",
+      "resolved_secrets": {
+        "stetson": "order_financial_evidence_for_crown_purge",
+        "tessa_open": "knows_hero_contacted_mour",
+        "odrin": "knows_order_fears_them_hiding_third_point_coordinates"
+      },
+      "unlocks": [
+        "route_to_two_truths"
+      ]
+    }
+  ],
+  "completion_conditions": {
+    "required_objectives": [
+      "enter_valkorn",
+      "fipp_market_encounter",
+      "min_threads_check",
+      "resolve_valkorn_arrival"
+    ],
+    "required_thread_objectives": 2,
+    "thread_pool": [
+      "thread_stetson",
+      "thread_bres",
+      "thread_tessa"
+    ],
+    "unlocks_route": "route_to_valkorn_two_truths"
+  },
+  "unlocks": [
+    "valkorn_02_two_truths"
+  ]
 }

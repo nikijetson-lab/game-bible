@@ -63,13 +63,14 @@ Historical alias table:
 
 ### 4. Mixed schemas
 
-Five quests are currently structured/engine-ready with a top-level `objectives[]` list:
+Six quests are currently structured/engine-ready with a top-level `objectives[]` list:
 
 - `greyford_01_missing_recipient`
 - `greyford_side_01_witch_trouble`
 - `greyford_side_02_lost_heirloom`
 - `hazemoor_01_path_through_swamp`
 - `tykhy_shelest_01`
+- `sonk_ferry_01_hunger_from_below`
 
 Everything else is prose/design structure (`threads`, `phases`, `acts`, `branches`, custom fields). Those quests need conversion into machine-readable objectives, triggers, conditions, and resolutions before they can be fully playable.
 
@@ -99,7 +100,7 @@ Legend:
 | 3 | `greyford_side_02_lost_heirloom` | 1 | Загублена реліквія | structured | Varrik honor test; medallion moral choice | light/possible | no | UI, REP, INV | Needs swamp-edge search zones, medallion item, return/sell/keep branches. |
 | 4 | `hazemoor_01_path_through_swamp` | 1 | Шлях крізь болото | structured | First swamp traversal, Muri signs, Ilia whisper | possible | no | UI, INV, COMBAT, VO | Needs path waypoints, hazards/traps/enemies, Muri symbol collectibles, whisper trigger. |
 | 5 | `tykhy_shelest_01` | 1 | Тихий Шелест | structured | Muri settlement; Rufin/Mia/Kaen truth; one-shot location | no | no | UI, REP, INV, CUT, VO | Converted to 13 top-level objectives with thread grouping preserved. Needs runtime wiring: one-shot lockout, Mia scripted decision, route_to_sonk_ferry. |
-| 6 | `sonk_ferry_01_hunger_from_below` | 1 | Голод знизу | prose:phases | Grain convoy, corruption, dead Pact, flooded chamber | yes | no | UI, REP, COMBAT, INV, CUT, VO | Convert phases/objectives; implement reed_wraiths encounter and four outcomes A/B/C/D. |
+| 6 | `sonk_ferry_01_hunger_from_below` | 1 | Голод знизу | structured | Grain convoy, corruption, dead Pact, flooded chamber | yes | no | UI, REP, COMBAT, INV, CUT, VO | Converted to 10 top-level objectives + resolution choice A/B/C/D (canonical=C). Needs runtime wiring: investigation pool, reed_wraiths encounter, faction shift hooks. |
 | 7 | `sonk_ferry_02_salt_in_book` | 1 | Сіль у книзі | prose:phases | Medicine sabotage and aid-network compromise | no | no | UI, REP, CUT, VO | Convert forensics chain and warehouse confrontation; prerequisite currently requires only outcome C from quest 6. Need alternate paths or confirm lock. |
 | 8 | `sonk_ferry_03_ferry_oath` | 1 | Поромна присяга | prose:phases | Ferry murder, Tovan/Nera/Kelm political control | no | yes | UI, REP, CUT, VO | Implement evidence counter 0-5, Kelm day timer, night council, four political resolutions. |
 | 9 | `hazemoor_02_ashes_under_chapel` | 1 | Попіл під каплицею | prose:phases | Flooded chapel body, reversed ash sign, ritual disturbance | no | yes | UI, REP, CUT, VO | Implement Rein 3-day timer, disturbance 0-5, archive trust, ritual prep bonuses and four resolutions. |
@@ -186,7 +187,6 @@ Legend:
 ## Immediate implementation order
 
 1. Keep `tools/validate_quest_canon.py . --strict` green.
-2. Convert `sonk_ferry_01_hunger_from_below` to structured objectives and branch outputs.
-3. Continue prose conversion in canon order.
+2. Continue prose conversion in canon order (`sonk_ferry_02_salt_in_book` next).
 4. Add quest graph smoke test to regular project checks.
 5. Only then continue building gameplay/UI/content, otherwise content will keep drifting.

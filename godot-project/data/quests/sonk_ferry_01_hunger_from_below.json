@@ -6,32 +6,69 @@
   "episode": 1,
   "canonical_outcome": "C",
   "prerequisites": {
-    "quests_completed": ["tykhy_shelest_01"]
+    "quests_completed": [
+      "tykhy_shelest_01"
+    ]
   },
   "phases": {
     "arrival": {
       "title": "Прибуття і шум",
       "location": "sonk_ferry",
       "objectives": [
-        {"id":"notice_board","description":"Оглянути дошку оголошень","type":"inspect"},
-        {"id":"meet_nera","description":"Поговорити з Нерою Вейл","type":"talk","target":"nera"},
-        {"id":"meet_voss","description":"Зустріти квартирмейстера Восса","type":"talk","target":"voss"}
+        {
+          "id": "notice_board",
+          "description": "Оглянути дошку оголошень",
+          "type": "inspect"
+        },
+        {
+          "id": "meet_nera",
+          "description": "Поговорити з Нерою Вейл",
+          "type": "talk",
+          "target": "nera"
+        },
+        {
+          "id": "meet_voss",
+          "description": "Зустріти квартирмейстера Восса",
+          "type": "talk",
+          "target": "voss"
+        }
       ]
     },
     "investigation": {
       "title": "Розслідування",
       "objectives": [
-        {"id":"convoy_books","description":"Знайти розбіжності в конвойних книгах","type":"investigate"},
-        {"id":"drag_marks","description":"Знайти сліди волочіння на Сторожовій Дорозі","type":"investigate"},
-        {"id":"shrine_trail","description":"Виявити жертовну стежку біля Мірефолда","type":"investigate"},
-        {"id":"burial_records","description":"Отримати поховальні списки від брата Кароса","type":"talk","target":"karos"}
+        {
+          "id": "convoy_books",
+          "description": "Знайти розбіжності в конвойних книгах",
+          "type": "investigate"
+        },
+        {
+          "id": "drag_marks",
+          "description": "Знайти сліди волочіння на Сторожовій Дорозі",
+          "type": "investigate"
+        },
+        {
+          "id": "shrine_trail",
+          "description": "Виявити жертовну стежку біля Мірефолда",
+          "type": "investigate"
+        },
+        {
+          "id": "burial_records",
+          "description": "Отримати поховальні списки від брата Кароса",
+          "type": "talk",
+          "target": "karos"
+        }
       ]
     },
     "confrontation": {
       "title": "Конфронтація в Затопленій Камері",
       "location": "flooded_chamber",
       "enemy": "reed_wraiths",
-      "hazards": ["water_surges","mud_collapse","low_visibility"]
+      "hazards": [
+        "water_surges",
+        "mud_collapse",
+        "low_visibility"
+      ]
     }
   },
   "resolutions": {
@@ -48,7 +85,10 @@
         "wandering_wardens_confessors": 15,
         "wandering_wardens_restoration": -15
       },
-      "reputation_tags": ["truth_over_stability","dangerous_to_power"],
+      "reputation_tags": [
+        "truth_over_stability",
+        "dangerous_to_power"
+      ],
       "world_changes": [
         "public_books_guarded_or_burned",
         "ration_queues_militarized",
@@ -76,7 +116,11 @@
         "wandering_wardens_restoration": 15,
         "wandering_wardens_confessors": -10
       },
-      "reputation_tags": ["effective","cold","complicit"],
+      "reputation_tags": [
+        "effective",
+        "cold",
+        "complicit"
+      ],
       "world_changes": [
         "guard_patrols_more_organized",
         "supply_reports_harsher_language",
@@ -103,7 +147,11 @@
         "wandering_wardens_frontier": 15,
         "wandering_wardens_restoration": -15
       },
-      "reputation_tags": ["useful","suspicious","close_to_the_mud"],
+      "reputation_tags": [
+        "useful",
+        "suspicious",
+        "close_to_the_mud"
+      ],
       "world_changes": [
         "hidden_goods_in_back_rooms",
         "sonk_ferry_authority_slowly_weakens",
@@ -131,7 +179,11 @@
         "wandering_wardens_confessors": 20,
         "wandering_wardens_restoration": -10
       },
-      "reputation_tags": ["uncanny","chose_dead_over_living","serious_about_the_land"],
+      "reputation_tags": [
+        "uncanny",
+        "chose_dead_over_living",
+        "serious_about_the_land"
+      ],
       "world_changes": [
         "burial_sites_restored_or_remarked",
         "st_vey_gains_mourners_and_watchers",
@@ -146,9 +198,217 @@
     }
   },
   "doctrines": {
-    "judge": ["force_confessions","seize_records","public_verdict"],
-    "scout": ["reconstruct_route","spot_false_trails","prepare_territory"],
-    "lantern": ["interpret_shrine","protect_against_fear","calming_ritual"],
-    "mediator": ["trade_protection","recruit_smugglers","control_blame"]
-  }
+    "judge": [
+      "force_confessions",
+      "seize_records",
+      "public_verdict"
+    ],
+    "scout": [
+      "reconstruct_route",
+      "spot_false_trails",
+      "prepare_territory"
+    ],
+    "lantern": [
+      "interpret_shrine",
+      "protect_against_fear",
+      "calming_ritual"
+    ],
+    "mediator": [
+      "trade_protection",
+      "recruit_smugglers",
+      "control_blame"
+    ]
+  },
+  "start_location": "sonk_ferry",
+  "structure": {
+    "acts": [
+      {
+        "id": "arrival",
+        "title": "Акт 1 — Прибуття і шум",
+        "summary": "Герой прибуває в Сонк-Феррі, чує про зниклий зерновий конвой, знайомиться з Нерою і квартирмейстером Воссом."
+      },
+      {
+        "id": "investigation",
+        "title": "Акт 2 — Розслідування",
+        "summary": "Герой збирає докази: конвойні книги, сліди волочіння, жертовна стежка біля Мірефолда, поховальні списки брата Кароса."
+      },
+      {
+        "id": "confrontation",
+        "title": "Акт 3 — Затоплена Камера",
+        "summary": "Герой спускається в затоплену камеру, стикається з Очеретяними примарами і обирає одну з чотирьох розв’язок кризи."
+      }
+    ],
+    "minimum_investigation_objectives_required": 3,
+    "phase_order": [
+      "arrival",
+      "investigation",
+      "confrontation"
+    ]
+  },
+  "objectives": [
+    {
+      "id": "notice_board",
+      "description": "Оглянути дошку оголошень у Сонк-Феррі",
+      "type": "inspect",
+      "target": "notice_board",
+      "location": "sonk_ferry",
+      "required": true,
+      "act": "arrival"
+    },
+    {
+      "id": "meet_nera",
+      "description": "Поговорити з Нерою Вейл",
+      "type": "talk",
+      "target": "nera",
+      "location": "sonk_ferry",
+      "required": true,
+      "act": "arrival",
+      "unlocks": [
+        "convoy_books",
+        "drag_marks"
+      ]
+    },
+    {
+      "id": "meet_voss",
+      "description": "Зустріти квартирмейстера Восса",
+      "type": "talk",
+      "target": "voss",
+      "location": "sonk_ferry",
+      "required": true,
+      "act": "arrival"
+    },
+    {
+      "id": "convoy_books",
+      "description": "Знайти розбіжності в конвойних книгах",
+      "type": "investigate",
+      "target": "convoy_books",
+      "location": "sonk_ferry",
+      "required": false,
+      "act": "investigation",
+      "investigation_thread": true
+    },
+    {
+      "id": "drag_marks",
+      "description": "Знайти сліди волочіння на Затонулій Сторожовій Дорозі",
+      "type": "investigate",
+      "target": "drag_marks",
+      "location": "sunk_watchtower_road",
+      "required": false,
+      "act": "investigation",
+      "investigation_thread": true
+    },
+    {
+      "id": "shrine_trail",
+      "description": "Виявити жертовну стежку біля Мірефолда",
+      "type": "investigate",
+      "target": "shrine_trail",
+      "location": "mirefold",
+      "required": false,
+      "act": "investigation",
+      "investigation_thread": true
+    },
+    {
+      "id": "burial_records",
+      "description": "Отримати поховальні списки від брата Кароса",
+      "type": "talk",
+      "target": "karos",
+      "location": "st_vey",
+      "required": false,
+      "act": "investigation",
+      "investigation_thread": true
+    },
+    {
+      "id": "enter_flooded_chamber",
+      "description": "Спуститися в Затоплену Камеру",
+      "type": "area_trigger",
+      "target": "flooded_chamber",
+      "location": "flooded_chamber",
+      "required": true,
+      "act": "confrontation",
+      "requires_min_investigation": 3,
+      "unlocks": [
+        "defeat_reed_wraiths"
+      ]
+    },
+    {
+      "id": "defeat_reed_wraiths",
+      "description": "Пережити зіткнення з Очеретяними примарами в Затопленій Камері",
+      "type": "combat",
+      "target": "reed_wraiths",
+      "location": "flooded_chamber",
+      "required": true,
+      "act": "confrontation",
+      "hazards": [
+        "water_surges",
+        "mud_collapse",
+        "low_visibility"
+      ],
+      "unlocks": [
+        "resolve_crisis"
+      ]
+    },
+    {
+      "id": "resolve_crisis",
+      "description": "Обрати розв’язку кризи голоду (A/B/C/D)",
+      "type": "choice",
+      "target": "hunger_resolution",
+      "location": "sonk_ferry",
+      "required": true,
+      "act": "confrontation",
+      "choice_ref": "hunger_resolution"
+    }
+  ],
+  "completion_conditions": {
+    "required_objectives": [
+      "meet_nera",
+      "meet_voss",
+      "enter_flooded_chamber",
+      "defeat_reed_wraiths",
+      "resolve_crisis"
+    ],
+    "minimum_investigation_objectives": 3,
+    "investigation_pool": [
+      "convoy_books",
+      "drag_marks",
+      "shrine_trail",
+      "burial_records"
+    ],
+    "resolution_choice": "hunger_resolution",
+    "unlocks_route": "route_to_sonk_ferry_02"
+  },
+  "resolution_choice": {
+    "id": "hunger_resolution",
+    "prompt": "Як вирішити кризу голоду в Сонк-Феррі?",
+    "options": [
+      {
+        "id": "A",
+        "resolution": "A",
+        "text": "Публічне викриття",
+        "set_flag": "hunger_outcome_public_exposure"
+      },
+      {
+        "id": "B",
+        "resolution": "B",
+        "text": "Контрольоване стримування",
+        "set_flag": "hunger_outcome_controlled_containment"
+      },
+      {
+        "id": "C",
+        "resolution": "C",
+        "text": "Місцева угода",
+        "set_flag": "hunger_outcome_local_deal",
+        "canonical": true
+      },
+      {
+        "id": "D",
+        "resolution": "D",
+        "text": "Ритуальне милосердя",
+        "set_flag": "hunger_outcome_ritual_mercy"
+      }
+    ]
+  },
+  "leads_to": "sonk_ferry_02_salt_in_book",
+  "unlocks": [
+    "sonk_ferry_02_salt_in_book"
+  ]
 }

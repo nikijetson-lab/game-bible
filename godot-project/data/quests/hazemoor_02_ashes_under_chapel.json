@@ -95,5 +95,338 @@
   ],
   "leads_to": [
     "sonk_ferry_04_quota_knife"
+  ],
+  "start_location": "flooded_chapel",
+  "structure": {
+    "acts": [
+      {
+        "id": "quiet_discovery",
+        "title": "Акт 1 — Тихе відкриття",
+        "summary": "Тіло в затопленій каплиці. Перевернутий попільний знак. Герой обирає: довіритись Каросу, дослідити тіло, або зустріти Рейна."
+      },
+      {
+        "id": "investigation",
+        "title": "Акт 2 — Розслідування",
+        "summary": "Герой розслідує тіло, архівні записи, розпитує Мірефолд, знаходить Скела і читає архів (потрібна довіра Ізри ≥2)."
+      },
+      {
+        "id": "doctrinal_reckoning",
+        "title": "Акт 3 — Доктринальний розрахунок",
+        "summary": "Зростає disturbance: 0=тихо, 3=коріння холоне, 4=відображення не збігаються, 5=маніфестація. Рейн має 3 дні — на 4-й день доктринальний суд."
+      },
+      {
+        "id": "ritual_prep",
+        "title": "Акт 4 — Підготовка до ритуалу",
+        "summary": "Герой готується: реконструює ритуал з Каросом, вирішує долю архіву, захищає Скела, залучає Селлу, веде переговори з Рейном. Кожна дія — бонус/штраф до фінальної конфронтації."
+      },
+      {
+        "id": "confrontation",
+        "title": "Акт 5 — Конфронтація в Затопленій Каплиці",
+        "summary": "Ритуал у каплиці. Бонуси знижують складність, disturbance і присутність Рейна — підвищують. Фінальний вибір A/B/V/G."
+      }
+    ],
+    "rein_timer_days": 3,
+    "rein_timer_day4": "doctrinal_trial",
+    "disturbance_max": 5,
+    "phase_order": [
+      "quiet_discovery",
+      "investigation",
+      "doctrinal_reckoning",
+      "ritual_prep",
+      "confrontation"
+    ]
+  },
+  "objectives": [
+    {
+      "id": "enter_flooded_chapel",
+      "description": "Увійти в затоплену каплицю",
+      "type": "area_trigger",
+      "target": "flooded_chapel",
+      "location": "flooded_chapel",
+      "required": true,
+      "act": "quiet_discovery"
+    },
+    {
+      "id": "discover_ritual_sign",
+      "description": "Виявити тіло з дзеркально перевернутим попільним знаком",
+      "type": "inspect",
+      "target": "ritual_body",
+      "location": "flooded_chapel",
+      "required": true,
+      "act": "quiet_discovery",
+      "sets_flags": [
+        "popil_body_found"
+      ]
+    },
+    {
+      "id": "first_choice",
+      "description": "Обрати перший крок: довіритись Каросу, дослідити тіло, або зустріти Рейна",
+      "type": "choice",
+      "target": "discovery_approach",
+      "location": "flooded_chapel",
+      "required": true,
+      "act": "quiet_discovery",
+      "options": [
+        "trust_karos",
+        "investigate_body",
+        "meet_rein"
+      ],
+      "unlocks": [
+        "examine_body",
+        "archive_records",
+        "question_mirefold"
+      ]
+    },
+    {
+      "id": "examine_body",
+      "description": "Дослідити тіло: причина смерті, ритуальні знаки, сліди",
+      "type": "investigate",
+      "target": "ritual_body_detail",
+      "location": "flooded_chapel",
+      "required": true,
+      "act": "investigation",
+      "investigation_line": true
+    },
+    {
+      "id": "archive_records",
+      "description": "Вивчити архівні записи (потрібна довіра Ізри ≥2)",
+      "type": "investigate",
+      "target": "isra_archive",
+      "location": "st_vey",
+      "required": true,
+      "act": "investigation",
+      "investigation_line": true,
+      "requires_flag": "isra_trust_gte_2"
+    },
+    {
+      "id": "question_mirefold",
+      "description": "Розпитати мешканців Мірефолда про ритуал",
+      "type": "talk",
+      "target": "mirefold_locals",
+      "location": "mirefold",
+      "required": true,
+      "act": "investigation",
+      "investigation_line": true
+    },
+    {
+      "id": "find_skel",
+      "description": "Знайти Скела — свідка або учасника ритуалу",
+      "type": "talk",
+      "target": "skel",
+      "location": "mirefold",
+      "required": true,
+      "act": "investigation",
+      "investigation_line": true,
+      "sets_flags": [
+        "popil_skel_found"
+      ]
+    },
+    {
+      "id": "read_archive",
+      "description": "Прочитати архівний запис про оригінальний ритуал Селли",
+      "type": "investigate",
+      "target": "sella_archive_entry",
+      "location": "st_vey",
+      "required": true,
+      "act": "investigation",
+      "investigation_line": true,
+      "requires_flag": "isra_trust_gte_2"
+    },
+    {
+      "id": "monitor_disturbance",
+      "description": "Стежити за рівнем disturbance (0-5): +1/день бездіяльності, +1 арешт Скела, +2 захоплення архіву Рейном",
+      "type": "counter",
+      "target": "disturbance",
+      "location": "flooded_chapel",
+      "required": true,
+      "act": "doctrinal_reckoning",
+      "counter_max": 5,
+      "thresholds": {
+        "0": "quiet",
+        "3": "roots_grow_cold",
+        "4": "reflections_dont_match",
+        "5": "manifestation"
+      }
+    },
+    {
+      "id": "watch_rein_timer",
+      "description": "Рейн має 3 дні — на 4-й день почнеться доктринальний суд",
+      "type": "timer",
+      "target": "rein_timer",
+      "location": "sonk_ferry",
+      "required": true,
+      "act": "doctrinal_reckoning",
+      "timer_days": 3,
+      "day4_trigger": "doctrinal_trial",
+      "day4_outcome": "G_auto"
+    },
+    {
+      "id": "reconstruct_with_karos",
+      "description": "Реконструювати ритуал з Каросом (bonus: -1 до складності)",
+      "type": "scripted",
+      "target": "karos_reconstruction",
+      "location": "flooded_chapel",
+      "required": false,
+      "optional": true,
+      "act": "ritual_prep",
+      "bonus": "correct_reconstruction",
+      "bonus_value": -1
+    },
+    {
+      "id": "seal_or_transfer_archive",
+      "description": "Вирішити долю архіву: запечатати або передати (bonus: -1 якщо запис збережено)",
+      "type": "choice",
+      "target": "archive_fate",
+      "location": "st_vey",
+      "required": true,
+      "act": "ritual_prep",
+      "options": [
+        "seal_archive",
+        "transfer_archive"
+      ],
+      "bonus": "archive_record",
+      "bonus_value": -1
+    },
+    {
+      "id": "protect_skel",
+      "description": "Захистити Скела від Рейна (bonus: -1 до складності, інакше disturbance +1)",
+      "type": "scripted",
+      "target": "skel_protection",
+      "location": "mirefold",
+      "required": false,
+      "optional": true,
+      "act": "ritual_prep",
+      "bonus": "skel_present",
+      "bonus_value": -1,
+      "failure_penalty": {
+        "disturbance": 1,
+        "if_arrested": true
+      }
+    },
+    {
+      "id": "enlist_sella",
+      "description": "Залучити Селлу до ритуалу (bonus: -1 до складності)",
+      "type": "talk",
+      "target": "sella",
+      "location": "mirefold",
+      "required": false,
+      "optional": true,
+      "act": "ritual_prep",
+      "bonus": "sella_present",
+      "bonus_value": -1
+    },
+    {
+      "id": "negotiate_with_rein",
+      "description": "Вести переговори з Рейном (penalty: +2 до складності, але альтернативний шлях)",
+      "type": "talk",
+      "target": "rein",
+      "location": "sonk_ferry",
+      "required": false,
+      "optional": true,
+      "act": "ritual_prep",
+      "bonus": "rein_present",
+      "bonus_value": 2
+    },
+    {
+      "id": "chapel_confrontation",
+      "description": "Провести ритуал у Затопленій Каплиці (складність = базова + disturbance≥3 +2 + rein_present +2 - bonuses)",
+      "type": "scripted",
+      "target": "ritual_confrontation",
+      "location": "flooded_chapel",
+      "required": true,
+      "act": "confrontation",
+      "ritual_bonuses": {
+        "correct_reconstruction": -1,
+        "skel_present": -1,
+        "sella_present": -1,
+        "archive_record": -1,
+        "rein_present": 2,
+        "disturbance_3plus": 2
+      },
+      "unlocks": [
+        "resolve_ashes"
+      ]
+    },
+    {
+      "id": "resolve_ashes",
+      "description": "Обрати долю каплиці: Милосердне стримування (A), Доктринальна чистка (B), Контрольоване викриття (V), Похована правда (G)",
+      "type": "choice",
+      "target": "ashes_resolution",
+      "location": "flooded_chapel",
+      "required": true,
+      "act": "confrontation",
+      "choice_ref": "ashes_resolution"
+    }
+  ],
+  "completion_conditions": {
+    "required_objectives": [
+      "enter_flooded_chapel",
+      "discover_ritual_sign",
+      "first_choice",
+      "examine_body",
+      "archive_records",
+      "question_mirefold",
+      "find_skel",
+      "read_archive",
+      "monitor_disturbance",
+      "seal_or_transfer_archive",
+      "chapel_confrontation",
+      "resolve_ashes"
+    ],
+    "ritual_bonus_formula": "base_difficulty + (disturbance>=3 ? 2 : 0) + (rein_present ? 2 : 0) - reconstruction - skel - sella - archive",
+    "rein_timer_days": 3,
+    "rein_timer_auto_day4": "doctrinal_trial",
+    "disturbance_max": 5,
+    "resolution_choice": "ashes_resolution",
+    "unlocks_route": "route_to_sonk_ferry_tribunal"
+  },
+  "resolution_choice": {
+    "id": "ashes_resolution",
+    "prompt": "Як завершити ритуал у Затопленій Каплиці?",
+    "options": [
+      {
+        "id": "A",
+        "resolution": "A",
+        "text": "Милосердне стримування",
+        "desc": "Ритуал завершено. Тіло забирає вода.",
+        "set_flag": "popil_outcome_merciful_containment",
+        "set_variable": "popil_result",
+        "value": "A"
+      },
+      {
+        "id": "B",
+        "resolution": "B",
+        "text": "Доктринальна чистка",
+        "desc": "Рейн викриває все. Архів знищено.",
+        "set_flag": "popil_outcome_doctrinal_purge",
+        "set_variable": "popil_result",
+        "value": "B",
+        "effect": "archive_destroyed"
+      },
+      {
+        "id": "V",
+        "resolution": "V",
+        "text": "Контрольоване викриття",
+        "desc": "Архів реформовано. Крихкий баланс.",
+        "set_flag": "popil_outcome_controlled_exposure",
+        "set_variable": "popil_result",
+        "value": "V",
+        "effect": "archive_reformed"
+      },
+      {
+        "id": "G",
+        "resolution": "G",
+        "text": "Похована правда",
+        "desc": "Тіло знищено. Архів запечатано.",
+        "set_flag": "popil_outcome_buried_truth",
+        "set_variable": "popil_result",
+        "value": "G",
+        "effect": "archive_sealed",
+        "auto_on_timer_expiry": true
+      }
+    ]
+  },
+  "unlocks": [
+    "sonk_ferry_04_quota_knife"
   ]
 }

@@ -59,7 +59,7 @@ func _quest_manager():
 
 func _scene_reg():
 	if _scene_registry == null:
-		var sr: Script = load("res://scripts/core/scene_registry.gd").new()
+		var sr: Node = load("res://scripts/core/scene_registry.gd").new()
 		sr.name = "SceneRegistry"
 		add_child(sr)
 		_scene_registry = sr

@@ -4,7 +4,7 @@ extends Node
 ## Розблоковується вердиктом V_lantern в Ep3 (valkorn_05).
 ## Коштує stamina + завдає pain. Посилюється вердиктом B_reed.
 ## Заблокована назавжди вердиктом A_iron.
-class_name BoloWeaving
+## NOTE: autoload — не має class_name.
 
 # Стан
 enum State { LOCKED, UNLOCKED, ENHANCED }  # A_iron=LOCKED, V=UNLOCKED, B_reed=ENHANCED

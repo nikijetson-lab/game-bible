@@ -4,7 +4,7 @@ extends Node
 ## Підтримує: fade in/out, camera movement, dialogue overlay,
 ## spawn VFX, trigger quest events. Кожна катсцена — іменована
 ## послідовність кроків, яку можна викликати за ID.
-class_name CutsceneManager
+## NOTE: autoload — не має class_name.
 
 signal cutscene_started(cutscene_id: String)
 signal cutscene_step(step: int, total: int)

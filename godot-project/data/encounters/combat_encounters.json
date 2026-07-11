@@ -1,0 +1,72 @@
+{
+  "_meta": "Combat encounter placements per scene. Defines enemy type, position, quest gate.",
+  "encounters": {
+    "res://scenes/locations/sonk_ferry/FloodedChamber.tscn": [
+      {
+        "id": "reed_wraiths_chamber",
+        "enemy_type": "reed_wraith",
+        "count": 3,
+        "pos": [0, 0, 5],
+        "spread": 3.0,
+        "quest_required": "sonk_ferry_01_hunger_from_below",
+        "objective_on_clear": "defeat_reed_wraiths",
+        "drop_table": "swamp_essence"
+      }
+    ],
+    "res://scenes/locations/valkorn/BlackArchive.tscn": [
+      {
+        "id": "order_elites_archive",
+        "enemy_type": "order_elite_mercenary",
+        "count": 2,
+        "pos": [0, 0, -5],
+        "spread": 2.5,
+        "quest_required": "valkorn_05_keeper_of_first_seal",
+        "objective_on_clear": "",
+        "drop_table": "order_gear",
+        "elite_stats": {"hp": 120, "damage": 25, "armor": 15}
+      }
+    ],
+    "res://scenes/locations/deep_bog/DeepBog.tscn": [
+      {
+        "id": "swamp_ambush_01",
+        "enemy_type": "swamp_lurker",
+        "count": 2,
+        "pos": [10, 0, 8],
+        "spread": 5.0,
+        "quest_required": "",
+        "drop_table": "bog_materials"
+      },
+      {
+        "id": "swamp_ambush_02",
+        "enemy_type": "swamp_lurker",
+        "count": 3,
+        "pos": [-12, 0, 15],
+        "spread": 4.0,
+        "quest_required": "deep_bog_01_voice_from_fog",
+        "drop_table": "bog_materials"
+      }
+    ],
+    "res://scenes/locations/hazemoor/SwampPath.tscn": [
+      {
+        "id": "path_danger_01",
+        "enemy_type": "bog_crawler",
+        "count": 2,
+        "pos": [8, 0, 10],
+        "spread": 3.0,
+        "drop_table": "swamp_essence"
+      }
+    ],
+    "res://scenes/locations/tykhy_shelist/ForbiddenGlade.tscn": [
+      {
+        "id": "glade_guardians",
+        "enemy_type": "mour_fragment",
+        "count": 1,
+        "pos": [5, 0, 5],
+        "spread": 0,
+        "quest_required": "hazemoor_02_glade_and_mour",
+        "drop_table": "mour_essence",
+        "elite_stats": {"hp": 200, "damage": 35, "armor": 20}
+      }
+    ]
+  }
+}

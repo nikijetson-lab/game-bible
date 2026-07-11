@@ -62,5 +62,294 @@
     "mount": "Крилатий маунт — частина Моура у формі"
   },
   "reveals": "Орден Семи Кинджалів створив артефакт. Символ = печатка на листі з Грейфорда.",
-  "leads_to": "valkorn_01_man_from_swamp"
+  "leads_to": "valkorn_01_man_from_swamp",
+  "start_location": "forbidden_glade",
+  "structure": {
+    "acts": [
+      {
+        "id": "reconnaissance",
+        "title": "Акт 1 — Розвідка",
+        "summary": "Заборонена галявина: темний камінь з подряпиною Прадавньої війни, жива магія болота, водне світло вночі, низький звук у голові. Герой обирає: піти, залишитись на ніч, або активно шукати контакт."
+      },
+      {
+        "id": "entry",
+        "title": "Акт 2 — Вхід і зустріч",
+        "summary": "Міа відкриває туман своєю присутністю. Герой проходить через воду: світло знизу, силуети, основа артефакту, видіння творця. Потрібна hero_learned_swamp_trust."
+      },
+      {
+        "id": "mour_manifestation",
+        "title": "Акт 3 — Маніфестація Моура",
+        "summary": "Мільйони комах злітаються в хмару. Голова. Очі з порожнечі. Моур впізнає Міа. Герой ставить 4 запитання: про артефакт, про Руфіна, про Міа, про творця."
+      },
+      {
+        "id": "mia_revelation",
+        "title": "Акт 4 — Міа дізнається",
+        "summary": "«Я думала, що чую болото краще за інших, тому що вчилась. Але я чула його тому, що воно — я.» Ключовий момент ідентичності Міа та зв'язку з Моуром."
+      }
+    ],
+    "revelation": "Order of Seven Daggers created the artifact — same seal as the Greyford letter.",
+    "requires_mia_flag": "hero_found_rufin",
+    "requires_swamp_trust": true,
+    "phase_order": [
+      "reconnaissance",
+      "entry",
+      "mour_manifestation",
+      "mia_revelation"
+    ]
+  },
+  "objectives": [
+    {
+      "id": "reach_forbidden_glade",
+      "description": "Дістатися до забороненої галявини — місце, де Моур найближче до поверхні",
+      "type": "area_trigger",
+      "target": "forbidden_glade",
+      "location": "forbidden_glade",
+      "required": true,
+      "act": "reconnaissance"
+    },
+    {
+      "id": "inspect_artifact_stone",
+      "description": "Дослідити темний камінь: холодний, з подряпиною — символом Прадавньої війни",
+      "type": "investigate",
+      "target": "artifact_remains",
+      "location": "forbidden_glade",
+      "required": true,
+      "act": "reconnaissance",
+      "finding": "artifact_remains"
+    },
+    {
+      "id": "sense_swamp_magic",
+      "description": "Відчути живу магію болота — простір пульсує",
+      "type": "observe",
+      "target": "magic_trace",
+      "location": "forbidden_glade",
+      "required": true,
+      "act": "reconnaissance",
+      "finding": "magic_trace",
+      "requires_doctrine": [
+        "lantern",
+        "ranger"
+      ]
+    },
+    {
+      "id": "water_writing_night",
+      "description": "Побачити водне світло вночі: збирається в лінії, реагує на присутність",
+      "type": "observe",
+      "target": "water_writing",
+      "location": "forbidden_glade",
+      "required": true,
+      "act": "reconnaissance",
+      "finding": "water_writing",
+      "condition": "night"
+    },
+    {
+      "id": "hear_deep_sound",
+      "description": "Почути низький глибокий звук у голові — поклик Моура",
+      "type": "observe",
+      "target": "deep_sound",
+      "location": "forbidden_glade",
+      "required": true,
+      "act": "reconnaissance",
+      "finding": "deep_sound_note"
+    },
+    {
+      "id": "glade_decision",
+      "description": "Обрати: піти, залишитись на ніч, або активно шукати контакт із болотом",
+      "type": "choice",
+      "target": "glade_approach",
+      "location": "forbidden_glade",
+      "required": true,
+      "act": "reconnaissance",
+      "options": [
+        "leave",
+        "stay_overnight",
+        "actively_seek_contact"
+      ],
+      "unlocks": [
+        "entry_through_water"
+      ]
+    },
+    {
+      "id": "entry_through_water",
+      "description": "Пройти через воду вглиб галявини — Міа відкриває туман (requires: hero_learned_swamp_trust)",
+      "type": "area_trigger",
+      "target": "underwater_passage",
+      "location": "forbidden_glade",
+      "required": true,
+      "act": "entry",
+      "requires_flag": "hero_learned_swamp_trust",
+      "mia_present": true,
+      "unlocks": [
+        "mour_appears"
+      ]
+    },
+    {
+      "id": "underwater_vision",
+      "description": "Побачити світло знизу, силуети, основу артефакту, видіння творця під водою",
+      "type": "scripted",
+      "target": "underwater_vision",
+      "location": "forbidden_glade",
+      "required": true,
+      "act": "entry",
+      "vision_elements": [
+        "light_from_below",
+        "silhouettes",
+        "artifact_base",
+        "creator_vision"
+      ]
+    },
+    {
+      "id": "mour_appears",
+      "description": "Моур маніфестується: мільйони комах → хмара → голова з очима порожнечі",
+      "type": "scripted",
+      "target": "mour_manifestation",
+      "location": "forbidden_glade",
+      "required": true,
+      "act": "mour_manifestation",
+      "unlocks": [
+        "ask_about_artifact",
+        "ask_about_rufin",
+        "ask_about_mia",
+        "ask_about_creator"
+      ]
+    },
+    {
+      "id": "ask_about_artifact",
+      "description": "Запитати Моура про артефакт",
+      "type": "talk",
+      "target": "mour",
+      "location": "forbidden_glade",
+      "required": true,
+      "act": "mour_manifestation",
+      "mour_answer": "«Його зробили з мене. Я пішов. Вони забрали шматок. Тепер він знову мій.»",
+      "sets_flags": [
+        "mour_artifact_answered"
+      ]
+    },
+    {
+      "id": "ask_about_rufin",
+      "description": "Запитати Моура про Руфіна",
+      "type": "talk",
+      "target": "mour",
+      "location": "forbidden_glade",
+      "required": true,
+      "act": "mour_manifestation",
+      "mour_answer": "«Він ніс моє. Я забрав. Він залишився живим — більше ніж я обіцяв.»",
+      "sets_flags": [
+        "mour_rufin_answered"
+      ]
+    },
+    {
+      "id": "ask_about_mia",
+      "description": "Запитати Моура про Міа",
+      "type": "talk",
+      "target": "mour",
+      "location": "forbidden_glade",
+      "required": true,
+      "act": "mour_manifestation",
+      "mour_answer": "«Вона моя. Інакше, ніж ти думаєш. Але моя.»",
+      "sets_flags": [
+        "mour_mia_answered"
+      ]
+    },
+    {
+      "id": "ask_about_creator",
+      "description": "Запитати Моура про творця артефакту",
+      "type": "talk",
+      "target": "mour",
+      "location": "forbidden_glade",
+      "required": true,
+      "act": "mour_manifestation",
+      "vision": "Воїн із символом Ордену Семи Кинджалів: два перехрещені кинджали, коло, крапля. Та сама печатка, що на листі з Грейфорда.",
+      "sets_flags": [
+        "mour_creator_answered",
+        "order_seven_daggers_revealed"
+      ],
+      "reveal": "Орден Семи Кинджалів створив артефакт із плоті Моура"
+    },
+    {
+      "id": "mia_truth",
+      "description": "Міа дізнається правду: «Я чула болото не тому, що вчилась. Я чула його тому, що воно — я.»",
+      "type": "scripted",
+      "target": "mia_revelation",
+      "location": "forbidden_glade",
+      "required": true,
+      "act": "mia_revelation",
+      "sets_flags": [
+        "mia_knows_truth",
+        "mia_mour_bond"
+      ],
+      "unlocks": [
+        "resolve_glade"
+      ]
+    },
+    {
+      "id": "resolve_glade",
+      "description": "Завершити зустріч: з Міа і прямим контактом, з Міа через її переказ, або без Міа",
+      "type": "choice",
+      "target": "glade_outcome",
+      "location": "forbidden_glade",
+      "required": true,
+      "act": "mia_revelation",
+      "choice_ref": "glade_outcome"
+    }
+  ],
+  "completion_conditions": {
+    "required_objectives": [
+      "reach_forbidden_glade",
+      "inspect_artifact_stone",
+      "glade_decision",
+      "entry_through_water",
+      "mour_appears",
+      "ask_about_artifact",
+      "ask_about_rufin",
+      "ask_about_mia",
+      "ask_about_creator",
+      "mia_truth",
+      "resolve_glade"
+    ],
+    "requires_flag": "hero_learned_swamp_trust",
+    "requires_mia_present_flag": "hero_found_rufin",
+    "outcome_choice": "glade_outcome",
+    "revelation": "order_seven_daggers_revealed",
+    "unlocks_route": "route_to_valkorn"
+  },
+  "resolution_choice": {
+    "id": "glade_outcome",
+    "prompt": "Як завершити зустріч із Моуром?",
+    "options": [
+      {
+        "id": "with_mia_contact",
+        "text": "Прямий контакт із Міа",
+        "desc": "Видіння творця + Міа знає правду + маунт + новий рівень стосунків",
+        "requires_flags": [
+          "hero_found_rufin",
+          "mia_present"
+        ],
+        "set_flags": [
+          "glade_outcome_direct_contact"
+        ]
+      },
+      {
+        "id": "with_mia_through_her",
+        "text": "Через переказ Міа",
+        "desc": "Міа знає правду, герой — через переказ + маунт",
+        "requires_flag": "hero_found_rufin",
+        "set_flags": [
+          "glade_outcome_through_mia"
+        ]
+      },
+      {
+        "id": "without_mia",
+        "text": "Без Міа — тільки інформація",
+        "desc": "Тільки інформація про артефакт, таємниця Міа закрита",
+        "set_flags": [
+          "glade_outcome_no_mia"
+        ]
+      }
+    ]
+  },
+  "unlocks": [
+    "valkorn_01_man_from_swamp"
+  ]
 }

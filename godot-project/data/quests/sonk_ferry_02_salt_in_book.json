@@ -5,33 +5,79 @@
   "category": "main",
   "episode": 1,
   "prerequisites": {
-    "quests_completed": ["sonk_ferry_01_hunger_from_below"],
+    "quests_completed": [
+      "sonk_ferry_01_hunger_from_below"
+    ],
     "flag": "hunger_outcome_local_deal"
   },
   "phases": {
     "immediate_harm": {
       "title": "Негайна шкода",
       "objectives": [
-        {"id":"inspect_crate","description":"Оглянути відкритий ящик із підробленими печатками","type":"inspect"},
-        {"id":"calm_crowd","description":"Не дати натовпу знищити решту ліків","type":"social"},
-        {"id":"meet_mara","description":"Поговорити з Марою Денс","type":"talk","target":"mara_dens"}
+        {
+          "id": "inspect_crate",
+          "description": "Оглянути відкритий ящик із підробленими печатками",
+          "type": "inspect"
+        },
+        {
+          "id": "calm_crowd",
+          "description": "Не дати натовпу знищити решту ліків",
+          "type": "social"
+        },
+        {
+          "id": "meet_mara",
+          "description": "Поговорити з Марою Денс",
+          "type": "talk",
+          "target": "mara_dens"
+        }
       ]
     },
     "forensics": {
       "title": "Криміналістика",
       "objectives": [
-        {"id":"examine_seals","description":"Дослідити віск, шнури, нумерацію на печатках","type":"investigate"},
-        {"id":"trace_chain","description":"Простежити поромні журнали та ланцюжок передачі","type":"investigate"},
-        {"id":"compare_medicine","description":"Порівняти справжні та фальшиві ліки","type":"investigate"},
-        {"id":"pressure_brin","description":"Тиснути на Бріна Осса за свідченнями","type":"talk","target":"brin_oss"}
+        {
+          "id": "examine_seals",
+          "description": "Дослідити віск, шнури, нумерацію на печатках",
+          "type": "investigate"
+        },
+        {
+          "id": "trace_chain",
+          "description": "Простежити поромні журнали та ланцюжок передачі",
+          "type": "investigate"
+        },
+        {
+          "id": "compare_medicine",
+          "description": "Порівняти справжні та фальшиві ліки",
+          "type": "investigate"
+        },
+        {
+          "id": "pressure_brin",
+          "description": "Тиснути на Бріна Осса за свідченнями",
+          "type": "talk",
+          "target": "brin_oss"
+        }
       ]
     },
     "pressure": {
       "title": "Тиск та інтерпретація",
       "objectives": [
-        {"id":"confront_gara","description":"Зустріти Гару Пайк","type":"talk","target":"gara_paik"},
-        {"id":"meet_tovan","description":"Вислухати Тована Ріда","type":"talk","target":"tovan_rid"},
-        {"id":"choose_theory","description":"Обрати робочу теорію","type":"choice"}
+        {
+          "id": "confront_gara",
+          "description": "Зустріти Гару Пайк",
+          "type": "talk",
+          "target": "gara_paik"
+        },
+        {
+          "id": "meet_tovan",
+          "description": "Вислухати Тована Ріда",
+          "type": "talk",
+          "target": "tovan_rid"
+        },
+        {
+          "id": "choose_theory",
+          "description": "Обрати робочу теорію",
+          "type": "choice"
+        }
       ]
     },
     "confrontation": {
@@ -41,10 +87,25 @@
     }
   },
   "resolutions": {
-    "A": {"title":"Чистка паразитів","description":"Викрити хижу комірку Гари Пайк."},
-    "B": {"title":"Тихе виправлення","description":"Приховати скандал, видалити найгірших, відбудувати маршрут."},
-    "C": {"title":"Публічний розкол","description":"Довести, що мережа скомпрометована, відмовитись захищати."},
-    "D": {"title":"Контрольований цап-відбувайло","description":"Пожертвувати одним винним шаром публічно."}
+    "A": {
+      "title": "Чистка паразитів",
+      "description": "Викрити хижу комірку Гари Пайк."
+    },
+    "B": {
+      "title": "Тихе виправлення",
+      "description": "Приховати скандал, видалити найгірших, відбудувати маршрут."
+    },
+    "C": {
+      "title": "Публічний розкол",
+      "description": "Довести, що мережа скомпрометована, відмовитись захищати."
+    },
+    "D": {
+      "title": "Контрольований цап-відбувайло",
+      "description": "Пожертвувати одним винним шаром публічно."
+    }
   },
-  "leads_to": ["poromna_prysyaga","nizh_kvoty"]
+  "leads_to": [
+    "sonk_ferry_03_ferry_oath",
+    "sonk_ferry_04_quota_knife"
+  ]
 }

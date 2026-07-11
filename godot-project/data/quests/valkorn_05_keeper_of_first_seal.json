@@ -5,7 +5,11 @@
   "category": "main",
   "episode": 2,
   "episode_end": true,
-  "prerequisites": {"quests_completed": ["valkorn_04_messenger_of_rufin"]},
+  "prerequisites": {
+    "quests_completed": [
+      "valkorn_04_messenger_of_rufin"
+    ]
+  },
   "infiltration": {
     "judge_path": "Stetson grants night passes for official investigation",
     "mediator_path": "Tessa arranges servant disguises during banquet",
@@ -30,22 +34,34 @@
       "action": "Arrest or kill Sebastian, take First Seal for Crown",
       "combat": "mental illusions + 2 elite Order mercenaries",
       "ilia": "broken but loyal out of duty — 'The Sebastian Marr I knew died 20 years ago'",
-      "consequences": {"order_rep":-100,"stetson":"triumphant","hero_title":"Defender of Valkorn"}
+      "consequences": {
+        "order_rep": -100,
+        "stetson": "triumphant",
+        "hero_title": "Defender of Valkorn"
+      }
     },
     "B_mediator": {
       "title": "Шлях Посередника / Договір Тіней",
       "action": "Secret treaty — Sebastian keeps Order, protects frontier, gives Black Archive access",
       "ilia": "cold, tense — 'We made a deal with a monster wearing my uncle's face'",
-      "consequences": {"order_rep":40,"stetson":"suspicious","gain":"Archive Key + spy network"}
+      "consequences": {
+        "order_rep": 40,
+        "stetson": "suspicious",
+        "gain": "Archive Key + spy network"
+      }
     },
     "V_lantern": {
       "title": "Шлях Ліхтаря / Вердикт Злиття",
       "action": "Merge First Seal with Mour Stone — hero becomes living conduit",
       "ritual": "agonizing fusion, Ilia anchors hero's mind with her Lantern",
       "ilia": "Tragic Moral Anchor — permanent mental link, voice in hero's head",
-      "consequences": {"gain":"Bolo-Weaving skill branch","sebastian":"retires into shadows","ilia":"mental voice companion"}
+      "consequences": {
+        "gain": "Bolo-Weaving skill branch",
+        "sebastian": "retires into shadows",
+        "ilia": "mental voice companion"
+      }
     }
   },
   "epilogue": "Balcony at dawn. Valkorn in fog. Episode 2 ends. Episode 3: Heart of the Bog awaits.",
-  "leads_to": "ep3"
+  "leads_to": "deep_bog_01_voice_from_fog"
 }

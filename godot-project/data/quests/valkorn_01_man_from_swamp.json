@@ -4,13 +4,22 @@
   "description": "Герой прибуває до Валькорна з Ілією Марр. Блазень Фіпп впізнає його на ринковій площі. Три нитки: Стетсон, Брес, Тесса.",
   "category": "main",
   "episode": 2,
-  "prerequisites": {"quests_completed": ["sonk_ferry_04_quota_knife"],"flag":"quota_result_V"},
+  "prerequisites": {
+    "quests_completed": [
+      "sonk_ferry_04_quota_knife"
+    ],
+    "flag": "quota_result_V"
+  },
   "threads": {
     "stetson": {
       "title": "Стетсон",
       "question": "союзник за яку ціну?",
       "location": "valkorn_palace_quarter",
-      "knows": ["order_crown_relations","tessa_likely","artifact_partial"],
+      "knows": [
+        "order_crown_relations",
+        "tessa_likely",
+        "artifact_partial"
+      ],
       "wants": "order_financial_evidence"
     },
     "bres": {
@@ -23,7 +32,11 @@
       "title": "Перша зустріч із Тессою",
       "question": "хто вона?",
       "location": "valkorn_trade_quarter",
-      "tones": ["open","cautious","hostile"]
+      "tones": [
+        "open",
+        "cautious",
+        "hostile"
+      ]
     }
   },
   "min_threads": 2,
@@ -33,5 +46,5 @@
     "tessa_knows_glade": "if_open_tone_she_knows_hero_contacted_mour",
     "odrin_knows_order": "yes_fears_them_hiding_third_point_coordinates"
   },
-  "leads_to": "valkorn_dvi_versii_pravdy"
+  "leads_to": "valkorn_02_two_truths"
 }

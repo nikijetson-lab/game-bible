@@ -4,30 +4,65 @@
   "description": "Брес знайшов, куди пішов пакунок. Склад Торгової гільдії. Дамар продає артефакт тому, хто заплатить правильну ціну.",
   "category": "main",
   "episode": 2,
-  "prerequisites": {"quests_completed": ["valkorn_02_two_truths"]},
+  "prerequisites": {
+    "quests_completed": [
+      "valkorn_02_two_truths"
+    ]
+  },
   "phases": {
     "recon": {
       "title": "Розвідка складу",
-      "approaches": {"scout":"guard_patterns","mediator":"bribed_loader","judge":"public_records","lantern":"artifact_presence"}
+      "approaches": {
+        "scout": "guard_patterns",
+        "mediator": "bribed_loader",
+        "judge": "public_records",
+        "lantern": "artifact_presence"
+      }
     },
     "approach": {
       "title": "Підхід до Дамара",
-      "options": ["through_bres","through_guild_official","direct"]
+      "options": [
+        "through_bres",
+        "through_guild_official",
+        "direct"
+      ]
     },
     "negotiation": {
       "title": "Розмова з Дамаром",
-      "options": ["buy","tell_truth","threaten","offer_order_as_buyer","report_to_guild"]
+      "options": [
+        "buy",
+        "tell_truth",
+        "threaten",
+        "offer_order_as_buyer",
+        "report_to_guild"
+      ]
     },
     "tessa_interrupt": {
       "title": "Тесса і вибір",
-      "conditions": {"good":"ally_with_own_goal","neutral":"competitor","bad":"sabotage"}
+      "conditions": {
+        "good": "ally_with_own_goal",
+        "neutral": "competitor",
+        "bad": "sabotage"
+      }
     }
   },
   "outcomes": {
-    "A": {"title":"Герой бере артефакт","desc":"Дамар продає. Артефакт у героя."},
-    "B": {"title":"Тесса бере артефакт","desc":"Спізнився. Тесса ховає під підлогою."},
-    "V": {"title":"У гільдії/адміністрації","desc":"Конфісковано системою."},
-    "G": {"title":"Знищено/зникло","desc":"Дамар позбувся. Або Лоен втрутився."}
+    "A": {
+      "title": "Герой бере артефакт",
+      "desc": "Дамар продає. Артефакт у героя."
+    },
+    "B": {
+      "title": "Тесса бере артефакт",
+      "desc": "Спізнився. Тесса ховає під підлогою."
+    },
+    "V": {
+      "title": "У гільдії/адміністрації",
+      "desc": "Конфісковано системою."
+    },
+    "G": {
+      "title": "Знищено/зникло",
+      "desc": "Дамар позбувся. Або Лоен втрутився."
+    }
   },
   "canon": {
     "how_damar_found": "overheard_odrin_in_tavern",
@@ -35,5 +70,5 @@
     "loen_reaction": "mobilizes_spies_creating_street_tension",
     "guild_master": "Albrecht_knows_more_supplies_Stetson"
   },
-  "leads_to": "valkorn_poslanets_rufina"
+  "leads_to": "valkorn_04_messenger_of_rufin"
 }

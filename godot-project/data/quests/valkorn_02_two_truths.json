@@ -4,17 +4,36 @@
   "description": "Конверт без підпису: «Третя точка ще не відкрита. Поспішай.» Два шляхи до підземель — через Одріна або Тессу. Артефакт уже взяли.",
   "category": "main",
   "episode": 2,
-  "prerequisites": {"quests_completed": ["valkorn_01_man_from_swamp"]},
+  "prerequisites": {
+    "quests_completed": [
+      "valkorn_01_man_from_swamp"
+    ]
+  },
   "threads": {
     "odrin": {
       "title": "Одрін і карта",
-      "gives": ["exact_route","first_two_points_knowledge","archive_access"],
-      "doesnt_know": ["tessa_and_order","map_not_unique"]
+      "gives": [
+        "exact_route",
+        "first_two_points_knowledge",
+        "archive_access"
+      ],
+      "doesnt_know": [
+        "tessa_and_order",
+        "map_not_unique"
+      ]
     },
     "tessa": {
       "title": "Тесса і знання",
-      "gives": ["artifact_nature","alternate_entrance","ancient_war_context"],
-      "hides": ["order_origin","order_also_searching","previous_seeker_lost"]
+      "gives": [
+        "artifact_nature",
+        "alternate_entrance",
+        "ancient_war_context"
+      ],
+      "hides": [
+        "order_origin",
+        "order_also_searching",
+        "previous_seeker_lost"
+      ]
     }
   },
   "crossroads": {
@@ -24,7 +43,13 @@
   },
   "underground": {
     "location": "valkorn_undercity",
-    "findings": ["ancient_runes","first_two_points","order_chamber","empty_pedestal","fabric_scrap"],
+    "findings": [
+      "ancient_runes",
+      "first_two_points",
+      "order_chamber",
+      "empty_pedestal",
+      "fabric_scrap"
+    ],
     "artifact_status": "taken_by_damar_two_days_ago"
   },
   "canon": {
@@ -33,5 +58,5 @@
     "order_chamber": "3 Order of Seven Daggers spies sealed by Sebastian Marr",
     "tessa_truth": "partial — Loen didn't order, but she wanted artifact for leverage"
   },
-  "leads_to": "valkorn_pravylna_tsina"
+  "leads_to": "valkorn_03_right_price"
 }

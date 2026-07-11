@@ -5,40 +5,95 @@
   "category": "main",
   "episode": 1,
   "prerequisites": {
-    "quests_completed": ["sonk_ferry_03_ferry_oath"]
+    "quests_completed": [
+      "sonk_ferry_03_ferry_oath"
+    ]
   },
   "phases": {
     "quiet_discovery": {
       "title": "Тихе відкриття",
       "location": "flooded_chapel",
-      "first_choice": ["trust_karos","investigate_body","meet_rein"]
+      "first_choice": [
+        "trust_karos",
+        "investigate_body",
+        "meet_rein"
+      ]
     },
     "investigation": {
       "title": "Розслідування",
-      "lines": ["examine_body","archive_records","question_mirefold","find_skel","read_archive"],
+      "lines": [
+        "examine_body",
+        "archive_records",
+        "question_mirefold",
+        "find_skel",
+        "read_archive"
+      ],
       "archive_requirement": "isra_trust >= 2"
     },
     "doctrinal_reckoning": {
       "title": "Доктринальний розрахунок",
-      "disturbance_counter": {"0":"quiet","3":"roots_grow_cold","4":"reflections_dont_match","5":"manifestation"}
+      "disturbance_counter": {
+        "0": "quiet",
+        "3": "roots_grow_cold",
+        "4": "reflections_dont_match",
+        "5": "manifestation"
+      }
     },
     "ritual_prep": {
       "title": "Підготовка до ритуалу",
-      "actions": ["reconstruct_with_karos","seal_or_transfer_archive","protect_skel","enlist_sella","negotiate_with_rein"]
+      "actions": [
+        "reconstruct_with_karos",
+        "seal_or_transfer_archive",
+        "protect_skel",
+        "enlist_sella",
+        "negotiate_with_rein"
+      ]
     },
     "confrontation": {
       "title": "Конфронтація в Затопленій Каплиці",
-      "ritual_bonuses": {"correct_reconstruction":-1,"skel_present":-1,"sella_present":-1,"archive_record":-1,"rein_present":2,"disturbance_3plus":2}
+      "ritual_bonuses": {
+        "correct_reconstruction": -1,
+        "skel_present": -1,
+        "sella_present": -1,
+        "archive_record": -1,
+        "rein_present": 2,
+        "disturbance_3plus": 2
+      }
     }
   },
-  "rein_timer": {"days":3,"day4":"doctrinal_trial"},
-  "disturbance": {"max":5,"growth":"+1 per day inactive, +1 if Skel arrested, +2 if Rein seizes archive"},
-  "resolutions": {
-    "A":{"title":"Милосердне стримування","desc":"Ритуал завершено. Тіло забирає вода."},
-    "B":{"title":"Доктринальна чистка","desc":"Рейн викриває все. Архів знищено."},
-    "V":{"title":"Контрольоване викриття","desc":"Архів реформовано. Крихкий баланс."},
-    "G":{"title":"Похована правда","desc":"Тіло знищено. Архів запечатано."}
+  "rein_timer": {
+    "days": 3,
+    "day4": "doctrinal_trial"
   },
-  "variables": ["popil_result","popil_arhiv_status","popil_skel_alive","popil_reyin_status"],
-  "leads_to": ["nizh_kvoty"]
+  "disturbance": {
+    "max": 5,
+    "growth": "+1 per day inactive, +1 if Skel arrested, +2 if Rein seizes archive"
+  },
+  "resolutions": {
+    "A": {
+      "title": "Милосердне стримування",
+      "desc": "Ритуал завершено. Тіло забирає вода."
+    },
+    "B": {
+      "title": "Доктринальна чистка",
+      "desc": "Рейн викриває все. Архів знищено."
+    },
+    "V": {
+      "title": "Контрольоване викриття",
+      "desc": "Архів реформовано. Крихкий баланс."
+    },
+    "G": {
+      "title": "Похована правда",
+      "desc": "Тіло знищено. Архів запечатано."
+    }
+  },
+  "variables": [
+    "popil_result",
+    "popil_arhiv_status",
+    "popil_skel_alive",
+    "popil_reyin_status"
+  ],
+  "leads_to": [
+    "sonk_ferry_04_quota_knife"
+  ]
 }

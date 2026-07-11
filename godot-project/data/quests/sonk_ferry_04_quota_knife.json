@@ -4,32 +4,110 @@
   "description": "Серіт Келм завершив аудит. Звіт на столі. Чай охолов. Підпишеш — чи будеш боротись?",
   "category": "main",
   "episode": 1,
-  "prerequisites": {"quests_completed": ["hazemoor_02_ashes_under_chapel"]},
-  "first_choice": ["sign","refuse","negotiate","ask_who_knows"],
+  "prerequisites": {
+    "quests_completed": [
+      "hazemoor_02_ashes_under_chapel"
+    ]
+  },
+  "first_choice": [
+    "sign",
+    "refuse",
+    "negotiate",
+    "ask_who_knows"
+  ],
   "kelm_evidence": [
-    {"id":1,"name":"grain_diversion_report","strength":"strong_if_voss_alive"},
-    {"id":2,"name":"voss_testimony","strength":"strong_against_all_but_voss"},
-    {"id":3,"name":"ferry_logs","strength":"depends_on_ferry_oath"},
-    {"id":4,"name":"mercy_archive_copy","strength":"strong_if_archive_not_destroyed"},
-    {"id":5,"name":"oss_route_list","strength":"medium"},
-    {"id":6,"name":"merchant_testimonies","strength":"weak_accumulates"}
+    {
+      "id": 1,
+      "name": "grain_diversion_report",
+      "strength": "strong_if_voss_alive"
+    },
+    {
+      "id": 2,
+      "name": "voss_testimony",
+      "strength": "strong_against_all_but_voss"
+    },
+    {
+      "id": 3,
+      "name": "ferry_logs",
+      "strength": "depends_on_ferry_oath"
+    },
+    {
+      "id": 4,
+      "name": "mercy_archive_copy",
+      "strength": "strong_if_archive_not_destroyed"
+    },
+    {
+      "id": 5,
+      "name": "oss_route_list",
+      "strength": "medium"
+    },
+    {
+      "id": 6,
+      "name": "merchant_testimonies",
+      "strength": "weak_accumulates"
+    }
   ],
   "counter_evidence": [
-    {"id":1,"name":"voss_corruption_proof","how":"archives_before_access_closed"},
-    {"id":2,"name":"kelm_threat_witnessed","how":"provoke_him"},
-    {"id":3,"name":"true_beneficiaries","how":"from_smugglers"},
-    {"id":4,"name":"temple_testimony","how":"karos_or_isra_trust_2plus"},
-    {"id":5,"name":"public_petition","how":"mobilize_residents"},
-    {"id":6,"name":"ilia_marr_report","how":"if_she_arrived"}
+    {
+      "id": 1,
+      "name": "voss_corruption_proof",
+      "how": "archives_before_access_closed"
+    },
+    {
+      "id": 2,
+      "name": "kelm_threat_witnessed",
+      "how": "provoke_him"
+    },
+    {
+      "id": 3,
+      "name": "true_beneficiaries",
+      "how": "from_smugglers"
+    },
+    {
+      "id": 4,
+      "name": "temple_testimony",
+      "how": "karos_or_isra_trust_2plus"
+    },
+    {
+      "id": 5,
+      "name": "public_petition",
+      "how": "mobilize_residents"
+    },
+    {
+      "id": 6,
+      "name": "ilia_marr_report",
+      "how": "if_she_arrived"
+    }
   ],
   "tribunal_mechanic": "player_position = (counter_evidence * 2) + faction_support + doctrine_bonus - kelm_pressure",
   "resolutions": {
-    "A":{"title":"Пристосування","desc":"Підписано. Адміністрація контролює.","condition":"kelm > player + 4"},
-    "B":{"title":"Частковий опір","desc":"Оскаржено. Ядро вціліло.","condition":"kelm > player <= 4"},
-    "V":{"title":"Повний розрахунок","desc":"Відмова. Адміністрація втрачає легітимність.","condition":"player >= kelm + 4"},
-    "G":{"title":"Співконтроль","desc":"Домовленість. Ядро під наглядом.","condition":"player >= kelm"}
+    "A": {
+      "title": "Пристосування",
+      "desc": "Підписано. Адміністрація контролює.",
+      "condition": "kelm > player + 4"
+    },
+    "B": {
+      "title": "Частковий опір",
+      "desc": "Оскаржено. Ядро вціліло.",
+      "condition": "kelm > player <= 4"
+    },
+    "V": {
+      "title": "Повний розрахунок",
+      "desc": "Відмова. Адміністрація втрачає легітимність.",
+      "condition": "player >= kelm + 4"
+    },
+    "G": {
+      "title": "Співконтроль",
+      "desc": "Домовленість. Ядро під наглядом.",
+      "condition": "player >= kelm"
+    }
   },
-  "transit_to_valkorn": {"A":"summoned_by_kelm","B":"delegate_for_appeal","V":"with_ilia_marr","G":"as_recognized_administrator"},
+  "transit_to_valkorn": {
+    "A": "summoned_by_kelm",
+    "B": "delegate_for_appeal",
+    "V": "with_ilia_marr",
+    "G": "as_recognized_administrator"
+  },
   "episode_end": true,
-  "leads_to": "ep2_valkorn"
+  "leads_to": "valkorn_01_man_from_swamp"
 }

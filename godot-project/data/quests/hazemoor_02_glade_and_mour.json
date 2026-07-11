@@ -4,7 +4,11 @@
   "description": "Заборонена галявина — місце, де Моур найближче до поверхні. Артефакт повернувся. Міа дізнається, хто вона. Герой встановлює контакт із свідомістю болота.",
   "category": "main",
   "episode": 1,
-  "prerequisites": {"quests_completed": ["tykhy_shelest_01"]},
+  "prerequisites": {
+    "quests_completed": [
+      "tykhy_shelest_01"
+    ]
+  },
   "phases": {
     "reconnaissance": {
       "title": "Розвідка",
@@ -14,7 +18,11 @@
         "water_writing": "Вночі світло збирається в лінії, реагує на присутність",
         "note": "Низький глибокий звук у голові"
       },
-      "decisions": ["leave","stay_overnight","actively_seek_contact"]
+      "decisions": [
+        "leave",
+        "stay_overnight",
+        "actively_seek_contact"
+      ]
     },
     "entry": {
       "title": "Вхід і зустріч",
@@ -25,7 +33,12 @@
     "mour_manifestation": {
       "title": "Маніфестація Моура",
       "description": "Мільйони комах злітаються в хмару. Голова. Очі з порожнечі. Впізнавання Міа.",
-      "questions": ["about_artifact","about_rufin","about_mia","about_creator"]
+      "questions": [
+        "about_artifact",
+        "about_rufin",
+        "about_mia",
+        "about_creator"
+      ]
     },
     "mia_revelation": {
       "title": "Міа дізнається",
@@ -49,5 +62,5 @@
     "mount": "Крилатий маунт — частина Моура у формі"
   },
   "reveals": "Орден Семи Кинджалів створив артефакт. Символ = печатка на листі з Грейфорда.",
-  "leads_to": "ep2_valkorn"
+  "leads_to": "valkorn_01_man_from_swamp"
 }

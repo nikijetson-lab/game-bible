@@ -41,11 +41,11 @@ Canonical Ep3 finale is `deep_bog_03_flooded_sanctuary.json` because it contains
 
 `data/quests/sunk_ferry_01_hunger_from_below.json` was renamed to `data/quests/sonk_ferry_01_hunger_from_below.json`. Its internal id already was `sonk_ferry_01_hunger_from_below`.
 
-### 3. Remaining: alias links instead of real quest ids
+### 3. Resolved: alias links replaced with canonical quest ids
 
-The quest text uses old/short names in `leads_to` and `canon_previous`. They need either alias resolution in code or direct replacement with canonical ids.
+The quest JSON files now use canonical ids directly in `leads_to`, `canon_previous`, and `prerequisites.quests_completed`. The alias table below remains documented for historical reference and as a validator safety net. Both default and `--strict` validator modes pass.
 
-Canonical alias table:
+Historical alias table:
 
 | Alias used in JSON | Canonical quest id |
 |---|---|
@@ -184,9 +184,8 @@ Legend:
 
 ## Immediate implementation order
 
-1. Keep `tools/validate_quest_canon.py` green in default mode.
-2. Decide whether to replace aliases in JSON with canonical ids or implement alias resolution in `QuestManager`.
-3. Convert `tykhy_shelest_01` to structured objectives.
-4. Convert `sonk_ferry_01_hunger_from_below` to structured objectives and branch outputs.
-5. Add quest graph smoke test to regular project checks.
-6. Only then continue building gameplay/UI/content, otherwise content will keep drifting.
+1. Keep `tools/validate_quest_canon.py . --strict` green.
+2. Convert `tykhy_shelest_01` to structured objectives.
+3. Convert `sonk_ferry_01_hunger_from_below` to structured objectives and branch outputs.
+4. Add quest graph smoke test to regular project checks.
+5. Only then continue building gameplay/UI/content, otherwise content will keep drifting.

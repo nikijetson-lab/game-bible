@@ -5,7 +5,11 @@
   "category": "main",
   "episode": 3,
   "episode_end": true,
-  "prerequisites": {"quests_completed": ["deep_bog_02_mad_ferry"]},
+  "prerequisites": {
+    "quests_completed": [
+      "deep_bog_02_mad_ferry"
+    ]
+  },
   "location": "flooded_sanctuary_crypt",
   "second_seal": {
     "material": "bog-bronze (copper)",
@@ -42,5 +46,5 @@
       "ilia": "still there, through static — 'I'm staying with you'"
     }
   },
-  "leads_to": "ep4"
+  "leads_to": "ep4_01_return_to_valkorn"
 }

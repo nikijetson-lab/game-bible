@@ -46,5 +46,155 @@
       "ilia": "still there, through static — 'I'm staying with you'"
     }
   },
-  "leads_to": "ep4_01_return_to_valkorn"
+  "leads_to": "ep4_01_return_to_valkorn",
+  "start_location": "flooded_sanctuary_crypt",
+  "structure": {
+    "acts": [
+      {
+        "id": "entry",
+        "title": "Акт 1 — Крипта Ключників",
+        "summary": "Герой входить у затоплену крипту під монастирем Ключників. Друга Печатка: болотяна бронза, гаряча, пульсує зеленим, зрощена з корінням верби. Тримає Моура у вічному застої та гнитті."
+      },
+      {
+        "id": "confrontation",
+        "title": "Акт 2 — Міа проти Лілеї",
+        "summary": "Срібло вбиває болото vs срібло потрібне для рівноваги. Міа і Лілея стикаються в конфронтації. Герой між ними."
+      },
+      {
+        "id": "verdict",
+        "title": "Акт 3 — Три вердикти",
+        "summary": "Герой обирає долю Хейзмуру: Вердикт Заліза (болото вмирає), Вердикт Очерету (герой стає болотом), Пакт Ключника (герой як живий замок між печатками). Кінець Епізоду 3."
+      }
+    ],
+    "episode_end": true,
+    "phase_order": [
+      "entry",
+      "confrontation",
+      "verdict"
+    ]
+  },
+  "objectives": [
+    {
+      "id": "enter_sanctuary_crypt",
+      "description": "Увійти в затоплену крипту під монастирем Ключників",
+      "type": "area_trigger",
+      "target": "flooded_sanctuary_crypt",
+      "location": "flooded_sanctuary_crypt",
+      "required": true,
+      "act": "entry",
+      "unlocks": [
+        "inspect_second_seal"
+      ]
+    },
+    {
+      "id": "inspect_second_seal",
+      "description": "Побачити Другу Печатку: болотяна бронза (мідь), гаряча, пульсує зеленим, зрощена з корінням верби, тримає Моура у вічному застої та гнитті",
+      "type": "inspect",
+      "target": "second_seal",
+      "location": "flooded_sanctuary_crypt",
+      "required": true,
+      "act": "entry",
+      "second_seal": {
+        "material": "bog-bronze (copper)",
+        "nature": "hot, pulsing green, fused with willow roots",
+        "function": "holds Mour in eternal stagnation and decay"
+      },
+      "sets_flags": [
+        "second_seal_inspected"
+      ],
+      "unlocks": [
+        "mia_lileya_confrontation"
+      ]
+    },
+    {
+      "id": "mia_lileya_confrontation",
+      "description": "Стати свідком конфронтації Міа та Лілеї: срібло вбиває болото vs срібло потрібне для рівноваги",
+      "type": "scripted",
+      "target": "mia_lileya",
+      "location": "flooded_sanctuary_crypt",
+      "required": true,
+      "act": "confrontation",
+      "conflict": "Mia vs Lileya — silver kills swamp vs silver is needed for balance",
+      "sets_flags": [
+        "mia_lileya_confronted"
+      ],
+      "unlocks": [
+        "ep3_verdict"
+      ]
+    },
+    {
+      "id": "ep3_verdict",
+      "description": "Обрати долю Хейзмуру: Вердикт Заліза (A), Вердикт Очерету (B), Пакт Ключника (V)",
+      "type": "choice",
+      "target": "flooded_sanctuary_verdict",
+      "location": "flooded_sanctuary_crypt",
+      "required": true,
+      "act": "verdict",
+      "choice_ref": "ep3_verdict"
+    }
+  ],
+  "completion_conditions": {
+    "required_objectives": [
+      "enter_sanctuary_crypt",
+      "inspect_second_seal",
+      "mia_lileya_confrontation",
+      "ep3_verdict"
+    ],
+    "episode_3_end": true,
+    "verdict_choice": "ep3_verdict",
+    "branches": [
+      "A_iron",
+      "B_reed",
+      "V_balance"
+    ],
+    "unlocks_route": "route_to_ep4_valkorn"
+  },
+  "resolution_choice": {
+    "id": "ep3_verdict",
+    "prompt": "Якою буде доля Хейзмуру?",
+    "options": [
+      {
+        "id": "A",
+        "resolution": "A_iron",
+        "text": "Вердикт Заліза (Шлях Ліхтарів)",
+        "action": "Insert First Seal into Second Seal altar",
+        "hero_state": "decay stops, skin dead-numb, Mour silence, pain gone",
+        "world_state": "Hazemoor dries and dies, reeds wither, water becomes clay",
+        "mia": "flees cursing, link to Mour severed",
+        "lileya": "relieved but sad — 'we killed the soul of this place'",
+        "ilia": "relieved — 'you survived, come home'",
+        "set_flag": "ep3_verdict_A_iron",
+        "branch": "A_iron"
+      },
+      {
+        "id": "B",
+        "resolution": "B_reed",
+        "text": "Вердикт Очерету (Шлях Гниття)",
+        "action": "Throw First Seal into bog, let Mour dissolve it",
+        "hero_state": "full decay: bark-skin, black eyes, full Bolo-Weaving without penalties",
+        "world_state": "Hazemoor expands, fog becomes impenetrable wall",
+        "mia": "touches hero's face with reverence — 'you chose us'",
+        "lileya": "flees to Greyford — 'you're no longer human'",
+        "ilia": "voice fades forever — 'I can't feel your warmth... goodbye'",
+        "set_flag": "ep3_verdict_B_reed",
+        "branch": "B_reed"
+      },
+      {
+        "id": "V",
+        "resolution": "V_balance",
+        "text": "Пакт Ключника (Шлях Рівноваги)",
+        "action": "Lileya carves runes, hero becomes living lock between seals",
+        "hero_state": "stabilized: earthy skin, black fingers, constant chest pain, human eyes",
+        "world_state": "Hazemoor stays wild but stops expanding, Greyford safe",
+        "mia": "restrained respect — 'you chose to carry this pain'",
+        "lileya": "proud — 'my ancestors would be proud'",
+        "ilia": "still there, through static — 'I'm staying with you'",
+        "set_flag": "ep3_verdict_V_balance",
+        "branch": "V_balance"
+      }
+    ]
+  },
+  "unlocks": [
+    "ep4_01_return_to_valkorn"
+  ]
 }

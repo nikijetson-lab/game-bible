@@ -33,6 +33,7 @@ Weather="*res://scripts/core/weather_manager.gd"
 HeightFog="*res://scripts/environment/height_fog_manager.gd"
 MiaTrust="*res://scripts/core/mia_trust_track.gd"
 MapManager="*res://scripts/core/map_manager.gd"
+SceneRegistry="*res://scripts/core/scene_registry.gd"
 
 [display]
 

@@ -1,70 +1,353 @@
 {
   "_meta": "NPC placement map. Maps scene paths to NPC definitions with GLB models.",
   "npcs": {
-    "res://scenes/locations/greyford/TavernInterior.tscn": [
-      {"npc_id": "ervan", "name": "Ерван", "glb": "res://assets/meshy/greyford_tavern/greyford_trader_rigged.glb", "pos": [0,0.85,2], "dialogue": "ervan", "start_quest": "greyford_01_missing_recipient"},
-      {"npc_id": "guard", "name": "Вартовий Торен", "glb": "res://assets/meshy/greyford_tavern/greyford_guard_rigged.glb", "pos": [-2,0.85,3], "dialogue": "guard"},
-      {"npc_id": "waitress", "name": "Служниця", "glb": "res://assets/meshy/greyford_tavern/waitress_rigged_texture_0.png", "pos": [1,0.85,-2], "dialogue": ""}
-    ],
     "res://scenes/locations/greyford/CraftsmenQuarter.tscn": [
-      {"npc_id": "woodcarver", "name": "Різьбяр", "pos": [-4,0.5,3], "dialogue": "woodcarver"},
-      {"npc_id": "furrier", "name": "Кушнір", "pos": [0,0.5,3], "dialogue": "furrier"}
+      {
+        "npc_id": "woodcarver",
+        "name": "Різьбяр",
+        "pos": [
+          -4,
+          0.5,
+          3
+        ],
+        "dialogue": "woodcarver"
+      },
+      {
+        "npc_id": "furrier",
+        "name": "Кушнір",
+        "pos": [
+          0,
+          0.5,
+          3
+        ],
+        "dialogue": "furrier"
+      }
     ],
     "res://scenes/locations/greyford/GreyfordGate.tscn": [
-      {"npc_id": "gate_sergeant", "name": "Сержант брами", "pos": [0,1,-6], "dialogue": "gate_sergeant"}
+      {
+        "npc_id": "gate_sergeant",
+        "name": "Сержант брами",
+        "pos": [
+          0,
+          1,
+          -6
+        ],
+        "dialogue": "gate_sergeant"
+      }
     ],
     "res://scenes/locations/greyford/PortTavernInterior.tscn": [
-      {"npc_id": "cassandra", "name": "Кассандра", "pos": [-1,0.85,3], "dialogue": "cassandra"},
-      {"npc_id": "port_bartender", "name": "Портовий бармен", "pos": [0,0.85,1], "dialogue": "port_bartender"}
+      {
+        "npc_id": "cassandra",
+        "name": "Кассандра",
+        "pos": [
+          -1,
+          0.85,
+          3
+        ],
+        "dialogue": "cassandra"
+      },
+      {
+        "npc_id": "port_bartender",
+        "name": "Портовий бармен",
+        "pos": [
+          0,
+          0.85,
+          1
+        ],
+        "dialogue": "port_bartender"
+      }
     ],
     "res://scenes/locations/greyford/AlteyaHiddenRoom.tscn": [
-      {"npc_id": "alteya", "name": "Алтея", "pos": [0,0.85,2], "dialogue": "alteya"}
+      {
+        "npc_id": "alteya",
+        "name": "Алтея",
+        "pos": [
+          0,
+          0.85,
+          2
+        ],
+        "dialogue": "alteya"
+      }
     ],
     "res://scenes/locations/tykhy_shelist/TykhyShelist.tscn": [
-      {"npc_id": "varrik", "name": "Варрік", "pos": [0,3,2], "dialogue": "varrik"},
-      {"npc_id": "kaen", "name": "Каен", "pos": [5,3,-2], "dialogue": "kaen"},
-      {"npc_id": "mia_mother", "name": "Мати Міа", "pos": [3,3,3], "dialogue": "mia_mother"},
-      {"npc_id": "sirra", "name": "Сірра", "pos": [-5,3,2], "dialogue": "sirra"}
+      {
+        "npc_id": "varrik",
+        "name": "Варрік",
+        "pos": [
+          0,
+          3,
+          2
+        ],
+        "dialogue": "varrik"
+      },
+      {
+        "npc_id": "kaen",
+        "name": "Каен",
+        "pos": [
+          5,
+          3,
+          -2
+        ],
+        "dialogue": "kaen"
+      },
+      {
+        "npc_id": "mia_mother",
+        "name": "Мати Міа",
+        "pos": [
+          3,
+          3,
+          3
+        ],
+        "dialogue": "mia_mother"
+      },
+      {
+        "npc_id": "sirra",
+        "name": "Сірра",
+        "pos": [
+          -5,
+          3,
+          2
+        ],
+        "dialogue": "sirra"
+      }
     ],
     "res://scenes/locations/tykhy_shelist/ForbiddenGlade.tscn": [
-      {"npc_id": "rufin_glade", "name": "Руфін", "pos": [0,0.85,0], "dialogue": "rufin_glade"},
-      {"npc_id": "sella", "name": "Селла", "pos": [3,0.85,3], "dialogue": "sella"}
+      {
+        "npc_id": "rufin_glade",
+        "name": "Руфін",
+        "pos": [
+          0,
+          0.85,
+          0
+        ],
+        "dialogue": "rufin_glade"
+      },
+      {
+        "npc_id": "sella",
+        "name": "Селла",
+        "pos": [
+          3,
+          0.85,
+          3
+        ],
+        "dialogue": "sella"
+      }
     ],
     "res://scenes/locations/sonk_ferry/SonkFerry.tscn": [
-      {"npc_id": "nera", "name": "Нера Вейл", "pos": [0,1,5], "dialogue": "nera"},
-      {"npc_id": "voss", "name": "Квартирмейстер Восс", "pos": [3,1,3], "dialogue": "voss"},
-      {"npc_id": "kelm", "name": "Серіт Келм", "pos": [-5,1,0], "dialogue": "kelm"},
-      {"npc_id": "brin_oss", "name": "Брін Осс", "pos": [2,1,-3], "dialogue": "brin_oss"},
-      {"npc_id": "mara_dens", "name": "Мара Денс", "pos": [-2,1,-5], "dialogue": "mara_dens"},
-      {"npc_id": "gara_paik", "name": "Гара Пайк", "pos": [5,1,0], "dialogue": "gara_paik"},
-      {"npc_id": "tovan_rid", "name": "Тован Рід", "pos": [-3,1,5], "dialogue": "tovan_rid"}
+      {
+        "npc_id": "nera",
+        "name": "Нера Вейл",
+        "pos": [
+          0,
+          1,
+          5
+        ],
+        "dialogue": "nera"
+      },
+      {
+        "npc_id": "voss",
+        "name": "Квартирмейстер Восс",
+        "pos": [
+          3,
+          1,
+          3
+        ],
+        "dialogue": "voss"
+      },
+      {
+        "npc_id": "kelm",
+        "name": "Серіт Келм",
+        "pos": [
+          -5,
+          1,
+          0
+        ],
+        "dialogue": "kelm"
+      },
+      {
+        "npc_id": "brin_oss",
+        "name": "Брін Осс",
+        "pos": [
+          2,
+          1,
+          -3
+        ],
+        "dialogue": "brin_oss"
+      },
+      {
+        "npc_id": "mara_dens",
+        "name": "Мара Денс",
+        "pos": [
+          -2,
+          1,
+          -5
+        ],
+        "dialogue": "mara_dens"
+      },
+      {
+        "npc_id": "gara_paik",
+        "name": "Гара Пайк",
+        "pos": [
+          5,
+          1,
+          0
+        ],
+        "dialogue": "gara_paik"
+      },
+      {
+        "npc_id": "tovan_rid",
+        "name": "Тован Рід",
+        "pos": [
+          -3,
+          1,
+          5
+        ],
+        "dialogue": "tovan_rid"
+      }
     ],
     "res://scenes/locations/sonk_ferry/FloodedChamber.tscn": [
-      {"npc_id": "karos", "name": "Брат Карос", "pos": [0,1,3], "dialogue": "karos"}
+      {
+        "npc_id": "karos",
+        "name": "Брат Карос",
+        "pos": [
+          0,
+          1,
+          3
+        ],
+        "dialogue": "karos"
+      }
     ],
     "res://scenes/locations/valkorn/PortQuarter.tscn": [
-      {"npc_id": "fipp", "name": "Фіпп", "pos": [0,1,8], "dialogue": "fipp"},
-      {"npc_id": "stetson_valkorn", "name": "Стетсон", "pos": [5,1,-3], "dialogue": "stetson_valkorn"},
-      {"npc_id": "bres", "name": "Брес", "pos": [-5,1,3], "dialogue": "bres"},
-      {"npc_id": "tessa_valkorn", "name": "Тесса", "pos": [3,1,-5], "dialogue": "tessa_valkorn"},
-      {"npc_id": "loen", "name": "Лоен", "pos": [-3,1,-5], "dialogue": "loen"},
-      {"npc_id": "odrin", "name": "Одрін", "pos": [0,1,-8], "dialogue": "odrin"}
+      {
+        "npc_id": "fipp",
+        "name": "Фіпп",
+        "pos": [
+          0,
+          1,
+          8
+        ],
+        "dialogue": "fipp"
+      },
+      {
+        "npc_id": "stetson_valkorn",
+        "name": "Стетсон",
+        "pos": [
+          5,
+          1,
+          -3
+        ],
+        "dialogue": "stetson_valkorn"
+      },
+      {
+        "npc_id": "bres",
+        "name": "Брес",
+        "pos": [
+          -5,
+          1,
+          3
+        ],
+        "dialogue": "bres"
+      },
+      {
+        "npc_id": "tessa_valkorn",
+        "name": "Тесса",
+        "pos": [
+          3,
+          1,
+          -5
+        ],
+        "dialogue": "tessa_valkorn"
+      },
+      {
+        "npc_id": "loen",
+        "name": "Лоен",
+        "pos": [
+          -3,
+          1,
+          -5
+        ],
+        "dialogue": "loen"
+      },
+      {
+        "npc_id": "odrin",
+        "name": "Одрін",
+        "pos": [
+          0,
+          1,
+          -8
+        ],
+        "dialogue": "odrin"
+      }
     ],
     "res://scenes/locations/valkorn/Undercity.tscn": [
-      {"npc_id": "ilia_marr", "name": "Ілія Марр", "pos": [0,1,5], "dialogue": "ilia_marr"}
+      {
+        "npc_id": "ilia_marr",
+        "name": "Ілія Марр",
+        "pos": [
+          0,
+          1,
+          5
+        ],
+        "dialogue": "ilia_marr"
+      }
     ],
     "res://scenes/locations/valkorn/GuildWarehouse.tscn": [
-      {"npc_id": "damar", "name": "Дамар", "pos": [0,1,3], "dialogue": "damar"}
+      {
+        "npc_id": "damar",
+        "name": "Дамар",
+        "pos": [
+          0,
+          1,
+          3
+        ],
+        "dialogue": "damar"
+      }
     ],
     "res://scenes/locations/sonk_ferry/FloodedChapel.tscn": [
-      {"npc_id": "deacon_rein", "name": "Диякон Рейн", "pos": [0,1,4], "dialogue": "deacon_rein"},
-      {"npc_id": "isra_vayn", "name": "Ізра Вейн", "pos": [2,1,2], "dialogue": "isra_vayn"}
+      {
+        "npc_id": "deacon_rein",
+        "name": "Диякон Рейн",
+        "pos": [
+          0,
+          1,
+          4
+        ],
+        "dialogue": "deacon_rein"
+      },
+      {
+        "npc_id": "isra_vayn",
+        "name": "Ізра Вейн",
+        "pos": [
+          2,
+          1,
+          2
+        ],
+        "dialogue": "isra_vayn"
+      }
     ],
     "res://scenes/locations/sonk_ferry/SaltWarehouse.tscn": [
-      {"npc_id": "skel_ganis", "name": "Скел Ганіс", "pos": [0,1,4], "dialogue": "skel_ganis"}
+      {
+        "npc_id": "skel_ganis",
+        "name": "Скел Ганіс",
+        "pos": [
+          0,
+          1,
+          4
+        ],
+        "dialogue": "skel_ganis"
+      }
     ],
     "res://scenes/locations/deep_bog/MadFerry.tscn": [
-      {"npc_id": "lileya", "name": "Лілея", "pos": [0,1,3], "dialogue": "lileya"}
+      {
+        "npc_id": "lileya",
+        "name": "Лілея",
+        "pos": [
+          0,
+          1,
+          3
+        ],
+        "dialogue": "lileya"
+      }
     ]
   }
 }

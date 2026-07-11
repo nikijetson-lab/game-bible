@@ -30,8 +30,17 @@ func _load_config() -> Dictionary:
 	return json.data
 
 func _spawn_npc(ndata: Dictionary) -> void:
+	var npc_id: String = ndata.get("npc_id", "unknown")
+	var npc_name: String = ndata.get("name", npc_id)
+
+	# Skip if NPC already exists in scene (hand-placed TSCN node)
+	var existing := get_node_or_null("NPC_" + npc_id)
+	if existing:
+		print("NPCSpawner: SKIP ", npc_name, " — already in scene")
+		return
+
 	var npc := Node3D.new()
-	npc.name = "NPC_" + ndata.get("npc_id", "unknown")
+	npc.name = "NPC_" + npc_id
 
 	var pos: Array = ndata.get("pos", [0, 0, 0])
 	npc.position = Vector3(pos[0], pos[1], pos[2])
@@ -44,6 +53,8 @@ func _spawn_npc(ndata: Dictionary) -> void:
 			var instance: Node = model.instantiate()
 			if instance:
 				instance.name = "Model"
+				# Play idle animation if rigged
+				_play_idle(instance)
 				npc.add_child(instance)
 
 	# Діалогова зона
@@ -87,4 +98,25 @@ func get_interaction_prompt() -> String:
 		npc.set_meta("start_quest", sq)
 
 	add_child(npc)
-	print("NPCSpawner: spawned ", ndata.get("name", "?"), " @ ", npc.position)
+	print("NPCSpawner: spawned ", npc_name, " @ ", npc.position)
+
+func _play_idle(node: Node) -> void:
+	"""Знайти AnimationPlayer у всіх нащадках і грати idle."""
+	var players: Array[Node] = []
+	_find_anim_players(node, players)
+	if players.is_empty():
+		return
+	var player: AnimationPlayer = players[0] as AnimationPlayer
+	var anims: PackedStringArray = player.get_animation_list()
+	if anims.is_empty():
+		return
+	var anim_name: StringName = StringName("idle")
+	if not player.has_animation(anim_name):
+		anim_name = anims[0]
+	player.play(anim_name)
+
+func _find_anim_players(node: Node, out: Array) -> void:
+	for child in node.get_children():
+		if child is AnimationPlayer:
+			out.append(child)
+		_find_anim_players(child, out)

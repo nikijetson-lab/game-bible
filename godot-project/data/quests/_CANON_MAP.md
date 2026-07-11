@@ -194,9 +194,16 @@ Legend:
   - Mour manifestation;
   - major tribunals/verdicts/endings.
 
-## Immediate implementation order
+## Implementation status (2026-07-11)
 
-1. Keep `tools/validate_quest_canon.py . --strict` green.
-2. Continue prose conversion in canon order (`sonk_ferry_04_quota_knife` next).
-4. Add quest graph smoke test to regular project checks.
-5. Only then continue building gameplay/UI/content, otherwise content will keep drifting.
+✅ 1. Validator green (`--strict` PASS), smoke test green (critical path=19)
+✅ 2. All aliases replaced with canonical ids in JSON  
+✅ 3. Duplicate ids archived, 24 unique quests
+✅ 4. All 24 quests converted to structured objectives (0 prose)
+✅ 5. Graph validation: smoke test checks reachability, orphans, dead-ends
+🔄 6. Branch validation: flag consistency passed, Ep4 branch gating needs runtime check
+⬜ 7. Runtime quest loading: extend QuestManager to load JSON, check prereqs, propagate leads_to
+⬜ 8. Scene transitions & location portals
+⬜ 9. NPC wiring & dialogue triggers
+⬜ 10. Quest journal UI, reputation screen, timers
+⬜ 11. Combat, Bolo-Weaving, cutscenes, VO pipeline

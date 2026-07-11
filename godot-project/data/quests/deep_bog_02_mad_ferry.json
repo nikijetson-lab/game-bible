@@ -4,7 +4,11 @@
   "description": "Тихий Шелест. Лілея в кам'яній вежі. Друга Печатка з болотяної міді в Чорній Твані. Шалена Річка блокує шлях.",
   "category": "main",
   "episode": 3,
-  "prerequisites": {"quests_completed": ["deep_bog_01_voice_from_fog"]},
+  "prerequisites": {
+    "quests_completed": [
+      "deep_bog_01_voice_from_fog"
+    ]
+  },
   "npcs": {
     "lileya": {
       "title": "Остання з роду Ключників",
@@ -14,5 +18,97 @@
     }
   },
   "obstacle": "Mad River — black, churning, anomalous currents. Chain ferry blocked by Muri.",
-  "leads_to": "deep_bog_03_flooded_sanctuary"
+  "leads_to": "deep_bog_03_flooded_sanctuary",
+  "start_location": "tykhy_shelest",
+  "structure": {
+    "acts": [
+      {
+        "id": "return_to_shelest",
+        "title": "Акт 1 — Повернення до Тихого Шелесту",
+        "summary": "Герой повертається в Тихий Шелест, де в кам'яній вежі чекає Лілея — остання з роду Ключників."
+      },
+      {
+        "id": "lileya_revelation",
+        "title": "Акт 2 — Одкровення Лілеї",
+        "summary": "Лілея не боїться — вона сумує і розуміє ціну вибору героя. Вона розкриває: Друга Печатка — темна болотяна мідь, гаряча й іржава, зрощена з землею, тримає Моура в ув'язненні."
+      },
+      {
+        "id": "mad_river",
+        "title": "Акт 3 — Шалена Річка",
+        "summary": "Шалена Річка: чорна, вирує, аномальні течії. Ланцюговий пором заблокований Мурі. Герой повинен знайти шлях через річку до Затопленої Обителі."
+      }
+    ],
+    "phase_order": [
+      "return_to_shelest",
+      "lileya_revelation",
+      "mad_river"
+    ]
+  },
+  "objectives": [
+    {
+      "id": "return_to_tykhy_shelest",
+      "description": "Повернутися до Тихого Шелесту після глибокого болота",
+      "type": "area_trigger",
+      "target": "tykhy_shelest",
+      "location": "tykhy_shelest",
+      "required": true,
+      "act": "return_to_shelest",
+      "unlocks": [
+        "meet_lileya"
+      ]
+    },
+    {
+      "id": "meet_lileya",
+      "description": "Зустріти Лілею в кам'яній вежі — останню з роду Ключників",
+      "type": "talk",
+      "target": "lileya",
+      "location": "stone_tower_tykhy_shelest",
+      "required": true,
+      "act": "lileya_revelation",
+      "npc_title": "Остання з роду Ключників",
+      "npc_reaction": "sorrow, not fear — understands the price of his choice"
+    },
+    {
+      "id": "learn_second_seal",
+      "description": "Дізнатися про Другу Печатку: темна болотяна мідь, гаряча й іржава, зрощена з землею, тримає Моура в ув'язненні в Чорній Твані",
+      "type": "talk",
+      "target": "lileya",
+      "location": "stone_tower_tykhy_shelest",
+      "required": true,
+      "act": "lileya_revelation",
+      "second_seal_desc": "dark bog copper, hot and rusted, fused with earth, keeps Mour imprisoned",
+      "sets_flags": [
+        "second_seal_known"
+      ],
+      "unlocks": [
+        "cross_mad_river"
+      ]
+    },
+    {
+      "id": "cross_mad_river",
+      "description": "Знайти спосіб перетнути Шалену Річку: чорна, вирує, аномальні течії, ланцюговий пором заблокований Мурі",
+      "type": "obstacle",
+      "target": "mad_river",
+      "location": "mad_river",
+      "required": true,
+      "act": "mad_river",
+      "obstacle": "Mad River — black, churning, anomalous currents. Chain ferry blocked by Muri.",
+      "unlocks": [
+        "route_to_flooded_sanctuary"
+      ]
+    }
+  ],
+  "completion_conditions": {
+    "required_objectives": [
+      "return_to_tykhy_shelest",
+      "meet_lileya",
+      "learn_second_seal",
+      "cross_mad_river"
+    ],
+    "second_seal_revealed": true,
+    "unlocks_route": "route_to_flooded_sanctuary"
+  },
+  "unlocks": [
+    "deep_bog_03_flooded_sanctuary"
+  ]
 }

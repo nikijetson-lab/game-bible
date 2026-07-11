@@ -5,11 +5,11 @@
   "category": "main",
   "episode": 1,
   "required_level": 1,
-  
   "prerequisites": {
-    "quests_completed": ["greyford_01_missing_recipient"]
+    "quests_completed": [
+      "greyford_01_missing_recipient"
+    ]
   },
-  
   "objectives": [
     {
       "id": "enter_hazemoor",
@@ -23,7 +23,11 @@
       "description": "Йти старою стежкою вглиб болота",
       "type": "follow_path",
       "target": "swamp_path_01",
-      "waypoints": ["waypoint_01", "waypoint_02", "waypoint_03"],
+      "waypoints": [
+        "waypoint_01",
+        "waypoint_02",
+        "waypoint_03"
+      ],
       "optional": false
     },
     {
@@ -51,32 +55,38 @@
       "optional": false
     }
   ],
-  
   "choices": [],
-  
   "rewards": {
     "experience": 150,
     "money": 30,
     "items": [
-      {"id": "item_swamp_reed", "count": 5}
+      {
+        "id": "item_swamp_reed",
+        "count": 5
+      }
     ],
     "reputation": {
       "muri": 5
     },
     "bonus_rewards": {
       "find_muri_signs": {
-        "reputation": {"muri": 10},
-        "items": [{"id": "item_muri_charm", "count": 1}]
+        "reputation": {
+          "muri": 10
+        },
+        "items": [
+          {
+            "id": "item_muri_charm",
+            "count": 1
+          }
+        ]
       }
     }
   },
-  
   "dialogue_triggers": {
     "on_start": "internal_voice/hazemoor_warning.json",
     "on_enter_swamp": "internal_voice/iliya_first_whisper.json",
     "on_complete": "internal_voice/clearing_reached.json"
   },
-  
   "lore": {
     "summary": "Перше занурення в Хейзмур. Болото вітає Вартового туманом, тишею та шепотом Ілії.",
     "unlocks": [
@@ -85,11 +95,14 @@
       "Знайомство з символами Мурі"
     ]
   },
-  
   "mechanics": {
     "fog_intensity": 0.8,
     "ambush_chance": 0.3,
     "iliya_whispers": true,
     "muri_watchers": true
-  }
+  },
+  "leads_to": "tykhy_shelest_01",
+  "unlocks": [
+    "tykhy_shelest_01"
+  ]
 }

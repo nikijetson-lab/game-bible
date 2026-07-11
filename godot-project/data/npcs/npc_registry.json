@@ -1,0 +1,678 @@
+{
+  "_meta": "Auto-generated NPC registry for quest wiring.",
+  "npc_dialogues": {
+    "alteya": {
+      "files": [
+        "about_rufin.json"
+      ],
+      "count": 1
+    },
+    "bres": {
+      "files": [
+        "first_meeting.json"
+      ],
+      "count": 1
+    },
+    "brin_oss": {
+      "files": [
+        "first_meeting.json"
+      ],
+      "count": 1
+    },
+    "cassandra": {
+      "files": [
+        "about_rufin.json"
+      ],
+      "count": 1
+    },
+    "damar": {
+      "files": [
+        "first_meeting.json"
+      ],
+      "count": 1
+    },
+    "deacon_rein": {
+      "files": [
+        "first_meeting.json"
+      ],
+      "count": 1
+    },
+    "deep_bog": {
+      "files": [
+        "flooded_abbey.json",
+        "mad_ferry.json",
+        "voice_from_fog.json"
+      ],
+      "count": 3
+    },
+    "ervan": {
+      "files": [
+        "about_rufin.json"
+      ],
+      "count": 1
+    },
+    "ervan_rumors": {
+      "files": [
+        "witch_rumors.json"
+      ],
+      "count": 1
+    },
+    "farmer_jorn": {
+      "files": [
+        "testimony.json"
+      ],
+      "count": 1
+    },
+    "fipp": {
+      "files": [
+        "market_encounter.json"
+      ],
+      "count": 1
+    },
+    "furrier": {
+      "files": [
+        "default.json"
+      ],
+      "count": 1
+    },
+    "gara_paik": {
+      "files": [
+        "first_meeting.json"
+      ],
+      "count": 1
+    },
+    "gate_sergeant": {
+      "files": [
+        "about_rufin.json"
+      ],
+      "count": 1
+    },
+    "greyford": {
+      "files": [
+        "witch_trouble.json",
+        "witch_trouble_npcs.json"
+      ],
+      "count": 2
+    },
+    "greyford_guard_letter": {
+      "files": [
+        "letter_handoff.json"
+      ],
+      "count": 1
+    },
+    "guard": {
+      "files": [
+        "first_arrival.json"
+      ],
+      "count": 1
+    },
+    "guard_tovar": {
+      "files": [
+        "testimony.json"
+      ],
+      "count": 1
+    },
+    "ilia_marr": {
+      "files": [
+        "first_meeting.json"
+      ],
+      "count": 1
+    },
+    "internal_voice": {
+      "files": [
+        "clearing_reached.json",
+        "hazemoor_path.json",
+        "hazemoor_warning.json",
+        "iliya_first_whisper.json",
+        "leaving_settlement.json",
+        "old_magic.json",
+        "something_is_wrong.json",
+        "tykhy_shelest_arrival.json"
+      ],
+      "count": 8
+    },
+    "isra_vayn": {
+      "files": [
+        "first_meeting.json"
+      ],
+      "count": 1
+    },
+    "kaen": {
+      "files": [
+        "first_meeting.json"
+      ],
+      "count": 1
+    },
+    "karos": {
+      "files": [
+        "first_meeting.json"
+      ],
+      "count": 1
+    },
+    "kelm": {
+      "files": [
+        "first_meeting.json",
+        "invitation.json"
+      ],
+      "count": 2
+    },
+    "lileya": {
+      "files": [
+        "first_meeting.json"
+      ],
+      "count": 1
+    },
+    "loen": {
+      "files": [
+        "meeting.json"
+      ],
+      "count": 1
+    },
+    "mara_dens": {
+      "files": [
+        "first_meeting.json"
+      ],
+      "count": 1
+    },
+    "merchant_lysa": {
+      "files": [
+        "testimony.json"
+      ],
+      "count": 1
+    },
+    "mia": {
+      "files": [
+        "first_meeting.json",
+        "reunion_deep_bog.json",
+        "second_decision.json"
+      ],
+      "count": 3
+    },
+    "mia_mother": {
+      "files": [
+        "about_mia.json"
+      ],
+      "count": 1
+    },
+    "nera": {
+      "files": [
+        "first_meeting.json"
+      ],
+      "count": 1
+    },
+    "odrin": {
+      "files": [
+        "first_meeting.json"
+      ],
+      "count": 1
+    },
+    "port_bartender": {
+      "files": [
+        "default.json"
+      ],
+      "count": 1
+    },
+    "rufin": {
+      "files": [
+        "first_encounter.json"
+      ],
+      "count": 1
+    },
+    "rufin_glade": {
+      "files": [
+        "at_glade.json"
+      ],
+      "count": 1
+    },
+    "sella": {
+      "files": [
+        "first_meeting.json"
+      ],
+      "count": 1
+    },
+    "sirra": {
+      "files": [
+        "first_meeting.json"
+      ],
+      "count": 1
+    },
+    "skel_ganis": {
+      "files": [
+        "first_meeting.json"
+      ],
+      "count": 1
+    },
+    "sonk_ferry": {
+      "files": [
+        "ferry_quests.json"
+      ],
+      "count": 1
+    },
+    "stetson_valkorn": {
+      "files": [
+        "first_meeting.json"
+      ],
+      "count": 1
+    },
+    "tessa_valkorn": {
+      "files": [
+        "first_meeting.json"
+      ],
+      "count": 1
+    },
+    "tovan_rid": {
+      "files": [
+        "first_meeting.json"
+      ],
+      "count": 1
+    },
+    "valkorn": {
+      "files": [
+        "valkorn_quests.json"
+      ],
+      "count": 1
+    },
+    "varrik": {
+      "files": [
+        "about_rufin.json",
+        "lost_heirloom.json",
+        "please_find_it.json",
+        "thank_you.json",
+        "you_bastard.json"
+      ],
+      "count": 5
+    },
+    "voss": {
+      "files": [
+        "first_meeting.json"
+      ],
+      "count": 1
+    },
+    "woodcarver": {
+      "files": [
+        "about_rufin.json"
+      ],
+      "count": 1
+    }
+  },
+  "npc_data_files": [
+    "alteya",
+    "bres",
+    "brin_oss",
+    "cassandra",
+    "damar",
+    "deacon_rein",
+    "ervan",
+    "farmer_jorn",
+    "fipp",
+    "furrier",
+    "gara_paik",
+    "gate_sergeant",
+    "generic_npcs",
+    "greyford_guard_letter",
+    "guard_toren",
+    "guard_tovar",
+    "ilia_marr",
+    "isra_vayn",
+    "kaen",
+    "karos",
+    "kelm",
+    "lileya",
+    "loen",
+    "mara_dens",
+    "merchant_lysa",
+    "mia",
+    "mia_mother",
+    "nera",
+    "odrin",
+    "port_bartender",
+    "rufin",
+    "sella",
+    "sirra",
+    "skel_ganis",
+    "stetson_valkorn",
+    "tessa_valkorn",
+    "tovan_rid",
+    "varrik",
+    "voss",
+    "woodcarver"
+  ],
+  "quest_targets": {
+    "bres": [
+      {
+        "quest": "valkorn_01_man_from_swamp",
+        "objective": "thread_bres",
+        "description": "Дослідити нове гетто: хто знає місто? Брес покаже де Тесса",
+        "location": "valkorn_new_ghetto"
+      }
+    ],
+    "brin_oss": [
+      {
+        "quest": "sonk_ferry_02_salt_in_book",
+        "objective": "pressure_brin",
+        "description": "Тиснути на Бріна Осса за свідченнями",
+        "location": "sonk_ferry"
+      }
+    ],
+    "gara_paik": [
+      {
+        "quest": "sonk_ferry_02_salt_in_book",
+        "objective": "confront_gara",
+        "description": "Зустріти Гару Пайк",
+        "location": "sonk_ferry"
+      }
+    ],
+    "ilia_marr": [
+      {
+        "quest": "sonk_ferry_04_quota_knife",
+        "objective": "evidence_ilia_marr_report",
+        "description": "Отримати звіт Ілії Марр — якщо вона прибула",
+        "location": "sonk_ferry"
+      }
+    ],
+    "kaen": [
+      {
+        "quest": "tykhy_shelest_01",
+        "objective": "meet_kaen",
+        "description": "Зустріти Каена в лікарському домі",
+        "location": "tykhy_shelest_healer_house"
+      },
+      {
+        "quest": "tykhy_shelest_01",
+        "objective": "learn_truth",
+        "description": "Дізнатися правду про походження Міа",
+        "location": "tykhy_shelest_healer_house"
+      }
+    ],
+    "karos": [
+      {
+        "quest": "sonk_ferry_01_hunger_from_below",
+        "objective": "burial_records",
+        "description": "Отримати поховальні списки від брата Кароса",
+        "location": "st_vey"
+      }
+    ],
+    "kelm_provoke": [
+      {
+        "quest": "sonk_ferry_04_quota_knife",
+        "objective": "evidence_kelm_threat",
+        "description": "Спровокувати Келма на погрозу при свідках",
+        "location": "sonk_ferry"
+      }
+    ],
+    "lileya": [
+      {
+        "quest": "deep_bog_02_mad_ferry",
+        "objective": "meet_lileya",
+        "description": "Зустріти Лілею в кам'яній вежі — останню з роду Ключників",
+        "location": "stone_tower_tykhy_shelest"
+      },
+      {
+        "quest": "deep_bog_02_mad_ferry",
+        "objective": "learn_second_seal",
+        "description": "Дізнатися про Другу Печатку: темна болотяна мідь, гаряча й іржава, зрощена з землею, тримає Моура в ув'язненні в Чорній Твані",
+        "location": "stone_tower_tykhy_shelest"
+      }
+    ],
+    "loen": [
+      {
+        "quest": "valkorn_04_messenger_of_rufin",
+        "objective": "ask_why_rufin",
+        "description": "Запитати чому Руфін: «Потрібен артефакт. Руфін знав болото. Хочемо стабілізувати Моур, а не знищити.»",
+        "location": "valkorn_diplomatic_quarter"
+      },
+      {
+        "quest": "valkorn_04_messenger_of_rufin",
+        "objective": "ask_mour_plan",
+        "description": "Запитати про план Моура: «Підпорядкувати силу. Хто контролює трясовину — контролює фронтир.»",
+        "location": "valkorn_diplomatic_quarter"
+      },
+      {
+        "quest": "valkorn_04_messenger_of_rufin",
+        "objective": "ask_keeper",
+        "description": "Запитати про Хранителя: «Ніколи не бачив обличчя. Листи з печаткою. Запах торфу та м'яти. Золоте чорнило. Ближче до палацу.»",
+        "location": "valkorn_diplomatic_quarter"
+      },
+      {
+        "quest": "valkorn_04_messenger_of_rufin",
+        "objective": "ask_underground",
+        "description": "Запитати про андерсіті: «Знаємо про спадщину. Карта Одріна не під контролем.»",
+        "location": "valkorn_diplomatic_quarter"
+      }
+    ],
+    "mara_dens": [
+      {
+        "quest": "sonk_ferry_02_salt_in_book",
+        "objective": "meet_mara",
+        "description": "Поговорити з Марою Денс",
+        "location": "sonk_ferry"
+      }
+    ],
+    "mia_mother": [
+      {
+        "quest": "tykhy_shelest_01",
+        "objective": "talk_mother",
+        "description": "Поговорити з матір'ю Міа",
+        "location": "tykhy_shelest"
+      }
+    ],
+    "mirefold_locals": [
+      {
+        "quest": "hazemoor_02_ashes_under_chapel",
+        "objective": "question_mirefold",
+        "description": "Розпитати мешканців Мірефолда про ритуал",
+        "location": "mirefold"
+      }
+    ],
+    "mour": [
+      {
+        "quest": "hazemoor_02_glade_and_mour",
+        "objective": "ask_about_artifact",
+        "description": "Запитати Моура про артефакт",
+        "location": "forbidden_glade"
+      },
+      {
+        "quest": "hazemoor_02_glade_and_mour",
+        "objective": "ask_about_rufin",
+        "description": "Запитати Моура про Руфіна",
+        "location": "forbidden_glade"
+      },
+      {
+        "quest": "hazemoor_02_glade_and_mour",
+        "objective": "ask_about_mia",
+        "description": "Запитати Моура про Міа",
+        "location": "forbidden_glade"
+      },
+      {
+        "quest": "hazemoor_02_glade_and_mour",
+        "objective": "ask_about_creator",
+        "description": "Запитати Моура про творця артефакту",
+        "location": "forbidden_glade"
+      }
+    ],
+    "nera": [
+      {
+        "quest": "sonk_ferry_01_hunger_from_below",
+        "objective": "meet_nera",
+        "description": "Поговорити з Нерою Вейл",
+        "location": "sonk_ferry"
+      }
+    ],
+    "npc_alteya": [
+      {
+        "quest": "greyford_01_missing_recipient",
+        "objective": "consult_alteya_optional",
+        "description": "Опціонально простежити магічний підпис до Алтеї й дізнатися, що Руфін ніс уночі не ліхтар, а щось, що світилося",
+        "location": "greyford_alteya_hidden_room"
+      }
+    ],
+    "npc_carver": [
+      {
+        "quest": "greyford_01_missing_recipient",
+        "objective": "ask_craftsmen_quarter",
+        "description": "Показати клеймо в кварталі ремісників: кушнір направляє до різьбяра, який згадує Тихий Шелест",
+        "location": "greyford_craftsmen_quarter"
+      }
+    ],
+    "npc_cassandra": [
+      {
+        "quest": "greyford_01_missing_recipient",
+        "objective": "question_port_tavern",
+        "description": "Розпитати портового бармена і куртизанку, останню співрозмовницю Руфіна, про його стан перед виходом у Хейзмур",
+        "location": "greyford_port_tavern"
+      }
+    ],
+    "npc_ervan": [
+      {
+        "quest": "greyford_01_missing_recipient",
+        "objective": "talk_to_ervan",
+        "description": "Поговорити з Ерваном у постоялому дворі та показати лист для Руфіна",
+        "location": "greyford_tavern"
+      }
+    ],
+    "npc_gate_sergeant": [
+      {
+        "quest": "greyford_01_missing_recipient",
+        "objective": "speak_to_gate_sergeant",
+        "description": "Поговорити із сержантом міської брами, підтвердити запис про вихід Руфіна до Тихого Шелесту і вибрати привід власного виходу",
+        "location": "greyford_gate"
+      }
+    ],
+    "odrin": [
+      {
+        "quest": "valkorn_02_two_truths",
+        "objective": "path_odrin",
+        "description": "Зустріти Одріна: отримати точний маршрут, знання перших двох точок, доступ до архіву",
+        "location": "valkorn"
+      }
+    ],
+    "rein": [
+      {
+        "quest": "hazemoor_02_ashes_under_chapel",
+        "objective": "negotiate_with_rein",
+        "description": "Вести переговори з Рейном (penalty: +2 до складності, але альтернативний шлях)",
+        "location": "sonk_ferry"
+      }
+    ],
+    "rufin_glade": [
+      {
+        "quest": "tykhy_shelest_01",
+        "objective": "find_rufin",
+        "description": "Знайти Руфіна на галявині",
+        "location": "forbidden_glade"
+      }
+    ],
+    "sella": [
+      {
+        "quest": "hazemoor_02_ashes_under_chapel",
+        "objective": "enlist_sella",
+        "description": "Залучити Селлу до ритуалу (bonus: -1 до складності)",
+        "location": "mirefold"
+      }
+    ],
+    "skel": [
+      {
+        "quest": "hazemoor_02_ashes_under_chapel",
+        "objective": "find_skel",
+        "description": "Знайти Скела — свідка або учасника ритуалу",
+        "location": "mirefold"
+      }
+    ],
+    "smugglers": [
+      {
+        "quest": "sonk_ferry_04_quota_knife",
+        "objective": "evidence_true_beneficiaries",
+        "description": "Отримати список справжніх бенефіціарів від контрабандистів",
+        "location": "sonk_ferry"
+      }
+    ],
+    "stetson": [
+      {
+        "quest": "valkorn_01_man_from_swamp",
+        "objective": "thread_stetson",
+        "description": "Відвідати Стетсона в палацовому кварталі: союзник за яку ціну?",
+        "location": "valkorn_palace_quarter"
+      }
+    ],
+    "temple_witness": [
+      {
+        "quest": "sonk_ferry_04_quota_knife",
+        "objective": "evidence_temple_testimony",
+        "description": "Отримати свідчення храму — через Кароса або довіру Ізри ≥2",
+        "location": "st_vey"
+      }
+    ],
+    "tessa": [
+      {
+        "quest": "valkorn_01_man_from_swamp",
+        "objective": "thread_tessa",
+        "description": "Перша зустріч із Тессою в торговому кварталі: обрати тон — відкритий, обережний, ворожий",
+        "location": "valkorn_trade_quarter"
+      },
+      {
+        "quest": "valkorn_02_two_truths",
+        "objective": "path_tessa",
+        "description": "Зустріти Тессу: дізнатись природу артефакту, альтернативний вхід, контекст Прадавньої війни",
+        "location": "valkorn_trade_quarter"
+      }
+    ],
+    "tovan_rid": [
+      {
+        "quest": "sonk_ferry_02_salt_in_book",
+        "objective": "meet_tovan",
+        "description": "Вислухати Тована Ріда",
+        "location": "sonk_ferry"
+      }
+    ],
+    "varrik": [
+      {
+        "quest": "tykhy_shelest_01",
+        "objective": "ask_varrik",
+        "description": "Запитати Варріка про Руфіна",
+        "location": "tykhy_shelest"
+      }
+    ],
+    "voss": [
+      {
+        "quest": "sonk_ferry_01_hunger_from_below",
+        "objective": "meet_voss",
+        "description": "Зустріти квартирмейстера Восса",
+        "location": "sonk_ferry"
+      }
+    ]
+  },
+  "npc_aliases": {
+    "bres": "bres",
+    "brin_oss": "brin_oss",
+    "gara_paik": "gara_paik",
+    "ilia_marr": "ilia_marr",
+    "kaen": "kaen",
+    "karos": "karos",
+    "lileya": "lileya",
+    "loen": "",
+    "mara_dens": "mara_dens",
+    "mia_mother": "mia_mother",
+    "nera": "nera",
+    "npc_alteya": "alteya",
+    "npc_cassandra": "cassandra",
+    "npc_ervan": "ervan",
+    "npc_gate_sergeant": "gate_sergeant",
+    "odrin": "odrin",
+    "rufin_glade": "rufin_glade",
+    "sella": "sella",
+    "tovan_rid": "tovan_rid",
+    "varrik": "varrik",
+    "voss": "voss",
+    "npc_carver": "woodcarver",
+    "rein": "deacon_rein",
+    "skel": "skel_ganis",
+    "stetson": "stetson_valkorn",
+    "tessa": "tessa_valkorn",
+    "kelm_provoke": "kelm",
+    "smugglers": "brin_oss",
+    "temple_witness": "karos",
+    "mirefold_locals": "sella",
+    "mour": ""
+  },
+  "_note": "Quest objective target -> dialogue NPC id mapping. Empty string = no dialogue yet."
+}

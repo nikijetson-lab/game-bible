@@ -19,34 +19,106 @@ var current_npc: String = ""
 
 # Завантажені діалоги (з JSON файлів)
 var dialogue_database: Dictionary = {}
+var _dialogue_files: Dictionary = {}  # npc_id -> file_path
+var _npc_registry: Dictionary = {}    # npc_registry.json data
 
 func _ready() -> void:
 	print("DialogueManager initialized")
+	_load_npc_registry()
 	load_dialogues()
 
+func _load_npc_registry() -> void:
+	"""Завантажити NPC registry для крос-референсу quest→dialogue."""
+	var path := "res://data/npcs/npc_registry.json"
+	if not FileAccess.file_exists(path):
+		push_warning("NPC registry not found: " + path)
+		return
+	var file := FileAccess.open(path, FileAccess.READ)
+	var text := file.get_as_text()
+	file.close()
+	var json := JSON.new()
+	if json.parse(text) == OK:
+		_npc_registry = json.data
+		print("NPC registry loaded: ", _npc_registry.get("npc_dialogues", {}).size(), " NPCs")
+
 func load_dialogues() -> void:
-	"""Завантажити всі діалоги з JSON файлів"""
-	# TODO: Scan res://data/dialogues/ folder for .json files
-	# Поки що заглушка
-	print("Dialogues loaded from database")
+	"""Завантажити всі діалоги з data/dialogues/."""
+	# Використовуємо NPC registry для списку папок
+	var dialogues_map := _npc_registry.get("npc_dialogues", {})
+	if dialogues_map.is_empty():
+		# Fallback: скануємо диск
+		_scan_dialogue_folders()
+		return
+	for npc_id in dialogues_map:
+		var files: Array = dialogues_map[npc_id].get("files", [])
+		if files.is_empty():
+			continue
+		# Завантажуємо перший файл як default
+		var first_file: String = files[0]
+		var path := "res://data/dialogues/%s/%s" % [npc_id, first_file]
+		var data := load_dialogue_file(path)
+		if not data.is_empty():
+			dialogue_database[npc_id] = data
+			_dialogue_files[npc_id] = path
+	print("Dialogues loaded: ", dialogue_database.size(), " NPCs")
+
+func _scan_dialogue_folders() -> void:
+	"""Сканувати data/dialogues/ для пошуку папок NPC."""
+	var dir := DirAccess.open("res://data/dialogues")
+	if dir == null:
+		return
+	dir.list_dir_begin()
+	var folder := dir.get_next()
+	while folder != "":
+		if dir.current_is_dir() and not folder.begins_with("_"):
+			var sub := DirAccess.open("res://data/dialogues/" + folder)
+			if sub:
+				sub.list_dir_begin()
+				var f := sub.get_next()
+				while f != "":
+					if f.ends_with(".json") and not sub.current_is_dir():
+						var path := "res://data/dialogues/%s/%s" % [folder, f]
+						dialogue_database[folder] = load_dialogue_file(path)
+						_dialogue_files[folder] = path
+						break
+					f = sub.get_next()
+		folder = dir.get_next()
 
 func start_dialogue(npc_id: String, dialogue_id: String = "default") -> void:
-	"""Почати діалог з NPC"""
+	"""Почати діалог з NPC. npc_id — quest target або NPC ім'я."""
 	if is_dialogue_active:
 		push_warning("Dialogue already active!")
 		return
+
+	# Резолвити NPC alias (quest target -> dialogue folder)
+	var resolved := _resolve_npc(npc_id)
+	var path: String
+	var data: Dictionary = {}
+
+	if dialogue_id == "default":
+		# Спершу шукаємо в завантаженій базі
+		if resolved != "" and dialogue_database.has(resolved):
+			data = dialogue_database[resolved]
+			path = _dialogue_files.get(resolved, "")
+		else:
+			path = "res://data/dialogues/%s/%s.json" % [npc_id, dialogue_id]
+			data = load_dialogue_file(path)
+	else:
+		path = "res://data/dialogues/%s/%s.json" % [resolved if resolved != "" else npc_id, dialogue_id]
+		data = load_dialogue_file(path)
+
+	if data.is_empty() and resolved != "" and resolved != npc_id:
+		# Друга спроба з оригінальним ім'ям
+		path = "res://data/dialogues/%s/%s.json" % [npc_id, dialogue_id]
+		data = load_dialogue_file(path)
 	
-	# Завантажити діалог для цього NPC
-	var dialogue_path = "res://data/dialogues/%s/%s.json" % [npc_id, dialogue_id]
-	var dialogue_data = load_dialogue_file(dialogue_path)
-	
-	if dialogue_data.is_empty():
-		push_error("Dialogue not found: " + dialogue_path)
+	if data.is_empty():
+		push_error("Dialogue not found for NPC: " + npc_id)
 		return
-	
-	current_dialogue = dialogue_data
+
+	current_dialogue = data
 	current_npc = npc_id
-	current_node_id = dialogue_data.get("start_node", "node_0")
+	current_node_id = data.get("start_node", "node_0")
 	is_dialogue_active = true
 	
 	dialogue_started.emit(npc_id)
@@ -163,7 +235,8 @@ func continue_dialogue() -> void:
 		end_dialogue()
 
 func end_dialogue() -> void:
-	"""Завершити діалог"""
+	"""Завершити діалог і авто-завершити quest objectives що таргетять цього NPC."""
+	_auto_complete_npc_objectives(current_npc)
 	is_dialogue_active = false
 	current_dialogue = {}
 	current_node_id = ""
@@ -171,6 +244,37 @@ func end_dialogue() -> void:
 	
 	dialogue_ended.emit()
 	print("Dialogue ended")
+
+func _resolve_npc(npc_id: String) -> String:
+	"""Резолвити quest target або NPC ім'я до dialogue folder name."""
+	var aliases: Dictionary = _npc_registry.get("npc_aliases", {})
+	if aliases.has(npc_id):
+		return aliases[npc_id]
+	# Strip npc_ prefix and try
+	if npc_id.begins_with("npc_"):
+		var bare := npc_id.substr(4)
+		if _npc_registry.get("npc_dialogues", {}).has(bare):
+			return bare
+	return npc_id
+
+func _auto_complete_npc_objectives(npc_id: String) -> void:
+	"""Авто-завершити quest objectives типу 'talk' що таргетять цього NPC."""
+	var qm := get_node_or_null("/root/Quests")
+	if not qm or not qm.has_method("complete_objective"):
+		return
+	var targets: Array = _npc_registry.get("quest_targets", {}).get(npc_id, [])
+	if targets.is_empty():
+		# Спробувати резолвнуту версію
+		var resolved := _resolve_npc(npc_id)
+		if resolved != npc_id:
+			targets = _npc_registry.get("quest_targets", {}).get(resolved, [])
+	for t in targets:
+		var quest_id: String = t.get("quest", "")
+		var objective_id: String = t.get("objective", "")
+		if not quest_id.is_empty() and not objective_id.is_empty():
+			if qm.active_quests.has(quest_id):
+				qm.complete_objective(quest_id, objective_id)
+				print("Dialogue: auto-completed objective ", objective_id, " for quest ", quest_id)
 
 func check_condition(condition: Dictionary) -> bool:
 	"""Перевірити умову для показу ноди"""
@@ -228,14 +332,18 @@ func apply_consequences(consequences: Dictionary) -> void:
 	if consequences.has("quest_update"):
 		var quest_id = consequences["quest_update"]["quest_id"]
 		var objective_id = consequences["quest_update"]["objective_id"]
-		GameManager.quest_manager.update_objective(quest_id, objective_id)
-		print("Quest updated: ", quest_id)
-	
+		var qm := get_node_or_null("/root/Quests")
+		if qm and qm.has_method("complete_objective"):
+			qm.complete_objective(quest_id, objective_id)
+		print("Quest objective completed: ", objective_id)
+
 	# Старт квесту
 	if consequences.has("quest_start"):
-		var quest_data = consequences["quest_start"]
-		GameManager.quest_manager.start_quest(quest_data)
-		print("Quest started: ", quest_data.get("id", "?"))
+		var quest_id = consequences["quest_start"]
+		var qm2 := get_node_or_null("/root/Quests")
+		if qm2 and qm2.has_method("try_start_quest"):
+			qm2.try_start_quest(quest_id)
+		print("Quest started: ", quest_id)
 	
 	# Встановити глобальний флаг (рядок або масив рядків)
 	if consequences.has("set_flag"):

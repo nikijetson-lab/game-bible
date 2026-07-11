@@ -63,7 +63,7 @@ Historical alias table:
 
 ### 4. Mixed schemas
 
-Thirteen quests are currently structured/engine-ready with a top-level `objectives[]` list:
+Fifteen quests are currently structured/engine-ready with a top-level `objectives[]` list:
 
 - `greyford_01_missing_recipient`
 - `greyford_side_01_witch_trouble`
@@ -78,6 +78,8 @@ Thirteen quests are currently structured/engine-ready with a top-level `objectiv
 - `hazemoor_02_glade_and_mour`
 - `valkorn_01_man_from_swamp`
 - `valkorn_02_two_truths`
+- `valkorn_03_right_price`
+- `valkorn_04_messenger_of_rufin`
 
 Everything else is prose/design structure (`threads`, `phases`, `acts`, `branches`, custom fields). Those quests need conversion into machine-readable objectives, triggers, conditions, and resolutions before they can be fully playable.
 
@@ -115,8 +117,8 @@ Legend:
 | 11 | `hazemoor_02_glade_and_mour` | 1 | Галявина і дух | structured | Mour manifestation, Mia revelation, Order-symbol reveal, mount | no | no | UI, INV, CUT, VO | Ep1 capstone. Converted to 15 objectives. 4 acts with Mour Q&A, underwater vision, 3 outcome branches. Rewards: mour_sense, empty_stone, winged mount. Order of Seven Daggers revealed. |
 | 12 | `valkorn_01_man_from_swamp` | 2 | Людина з болота | structured | Arrival with Ilia; Fipp market encounter; Stetson/Bres/Tessa threads | no | no | UI, REP, CUT, VO | Converted to 7 objectives. Gate: quota_result_V. 3 threads (min 2), Fipp opening scene, Stetson/Tessa/Odrin secrets resolved. leads_to valkorn_02. |
 | 13 | `valkorn_02_two_truths` | 2 | Дві версії правди | structured | Odrin vs Tessa; undercity; artifact stolen by Damar | no | no | UI, REP, CUT, VO | Converted to 11 objectives. Dual path (Odrin/Tessa), 3-way crossroads, underground with ancient runes/order chamber/empty pedestal/Damar reveal. leads_to valkorn_03. |
-| 14 | `valkorn_03_right_price` | 2 | Правильна ціна | prose:phases | Trade guild warehouse; Damar sells artifact | no | no | UI, REP, INV, CUT, VO | Convert recon/approach/negotiation; implement Tessa interrupt and four artifact outcomes. |
-| 15 | `valkorn_04_messenger_of_rufin` | 2 | Людина, що послала Руфіна | prose | Loen meeting; Order plan; clue points to Fipp/Sebastian | no | no | UI, REP, CUT, VO | Convert dialogue choice/alignment; update Order/Stetson/Ilia relationship consequences. |
+| 14 | `valkorn_03_right_price` | 2 | Правильна ціна | structured | Trade guild warehouse; Damar sells artifact | no | no | UI, REP, INV, CUT, VO | Converted to 6 objectives. 4 doctrine recon approaches, 3 approach paths, 5 negotiation options, Tessa interrupt, 4 outcomes A/B/V/G. |
+| 15 | `valkorn_04_messenger_of_rufin` | 2 | Людина, що послала Руфіна | structured | Loen meeting; Order plan; clue points to Fipp/Sebastian | no | no | UI, REP, CUT, VO | Converted to 7 objectives. Loen 4 answers (why_rufin/mour_plan/keeper/underground), alignment A/B/V, clue: Fipp=Sebastian Marr. |
 | 16 | `valkorn_05_keeper_of_first_seal` | 2 | Хранитель Першої Печатки | prose | Sebastian reveal, First Seal, Ilia shock, Ep2 finale | yes | no | UI, REP, COMBAT, INV, CUT, VO | Major finale. Needs infiltration paths, black archive, boss/elite combat or treaty/fusion alternatives. |
 | 17 | `deep_bog_01_voice_from_fog` | 3 | Голос із туману | prose:acts | Hero decaying after fusion; Ilia as mental anchor; fog/sanity | no | sanity drain | UI, COMBAT, CUT, VO | Convert sanity/fog/no-minimap mechanics; implement Bolo-Weaving root obstacle with stamina/pain. |
 | 18 | `deep_bog_02_mad_ferry` | 3 | Шалений пором | prose | Lileya, Second Seal reveal, Mad River obstacle | no | no | UI, CUT, VO | Convert Lileya scene and river/ferry obstacle. Needs stone tower / chain ferry content. |

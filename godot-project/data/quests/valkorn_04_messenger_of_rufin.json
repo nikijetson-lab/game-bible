@@ -31,5 +31,180 @@
     }
   },
   "clue": "keeper_smell_and_ink -> points to Fipp (Sebastian Marr) in palace",
-  "leads_to": "valkorn_05_keeper_of_first_seal"
+  "leads_to": "valkorn_05_keeper_of_first_seal",
+  "start_location": "valkorn_diplomatic_quarter",
+  "structure": {
+    "acts": [
+      {
+        "id": "invitation",
+        "title": "Акт 1 — Запрошення Лоена",
+        "summary": "Лоен запрошує героя на зустріч у дипломатичному кварталі. Три питання. Один вибір, що змінить усе."
+      },
+      {
+        "id": "loen_answers",
+        "title": "Акт 2 — Відповіді Лоена",
+        "summary": "Герой ставить питання: чому Руфін, план Моура, Хранитель, андерсіті. Лоен відповідає — і розкриває ключову деталь про Хранителя."
+      },
+      {
+        "id": "alignment",
+        "title": "Акт 3 — Вибір",
+        "summary": "Герой обирає: співпрацювати з Орденом, нейтралітет, або відкритий спротив. Наслідки для Стетсона, Ілії та репутації."
+      }
+    ],
+    "phase_order": [
+      "invitation",
+      "loen_answers",
+      "alignment"
+    ]
+  },
+  "objectives": [
+    {
+      "id": "receive_invitation",
+      "description": "Отримати запрошення Лоена на зустріч у дипломатичному кварталі",
+      "type": "scripted",
+      "target": "loen_invitation",
+      "location": "valkorn",
+      "required": true,
+      "act": "invitation"
+    },
+    {
+      "id": "enter_diplomatic_quarter",
+      "description": "Прибути до дипломатичного кварталу на зустріч із Лоеном",
+      "type": "area_trigger",
+      "target": "diplomatic_quarter",
+      "location": "valkorn_diplomatic_quarter",
+      "required": true,
+      "act": "invitation",
+      "unlocks": [
+        "ask_why_rufin",
+        "ask_mour_plan",
+        "ask_keeper"
+      ]
+    },
+    {
+      "id": "ask_why_rufin",
+      "description": "Запитати чому Руфін: «Потрібен артефакт. Руфін знав болото. Хочемо стабілізувати Моур, а не знищити.»",
+      "type": "talk",
+      "target": "loen",
+      "location": "valkorn_diplomatic_quarter",
+      "required": true,
+      "act": "loen_answers",
+      "answer": "Потрібен артефакт. Руфін знав болото. Хочемо стабілізувати Моур, а не знищити.",
+      "sets_flags": [
+        "loen_rufin_answered"
+      ]
+    },
+    {
+      "id": "ask_mour_plan",
+      "description": "Запитати про план Моура: «Підпорядкувати силу. Хто контролює трясовину — контролює фронтир.»",
+      "type": "talk",
+      "target": "loen",
+      "location": "valkorn_diplomatic_quarter",
+      "required": true,
+      "act": "loen_answers",
+      "answer": "Підпорядкувати силу. Хто контролює трясовину — контролює фронтир.",
+      "sets_flags": [
+        "loen_mour_answered"
+      ]
+    },
+    {
+      "id": "ask_keeper",
+      "description": "Запитати про Хранителя: «Ніколи не бачив обличчя. Листи з печаткою. Запах торфу та м'яти. Золоте чорнило. Ближче до палацу.»",
+      "type": "talk",
+      "target": "loen",
+      "location": "valkorn_diplomatic_quarter",
+      "required": true,
+      "act": "loen_answers",
+      "answer": "Ніколи не бачив обличчя. Листи з печаткою. Запах торфу та м'яти. Золоте чорнило. Ближче до палацу.",
+      "sets_flags": [
+        "loen_keeper_answered",
+        "keeper_clue_obtained"
+      ],
+      "clue": "keeper_smell_and_ink -> Fipp / Sebastian Marr in palace"
+    },
+    {
+      "id": "ask_underground",
+      "description": "Запитати про андерсіті: «Знаємо про спадщину. Карта Одріна не під контролем.»",
+      "type": "talk",
+      "target": "loen",
+      "location": "valkorn_diplomatic_quarter",
+      "required": true,
+      "act": "loen_answers",
+      "answer": "Знаємо про спадщину. Карта Одріна не під контролем.",
+      "sets_flags": [
+        "loen_underground_answered"
+      ],
+      "unlocks": [
+        "alignment_choice"
+      ]
+    },
+    {
+      "id": "alignment_choice",
+      "description": "Обрати позицію щодо Ордену: співпраця (A), нейтралітет (B), спротив (V)",
+      "type": "choice",
+      "target": "loen_alignment",
+      "location": "valkorn_diplomatic_quarter",
+      "required": true,
+      "act": "alignment",
+      "choice_ref": "loen_alignment"
+    }
+  ],
+  "completion_conditions": {
+    "required_objectives": [
+      "receive_invitation",
+      "enter_diplomatic_quarter",
+      "ask_why_rufin",
+      "ask_mour_plan",
+      "ask_keeper",
+      "ask_underground",
+      "alignment_choice"
+    ],
+    "clue_revealed": "Sebastian Marr = Fipp = Keeper of First Seal",
+    "alignment_choice": "loen_alignment",
+    "unlocks_route": "route_to_valkorn_keeper"
+  },
+  "resolution_choice": {
+    "id": "loen_alignment",
+    "prompt": "Яку позицію зайняти щодо Ордену Семи Кинджалів?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Співпраця з Орденом",
+        "desc": {
+          "order_rep": 30,
+          "stetson": "cold",
+          "ilia": "shocked"
+        },
+        "order_rep": 30,
+        "stetson": "cold",
+        "ilia": "shocked",
+        "set_flag": "loen_alignment_cooperate"
+      },
+      {
+        "id": "B",
+        "text": "Нейтралітет",
+        "desc": {
+          "order_rep": 10,
+          "immunity": "temporary"
+        },
+        "order_rep": 10,
+        "immunity": "temporary",
+        "set_flag": "loen_alignment_neutral"
+      },
+      {
+        "id": "V",
+        "text": "Відкритий спротив",
+        "desc": {
+          "order_rep": -40,
+          "stetson": "key_ally"
+        },
+        "order_rep": -40,
+        "stetson": "key_ally",
+        "set_flag": "loen_alignment_oppose"
+      }
+    ]
+  },
+  "unlocks": [
+    "valkorn_05_keeper_of_first_seal"
+  ]
 }

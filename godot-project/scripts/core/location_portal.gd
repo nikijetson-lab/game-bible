@@ -4,7 +4,7 @@ extends Area3D
 ## Розмістити як дочірній вузол у сцені-джерелі.
 ## Коли гравець входить, викликає GameManager.change_scene(target_scene).
 ## Опціонально може запустити квест після переходу.
-class_name LocationPortal
+## NOTE: class_name визначено в scripts/gameplay/LocationPortal.gd
 
 ## Шлях до цільової сцени (.tscn)
 @export var target_scene: String = ""

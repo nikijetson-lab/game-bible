@@ -109,5 +109,242 @@
     "G": "as_recognized_administrator"
   },
   "episode_end": true,
-  "leads_to": "valkorn_01_man_from_swamp"
+  "leads_to": "valkorn_01_man_from_swamp",
+  "start_location": "sonk_ferry_admin",
+  "structure": {
+    "acts": [
+      {
+        "id": "audit_report",
+        "title": "Акт 1 — Звіт Келма",
+        "summary": "Серіт Келм завершив аудит. Звіт на столі. Чай охолов. Герой обирає: підписати, відмовитись, вести переговори, або спитати хто знає."
+      },
+      {
+        "id": "evidence_gathering",
+        "title": "Акт 2 — Збір доказів і контр-доказів",
+        "summary": "Герой збирає свідчення проти Келма: 6 видів контр-доказів через архіви, свідків, контрабандистів, храм, петиції, Ілію Марр."
+      },
+      {
+        "id": "tribunal",
+        "title": "Акт 3 — Трибунал",
+        "summary": "Фінальне зіткнення. Формула: позиція гравця = (counter_evidence × 2) + faction_support + doctrine_bonus − kelm_pressure. Результат визначає долю Сонк-Феррі та шлях до Валькорна."
+      }
+    ],
+    "tribunal_formula": "player_position = (counter_evidence * 2) + faction_support + doctrine_bonus - kelm_pressure",
+    "episode_end": true,
+    "phase_order": [
+      "audit_report",
+      "evidence_gathering",
+      "tribunal"
+    ]
+  },
+  "objectives": [
+    {
+      "id": "enter_kelm_office",
+      "description": "Увійти до кабінету Серіта Келма — звіт на столі, чай охолов",
+      "type": "area_trigger",
+      "target": "kelm_office",
+      "location": "sonk_ferry",
+      "required": true,
+      "act": "audit_report"
+    },
+    {
+      "id": "first_choice_quota",
+      "description": "Обрати: підписати, відмовитись, вести переговори, або спитати хто знає",
+      "type": "choice",
+      "target": "quota_first_choice",
+      "location": "sonk_ferry",
+      "required": true,
+      "act": "audit_report",
+      "options": [
+        "sign",
+        "refuse",
+        "negotiate",
+        "ask_who_knows"
+      ],
+      "unlocks": [
+        "gather_counter_evidence"
+      ]
+    },
+    {
+      "id": "gather_counter_evidence",
+      "description": "Зібрати контр-докази проти Келма (0-6)",
+      "type": "counter",
+      "target": "counter_evidence_pool",
+      "location": "sonk_ferry",
+      "required": true,
+      "act": "evidence_gathering",
+      "counter_pool": [
+        "voss_corruption_proof",
+        "kelm_threat_witnessed",
+        "true_beneficiaries",
+        "temple_testimony",
+        "public_petition",
+        "ilia_marr_report"
+      ],
+      "unlocks": [
+        "tribunal"
+      ]
+    },
+    {
+      "id": "evidence_voss_corruption",
+      "description": "Знайти докази корупції Восса — через архіви до закриття доступу",
+      "type": "investigate",
+      "target": "voss_corruption_proof",
+      "location": "sonk_ferry",
+      "required": false,
+      "optional": true,
+      "act": "evidence_gathering",
+      "counter_evidence": true,
+      "how": "archives_before_access_closed"
+    },
+    {
+      "id": "evidence_kelm_threat",
+      "description": "Спровокувати Келма на погрозу при свідках",
+      "type": "talk",
+      "target": "kelm_provoke",
+      "location": "sonk_ferry",
+      "required": false,
+      "optional": true,
+      "act": "evidence_gathering",
+      "counter_evidence": true,
+      "how": "provoke_him"
+    },
+    {
+      "id": "evidence_true_beneficiaries",
+      "description": "Отримати список справжніх бенефіціарів від контрабандистів",
+      "type": "talk",
+      "target": "smugglers",
+      "location": "sonk_ferry",
+      "required": false,
+      "optional": true,
+      "act": "evidence_gathering",
+      "counter_evidence": true,
+      "how": "from_smugglers"
+    },
+    {
+      "id": "evidence_temple_testimony",
+      "description": "Отримати свідчення храму — через Кароса або довіру Ізри ≥2",
+      "type": "talk",
+      "target": "temple_witness",
+      "location": "st_vey",
+      "required": false,
+      "optional": true,
+      "act": "evidence_gathering",
+      "counter_evidence": true,
+      "how": "karos_or_isra_trust_2plus"
+    },
+    {
+      "id": "evidence_public_petition",
+      "description": "Мобілізувати мешканців на публічну петицію",
+      "type": "social",
+      "target": "sonk_ferry_residents",
+      "location": "sonk_ferry",
+      "required": false,
+      "optional": true,
+      "act": "evidence_gathering",
+      "counter_evidence": true,
+      "how": "mobilize_residents"
+    },
+    {
+      "id": "evidence_ilia_marr_report",
+      "description": "Отримати звіт Ілії Марр — якщо вона прибула",
+      "type": "talk",
+      "target": "ilia_marr",
+      "location": "sonk_ferry",
+      "required": false,
+      "optional": true,
+      "act": "evidence_gathering",
+      "counter_evidence": true,
+      "how": "if_she_arrived"
+    },
+    {
+      "id": "tribunal",
+      "description": "Вийти на трибунал: позиція гравця = (counter_evidence × 2) + faction_support + doctrine_bonus − kelm_pressure",
+      "type": "scripted",
+      "target": "tribunal_formula",
+      "location": "sonk_ferry",
+      "required": true,
+      "act": "tribunal",
+      "formula": "player_position = (counter_evidence * 2) + faction_support + doctrine_bonus - kelm_pressure",
+      "unlocks": [
+        "resolve_quota"
+      ]
+    },
+    {
+      "id": "resolve_quota",
+      "description": "Вердикт трибуналу: Пристосування (A), Частковий опір (B), Повний розрахунок (V), Співконтроль (G)",
+      "type": "choice",
+      "target": "quota_resolution",
+      "location": "sonk_ferry",
+      "required": true,
+      "act": "tribunal",
+      "choice_ref": "quota_resolution",
+      "condition_driven": true
+    }
+  ],
+  "completion_conditions": {
+    "required_objectives": [
+      "enter_kelm_office",
+      "first_choice_quota",
+      "gather_counter_evidence",
+      "tribunal",
+      "resolve_quota"
+    ],
+    "counter_evidence_pool": 6,
+    "tribunal_formula": "player_position = (counter_evidence * 2) + faction_support + doctrine_bonus - kelm_pressure",
+    "resolution_thresholds": {
+      "A": "kelm > player + 4",
+      "B": "kelm > player <= 4",
+      "V": "player >= kelm + 4",
+      "G": "player >= kelm"
+    },
+    "resolution_choice": "quota_resolution",
+    "episode_1_end": true,
+    "unlocks_route": "transit_to_valkorn"
+  },
+  "resolution_choice": {
+    "id": "quota_resolution",
+    "prompt": "Яким буде вердикт трибуналу?",
+    "options": [
+      {
+        "id": "A",
+        "resolution": "A",
+        "text": "Пристосування",
+        "desc": "Підписано. Адміністрація контролює.",
+        "condition": "kelm > player + 4",
+        "set_flag": "nigh_kvoty_A_adaptation",
+        "transit_to_valkorn": "summoned_by_kelm"
+      },
+      {
+        "id": "B",
+        "resolution": "B",
+        "text": "Частковий опір",
+        "desc": "Оскаржено. Ядро вціліло.",
+        "condition": "kelm > player <= 4",
+        "set_flag": "nigh_kvoty_B_partial_resistance",
+        "transit_to_valkorn": "delegate_for_appeal"
+      },
+      {
+        "id": "V",
+        "resolution": "V",
+        "text": "Повний розрахунок",
+        "desc": "Відмова. Адміністрація втрачає легітимність.",
+        "condition": "player >= kelm + 4",
+        "set_flag": "nigh_kvoty_V_full_reckoning",
+        "transit_to_valkorn": "with_ilia_marr"
+      },
+      {
+        "id": "G",
+        "resolution": "G",
+        "text": "Співконтроль",
+        "desc": "Домовленість. Ядро під наглядом.",
+        "condition": "player >= kelm",
+        "set_flag": "nigh_kvoty_G_co_control",
+        "transit_to_valkorn": "as_recognized_administrator"
+      }
+    ]
+  },
+  "unlocks": [
+    "valkorn_01_man_from_swamp"
+  ]
 }

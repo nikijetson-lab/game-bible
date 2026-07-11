@@ -63,7 +63,7 @@ Historical alias table:
 
 ### 4. Mixed schemas
 
-Nine quests are currently structured/engine-ready with a top-level `objectives[]` list:
+Ten quests are currently structured/engine-ready with a top-level `objectives[]` list:
 
 - `greyford_01_missing_recipient`
 - `greyford_side_01_witch_trouble`
@@ -74,6 +74,7 @@ Nine quests are currently structured/engine-ready with a top-level `objectives[]
 - `sonk_ferry_02_salt_in_book`
 - `sonk_ferry_03_ferry_oath`
 - `hazemoor_02_ashes_under_chapel`
+- `sonk_ferry_04_quota_knife`
 
 Everything else is prose/design structure (`threads`, `phases`, `acts`, `branches`, custom fields). Those quests need conversion into machine-readable objectives, triggers, conditions, and resolutions before they can be fully playable.
 
@@ -107,7 +108,7 @@ Legend:
 | 7 | `sonk_ferry_02_salt_in_book` | 1 | Сіль у книзі | structured | Medicine sabotage and aid-network compromise | no | no | UI, REP, CUT, VO | Converted to 12 objectives across 4 acts. Resolution choice A/B/C/D. Gate: hunger_outcome_local_deal flag from sonk_ferry_01. Needs runtime wiring. |
 | 8 | `sonk_ferry_03_ferry_oath` | 1 | Поромна присяга | structured | Ferry murder, Tovan/Nera/Kelm political control | no | yes | UI, REP, CUT, VO | Converted to 10 objectives. Evidence pool 0-5, Kelm 4-day timer auto→G, night council with 4 resolutions A/B/V/G. Needs runtime wiring. |
 | 9 | `hazemoor_02_ashes_under_chapel` | 1 | Попіл під каплицею | structured | Flooded chapel body, reversed ash sign, ritual disturbance | no | yes | UI, REP, CUT, VO | Converted to 17 objectives. Rein 3-day timer auto→G. Disturbance 0-5 counter. Ritual bonus formula. 4 resolutions A/B/V/G. Needs runtime wiring. |
-| 10 | `sonk_ferry_04_quota_knife` | 1 | Ніж квоти | prose | Administrative tribunal and route to Valkorn | no | pressure formula | UI, REP, CUT, VO | Implement evidence/counter-evidence collection, tribunal formula, transit branch to Valkorn. |
+| 10 | `sonk_ferry_04_quota_knife` | 1 | Ніж квоти | structured | Administrative tribunal and route to Valkorn | no | pressure formula | UI, REP, CUT, VO | Ep1 finale. Converted to 11 objectives. Counter-evidence pool (0-6), tribunal formula, 4 threshold-gated outcomes A/B/V/G. Transit routes to Valkorn per outcome. episode_end=true. |
 | 11 | `hazemoor_02_glade_and_mour` | 1 | Галявина і дух | prose:phases | Mour manifestation, Mia revelation, Order-symbol reveal, mount | no | no | UI, INV, CUT, VO | Major cinematic quest. Needs Mour manifestation, underwater vision, Mia state, mount unlock, artifact item. |
 | 12 | `valkorn_01_man_from_swamp` | 2 | Людина з болота | prose:threads | Arrival with Ilia; Fipp market encounter; Stetson/Bres/Tessa threads | no | no | UI, REP, CUT, VO | Convert 3 threads, min_threads=2, opening scene with Fipp. Needs Valkorn locations/NPCs. |
 | 13 | `valkorn_02_two_truths` | 2 | Дві версії правди | prose:threads | Odrin vs Tessa; undercity; artifact stolen by Damar | no | no | UI, REP, CUT, VO | Convert two information paths and crossroads; implement undercity findings. |

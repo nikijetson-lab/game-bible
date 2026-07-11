@@ -58,5 +58,224 @@
     "order_chamber": "3 Order of Seven Daggers spies sealed by Sebastian Marr",
     "tessa_truth": "partial — Loen didn't order, but she wanted artifact for leverage"
   },
-  "leads_to": "valkorn_03_right_price"
+  "leads_to": "valkorn_03_right_price",
+  "start_location": "valkorn",
+  "structure": {
+    "acts": [
+      {
+        "id": "anonymous_letter",
+        "title": "Акт 1 — Конверт без підпису",
+        "summary": "Герой отримує конверт: «Третя точка ще не відкрита. Поспішай.» Два шляхи до підземель — Одрін або Тесса. Артефакт уже взяли."
+      },
+      {
+        "id": "dual_paths",
+        "title": "Акт 2 — Дві версії правди",
+        "summary": "Герой обирає: Одрін (карта, маршрут, архів) або Тесса (природа артефакту, вхід, контекст війни). Перехрестя: сказати одному про іншого — чи ні."
+      },
+      {
+        "id": "underground",
+        "title": "Акт 3 — Підземелля Валькорна",
+        "summary": "Герой спускається в андерсіті: стародавні руни, перші дві точки, камера Ордену, порожній п'єдестал, клапоть тканини. Артефакт взяв Дамар два дні тому."
+      }
+    ],
+    "crossroads_options": [
+      "tell_odrin",
+      "tell_tessa",
+      "tell_no_one"
+    ],
+    "phase_order": [
+      "anonymous_letter",
+      "dual_paths",
+      "underground"
+    ]
+  },
+  "objectives": [
+    {
+      "id": "receive_letter",
+      "description": "Отримати конверт без підпису: «Третя точка ще не відкрита. Поспішай.»",
+      "type": "scripted",
+      "target": "anonymous_letter",
+      "location": "valkorn",
+      "required": true,
+      "act": "anonymous_letter"
+    },
+    {
+      "id": "learn_artifact_stolen",
+      "description": "Дізнатися: артефакт уже взяли з підземелля",
+      "type": "scripted",
+      "target": "artifact_stolen_news",
+      "location": "valkorn",
+      "required": true,
+      "act": "anonymous_letter",
+      "sets_flags": [
+        "artifact_missing"
+      ],
+      "unlocks": [
+        "path_odrin",
+        "path_tessa"
+      ]
+    },
+    {
+      "id": "path_odrin",
+      "description": "Зустріти Одріна: отримати точний маршрут, знання перших двох точок, доступ до архіву",
+      "type": "talk",
+      "target": "odrin",
+      "location": "valkorn",
+      "required": false,
+      "optional": true,
+      "act": "dual_paths",
+      "thread": "odrin",
+      "gives": [
+        "exact_route",
+        "first_two_points_knowledge",
+        "archive_access"
+      ],
+      "doesnt_know": [
+        "tessa_and_order",
+        "map_not_unique"
+      ]
+    },
+    {
+      "id": "path_tessa",
+      "description": "Зустріти Тессу: дізнатись природу артефакту, альтернативний вхід, контекст Прадавньої війни",
+      "type": "talk",
+      "target": "tessa",
+      "location": "valkorn_trade_quarter",
+      "required": false,
+      "optional": true,
+      "act": "dual_paths",
+      "thread": "tessa",
+      "gives": [
+        "artifact_nature",
+        "alternate_entrance",
+        "ancient_war_context"
+      ],
+      "hides": [
+        "order_origin",
+        "order_also_searching",
+        "previous_seeker_lost"
+      ]
+    },
+    {
+      "id": "crossroads_choice",
+      "description": "Вирішити: сказати Одріну про Тессу (Одрін відступить), сказати Тессі про Одріна (хоче карту/партнерство), або нікому не казати (герой сам із повною картиною)",
+      "type": "choice",
+      "target": "crossroads",
+      "location": "valkorn",
+      "required": true,
+      "act": "dual_paths",
+      "options": {
+        "tell_odrin": "odrin_withdraws",
+        "tell_tessa": "she_wants_map_or_partnership",
+        "tell_no_one": "hero_alone_with_full_picture"
+      },
+      "unlocks": [
+        "enter_undercity"
+      ]
+    },
+    {
+      "id": "enter_undercity",
+      "description": "Спуститися в андерсіті Валькорна",
+      "type": "area_trigger",
+      "target": "valkorn_undercity",
+      "location": "valkorn_undercity",
+      "required": true,
+      "act": "underground"
+    },
+    {
+      "id": "find_ancient_runes",
+      "description": "Прочитати стародавні руни: попередження Засновників — торкнутися Печатки без Ліхтаря = втратити тінь",
+      "type": "investigate",
+      "target": "ancient_runes",
+      "location": "valkorn_undercity",
+      "required": true,
+      "act": "underground",
+      "finding": "Founders warning: touch Seal without Lantern = lose shadow",
+      "sets_flags": [
+        "runes_read"
+      ]
+    },
+    {
+      "id": "find_order_chamber",
+      "description": "Знайти камеру Ордену Семи Кинджалів: 3 шпигуни, запечатані Себастьяном Марром",
+      "type": "investigate",
+      "target": "order_chamber",
+      "location": "valkorn_undercity",
+      "required": true,
+      "act": "underground",
+      "finding": "3 Order of Seven Daggers spies sealed by Sebastian Marr",
+      "sets_flags": [
+        "order_chamber_found"
+      ]
+    },
+    {
+      "id": "inspect_empty_pedestal",
+      "description": "Оглянути порожній п'єдестал — артефакт взяв Дамар (торговий гільдійний дилер) два дні тому",
+      "type": "investigate",
+      "target": "empty_pedestal",
+      "location": "valkorn_undercity",
+      "required": true,
+      "act": "underground",
+      "finding": "Taken by Damar, Trade Guild dealer, bribed archivist assistant",
+      "canon_thief": "Damar",
+      "sets_flags": [
+        "pedestal_inspected",
+        "damar_identified"
+      ]
+    },
+    {
+      "id": "find_fabric_scrap",
+      "description": "Знайти клапоть тканини біля п'єдесталу",
+      "type": "collect",
+      "target": "fabric_scrap",
+      "location": "valkorn_undercity",
+      "required": true,
+      "act": "underground",
+      "item": "fabric_scrap_damar",
+      "sets_flags": [
+        "fabric_scrap_found"
+      ],
+      "unlocks": [
+        "resolve_two_truths"
+      ]
+    },
+    {
+      "id": "resolve_two_truths",
+      "description": "Зробити висновок: Тесса знала частково (Лоен не наказував, але вона хотіла артефакт для leverage), Дамар — злодій. Артефакт треба повернути.",
+      "type": "scripted",
+      "target": "two_truths_conclusion",
+      "location": "valkorn_undercity",
+      "required": true,
+      "act": "underground",
+      "canon_tessa": "partial — Loen didn't order, but she wanted artifact for leverage",
+      "canon_thief": "Damar, Trade Guild dealer",
+      "unlocks": [
+        "route_to_right_price"
+      ]
+    }
+  ],
+  "completion_conditions": {
+    "required_objectives": [
+      "receive_letter",
+      "learn_artifact_stolen",
+      "crossroads_choice",
+      "enter_undercity",
+      "find_ancient_runes",
+      "find_order_chamber",
+      "inspect_empty_pedestal",
+      "find_fabric_scrap",
+      "resolve_two_truths"
+    ],
+    "at_least_one_path": true,
+    "path_pool": [
+      "path_odrin",
+      "path_tessa"
+    ],
+    "underground_findings": 5,
+    "canon_revealed": "Damar stole artifact 2 days ago — leads to right_price",
+    "unlocks_route": "route_to_valkorn_right_price"
+  },
+  "unlocks": [
+    "valkorn_03_right_price"
+  ]
 }

@@ -1,1 +1,94 @@
-{"id":"ep4_05_hero_departure","title":"Відхід Героя","episode":4,"epilogue":true,"branches":{"A_iron":{"visual":"Суха дорога, сіре небо, потріскана глина. Герой у шкіряних рукавицях.","ilia":"«Ми залишаємо це залізо... Твій обов'язок згасає.»"},"B_reed":{"visual":"Квітуче болото, зелене світло. Герой — частина Моура."},"V_balance":{"visual":"Туманний світанок. Крихкий мир."}},"final":"Камера вгору. Титри. Кінець."}
+{
+  "id": "ep4_05_hero_departure",
+  "title": "Відхід Героя",
+  "episode": 4,
+  "epilogue": true,
+  "branches": {
+    "A_iron": {
+      "visual": "Суха дорога, сіре небо, потріскана глина. Герой у шкіряних рукавицях.",
+      "ilia": "«Ми залишаємо це залізо... Твій обов'язок згасає.»"
+    },
+    "B_reed": {
+      "visual": "Квітуче болото, зелене світло. Герой — частина Моура."
+    },
+    "V_balance": {
+      "visual": "Туманний світанок. Крихкий мир."
+    }
+  },
+  "final": "Камера вгору. Титри. Кінець.",
+  "start_location": "hazemoor_valkorn_border",
+  "category": "main",
+  "description": "Відхід Героя. Фінал.",
+  "prerequisites": {
+    "quests_completed": [
+      "ep4_04_final_resolution"
+    ]
+  },
+  "structure": {
+    "acts": [
+      {
+        "id": "departure",
+        "title": "Акт 1 — Відхід",
+        "summary": "Герой іде. Світ змінився. Камера вгору. Титри."
+      }
+    ],
+    "branched_by": "ep3_verdict",
+    "epilogue": true,
+    "phase_order": [
+      "departure"
+    ]
+  },
+  "objectives": [
+    {
+      "id": "hero_departs",
+      "description": "Герой покидає сцену: A_iron=суха дорога сіре небо потріскана глина, B_reed=квітуче болото зелене світло, V_balance=туманний світанок",
+      "type": "scripted",
+      "target": "hero_departure",
+      "location": "hazemoor_valkorn_border",
+      "required": true,
+      "act": "departure",
+      "branches": {
+        "A_iron": {
+          "visual": "Суха дорога, сіре небо, потріскана глина. Герой у шкіряних рукавицях.",
+          "ilia": "«Ми залишаємо це залізо... Твій обов'язок згасає.»"
+        },
+        "B_reed": {
+          "visual": "Квітуче болото, зелене світло. Герой — частина Моура."
+        },
+        "V_balance": {
+          "visual": "Туманний світанок. Крихкий мир."
+        }
+      }
+    },
+    {
+      "id": "final_words",
+      "description": "Останні слова: A_iron=Ілія «Ми залишаємо це залізо...», герой у шкіряних рукавицях",
+      "type": "scripted",
+      "target": "final_words",
+      "location": "hazemoor_valkorn_border",
+      "required": true,
+      "act": "departure",
+      "ilia_A_iron": "«Ми залишаємо це залізо... Твій обов'язок згасає.»"
+    },
+    {
+      "id": "credits",
+      "description": "Камера вгору. Титри. Кінець.",
+      "type": "scripted",
+      "target": "credits",
+      "location": "epilogue",
+      "required": true,
+      "act": "departure"
+    }
+  ],
+  "completion_conditions": {
+    "required_objectives": [
+      "hero_departs",
+      "final_words",
+      "credits"
+    ],
+    "branched_by": "ep3_verdict",
+    "epilogue": true,
+    "final": true
+  },
+  "unlocks": []
+}

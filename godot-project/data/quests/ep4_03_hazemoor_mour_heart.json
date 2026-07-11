@@ -1,1 +1,91 @@
-{"id":"ep4_03_hazemoor_mour_heart","title":"Хейзмур та Серце Моура","episode":4,"branches":{"A_iron":{"desc":"Висушене болото. Міа біля Вівтаря Стагнації — виснажена. Вибір: прибити штирями або дати згаснути."},"B_reed":{"desc":"Болото живе. Міа в розквіті сили."},"V_balance":{"desc":"Ритуал рівноваги."}}}
+{
+  "id": "ep4_03_hazemoor_mour_heart",
+  "title": "Хейзмур та Серце Моура",
+  "episode": 4,
+  "branches": {
+    "A_iron": {
+      "desc": "Висушене болото. Міа біля Вівтаря Стагнації — виснажена. Вибір: прибити штирями або дати згаснути."
+    },
+    "B_reed": {
+      "desc": "Болото живе. Міа в розквіті сили."
+    },
+    "V_balance": {
+      "desc": "Ритуал рівноваги."
+    }
+  },
+  "start_location": "hazemoor",
+  "category": "main",
+  "description": "Серце Моура. Фінальна зустріч біля Вівтаря.",
+  "prerequisites": {
+    "quests_completed": [
+      "ep4_02_valkorn_climax"
+    ]
+  },
+  "structure": {
+    "acts": [
+      {
+        "id": "mour_heart",
+        "title": "Акт 1 — Серце Моура",
+        "summary": "Герой досягає Серця Моура. Доля болота вирішується."
+      }
+    ],
+    "branched_by": "ep3_verdict",
+    "phase_order": [
+      "mour_heart"
+    ]
+  },
+  "objectives": [
+    {
+      "id": "reach_mour_heart",
+      "description": "Досягти Серця Моура",
+      "type": "area_trigger",
+      "target": "mour_heart",
+      "location": "hazemoor",
+      "required": true,
+      "act": "mour_heart"
+    },
+    {
+      "id": "mour_heart_scene",
+      "description": "Пройти сцену біля Вівтаря: A_iron=Міа виснажена біля Вівтаря Стагнації, B_reed=Міа в розквіті сили, V_balance=ритуал рівноваги",
+      "type": "scripted",
+      "target": "mour_heart_scene",
+      "location": "hazemoor",
+      "required": true,
+      "act": "mour_heart",
+      "branches": {
+        "A_iron": {
+          "desc": "Висушене болото. Міа біля Вівтаря Стагнації — виснажена. Вибір: прибити штирями або дати згаснути."
+        },
+        "B_reed": {
+          "desc": "Болото живе. Міа в розквіті сили."
+        },
+        "V_balance": {
+          "desc": "Ритуал рівноваги."
+        }
+      }
+    },
+    {
+      "id": "mour_heart_choice",
+      "description": "A_iron: прибити штирями або дати згаснути",
+      "type": "choice",
+      "target": "mour_heart_outcome",
+      "location": "hazemoor",
+      "required": true,
+      "act": "mour_heart",
+      "choice_ref": "mour_heart_outcome"
+    }
+  ],
+  "completion_conditions": {
+    "required_objectives": [
+      "reach_mour_heart",
+      "mour_heart_scene",
+      "mour_heart_choice"
+    ],
+    "branched_by": "ep3_verdict",
+    "unlocks_route": "route_to_final_resolution"
+  },
+  "leads_to": "ep4_04_final_resolution",
+  "unlocks": [
+    "ep4_04_final_resolution"
+  ]
+}

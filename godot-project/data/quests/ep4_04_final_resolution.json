@@ -1,1 +1,83 @@
-{"id":"ep4_04_final_resolution","title":"Велика Розв'язка","episode":4,"branches":{"A_iron":{"desc":"Тесса — глава Ордену Срібних Кинджалів. Руфін — німий пам'ятник в Архіві. Лілея — архіваріус Грейфорда. Герой пакує речі."},"B_reed":{"desc":"Ілія і Міа. Новий болотяний порядок."},"V_balance":{"desc":"Крихкий мир. Дві Печатки в рівновазі."}}}
+{
+  "id": "ep4_04_final_resolution",
+  "title": "Велика Розв'язка",
+  "episode": 4,
+  "branches": {
+    "A_iron": {
+      "desc": "Тесса — глава Ордену Срібних Кинджалів. Руфін — німий пам'ятник в Архіві. Лілея — архіваріус Грейфорда. Герой пакує речі."
+    },
+    "B_reed": {
+      "desc": "Ілія і Міа. Новий болотяний порядок."
+    },
+    "V_balance": {
+      "desc": "Крихкий мир. Дві Печатки в рівновазі."
+    }
+  },
+  "start_location": "valkorn",
+  "category": "main",
+  "description": "Велика Розв'язка. Доля Валькорна, Ордену та героїв.",
+  "prerequisites": {
+    "quests_completed": [
+      "ep4_03_hazemoor_mour_heart"
+    ]
+  },
+  "structure": {
+    "acts": [
+      {
+        "id": "resolution",
+        "title": "Акт 1 — Розв'язка",
+        "summary": "Епілог світу: A_iron=Тесса глава Ордену Срібних Кинджалів, Руфін німий пам'ятник, Лілея архіваріус; B_reed=Ілія+Міа новий болотяний порядок; V_balance=крихкий мир."
+      }
+    ],
+    "branched_by": "ep3_verdict",
+    "phase_order": [
+      "resolution"
+    ]
+  },
+  "objectives": [
+    {
+      "id": "witness_resolution",
+      "description": "Побачити розв'язку світу за гілкою Ep3",
+      "type": "scripted",
+      "target": "world_resolution",
+      "location": "valkorn",
+      "required": true,
+      "act": "resolution",
+      "branches": {
+        "A_iron": {
+          "desc": "Тесса — глава Ордену Срібних Кинджалів. Руфін — німий пам'ятник в Архіві. Лілея — архіваріус Грейфорда. Герой пакує речі."
+        },
+        "B_reed": {
+          "desc": "Ілія і Міа. Новий болотяний порядок."
+        },
+        "V_balance": {
+          "desc": "Крихкий мир. Дві Печатки в рівновазі."
+        }
+      }
+    },
+    {
+      "id": "goodbye_scene",
+      "description": "Попрощатися з ключовими NPC відповідно до гілки",
+      "type": "scripted",
+      "target": "goodbyes",
+      "location": "valkorn",
+      "required": true,
+      "act": "resolution",
+      "unlocks": [
+        "hero_departs"
+      ]
+    }
+  ],
+  "completion_conditions": {
+    "required_objectives": [
+      "witness_resolution",
+      "goodbye_scene"
+    ],
+    "branched_by": "ep3_verdict",
+    "unlocks_route": "route_to_departure"
+  },
+  "leads_to": "ep4_05_hero_departure",
+  "unlocks": [
+    "ep4_05_hero_departure"
+  ]
+}

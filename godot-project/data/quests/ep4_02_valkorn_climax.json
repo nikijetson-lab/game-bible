@@ -1,1 +1,87 @@
-{"id":"ep4_02_valkorn_climax","title":"Кульмінація у Валькорні","episode":4,"branches":{"A_iron":{"desc":"Штурм Архіву з Тессою. Себастьян розчавлений залізом. Тесса очолює реформований Орден.","sebastian":"dies_crushed_by_iron","tessa":"leads_reformed_order","rufin":"empty_mannequin"},"B_reed":{"desc":"Полювання на Тварюку в болоті."},"V_balance":{"desc":"Дипломатичне врегулювання."}}}
+{
+  "id": "ep4_02_valkorn_climax",
+  "title": "Кульмінація у Валькорні",
+  "episode": 4,
+  "branches": {
+    "A_iron": {
+      "desc": "Штурм Архіву з Тессою. Себастьян розчавлений залізом. Тесса очолює реформований Орден.",
+      "sebastian": "dies_crushed_by_iron",
+      "tessa": "leads_reformed_order",
+      "rufin": "empty_mannequin"
+    },
+    "B_reed": {
+      "desc": "Полювання на Тварюку в болоті."
+    },
+    "V_balance": {
+      "desc": "Дипломатичне врегулювання."
+    }
+  },
+  "start_location": "valkorn",
+  "category": "main",
+  "description": "Кульмінація у Валькорні. Три гілки після вердикту Ep3.",
+  "prerequisites": {
+    "quests_completed": [
+      "ep4_01_return_to_valkorn"
+    ]
+  },
+  "structure": {
+    "acts": [
+      {
+        "id": "climax",
+        "title": "Акт 1 — Кульмінація",
+        "summary": "Фінальна битва/угода у Валькорні залежно від гілки."
+      }
+    ],
+    "branched_by": "ep3_verdict",
+    "phase_order": [
+      "climax"
+    ]
+  },
+  "objectives": [
+    {
+      "id": "valkorn_climax",
+      "description": "Пройти кульмінацію Валькорна за гілкою Ep3",
+      "type": "scripted",
+      "target": "valkorn_climax",
+      "location": "valkorn",
+      "required": true,
+      "act": "climax",
+      "branches": {
+        "A_iron": {
+          "desc": "Штурм Архіву з Тессою. Себастьян розчавлений залізом. Тесса очолює реформований Орден.",
+          "sebastian": "dies_crushed_by_iron",
+          "tessa": "leads_reformed_order",
+          "rufin": "empty_mannequin"
+        },
+        "B_reed": {
+          "desc": "Полювання на Тварюку в болоті."
+        },
+        "V_balance": {
+          "desc": "Дипломатичне врегулювання."
+        }
+      }
+    },
+    {
+      "id": "climax_resolution",
+      "description": "Завершити кульмінацію: A_iron=штурм Архіву, B_reed=полювання на Тварюку, V_balance=дипломатія",
+      "type": "choice",
+      "target": "climax_outcome",
+      "location": "valkorn",
+      "required": true,
+      "act": "climax",
+      "choice_ref": "climax_outcome"
+    }
+  ],
+  "completion_conditions": {
+    "required_objectives": [
+      "valkorn_climax",
+      "climax_resolution"
+    ],
+    "branched_by": "ep3_verdict",
+    "unlocks_route": "route_to_mour_heart"
+  },
+  "leads_to": "ep4_03_hazemoor_mour_heart",
+  "unlocks": [
+    "ep4_03_hazemoor_mour_heart"
+  ]
+}

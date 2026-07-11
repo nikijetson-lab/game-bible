@@ -133,4 +133,3 @@ func quit_game() -> void:
 	"""Вийти з гри"""
 	print("Quitting game...")
 	get_tree().quit()
-

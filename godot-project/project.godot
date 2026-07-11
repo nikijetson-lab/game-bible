@@ -38,6 +38,10 @@ TimerManager="*res://scripts/core/timer_manager.gd"
 BoloWeaving="*res://scripts/core/bolo_weaving.gd"
 CutsceneManager="*res://scripts/core/cutscene_manager.gd"
 
+[debug]
+
+gdscript/warnings/inference_on_variant=1
+
 [display]
 
 window/size/viewport_width=1920

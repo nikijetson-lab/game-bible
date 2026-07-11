@@ -3,7 +3,6 @@ extends Node
 ##
 ## Використовується GameManager для навігації між сценами
 ## за назвою локації з квестів.
-class_name SceneRegistry
 
 # Мапа: логічна назва (як у quest JSON location/start_location) → шлях сцени
 const LOCATION_TO_SCENE := {

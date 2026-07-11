@@ -1,0 +1,45 @@
+{
+  "_meta": "Voice-over manifest. Maps scene/quest events to audio files.",
+  "characters": {
+    "ilia": {"actor": "TBD", "style": "whisper, mental anchor, warm"},
+    "sebastian": {"actor": "TBD", "style": "cold, calculating, grandfatherly"},
+    "mour": {"actor": "TBD", "style": "deep, resonant, ancient, insectile overlay"},
+    "mia": {"actor": "TBD", "style": "young, defiant, emotional"},
+    "lileya": {"actor": "TBD", "style": "sorrowful, knowing, keeper's burden"},
+    "fipp": {"actor": "TBD", "style": "playful, mocking, hides intelligence"},
+    "loen": {"actor": "TBD", "style": "diplomatic, measured, dangerous calm"},
+    "ervan": {"actor": "TBD", "style": "gruff, warm, tavern keeper"},
+    "cassandra": {"actor": "TBD", "style": "worldly, melancholic, honest"},
+    "kelm": {"actor": "TBD", "style": "bureaucratic, cold, precise"},
+    "nera": {"actor": "TBD", "style": "fierce, protective, frontier leader"},
+    "tessa": {"actor": "TBD", "style": "cunning, pragmatic, wounded pride"}
+  },
+  "scenes": {
+    "mour_manifestation": {"file": "mour/arrival.ogg", "speaker": "mour"},
+    "mour_artifact_answer": {"file": "mour/artifact.ogg", "speaker": "mour"},
+    "mour_rufin_answer": {"file": "mour/rufin.ogg", "speaker": "mour"},
+    "mour_mia_answer": {"file": "mour/mia.ogg", "speaker": "mour"},
+    "mour_creator_vision": {"file": "mour/creator.ogg", "speaker": "mour"},
+    "mia_revelation": {"file": "mia/im_the_swamp.ogg", "speaker": "mia"},
+    "sebastian_reveal": {"file": "sebastian/mask_off.ogg", "speaker": "sebastian"},
+    "sebastian_philosophy": {"file": "sebastian/wooden_walls.ogg", "speaker": "sebastian"},
+    "ilia_uncle": {"file": "ilia/uncle.ogg", "speaker": "ilia"},
+    "ilia_goodbye_iron": {"file": "ilia/leave_iron.ogg", "speaker": "ilia"},
+    "ilia_goodbye_reed": {"file": "ilia/no_warmth.ogg", "speaker": "ilia"},
+    "ilia_balance_static": {"file": "ilia/through_static.ogg", "speaker": "ilia"},
+    "lileya_killed_soul": {"file": "lileya/killed_soul.ogg", "speaker": "lileya"},
+    "lileya_proud": {"file": "lileya/proud.ogg", "speaker": "lileya"},
+    "ep1_opening": {"file": "narrator/letter_arrives.ogg", "speaker": "narrator"},
+    "ep2_opening": {"file": "narrator/valkorn_arrival.ogg", "speaker": "narrator"},
+    "ep3_opening": {"file": "ilia/return_to_bog.ogg", "speaker": "ilia"},
+    "ep4_ending_iron": {"file": "narrator/dry_road.ogg", "speaker": "narrator"},
+    "ep4_ending_reed": {"file": "narrator/blooming_bog.ogg", "speaker": "narrator"},
+    "ep4_ending_balance": {"file": "narrator/foggy_dawn.ogg", "speaker": "narrator"}
+  },
+  "tribunal_voices": {
+    "ferry_oath_verdict": {"files": ["tribunal/oath_A.ogg", "tribunal/oath_B.ogg", "tribunal/oath_V.ogg", "tribunal/oath_G.ogg"]},
+    "quota_knife_verdict": {"files": ["tribunal/quota_A.ogg", "tribunal/quota_B.ogg", "tribunal/quota_V.ogg", "tribunal/quota_G.ogg"]},
+    "ashes_verdict": {"files": ["tribunal/ashes_A.ogg", "tribunal/ashes_B.ogg", "tribunal/ashes_V.ogg", "tribunal/ashes_G.ogg"]},
+    "ep3_verdict": {"files": ["verdicts/iron.ogg", "verdicts/reed.ogg", "verdicts/balance.ogg"]}
+  }
+}

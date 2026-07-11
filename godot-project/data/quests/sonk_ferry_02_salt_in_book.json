@@ -107,5 +107,225 @@
   "leads_to": [
     "sonk_ferry_03_ferry_oath",
     "sonk_ferry_04_quota_knife"
+  ],
+  "start_location": "sonk_ferry",
+  "structure": {
+    "acts": [
+      {
+        "id": "immediate_harm",
+        "title": "Акт 1 — Негайна шкода",
+        "summary": "Герой виявляє підроблені печатки на ящику з ліками, заспокоює розлючений натовп і знайомиться з Марою Денс."
+      },
+      {
+        "id": "forensics",
+        "title": "Акт 2 — Криміналістика",
+        "summary": "Герой досліджує печатки, журнали, порівнює ліки і тисне на Бріна Осса за свідченнями."
+      },
+      {
+        "id": "pressure",
+        "title": "Акт 3 — Тиск та інтерпретація",
+        "summary": "Герой зустрічає Гару Пайк, вислуховує Тована Ріда і обирає робочу теорію саботажу."
+      },
+      {
+        "id": "confrontation",
+        "title": "Акт 4 — Конфронтація в Соляному сараї",
+        "summary": "Герой приходить на перехоплену зустріч у соляному складі й обирає одну з чотирьох розв'язок."
+      }
+    ],
+    "phase_order": [
+      "immediate_harm",
+      "forensics",
+      "pressure",
+      "confrontation"
+    ]
+  },
+  "objectives": [
+    {
+      "id": "inspect_crate",
+      "description": "Оглянути відкритий ящик із підробленими печатками",
+      "type": "inspect",
+      "target": "medicine_crate",
+      "location": "sonk_ferry",
+      "required": true,
+      "act": "immediate_harm"
+    },
+    {
+      "id": "calm_crowd",
+      "description": "Не дати натовпу знищити решту ліків",
+      "type": "social",
+      "target": "angry_crowd",
+      "location": "sonk_ferry",
+      "required": true,
+      "act": "immediate_harm",
+      "reputation_choice": "calm_crowd_approach"
+    },
+    {
+      "id": "meet_mara",
+      "description": "Поговорити з Марою Денс",
+      "type": "talk",
+      "target": "mara_dens",
+      "location": "sonk_ferry",
+      "required": true,
+      "act": "immediate_harm",
+      "unlocks": [
+        "examine_seals",
+        "trace_chain",
+        "compare_medicine",
+        "pressure_brin"
+      ]
+    },
+    {
+      "id": "examine_seals",
+      "description": "Дослідити віск, шнури, нумерацію на печатках",
+      "type": "investigate",
+      "target": "fake_seals",
+      "location": "sonk_ferry",
+      "required": true,
+      "act": "forensics",
+      "investigation_thread": true
+    },
+    {
+      "id": "trace_chain",
+      "description": "Простежити поромні журнали та ланцюжок передачі ліків",
+      "type": "investigate",
+      "target": "ferry_logs",
+      "location": "sonk_ferry",
+      "required": true,
+      "act": "forensics",
+      "investigation_thread": true
+    },
+    {
+      "id": "compare_medicine",
+      "description": "Порівняти справжні та фальшиві ліки",
+      "type": "investigate",
+      "target": "medicine_samples",
+      "location": "sonk_ferry",
+      "required": true,
+      "act": "forensics",
+      "investigation_thread": true
+    },
+    {
+      "id": "pressure_brin",
+      "description": "Тиснути на Бріна Осса за свідченнями",
+      "type": "talk",
+      "target": "brin_oss",
+      "location": "sonk_ferry",
+      "required": true,
+      "act": "forensics",
+      "unlocks": [
+        "confront_gara"
+      ]
+    },
+    {
+      "id": "confront_gara",
+      "description": "Зустріти Гару Пайк",
+      "type": "talk",
+      "target": "gara_paik",
+      "location": "sonk_ferry",
+      "required": true,
+      "act": "pressure",
+      "unlocks": [
+        "meet_tovan"
+      ]
+    },
+    {
+      "id": "meet_tovan",
+      "description": "Вислухати Тована Ріда",
+      "type": "talk",
+      "target": "tovan_rid",
+      "location": "sonk_ferry",
+      "required": true,
+      "act": "pressure",
+      "unlocks": [
+        "choose_theory"
+      ]
+    },
+    {
+      "id": "choose_theory",
+      "description": "Обрати робочу теорію саботажу",
+      "type": "choice",
+      "target": "sabotage_theory",
+      "location": "sonk_ferry",
+      "required": true,
+      "act": "pressure",
+      "unlocks": [
+        "salt_warehouse_showdown"
+      ]
+    },
+    {
+      "id": "salt_warehouse_showdown",
+      "description": "Перехопити зустріч у Соляному сараї",
+      "type": "area_trigger",
+      "target": "salt_warehouse",
+      "location": "salt_warehouse",
+      "required": true,
+      "act": "confrontation",
+      "scenario": "meeting_intercept",
+      "unlocks": [
+        "resolve_salt"
+      ]
+    },
+    {
+      "id": "resolve_salt",
+      "description": "Обрати розв'язку кризи ліків (A/B/C/D)",
+      "type": "choice",
+      "target": "salt_resolution",
+      "location": "sonk_ferry",
+      "required": true,
+      "act": "confrontation",
+      "choice_ref": "salt_resolution"
+    }
+  ],
+  "completion_conditions": {
+    "required_objectives": [
+      "inspect_crate",
+      "calm_crowd",
+      "meet_mara",
+      "examine_seals",
+      "trace_chain",
+      "compare_medicine",
+      "pressure_brin",
+      "confront_gara",
+      "meet_tovan",
+      "choose_theory",
+      "salt_warehouse_showdown",
+      "resolve_salt"
+    ],
+    "resolution_choice": "salt_resolution",
+    "unlocks_route": "route_to_sonk_ferry_03"
+  },
+  "resolution_choice": {
+    "id": "salt_resolution",
+    "prompt": "Як завершити справу з підробленими ліками?",
+    "options": [
+      {
+        "id": "A",
+        "resolution": "A",
+        "text": "Чистка паразитів",
+        "set_flag": "salt_outcome_parasite_purge"
+      },
+      {
+        "id": "B",
+        "resolution": "B",
+        "text": "Тихе виправлення",
+        "set_flag": "salt_outcome_quiet_fix"
+      },
+      {
+        "id": "C",
+        "resolution": "C",
+        "text": "Публічний розкол",
+        "set_flag": "salt_outcome_public_split"
+      },
+      {
+        "id": "D",
+        "resolution": "D",
+        "text": "Контрольований цап-відбувайло",
+        "set_flag": "salt_outcome_controlled_scapegoat"
+      }
+    ]
+  },
+  "unlocks": [
+    "sonk_ferry_03_ferry_oath",
+    "sonk_ferry_04_quota_knife"
   ]
 }

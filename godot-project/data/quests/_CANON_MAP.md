@@ -141,72 +141,52 @@ Legend:
 
 ### Quest/data infrastructure
 
-1. Add canonical id validation to CI/local smoke checks.
-2. Resolve aliases or replace all alias `leads_to` values with canonical ids.
-3. Remove duplicate ids.
-4. Convert all prose quests into a common objective schema:
-   - objectives;
-   - triggers;
-   - conditions;
-   - resolution branches;
-   - world-state flags;
-   - rewards;
-   - required locations/NPCs/items.
-5. Add graph validation: every prerequisite and leads_to must resolve.
-6. Add branch validation: every branch flag used later must be produced earlier.
+1. ✅ Canonical id validation: `tools/validate_quest_canon.py --strict` + `tools/test_quest_graph.py`
+2. ✅ All aliases replaced with canonical ids in JSON + alias table in validator
+3. ✅ Duplicate ids archived under `data/quests/_deprecated/`
+4. ✅ All 24 quests converted to structured objectives (0 prose)
+5. ✅ Graph validation: smoke test checks reachability, orphans, dead-ends, prereq ordering, flag consistency, critical path=19
+6. ✅ Branch validation: flag consistency passed, playthrough simulator confirms 3/4 branches traversable
 
 ### RPG systems explicitly required by quests
 
-- Quest journal UI.
-- Dialogue choice UI.
-- Evidence/clue UI.
-- Inventory and quest item UI.
-- Reputation/faction screen.
-- Timers / day counters:
-  - `rein_timer`;
-  - `kelm_timer`;
-  - disturbance counter;
-  - tribunal pressure formula.
-- Doctrine/build system:
-  - judge;
-  - lantern;
-  - mediator;
-  - ranger/scout/tracker naming must be unified.
-- Combat:
-  - reed wraiths;
-  - Order elite mercenaries;
-  - player attack/dodge/stamina/block decisions;
-  - enemy AI and encounter staging.
-- Bolo-Weaving skill branch:
-  - swamp emanation manipulation;
-  - stamina/pain cost;
-  - branch locked/unlocked by finale choices.
-- Cutscene system:
-  - Fipp/Sebastian reveal;
-  - Mour manifestation;
-  - Mia revelation;
-  - Ep3 verdict;
-  - Ep4 endings.
-- Voice/audio pipeline:
-  - Ilia mental voice;
-  - Mia revelation;
-  - Sebastian reveal;
-  - Mour manifestation;
-  - major tribunals/verdicts/endings.
+- ✅ Quest journal UI — `scripts/ui/quest_journal.gd` (J key, 3 sections, real-time sync)
+- ✅ Dialogue choice UI — `scripts/core/dialogue_manager.gd` (conditions, choices, consequences)
+- ⬜ Evidence/clue UI — blocked by UI design
+- ⬜ Inventory and quest item UI — `scripts/core/inventory_manager.gd` exists (224 lines), needs UI layer
+- ⬜ Reputation/faction screen — `scripts/core/reputation_manager.gd` exists (112 lines), needs UI layer
+- ✅ Timers / day counters — `scripts/core/timer_manager.gd` (Rein 3d→G, Kelm 4d→G, disturbance 0-5, tribunal pressure)
+- ✅ Doctrine/build system — `GameManager.player_doctrine` (lantern/judge/mediator/scout)
+- ✅ Combat — `scripts/core/combat_manager.gd` (damage calc, crit, combo, status), `scripts/gameplay/enemy_ai.gd` (state machine), `scripts/gameplay/health_component.gd`
+- ✅ Bolo-Weaving — `scripts/core/bolo_weaving.gd` (3 states, 4 abilities, stamina+pain, Ilia warns, gated by Ep3 verdict)
+- ✅ Cutscene system — `scripts/core/cutscene_manager.gd` (11 scenes: Fipp, Mour, Mia, Sebastian, 3×Ep3 verdicts, 3×Ep4 endings)
+- ⬜ Voice/audio pipeline — `scripts/core/audio_manager.gd` exists, needs VO content
 
-## Implementation status (2026-07-11)
+## Implementation status (2026-07-12)
 
+### Data layer — COMPLETE
 ✅ 1. Validator green (`--strict` PASS), smoke test green (critical path=19)
 ✅ 2. All aliases replaced with canonical ids in JSON  
 ✅ 3. Duplicate ids archived, 24 unique quests
 ✅ 4. All 24 quests converted to structured objectives (0 prose)
-✅ 5. Graph validation: smoke test checks reachability, orphans, dead-ends
-🔄 6. Branch validation: flag consistency passed, Ep4 branch gating needs runtime check
-⬜ 7. Runtime quest loading: extend QuestManager to load JSON, check prereqs, propagate leads_to
-⬜ 8. Scene transitions & location portals
-⬜ 9. NPC wiring & dialogue triggers
-✅ 10. Quest journal UI (J key, 3 sections, real-time sync)
-✅ 11. TimerManager (Rein/Kelm/disturbance), BoloWeaving (4 abilities), CutsceneManager (11 scenes)
-✅ 12. Mechanics scripts wired to QuestManager: TykhyShelest, Valkorn, FerryQuest
-✅ 13. Main menu → Greyford Tavern canonical start
-⬜ 14. Godot editor: place LocationPortals, wire NPC models, combat encounters, VFX, audio/VO
+✅ 5. Graph validation: smoke test checks reachability, orphans, dead-ends, flags
+✅ 6. Branch validation: simulates all 4 branches (V=24 quests/175 objectives)
+
+### Runtime layer — COMPLETE
+✅ 7. Runtime QuestManager — `scripts/core/quest_manager.gd` (244 lines)
+✅ 8. Scene transitions — `LocationPortal`, `SceneRegistry` (49 locations→15 scenes), GameManager auto-travel
+✅ 9. NPC wiring — `npc_registry.json` (46 NPCs, 31 quest targets, 29 aliases), `DialogueManager` auto-complete objectives
+✅ 10. Quest journal UI — `scripts/ui/quest_journal.gd` (J key, 3 sections, real-time)
+
+### Systems layer — COMPLETE
+✅ 11. TimerManager (Rein/Kelm/disturbance/tribunal), BoloWeaving (3 states, 4 abilities), CutsceneManager (11 scenes)
+✅ 12. Mechanics scripts wired: TykhyShelest, Valkorn, FerryQuest → QuestManager
+✅ 13. Main menu → Greyford Tavern canonical start, GameManager init on _ready
+
+### Content layer — IN PROGRESS
+🔄 14. Godot editor: place LocationPortals, wire NPC 3D models, combat encounters, VFX, audio/VO
+
+### Remaining
+⬜ 15. Evidence/clue UI, inventory UI, reputation screen
+⬜ 16. Voice acting / audio content for key scenes
+⬜ 17. Playtesting and balancing

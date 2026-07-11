@@ -26,5 +26,136 @@
       "bolo_weaving_use": "touch roots to make them part — costs stamina, Ilia begs him to stop"
     }
   },
-  "leads_to": "deep_bog_02_mad_ferry"
+  "leads_to": "deep_bog_02_mad_ferry",
+  "start_location": "deep_bog_entry",
+  "structure": {
+    "acts": [
+      {
+        "id": "return_to_mist",
+        "title": "Акт 1 — Повернення в туман",
+        "summary": "Герой повертається в Хейзмур після Злиття. Тіло гниє. Туман хоче, щоб він заснув. Ілія — голос у голові, невидима для інших. Герой хапається за її голос, щоб повернути розум."
+      },
+      {
+        "id": "scarred_path",
+        "title": "Акт 2 — Пошрамований шлях",
+        "summary": "Чорне коріння, торф'яні провалля, отруйний газ. Bolo-Weaving дозволяє розсунути коріння — ціною болю. Ілія благає зупинитись."
+      }
+    ],
+    "hero_state": "decaying body, First Seal dampens Mour, Bolo-Weaving costs stamina/pain",
+    "phase_order": [
+      "return_to_mist",
+      "scarred_path"
+    ]
+  },
+  "objectives": [
+    {
+      "id": "enter_deep_bog_again",
+      "description": "Повернутися в глибокий Хейзмур після Злиття — тіло гниє, шкіра землиста, кінчики пальців почорнілі від торфу",
+      "type": "area_trigger",
+      "target": "deep_bog_entry",
+      "location": "deep_bog",
+      "required": true,
+      "act": "return_to_mist",
+      "hero_state": {
+        "skin": "earthy_cold_blackened_fingertips",
+        "breath": "wheezing_metallic_blood_mint",
+        "first_seal": "dampens_mour_silence",
+        "bolo_weaving": "manipulate_bog_costs_stamina_pain"
+      }
+    },
+    {
+      "id": "survive_fog",
+      "description": "Вижити в густому тумані: без мінімапи, sanity drain, спокусливий шепіт",
+      "type": "survival",
+      "target": "dense_fog",
+      "location": "deep_bog",
+      "required": true,
+      "act": "return_to_mist",
+      "mechanics": [
+        "no_minimap",
+        "sanity_drain",
+        "seductive_whispers"
+      ],
+      "unlocks": [
+        "grab_ilia_voice"
+      ]
+    },
+    {
+      "id": "grab_ilia_voice",
+      "description": "Схопитися за голос Ілії: вона нагадує ім'я, попереджає про безумство, веде через туман",
+      "type": "scripted",
+      "target": "ilia_anchor",
+      "location": "deep_bog",
+      "required": true,
+      "act": "return_to_mist",
+      "ilia_nature": "voice_in_hero_head_only_invisible_to_others",
+      "effect": "sanity_restored_path_revealed_with_warden_stakes",
+      "sets_flags": [
+        "ilia_voice_anchored"
+      ],
+      "unlocks": [
+        "traverse_scarred_path"
+      ]
+    },
+    {
+      "id": "traverse_scarred_path",
+      "description": "Пройти пошрамований шлях: чорне кореневе плетиво, торф'яні провалля, отруйний газ",
+      "type": "survival",
+      "target": "scarred_path",
+      "location": "deep_bog",
+      "required": true,
+      "act": "scarred_path",
+      "obstacles": [
+        "black_root_webs",
+        "peat_chasms",
+        "poison_gas"
+      ]
+    },
+    {
+      "id": "bolo_weaving_roots",
+      "description": "Використати Bolo-Weaving: торкнутися коріння, щоб розсунути його — ціною stamina, Ілія благає зупинитись",
+      "type": "scripted",
+      "target": "bolo_weaving",
+      "location": "deep_bog",
+      "required": true,
+      "act": "scarred_path",
+      "cost": "stamina_pain",
+      "ilia_reaction": "begs_him_to_stop",
+      "sets_flags": [
+        "bolo_weaving_used"
+      ],
+      "unlocks": [
+        "reach_mad_ferry"
+      ]
+    },
+    {
+      "id": "reach_mad_ferry",
+      "description": "Дістатися до Шаленого Порому — кінець першого етапу глибокого болота",
+      "type": "area_trigger",
+      "target": "mad_ferry_approach",
+      "location": "deep_bog",
+      "required": true,
+      "act": "scarred_path",
+      "unlocks": [
+        "route_to_mad_ferry"
+      ]
+    }
+  ],
+  "completion_conditions": {
+    "required_objectives": [
+      "enter_deep_bog_again",
+      "survive_fog",
+      "grab_ilia_voice",
+      "traverse_scarred_path",
+      "bolo_weaving_roots",
+      "reach_mad_ferry"
+    ],
+    "sanity_mechanic": true,
+    "bolo_weaving_unlocked": true,
+    "ilia_voice_anchor": true,
+    "unlocks_route": "route_to_mad_ferry"
+  },
+  "unlocks": [
+    "deep_bog_02_mad_ferry"
+  ]
 }

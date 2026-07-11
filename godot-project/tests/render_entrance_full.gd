@@ -1,7 +1,7 @@
 extends SceneTree
 
 var _cam: Camera3D
-var _frames := 0
+var _frames: Variant = 0
 
 func _init() -> void:
 	call_deferred("_setup")
@@ -10,7 +10,7 @@ func _setup() -> void:
 	var packed: PackedScene = load("res://scenes/locations/greyford/TavernInterior.tscn")
 	if packed == null:
 		push_error("SHOT: failed to load"); quit(1); return
-	var scene := packed.instantiate()
+	var scene: Node = packed.instantiate()
 	root.add_child(scene)
 
 	_hide_path(scene, "Player")
@@ -29,7 +29,7 @@ func _setup() -> void:
 	DirAccess.make_dir_recursive_absolute("res://screenshots")
 
 func _hide_path(root_node: Node, path: NodePath) -> void:
-	var node := root_node.get_node_or_null(path)
+	var node: Node = root_node.get_node_or_null(path)
 	if node: _hide_tree(node)
 
 func _hide_tree(node: Node) -> void:
@@ -43,7 +43,7 @@ func _hide_all_labels(node: Node) -> void:
 func _process(_delta: float) -> bool:
 	_frames += 1
 	if _frames < 26: return false
-	var out := "res://screenshots/tavern_entrance_full.png"
-	var err := get_root().get_viewport().get_texture().get_image().save_png(out)
+	var out: Variant = "res://screenshots/tavern_entrance_full.png"
+	var err: Image = get_root().get_viewport().get_texture().get_image().save_png(out)
 	print("SHOT_SAVED ", out, " err=", err)
 	quit(0); return true

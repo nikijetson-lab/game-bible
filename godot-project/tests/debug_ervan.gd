@@ -1,12 +1,12 @@
 extends SceneTree
-var _cam: Camera3D; var _frames := 0
+var _cam: Camera3D; var _frames: Variant = 0
 func _init() -> void: call_deferred("_setup")
 func _setup() -> void:
 	var p: PackedScene = load("res://scenes/locations/greyford/TavernInterior.tscn")
-	var s := p.instantiate(); root.add_child(s)
+	var s: Node = p.instantiate(); root.add_child(s)
 	_hide(s, "Player"); _hide_labels(s)
 	# Debug: list ALL children of Ervan NPC
-	var npcs := s.get_node("NPCs")
+	var npcs: Node = s.get_node("NPCs")
 	for c in npcs.get_children():
 		if str(c.get("npc_id")) in ["ervan","greyford_guard_letter"]:
 			print("NPC: " + str(c.get("npc_id")) + " children:")
@@ -18,7 +18,7 @@ func _setup() -> void:
 	get_root().get_viewport().msaa_3d = Viewport.MSAA_4X
 	DirAccess.make_dir_recursive_absolute("res://screenshots")
 func _hide(n: Node, nm: String) -> void:
-	var c := n.get_node_or_null(nm); if c is Node3D: (c as Node3D).visible = false
+	var c: Node = n.get_node_or_null(nm); if c is Node3D: (c as Node3D).visible = false
 func _hide_labels(n: Node) -> void:
 	if n is Label3D: (n as Label3D).visible = false
 	for ch in n.get_children(): _hide_labels(ch)

@@ -1,7 +1,7 @@
 extends SceneTree
 
 var _cam: Camera3D
-var _frames := 0
+var _frames: Variant = 0
 
 func _init() -> void:
 	call_deferred("_setup")
@@ -12,7 +12,7 @@ func _setup() -> void:
 		push_error("SHOT: failed to load scene")
 		quit(1)
 		return
-	var scene := packed.instantiate()
+	var scene: Node = packed.instantiate()
 	root.add_child(scene)
 
 	_hide_path(scene, "Player")
@@ -20,15 +20,15 @@ func _setup() -> void:
 	_hide_path(scene, "MeshyAssets")
 	_hide_all_labels(scene)
 
-	var npcs_node := scene.get_node_or_null("NPCs")
+	var npcs_node: Node = scene.get_node_or_null("NPCs")
 	if npcs_node:
 		for child in npcs_node.get_children():
 			if child.name != "GreyfordGuard" and child.name != "Ervan":
 				_hide_tree(child)
 
-	var guard := scene.get_node_or_null("NPCs/GreyfordGuard")
+	var guard: Node = scene.get_node_or_null("NPCs/GreyfordGuard")
 	if guard:
-		var letter := guard.get_node_or_null("CarriedLetter")
+		var letter: Node = guard.get_node_or_null("CarriedLetter")
 		if letter and letter is Node3D:
 			(letter as Node3D).visible = false
 
@@ -43,7 +43,7 @@ func _setup() -> void:
 	print("SHOT_READY")
 
 func _hide_path(root_node: Node, path: NodePath) -> void:
-	var node := root_node.get_node_or_null(path)
+	var node: Node = root_node.get_node_or_null(path)
 	if node:
 		_hide_tree(node)
 
@@ -63,8 +63,8 @@ func _process(_delta: float) -> bool:
 	_frames += 1
 	if _frames < 60:
 		return false
-	var out := "res://screenshots/greyford_guard_v2.png"
-	var err := get_root().get_viewport().get_texture().get_image().save_png(out)
+	var out: Variant = "res://screenshots/greyford_guard_v2.png"
+	var err: Image = get_root().get_viewport().get_texture().get_image().save_png(out)
 	print("SHOT_SAVED ", out, " err=", err)
 	quit(0)
 	return true

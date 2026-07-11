@@ -6,11 +6,11 @@ extends SceneTree
 
 var _cam: Camera3D
 var _shots: Array[Dictionary] = []
-var _idx := 0
-var _positioned := false
-var _wait := 0
-var _center := Vector3.ZERO
-var _radius := 5.0
+var _idx: Variant = 0
+var _positioned: Variant = false
+var _wait: Variant = 0
+var _center: Variant = Vector3.ZERO
+var _radius: Variant = 5.0
 
 func _init() -> void:
 	call_deferred("_setup")
@@ -21,29 +21,29 @@ func _setup() -> void:
 		push_error("PREVIEW: failed to load GLB")
 		quit(1)
 		return
-	var model := packed.instantiate()
+	var model: Node = packed.instantiate()
 	root.add_child(model)
 
-	var aabb := _combined_aabb(model)
+	var aabb: Variant = _combined_aabb(model)
 	_center = aabb.position + aabb.size * 0.5
 	_radius = max(aabb.size.x, max(aabb.size.y, aabb.size.z))
 	print("PREVIEW_AABB pos=", aabb.position, " size=", aabb.size, " center=", _center, " radius=", _radius)
 
-	var env := Environment.new()
+	var env: Variant = Environment.new()
 	env.background_mode = Environment.BG_COLOR
 	env.background_color = Color(0.11, 0.12, 0.14)
 	env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
 	env.ambient_light_color = Color(0.7, 0.68, 0.64)
 	env.ambient_light_energy = 1.3
-	var world := WorldEnvironment.new()
+	var world: Variant = WorldEnvironment.new()
 	world.environment = env
 	root.add_child(world)
 
-	var key := DirectionalLight3D.new()
+	var key: Variant = DirectionalLight3D.new()
 	key.rotation_degrees = Vector3(-50, -40, 0)
 	key.light_energy = 1.8
 	root.add_child(key)
-	var fill := DirectionalLight3D.new()
+	var fill: Variant = DirectionalLight3D.new()
 	fill.rotation_degrees = Vector3(-25, 135, 0)
 	fill.light_energy = 1.0
 	root.add_child(fill)
@@ -55,7 +55,7 @@ func _setup() -> void:
 	_cam.make_current()
 	get_root().get_viewport().msaa_3d = Viewport.MSAA_4X
 
-	var d := _radius * 1.15
+	var d: Variant = _radius * 1.15
 	_shots = [
 		{"name": "meshy_tavern_front", "pos": _center + Vector3(0, _radius*0.25, d), "look": _center},
 		{"name": "meshy_tavern_45", "pos": _center + Vector3(d*0.8, _radius*0.35, d*0.8), "look": _center},
@@ -66,8 +66,8 @@ func _setup() -> void:
 	print("PREVIEW_READY count=", _shots.size())
 
 func _combined_aabb(node: Node) -> AABB:
-	var acc := AABB()
-	var has := false
+	var acc: Variant = AABB()
+	var has: Variant = false
 	for mi in _all_mesh_instances(node):
 		var a: AABB = (mi as MeshInstance3D).global_transform * (mi as MeshInstance3D).get_aabb()
 		if not has:
@@ -78,7 +78,7 @@ func _combined_aabb(node: Node) -> AABB:
 	return acc
 
 func _all_mesh_instances(node: Node) -> Array:
-	var out := []
+	var out: Variant = []
 	if node is MeshInstance3D and (node as MeshInstance3D).mesh != null:
 		out.append(node)
 	for c in node.get_children():
@@ -89,7 +89,7 @@ func _process(_delta: float) -> bool:
 	if _idx >= _shots.size():
 		quit(0)
 		return true
-	var shot := _shots[_idx]
+	var shot: Variant = _shots[_idx]
 	if not _positioned:
 		_cam.global_position = shot["pos"]
 		_cam.look_at(shot["look"], Vector3.UP)
@@ -99,8 +99,8 @@ func _process(_delta: float) -> bool:
 	_wait += 1
 	if _wait < 12:
 		return false
-	var img := get_root().get_viewport().get_texture().get_image()
-	var out := "res://screenshots/%s.png" % shot["name"]
+	var img: Image = get_root().get_viewport().get_texture().get_image()
+	var out: Variant = "res://screenshots/%s.png" % shot["name"]
 	print("PREVIEW_SAVED ", out, " err=", img.save_png(out))
 	_idx += 1
 	_positioned = false

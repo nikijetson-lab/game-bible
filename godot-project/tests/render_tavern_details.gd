@@ -1,6 +1,6 @@
 extends SceneTree
 
-var _shots := [
+var _shots: Variant = [
 	# Close right-side angle: right-table lantern foreground, bar lantern and hanging lantern behind.
 	{"name": "lanterns_bar_table", "pos": Vector3(7.0, 1.62, 3.45), "look": Vector3(4.6, 1.18, 0.75)},
 	# Right-wall stair shot: steps run away/upward; bright tread edges face the camera.
@@ -8,9 +8,9 @@ var _shots := [
 	# Rear-wall shot: two diamond windows on the left, one separate on the right.
 	{"name": "three_windows", "pos": Vector3(-0.55, 2.18, 2.25), "look": Vector3(-1.85, 2.04, -6.16)},
 ]
-var _idx := 0
+var _idx: Variant = 0
 var _cam: Camera3D
-var _frames := 0
+var _frames: Variant = 0
 var _scene: Node
 
 func _init() -> void:
@@ -37,7 +37,7 @@ func _aim() -> void:
 	_frames = 0
 
 func _hide(root_node: Node, path: NodePath) -> void:
-	var n := root_node.get_node_or_null(path)
+	var n: Node = root_node.get_node_or_null(path)
 	if n: _hide_tree(n)
 
 func _hide_tree(n: Node) -> void:
@@ -53,7 +53,7 @@ func _process(_delta: float) -> bool:
 	if _frames < 18:
 		return false
 	var s = _shots[_idx]
-	var out := "res://screenshots/tavern_detail_%s.png" % s["name"]
+	var out: Variant = "res://screenshots/tavern_detail_%s.png" % s["name"]
 	get_root().get_viewport().get_texture().get_image().save_png(out)
 	print("DETAIL_SHOT_SAVED ", out)
 	_idx += 1

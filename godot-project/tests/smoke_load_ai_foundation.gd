@@ -52,12 +52,12 @@ func _init() -> void:
 		quit(1)
 
 func _check_resource(path: String, failures: Array[String]) -> void:
-	var resource := load(path)
+	var resource: Variant = load(path)
 	if resource == null:
 		failures.append("Failed to load resource: " + path)
 
 func _check_scene(path: String, required_paths: Array, forbidden_paths: Array, failures: Array[String]) -> void:
-	var packed := load(path)
+	var packed: Variant = load(path)
 	if packed == null:
 		failures.append("Failed to load scene: " + path)
 		return

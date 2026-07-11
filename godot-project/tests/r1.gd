@@ -2,13 +2,13 @@ extends SceneTree
 
 var _cam: Camera3D
 var _frames: int = 0
-var _ready_done := false
+var _ready_done: Variant = false
 
 func _ready() -> void:
 	var p: PackedScene = load("res://scenes/locations/greyford/TavernInterior.tscn")
-	var s := p.instantiate()
+	var s: Node = p.instantiate()
 	root.add_child(s)
-	var h := s.get_node_or_null("Player")
+	var h: Node = s.get_node_or_null("Player")
 	if h is Node3D:
 		h.visible = false
 	_lbl(s)
@@ -33,7 +33,7 @@ func _process(_d: float) -> bool:
 	_frames += 1
 	if _frames < 24:
 		return false
-	var img := get_root().get_viewport().get_texture().get_image()
+	var img: Image = get_root().get_viewport().get_texture().get_image()
 	if img:
 		img.save_png("res://screenshots/final_ervan.png")
 		print("SAVED")

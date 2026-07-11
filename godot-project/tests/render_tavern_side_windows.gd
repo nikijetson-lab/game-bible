@@ -1,12 +1,12 @@
 extends SceneTree
 
-var _shots := [
+var _shots: Variant = [
 	{"name": "left_wall_two_windows", "pos": Vector3(-3.25, 1.95, 0.15), "look": Vector3(-8.06, 1.90, 0.15)},
 	{"name": "right_wall_one_window", "pos": Vector3(1.4, 1.95, 4.55), "look": Vector3(8.06, 1.75, 1.35)},
 ]
-var _idx := 0
+var _idx: Variant = 0
 var _cam: Camera3D
-var _frames := 0
+var _frames: Variant = 0
 var _scene: Node
 
 func _init() -> void:
@@ -37,7 +37,7 @@ func _aim() -> void:
 	_frames = 0
 
 func _hide(root_node: Node, path: NodePath) -> void:
-	var n := root_node.get_node_or_null(path)
+	var n: Node = root_node.get_node_or_null(path)
 	if n: _hide_tree(n)
 
 func _hide_tree(n: Node) -> void:
@@ -53,7 +53,7 @@ func _process(_delta: float) -> bool:
 	if _frames < 18:
 		return false
 	var s = _shots[_idx]
-	var out := "res://screenshots/tavern_side_%s.png" % s["name"]
+	var out: Variant = "res://screenshots/tavern_side_%s.png" % s["name"]
 	get_root().get_viewport().get_texture().get_image().save_png(out)
 	print("SIDE_WINDOW_SHOT_SAVED ", out)
 	_idx += 1

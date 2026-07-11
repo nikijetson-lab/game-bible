@@ -1,6 +1,6 @@
 extends SceneTree
 
-var _checks := []
+var _checks: Variant = []
 
 func _init() -> void:
 	_test_scene("res://scenes/locations/greyford/GreyfordStreet.tscn")
@@ -15,17 +15,17 @@ func _init() -> void:
 func _test_scene(path: String) -> void:
 	var p: PackedScene = load(path)
 	if p == null: _checks.append("FAIL load: " + path); return
-	var s := p.instantiate()
-	var portals_node := s.get_node_or_null("Portals")
+	var s: Node = p.instantiate()
+	var portals_node: Node = s.get_node_or_null("Portals")
 	if portals_node == null:
 		_checks.append("WARN no Portals: " + path)
 	else:
-		var count := 0
+		var count: Variant = 0
 		for c in portals_node.get_children():
 			if c.has_method("interact") or c.get("destination_scene") != null:
 				var dest: String = c.get("destination_scene")
 				var prompt: String = c.get("prompt")
-				var valid := "✅" if ResourceLoader.exists(dest) else "❌ MISSING"
+				var valid: Variant = "✅" if ResourceLoader.exists(dest) else "❌ MISSING"
 				_checks.append(valid + " " + path.get_file() + " → " + dest.get_file() + " [" + prompt + "]")
 				count += 1
 		if count == 0:
@@ -34,7 +34,7 @@ func _test_scene(path: String) -> void:
 
 func _report() -> void:
 	for c in _checks: print(c)
-	var ok := 0; var fail := 0
+	var ok: Variant = 0; var fail := 0
 	for c in _checks:
 		if c.startswith("✅"): ok += 1
 		elif c.startswith("❌"): fail += 1

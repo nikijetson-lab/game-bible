@@ -36,8 +36,8 @@ const SHOTS := [
 	}
 ]
 
-var _idx := -1
-var _frames := 0
+var _idx: Variant = -1
+var _frames: Variant = 0
 var _current: Node3D
 var _cam: Camera3D
 
@@ -86,7 +86,7 @@ func _process(_delta: float) -> bool:
 	if _frames < 26:
 		return false
 	var shot: Dictionary = SHOTS[_idx]
-	var err := get_root().get_viewport().get_texture().get_image().save_png(shot["out"])
+	var err: Image = get_root().get_viewport().get_texture().get_image().save_png(shot["out"])
 	print("LOC_SHOT_SAVED ", shot["out"], " err=", err)
 	call_deferred("_next")
 	_frames = -100000

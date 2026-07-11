@@ -1,10 +1,10 @@
 extends SceneTree
 
 var _cam: Camera3D
-var _frames := 0
-var _shot_idx := 0
+var _frames: Variant = 0
+var _shot_idx: Variant = 0
 
-var _shots := [
+var _shots: Variant = [
 	{"name": "diag_c_no_sign", "hide_sign": true, "hide_bar": false},
 	{"name": "diag_d_no_bar", "hide_sign": false, "hide_bar": true},
 ]
@@ -45,7 +45,7 @@ func _aim() -> void:
 	_frames = 0
 
 func _hide_path(root_node: Node, path: NodePath) -> void:
-	var node := root_node.get_node_or_null(path)
+	var node: Node = root_node.get_node_or_null(path)
 	if node: _hide_tree(node)
 
 func _hide_tree(node: Node) -> void:
@@ -60,8 +60,8 @@ func _process(_delta: float) -> bool:
 	_frames += 1
 	if _frames < 24: return false
 	var s = _shots[_shot_idx]
-	var out := "res://screenshots/%s.png" % s["name"]
-	var err := get_root().get_viewport().get_texture().get_image().save_png(out)
+	var out: Variant = "res://screenshots/%s.png" % s["name"]
+	var err: Image = get_root().get_viewport().get_texture().get_image().save_png(out)
 	print("DIAG_SHOT_SAVED ", out, " err=", err)
 	_shot_idx += 1
 	if _shot_idx >= _shots.size():

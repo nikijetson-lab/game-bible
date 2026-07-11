@@ -1,6 +1,6 @@
 extends SceneTree
-var _cam: Camera3D; var _frames := 0; var _idx := 0
-var _shots := [
+var _cam: Camera3D; var _frames: Variant = 0; var _idx := 0
+var _shots: Variant = [
 	{scene="res://scenes/locations/greyford/GreyfordStreet.tscn", cam=Vector3(0,8,-10), look=Vector3(0,1,0), out="street"},
 	{scene="res://scenes/locations/greyford/CraftsmenQuarter.tscn", cam=Vector3(3,4,-5), look=Vector3(0,2,0), out="crafts"},
 	{scene="res://scenes/locations/greyford/PortTavernInterior.tscn", cam=Vector3(3,4,-5), look=Vector3(0,1.5,0), out="port"},
@@ -21,7 +21,7 @@ func _aim() -> void:
 	_frames = 0
 var _scene: Node
 func _hide(n: Node, nm: String) -> void:
-	var c := n.get_node_or_null(nm); if c is Node3D: (c as Node3D).visible = false
+	var c: Node = n.get_node_or_null(nm); if c is Node3D: (c as Node3D).visible = false
 func _hide_labels(n: Node) -> void:
 	if n is Label3D: (n as Label3D).visible = false
 	for ch in n.get_children(): _hide_labels(ch)
@@ -29,7 +29,7 @@ func _process(_d: float) -> bool:
 	_frames += 1
 	if _frames < 24: return false
 	var s = _shots[_idx]
-	var err := get_root().get_viewport().get_texture().get_image().save_png("res://screenshots/check_%s.png" % s.out)
+	var err: Image = get_root().get_viewport().get_texture().get_image().save_png("res://screenshots/check_%s.png" % s.out)
 	print("SHOT %s err=%d" % [s.out, err])
 	_idx += 1
 	if _idx >= _shots.size(): quit(0); return true

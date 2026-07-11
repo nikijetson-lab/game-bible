@@ -3,7 +3,7 @@ extends SceneTree
 var _scene: Control
 
 func _init() -> void:
-	var p := load("res://scenes/map/WorldMap.tscn")
+	var p: Variant = load("res://scenes/map/WorldMap.tscn")
 	_scene = p.instantiate()
 	_scene.debug_show_all = true
 	_scene.visible = true
@@ -17,9 +17,9 @@ func _finish() -> void:
 	call_deferred("_screenshot")
 
 func _screenshot() -> void:
-	var f := FileAccess.open("E:/Hazemoor/game-bible/godot-project/_wm_render.log", FileAccess.WRITE)
-	var rb := _scene.get_node_or_null("RegionButtons")
-	var n := 0
+	var f: FileAccess = FileAccess.open("E:/Hazemoor/game-bible/godot-project/_wm_render.log", FileAccess.WRITE)
+	var rb: Node = _scene.get_node_or_null("RegionButtons")
+	var n: Variant = 0
 	if rb:
 		for c in rb.get_children():
 			if c is Button:
@@ -29,7 +29,7 @@ func _screenshot() -> void:
 	get_root().get_viewport().size = Vector2i(1920, 1080)
 	_scene.size = Vector2(1920, 1080)
 
-	var img := get_root().get_viewport().get_texture().get_image()
+	var img: Image = get_root().get_viewport().get_texture().get_image()
 	if img.is_empty():
 		f.store_line("IMG=EMPTY")
 	else:

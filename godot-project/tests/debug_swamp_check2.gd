@@ -1,6 +1,6 @@
 extends SceneTree
 
-var _frames := 0
+var _frames: Variant = 0
 var _scene: Node3D
 
 func _init() -> void:
@@ -16,7 +16,7 @@ func _process(_delta: float) -> bool:
 	_frames += 1
 	if _frames < 10:
 		return false
-	var art := _scene.get_node_or_null("SwampArtAssembly")
+	var art: Node = _scene.get_node_or_null("SwampArtAssembly")
 	print("ART_NODE: ", art)
 	if art:
 		print("ART_SCRIPT: ", art.get_script())

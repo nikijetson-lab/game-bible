@@ -1,7 +1,7 @@
 extends SceneTree
 
 var _cam: Camera3D
-var _frames := 0
+var _frames: Variant = 0
 
 func _init() -> void:
 	call_deferred("_setup")
@@ -12,7 +12,7 @@ func _setup() -> void:
 		push_error("ART_SHOT: failed to load TavernInterior")
 		quit(1)
 		return
-	var scene := packed.instantiate()
+	var scene: Node = packed.instantiate()
 	root.add_child(scene)
 
 	_hide_path(scene, "Player")
@@ -33,7 +33,7 @@ func _setup() -> void:
 	print("ART_SHOT_READY")
 
 func _hide_path(root_node: Node, path: NodePath) -> void:
-	var node := root_node.get_node_or_null(path)
+	var node: Node = root_node.get_node_or_null(path)
 	if node:
 		_hide_tree(node)
 
@@ -53,8 +53,8 @@ func _process(_delta: float) -> bool:
 	_frames += 1
 	if _frames < 28:
 		return false
-	var out := "res://screenshots/tavern_art_assembled_overview.png"
-	var err := get_root().get_viewport().get_texture().get_image().save_png(out)
+	var out: Variant = "res://screenshots/tavern_art_assembled_overview.png"
+	var err: Image = get_root().get_viewport().get_texture().get_image().save_png(out)
 	print("ART_SHOT_SAVED ", out, " err=", err)
 	quit(0)
 	return true

@@ -1,6 +1,6 @@
 extends SceneTree
 
-var _scenes := [
+var _scenes: Variant = [
 	"res://scenes/locations/greyford/TavernInterior.tscn",
 	"res://scenes/locations/greyford/RufinRoom.tscn",
 	"res://scenes/locations/greyford/CraftsmenQuarter.tscn",
@@ -13,15 +13,15 @@ var _scenes := [
 ]
 
 func _init() -> void:
-	var ok := 0
-	var fail := 0
+	var ok: Variant = 0
+	var fail: Variant = 0
 	for path in _scenes:
 		var p: PackedScene = load(path)
 		if p == null:
 			push_error("FAIL LOAD: " + path)
 			fail += 1
 		else:
-			var inst := p.instantiate()
+			var inst: Node = p.instantiate()
 			if inst == null:
 				push_error("FAIL INST: " + path)
 				fail += 1

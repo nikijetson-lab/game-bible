@@ -1,15 +1,15 @@
 extends SceneTree
 
-var _shots := [
+var _shots: Variant = [
 	{"name": "front_door_wall", "pos": Vector3(0.0, 1.55, 8.85), "look": Vector3(0.0, 1.38, 5.72)},
 	{"name": "inside_four_walls", "pos": Vector3(1.15, 1.82, 4.85), "look": Vector3(-0.25, 1.35, -4.85)},
 ]
-var _idx := 0
+var _idx: Variant = 0
 var _cam: Camera3D
 var _root: Node
 
 func _init() -> void:
-	var packed := load("res://scenes/locations/greyford/TavernInterior.tscn")
+	var packed: Variant = load("res://scenes/locations/greyford/TavernInterior.tscn")
 	if packed == null:
 		push_error("TavernInterior missing")
 		quit(1)
@@ -17,10 +17,10 @@ func _init() -> void:
 	_root = packed.instantiate()
 	get_root().add_child(_root)
 	for path in ["Player", "NPCs", "BackgroundPatrons", "MeshyAssets"]:
-		var n := _root.get_node_or_null(path)
+		var n: Node = _root.get_node_or_null(path)
 		if n is Node3D:
 			(n as Node3D).visible = false
-	var vp := get_root()
+	var vp: Variant = get_root()
 	vp.size = Vector2i(1280, 720)
 	_cam = Camera3D.new()
 	_cam.name = "RoomShellCamera"
@@ -39,9 +39,9 @@ func _render_next() -> void:
 	await process_frame
 	await process_frame
 	await process_frame
-	var img := get_root().get_texture().get_image()
-	var path := "res://screenshots/tavern_shell_%s.png" % shot["name"]
-	var err := img.save_png(path)
+	var img: Image = get_root().get_texture().get_image()
+	var path: Variant = "res://screenshots/tavern_shell_%s.png" % shot["name"]
+	var err: Variant = img.save_png(path)
 	if err != OK:
 		push_error("Failed to save " + path + " err=" + str(err))
 		quit(1)

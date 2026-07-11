@@ -1,6 +1,6 @@
 extends SceneTree
 
-var _results := []
+var _results: Variant = []
 
 func _init() -> void:
 	# 1. Test scene loading
@@ -29,23 +29,23 @@ func _init() -> void:
 func _test_load(name: String, path: String) -> void:
 	var p: PackedScene = load(path)
 	if p == null: _results.append("❌ LOAD " + name); return
-	var s := p.instantiate()
+	var s: Node = p.instantiate()
 	if s == null: _results.append("❌ INST " + name)
 	else: _results.append("✅ " + name); s.queue_free()
 
 func _test_npcs(scene: String, path: String, npc_ids: Array) -> void:
 	var p: PackedScene = load(path)
 	if p == null: return
-	var s := p.instantiate()
-	var npcs_node := s.get_node_or_null("NPCs")
+	var s: Node = p.instantiate()
+	var npcs_node: Node = s.get_node_or_null("NPCs")
 	if npcs_node == null:
 		_results.append("⚠️ " + scene + " no NPCs node")
 		s.queue_free(); return
 	for nid in npc_ids:
-		var found := false
+		var found: Variant = false
 		for c in npcs_node.get_children():
 			if c.get("npc_id") == nid:
-				var has_glb := false
+				var has_glb: Variant = false
 				for ch in c.get_children():
 					if ch.name == "Model" and ch.get_child_count() > 0: has_glb = true
 				_results.append("  NPC " + nid + (" ✅GLB" if has_glb else " ⬜capsule") + " in " + scene)
@@ -57,17 +57,17 @@ func _test_npcs(scene: String, path: String, npc_ids: Array) -> void:
 func _test_portals(scene: String, path: String, expected_dests: Array) -> void:
 	var p: PackedScene = load(path)
 	if p == null: return
-	var s := p.instantiate()
-	var portals_node := s.get_node_or_null("Portals")
+	var s: Node = p.instantiate()
+	var portals_node: Node = s.get_node_or_null("Portals")
 	if portals_node == null:
 		_results.append("⚠️ " + scene + " no Portals")
 		s.queue_free(); return
 	for dest in expected_dests:
-		var found := false
+		var found: Variant = false
 		for c in portals_node.get_children():
 			var dest_path: String = c.get("destination_scene")
 			if dest in dest_path:
-				var exists := ResourceLoader.exists(dest_path)
+				var exists: Variant = ResourceLoader.exists(dest_path)
 				_results.append("  Portal → " + dest + (" ✅" if exists else " ❌MISSING"))
 				found = true; break
 		if not found:
@@ -76,7 +76,7 @@ func _test_portals(scene: String, path: String, expected_dests: Array) -> void:
 
 func _report() -> void:
 	for r in _results: print(r)
-	var ok := 0; var fail := 0
+	var ok: Variant = 0; var fail := 0
 	for r in _results:
 		if r.begins_with("❌"): fail += 1
 		elif r.begins_with("✅"): ok += 1

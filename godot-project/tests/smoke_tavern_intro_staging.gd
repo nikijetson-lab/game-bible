@@ -5,7 +5,7 @@ func _init() -> void:
 
 func _run() -> void:
 	var failures: Array[String] = []
-	var packed := load("res://scenes/locations/greyford/TavernInterior.tscn")
+	var packed: Variant = load("res://scenes/locations/greyford/TavernInterior.tscn")
 	if packed == null:
 		failures.append("Failed to load TavernInterior")
 		_finish(failures)
@@ -20,11 +20,11 @@ func _run() -> void:
 	await process_frame
 
 	var staging: Node = scene.get_node_or_null("LetterHandoffStaging")
-	var wiping_towel := scene.get_node_or_null("NPCs/Ervan/WipingTowel") as Node3D
-	var shoulder_towel := scene.get_node_or_null("NPCs/Ervan/ShoulderTowel") as Node3D
-	var ervan_letter := scene.get_node_or_null("NPCs/Ervan/HeldLetter") as Node3D
-	var guard_letter := scene.get_node_or_null("NPCs/GreyfordGuard/CarriedLetter") as Node3D
-	var bar_letter := scene.get_node_or_null("BarCounter/SealedLetter") as Node3D
+	var wiping_towel: Node = scene.get_node_or_null("NPCs/Ervan/WipingTowel") as Node3D
+	var shoulder_towel: Node = scene.get_node_or_null("NPCs/Ervan/ShoulderTowel") as Node3D
+	var ervan_letter: Node = scene.get_node_or_null("NPCs/Ervan/HeldLetter") as Node3D
+	var guard_letter: Node = scene.get_node_or_null("NPCs/GreyfordGuard/CarriedLetter") as Node3D
+	var bar_letter: Node = scene.get_node_or_null("BarCounter/SealedLetter") as Node3D
 
 	if staging == null:
 		failures.append("Missing LetterHandoffStaging")

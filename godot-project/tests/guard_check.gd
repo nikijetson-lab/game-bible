@@ -1,9 +1,9 @@
 extends SceneTree
-var _cam: Camera3D; var _frames := 0
+var _cam: Camera3D; var _frames: Variant = 0
 func _init() -> void: call_deferred("_setup")
 func _setup() -> void:
 	var p:PackedScene=load("res://scenes/locations/greyford/TavernInterior.tscn")
-	var s:=p.instantiate(); root.add_child(s); var h:=s.get_node_or_null("Player"); if h is Node3D: h.visible=false
+	var s: Node = p.instantiate(); root.add_child(s); var h:=s.get_node_or_null("Player"); if h is Node3D: h.visible=false
 	_lbl(s)
 	_cam=Camera3D.new(); root.add_child(_cam); _cam.make_current()
 	_cam.global_position=Vector3(1.5,1.6,3.5)

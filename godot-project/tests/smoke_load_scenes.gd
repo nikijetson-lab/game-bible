@@ -2,7 +2,7 @@ extends SceneTree
 
 func _init() -> void:
 	print("SMOKE TEST START")
-	var scenes_to_test := [
+	var scenes_to_test: Variant = [
 		"res://scenes/locations/greyford/TavernInterior.tscn",
 		"res://scenes/locations/hazemoor/SwampPath.tscn",
 		"res://scenes/locations/sonk_ferry/SonkFerry.tscn",
@@ -10,8 +10,8 @@ func _init() -> void:
 		"res://scenes/locations/valkorn/PortQuarter.tscn",
 		"res://scenes/locations/tykhy_shelist/ForbiddenGlade.tscn",
 	]
-	var ok := 0
-	var fail := 0
+	var ok: Variant = 0
+	var fail: Variant = 0
 	for path in scenes_to_test:
 		var packed: Resource = load(path)
 		if packed:

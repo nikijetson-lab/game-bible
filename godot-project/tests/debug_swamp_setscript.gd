@@ -10,7 +10,7 @@ func _check() -> void:
 		quit(1)
 		return
 	print("SCRIPT_OK")
-	var node := Node3D.new()
+	var node: Variant = Node3D.new()
 	node.set_script(script)
 	root.add_child(node)
 	print("ADDED_NODE_WITH_SCRIPT")

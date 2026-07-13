@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3]
+[gd_scene load_steps=26 format=3]
 
 [ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc_behavior"]
 [ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="2_portal"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://scripts/gameplay/CraftsmenQuarterArtAssembly.gd" id="25_craft_art"]
 [ext_resource type="PackedScene" path="res://assets/meshy/greyford_craftsmen/woodcarver.glb" id="26_woodcarver_glb"]
 [ext_resource type="PackedScene" path="res://assets/meshy/greyford_craftsmen/furrier.glb" id="27_furrier_glb"]
+[ext_resource type="Script" uid="uid://eacc75784b61" path="res://scripts/gameplay/font_fix.gd" id="32_font_fix"]
+[ext_resource type="Script" uid="uid://bm1k45n30yvgh" path="res://scripts/gameplay/label_cyrillic_fix.gd" id="33_label_fix"]
 
 [sub_resource type="Environment" id="Environment_crafts"]
 background_mode = 1
@@ -190,6 +192,7 @@ metadata/source_task_id = "019f3b6e-fad7-783d-ba76-be64cf1924b6"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 text = "Кушнір"
 font_size = 24
+script = ExtResource("33_label_fix")
 
 [node name="Woodcarver" type="Area3D" parent="NPCs"]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -2.05, 0.95, -1.3)
@@ -220,6 +223,7 @@ mesh = SubResource("BoxMesh_apron")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 text = "Різьбяр"
 font_size = 24
+script = ExtResource("33_label_fix")
 
 [node name="Portals" type="Node3D" parent="."]
 
@@ -265,3 +269,6 @@ shape = SubResource("SphereShape3D_interaction")
 
 [node name="CraftsmenArtAssembly" type="Node3D" parent="."]
 script = ExtResource("25_craft_art")
+
+[node name="FontFix" type="Node" parent="."]
+script = ExtResource("32_font_fix")

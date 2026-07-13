@@ -344,22 +344,34 @@ func _candle_lantern(parent: Node3D, name: String, pos: Vector3, scale_factor: f
 	lantern.position = pos
 	lantern.scale = Vector3.ONE * scale_factor
 	parent.add_child(lantern)
-	# Medieval cage lantern: dark metal frame, warm translucent panes, candle/flame.
-	_box(lantern, "WarmGlassCore", Vector3.ZERO, Vector3(0.36, 0.46, 0.36), mat_lantern_glass)
-	_box(lantern, "MetalTopCap", Vector3(0, 0.28, 0), Vector3(0.50, 0.06, 0.50), mat_metal)
-	_box(lantern, "MetalBottomCap", Vector3(0, -0.28, 0), Vector3(0.50, 0.06, 0.50), mat_metal)
-	for x in [-0.24, 0.24]:
-		for z in [-0.24, 0.24]:
-			_box(lantern, "ThickMetalCornerPost", Vector3(x, 0, z), Vector3(0.06, 0.58, 0.06), mat_metal)
-	# Front/back cross bars make it read as a cage, not a red cube.
-	for z in [-0.255, 0.255]:
-		_box(lantern, "HorizontalCageBar", Vector3(0, 0.06, z), Vector3(0.52, 0.045, 0.045), mat_metal)
-		_box(lantern, "VerticalCageBar", Vector3(0, 0.0, z), Vector3(0.045, 0.54, 0.045), mat_metal)
-		_box(lantern, "DiagonalCageBarA", Vector3(0, 0.0, z), Vector3(0.58, 0.035, 0.035), mat_metal, Vector3(0, 0, 34))
-		_box(lantern, "DiagonalCageBarB", Vector3(0, 0.0, z), Vector3(0.58, 0.035, 0.035), mat_metal, Vector3(0, 0, -34))
-	_box(lantern, "RaisedMetalHandle", Vector3(0, 0.43, 0), Vector3(0.42, 0.05, 0.05), mat_metal)
-	_cylinder(lantern, "WaxCandle", Vector3(0, -0.09, 0), 0.07, 0.30, mat_cloth)
-	_cylinder(lantern, "VisibleCandleFlame", Vector3(0, 0.11, 0), 0.075, 0.15, mat_warm)
+	# Octagonal metal-frame lantern matching concept art reference.
+	# Warm glass core — slightly larger for presence.
+	_box(lantern, "WarmGlassCore", Vector3.ZERO, Vector3(0.42, 0.52, 0.42), mat_lantern_glass)
+	# Tapered top cap — multi-tier octagonal roof.
+	_box(lantern, "MetalTopCap", Vector3(0, 0.32, 0), Vector3(0.48, 0.06, 0.48), mat_metal)
+	_box(lantern, "TaperedRoofMid", Vector3(0, 0.38, 0), Vector3(0.34, 0.06, 0.34), mat_metal)
+	_box(lantern, "TaperedRoofTop", Vector3(0, 0.44, 0), Vector3(0.18, 0.07, 0.18), mat_metal)
+	# Finial on top.
+	_cylinder(lantern, "TopFinial", Vector3(0, 0.52, 0), 0.06, 0.14, mat_metal)
+	# Bottom cap.
+	_box(lantern, "MetalBottomCap", Vector3(0, -0.32, 0), Vector3(0.48, 0.06, 0.48), mat_metal)
+	# 8 corner posts — octagonal cage.
+	for i in range(8):
+		var angle := float(i) * PI / 4.0
+		var cx := cos(angle) * 0.26
+		var cz := sin(angle) * 0.26
+		_box(lantern, "ThinCornerPost_%d" % i, Vector3(cx, 0, cz), Vector3(0.04, 0.62, 0.04), mat_metal)
+	# Horizontal rings — top, middle, bottom.
+	for y in [-0.18, 0.0, 0.18]:
+		for i in range(4):
+			var a := float(i) * PI / 2.0
+			_box(lantern, "HzRing_%.1f_%d" % [y, i], Vector3(cos(a)*0.26, y, sin(a)*0.26), Vector3(0.38, 0.03, 0.03), mat_metal, Vector3(0, 90 + i*90, 0))
+	# Chain hanging from beam above.
+	_box(lantern, "ChainLinkTop", Vector3(0, 0.64, 0), Vector3(0.04, 0.18, 0.04), mat_metal)
+	_box(lantern, "ChainLinkMid", Vector3(0, 0.82, 0), Vector3(0.03, 0.22, 0.03), mat_metal)
+	# Candle inside.
+	_cylinder(lantern, "WaxCandle", Vector3(0, -0.08, 0), 0.06, 0.28, mat_cloth)
+	_cylinder(lantern, "VisibleCandleFlame", Vector3(0, 0.10, 0), 0.07, 0.16, mat_warm)
 	return lantern
 
 func _box(parent: Node3D, name: String, pos: Vector3, size: Vector3, material: Material, rot_deg: Vector3 = Vector3.ZERO) -> MeshInstance3D:

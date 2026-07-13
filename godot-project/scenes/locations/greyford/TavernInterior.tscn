@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://v3sxok1c5qp3" path="res://assets/meshy/greyford_tavern/merchant_patron_rigged.glb" id="30_merchant_rigged_glb"]
 [ext_resource type="Script" path="res://scripts/gameplay/RiggedIdleLoop.gd" id="31_rigged_idle_loop"]
 [ext_resource type="Script" uid="uid://eacc75784b61" path="res://scripts/gameplay/font_fix.gd" id="32_font_fix"]
+[ext_resource type="Script" uid="uid://bm1k45n30yvgh" path="res://scripts/gameplay/label_cyrillic_fix.gd" id="33_label_fix"]
 
 [sub_resource type="Environment" id="Environment_tavern"]
 background_mode = 1
@@ -864,6 +865,7 @@ mesh = SubResource("CylinderMesh_wax_seal")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 text = "вартовий"
 font_size = 22
+script = ExtResource("33_label_fix")
 
 [node name="MeshyGuardModel" parent="NPCs/GreyfordGuard" unique_id=642936789 instance=ExtResource("20_guard_walk_glb")]
 transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, -1.05, 0)

@@ -22,7 +22,6 @@ func _load_font_once() -> void:
 		"C:/Windows/Fonts/arial.ttf",
 		"C:/Windows/Fonts/segoeui.ttf",
 		"C:/Windows/Fonts/tahoma.ttf",
-		"/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
 	]
 	for path in sys_paths:
 		if FileAccess.file_exists(path):

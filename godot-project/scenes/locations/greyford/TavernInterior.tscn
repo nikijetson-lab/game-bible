@@ -885,7 +885,7 @@ metadata/role = "реальна Meshy GLB офіціантка; патрулює
 shape = SubResource("SphereShape3D_interaction")
 
 [node name="MeshyWaitressModel" parent="NPCs/Waitress" unique_id=813897424 instance=ExtResource("29_waitress_rigged_walk_glb")]
-transform = Transform3D(0.68, 0, 0, 0, 0.92, 0, 0, 0, 0.76, 0, -0.6, 0)
+transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, -0.6, 0)
 metadata/source = "Meshy rigged walking GLB; source_task_id=019f430f-77e7-7b6d-a2ab-a17c54cf711c; rig_task_id=019f4abf-0f77-777e-a07e-c11292265104"
 
 [node name="NameLabel" type="Label3D" parent="NPCs/Waitress" unique_id=83581867]

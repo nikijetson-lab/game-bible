@@ -36,6 +36,7 @@ func _fix_node(node: Node) -> void:
 		var lbl: Label3D = node as Label3D
 		if _has_cyrillic(lbl.text) and _cached_font != null:
 			lbl.font = _cached_font
+			lbl.add_theme_font_override(&"font", _cached_font)
 	for child in node.get_children():
 		_fix_node(child)
 

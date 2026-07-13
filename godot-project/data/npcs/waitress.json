@@ -1,0 +1,34 @@
+{
+  "id": "waitress",
+  "name": "Офіціантка",
+  "title": "Офіціантка таверни «Скрипучий знак»",
+  "race": "Human",
+  "age": 24,
+  "description": "Молода дівчина у світлому фартусі та чепчику. Працює в таверні Ервана, знає всіх постійних відвідувачів.",
+  "personality": {
+    "traits": ["friendly", "observant", "chatty"],
+    "alignment": "neutral_good",
+    "speech_style": "casual"
+  },
+  "location": {
+    "default": "greyford_tavern",
+    "schedule": {
+      "morning": "greyford_tavern",
+      "afternoon": "greyford_tavern",
+      "evening": "greyford_tavern",
+      "night": "greyford_tavern"
+    }
+  },
+  "dialogues": {
+    "greeting": "waitress/greeting.json"
+  },
+  "services": {
+    "merchant": false,
+    "innkeeper": false,
+    "rumor_source": true
+  },
+  "relationships": {
+    "ervan": "employer",
+    "rufin": "acquaintance"
+  }
+}

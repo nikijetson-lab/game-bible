@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="3_player"]
 [ext_resource type="Script" path="res://scripts/gameplay/GreyfordGateArtAssembly.gd" id="20_gate_art"]
 [ext_resource type="PackedScene" path="res://assets/meshy/greyford_gate/gate_sergeant.glb" id="21_sergeant_glb"]
+[ext_resource type="Script" uid="uid://eacc75784b61" path="res://scripts/gameplay/font_fix.gd" id="32_font_fix"]
+[ext_resource type="Script" uid="uid://bm1k45n30yvgh" path="res://scripts/gameplay/label_cyrillic_fix.gd" id="33_label_fix"]
 
 [sub_resource type="Environment" id="Environment_gate"]
 background_mode = 1
@@ -170,6 +172,7 @@ modulate = Color(0.70, 0.62, 0.43, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 text = "Сержант"
 font_size = 24
+script = ExtResource("33_label_fix")
 
 [node name="BackgroundGuard" type="MeshInstance3D" parent="NPCs"]
 transform = Transform3D(0.72, 0, 0.15, 0, 0.72, 0, -0.15, 0, 0.72, 2.2, 0.95, -2.7)
@@ -210,3 +213,6 @@ shape = SubResource("SphereShape3D_interaction")
 
 [node name="GateArtAssembly" type="Node3D" parent="."]
 script = ExtResource("20_gate_art")
+
+[node name="FontFix" type="Node" parent="."]
+script = ExtResource("32_font_fix")

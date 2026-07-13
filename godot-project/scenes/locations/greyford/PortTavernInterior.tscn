@@ -273,6 +273,7 @@ metadata/source_task_id = "019f3b51-9a73-7c01-ad21-60332d14e18b"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 text = "Бармен"
 font_size = 24
+script = ExtResource("33_label_fix")
 
 [node name="Cassandra" type="Area3D" parent="NPCs"]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 3.65, 0.95, 2.05)
@@ -300,6 +301,7 @@ metadata/source_task_id = "019f3b44-f210-7fb4-8214-eeb713a2997f"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 text = "Касандра"
 font_size = 28
+script = ExtResource("33_label_fix")
 
 [node name="Portals" type="Node3D" parent="."]
 
@@ -364,3 +366,6 @@ transform = Transform3D(1,0,0,0,1,0,0,0,1,0,1.05,0); modulate = Color(0.58,0.5,0
 
 [node name="PortArtAssembly" type="Node3D" parent="."]
 script = ExtResource("20_port_art")
+
+[node name="FontFix" type="Node" parent="."]
+script = ExtResource("32_font_fix")

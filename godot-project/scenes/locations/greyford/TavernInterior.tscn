@@ -804,6 +804,7 @@ font_size = 12
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 text = "Ерван"
 font_size = 28
+script = ExtResource("33_label_fix")
 
 [node name="GreyfordGuard" type="Area3D" parent="NPCs" unique_id=496632789]
 transform = Transform3D(0.819152, 0, 0.573576, 0, 1, 0, -0.573576, 0, 0.819152, 1.15, 0.95, 1.65)
@@ -895,6 +896,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
 modulate = Color(0.64, 0.56, 0.42, 1)
 text = "офіціантка"
 font_size = 18
+script = ExtResource("33_label_fix")
 
 [node name="LetterHandoffStaging" type="Node" parent="." unique_id=604755686]
 script = ExtResource("9_letter_staging")

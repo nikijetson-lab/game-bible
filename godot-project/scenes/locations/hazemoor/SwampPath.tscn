@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="1_portal"]
 [ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="2_player"]
 [ext_resource type="Script" path="res://scripts/gameplay/SwampLessonTrigger.gd" id="3_lesson"]
 [ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="4_npc"]
 [ext_resource type="Script" path="res://scripts/gameplay/SwampPathArtAssembly.gd" id="5_swamp_art"]
+[ext_resource type="Script" uid="uid://eacc75784b61" path="res://scripts/gameplay/font_fix.gd" id="32_font_fix"]
+[ext_resource type="Script" uid="uid://bm1k45n30yvgh" path="res://scripts/gameplay/label_cyrillic_fix.gd" id="33_label_fix"]
 
 [sub_resource type="Environment" id="Environment_swamp_path"]
 background_mode = 1
@@ -63,7 +65,14 @@ default_dialogue_id = "first_meeting"
 shape = SubResource("SphereShape_interact")
 
 [node name="Body" type="MeshInstance3D" parent="NPCs/Mia"]
+visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+
+[node name="NameLabel" type="Label3D" parent="NPCs/Mia"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
+text = "Міа"
+font_size = 28
+script = ExtResource("33_label_fix")
 
 [node name="Lessons" type="Node3D" parent="."]
 
@@ -188,3 +197,6 @@ shape = SubResource("SphereShape_interact")
 
 [node name="SwampArtAssembly" type="Node3D" parent="."]
 script = ExtResource("5_swamp_art")
+
+[node name="FontFix" type="Node" parent="."]
+script = ExtResource("32_font_fix")

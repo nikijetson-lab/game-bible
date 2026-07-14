@@ -1,9 +1,11 @@
-[gd_scene load_steps=19 format=3]
+[gd_scene load_steps=21 format=3]
 
 [ext_resource type="Script" path="res://scripts/gameplay/InspectClue.gd" id="1_clue"]
 [ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="2_portal"]
 [ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="3_player"]
 [ext_resource type="Script" path="res://scripts/gameplay/RufinRoomArtAssembly.gd" id="20_rufin_art"]
+[ext_resource type="Script" uid="uid://eacc75784b61" path="res://scripts/gameplay/font_fix.gd" id="21_font_fix"]
+[ext_resource type="Script" uid="uid://bm1k45n30yvgh" path="res://scripts/gameplay/label_cyrillic_fix.gd" id="22_label_fix"]
 
 [sub_resource type="Environment" id="Environment_rufin_room"]
 background_mode = 1
@@ -196,6 +198,7 @@ shape = SubResource("SphereShape3D_interaction")
 text = "захисні знаки"
 font_size = 18
 modulate = Color(0.68, 0.60, 0.42, 1)
+script = ExtResource("22_label_fix")
 
 [node name="Portals" type="Node3D" parent="."]
 
@@ -221,3 +224,6 @@ shape = SubResource("SphereShape3D_interaction")
 
 [node name="RufinArtAssembly" type="Node3D" parent="."]
 script = ExtResource("20_rufin_art")
+
+[node name="FontFix" type="Node" parent="."]
+script = ExtResource("21_font_fix")

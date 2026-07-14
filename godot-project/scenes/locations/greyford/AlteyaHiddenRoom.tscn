@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://scripts/gameplay/AlteyaHiddenRoomArtAssembly.gd" id="5_art"]
 [ext_resource type="Script" uid="uid://dl0nchorsaiy0" path="res://scripts/gameplay/InspectClue.gd" id="4_clue"]
 [ext_resource type="PackedScene" path="res://assets/meshy/greyford_alteya/alteya_witch_real.glb" id="30_alteya_glb"]
+[ext_resource type="Script" uid="uid://eacc75784b61" path="res://scripts/gameplay/font_fix.gd" id="32_font_fix"]
+[ext_resource type="Script" uid="uid://bm1k45n30yvgh" path="res://scripts/gameplay/label_cyrillic_fix.gd" id="33_label_fix"]
 
 [sub_resource type="Environment" id="Environment_alteya"]
 background_mode = 1
@@ -211,6 +213,12 @@ transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0.2, 0.58)
 mesh = SubResource("CylinderMesh_golden_cylinder")
 surface_material_override/0 = SubResource("Material_gold")
 
+[node name="NameLabel" type="Label3D" parent="NPCs/Alteya"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
+text = "Алтея"
+font_size = 28
+script = ExtResource("33_label_fix")
+
 [node name="InvestigationProps" type="Node3D" parent="." unique_id=557828518]
 
 [node name="VeilTraceClue" type="Area3D" parent="InvestigationProps" unique_id=1825917192]
@@ -272,3 +280,6 @@ metadata/episode_route = "Port tavern / Cassandra -> optional Alteya hidden room
 
 [node name="AlteyaArtAssembly" type="Node3D" parent="."]
 script = ExtResource("5_art")
+
+[node name="FontFix" type="Node" parent="."]
+script = ExtResource("32_font_fix")

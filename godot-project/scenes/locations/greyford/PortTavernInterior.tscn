@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3]
+[gd_scene load_steps=27 format=3]
 
 [ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc_behavior"]
 [ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="2_player"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://scripts/gameplay/PortTavernArtAssembly.gd" id="20_port_art"]
 [ext_resource type="PackedScene" path="res://assets/meshy/greyford_port_tavern/cassandra_courtesan.glb" id="21_cassandra_glb"]
 [ext_resource type="PackedScene" path="res://assets/meshy/greyford_port_tavern/port_bartender.glb" id="22_bartender_glb"]
+[ext_resource type="Script" uid="uid://eacc75784b61" path="res://scripts/gameplay/font_fix.gd" id="32_font_fix"]
+[ext_resource type="Script" uid="uid://bm1k45n30yvgh" path="res://scripts/gameplay/label_cyrillic_fix.gd" id="33_label_fix"]
 
 [sub_resource type="Environment" id="Environment_port_tavern"]
 background_mode = 1
@@ -355,14 +357,24 @@ mesh = SubResource("CapsuleMesh_npc")
 [node name="FisherAtBar" type="MeshInstance3D" parent="NPCs"]
 transform = Transform3D(0.7, 0, 0, 0, 0.55, 0, 0, 0, 0.7, 1.5, 0.85, -1.8)
 mesh = SubResource("CapsuleMesh_npc")
+
 [node name="Label" type="Label3D" parent="NPCs/FisherAtBar"]
-transform = Transform3D(1,0,0,0,1,0,0,0,1,0,1.05,0); modulate = Color(0.58,0.5,0.38,1); text = "рибалка"; font_size=18
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
+modulate = Color(0.58, 0.5, 0.38, 1)
+text = "рибалка"
+font_size = 18
+script = ExtResource("33_label_fix")
 
 [node name="DockWorker" type="MeshInstance3D" parent="NPCs"]
 transform = Transform3D(0.75, 0, 0, 0, 0.6, 0, 0, 0, 0.75, -1.5, 0.85, -1.5)
 mesh = SubResource("CapsuleMesh_npc")
+
 [node name="Label" type="Label3D" parent="NPCs/DockWorker"]
-transform = Transform3D(1,0,0,0,1,0,0,0,1,0,1.05,0); modulate = Color(0.58,0.5,0.38,1); text = "докер"; font_size=18
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
+modulate = Color(0.58, 0.5, 0.38, 1)
+text = "докер"
+font_size = 18
+script = ExtResource("33_label_fix")
 
 [node name="PortArtAssembly" type="Node3D" parent="."]
 script = ExtResource("20_port_art")

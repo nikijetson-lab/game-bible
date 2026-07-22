@@ -1,9 +1,10 @@
 # Production Roadmap
 ## Hazemoor — From Pre-production to Vertical Slice
 
-> **Версія:** 1.0  
+> **Версія:** 1.1 (термінологію узгоджено з фактичним рушієм — Godot)
 > **Дата:** 26.06.2026  
 > **Horizon:** 6 місяців до Vertical Slice
+> **Рушій:** Godot 4.7, рендерер Mobile (не Forward+/Compatibility — Forward+ занадто важкий для інтегрованих GPU, Compatibility не підтримує FogVolume)
 
 ---
 
@@ -47,13 +48,11 @@
 ### **Week 1: Project Setup**
 
 **Tech Setup:**
-- [ ] Встановити Unreal Engine 5.4
-- [ ] Створити новий проект "HazemoorGame"
-  - Template: Third Person
-  - No Starter Content (додамо manually)
+- [x] Створити проєкт Godot 4.7 ("Hazemoor")
+  - Рендерер: Mobile (не Forward+ — цільове залізо без дискретної GPU)
 - [ ] Налаштувати Git + Git LFS
-  - `.gitattributes` для .uasset, .umap, .bin
-  - `.gitignore` для Intermediate/, Saved/
+  - Git LFS для великих бінарних асетів (`.glb`, `.png`, `.wav`)
+  - `.gitignore` для `.godot/`, `.import/`, тимчасових export/build/log/cache папок
 - [ ] Створити folder structure (див. TDD)
 - [ ] Перший commit і push на GitHub
 
@@ -69,7 +68,7 @@
   - Volumetric Fog Pack
   - Basic NPC models (placeholder)
 
-**Deliverable:** Working UE5 project під version control
+**Deliverable:** Working Godot project під version control
 
 ---
 
@@ -77,8 +76,8 @@
 
 **Character Setup:**
 - [ ] Import/create basic player character model (placeholder)
-- [ ] Setup Third Person template character
-- [ ] Configure Enhanced Input System
+- [ ] CharacterBody3D player scene
+- [ ] Налаштувати Input Map (project.godot)
   - WASD movement
   - Mouse look
   - Sprint (Shift)
@@ -89,10 +88,9 @@
 - [ ] Setup basic lighting (directional light + sky sphere)
 - [ ] Place простий terrain (flat plane спочатку)
 
-**Core Blueprints:**
-- [ ] Create GameInstance BP (для persistent data)
-- [ ] Create GameMode BP (HazemoorGameMode)
-- [ ] Create PlayerController BP
+**Core Systems (autoload singletons):**
+- [ ] GameManager autoload (для persistent data)
+- [ ] Player controller script (CharacterBody3D)
 - [ ] Create basic HUD (crosshair/reticle)
 
 **Deliverable:** Player can walk around in test level
@@ -130,10 +128,10 @@
 - [ ] Dodge roll (Space)
 
 **Animation:**
-- [ ] Import basic combat anim set (Marketplace)
-- [ ] Setup Animation Blueprint
-- [ ] Blend spaces для locomotion
-- [ ] Combat state machine
+- [ ] Import basic combat anim set (безкоштовні: Mixamo → Godot-сумісний формат)
+- [ ] Setup AnimationTree
+- [ ] BlendSpace2D для locomotion
+- [ ] Combat state machine (AnimationTree StateMachine або власний FSM)
 
 **Hitbox System:**
 - [ ] Weapon collision detection
@@ -146,7 +144,7 @@
 
 **Basic Enemy:**
 - [ ] Create простий AI enemy (placeholder mesh)
-- [ ] Behavior Tree:
+- [ ] FSM (власний GDScript, або аддон LimboAI):
   - Patrol idle
   - Chase player (sight trigger)
   - Attack (melee range)
@@ -195,7 +193,7 @@
   - Back door to street
 
 **Blockout:**
-- [ ] BSP geometry OR basic cube meshes
+- [ ] CSG-ноди (CSGBox3D тощо) OR basic cube meshes
 - [ ] Proper scale (test with player character)
 - [ ] Basic lighting placement
 
@@ -208,7 +206,7 @@
 ### **Week 8: Greyford Tavern — Art Pass**
 
 **Asset Replacement:**
-- [ ] Replace whiteboxes з medieval meshes:
+- [ ] Replace whiteboxes з medieval меш-паками (Kenney/Quaternius — легкі, low-poly під слабке залізо):
   - Wooden beams, stone walls
   - Tables, chairs, bar counter
   - Props (mugs, bottles, candles)
@@ -256,7 +254,7 @@
   - Light film grain
 
 **Weather:**
-- [ ] Light rain particles (Niagara)
+- [ ] Light rain particles (GPUParticles3D)
 - [ ] Puddle reflections (screen space)
 - [ ] Wet material instances (roofs, cobblestone)
 
@@ -278,8 +276,8 @@
 ### **Week 11: Dialogue System**
 
 **Core Dialogue:**
-- [ ] Create Dialogue DataTable structure
-- [ ] Blueprint dialogue UI:
+- [ ] Dialogue-структура як `Resource`/JSON (не DataTable — це UE-специфічне)
+- [ ] Dialogue UI (Control-сцена):
   - Speaker portrait
   - Text display (typewriter effect)
   - Choice buttons (2-4 options)
@@ -299,8 +297,8 @@
 ### **Week 12: Quest Framework**
 
 **Quest Manager:**
-- [ ] Quest DataTable structure (JSON або DataTable)
-- [ ] QuestManager singleton BP
+- [ ] Quest-структура (JSON або `Resource`)
+- [ ] QuestManager autoload singleton
 - [ ] Functions:
   - StartQuest(QuestID)
   - CompleteObjective(ObjectiveID)
@@ -331,7 +329,7 @@
 - [ ] Phase 3: Choice — report to Order або investigate swamp
 
 **Implementation:**
-- [ ] Create quest blueprint
+- [ ] Create quest resource/scene
 - [ ] Write all dialogue (Ukrainian)
 - [ ] Setup objective triggers
 - [ ] Implement choice logic
@@ -440,7 +438,7 @@
 ### **Week 20: VFX & Final Polish**
 
 **VFX:**
-- [ ] Torch flames (Niagara)
+- [ ] Torch flames (GPUParticles3D)
 - [ ] Rain droplets
 - [ ] Hit sparks (weapon collision)
 - [ ] Magical glow (lantern, если є)
@@ -481,9 +479,9 @@
 ## 📊 Resource Requirements
 
 ### **Team (Ideal)**
-- **1 Gameplay Programmer** — systems, blueprints
+- **1 Gameplay Programmer** — systems, GDScript
 - **1 Level Designer** — Greyford layout, lighting
-- **1 3D Artist** — props, characters (або Marketplace)
+- **1 3D Artist** — props, characters (або безкоштовні low-poly паки)
 - **1 Writer/Narrative Designer** — dialogue, quest
 - **1 Sound Designer** (part-time) — audio integration
 
@@ -539,14 +537,13 @@
 
 ## 📚 Learning Resources
 
-**UE5 Tutorials:**
-- Unreal Sensei (YouTube) — Quest systems
-- CodeLikeMe — Combat tutorials
-- Matt Aspland — Level design
+**Godot Tutorials:**
+- GDQuest (YouTube) — архітектура, квест-системи
+- Офіційна документація Godot — Best Practices, Autoload, FogVolume
 
 **Communities:**
-- r/unrealengine
-- Unreal Slackers Discord
+- r/godot
+- Godot Discord
 - Ukrainian Gamedev Community
 
 **References:**

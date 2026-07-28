@@ -16,11 +16,11 @@ func _ready() -> void:
 	
 	# === 5 МАЙСТЕРЕНЬ (фасади вздовж вулиці) ===
 	var shops := [
-		{name:"Різьбяр", pos:Vector3(-4,2,3), tool:"chisel"},
-		{name:"Кушнір", pos:Vector3(0,2,3), tool:"fur"},
-		{name:"Коваль", pos:Vector3(4,2,3), tool:"hammer"},
-		{name:"Гончар", pos:Vector3(-2,2,-2), tool:"clay"},
-		{name:"Столяр", pos:Vector3(3,2,-2), tool:"saw"},
+		{"name": "Різьбяр", "pos": Vector3(-4, 2, 3), "tool": "chisel"},
+		{"name": "Кушнір", "pos": Vector3(0, 2, 3), "tool": "fur"},
+		{"name": "Коваль", "pos": Vector3(4, 2, 3), "tool": "hammer"},
+		{"name": "Гончар", "pos": Vector3(-2, 2, -2), "tool": "clay"},
+		{"name": "Столяр", "pos": Vector3(3, 2, -2), "tool": "saw"},
 	]
 	
 	for shop in shops:

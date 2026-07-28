@@ -18,6 +18,11 @@ func _fix_labels() -> void:
 
 func _load_font_once() -> void:
 	if _cached_font != null: return
+	# Prefer the project-local bundled font (res:// always loads, incl. headless).
+	var res_font := load("res://assets/fonts/arial.ttf")
+	if res_font is FontFile:
+		_cached_font = res_font as FontFile
+		return
 	var sys_paths := [
 		"C:/Windows/Fonts/arial.ttf",
 		"C:/Windows/Fonts/segoeui.ttf",

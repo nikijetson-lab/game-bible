@@ -18,6 +18,16 @@ ambient_light_energy = 4.6
 fog_enabled = true
 fog_light_color = Color(0.21, 0.25, 0.27, 1)
 fog_density = 0.04
+tonemap_mode = 4
+tonemap_exposure = 1.35
+tonemap_white = 6.0
+glow_enabled = true
+glow_intensity = 0.55
+glow_bloom = 0.12
+adjustment_enabled = true
+adjustment_brightness = 1.12
+adjustment_contrast = 1.08
+adjustment_saturation = 1.12
 
 [sub_resource type="StandardMaterial3D" id="Mat_mud"]
 albedo_color = Color(0.09, 0.075, 0.06, 1)

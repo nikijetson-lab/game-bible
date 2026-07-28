@@ -1,6 +1,7 @@
-[gd_scene load_steps=22 format=3]
+[gd_scene load_steps=24 format=3]
 
 [ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="1_portal"]
+[ext_resource type="Script" uid="uid://dnghjn10gnl0j" path="res://scripts/gameplay/GreyfordStreetArtAssembly.gd" id="6_street_art"]
 [ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="2_player"]
 
 [sub_resource type="Environment" id="Env_greyford_street"]
@@ -14,6 +15,16 @@ fog_light_color = Color(0.26, 0.30, 0.32, 1)
 fog_density = 0.018
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.012
+tonemap_mode = 4
+tonemap_exposure = 1.35
+tonemap_white = 6.0
+glow_enabled = true
+glow_intensity = 0.55
+glow_bloom = 0.12
+adjustment_enabled = true
+adjustment_brightness = 1.12
+adjustment_contrast = 1.08
+adjustment_saturation = 1.12
 
 [sub_resource type="StandardMaterial3D" id="Mat_cobble"]
 albedo_color = Color(0.30, 0.28, 0.26, 1)
@@ -148,3 +159,6 @@ prompt = "Йти до міської брами"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Portals/ToGatePortal"]
 shape = SubResource("Sphere_interact")
+
+[node name="GreyfordArtAssembly" type="Node3D" parent="."]
+script = ExtResource("6_street_art")

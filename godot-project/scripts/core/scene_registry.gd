@@ -19,6 +19,7 @@ const LOCATION_TO_SCENE := {
 	"hazemoor": "res://scenes/locations/hazemoor/SwampPath.tscn",
 	"hazemoor_entrance": "res://scenes/locations/hazemoor/SwampPath.tscn",
 	"swamp_path_01": "res://scenes/locations/hazemoor/SwampPath.tscn",
+	"zone_old_tree": "res://scenes/locations/hazemoor/SwampPath.tscn",
 	"first_clearing": "res://scenes/locations/hazemoor/SwampPath.tscn",
 	"deep_bog": "res://scenes/locations/deep_bog/DeepBog.tscn",
 	"deep_bog_entry": "res://scenes/locations/deep_bog/DeepBog.tscn",

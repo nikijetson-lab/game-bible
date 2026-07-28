@@ -1,0 +1,3190 @@
+{
+  "schema_version": 1,
+  "generated_by": "tools/generate_content_manifest.py",
+  "policy": {
+    "source_of_truth": "data/quests/*.json",
+    "generated_file": true,
+    "do_not_hand_edit": true,
+    "production_acceptance_rule": "Only a real Godot, gameplay, and visual gate may change unverified acceptance."
+  },
+  "summary": {
+    "canonical_quests": 24,
+    "quests_data_ready": 24,
+    "quests_routes_ready": 24,
+    "missing_route_references": 0,
+    "route_aliases": 50,
+    "scene_files": 29,
+    "npc_records": 49,
+    "dialogue_files": 71,
+    "glb_models": 42,
+    "glb_models_wired": 31,
+    "embedded_animation_candidates": 8
+  },
+  "quests": [
+    {
+      "canon_index": 1,
+      "id": "greyford_01_missing_recipient",
+      "title": "Адресат відсутній",
+      "quest_file": "res://data/quests/greyford_01_missing_recipient.json",
+      "start_location": "greyford_tavern",
+      "objective_counts": {
+        "total": 6,
+        "required": 5,
+        "optional": 1
+      },
+      "locations": [
+        "greyford_tavern",
+        "greyford_rufin_room",
+        "greyford_craftsmen_quarter",
+        "greyford_port_tavern",
+        "greyford_alteya_hidden_room",
+        "greyford_gate"
+      ],
+      "scene_routes": {
+        "greyford_tavern": "res://scenes/locations/greyford/TavernInterior.tscn",
+        "greyford_rufin_room": "res://scenes/locations/greyford/RufinRoom.tscn",
+        "greyford_craftsmen_quarter": "res://scenes/locations/greyford/CraftsmenQuarter.tscn",
+        "greyford_port_tavern": "res://scenes/locations/greyford/PortTavernInterior.tscn",
+        "greyford_alteya_hidden_room": "res://scenes/locations/greyford/AlteyaHiddenRoom.tscn",
+        "greyford_gate": "res://scenes/locations/greyford/GreyfordGate.tscn"
+      },
+      "talk_target_coverage": [
+        {
+          "target": "alteya",
+          "resolved_npc_id": "alteya",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        },
+        {
+          "target": "carver",
+          "resolved_npc_id": "woodcarver",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        },
+        {
+          "target": "cassandra",
+          "resolved_npc_id": "cassandra",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        },
+        {
+          "target": "ervan",
+          "resolved_npc_id": "ervan",
+          "dialogue_status": "present",
+          "placement_status": "missing"
+        },
+        {
+          "target": "gate_sergeant",
+          "resolved_npc_id": "gate_sergeant",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        }
+      ],
+      "missing_route_locations": [],
+      "missing_scene_files": [],
+      "data_status": "ready",
+      "route_status": "ready",
+      "inventory_status": "data_and_routes_ready",
+      "production_acceptance": "unverified"
+    },
+    {
+      "canon_index": 2,
+      "id": "greyford_side_01_witch_trouble",
+      "title": "Проблема з відьмою",
+      "quest_file": "res://data/quests/greyford_side_01_witch_trouble.json",
+      "start_location": "",
+      "objective_counts": {
+        "total": 6,
+        "required": 6,
+        "optional": 0
+      },
+      "locations": [],
+      "scene_routes": {},
+      "talk_target_coverage": [],
+      "missing_route_locations": [],
+      "missing_scene_files": [],
+      "data_status": "ready",
+      "route_status": "ready",
+      "inventory_status": "data_and_routes_ready",
+      "production_acceptance": "unverified"
+    },
+    {
+      "canon_index": 3,
+      "id": "greyford_side_02_lost_heirloom",
+      "title": "Загублена реліквія",
+      "quest_file": "res://data/quests/greyford_side_02_lost_heirloom.json",
+      "start_location": "",
+      "objective_counts": {
+        "total": 4,
+        "required": 4,
+        "optional": 0
+      },
+      "locations": [
+        "zone_old_tree"
+      ],
+      "scene_routes": {
+        "zone_old_tree": "res://scenes/locations/hazemoor/SwampPath.tscn"
+      },
+      "talk_target_coverage": [],
+      "missing_route_locations": [],
+      "missing_scene_files": [],
+      "data_status": "ready",
+      "route_status": "ready",
+      "inventory_status": "data_and_routes_ready",
+      "production_acceptance": "unverified"
+    },
+    {
+      "canon_index": 4,
+      "id": "hazemoor_01_path_through_swamp",
+      "title": "Шлях крізь болото",
+      "quest_file": "res://data/quests/hazemoor_01_path_through_swamp.json",
+      "start_location": "",
+      "objective_counts": {
+        "total": 5,
+        "required": 5,
+        "optional": 0
+      },
+      "locations": [],
+      "scene_routes": {},
+      "talk_target_coverage": [],
+      "missing_route_locations": [],
+      "missing_scene_files": [],
+      "data_status": "ready",
+      "route_status": "ready",
+      "inventory_status": "data_and_routes_ready",
+      "production_acceptance": "unverified"
+    },
+    {
+      "canon_index": 5,
+      "id": "tykhy_shelest_01",
+      "title": "Тихий Шелест",
+      "quest_file": "res://data/quests/tykhy_shelest_01.json",
+      "start_location": "tykhy_shelest",
+      "objective_counts": {
+        "total": 13,
+        "required": 9,
+        "optional": 4
+      },
+      "locations": [
+        "tykhy_shelest",
+        "forbidden_glade",
+        "tykhy_shelest_healer_house",
+        "tykhy_shelest_swamp_edge"
+      ],
+      "scene_routes": {
+        "tykhy_shelest": "res://scenes/locations/tykhy_shelist/TykhyShelist.tscn",
+        "forbidden_glade": "res://scenes/locations/tykhy_shelist/ForbiddenGlade.tscn",
+        "tykhy_shelest_healer_house": "res://scenes/locations/tykhy_shelist/TykhyShelist.tscn",
+        "tykhy_shelest_swamp_edge": "res://scenes/locations/tykhy_shelist/TykhyShelist.tscn"
+      },
+      "talk_target_coverage": [
+        {
+          "target": "kaen",
+          "resolved_npc_id": "kaen",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        },
+        {
+          "target": "mia_mother",
+          "resolved_npc_id": "mia_mother",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        },
+        {
+          "target": "rufin_glade",
+          "resolved_npc_id": "rufin_glade",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        },
+        {
+          "target": "varrik",
+          "resolved_npc_id": "varrik",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        }
+      ],
+      "missing_route_locations": [],
+      "missing_scene_files": [],
+      "data_status": "ready",
+      "route_status": "ready",
+      "inventory_status": "data_and_routes_ready",
+      "production_acceptance": "unverified"
+    },
+    {
+      "canon_index": 6,
+      "id": "sonk_ferry_01_hunger_from_below",
+      "title": "Голод знизу",
+      "quest_file": "res://data/quests/sonk_ferry_01_hunger_from_below.json",
+      "start_location": "sonk_ferry",
+      "objective_counts": {
+        "total": 10,
+        "required": 6,
+        "optional": 4
+      },
+      "locations": [
+        "sonk_ferry",
+        "sunk_watchtower_road",
+        "mirefold",
+        "st_vey",
+        "flooded_chamber"
+      ],
+      "scene_routes": {
+        "sonk_ferry": "res://scenes/locations/sonk_ferry/SonkFerry.tscn",
+        "sunk_watchtower_road": "res://scenes/locations/sonk_ferry/SonkFerry.tscn",
+        "mirefold": "res://scenes/locations/sonk_ferry/SonkFerry.tscn",
+        "st_vey": "res://scenes/locations/sonk_ferry/SonkFerry.tscn",
+        "flooded_chamber": "res://scenes/locations/sonk_ferry/FloodedChamber.tscn"
+      },
+      "talk_target_coverage": [
+        {
+          "target": "karos",
+          "resolved_npc_id": "karos",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        },
+        {
+          "target": "nera",
+          "resolved_npc_id": "nera",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        },
+        {
+          "target": "voss",
+          "resolved_npc_id": "voss",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        }
+      ],
+      "missing_route_locations": [],
+      "missing_scene_files": [],
+      "data_status": "ready",
+      "route_status": "ready",
+      "inventory_status": "data_and_routes_ready",
+      "production_acceptance": "unverified"
+    },
+    {
+      "canon_index": 7,
+      "id": "sonk_ferry_02_salt_in_book",
+      "title": "Сіль у книзі",
+      "quest_file": "res://data/quests/sonk_ferry_02_salt_in_book.json",
+      "start_location": "sonk_ferry",
+      "objective_counts": {
+        "total": 12,
+        "required": 12,
+        "optional": 0
+      },
+      "locations": [
+        "sonk_ferry",
+        "salt_warehouse"
+      ],
+      "scene_routes": {
+        "sonk_ferry": "res://scenes/locations/sonk_ferry/SonkFerry.tscn",
+        "salt_warehouse": "res://scenes/locations/sonk_ferry/SaltWarehouse.tscn"
+      },
+      "talk_target_coverage": [
+        {
+          "target": "brin_oss",
+          "resolved_npc_id": "brin_oss",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        },
+        {
+          "target": "gara_paik",
+          "resolved_npc_id": "gara_paik",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        },
+        {
+          "target": "mara_dens",
+          "resolved_npc_id": "mara_dens",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        },
+        {
+          "target": "tovan_rid",
+          "resolved_npc_id": "tovan_rid",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        }
+      ],
+      "missing_route_locations": [],
+      "missing_scene_files": [],
+      "data_status": "ready",
+      "route_status": "ready",
+      "inventory_status": "data_and_routes_ready",
+      "production_acceptance": "unverified"
+    },
+    {
+      "canon_index": 8,
+      "id": "sonk_ferry_03_ferry_oath",
+      "title": "Поромна присяга",
+      "quest_file": "res://data/quests/sonk_ferry_03_ferry_oath.json",
+      "start_location": "sonk_ferry",
+      "objective_counts": {
+        "total": 10,
+        "required": 5,
+        "optional": 5
+      },
+      "locations": [
+        "sonk_ferry",
+        "sonk_ferry_dock",
+        "sonk_ferry_shore",
+        "damaged_ferry_dock"
+      ],
+      "scene_routes": {
+        "sonk_ferry": "res://scenes/locations/sonk_ferry/SonkFerry.tscn",
+        "sonk_ferry_dock": "res://scenes/locations/sonk_ferry/SonkFerry.tscn",
+        "sonk_ferry_shore": "res://scenes/locations/sonk_ferry/SonkFerry.tscn",
+        "damaged_ferry_dock": "res://scenes/locations/sonk_ferry/SonkFerry.tscn"
+      },
+      "talk_target_coverage": [],
+      "missing_route_locations": [],
+      "missing_scene_files": [],
+      "data_status": "ready",
+      "route_status": "ready",
+      "inventory_status": "data_and_routes_ready",
+      "production_acceptance": "unverified"
+    },
+    {
+      "canon_index": 9,
+      "id": "hazemoor_02_ashes_under_chapel",
+      "title": "Попіл під каплицею",
+      "quest_file": "res://data/quests/hazemoor_02_ashes_under_chapel.json",
+      "start_location": "flooded_chapel",
+      "objective_counts": {
+        "total": 17,
+        "required": 13,
+        "optional": 4
+      },
+      "locations": [
+        "flooded_chapel",
+        "st_vey",
+        "mirefold",
+        "sonk_ferry"
+      ],
+      "scene_routes": {
+        "flooded_chapel": "res://scenes/locations/sonk_ferry/FloodedChapel.tscn",
+        "st_vey": "res://scenes/locations/sonk_ferry/SonkFerry.tscn",
+        "mirefold": "res://scenes/locations/sonk_ferry/SonkFerry.tscn",
+        "sonk_ferry": "res://scenes/locations/sonk_ferry/SonkFerry.tscn"
+      },
+      "talk_target_coverage": [
+        {
+          "target": "mirefold_locals",
+          "resolved_npc_id": "",
+          "dialogue_status": "missing",
+          "placement_status": "missing"
+        },
+        {
+          "target": "rein",
+          "resolved_npc_id": "deacon_rein",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        },
+        {
+          "target": "sella",
+          "resolved_npc_id": "sella",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        },
+        {
+          "target": "skel",
+          "resolved_npc_id": "skel_ganis",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        }
+      ],
+      "missing_route_locations": [],
+      "missing_scene_files": [],
+      "data_status": "ready",
+      "route_status": "ready",
+      "inventory_status": "data_and_routes_ready",
+      "production_acceptance": "unverified"
+    },
+    {
+      "canon_index": 10,
+      "id": "sonk_ferry_04_quota_knife",
+      "title": "Ніж квоти",
+      "quest_file": "res://data/quests/sonk_ferry_04_quota_knife.json",
+      "start_location": "sonk_ferry_admin",
+      "objective_counts": {
+        "total": 11,
+        "required": 5,
+        "optional": 6
+      },
+      "locations": [
+        "sonk_ferry_admin",
+        "sonk_ferry",
+        "st_vey"
+      ],
+      "scene_routes": {
+        "sonk_ferry_admin": "res://scenes/locations/sonk_ferry/SonkFerry.tscn",
+        "sonk_ferry": "res://scenes/locations/sonk_ferry/SonkFerry.tscn",
+        "st_vey": "res://scenes/locations/sonk_ferry/SonkFerry.tscn"
+      },
+      "talk_target_coverage": [
+        {
+          "target": "ilia_marr",
+          "resolved_npc_id": "ilia_marr",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        },
+        {
+          "target": "kelm_provoke",
+          "resolved_npc_id": "",
+          "dialogue_status": "missing",
+          "placement_status": "missing"
+        },
+        {
+          "target": "smugglers",
+          "resolved_npc_id": "",
+          "dialogue_status": "missing",
+          "placement_status": "missing"
+        },
+        {
+          "target": "temple_witness",
+          "resolved_npc_id": "",
+          "dialogue_status": "missing",
+          "placement_status": "missing"
+        }
+      ],
+      "missing_route_locations": [],
+      "missing_scene_files": [],
+      "data_status": "ready",
+      "route_status": "ready",
+      "inventory_status": "data_and_routes_ready",
+      "production_acceptance": "unverified"
+    },
+    {
+      "canon_index": 11,
+      "id": "hazemoor_02_glade_and_mour",
+      "title": "Галявина і дух",
+      "quest_file": "res://data/quests/hazemoor_02_glade_and_mour.json",
+      "start_location": "forbidden_glade",
+      "objective_counts": {
+        "total": 15,
+        "required": 15,
+        "optional": 0
+      },
+      "locations": [
+        "forbidden_glade"
+      ],
+      "scene_routes": {
+        "forbidden_glade": "res://scenes/locations/tykhy_shelist/ForbiddenGlade.tscn"
+      },
+      "talk_target_coverage": [
+        {
+          "target": "mour",
+          "resolved_npc_id": "",
+          "dialogue_status": "missing",
+          "placement_status": "missing"
+        }
+      ],
+      "missing_route_locations": [],
+      "missing_scene_files": [],
+      "data_status": "ready",
+      "route_status": "ready",
+      "inventory_status": "data_and_routes_ready",
+      "production_acceptance": "unverified"
+    },
+    {
+      "canon_index": 12,
+      "id": "valkorn_01_man_from_swamp",
+      "title": "Людина з болота",
+      "quest_file": "res://data/quests/valkorn_01_man_from_swamp.json",
+      "start_location": "valkorn_market_square",
+      "objective_counts": {
+        "total": 7,
+        "required": 7,
+        "optional": 0
+      },
+      "locations": [
+        "valkorn_market_square",
+        "valkorn",
+        "valkorn_palace_quarter",
+        "valkorn_new_ghetto",
+        "valkorn_trade_quarter"
+      ],
+      "scene_routes": {
+        "valkorn_market_square": "res://scenes/locations/valkorn/PortQuarter.tscn",
+        "valkorn": "res://scenes/locations/valkorn/PortQuarter.tscn",
+        "valkorn_palace_quarter": "res://scenes/locations/valkorn/PortQuarter.tscn",
+        "valkorn_new_ghetto": "res://scenes/locations/valkorn/PortQuarter.tscn",
+        "valkorn_trade_quarter": "res://scenes/locations/valkorn/PortQuarter.tscn"
+      },
+      "talk_target_coverage": [
+        {
+          "target": "bres",
+          "resolved_npc_id": "bres",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        },
+        {
+          "target": "stetson",
+          "resolved_npc_id": "stetson_valkorn",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        },
+        {
+          "target": "tessa",
+          "resolved_npc_id": "tessa_valkorn",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        }
+      ],
+      "missing_route_locations": [],
+      "missing_scene_files": [],
+      "data_status": "ready",
+      "route_status": "ready",
+      "inventory_status": "data_and_routes_ready",
+      "production_acceptance": "unverified"
+    },
+    {
+      "canon_index": 13,
+      "id": "valkorn_02_two_truths",
+      "title": "Дві версії правди",
+      "quest_file": "res://data/quests/valkorn_02_two_truths.json",
+      "start_location": "valkorn",
+      "objective_counts": {
+        "total": 11,
+        "required": 9,
+        "optional": 2
+      },
+      "locations": [
+        "valkorn",
+        "valkorn_trade_quarter",
+        "valkorn_undercity"
+      ],
+      "scene_routes": {
+        "valkorn": "res://scenes/locations/valkorn/PortQuarter.tscn",
+        "valkorn_trade_quarter": "res://scenes/locations/valkorn/PortQuarter.tscn",
+        "valkorn_undercity": "res://scenes/locations/valkorn/Undercity.tscn"
+      },
+      "talk_target_coverage": [
+        {
+          "target": "odrin",
+          "resolved_npc_id": "odrin",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        },
+        {
+          "target": "tessa",
+          "resolved_npc_id": "tessa_valkorn",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        }
+      ],
+      "missing_route_locations": [],
+      "missing_scene_files": [],
+      "data_status": "ready",
+      "route_status": "ready",
+      "inventory_status": "data_and_routes_ready",
+      "production_acceptance": "unverified"
+    },
+    {
+      "canon_index": 14,
+      "id": "valkorn_03_right_price",
+      "title": "Правильна ціна",
+      "quest_file": "res://data/quests/valkorn_03_right_price.json",
+      "start_location": "valkorn_trade_quarter",
+      "objective_counts": {
+        "total": 6,
+        "required": 6,
+        "optional": 0
+      },
+      "locations": [
+        "valkorn_trade_quarter"
+      ],
+      "scene_routes": {
+        "valkorn_trade_quarter": "res://scenes/locations/valkorn/PortQuarter.tscn"
+      },
+      "talk_target_coverage": [],
+      "missing_route_locations": [],
+      "missing_scene_files": [],
+      "data_status": "ready",
+      "route_status": "ready",
+      "inventory_status": "data_and_routes_ready",
+      "production_acceptance": "unverified"
+    },
+    {
+      "canon_index": 15,
+      "id": "valkorn_04_messenger_of_rufin",
+      "title": "Людина, що послала Руфіна",
+      "quest_file": "res://data/quests/valkorn_04_messenger_of_rufin.json",
+      "start_location": "valkorn_diplomatic_quarter",
+      "objective_counts": {
+        "total": 7,
+        "required": 7,
+        "optional": 0
+      },
+      "locations": [
+        "valkorn_diplomatic_quarter",
+        "valkorn"
+      ],
+      "scene_routes": {
+        "valkorn_diplomatic_quarter": "res://scenes/locations/valkorn/PortQuarter.tscn",
+        "valkorn": "res://scenes/locations/valkorn/PortQuarter.tscn"
+      },
+      "talk_target_coverage": [
+        {
+          "target": "loen",
+          "resolved_npc_id": "loen",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        }
+      ],
+      "missing_route_locations": [],
+      "missing_scene_files": [],
+      "data_status": "ready",
+      "route_status": "ready",
+      "inventory_status": "data_and_routes_ready",
+      "production_acceptance": "unverified"
+    },
+    {
+      "canon_index": 16,
+      "id": "valkorn_05_keeper_of_first_seal",
+      "title": "Хранитель Першої Печатки",
+      "quest_file": "res://data/quests/valkorn_05_keeper_of_first_seal.json",
+      "start_location": "valkorn_palace",
+      "objective_counts": {
+        "total": 8,
+        "required": 8,
+        "optional": 0
+      },
+      "locations": [
+        "valkorn_palace",
+        "black_archive"
+      ],
+      "scene_routes": {
+        "valkorn_palace": "res://scenes/locations/valkorn/PortQuarter.tscn",
+        "black_archive": "res://scenes/locations/valkorn/BlackArchive.tscn"
+      },
+      "talk_target_coverage": [],
+      "missing_route_locations": [],
+      "missing_scene_files": [],
+      "data_status": "ready",
+      "route_status": "ready",
+      "inventory_status": "data_and_routes_ready",
+      "production_acceptance": "unverified"
+    },
+    {
+      "canon_index": 17,
+      "id": "deep_bog_01_voice_from_fog",
+      "title": "Голос із туману",
+      "quest_file": "res://data/quests/deep_bog_01_voice_from_fog.json",
+      "start_location": "deep_bog_entry",
+      "objective_counts": {
+        "total": 6,
+        "required": 6,
+        "optional": 0
+      },
+      "locations": [
+        "deep_bog_entry",
+        "deep_bog"
+      ],
+      "scene_routes": {
+        "deep_bog_entry": "res://scenes/locations/deep_bog/DeepBog.tscn",
+        "deep_bog": "res://scenes/locations/deep_bog/DeepBog.tscn"
+      },
+      "talk_target_coverage": [],
+      "missing_route_locations": [],
+      "missing_scene_files": [],
+      "data_status": "ready",
+      "route_status": "ready",
+      "inventory_status": "data_and_routes_ready",
+      "production_acceptance": "unverified"
+    },
+    {
+      "canon_index": 18,
+      "id": "deep_bog_02_mad_ferry",
+      "title": "Шалений пором",
+      "quest_file": "res://data/quests/deep_bog_02_mad_ferry.json",
+      "start_location": "tykhy_shelest",
+      "objective_counts": {
+        "total": 4,
+        "required": 4,
+        "optional": 0
+      },
+      "locations": [
+        "tykhy_shelest",
+        "stone_tower_tykhy_shelest",
+        "mad_river"
+      ],
+      "scene_routes": {
+        "tykhy_shelest": "res://scenes/locations/tykhy_shelist/TykhyShelist.tscn",
+        "stone_tower_tykhy_shelest": "res://scenes/locations/tykhy_shelist/TykhyShelist.tscn",
+        "mad_river": "res://scenes/locations/deep_bog/MadFerry.tscn"
+      },
+      "talk_target_coverage": [
+        {
+          "target": "lileya",
+          "resolved_npc_id": "lileya",
+          "dialogue_status": "present",
+          "placement_status": "present"
+        }
+      ],
+      "missing_route_locations": [],
+      "missing_scene_files": [],
+      "data_status": "ready",
+      "route_status": "ready",
+      "inventory_status": "data_and_routes_ready",
+      "production_acceptance": "unverified"
+    },
+    {
+      "canon_index": 19,
+      "id": "deep_bog_03_flooded_sanctuary",
+      "title": "Затоплена Обитель",
+      "quest_file": "res://data/quests/deep_bog_03_flooded_sanctuary.json",
+      "start_location": "flooded_sanctuary_crypt",
+      "objective_counts": {
+        "total": 4,
+        "required": 4,
+        "optional": 0
+      },
+      "locations": [
+        "flooded_sanctuary_crypt"
+      ],
+      "scene_routes": {
+        "flooded_sanctuary_crypt": "res://scenes/locations/deep_bog/FloodedAbbey.tscn"
+      },
+      "talk_target_coverage": [],
+      "missing_route_locations": [],
+      "missing_scene_files": [],
+      "data_status": "ready",
+      "route_status": "ready",
+      "inventory_status": "data_and_routes_ready",
+      "production_acceptance": "unverified"
+    },
+    {
+      "canon_index": 20,
+      "id": "ep4_01_return_to_valkorn",
+      "title": "Повернення до Валькорна",
+      "quest_file": "res://data/quests/ep4_01_return_to_valkorn.json",
+      "start_location": "valkorn",
+      "objective_counts": {
+        "total": 3,
+        "required": 3,
+        "optional": 0
+      },
+      "locations": [
+        "valkorn"
+      ],
+      "scene_routes": {
+        "valkorn": "res://scenes/locations/valkorn/PortQuarter.tscn"
+      },
+      "talk_target_coverage": [],
+      "missing_route_locations": [],
+      "missing_scene_files": [],
+      "data_status": "ready",
+      "route_status": "ready",
+      "inventory_status": "data_and_routes_ready",
+      "production_acceptance": "unverified"
+    },
+    {
+      "canon_index": 21,
+      "id": "ep4_02_valkorn_climax",
+      "title": "Кульмінація у Валькорні",
+      "quest_file": "res://data/quests/ep4_02_valkorn_climax.json",
+      "start_location": "valkorn",
+      "objective_counts": {
+        "total": 2,
+        "required": 2,
+        "optional": 0
+      },
+      "locations": [
+        "valkorn"
+      ],
+      "scene_routes": {
+        "valkorn": "res://scenes/locations/valkorn/PortQuarter.tscn"
+      },
+      "talk_target_coverage": [],
+      "missing_route_locations": [],
+      "missing_scene_files": [],
+      "data_status": "ready",
+      "route_status": "ready",
+      "inventory_status": "data_and_routes_ready",
+      "production_acceptance": "unverified"
+    },
+    {
+      "canon_index": 22,
+      "id": "ep4_03_hazemoor_mour_heart",
+      "title": "Хейзмур та Серце Моура",
+      "quest_file": "res://data/quests/ep4_03_hazemoor_mour_heart.json",
+      "start_location": "hazemoor",
+      "objective_counts": {
+        "total": 3,
+        "required": 3,
+        "optional": 0
+      },
+      "locations": [
+        "hazemoor"
+      ],
+      "scene_routes": {
+        "hazemoor": "res://scenes/locations/hazemoor/SwampPath.tscn"
+      },
+      "talk_target_coverage": [],
+      "missing_route_locations": [],
+      "missing_scene_files": [],
+      "data_status": "ready",
+      "route_status": "ready",
+      "inventory_status": "data_and_routes_ready",
+      "production_acceptance": "unverified"
+    },
+    {
+      "canon_index": 23,
+      "id": "ep4_04_final_resolution",
+      "title": "Велика Розв'язка",
+      "quest_file": "res://data/quests/ep4_04_final_resolution.json",
+      "start_location": "valkorn",
+      "objective_counts": {
+        "total": 2,
+        "required": 2,
+        "optional": 0
+      },
+      "locations": [
+        "valkorn"
+      ],
+      "scene_routes": {
+        "valkorn": "res://scenes/locations/valkorn/PortQuarter.tscn"
+      },
+      "talk_target_coverage": [],
+      "missing_route_locations": [],
+      "missing_scene_files": [],
+      "data_status": "ready",
+      "route_status": "ready",
+      "inventory_status": "data_and_routes_ready",
+      "production_acceptance": "unverified"
+    },
+    {
+      "canon_index": 24,
+      "id": "ep4_05_hero_departure",
+      "title": "Відхід Героя",
+      "quest_file": "res://data/quests/ep4_05_hero_departure.json",
+      "start_location": "hazemoor_valkorn_border",
+      "objective_counts": {
+        "total": 3,
+        "required": 3,
+        "optional": 0
+      },
+      "locations": [
+        "hazemoor_valkorn_border",
+        "epilogue"
+      ],
+      "scene_routes": {
+        "hazemoor_valkorn_border": "res://scenes/locations/hazemoor/SwampPath.tscn",
+        "epilogue": "res://scenes/main_menu.tscn"
+      },
+      "talk_target_coverage": [],
+      "missing_route_locations": [],
+      "missing_scene_files": [],
+      "data_status": "ready",
+      "route_status": "ready",
+      "inventory_status": "data_and_routes_ready",
+      "production_acceptance": "unverified"
+    }
+  ],
+  "scenes": [
+    {
+      "path": "res://scenes/characters/player.tscn",
+      "route_aliases": [],
+      "npc_ids_in_scene": [],
+      "npc_ids_in_placement_map": [],
+      "glb_references": [],
+      "art_assembly_scripts": [],
+      "location_portal_markers": 0,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/environment/height_fog_bank.tscn",
+      "route_aliases": [],
+      "npc_ids_in_scene": [],
+      "npc_ids_in_placement_map": [],
+      "glb_references": [],
+      "art_assembly_scripts": [],
+      "location_portal_markers": 0,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/environment/height_fog_volume.tscn",
+      "route_aliases": [],
+      "npc_ids_in_scene": [],
+      "npc_ids_in_placement_map": [],
+      "glb_references": [],
+      "art_assembly_scripts": [],
+      "location_portal_markers": 0,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/environment/muri_hut.tscn",
+      "route_aliases": [],
+      "npc_ids_in_scene": [],
+      "npc_ids_in_placement_map": [],
+      "glb_references": [],
+      "art_assembly_scripts": [],
+      "location_portal_markers": 0,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/environments/test_level.tscn",
+      "route_aliases": [],
+      "npc_ids_in_scene": [],
+      "npc_ids_in_placement_map": [],
+      "glb_references": [],
+      "art_assembly_scripts": [],
+      "location_portal_markers": 0,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/locations/deep_bog/DeepBog.tscn",
+      "route_aliases": [
+        "deep_bog",
+        "deep_bog_entry",
+        "mour_heart"
+      ],
+      "npc_ids_in_scene": [],
+      "npc_ids_in_placement_map": [],
+      "glb_references": [],
+      "art_assembly_scripts": [
+        "res://scripts/gameplay/DeepBogArtAssembly.gd"
+      ],
+      "location_portal_markers": 1,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/locations/deep_bog/FloodedAbbey.tscn",
+      "route_aliases": [
+        "flooded_sanctuary_crypt"
+      ],
+      "npc_ids_in_scene": [
+        "lileya"
+      ],
+      "npc_ids_in_placement_map": [],
+      "glb_references": [],
+      "art_assembly_scripts": [
+        "res://scripts/gameplay/DeepBogArtAssembly.gd"
+      ],
+      "location_portal_markers": 1,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/locations/deep_bog/MadFerry.tscn",
+      "route_aliases": [
+        "mad_ferry_approach",
+        "mad_river"
+      ],
+      "npc_ids_in_scene": [
+        "lileya"
+      ],
+      "npc_ids_in_placement_map": [
+        "lileya"
+      ],
+      "glb_references": [],
+      "art_assembly_scripts": [
+        "res://scripts/gameplay/DeepBogArtAssembly.gd"
+      ],
+      "location_portal_markers": 1,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/locations/greyford/AlteyaHiddenRoom.tscn",
+      "route_aliases": [
+        "greyford_alteya_hidden_room"
+      ],
+      "npc_ids_in_scene": [
+        "alteya"
+      ],
+      "npc_ids_in_placement_map": [
+        "alteya"
+      ],
+      "glb_references": [
+        "res://assets/meshy/greyford_alteya/alteya_witch_real.glb"
+      ],
+      "art_assembly_scripts": [
+        "res://scripts/gameplay/AlteyaHiddenRoomArtAssembly.gd"
+      ],
+      "location_portal_markers": 1,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/locations/greyford/CraftsmenQuarter.tscn",
+      "route_aliases": [
+        "greyford_craftsmen_quarter"
+      ],
+      "npc_ids_in_scene": [
+        "furrier",
+        "woodcarver"
+      ],
+      "npc_ids_in_placement_map": [
+        "furrier",
+        "woodcarver"
+      ],
+      "glb_references": [
+        "res://assets/meshy/greyford_craftsmen/furrier.glb",
+        "res://assets/meshy/greyford_craftsmen/woodcarver.glb"
+      ],
+      "art_assembly_scripts": [
+        "res://scripts/gameplay/CraftsmenQuarterArtAssembly.gd"
+      ],
+      "location_portal_markers": 1,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/locations/greyford/GreyfordGate.tscn",
+      "route_aliases": [
+        "greyford_gate"
+      ],
+      "npc_ids_in_scene": [
+        "gate_sergeant"
+      ],
+      "npc_ids_in_placement_map": [
+        "gate_sergeant"
+      ],
+      "glb_references": [
+        "res://assets/meshy/greyford_gate/gate_sergeant.glb"
+      ],
+      "art_assembly_scripts": [
+        "res://scripts/gameplay/GreyfordGateArtAssembly.gd"
+      ],
+      "location_portal_markers": 1,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/locations/greyford/GreyfordStreet.tscn",
+      "route_aliases": [
+        "greyford_street"
+      ],
+      "npc_ids_in_scene": [],
+      "npc_ids_in_placement_map": [],
+      "glb_references": [],
+      "art_assembly_scripts": [
+        "res://scripts/gameplay/GreyfordStreetArtAssembly.gd"
+      ],
+      "location_portal_markers": 1,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/locations/greyford/PortTavernInterior.tscn",
+      "route_aliases": [
+        "greyford_port_tavern"
+      ],
+      "npc_ids_in_scene": [
+        "cassandra",
+        "port_bartender"
+      ],
+      "npc_ids_in_placement_map": [
+        "cassandra",
+        "port_bartender"
+      ],
+      "glb_references": [
+        "res://assets/meshy/greyford_port_tavern/cassandra_courtesan.glb",
+        "res://assets/meshy/greyford_port_tavern/port_bartender.glb"
+      ],
+      "art_assembly_scripts": [
+        "res://scripts/gameplay/PortTavernArtAssembly.gd"
+      ],
+      "location_portal_markers": 1,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/locations/greyford/RufinRoom.tscn",
+      "route_aliases": [
+        "greyford_rufin_room"
+      ],
+      "npc_ids_in_scene": [],
+      "npc_ids_in_placement_map": [],
+      "glb_references": [],
+      "art_assembly_scripts": [
+        "res://scripts/gameplay/RufinRoomArtAssembly.gd"
+      ],
+      "location_portal_markers": 1,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/locations/greyford/TavernInterior.tscn",
+      "route_aliases": [
+        "greyford_tavern"
+      ],
+      "npc_ids_in_scene": [
+        "ervan",
+        "greyford_guard_letter",
+        "waitress"
+      ],
+      "npc_ids_in_placement_map": [],
+      "glb_references": [
+        "res://assets/meshy/greyford_tavern/creaking_sign.glb",
+        "res://assets/meshy/greyford_tavern/drunk_sailor.glb",
+        "res://assets/meshy/greyford_tavern/ervan_innkeeper_clean_apron.glb",
+        "res://assets/meshy/greyford_tavern/greyford_guard_walk.glb",
+        "res://assets/meshy/greyford_tavern/merchant_patron.glb",
+        "res://assets/meshy/greyford_tavern/merchant_patron_rigged.glb",
+        "res://assets/meshy/greyford_tavern/old_woman_patron.glb",
+        "res://assets/meshy/greyford_tavern/tavern_bar_counter.glb",
+        "res://assets/meshy/greyford_tavern/waitress.glb",
+        "res://assets/meshy/greyford_tavern/waitress_rigged_walk.glb"
+      ],
+      "art_assembly_scripts": [
+        "res://scripts/gameplay/TavernArtAssembly.gd"
+      ],
+      "location_portal_markers": 1,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/locations/hazemoor/SwampPath.tscn",
+      "route_aliases": [
+        "first_clearing",
+        "hazemoor",
+        "hazemoor_entrance",
+        "hazemoor_valkorn_border",
+        "swamp_path_01",
+        "zone_old_tree"
+      ],
+      "npc_ids_in_scene": [
+        "mia"
+      ],
+      "npc_ids_in_placement_map": [],
+      "glb_references": [],
+      "art_assembly_scripts": [
+        "res://scripts/gameplay/SwampPathArtAssembly.gd"
+      ],
+      "location_portal_markers": 1,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/locations/sonk_ferry/FloodedChamber.tscn",
+      "route_aliases": [
+        "flooded_chamber"
+      ],
+      "npc_ids_in_scene": [],
+      "npc_ids_in_placement_map": [
+        "karos"
+      ],
+      "glb_references": [],
+      "art_assembly_scripts": [
+        "res://scripts/gameplay/SonkFerrySubArtAssembly.gd"
+      ],
+      "location_portal_markers": 0,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/locations/sonk_ferry/FloodedChapel.tscn",
+      "route_aliases": [
+        "flooded_chapel"
+      ],
+      "npc_ids_in_scene": [],
+      "npc_ids_in_placement_map": [
+        "deacon_rein",
+        "isra_vayn"
+      ],
+      "glb_references": [],
+      "art_assembly_scripts": [],
+      "location_portal_markers": 0,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/locations/sonk_ferry/SaltWarehouse.tscn",
+      "route_aliases": [
+        "salt_warehouse"
+      ],
+      "npc_ids_in_scene": [],
+      "npc_ids_in_placement_map": [
+        "skel_ganis"
+      ],
+      "glb_references": [],
+      "art_assembly_scripts": [
+        "res://scripts/gameplay/SonkFerrySubArtAssembly.gd"
+      ],
+      "location_portal_markers": 0,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/locations/sonk_ferry/SonkFerry.tscn",
+      "route_aliases": [
+        "damaged_ferry_dock",
+        "kelm_office",
+        "mirefold",
+        "sonk_ferry",
+        "sonk_ferry_admin",
+        "sonk_ferry_dock",
+        "sonk_ferry_shore",
+        "st_vey",
+        "sunk_watchtower_road"
+      ],
+      "npc_ids_in_scene": [
+        "brin_oss",
+        "deacon_rein",
+        "gara_paik",
+        "isra_vayn",
+        "karos",
+        "kelm",
+        "mara_dens",
+        "nera",
+        "sella",
+        "skel_ganis",
+        "tovan_rid",
+        "voss"
+      ],
+      "npc_ids_in_placement_map": [
+        "brin_oss",
+        "gara_paik",
+        "kelm",
+        "mara_dens",
+        "nera",
+        "tovan_rid",
+        "voss"
+      ],
+      "glb_references": [
+        "res://assets/meshy/sonk_ferry/brin_oss.glb",
+        "res://assets/meshy/sonk_ferry/deacon_rein.glb",
+        "res://assets/meshy/sonk_ferry/gara_paik.glb",
+        "res://assets/meshy/sonk_ferry/isra_vayn.glb",
+        "res://assets/meshy/sonk_ferry/mara_dens.glb",
+        "res://assets/meshy/sonk_ferry/nera_veil.glb",
+        "res://assets/meshy/sonk_ferry/sella_elder.glb",
+        "res://assets/meshy/sonk_ferry/skel_ganis.glb",
+        "res://assets/meshy/sonk_ferry/voss_quartermaster.glb"
+      ],
+      "art_assembly_scripts": [
+        "res://scripts/gameplay/SonkFerryArtAssembly.gd"
+      ],
+      "location_portal_markers": 1,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/locations/tykhy_shelist/ForbiddenGlade.tscn",
+      "route_aliases": [
+        "forbidden_glade"
+      ],
+      "npc_ids_in_scene": [
+        "rufin_glade"
+      ],
+      "npc_ids_in_placement_map": [
+        "rufin_glade",
+        "sella"
+      ],
+      "glb_references": [],
+      "art_assembly_scripts": [
+        "res://scripts/gameplay/ForbiddenGladeArtAssembly.gd"
+      ],
+      "location_portal_markers": 0,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/locations/tykhy_shelist/TykhyShelist.tscn",
+      "route_aliases": [
+        "stone_tower_tykhy_shelest",
+        "tykhy_shelest",
+        "tykhy_shelest_healer_house",
+        "tykhy_shelest_swamp_edge"
+      ],
+      "npc_ids_in_scene": [
+        "kaen",
+        "mia_mother",
+        "sirra",
+        "varrik"
+      ],
+      "npc_ids_in_placement_map": [
+        "kaen",
+        "mia_mother",
+        "sirra",
+        "varrik"
+      ],
+      "glb_references": [
+        "res://assets/meshy/tykhy_shelist/kaen.glb",
+        "res://assets/meshy/tykhy_shelist/mia.glb",
+        "res://assets/meshy/tykhy_shelist/sirra.glb",
+        "res://assets/meshy/tykhy_shelist/varrik_hunter.glb"
+      ],
+      "art_assembly_scripts": [
+        "res://scripts/gameplay/TykhyShelistArtAssembly.gd"
+      ],
+      "location_portal_markers": 1,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/locations/valkorn/BlackArchive.tscn",
+      "route_aliases": [
+        "black_archive",
+        "black_archive_under_library"
+      ],
+      "npc_ids_in_scene": [
+        "archivist_valkorn",
+        "tessa_valkorn"
+      ],
+      "npc_ids_in_placement_map": [],
+      "glb_references": [
+        "res://assets/meshy/valkorn/archivist.glb",
+        "res://assets/meshy/valkorn/tessa_merchant.glb"
+      ],
+      "art_assembly_scripts": [],
+      "location_portal_markers": 1,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/locations/valkorn/GuildWarehouse.tscn",
+      "route_aliases": [
+        "guild_warehouse"
+      ],
+      "npc_ids_in_scene": [
+        "stetson_valkorn"
+      ],
+      "npc_ids_in_placement_map": [
+        "damar"
+      ],
+      "glb_references": [],
+      "art_assembly_scripts": [],
+      "location_portal_markers": 1,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/locations/valkorn/PortQuarter.tscn",
+      "route_aliases": [
+        "valkorn",
+        "valkorn_diplomatic_quarter",
+        "valkorn_gate",
+        "valkorn_market_square",
+        "valkorn_new_ghetto",
+        "valkorn_palace",
+        "valkorn_palace_quarter",
+        "valkorn_trade_quarter"
+      ],
+      "npc_ids_in_scene": [],
+      "npc_ids_in_placement_map": [
+        "bres",
+        "fipp",
+        "loen",
+        "odrin",
+        "stetson_valkorn",
+        "tessa_valkorn"
+      ],
+      "glb_references": [],
+      "art_assembly_scripts": [],
+      "location_portal_markers": 1,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/locations/valkorn/Undercity.tscn",
+      "route_aliases": [
+        "valkorn_undercity"
+      ],
+      "npc_ids_in_scene": [],
+      "npc_ids_in_placement_map": [
+        "ilia_marr"
+      ],
+      "glb_references": [],
+      "art_assembly_scripts": [],
+      "location_portal_markers": 1,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/main_menu.tscn",
+      "route_aliases": [
+        "epilogue",
+        "main_menu"
+      ],
+      "npc_ids_in_scene": [],
+      "npc_ids_in_placement_map": [],
+      "glb_references": [],
+      "art_assembly_scripts": [],
+      "location_portal_markers": 0,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/map/WorldMap.tscn",
+      "route_aliases": [],
+      "npc_ids_in_scene": [],
+      "npc_ids_in_placement_map": [],
+      "glb_references": [],
+      "art_assembly_scripts": [],
+      "location_portal_markers": 0,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://scenes/ui/quest_journal.tscn",
+      "route_aliases": [],
+      "npc_ids_in_scene": [],
+      "npc_ids_in_placement_map": [],
+      "glb_references": [],
+      "art_assembly_scripts": [],
+      "location_portal_markers": 0,
+      "inventory_status": "present",
+      "production_acceptance": "unverified"
+    }
+  ],
+  "npcs": [
+    {
+      "id": "alteya",
+      "data_file": "res://data/npcs/alteya.json",
+      "dialogue_files": [
+        "res://data/dialogues/alteya/about_rufin.json",
+        "res://data/dialogues/alteya/please_help.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/greyford/AlteyaHiddenRoom.tscn",
+          "position": [
+            0,
+            0.85,
+            2
+          ],
+          "dialogue": "alteya"
+        }
+      ],
+      "model_candidates": [
+        "res://assets/meshy/greyford_alteya/alteya_witch.glb",
+        "res://assets/meshy/greyford_alteya/alteya_witch_real.glb"
+      ],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "bres",
+      "data_file": "res://data/npcs/bres.json",
+      "dialogue_files": [
+        "res://data/dialogues/bres/first_meeting.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/valkorn/PortQuarter.tscn",
+          "position": [
+            -5,
+            1,
+            3
+          ],
+          "dialogue": "bres"
+        }
+      ],
+      "model_candidates": [],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "brin_oss",
+      "data_file": "res://data/npcs/brin_oss.json",
+      "dialogue_files": [
+        "res://data/dialogues/brin_oss/first_meeting.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/sonk_ferry/SonkFerry.tscn",
+          "position": [
+            2,
+            1,
+            -3
+          ],
+          "dialogue": "brin_oss"
+        }
+      ],
+      "model_candidates": [
+        "res://assets/meshy/sonk_ferry/brin_oss.glb"
+      ],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "cassandra",
+      "data_file": "res://data/npcs/cassandra.json",
+      "dialogue_files": [
+        "res://data/dialogues/cassandra/about_rufin.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/greyford/PortTavernInterior.tscn",
+          "position": [
+            -1,
+            0.85,
+            3
+          ],
+          "dialogue": "cassandra"
+        }
+      ],
+      "model_candidates": [
+        "res://assets/meshy/greyford_port_tavern/cassandra_courtesan.glb"
+      ],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "damar",
+      "data_file": "res://data/npcs/damar.json",
+      "dialogue_files": [
+        "res://data/dialogues/damar/first_meeting.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/valkorn/GuildWarehouse.tscn",
+          "position": [
+            0,
+            1,
+            3
+          ],
+          "dialogue": "damar"
+        }
+      ],
+      "model_candidates": [],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "deacon_rein",
+      "data_file": "res://data/npcs/deacon_rein.json",
+      "dialogue_files": [
+        "res://data/dialogues/deacon_rein/first_meeting.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/sonk_ferry/FloodedChapel.tscn",
+          "position": [
+            0,
+            1,
+            4
+          ],
+          "dialogue": "deacon_rein"
+        }
+      ],
+      "model_candidates": [
+        "res://assets/meshy/sonk_ferry/deacon_rein.glb"
+      ],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "deep_bog",
+      "data_file": "",
+      "dialogue_files": [
+        "res://data/dialogues/deep_bog/flooded_abbey.json",
+        "res://data/dialogues/deep_bog/mad_ferry.json",
+        "res://data/dialogues/deep_bog/voice_from_fog.json"
+      ],
+      "placements": [],
+      "model_candidates": [],
+      "data_status": "missing",
+      "dialogue_status": "present",
+      "placement_status": "missing",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "ervan",
+      "data_file": "res://data/npcs/ervan.json",
+      "dialogue_files": [
+        "res://data/dialogues/ervan/about_rufin.json",
+        "res://data/dialogues/ervan/default.json",
+        "res://data/dialogues/ervan/first_meeting.json",
+        "res://data/dialogues/ervan/rumors.json",
+        "res://data/dialogues/ervan/witch_rumors.json"
+      ],
+      "placements": [],
+      "model_candidates": [
+        "res://assets/meshy/greyford_tavern/ervan_innkeeper.glb",
+        "res://assets/meshy/greyford_tavern/ervan_innkeeper_clean_apron.glb"
+      ],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "missing",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "ervan_rumors",
+      "data_file": "",
+      "dialogue_files": [
+        "res://data/dialogues/ervan_rumors/witch_rumors.json"
+      ],
+      "placements": [],
+      "model_candidates": [],
+      "data_status": "missing",
+      "dialogue_status": "present",
+      "placement_status": "missing",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "farmer_jorn",
+      "data_file": "res://data/npcs/farmer_jorn.json",
+      "dialogue_files": [
+        "res://data/dialogues/farmer_jorn/testimony.json"
+      ],
+      "placements": [],
+      "model_candidates": [],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "missing",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "fipp",
+      "data_file": "res://data/npcs/fipp.json",
+      "dialogue_files": [
+        "res://data/dialogues/fipp/market_encounter.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/valkorn/PortQuarter.tscn",
+          "position": [
+            0,
+            1,
+            8
+          ],
+          "dialogue": "fipp"
+        }
+      ],
+      "model_candidates": [],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "furrier",
+      "data_file": "res://data/npcs/furrier.json",
+      "dialogue_files": [
+        "res://data/dialogues/furrier/default.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/greyford/CraftsmenQuarter.tscn",
+          "position": [
+            0,
+            0.5,
+            3
+          ],
+          "dialogue": "furrier"
+        }
+      ],
+      "model_candidates": [
+        "res://assets/meshy/greyford_craftsmen/furrier.glb"
+      ],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "gara_paik",
+      "data_file": "res://data/npcs/gara_paik.json",
+      "dialogue_files": [
+        "res://data/dialogues/gara_paik/first_meeting.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/sonk_ferry/SonkFerry.tscn",
+          "position": [
+            5,
+            1,
+            0
+          ],
+          "dialogue": "gara_paik"
+        }
+      ],
+      "model_candidates": [
+        "res://assets/meshy/sonk_ferry/gara_paik.glb"
+      ],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "gate_sergeant",
+      "data_file": "res://data/npcs/gate_sergeant.json",
+      "dialogue_files": [
+        "res://data/dialogues/gate_sergeant/about_rufin.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/greyford/GreyfordGate.tscn",
+          "position": [
+            0,
+            1,
+            -6
+          ],
+          "dialogue": "gate_sergeant"
+        }
+      ],
+      "model_candidates": [
+        "res://assets/meshy/greyford_gate/gate_sergeant.glb"
+      ],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "generic_npcs",
+      "data_file": "res://data/npcs/generic_npcs.json",
+      "dialogue_files": [],
+      "placements": [],
+      "model_candidates": [],
+      "data_status": "present",
+      "dialogue_status": "missing",
+      "placement_status": "missing",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "greyford",
+      "data_file": "",
+      "dialogue_files": [
+        "res://data/dialogues/greyford/witch_trouble.json",
+        "res://data/dialogues/greyford/witch_trouble_npcs.json"
+      ],
+      "placements": [],
+      "model_candidates": [
+        "res://assets/meshy/greyford_tavern/greyford_guard_rigged.glb",
+        "res://assets/meshy/greyford_tavern/greyford_guard_v2_walk.glb",
+        "res://assets/meshy/greyford_tavern/greyford_guard_walk.glb",
+        "res://assets/meshy/greyford_tavern/greyford_guard_walk_OLD.glb"
+      ],
+      "data_status": "missing",
+      "dialogue_status": "present",
+      "placement_status": "missing",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "greyford_guard_letter",
+      "data_file": "res://data/npcs/greyford_guard_letter.json",
+      "dialogue_files": [
+        "res://data/dialogues/greyford_guard_letter/letter_handoff.json"
+      ],
+      "placements": [],
+      "model_candidates": [],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "missing",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "guard",
+      "data_file": "",
+      "dialogue_files": [
+        "res://data/dialogues/guard/first_arrival.json"
+      ],
+      "placements": [],
+      "model_candidates": [
+        "res://assets/meshy/greyford_tavern/greyford_guard_rigged.glb",
+        "res://assets/meshy/greyford_tavern/greyford_guard_v2_walk.glb",
+        "res://assets/meshy/greyford_tavern/greyford_guard_walk.glb",
+        "res://assets/meshy/greyford_tavern/greyford_guard_walk_OLD.glb"
+      ],
+      "data_status": "missing",
+      "dialogue_status": "present",
+      "placement_status": "missing",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "guard_toren",
+      "data_file": "res://data/npcs/guard_toren.json",
+      "dialogue_files": [],
+      "placements": [],
+      "model_candidates": [],
+      "data_status": "present",
+      "dialogue_status": "missing",
+      "placement_status": "missing",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "guard_tovar",
+      "data_file": "res://data/npcs/guard_tovar.json",
+      "dialogue_files": [
+        "res://data/dialogues/guard_tovar/testimony.json"
+      ],
+      "placements": [],
+      "model_candidates": [],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "missing",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "ilia_marr",
+      "data_file": "res://data/npcs/ilia_marr.json",
+      "dialogue_files": [
+        "res://data/dialogues/ilia_marr/first_meeting.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/valkorn/Undercity.tscn",
+          "position": [
+            0,
+            1,
+            5
+          ],
+          "dialogue": "ilia_marr"
+        }
+      ],
+      "model_candidates": [],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "internal_voice",
+      "data_file": "",
+      "dialogue_files": [
+        "res://data/dialogues/internal_voice/clearing_reached.json",
+        "res://data/dialogues/internal_voice/hazemoor_path.json",
+        "res://data/dialogues/internal_voice/hazemoor_warning.json",
+        "res://data/dialogues/internal_voice/iliya_first_whisper.json",
+        "res://data/dialogues/internal_voice/leaving_settlement.json",
+        "res://data/dialogues/internal_voice/old_magic.json",
+        "res://data/dialogues/internal_voice/something_is_wrong.json",
+        "res://data/dialogues/internal_voice/tykhy_shelest_arrival.json"
+      ],
+      "placements": [],
+      "model_candidates": [],
+      "data_status": "missing",
+      "dialogue_status": "present",
+      "placement_status": "missing",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "isra_vayn",
+      "data_file": "res://data/npcs/isra_vayn.json",
+      "dialogue_files": [
+        "res://data/dialogues/isra_vayn/first_meeting.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/sonk_ferry/FloodedChapel.tscn",
+          "position": [
+            2,
+            1,
+            2
+          ],
+          "dialogue": "isra_vayn"
+        }
+      ],
+      "model_candidates": [
+        "res://assets/meshy/sonk_ferry/isra_vayn.glb"
+      ],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "kaen",
+      "data_file": "res://data/npcs/kaen.json",
+      "dialogue_files": [
+        "res://data/dialogues/kaen/first_meeting.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/tykhy_shelist/TykhyShelist.tscn",
+          "position": [
+            5,
+            3,
+            -2
+          ],
+          "dialogue": "kaen"
+        }
+      ],
+      "model_candidates": [
+        "res://assets/meshy/tykhy_shelist/kaen.glb"
+      ],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "karos",
+      "data_file": "res://data/npcs/karos.json",
+      "dialogue_files": [
+        "res://data/dialogues/karos/first_meeting.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/sonk_ferry/FloodedChamber.tscn",
+          "position": [
+            0,
+            1,
+            3
+          ],
+          "dialogue": "karos"
+        }
+      ],
+      "model_candidates": [],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "kelm",
+      "data_file": "res://data/npcs/kelm.json",
+      "dialogue_files": [
+        "res://data/dialogues/kelm/first_meeting.json",
+        "res://data/dialogues/kelm/invitation.json",
+        "res://data/dialogues/kelm/witch_problem.json",
+        "res://data/dialogues/kelm/your_decision.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/sonk_ferry/SonkFerry.tscn",
+          "position": [
+            -5,
+            1,
+            0
+          ],
+          "dialogue": "kelm"
+        }
+      ],
+      "model_candidates": [],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "lileya",
+      "data_file": "res://data/npcs/lileya.json",
+      "dialogue_files": [
+        "res://data/dialogues/lileya/first_meeting.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/deep_bog/MadFerry.tscn",
+          "position": [
+            0,
+            1,
+            3
+          ],
+          "dialogue": "lileya"
+        }
+      ],
+      "model_candidates": [],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "loen",
+      "data_file": "res://data/npcs/loen.json",
+      "dialogue_files": [
+        "res://data/dialogues/loen/meeting.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/valkorn/PortQuarter.tscn",
+          "position": [
+            -3,
+            1,
+            -5
+          ],
+          "dialogue": "loen"
+        }
+      ],
+      "model_candidates": [],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "mara_dens",
+      "data_file": "res://data/npcs/mara_dens.json",
+      "dialogue_files": [
+        "res://data/dialogues/mara_dens/first_meeting.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/sonk_ferry/SonkFerry.tscn",
+          "position": [
+            -2,
+            1,
+            -5
+          ],
+          "dialogue": "mara_dens"
+        }
+      ],
+      "model_candidates": [
+        "res://assets/meshy/sonk_ferry/mara_dens.glb"
+      ],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "merchant_lysa",
+      "data_file": "res://data/npcs/merchant_lysa.json",
+      "dialogue_files": [
+        "res://data/dialogues/merchant_lysa/testimony.json"
+      ],
+      "placements": [],
+      "model_candidates": [],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "missing",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "mia",
+      "data_file": "res://data/npcs/mia.json",
+      "dialogue_files": [
+        "res://data/dialogues/mia/first_meeting.json",
+        "res://data/dialogues/mia/reunion_deep_bog.json",
+        "res://data/dialogues/mia/second_decision.json"
+      ],
+      "placements": [],
+      "model_candidates": [
+        "res://assets/meshy/tykhy_shelist/mia.glb"
+      ],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "missing",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "mia_mother",
+      "data_file": "res://data/npcs/mia_mother.json",
+      "dialogue_files": [
+        "res://data/dialogues/mia_mother/about_mia.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/tykhy_shelist/TykhyShelist.tscn",
+          "position": [
+            3,
+            3,
+            3
+          ],
+          "dialogue": "mia_mother"
+        }
+      ],
+      "model_candidates": [],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "nera",
+      "data_file": "res://data/npcs/nera.json",
+      "dialogue_files": [
+        "res://data/dialogues/nera/first_meeting.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/sonk_ferry/SonkFerry.tscn",
+          "position": [
+            0,
+            1,
+            5
+          ],
+          "dialogue": "nera"
+        }
+      ],
+      "model_candidates": [
+        "res://assets/meshy/sonk_ferry/nera_veil.glb"
+      ],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "odrin",
+      "data_file": "res://data/npcs/odrin.json",
+      "dialogue_files": [
+        "res://data/dialogues/odrin/first_meeting.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/valkorn/PortQuarter.tscn",
+          "position": [
+            0,
+            1,
+            -8
+          ],
+          "dialogue": "odrin"
+        }
+      ],
+      "model_candidates": [],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "port_bartender",
+      "data_file": "res://data/npcs/port_bartender.json",
+      "dialogue_files": [
+        "res://data/dialogues/port_bartender/default.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/greyford/PortTavernInterior.tscn",
+          "position": [
+            0,
+            0.85,
+            1
+          ],
+          "dialogue": "port_bartender"
+        }
+      ],
+      "model_candidates": [
+        "res://assets/meshy/greyford_port_tavern/port_bartender.glb"
+      ],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "rufin",
+      "data_file": "res://data/npcs/rufin.json",
+      "dialogue_files": [
+        "res://data/dialogues/rufin/first_encounter.json"
+      ],
+      "placements": [],
+      "model_candidates": [],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "missing",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "rufin_glade",
+      "data_file": "",
+      "dialogue_files": [
+        "res://data/dialogues/rufin_glade/at_glade.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/tykhy_shelist/ForbiddenGlade.tscn",
+          "position": [
+            0,
+            0.85,
+            0
+          ],
+          "dialogue": "rufin_glade"
+        }
+      ],
+      "model_candidates": [],
+      "data_status": "missing",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "sella",
+      "data_file": "res://data/npcs/sella.json",
+      "dialogue_files": [
+        "res://data/dialogues/sella/first_meeting.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/tykhy_shelist/ForbiddenGlade.tscn",
+          "position": [
+            3,
+            0.85,
+            3
+          ],
+          "dialogue": "sella"
+        }
+      ],
+      "model_candidates": [
+        "res://assets/meshy/sonk_ferry/sella_elder.glb"
+      ],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "sirra",
+      "data_file": "res://data/npcs/sirra.json",
+      "dialogue_files": [
+        "res://data/dialogues/sirra/first_meeting.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/tykhy_shelist/TykhyShelist.tscn",
+          "position": [
+            -5,
+            3,
+            2
+          ],
+          "dialogue": "sirra"
+        }
+      ],
+      "model_candidates": [
+        "res://assets/meshy/tykhy_shelist/sirra.glb"
+      ],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "skel_ganis",
+      "data_file": "res://data/npcs/skel_ganis.json",
+      "dialogue_files": [
+        "res://data/dialogues/skel_ganis/first_meeting.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/sonk_ferry/SaltWarehouse.tscn",
+          "position": [
+            0,
+            1,
+            4
+          ],
+          "dialogue": "skel_ganis"
+        }
+      ],
+      "model_candidates": [
+        "res://assets/meshy/sonk_ferry/skel_ganis.glb"
+      ],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "sonk_ferry",
+      "data_file": "",
+      "dialogue_files": [
+        "res://data/dialogues/sonk_ferry/ferry_quests.json"
+      ],
+      "placements": [],
+      "model_candidates": [],
+      "data_status": "missing",
+      "dialogue_status": "present",
+      "placement_status": "missing",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "stetson_valkorn",
+      "data_file": "res://data/npcs/stetson_valkorn.json",
+      "dialogue_files": [
+        "res://data/dialogues/stetson_valkorn/first_meeting.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/valkorn/PortQuarter.tscn",
+          "position": [
+            5,
+            1,
+            -3
+          ],
+          "dialogue": "stetson_valkorn"
+        }
+      ],
+      "model_candidates": [],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "tessa_valkorn",
+      "data_file": "res://data/npcs/tessa_valkorn.json",
+      "dialogue_files": [
+        "res://data/dialogues/tessa_valkorn/first_meeting.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/valkorn/PortQuarter.tscn",
+          "position": [
+            3,
+            1,
+            -5
+          ],
+          "dialogue": "tessa_valkorn"
+        }
+      ],
+      "model_candidates": [],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "tovan_rid",
+      "data_file": "res://data/npcs/tovan_rid.json",
+      "dialogue_files": [
+        "res://data/dialogues/tovan_rid/first_meeting.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/sonk_ferry/SonkFerry.tscn",
+          "position": [
+            -3,
+            1,
+            5
+          ],
+          "dialogue": "tovan_rid"
+        }
+      ],
+      "model_candidates": [],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "valkorn",
+      "data_file": "",
+      "dialogue_files": [
+        "res://data/dialogues/valkorn/valkorn_quests.json"
+      ],
+      "placements": [],
+      "model_candidates": [],
+      "data_status": "missing",
+      "dialogue_status": "present",
+      "placement_status": "missing",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "varrik",
+      "data_file": "res://data/npcs/varrik.json",
+      "dialogue_files": [
+        "res://data/dialogues/varrik/about_rufin.json",
+        "res://data/dialogues/varrik/lost_heirloom.json",
+        "res://data/dialogues/varrik/please_find_it.json",
+        "res://data/dialogues/varrik/thank_you.json",
+        "res://data/dialogues/varrik/you_bastard.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/tykhy_shelist/TykhyShelist.tscn",
+          "position": [
+            0,
+            3,
+            2
+          ],
+          "dialogue": "varrik"
+        }
+      ],
+      "model_candidates": [
+        "res://assets/meshy/tykhy_shelist/varrik_hunter.glb"
+      ],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "voss",
+      "data_file": "res://data/npcs/voss.json",
+      "dialogue_files": [
+        "res://data/dialogues/voss/first_meeting.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/sonk_ferry/SonkFerry.tscn",
+          "position": [
+            3,
+            1,
+            3
+          ],
+          "dialogue": "voss"
+        }
+      ],
+      "model_candidates": [
+        "res://assets/meshy/sonk_ferry/voss_quartermaster.glb"
+      ],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "waitress",
+      "data_file": "res://data/npcs/waitress.json",
+      "dialogue_files": [
+        "res://data/dialogues/waitress/greeting.json"
+      ],
+      "placements": [],
+      "model_candidates": [
+        "res://assets/meshy/greyford_tavern/waitress.glb",
+        "res://assets/meshy/greyford_tavern/waitress_rigged_walk.glb"
+      ],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "missing",
+      "production_acceptance": "unverified"
+    },
+    {
+      "id": "woodcarver",
+      "data_file": "res://data/npcs/woodcarver.json",
+      "dialogue_files": [
+        "res://data/dialogues/woodcarver/about_rufin.json"
+      ],
+      "placements": [
+        {
+          "scene": "res://scenes/locations/greyford/CraftsmenQuarter.tscn",
+          "position": [
+            -4,
+            0.5,
+            3
+          ],
+          "dialogue": "woodcarver"
+        }
+      ],
+      "model_candidates": [
+        "res://assets/meshy/greyford_craftsmen/woodcarver.glb"
+      ],
+      "data_status": "present",
+      "dialogue_status": "present",
+      "placement_status": "present",
+      "production_acceptance": "unverified"
+    }
+  ],
+  "dialogues": [
+    {
+      "path": "res://data/dialogues/alteya/about_rufin.json",
+      "npc_id": "alteya",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/alteya/please_help.json",
+      "npc_id": "alteya",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/bres/first_meeting.json",
+      "npc_id": "bres",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/brin_oss/first_meeting.json",
+      "npc_id": "brin_oss",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/cassandra/about_rufin.json",
+      "npc_id": "cassandra",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/damar/first_meeting.json",
+      "npc_id": "damar",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/deacon_rein/first_meeting.json",
+      "npc_id": "deacon_rein",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/deep_bog/flooded_abbey.json",
+      "npc_id": "deep_bog",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/deep_bog/mad_ferry.json",
+      "npc_id": "deep_bog",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/deep_bog/voice_from_fog.json",
+      "npc_id": "deep_bog",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/ervan/about_rufin.json",
+      "npc_id": "ervan",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/ervan/default.json",
+      "npc_id": "ervan",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/ervan/first_meeting.json",
+      "npc_id": "ervan",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/ervan/rumors.json",
+      "npc_id": "ervan",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/ervan/witch_rumors.json",
+      "npc_id": "ervan",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/ervan_rumors/witch_rumors.json",
+      "npc_id": "ervan_rumors",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/farmer_jorn/testimony.json",
+      "npc_id": "farmer_jorn",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/fipp/market_encounter.json",
+      "npc_id": "fipp",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/furrier/default.json",
+      "npc_id": "furrier",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/gara_paik/first_meeting.json",
+      "npc_id": "gara_paik",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/gate_sergeant/about_rufin.json",
+      "npc_id": "gate_sergeant",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/greyford/witch_trouble.json",
+      "npc_id": "greyford",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/greyford/witch_trouble_npcs.json",
+      "npc_id": "greyford",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/greyford_guard_letter/letter_handoff.json",
+      "npc_id": "greyford_guard_letter",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/guard/first_arrival.json",
+      "npc_id": "guard",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/guard_tovar/testimony.json",
+      "npc_id": "guard_tovar",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/ilia_marr/first_meeting.json",
+      "npc_id": "ilia_marr",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/internal_voice/clearing_reached.json",
+      "npc_id": "internal_voice",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/internal_voice/hazemoor_path.json",
+      "npc_id": "internal_voice",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/internal_voice/hazemoor_warning.json",
+      "npc_id": "internal_voice",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/internal_voice/iliya_first_whisper.json",
+      "npc_id": "internal_voice",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/internal_voice/leaving_settlement.json",
+      "npc_id": "internal_voice",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/internal_voice/old_magic.json",
+      "npc_id": "internal_voice",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/internal_voice/something_is_wrong.json",
+      "npc_id": "internal_voice",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/internal_voice/tykhy_shelest_arrival.json",
+      "npc_id": "internal_voice",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/isra_vayn/first_meeting.json",
+      "npc_id": "isra_vayn",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/kaen/first_meeting.json",
+      "npc_id": "kaen",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/karos/first_meeting.json",
+      "npc_id": "karos",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/kelm/first_meeting.json",
+      "npc_id": "kelm",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/kelm/invitation.json",
+      "npc_id": "kelm",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/kelm/witch_problem.json",
+      "npc_id": "kelm",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/kelm/your_decision.json",
+      "npc_id": "kelm",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/lileya/first_meeting.json",
+      "npc_id": "lileya",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/loen/meeting.json",
+      "npc_id": "loen",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/mara_dens/first_meeting.json",
+      "npc_id": "mara_dens",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/merchant_lysa/testimony.json",
+      "npc_id": "merchant_lysa",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/mia/first_meeting.json",
+      "npc_id": "mia",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/mia/reunion_deep_bog.json",
+      "npc_id": "mia",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/mia/second_decision.json",
+      "npc_id": "mia",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/mia_mother/about_mia.json",
+      "npc_id": "mia_mother",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/nera/first_meeting.json",
+      "npc_id": "nera",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/odrin/first_meeting.json",
+      "npc_id": "odrin",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/port_bartender/default.json",
+      "npc_id": "port_bartender",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/rufin/first_encounter.json",
+      "npc_id": "rufin",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/rufin_glade/at_glade.json",
+      "npc_id": "rufin_glade",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/sella/first_meeting.json",
+      "npc_id": "sella",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/sirra/first_meeting.json",
+      "npc_id": "sirra",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/skel_ganis/first_meeting.json",
+      "npc_id": "skel_ganis",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/sonk_ferry/ferry_quests.json",
+      "npc_id": "sonk_ferry",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/stetson_valkorn/first_meeting.json",
+      "npc_id": "stetson_valkorn",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/tessa_valkorn/first_meeting.json",
+      "npc_id": "tessa_valkorn",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/tovan_rid/first_meeting.json",
+      "npc_id": "tovan_rid",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/valkorn/valkorn_quests.json",
+      "npc_id": "valkorn",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/varrik/about_rufin.json",
+      "npc_id": "varrik",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/varrik/lost_heirloom.json",
+      "npc_id": "varrik",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/varrik/please_find_it.json",
+      "npc_id": "varrik",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/varrik/thank_you.json",
+      "npc_id": "varrik",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/varrik/you_bastard.json",
+      "npc_id": "varrik",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/voss/first_meeting.json",
+      "npc_id": "voss",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/waitress/greeting.json",
+      "npc_id": "waitress",
+      "inventory_status": "present"
+    },
+    {
+      "path": "res://data/dialogues/woodcarver/about_rufin.json",
+      "npc_id": "woodcarver",
+      "inventory_status": "present"
+    }
+  ],
+  "models": [
+    {
+      "path": "res://assets/meshy/greyford_alteya/alteya_witch.glb",
+      "referenced_by_scenes": [],
+      "reference_status": "unreferenced",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/greyford_alteya/alteya_witch_real.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/greyford/AlteyaHiddenRoom.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/greyford_craftsmen/furrier.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/greyford/CraftsmenQuarter.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/greyford_craftsmen/woodcarver.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/greyford/CraftsmenQuarter.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/greyford_gate/gate_sergeant.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/greyford/GreyfordGate.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/greyford_port_tavern/cassandra_courtesan.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/greyford/PortTavernInterior.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/greyford_port_tavern/port_bartender.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/greyford/PortTavernInterior.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/greyford_tavern/creaking_sign.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/greyford/TavernInterior.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/greyford_tavern/drunk_sailor.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/greyford/TavernInterior.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/greyford_tavern/ervan_innkeeper.glb",
+      "referenced_by_scenes": [],
+      "reference_status": "unreferenced",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/greyford_tavern/ervan_innkeeper_clean_apron.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/greyford/TavernInterior.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/greyford_tavern/greyford_guard_rigged.glb",
+      "referenced_by_scenes": [],
+      "reference_status": "unreferenced",
+      "embedded_animation_candidate": true,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/greyford_tavern/greyford_guard_v2_walk.glb",
+      "referenced_by_scenes": [],
+      "reference_status": "unreferenced",
+      "embedded_animation_candidate": true,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/greyford_tavern/greyford_guard_walk.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/greyford/TavernInterior.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": true,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/greyford_tavern/greyford_guard_walk_OLD.glb",
+      "referenced_by_scenes": [],
+      "reference_status": "unreferenced",
+      "embedded_animation_candidate": true,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/greyford_tavern/merchant_patron.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/greyford/TavernInterior.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/greyford_tavern/merchant_patron_rigged.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/greyford/TavernInterior.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": true,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/greyford_tavern/merchant_patron_rigged_walk.glb",
+      "referenced_by_scenes": [],
+      "reference_status": "unreferenced",
+      "embedded_animation_candidate": true,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/greyford_tavern/old_woman_patron.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/greyford/TavernInterior.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/greyford_tavern/tavern_bar_counter.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/greyford/TavernInterior.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/greyford_tavern/tavern_interior_from_art.glb",
+      "referenced_by_scenes": [],
+      "reference_status": "unreferenced",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/greyford_tavern/tavern_props_kit.glb",
+      "referenced_by_scenes": [],
+      "reference_status": "unreferenced",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/greyford_tavern/waitress.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/greyford/TavernInterior.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/greyford_tavern/waitress_rigged_walk.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/greyford/TavernInterior.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": true,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/sonk_ferry/brin_oss.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/sonk_ferry/SonkFerry.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/sonk_ferry/deacon_rein.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/sonk_ferry/SonkFerry.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/sonk_ferry/gara_paik.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/sonk_ferry/SonkFerry.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/sonk_ferry/isra_vayn.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/sonk_ferry/SonkFerry.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/sonk_ferry/mara_dens.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/sonk_ferry/SonkFerry.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/sonk_ferry/nera_veil.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/sonk_ferry/SonkFerry.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/sonk_ferry/sella_elder.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/sonk_ferry/SonkFerry.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/sonk_ferry/skel_ganis.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/sonk_ferry/SonkFerry.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/sonk_ferry/voss_quartermaster.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/sonk_ferry/SonkFerry.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/tykhy_shelist/boat.glb",
+      "referenced_by_scenes": [],
+      "reference_status": "unreferenced",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/tykhy_shelist/kaen.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/tykhy_shelist/TykhyShelist.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/tykhy_shelist/mia.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/tykhy_shelist/TykhyShelist.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/tykhy_shelist/sirra.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/tykhy_shelist/TykhyShelist.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/tykhy_shelist/stilt_hut.glb",
+      "referenced_by_scenes": [],
+      "reference_status": "unreferenced",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/tykhy_shelist/varrik_hunter.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/tykhy_shelist/TykhyShelist.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/tykhy_shelist/walkway.glb",
+      "referenced_by_scenes": [],
+      "reference_status": "unreferenced",
+      "embedded_animation_candidate": true,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/valkorn/archivist.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/valkorn/BlackArchive.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    },
+    {
+      "path": "res://assets/meshy/valkorn/tessa_merchant.glb",
+      "referenced_by_scenes": [
+        "res://scenes/locations/valkorn/BlackArchive.tscn"
+      ],
+      "reference_status": "wired",
+      "embedded_animation_candidate": false,
+      "production_acceptance": "unverified"
+    }
+  ]
+}

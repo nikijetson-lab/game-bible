@@ -174,6 +174,14 @@ func _check_quest_completion(quest_id: String) -> void:
 	var data: Variant = _quest_db.get(quest_id, {})
 	var cc: Variant = data.get("completion_conditions", {})
 	var required: Array = cc.get("required_objectives", [])
+	# Fallback: if the quest declares no explicit required_objectives list,
+	# derive the requirement from every non-optional objective. Without this,
+	# an empty required list makes the loop below vacuously true and completes
+	# the quest after its very first objective (canonical-contract violation).
+	if required.is_empty():
+		for obj in data.get("objectives", []):
+			if not obj.get("optional", false):
+				required.append(obj.get("id"))
 	var done: Variant = completed_objectives.get(quest_id, [])
 	for obj_id in required:
 		if not obj_id in done:

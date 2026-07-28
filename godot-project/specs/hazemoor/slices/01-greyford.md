@@ -31,6 +31,7 @@ scene and is included in global smoke/screenshots.
 # Godot SceneTree scripts, run on Windows host
 --script res://tests/test_quest_greyford_01.gd
 --script res://tests/test_greyford_01_progression.gd
+--script res://tests/test_greyford_side_dialogue_wiring.gd
 --script res://tests/test_portals.gd
 --script res://tests/smoke_tavern_intro_staging.gd
 --script res://tests/smoke_all_scenes.gd

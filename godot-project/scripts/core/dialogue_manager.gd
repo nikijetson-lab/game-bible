@@ -276,6 +276,27 @@ func _auto_complete_npc_objectives(npc_id: String) -> void:
 				qm.complete_objective(quest_id, objective_id)
 				print("Dialogue: auto-completed objective ", objective_id, " for quest ", quest_id)
 
+	# Registry is generated inventory and can lag behind canonical quest data. Recover a
+	# missing dialogue mapping from the first reachable required objective only. This is
+	# stage-aware: talking once cannot also complete a later return-to-the-same-NPC step.
+	var spoken_to: String = _resolve_npc(npc_id)
+	for active_quest_id in qm.active_quests.keys():
+		var data: Dictionary = qm.get_quest_data(active_quest_id)
+		var done: Array = qm.completed_objectives.get(active_quest_id, [])
+		for objective in data.get("objectives", []):
+			if objective.get("optional", false):
+				continue
+			var objective_id: String = objective.get("id", "")
+			if objective_id in done:
+				continue
+			var objective_type: String = objective.get("type", "")
+			var target: String = _resolve_npc(objective.get("target", ""))
+			if objective_type in ["talk", "dialogue"] and target == spoken_to:
+				qm.complete_objective(active_quest_id, objective_id)
+				print("Dialogue: stage-completed objective ", objective_id, " for quest ", active_quest_id)
+			# The first pending required objective is the stage boundary. Never skip it.
+			break
+
 func check_condition(condition: Dictionary) -> bool:
 	"""Перевірити умову для показу ноди"""
 	var type: String = condition.get("type", "")

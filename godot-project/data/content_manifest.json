@@ -1050,7 +1050,8 @@
         "gate_sergeant"
       ],
       "glb_references": [
-        "res://assets/meshy/greyford_gate/gate_sergeant.glb"
+        "res://assets/meshy/greyford_gate/gate_sergeant.glb",
+        "res://assets/meshy/greyford_tavern/greyford_guard_walk.glb"
       ],
       "art_assembly_scripts": [
         "res://scripts/gameplay/GreyfordGateArtAssembly.gd"
@@ -1089,7 +1090,9 @@
       ],
       "glb_references": [
         "res://assets/meshy/greyford_port_tavern/cassandra_courtesan.glb",
-        "res://assets/meshy/greyford_port_tavern/port_bartender.glb"
+        "res://assets/meshy/greyford_port_tavern/port_bartender.glb",
+        "res://assets/meshy/greyford_tavern/drunk_sailor.glb",
+        "res://assets/meshy/greyford_tavern/merchant_patron.glb"
       ],
       "art_assembly_scripts": [
         "res://scripts/gameplay/PortTavernArtAssembly.gd"
@@ -2903,6 +2906,7 @@
     {
       "path": "res://assets/meshy/greyford_tavern/drunk_sailor.glb",
       "referenced_by_scenes": [
+        "res://scenes/locations/greyford/PortTavernInterior.tscn",
         "res://scenes/locations/greyford/TavernInterior.tscn"
       ],
       "reference_status": "wired",
@@ -2942,6 +2946,7 @@
     {
       "path": "res://assets/meshy/greyford_tavern/greyford_guard_walk.glb",
       "referenced_by_scenes": [
+        "res://scenes/locations/greyford/GreyfordGate.tscn",
         "res://scenes/locations/greyford/TavernInterior.tscn"
       ],
       "reference_status": "wired",
@@ -2958,6 +2963,7 @@
     {
       "path": "res://assets/meshy/greyford_tavern/merchant_patron.glb",
       "referenced_by_scenes": [
+        "res://scenes/locations/greyford/PortTavernInterior.tscn",
         "res://scenes/locations/greyford/TavernInterior.tscn"
       ],
       "reference_status": "wired",

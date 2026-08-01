@@ -34,12 +34,6 @@ func _ready() -> void:
 	
 	# ==================== ЦЕНТРАЛЬНА ПЛАТФОРМА ====================
 	_platform(root, "CentralPlatform", Vector3(0, 2.5, 0), 8, 8, wood, 4)
-	# Вогнище
-	var bonfire: MeshInstance3D = _box(Vector3(0.6, 1.0, 0.6), fire_emit)
-	bonfire.position = Vector3(0, 3.2, 0); root.add_child(bonfire)
-	var fire_light: OmniLight3D = OmniLight3D.new()
-	fire_light.light_color = Color(1.0, 0.35, 0.08); fire_light.light_energy = 3.5; fire_light.omni_range = 10.0
-	fire_light.position = Vector3(0, 3.0, 0); root.add_child(fire_light)
 	# Тотем
 	_totem(root, Vector3(1.5, 2.5, 2.0), dark_wood)
 	_totem(root, Vector3(-1.5, 2.5, -2.0), dark_wood)

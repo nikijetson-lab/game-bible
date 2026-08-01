@@ -1,9 +1,10 @@
-[gd_scene load_steps=32 format=3]
+[gd_scene load_steps=33 format=3]
 
 [ext_resource type="Script" path="res://scripts/ai/NPCBehavior.gd" id="1_npc"]
 [ext_resource type="Script" path="res://scripts/gameplay/LocationPortal.gd" id="2_portal"]
 [ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="3_player"]
 [ext_resource type="Script" path="res://scripts/gameplay/TykhyShelistArtAssembly.gd" id="4_art"]
+[ext_resource type="Script" path="res://scripts/gameplay/Bonfire.gd" id="5_bonfire"]
 [ext_resource type="PackedScene" path="res://assets/meshy/tykhy_shelist/varrik_hunter.glb" id="20_varrik_glb"]
 [ext_resource type="PackedScene" path="res://assets/meshy/tykhy_shelist/kaen.glb" id="21_kaen_glb"]
 [ext_resource type="PackedScene" path="res://assets/meshy/tykhy_shelist/mia.glb" id="22_mia_glb"]
@@ -13,13 +14,13 @@
 background_mode = 1
 background_color = Color(0.04, 0.06, 0.05, 1)
 ambient_light_source = 2
-ambient_light_color = Color(0.28, 0.32, 0.30, 1)
-ambient_light_energy = 1.5
+ambient_light_color = Color(0.18, 0.22, 0.20, 1)
+ambient_light_energy = 0.8
 fog_enabled = true
-fog_light_color = Color(0.22, 0.26, 0.24, 1)
-fog_density = 0.016
+fog_light_color = Color(0.15, 0.18, 0.16, 1)
+fog_density = 0.025
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.007
+volumetric_fog_density = 0.012
 
 [sub_resource type="StandardMaterial3D" id="Mat_swamp_water"]
 albedo_color = Color(0.04, 0.08, 0.05, 1)
@@ -488,5 +489,9 @@ light_energy = 1.0
 omni_range = 4.0
 
 ; =================== ART ASSEMBLY (дрібні хатини на палях) ===================
+[node name="CentralBonfire" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+script = ExtResource("5_bonfire")
+
 [node name="ArtAssembly" type="Node3D" parent="."]
 script = ExtResource("4_art")

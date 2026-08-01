@@ -912,6 +912,13 @@ script = ExtResource("33_label_fix")
 script = ExtResource("9_letter_staging")
 guard_path = NodePath("../NPCs/GreyfordGuard")
 guard_start_marker_path = NodePath("../Staging/GuardStart")
+guard_handoff_marker_path = NodePath("../Staging/GuardHandoff")
+guard_letter_path = NodePath("../NPCs/GreyfordGuard/CarriedLetter")
+ervan_letter_path = NodePath("../NPCs/Ervan/HeldLetter")
+ervan_letter_closeup_marker_path = NodePath("../Staging/ErvanLetterCloseup")
+ervan_model_path = NodePath("../NPCs/Ervan/MeshyErvanModel")
+wiping_towel_path = NodePath("../NPCs/Ervan/WipingTowel")
+shoulder_towel_path = NodePath("../NPCs/Ervan/ShoulderTowel")
 
 [node name="Staging" type="Node3D" parent="." unique_id=1059468539]
 metadata/scene_beat = "Start: letter is with guard. Guard approaches Ervan. Dialogue handoff reveals Ervan with the letter; Ervan lowers it and asks the question."

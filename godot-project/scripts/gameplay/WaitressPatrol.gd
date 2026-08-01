@@ -79,4 +79,8 @@ func _resolve_animation_name(role: String) -> String:
 		var candidate: String = String(animation_name)
 		if candidate.to_lower().contains(needle):
 			return candidate
+	# Fallback: first available animation
+	var list: PackedStringArray = _animation_player.get_animation_list()
+	if not list.is_empty():
+		return String(list[0])
 	return ""

@@ -28,54 +28,67 @@ func _setup_ferry_oath() -> void:
 func _setup_quota() -> void:
 	pass
 
+func _quests() -> Node:
+	return get_node_or_null("/root/Quests")
+
+func _complete_objective(objective_quest_id: String, objective_id: String) -> void:
+	var quests: Node = _quests()
+	if quests and quests.has_method("complete_objective"):
+		quests.complete_objective(objective_quest_id, objective_id)
+
+func _resolve_quest(resolved_quest_id: String, outcome: String) -> void:
+	var quests: Node = _quests()
+	if quests and quests.has_method("resolve_quest"):
+		quests.resolve_quest(resolved_quest_id, outcome)
+
 # --- hunger_from_below ---
 func meet_nera() -> void:
 	nera_trust += 1
-	Quests.complete_objective("sonk_ferry_01_hunger_from_below", "meet_nera")
+	_complete_objective("sonk_ferry_01_hunger_from_below", "meet_nera")
 
 func meet_voss() -> void:
-	Quests.complete_objective("sonk_ferry_01_hunger_from_below", "meet_voss")
+	_complete_objective("sonk_ferry_01_hunger_from_below", "meet_voss")
 
 func inspect_board() -> void:
-	Quests.complete_objective("sonk_ferry_01_hunger_from_below", "notice_board")
+	_complete_objective("sonk_ferry_01_hunger_from_below", "notice_board")
 
 func find_convoy_books() -> void:
-	Quests.complete_objective("sonk_ferry_01_hunger_from_below", "convoy_books")
+	_complete_objective("sonk_ferry_01_hunger_from_below", "convoy_books")
 
 func find_drag_marks() -> void:
-	Quests.complete_objective("sonk_ferry_01_hunger_from_below", "drag_marks")
+	_complete_objective("sonk_ferry_01_hunger_from_below", "drag_marks")
 
 func enter_flooded_chamber() -> void:
-	Quests.complete_objective("sonk_ferry_01_hunger_from_below", "enter_flooded_chamber")
+	_complete_objective("sonk_ferry_01_hunger_from_below", "enter_flooded_chamber")
 
 func defeat_reed_wraiths() -> void:
-	Quests.complete_objective("sonk_ferry_01_hunger_from_below", "defeat_reed_wraiths")
+	_complete_objective("sonk_ferry_01_hunger_from_below", "defeat_reed_wraiths")
 
 func resolve_hunger(outcome: String) -> void:
-	Quests.resolve_quest("sonk_ferry_01_hunger_from_below", outcome)
+	_resolve_quest("sonk_ferry_01_hunger_from_below", outcome)
 
 # --- ferry_oath ---
 func find_body() -> void:
-	Quests.complete_objective("sonk_ferry_03_ferry_oath", "find_body")
+	_complete_objective("sonk_ferry_03_ferry_oath", "find_body")
 
 func open_rift_choice(choice: String) -> void:
-	Quests.complete_objective("sonk_ferry_03_ferry_oath", "open_rift_choice")
+	_complete_objective("sonk_ferry_03_ferry_oath", "open_rift_choice")
 
 func night_council_start() -> void:
-	Quests.complete_objective("sonk_ferry_03_ferry_oath", "night_council")
+	_complete_objective("sonk_ferry_03_ferry_oath", "night_council")
 
 func resolve_ferry_oath(outcome: String) -> void:
-	Quests.resolve_quest("sonk_ferry_03_ferry_oath", outcome)
+	_resolve_quest("sonk_ferry_03_ferry_oath", outcome)
 
 # --- quota_knife ---
 func enter_kelm_office() -> void:
-	Quests.complete_objective("sonk_ferry_04_quota_knife", "enter_kelm_office")
+	_complete_objective("sonk_ferry_04_quota_knife", "enter_kelm_office")
 
 func quota_first_choice(choice: String) -> void:
-	Quests.complete_objective("sonk_ferry_04_quota_knife", "first_choice_quota")
+	_complete_objective("sonk_ferry_04_quota_knife", "first_choice_quota")
 
 func tribunal_start() -> void:
-	Quests.complete_objective("sonk_ferry_04_quota_knife", "tribunal")
+	_complete_objective("sonk_ferry_04_quota_knife", "tribunal")
 
 func resolve_quota(outcome: String) -> void:
-	Quests.resolve_quest("sonk_ferry_04_quota_knife", outcome)
+	_resolve_quest("sonk_ferry_04_quota_knife", outcome)

@@ -24,6 +24,7 @@ var current_location_ambience: Dictionary = {}
 var is_crossfading: bool = false
 
 # Settings
+const SETTINGS_PATH = "user://audio_settings.json"
 var master_volume: float = 0.8
 var music_volume: float = 0.7
 var sfx_volume: float = 0.9
@@ -264,9 +265,39 @@ func save_audio_settings() -> void:
 		"ambience_volume": ambience_volume,
 		"voice_volume": voice_volume
 	}
-	# TODO: Save to file
+
+	var file = FileAccess.open(SETTINGS_PATH, FileAccess.WRITE)
+	if file == null:
+		push_error("Failed to open audio settings file for writing: " + SETTINGS_PATH)
+		return
+
+	var json_string = JSON.stringify(settings, "\t")
+	file.store_string(json_string)
+	file.close()
+	print("Audio settings saved to " + SETTINGS_PATH)
 
 func load_audio_settings() -> void:
 	"""Завантажити налаштування звуку"""
-	# TODO: Load from file
-	pass
+	if not FileAccess.file_exists(SETTINGS_PATH):
+		return # No settings saved yet
+
+	var file = FileAccess.open(SETTINGS_PATH, FileAccess.READ)
+	if file == null:
+		push_error("Failed to open audio settings file for reading: " + SETTINGS_PATH)
+		return
+
+	var json_string = file.get_as_text()
+	file.close()
+
+	var data = JSON.parse_string(json_string)
+	if typeof(data) != TYPE_DICTIONARY:
+		push_error("Failed to parse audio settings JSON or invalid format")
+		return
+
+	if data.has("master_volume"): set_master_volume(data["master_volume"])
+	if data.has("music_volume"): set_music_volume(data["music_volume"])
+	if data.has("sfx_volume"): set_sfx_volume(data["sfx_volume"])
+	if data.has("ambience_volume"): set_ambience_volume(data["ambience_volume"])
+	if data.has("voice_volume"): set_voice_volume(data["voice_volume"])
+
+	print("Audio settings loaded from " + SETTINGS_PATH)

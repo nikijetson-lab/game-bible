@@ -6,6 +6,9 @@
 [ext_resource type="Script" path="res://scripts/gameplay/CraftsmenQuarterArtAssembly.gd" id="25_craft_art"]
 [ext_resource type="PackedScene" path="res://assets/meshy/greyford_craftsmen/woodcarver.glb" id="26_woodcarver_glb"]
 [ext_resource type="PackedScene" path="res://assets/meshy/greyford_craftsmen/furrier.glb" id="27_furrier_glb"]
+[ext_resource type="PackedScene" path="res://assets/meshy/greyford_craftsmen/woodcarver_rigged_walk.glb" id="28_woodcarver_rigged_walk_glb"]
+[ext_resource type="PackedScene" path="res://assets/meshy/greyford_craftsmen/furrier_rigged_walk.glb" id="29_furrier_rigged_walk_glb"]
+[ext_resource type="Script" path="res://scripts/gameplay/RiggedIdleLoop.gd" id="30_rigged_idle_loop"]
 [ext_resource type="Script" uid="uid://eacc75784b61" path="res://scripts/gameplay/font_fix.gd" id="32_font_fix"]
 [ext_resource type="Script" uid="uid://bm1k45n30yvgh" path="res://scripts/gameplay/label_cyrillic_fix.gd" id="33_label_fix"]
 
@@ -194,9 +197,11 @@ visible = false
 mesh = SubResource("CapsuleMesh_npc")
 material_override = SubResource("Mat_fur")
 
-[node name="MeshyFurrierModel" parent="NPCs/Furrier" instance=ExtResource("27_furrier_glb")]
-transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.85, 0)
+[node name="MeshyFurrierModel" parent="NPCs/Furrier" instance=ExtResource("29_furrier_rigged_walk_glb")]
+transform = Transform3D(72, 0, 0, 0, 98, 0, 0, 0, 82, 0, -0.95, 0)
+script = ExtResource("30_rigged_idle_loop")
 metadata/source_task_id = "019f3b6e-fad7-783d-ba76-be64cf1924b6"
+metadata/rig_task_id = "019fbe94-9dec-7bcf-a88d-67ee1ce4a793"
 
 [node name="NameLabel" type="Label3D" parent="NPCs/Furrier"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
@@ -221,12 +226,15 @@ shape = SubResource("SphereShape3D_interaction")
 visible = false
 mesh = SubResource("CapsuleMesh_npc")
 
-[node name="MeshyWoodcarverModel" parent="NPCs/Woodcarver" instance=ExtResource("26_woodcarver_glb")]
-transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.85, 0)
+[node name="MeshyWoodcarverModel" parent="NPCs/Woodcarver" instance=ExtResource("28_woodcarver_rigged_walk_glb")]
+transform = Transform3D(72, 0, 0, 0, 98, 0, 0, 0, 82, 0, -0.95, 0)
+script = ExtResource("30_rigged_idle_loop")
 metadata/source_task_id = "019f3b68-dc44-781a-bfca-3add5122c1f6"
+metadata/rig_task_id = "019fbe94-c11b-792d-a6ac-877b219c4f25"
 
 [node name="LeatherApron" type="MeshInstance3D" parent="NPCs/Woodcarver"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0.34)
+visible = false
 mesh = SubResource("BoxMesh_apron")
 
 [node name="NameLabel" type="Label3D" parent="NPCs/Woodcarver"]

@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://scripts/gameplay/GreyfordGateArtAssembly.gd" id="20_gate_art"]
 [ext_resource type="PackedScene" path="res://assets/meshy/greyford_gate/gate_sergeant.glb" id="21_sergeant_glb"]
 [ext_resource type="PackedScene" path="res://assets/meshy/greyford_tavern/greyford_guard_walk.glb" id="22_guard_glb"]
+[ext_resource type="PackedScene" path="res://assets/meshy/greyford_gate/gate_sergeant_rigged_walk.glb" id="23_sergeant_rigged_walk_glb"]
+[ext_resource type="Script" path="res://scripts/gameplay/RiggedIdleLoop.gd" id="24_rigged_idle_loop"]
 [ext_resource type="Script" uid="uid://eacc75784b61" path="res://scripts/gameplay/font_fix.gd" id="32_font_fix"]
 [ext_resource type="Script" uid="uid://bm1k45n30yvgh" path="res://scripts/gameplay/label_cyrillic_fix.gd" id="33_label_fix"]
 
@@ -165,12 +167,15 @@ visible = false
 mesh = SubResource("CapsuleMesh_npc")
 material_override = SubResource("Mat_cloak")
 
-[node name="MeshySergeantModel" parent="NPCs/GateSergeant" instance=ExtResource("21_sergeant_glb")]
-transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.85, 0)
+[node name="MeshySergeantModel" parent="NPCs/GateSergeant" instance=ExtResource("23_sergeant_rigged_walk_glb")]
+transform = Transform3D(72, 0, 0, 0, 98, 0, 0, 0, 82, 0, -0.95, 0)
+script = ExtResource("24_rigged_idle_loop")
 metadata/source_task_id = "019f3b61-2db1-7d61-9d26-a6f8552b5479"
+metadata/rig_task_id = "019fbe94-f0f7-70ea-a903-b781b1a839b9"
 
 [node name="Breastplate" type="MeshInstance3D" parent="NPCs/GateSergeant"]
 transform = Transform3D(0.52, 0, 0, 0, 0.72, 0, 0, 0, 0.16, 0, 0.1, 0.33)
+visible = false
 mesh = SubResource("BoxMesh_iron")
 
 [node name="GateLog" type="Label3D" parent="NPCs/GateSergeant"]

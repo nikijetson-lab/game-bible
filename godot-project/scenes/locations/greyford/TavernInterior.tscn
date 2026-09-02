@@ -29,6 +29,9 @@
 [ext_resource type="Script" path="res://scripts/gameplay/RiggedIdleLoop.gd" id="31_rigged_idle_loop"]
 [ext_resource type="Script" uid="uid://eacc75784b61" path="res://scripts/gameplay/font_fix.gd" id="32_font_fix"]
 [ext_resource type="Script" uid="uid://bm1k45n30yvgh" path="res://scripts/gameplay/label_cyrillic_fix.gd" id="33_label_fix"]
+[ext_resource type="PackedScene" path="res://assets/meshy/greyford_tavern/drunk_sailor_rigged_walk.glb" id="34_drunk_rigged_walk_glb"]
+[ext_resource type="PackedScene" path="res://assets/meshy/greyford_tavern/old_woman_rigged_seated.glb" id="35_oldwoman_rigged_seated_glb"]
+[ext_resource type="PackedScene" path="res://assets/meshy/greyford_tavern/ervan_rigged_walk.glb" id="36_ervan_rigged_walk_glb"]
 
 [sub_resource type="Environment" id="Environment_tavern"]
 background_mode = 1
@@ -758,10 +761,12 @@ visible = false
 mesh = SubResource("CapsuleMesh_npc")
 metadata/fallback_note = "Hidden visual fallback; collision shape remains active and MeshyErvanModel is the visible character."
 
-[node name="MeshyErvanModel" parent="NPCs/Ervan" unique_id=422842936 instance=ExtResource("8_ervan_clean_glb")]
-transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.85, 0)
+[node name="MeshyErvanModel" parent="NPCs/Ervan" unique_id=422842936 instance=ExtResource("36_ervan_rigged_walk_glb")]
+transform = Transform3D(72, 0, 0, 0, 98, 0, 0, 0, 82, 0, -0.95, 0)
+script = ExtResource("31_rigged_idle_loop")
 metadata/source_task_id = "019f21af-bd23-7c60-a0fb-302e9c52b314"
-metadata/note = "Retextured clean apron: the concept-art letter is restored as a separate prop in Ervan's hands, not baked onto the apron."
+metadata/rig_task_id = "019fbe94-27cd-7911-8d67-3ed700981516"
+metadata/note = "Rigged walking_man loop; bottom-origin grounding computed from skinned GLB bounds."
 
 [node name="HeldLetter" type="MeshInstance3D" parent="NPCs/Ervan" unique_id=236925795]
 transform = Transform3D(0.5, 0, 0, 0, 0.42, -0.26, 0, 0.16, 0.68, 0, 0.62, 0.42)
@@ -971,9 +976,10 @@ metadata/role = "Місцеві за столами: реальні Meshy GLB, �
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -2.25, 0.18, 1.02)
 metadata/pose = "пересаджений на лаву біля лівого столу: низько, ближче до лавки, корпус нахилений до кухля"
 
-[node name="MeshyDrunkSailorModel" parent="BackgroundPatrons/DrunkPatron" unique_id=2127346537 instance=ExtResource("26_drunk_glb")]
-transform = Transform3D(0.58, 0, 0, 0, 0.5, -0.18, 0, 0.1, 0.58, 0, 0.38, 0)
-metadata/source = "Meshy GLB drunk_sailor.glb"
+[node name="MeshyDrunkSailorModel" parent="BackgroundPatrons/DrunkPatron" unique_id=2127346537 instance=ExtResource("34_drunk_rigged_walk_glb")]
+transform = Transform3D(58, 0, 0, 0, 50, -18, 0, 10, 58, 0, 0.38, 0)
+script = ExtResource("31_rigged_idle_loop")
+metadata/source = "Meshy GLB drunk_sailor_rigged_walk.glb"
 
 [node name="Label" type="Label3D" parent="BackgroundPatrons/DrunkPatron" unique_id=559890979]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45, 0)
@@ -1000,10 +1006,11 @@ font_size = 18
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 5.08, 0.16, -0.28)
 metadata/pose = "пересаджена на BenchByWallA біля TableByWall: нижча за інших, корпус трохи нахилений до столу, не висить"
 
-[node name="MeshyOldWomanModel" parent="BackgroundPatrons/OldWomanPatron" unique_id=1840206495 instance=ExtResource("28_oldwoman_glb")]
-transform = Transform3D(0.54, 0, 0, 0, 0.47, -0.13, 0, 0.07, 0.54, 0, 0.35, 0)
+[node name="MeshyOldWomanModel" parent="BackgroundPatrons/OldWomanPatron" unique_id=1840206495 instance=ExtResource("35_oldwoman_rigged_seated_glb")]
+transform = Transform3D(54, 0, 0, 0, 54, 0, 0, 0, 54, 0, -0.16, 0)
 script = ExtResource("31_rigged_idle_loop")
-metadata/source = "Meshy GLB old_woman_patron.glb"
+preferred = "Chair_Sit_Idle_F"
+metadata/source = "Meshy official Chair_Sit_Idle_F (action_id=32); animation_task_id=019fbe9e-860f-72c1-8cbd-950e6020daf8"
 
 [node name="Label" type="Label3D" parent="BackgroundPatrons/OldWomanPatron" unique_id=641109848]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)

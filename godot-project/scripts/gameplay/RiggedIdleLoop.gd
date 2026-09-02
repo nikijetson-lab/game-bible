@@ -5,6 +5,11 @@ extends Node3D
 
 @export var preferred: String = ""   # напр. "idle"; якщо порожньо — бере перший кліп
 @export var loop_speed: float = 1.0
+# Static-anchor NPCs must not continuously play Meshy's walking clip: it contains
+# root motion and eventually walks the skinned character into/through the camera.
+# Freeze a posed frame by default. Real patrol scripts own continuous playback.
+@export var freeze_pose: bool = true
+@export_range(0.0, 1.0, 0.01) var pose_fraction: float = 0.08
 
 var _ap: AnimationPlayer = null
 
@@ -18,11 +23,18 @@ func _setup_animation() -> void:
 	var clip: String = _pick_clip()
 	if clip.is_empty():
 		return
-	if _ap.has_animation(clip):
-		var anim: Animation = _ap.get_animation(clip)
-		if anim != null:
-			anim.loop_mode = Animation.LOOP_LINEAR
+	if not _ap.has_animation(clip):
+		return
+	var anim: Animation = _ap.get_animation(clip)
+	if anim == null:
+		return
 	_ap.play(clip, -1, loop_speed)
+	if freeze_pose:
+		var pose_time: float = clampf(anim.length * pose_fraction, 0.0, anim.length)
+		_ap.seek(pose_time, true)
+		_ap.pause()
+	else:
+		anim.loop_mode = Animation.LOOP_LINEAR
 
 func _find_animation_player(root: Node) -> AnimationPlayer:
 	if root is AnimationPlayer:

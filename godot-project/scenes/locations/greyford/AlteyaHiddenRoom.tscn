@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://scripts/gameplay/AlteyaHiddenRoomArtAssembly.gd" id="5_art"]
 [ext_resource type="Script" uid="uid://dl0nchorsaiy0" path="res://scripts/gameplay/InspectClue.gd" id="4_clue"]
 [ext_resource type="PackedScene" path="res://assets/meshy/greyford_alteya/alteya_witch_real.glb" id="30_alteya_glb"]
+[ext_resource type="PackedScene" path="res://assets/meshy/greyford_alteya/alteya_rigged_walk.glb" id="31_alteya_rigged_walk_glb"]
+[ext_resource type="Script" path="res://scripts/gameplay/RiggedIdleLoop.gd" id="34_rigged_idle_loop"]
 [ext_resource type="Script" uid="uid://eacc75784b61" path="res://scripts/gameplay/font_fix.gd" id="32_font_fix"]
 [ext_resource type="Script" uid="uid://bm1k45n30yvgh" path="res://scripts/gameplay/label_cyrillic_fix.gd" id="33_label_fix"]
 
@@ -209,17 +211,21 @@ visible = false
 mesh = SubResource("CapsuleMesh_alteya")
 surface_material_override/0 = SubResource("Material_dark_cloth")
 
-[node name="MeshyAlteyaModel" parent="NPCs/Alteya" instance=ExtResource("30_alteya_glb")]
-transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.85, 0)
+[node name="MeshyAlteyaModel" parent="NPCs/Alteya" instance=ExtResource("31_alteya_rigged_walk_glb")]
+transform = Transform3D(72, 0, 0, 0, 98, 0, 0, 0, 82, 0, -1, 0)
+script = ExtResource("34_rigged_idle_loop")
 metadata/source_task_id = "019f3b74-d675-71c9-b2d9-70699d1fa516"
+metadata/rig_task_id = "019fbe95-11c9-7bd9-ae6f-298907248df4"
 
 [node name="PaleFrontStole" type="MeshInstance3D" parent="NPCs/Alteya" unique_id=1809374309]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0.36)
+visible = false
 mesh = SubResource("BoxMesh_stole")
 surface_material_override/0 = SubResource("Material_pale_stole")
 
 [node name="GoldenCylinder" type="MeshInstance3D" parent="NPCs/Alteya" unique_id=30425405]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0.2, 0.58)
+visible = false
 mesh = SubResource("CylinderMesh_golden_cylinder")
 surface_material_override/0 = SubResource("Material_gold")
 

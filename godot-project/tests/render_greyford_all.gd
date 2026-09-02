@@ -22,7 +22,17 @@ func _init() -> void:
 	call_deferred("_next")
 
 func _next() -> void:
-	if _s: _s.queue_free()
+	if _s:
+		# Free the previous scene and WAIT for it to leave the tree before loading
+		# the next one. Freeing + instantiating in the same frame let the outgoing
+		# skeleton/animation state (skinned mesh at uncompensated 0.01 armature
+		# scale) bleed into the incoming scene, producing a giant figure. Removing
+		# it immediately + awaiting the free guarantees isolation between shots.
+		root.remove_child(_s)
+		_s.queue_free()
+		_s = null
+		await process_frame
+		await process_frame
 	var shot: Dictionary = _shots[_idx]
 	var p = load(shot["s"])
 	_s = p.instantiate()
@@ -40,23 +50,10 @@ func _next() -> void:
 		DirAccess.make_dir_recursive_absolute("res://screenshots")
 	_cam.global_position = shot["c"]
 	_cam.look_at(shot["l"], Vector3.UP)
-	_play_model_animations(_s)
+	# Respect scene-owned animation state. Static-anchor rig scripts may freeze a
+	# walk clip as an idle pose; forcing every AnimationPlayer to play here causes
+	# root motion and invalid giant/inside-model screenshots.
 	_frames = 0
-
-func _play_model_animations(n: Node) -> void:
-	if n is AnimationPlayer:
-		var player := n as AnimationPlayer
-		var candidates: PackedStringArray = player.get_animation_list()
-		for preferred in ["Idle", "idle", "Walk", "walk"]:
-			if candidates.has(preferred):
-				player.play(preferred)
-				return
-		for animation_name in candidates:
-			if animation_name != "RESET":
-				player.play(animation_name)
-				return
-	for child in n.get_children():
-		_play_model_animations(child)
 
 func _lbl(n: Node) -> void:
 	if n is Label3D: n.visible = false

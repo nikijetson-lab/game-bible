@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" path="res://assets/meshy/greyford_tavern/merchant_patron.glb" id="24_patron_glb"]
 [ext_resource type="PackedScene" uid="uid://v3sxok1c5qp3" path="res://assets/meshy/greyford_tavern/merchant_patron_rigged.glb" id="25_patron_rigged_glb"]
 [ext_resource type="Script" path="res://scripts/gameplay/RiggedIdleLoop.gd" id="26_rigged_idle_loop"]
+[ext_resource type="PackedScene" path="res://assets/meshy/greyford_port/port_bartender_rigged_walk.glb" id="27_bartender_rigged_walk_glb"]
 [ext_resource type="Script" uid="uid://eacc75784b61" path="res://scripts/gameplay/font_fix.gd" id="32_font_fix"]
 [ext_resource type="Script" uid="uid://bm1k45n30yvgh" path="res://scripts/gameplay/label_cyrillic_fix.gd" id="33_label_fix"]
 
@@ -281,9 +282,11 @@ visible = false
 mesh = SubResource("CapsuleMesh_npc")
 material_override = SubResource("Mat_dirty_shirt")
 
-[node name="MeshyBartenderModel" parent="NPCs/PortBartender" instance=ExtResource("22_bartender_glb")]
-transform = Transform3D(0.72, 0, 0, 0, 0.98, 0, 0, 0, 0.82, 0, 0.85, 0)
+[node name="MeshyBartenderModel" parent="NPCs/PortBartender" instance=ExtResource("27_bartender_rigged_walk_glb")]
+transform = Transform3D(72, 0, 0, 0, 98, 0, 0, 0, 82, 0, -0.95, 0)
+script = ExtResource("26_rigged_idle_loop")
 metadata/source_task_id = "019f3b51-9a73-7c01-ad21-60332d14e18b"
+metadata/rig_task_id = "019fbe94-5895-774f-8cfc-7417f521d2b3"
 
 [node name="NameLabel" type="Label3D" parent="NPCs/PortBartender"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)

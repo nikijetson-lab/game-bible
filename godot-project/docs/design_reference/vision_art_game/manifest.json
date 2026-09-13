@@ -1,0 +1,767 @@
+[
+  {
+    "id": 1,
+    "image_page": 1,
+    "bbox": [
+      26.67,
+      16.67,
+      376.67,
+      207.58
+    ],
+    "caption": "Очеретяний повзун (30 HP) — засідка в очереті",
+    "image": "images/01-p01-ocheretianyi-povzun-zasidka-v-ochereti.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 97637
+  },
+  {
+    "id": 2,
+    "image_page": 1,
+    "bbox": [
+      26.67,
+      377.16,
+      376.67,
+      568.07
+    ],
+    "caption": "Рій туманних кровососів (25 HP) — хмара в імлі",
+    "image": "images/02-p01-rii-tumannykh-krovososiv-khmara-v-imli.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 70964
+  },
+  {
+    "id": 3,
+    "image_page": 2,
+    "bbox": [
+      26.67,
+      16.67,
+      376.67,
+      207.58
+    ],
+    "caption": "Гнилий потопельник (45 HP) — те, що болото не віддало",
+    "image": "images/03-p02-hnylyi-potopelnyk-te-shcho-boloto-ne-viddalo.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 98468
+  },
+  {
+    "id": 4,
+    "image_page": 2,
+    "bbox": [
+      26.67,
+      309.66,
+      376.67,
+      500.57
+    ],
+    "caption": "Мурок-трясовик (50–55 HP) — водна засідка",
+    "image": "images/04-p02-murok-triasovyk-vodna-zasidka.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 113010
+  },
+  {
+    "id": 5,
+    "image_page": 2,
+    "bbox": [
+      26.67,
+      628.9,
+      376.67,
+      819.81
+    ],
+    "caption": "Дорослий мурок (90 HP) — страж Жертовника",
+    "image": "images/05-p02-doroslyi-murok-strazh-zhertovnyka.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 124149
+  },
+  {
+    "id": 6,
+    "image_page": 3,
+    "bbox": [
+      26.67,
+      110.0,
+      376.67,
+      300.91
+    ],
+    "caption": "Мати Міа — третій шар таємниці",
+    "image": "images/06-p03-maty-mia-tretii-shar-taiemnytsi.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 84121
+  },
+  {
+    "id": 7,
+    "image_page": 3,
+    "bbox": [
+      26.67,
+      403.41,
+      376.67,
+      594.32
+    ],
+    "caption": "Ерван — хазяїн постоялого двору",
+    "image": "images/07-p03-ervan-khaziain-postoialoho-dvoru.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 76079
+  },
+  {
+    "id": 8,
+    "image_page": 4,
+    "bbox": [
+      26.67,
+      16.67,
+      376.67,
+      207.58
+    ],
+    "caption": "Сірра — молода мисливиця Мурі",
+    "image": "images/08-p04-sirra-moloda-myslyvytsia-muri.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 109673
+  },
+  {
+    "id": 9,
+    "image_page": 4,
+    "bbox": [
+      26.67,
+      303.41,
+      376.67,
+      494.32
+    ],
+    "caption": "Варрік — старший мисливець Мурі",
+    "image": "images/09-p04-varrik-starshyi-myslyvets-muri.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 113331
+  },
+  {
+    "id": 10,
+    "image_page": 5,
+    "bbox": [
+      26.67,
+      16.67,
+      376.67,
+      207.58
+    ],
+    "caption": "Стетсон — королівський слідчий",
+    "image": "images/10-p05-stetson-korolivskyi-slidchyi.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 81783
+  },
+  {
+    "id": 11,
+    "image_page": 5,
+    "bbox": [
+      26.67,
+      303.41,
+      376.67,
+      494.32
+    ],
+    "caption": "Брес — провідник по гетто",
+    "image": "images/11-p05-bres-providnyk-po-hetto.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 97284
+  },
+  {
+    "id": 12,
+    "image_page": 6,
+    "bbox": [
+      26.67,
+      16.67,
+      376.67,
+      207.58
+    ],
+    "caption": "Одрін — палацовий архіваріус",
+    "image": "images/12-p06-odrin-palatsovyi-arkhivarius.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 78955
+  },
+  {
+    "id": 13,
+    "image_page": 6,
+    "bbox": [
+      26.67,
+      316.33,
+      376.67,
+      507.24
+    ],
+    "caption": "Тесса — Торговий квартал Валькорна",
+    "image": "images/13-p06-tessa-torhovyi-kvartal-valkorna.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 90436
+  },
+  {
+    "id": 14,
+    "image_page": 7,
+    "bbox": [
+      26.67,
+      16.67,
+      376.67,
+      207.58
+    ],
+    "caption": "Дамар — ділок, що вкрав не те",
+    "image": "images/14-p07-damar-dilok-shcho-vkrav-ne-te.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 79445
+  },
+  {
+    "id": 15,
+    "image_page": 7,
+    "bbox": [
+      26.67,
+      337.16,
+      376.67,
+      528.07
+    ],
+    "caption": "Лоен — посланець Ордену",
+    "image": "images/15-p07-loen-poslanets-ordenu.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 94937
+  },
+  {
+    "id": 16,
+    "image_page": 7,
+    "bbox": [
+      26.67,
+      623.9,
+      376.67,
+      814.81
+    ],
+    "caption": "",
+    "image": "images/16-p07-untitled.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 98652
+  },
+  {
+    "id": 17,
+    "image_page": 8,
+    "bbox": [
+      26.67,
+      50.42,
+      376.67,
+      241.33
+    ],
+    "caption": "Моур — свідомість болота (фінал еп. 1, Галявина)",
+    "image": "images/17-p08-mour-svidomist-bolota.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 88659
+  },
+  {
+    "id": 18,
+    "image_page": 8,
+    "bbox": [
+      26.67,
+      410.91,
+      376.67,
+      601.82
+    ],
+    "caption": "Руфін — той, хто повернувся порожнім",
+    "image": "images/18-p08-rufin-toi-khto-povernuvsia-porozhnim.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 85548
+  },
+  {
+    "id": 19,
+    "image_page": 9,
+    "bbox": [
+      26.67,
+      16.67,
+      376.67,
+      207.58
+    ],
+    "caption": "Серіт Келм — адміністративний слідчий",
+    "image": "images/19-p09-serit-kelm-administratyvnyi-slidchyi.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 86099
+  },
+  {
+    "id": 20,
+    "image_page": 9,
+    "bbox": [
+      26.67,
+      303.41,
+      376.67,
+      494.32
+    ],
+    "caption": "Себастьян Марр / Блазень Фіпп — очільник Ордену Семи Кинджалів",
+    "image": "images/20-p09-sebastian-marr-blazen-fipp-ochilnyk-ordenu-semy-kyndzhaliv.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 86168
+  },
+  {
+    "id": 21,
+    "image_page": 10,
+    "bbox": [
+      26.67,
+      16.67,
+      376.67,
+      207.58
+    ],
+    "caption": "Ілія Марр — Вартова-Курат",
+    "image": "images/21-p10-iliia-marr-vartova-kurat.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 83022
+  },
+  {
+    "id": 22,
+    "image_page": 10,
+    "bbox": [
+      26.67,
+      282.58,
+      376.67,
+      473.49
+    ],
+    "caption": "Лілея (Алтея) — остання з Ключників",
+    "image": "images/22-p10-lileia-ostannia-z-kliuchnykiv.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 69893
+  },
+  {
+    "id": 23,
+    "image_page": 11,
+    "bbox": [
+      26.67,
+      16.67,
+      376.67,
+      207.58
+    ],
+    "caption": "Каен — шаман Тихого Шелесту",
+    "image": "images/23-p11-kaen-shaman-tykhoho-shelestu.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 82530
+  },
+  {
+    "id": 24,
+    "image_page": 11,
+    "bbox": [
+      26.67,
+      389.24,
+      376.67,
+      580.15
+    ],
+    "caption": "Гара Пайк — контрабандистська капітанка",
+    "image": "images/24-p11-hara-paik-kontrabandystska-kapitanka.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 84654
+  },
+  {
+    "id": 25,
+    "image_page": 12,
+    "bbox": [
+      26.67,
+      16.67,
+      376.67,
+      207.58
+    ],
+    "caption": "Брат Карос — хранитель Святої Вей",
+    "image": "images/25-p12-brat-karos-khranytel-sviatoi-vei.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 88401
+  },
+  {
+    "id": 26,
+    "image_page": 12,
+    "bbox": [
+      26.67,
+      370.91,
+      376.67,
+      561.82
+    ],
+    "caption": "Тован Рід — клановий речник",
+    "image": "images/26-p12-tovan-rid-klanovyi-rechnyk.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 91322
+  },
+  {
+    "id": 27,
+    "image_page": 13,
+    "bbox": [
+      26.67,
+      29.58,
+      376.67,
+      220.49
+    ],
+    "caption": "Мара Денс — лікарка-самоучка",
+    "image": "images/27-p13-mara-dens-likarka-samouchka.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 74542
+  },
+  {
+    "id": 28,
+    "image_page": 13,
+    "bbox": [
+      26.67,
+      390.49,
+      376.67,
+      581.4
+    ],
+    "caption": "Брін Осс — логістичний брокер",
+    "image": "images/28-p13-brin-oss-lohistychnyi-broker.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 93185
+  },
+  {
+    "id": 29,
+    "image_page": 14,
+    "bbox": [
+      26.67,
+      16.67,
+      376.67,
+      207.58
+    ],
+    "caption": "Квартирмейстер Восс — корумпований чиновник",
+    "image": "images/29-p14-kvartyrmeister-voss-korumpovanyi-chynovnyk.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 73174
+  },
+  {
+    "id": 30,
+    "image_page": 14,
+    "bbox": [
+      26.67,
+      429.24,
+      376.67,
+      620.15
+    ],
+    "caption": "Нера Вейл — молода свідка (бонус)",
+    "image": "images/30-p14-nera-veil-moloda-svidka.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 66180
+  },
+  {
+    "id": 31,
+    "image_page": 15,
+    "bbox": [
+      26.67,
+      29.58,
+      376.67,
+      220.49
+    ],
+    "caption": "Різьбяр з кварталу ремісників",
+    "image": "images/31-p15-rizbiar-z-kvartalu-remisnykiv.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 91293
+  },
+  {
+    "id": 32,
+    "image_page": 15,
+    "bbox": [
+      26.67,
+      356.74,
+      376.67,
+      547.65
+    ],
+    "caption": "Кушнір — той, хто знає всіх",
+    "image": "images/32-p15-kushnir-toi-khto-znaie-vsikh.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 91542
+  },
+  {
+    "id": 33,
+    "image_page": 16,
+    "bbox": [
+      26.67,
+      50.42,
+      376.67,
+      241.33
+    ],
+    "caption": "Бармен портової таверни",
+    "image": "images/33-p16-barmen-portovoi-taverny.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 83516
+  },
+  {
+    "id": 34,
+    "image_page": 16,
+    "bbox": [
+      26.67,
+      351.33,
+      376.67,
+      542.24
+    ],
+    "caption": "Куртизанка — остання співрозмовниця Руфіна",
+    "image": "images/34-p16-kurtyzanka-ostannia-spivrozmovnytsia-rufina.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 80260
+  },
+  {
+    "id": 35,
+    "image_page": 17,
+    "bbox": [
+      26.67,
+      29.58,
+      376.67,
+      220.49
+    ],
+    "caption": "Сержант воріт",
+    "image": "images/35-p17-serzhant-vorit.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 106495
+  },
+  {
+    "id": 36,
+    "image_page": 17,
+    "bbox": [
+      26.67,
+      442.58,
+      376.67,
+      633.49
+    ],
+    "caption": "Стара Селла з Мірефолда",
+    "image": "images/36-p17-stara-sella-z-mirefolda.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 80713
+  },
+  {
+    "id": 37,
+    "image_page": 18,
+    "bbox": [
+      26.67,
+      16.67,
+      376.67,
+      207.58
+    ],
+    "caption": "Матір Ісра Вейн — старша настоятелька",
+    "image": "images/37-p18-matir-isra-vein-starsha-nastoiatelka.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 85383
+  },
+  {
+    "id": 38,
+    "image_page": 18,
+    "bbox": [
+      26.67,
+      303.41,
+      376.67,
+      494.32
+    ],
+    "caption": "Скел Ганіс — дренажний робітник",
+    "image": "images/38-p18-skel-hanis-drenazhnyi-robitnyk.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 97388
+  },
+  {
+    "id": 39,
+    "image_page": 18,
+    "bbox": [
+      26.67,
+      569.32,
+      376.67,
+      760.23
+    ],
+    "caption": "Диякон Рейн",
+    "image": "images/39-p18-dyiakon-rein.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 89892
+  },
+  {
+    "id": 40,
+    "image_page": 19,
+    "bbox": [
+      26.67,
+      16.67,
+      376.67,
+      207.58
+    ],
+    "caption": "Присутність — те, що відповідає",
+    "image": "images/40-p19-prysutnist-te-shcho-vidpovidaie.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 104918
+  },
+  {
+    "id": 41,
+    "image_page": 19,
+    "bbox": [
+      26.67,
+      404.66,
+      376.67,
+      595.57
+    ],
+    "caption": "Затоплена каплиця ключників екстер'єр",
+    "image": "images/41-p19-zatoplena-kaplytsia-kliuchnykiv-ekster-ier.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 88244
+  },
+  {
+    "id": 42,
+    "image_page": 20,
+    "bbox": [
+      26.67,
+      16.67,
+      376.67,
+      207.58
+    ],
+    "caption": "Затоплена каплиця ключників інтер'єр",
+    "image": "images/42-p20-zatoplena-kaplytsia-kliuchnykiv-inter-ier.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 90195
+  },
+  {
+    "id": 43,
+    "image_page": 20,
+    "bbox": [
+      26.67,
+      283.83,
+      376.67,
+      474.74
+    ],
+    "caption": "Затоплена таблиця жертовник",
+    "image": "images/43-p20-zatoplena-tablytsia-zhertovnyk.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 86386
+  },
+  {
+    "id": 44,
+    "image_page": 20,
+    "bbox": [
+      26.67,
+      550.99,
+      376.67,
+      741.9
+    ],
+    "caption": "Тварюка Твані— сліпий хижак Шаленої Річки",
+    "image": "images/44-p20-tvariuka-tvani-slipyi-khyzhak-shalenoi-richky.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 99361
+  },
+  {
+    "id": 45,
+    "image_page": 21,
+    "bbox": [
+      26.67,
+      22.92,
+      376.67,
+      213.83
+    ],
+    "caption": "Очеретяний Блукач",
+    "image": "images/45-p21-ocheretianyi-blukach.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 79108
+  },
+  {
+    "id": 46,
+    "image_page": 21,
+    "bbox": [
+      26.67,
+      330.49,
+      376.67,
+      521.4
+    ],
+    "caption": "Вівтар Стагнації",
+    "image": "images/46-p21-vivtar-stahnatsii.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 79901
+  },
+  {
+    "id": 47,
+    "image_page": 21,
+    "bbox": [
+      26.67,
+      583.49,
+      376.67,
+      774.4
+    ],
+    "caption": "\"Попільні стежки Хейзмуру\".",
+    "image": "images/47-p21-popilni-stezhky-kheizmuru.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 132281
+  },
+  {
+    "id": 48,
+    "image_page": 22,
+    "bbox": [
+      26.67,
+      16.67,
+      376.67,
+      207.58
+    ],
+    "caption": "Вівтар Стагнації в еп4",
+    "image": "images/48-p22-vivtar-stahnatsii-v-ep4.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 124246
+  },
+  {
+    "id": 49,
+    "image_page": 22,
+    "bbox": [
+      26.67,
+      250.08,
+      376.67,
+      440.99
+    ],
+    "caption": "Портрет Руфіна",
+    "image": "images/49-p22-portret-rufina.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 57269
+  },
+  {
+    "id": 50,
+    "image_page": 22,
+    "bbox": [
+      26.67,
+      517.24,
+      376.67,
+      708.15
+    ],
+    "caption": "Чорний Архів Валькорна у еп4 (Тесса, реформований Орден)",
+    "image": "images/50-p22-chornyi-arkhiv-valkorna-u-ep4.jpg",
+    "width": 960,
+    "height": 524,
+    "bytes": 98850
+  },
+  {
+    "id": 51,
+    "image_page": 23,
+    "bbox": [
+      26.67,
+      50.42,
+      376.67,
+      245.77
+    ],
+    "caption": "Відхід Героя — Три Шляхи (Фінальна сцена)",
+    "image": "images/51-p23-vidkhid-heroia-try-shliakhy.jpg",
+    "width": 960,
+    "height": 536,
+    "bytes": 97805
+  }
+]
